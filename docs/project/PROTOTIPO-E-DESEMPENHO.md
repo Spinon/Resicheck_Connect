@@ -1,5 +1,7 @@
 # Protótipo instalável, compatibilidade e desempenho
 
+Atualização posterior: o código da demonstração e seus testes locais já existem; APK/execução Android continuam pendentes. As observações iniciais abaixo são históricas e não representam o estado atual de `apps/mobile`. Ver [resultado 0.1.0](../testing/PROTOTIPO-0.1.0.md). A estimativa deve ser revista após preparar o toolchain e realizar o primeiro build nativo.
+
 Avaliação inicial em 06/11/2026. Não há APK nem código do aplicativo. Estimativas são julgamento de planejamento, sem velocidade medida de implementação, e precisam ser revistas após o primeiro build Android.
 
 ## Estado real e pré-requisitos

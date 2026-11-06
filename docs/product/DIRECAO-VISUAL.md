@@ -1,6 +1,8 @@
 # ResiCheck Connect — direção visual
 
-Nome provisório e direção definidos pelo usuário em 06/11/2026. O usuário aprovou os exemplos de telas v0.2 e escolheu **verde como cor padrão**. Documento de produto; não há telas funcionais, tema dinâmico ou pipeline de logotipo implementados. Aprovação visual não demonstra funcionamento ou acessibilidade.
+Nome provisório e direção definidos pelo usuário em 06/11/2026. O usuário aprovou os exemplos de telas v0.2 e escolheu **verde como cor padrão**. Este documento orienta o produto; tema dinâmico completo e pipeline de logo empresarial continuam planejados. Aprovação visual não demonstra funcionamento operacional ou acessibilidade.
+
+Atualização da implementação: há agora telas demonstrativas React Native e QA em prévia web, com ícone original ResiCheck autorizado. Isso não significa APK, tema dinâmico completo ou validação Android/acessibilidade; ver [resultado do protótipo](../testing/PROTOTIPO-0.1.0.md).
 
 Referências v0.2 fornecidas pela coordenação: [exemplo visual 1](https://drive.google.com/file/d/1DNOU9BjjWfNL-iMPaI7S3XB9J2gkZqvR/view) e [exemplo visual 2](https://drive.google.com/file/d/1gMWO1GeDdqtn_vhBWfiKWO42-Dyf_ai5/view). A aprovação orienta o primeiro protótipo; estes links não foram tratados como prova de execução Android nem como assets finais já incorporados ao código.
 

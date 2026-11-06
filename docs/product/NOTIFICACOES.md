@@ -1,6 +1,6 @@
 # Notificações, importância e privacidade
 
-Definição solicitada pelo usuário em 06/11/2026. Estado: especificação e backlog, sem implementação ou registro de dispositivos. Integra o produto de chat; não depende de agenda, APIs externas de agenda ou IA.
+Definição solicitada pelo usuário em 06/11/2026. Estado: especificação e backlog; o protótipo implementa somente configuração e prévia locais/simuladas, sem push, persistência de preferências ou registro de dispositivos. Integra o produto de chat; não depende de agenda, APIs externas de agenda ou IA.
 
 ## Mensagens importantes e filtro
 

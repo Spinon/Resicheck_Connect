@@ -26,8 +26,8 @@ Proposta de estado da empresa: cadastro em elaboração → verificação penden
 
 1. Abre o link e vê a empresa de destino e o papel de funcionário.
 2. Cria conta individual com CPF checável e confirmação de identidade proporcional ao risco, menos onerosa que a do gestor quando isso for adequado. Se já tem conta, autentica-se nela em vez de criar outra.
-3. O vínculo fica **aguardando aceite** do gestor autorizado. O link antecipa o contexto do cadastro, mas não libera privilégios.
-4. Depois do aceite, vê todas as conversas dos pacientes da sua empresa, conversa com pacientes e funcionários e fornece o link de cadastro de pacientes. A leitura das conversas não depende de atribuição individual.
+3. Com **convite válido enviado pelo gestor**, vincula-se e entra diretamente, sem aguardar uma segunda aprovação. O convite expressa a autorização do gestor; a validação técnica do convite e a autenticação da conta não criam uma etapa de aceite humano adicional.
+4. Vê todas as conversas dos pacientes da sua empresa, conversa com pacientes e funcionários e fornece o link de cadastro de pacientes. A leitura das conversas não depende de atribuição individual.
 
 ## Funcionário sem link
 
@@ -36,7 +36,9 @@ Proposta de estado da empresa: cadastro em elaboração → verificação penden
 3. Solicita vínculo e aguarda aceite. Nenhuma conversa, anexo ou lista de pacientes fica acessível enquanto pendente.
 4. Após aceite, recebe os mesmos recursos de um funcionário aprovado pelo fluxo com link.
 
-Nos dois caminhos, recusa, revogação, pedido duplicado, link expirado e cancelamento precisam ter resposta compreensível. Convite não deve conter CPF nem autorizar promoção por parâmetro de URL. Validade, revogação, destinatário individual ou link genérico ainda serão definidos. Não tratar convite reaproveitado como aceite do gestor.
+Correção explícita posterior do usuário: a interpretação anterior de espera nos dois caminhos está superada. **Só a solicitação sem convite aguarda aceite**. Recusa, revogação, pedido duplicado, link expirado e cancelamento precisam de resposta compreensível. Convite inválido/expirado/revogado não libera acesso, mas um convite válido não deve ser convertido em pedido pendente.
+
+Definir validade, revogação, uso único ou reutilização autorizada e vinculação a destinatário conforme risco. Validação no servidor deve conferir origem do gestor, empresa, papel e uso permitido; não confiar em parâmetros editáveis nem inserir CPF no link. Esses controles são técnicos e não uma segunda aprovação. Token, armazenamento protegido, prevenção de reuso indevido e revogação serão implementados/testados no backend, sem presumir que a simulação local os comprova.
 
 Se já houver vínculo de funcionário em outra empresa, um novo convite/pedido não pode criar um segundo vínculo. A política de transferência, encerramento de vínculo anterior e pedidos simultâneos será definida antes de implementar; nunca migrar conversas ou histórico para a nova empresa. Decidir explicitamente se pedidos pendentes reservam a exclusividade, preservando em todos os casos a garantia de não haver dois vínculos ativos.
 

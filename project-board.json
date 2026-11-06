@@ -26,21 +26,45 @@
     {
       "id": "APP-002",
       "title": "Validar proposta e preparar primeira fatia Android executável",
-      "status": "next",
+      "status": "blocked",
       "acceptance": [
         "Registrar escolha de stack e dependências compatíveis",
         "Resolver ambiente de emulador e executar app Android local com dados sintéticos",
         "Demonstrar fluxo básico empresa/paciente sem backend de produção",
         "APK demonstrativo próprio abre sem Expo Go/servidor de desenvolvimento e usa somente dados fictícios com simulação identificada; não exige agenda/IA/integrações"
       ],
-      "nextAction": "Fixar stack mantida e recorte de APK demonstrativo; preparar instalação autorizada de dependências e resolver uso autorizado do ambiente Android, sem repetir ADB negado sem evidência nova. Compilar/instalar app mínimo e reestimar antes de ampliar chat.",
+      "nextAction": "Aguardar autorização específica para preparar Gradle 9.3.1, NDK 27.1.12297006, CMake 3.30.5 e configuração Android/ADB do perfil. Depois compilar APK com bundle embutido, verificar manifesto/assinatura e executar as jornadas no Android.",
       "evidence": [
         "docs/architecture/PROPOSTA.md",
         "docs/project/PROTOTIPO-E-DESEMPENHO.md",
-        "docs/product/MVP-CHAT.md"
+        "docs/product/MVP-CHAT.md",
+        "apps/mobile/README.md",
+        "apps/mobile/App.tsx",
+        "apps/mobile/src/demo.ts",
+        "apps/mobile/tests/demo.test.ts",
+        "apps/mobile/package-lock.json",
+        "docs/testing/PROTOTIPO-0.1.0.md"
       ],
       "deliveryPhase": "mvp-chat-or-applicable-release-stage",
-      "mvpBlocking": true
+      "mvpBlocking": true,
+      "implementationEvidence": [
+        "apps/mobile/App.tsx",
+        "apps/mobile/tests/demo.test.ts",
+        "docs/testing/PROTOTIPO-0.1.0.md"
+      ],
+      "blockers": [
+        {
+          "state": "permission-request-pending",
+          "action": "Preparar componentes oficiais de compilação e configuração ADB fora da pasta do projeto",
+          "targets": [
+            "Gradle 9.3.1",
+            "Android NDK 27.1.12297006",
+            "CMake 3.30.5",
+            "%USERPROFILE%/.android"
+          ],
+          "reason": "Ferramentas ausentes e áreas fora dos writable roots. ADB negado antes; não repetido nem redirecionado. Nenhum termo foi aceito."
+        }
+      ]
     },
     {
       "id": "APP-003",
@@ -48,7 +72,7 @@
       "status": "backlog",
       "acceptance": [
         "Subfatias APP-007 a APP-010 demonstradas com dados sintéticos",
-        "Funcionário com ou sem link aguarda aceite antes de acessar a empresa",
+        "Funcionário por convite válido do gestor entra diretamente; só solicitação sem convite aguarda aceite",
         "Paciente por link ou busca conversa com a empresa sem escolher funcionário",
         "Testes negativos de isolamento entre duas empresas, papéis e funcionário revogado"
       ],
@@ -346,18 +370,19 @@
     },
     {
       "id": "APP-009",
-      "title": "Implementar convite, busca e aceite do vínculo de funcionário",
+      "title": "Implementar entrada direta por convite e aceite de pedido sem convite",
       "status": "backlog",
       "acceptance": [
-        "Convite de funcionário identifica empresa e papel, sem conceder acesso antes do aceite",
+        "Convite válido enviado pelo gestor identifica empresa/papel e libera entrada direta, sem segunda aprovação",
         "Conta sem link busca empresa, solicita vínculo de funcionário e aguarda aceite",
         "Gestor autorizado aprova, recusa e revoga com autoria e histórico",
         "Pendente ou revogado não acessa chat, eventos, pacientes e anexos por nenhuma rota",
-        "Após aprovação, funcionário pode atender, conversar internamente e fornecer link de paciente no escopo autorizado",
+        "Após entrada autorizada por convite válido ou aceite do pedido sem convite, funcionário pode atender, conversar internamente e fornecer link de paciente",
         "Funcionário tem inicialmente uma única empresa; convite, busca e aceite concorrente não criam segundo vínculo ativo; transferência não migra histórico",
-        "[R07] Nenhum vínculo pendente tem acesso; decisão por ator autorizado; aceite auditável; política de aprovação não é implícita."
+        "Convite expirado/revogado/adulterado ou de uso indevido não concede acesso; controles técnicos não viram aprovação humana adicional",
+        "[R07] Sem acesso para vínculo pendente; pedido sem convite tem aceite auditável por ator autorizado; convite válido do gestor ativa vínculo diretamente sem segunda aprovação, com segurança técnica e trilha."
       ],
-      "nextAction": "Após APP-007 e APP-008, implementar ambos os caminhos, estados e testes de convite adulterado, pedido duplicado e revogação de sessão ativa.",
+      "nextAction": "Implementar dois caminhos distintos: convite válido do gestor ativa vínculo diretamente; cadastro sem convite busca empresa e cria pedido pendente. Definir validade/revogação/uso/vinculação do convite e testar sem adicionar etapa humana ao caminho direto.",
       "evidence": [
         "docs/product/FLUXOS-E-IDENTIDADE.md",
         "docs/research/INTEGRACAO.md"
@@ -373,9 +398,9 @@
             "R05",
             "R06"
           ],
-          "requirement": "Modelar pendente, aceito, recusado, expirado e revogado; distinguir convite do gestor e solicitação do funcionário. Funcionário por link e busca aguarda aceite e fica vinculado a uma única empresa inicialmente; exclusividade é garantida no servidor.",
-          "test": "Tentar autoaprovação, aceite por outra identidade, token reutilizado e corrida entre aprovação e revogação.",
-          "acceptance": "Nenhum vínculo pendente tem acesso; decisão por ator autorizado; aceite auditável; política de aprovação não é implícita.",
+          "requirement": "Distinguir convite autorizado do gestor (vínculo direto ao validar convite/autenticar conta, sem segunda aprovação) de solicitação sem convite (pendente até aceite). Modelar validade, uso, recusa, revogação e exclusividade de uma empresa.",
+          "test": "Convite válido dá entrada direta; solicitação sem convite não acessa antes do aceite. Testar adulteração, expiração, revogação, uso/reuso indevido e corrida/exclusividade sem aprovação adicional no convite válido.",
+          "acceptance": "Sem acesso para vínculo pendente; pedido sem convite tem aceite auditável por ator autorizado; convite válido do gestor ativa vínculo diretamente sem segunda aprovação, com segurança técnica e trilha.",
           "sources": "S01 S26",
           "dependenciesOriginal": "R05 R06",
           "stage": "A — Definição",
@@ -2275,6 +2300,27 @@
         "docs/testing/ESTRATEGIA.md"
       ],
       "implementationEvidence": []
+    },
+    {
+      "id": "APP-056",
+      "title": "Implementar áudio real no chat com gravação e reprodução privadas",
+      "status": "backlog",
+      "deliveryPhase": "mvp-chat",
+      "mvpBlocking": true,
+      "acceptance": [
+        "Permissão de microfone contextual; negada/revogada preserva texto e anexos",
+        "Gravar, parar, cancelar, ouvir prévia, enviar e reproduzir com estados de erro/rede e acessibilidade",
+        "Áudio original/derivadas privados por empresa/conversa; paciente só próprio chat e equipe aprovada da empresa conforme política",
+        "Limites de tamanho/duração, formato, interrupções e retenção definidos e testados com gravações sintéticas",
+        "Sem transcrição, análise clínica ou envio a IA/terceiros sem decisão específica",
+        "Protótipo atual é somente simulação visual sem som e não satisfaz aceite de áudio nativo"
+      ],
+      "nextAction": "Após preparar Android e chat/anexos operacionais, selecionar módulo oficial compatível e implementar áudio real com controles/privacidade. A prévia 0.1.0 já ilustra controles sem pedir microfone.",
+      "evidence": [
+        "docs/product/AUDIO.md",
+        "docs/testing/PROTOTIPO-0.1.0.md"
+      ],
+      "implementationEvidence": []
     }
   ],
   "regulatoryIntegration": {
@@ -2595,7 +2641,7 @@
   },
   "mvpPlan": {
     "updatedAt": "2026-11-06",
-    "scope": "Conta, empresa, vínculos e chat humano com anexos e configurações de notificação; Android primeiro",
+    "scope": "Conta, empresa, vínculos e chat humano com anexos, áudio e configurações de notificação; Android primeiro",
     "deferred": [
       "Agenda local e reservas",
       "APIs externas de entrada/saída e importações",
@@ -2619,7 +2665,8 @@
         "Primeiro build e instalação para reestimativa"
       ],
       "evidence": "docs/project/PROTOTIPO-E-DESEMPENHO.md"
-    }
+    },
+    "staffEntry": "Convite válido do gestor: vínculo direto sem segunda aprovação. Cadastro sem convite + busca: pedido pendente até aceite. Paciente imediato nos dois caminhos."
   },
   "designApproval": {
     "date": "2026-11-06",
@@ -2631,5 +2678,28 @@
     ],
     "precedence": "user > company > default",
     "implementationEvidence": []
+  },
+  "implementationSummary": "Demonstração local React Native implementada, 13 testes de modelo e QA de prévia web passaram; bundle Android gerado. APK/instalação aguardam preparação autorizada do toolchain e ADB. Sem backend real.",
+  "prototype": {
+    "version": "0.1.0",
+    "framework": {
+      "expo": "57.0.32",
+      "reactNative": "0.86.3",
+      "react": "19.2.3"
+    },
+    "mode": "synthetic-local-simulation",
+    "typecheck": "pass",
+    "modelTests": 13,
+    "previewQa": "19 checks pass; web preview only; Android not tested",
+    "androidBundle": "generated, not APK",
+    "apk": null,
+    "deviceTested": false,
+    "report": "docs/testing/PROTOTIPO-0.1.0.md",
+    "dependencyAudit": {
+      "high": 0,
+      "critical": 0,
+      "moderate": 4,
+      "status": "documented, compatible remediation pending"
+    }
   }
 }

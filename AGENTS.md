@@ -21,6 +21,7 @@ Nome provisório: ResiCheck Connect. Exemplos v0.2 e verde como padrão aprovado
 - Controle de informação por gestor, funcionário, paciente e ADM é prioridade da fundação, aplicado no backend e em todos os canais. Logs restritos, erros detalhados e discussões privadas de desenvolvimento nunca são conteúdo de usuário comum. Ver `docs/architecture/CLASSIFICACAO-E-PERMISSOES.md`.
 - Funcionário tem inicialmente uma empresa; paciente pode ter várias e escolhe contexto após login. Não unificar históricos clínicos entre empresas. Telemedicina e decisões clínicas estão fora do escopo atual.
 - Todos os funcionários aprovados veem todas as conversas dos pacientes da própria empresa. Paciente tem vínculo imediato e acesso só aos dados públicos gerais permitidos da empresa e ao próprio chat. Indicadores de atendente principal/última mensagem não são permissões; não inventar regras de desempate ou casos sem funcionário.
+- Correção do usuário: convite válido enviado pelo gestor dá entrada direta ao funcionário, sem segunda aprovação. Só cadastro sem convite + busca/solicitação aguarda aceite. Validar segurança do convite sem acrescentar uma aprovação humana ao caminho direto; interpretações anteriores de espera nos dois caminhos estão superadas.
 
 ## Controle e entrega
 

@@ -1,6 +1,6 @@
 # Estratégia de testes
 
-Estado: plano para implementação futura. Nenhum teste de aplicativo, backend ou dispositivo foi executado nesta preparação.
+Plano para implementação operacional futura. O protótipo local já recebeu testes de modelo e QA de prévia web, descritos em [PROTOTIPO-0.1.0.md](PROTOTIPO-0.1.0.md). Nenhum teste de backend, APK ou dispositivo foi executado; os critérios operacionais abaixo continuam pendentes.
 
 Prioridade atual: MVP de cadastro, vínculos e chat com anexos, independente de agenda, integrações externas e IA. Cenários dessas funções estão reservados para fases posteriores e não bloqueiam o MVP pela ausência da função. R27 será aplicado ao chat nesta fase; a parte de reservas/agendamento fica adiada.
 
@@ -60,7 +60,7 @@ Critérios para quando as [extensões planejadas](../architecture/EXTENSOES-IA-E
 
 Acrescentar testes do [fluxo detalhado](../product/FLUXOS-E-IDENTIDADE.md) quando implementado:
 
-- Funcionário com link e sem link termina pendente; acessar APIs, eventos e anexos antes do aceite é negado. Aprovação libera só o escopo autorizado; recusa/revogação efetivamente remove acesso, inclusive com sessão já aberta.
+- Funcionário com convite válido do gestor entra diretamente, sem segunda aprovação. Funcionário sem convite busca empresa, solicita e fica pendente sem acesso a APIs/eventos/anexos até aceite. Testar convite expirado/revogado/adulterado, uso indevido e restrição a uma empresa, sem converter convites válidos em uma nova fila de aprovação. Revogação remove acesso inclusive com sessão aberta.
 - Paciente com link e pela busca tem vínculo imediato e entra na conversa com a empresa sem selecionar funcionário, sem fila de aceite do gestor. Paciente não obtém papel de funcionário ao alterar parâmetros do link ou da requisição.
 - CPF com formato válido não recebe marca de identidade confirmada; consulta indisponível, divergência cadastral e contato confirmado preservam estados distintos. Testes usam respostas sintéticas do provedor, nunca consultas de CPF/CNPJ reais.
 - Cadastro repetido e pedido duplicado não criam contas/vínculos redundantes nem revelam a terceiros se um CPF tem conta. Recuperação e contestação têm cenários próprios.

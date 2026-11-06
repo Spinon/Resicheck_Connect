@@ -31,7 +31,7 @@ const content = [
   '# Status do projeto', '',
   '> Gerado de project-board.json. Não editar manualmente.', '',
   `Atualizado em: ${board.updatedAt}`, '',
-  'Estrutura inicial; sem aplicativo executável, backend implantado ou APK.', '',
+  board.implementationSummary ?? 'Estrutura inicial; sem aplicativo executável, backend implantado ou APK.', '',
   `Foco: **${focus.id} — ${focus.title}**`, '',
   `Próxima ação: ${focus.nextAction}`, '',
   ...board.items.flatMap(item => [

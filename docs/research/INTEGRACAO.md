@@ -11,7 +11,7 @@ Importação em 06/11/2026. Pesquisa recebida da coordenação, versão 1.0, pro
 
 ## Adaptações às decisões mais recentes
 
-Nome provisório ResiCheck Connect; Android primeiro. Telemedicina fora do escopo; IA apenas administrativa/operacional com encaminhamento humano de demanda clínica. Funcionário fica em uma única empresa inicialmente, por link ou busca e sempre com aceite; paciente pode ter várias e escolhe contexto após login ou vincula nova, sem escolher funcionário e sem aceite manual de gestor acrescentado. Não há unificação de histórico entre empresas.
+Nome provisório ResiCheck Connect; Android primeiro. Telemedicina fora do escopo; IA apenas administrativa/operacional com encaminhamento humano de demanda clínica. Funcionário fica em uma única empresa inicialmente, por convite válido do gestor com entrada direta, ou por busca sem convite aguardando aceite; paciente pode ter várias e escolhe contexto após login ou vincula nova, sem escolher funcionário e sem aceite manual de gestor acrescentado. Não há unificação de histórico entre empresas.
 
 O cenário R09 de profissional multivínculo foi adaptado a funcionário de empresa única e paciente multivínculo. R07/R08 incorporam as regras acima. R10 usa os quatro níveis solicitados; recepção/clínico/faturamento do texto original são possíveis refinamentos, não perfis aprovados. R06 usa fixtures explicitamente sintéticas, nunca CNPJ real da notícia. Fonte original permanece intacta.
 
@@ -22,6 +22,10 @@ A classificação da informação é prioridade da fundação: gestor, funcioná
 A primeira fase é cadastro, vínculos e chat humano com anexos e notificações configuráveis; agenda, APIs externas e IA só depois de o app funcionar sem elas. O board reserva fronteiras, sem implementar extensão nem exigir seus provedores. Todos os funcionários aprovados veem todas as conversas dos pacientes da própria empresa. Paciente tem vínculo imediato, dados públicos gerais e próprio chat, sem acervo empresarial. Ver [MVP-CHAT.md](../product/MVP-CHAT.md).
 
 R27 foi realocado para APP-004 com aceite de consistência do chat; reservas/fuso/disponibilidade ficam adiados em APP-005. R31 usa R27 no escopo atual de chat, sem exigir agenda. R43–R48 e os conectores permanecem pós-MVP. R35 foi separado em APP-053: preparar submissão não é condição para APK privado de teste em APP-006. R19 incorpora os quatro níveis de notificação solicitados, com nível 1 por padrão proposto; conteúdo extra nunca supera autorização. Snapshots de origem não foram alterados.
+
+## Correção posterior do fluxo de funcionário
+
+Convite válido enviado pelo gestor vincula e libera entrada direta, sem segunda aprovação. Só cadastro sem convite seguido de busca/solicitação aguarda aceite. Essa decisão supera descrições anteriores de espera nos dois caminhos. R07 e APP-009 foram adaptados; snapshots de pesquisa permanecem como histórico. Segurança técnica de convite (validade, revogação, uso e destinatário/empresa) não pode virar aprovação humana extra. Paciente continua imediato nos dois caminhos.
 
 ## Marcos e gates
 

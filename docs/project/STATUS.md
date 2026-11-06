@@ -4,11 +4,11 @@
 
 Atualizado em: 2026-11-06
 
-Estrutura inicial; sem aplicativo executável, backend implantado ou APK.
+Demonstração local React Native implementada, 13 testes de modelo e QA de prévia web passaram; bundle Android gerado. APK/instalação aguardam preparação autorizada do toolchain e ADB. Sem backend real.
 
 Foco: **APP-002 — Validar proposta e preparar primeira fatia Android executável**
 
-Próxima ação: Fixar stack mantida e recorte de APK demonstrativo; preparar instalação autorizada de dependências e resolver uso autorizado do ambiente Android, sem repetir ADB negado sem evidência nova. Compilar/instalar app mínimo e reestimar antes de ampliar chat.
+Próxima ação: Aguardar autorização específica para preparar Gradle 9.3.1, NDK 27.1.12297006, CMake 3.30.5 e configuração Android/ADB do perfil. Depois compilar APK com bundle embutido, verificar manifesto/assinatura e executar as jornadas no Android.
 
 ## APP-001 — Criar estrutura independente de trabalho e entrega
 
@@ -24,23 +24,23 @@ Evidências: README.md, docs/project/AMBIENTE.md, docs/testing/ESTRATEGIA.md, do
 
 ## APP-002 — Validar proposta e preparar primeira fatia Android executável
 
-Estado: next
+Estado: blocked
 
 - Registrar escolha de stack e dependências compatíveis
 - Resolver ambiente de emulador e executar app Android local com dados sintéticos
 - Demonstrar fluxo básico empresa/paciente sem backend de produção
 - APK demonstrativo próprio abre sem Expo Go/servidor de desenvolvimento e usa somente dados fictícios com simulação identificada; não exige agenda/IA/integrações
 
-Próxima ação: Fixar stack mantida e recorte de APK demonstrativo; preparar instalação autorizada de dependências e resolver uso autorizado do ambiente Android, sem repetir ADB negado sem evidência nova. Compilar/instalar app mínimo e reestimar antes de ampliar chat.
+Próxima ação: Aguardar autorização específica para preparar Gradle 9.3.1, NDK 27.1.12297006, CMake 3.30.5 e configuração Android/ADB do perfil. Depois compilar APK com bundle embutido, verificar manifesto/assinatura e executar as jornadas no Android.
 
-Evidências: docs/architecture/PROPOSTA.md, docs/project/PROTOTIPO-E-DESEMPENHO.md, docs/product/MVP-CHAT.md
+Evidências: docs/architecture/PROPOSTA.md, docs/project/PROTOTIPO-E-DESEMPENHO.md, docs/product/MVP-CHAT.md, apps/mobile/README.md, apps/mobile/App.tsx, apps/mobile/src/demo.ts, apps/mobile/tests/demo.test.ts, apps/mobile/package-lock.json, docs/testing/PROTOTIPO-0.1.0.md
 
 ## APP-003 — Implementar identidade, empresas, equipe e convite
 
 Estado: backlog
 
 - Subfatias APP-007 a APP-010 demonstradas com dados sintéticos
-- Funcionário com ou sem link aguarda aceite antes de acessar a empresa
+- Funcionário por convite válido do gestor entra diretamente; só solicitação sem convite aguarda aceite
 - Paciente por link ou busca conversa com a empresa sem escolher funcionário
 - Testes negativos de isolamento entre duas empresas, papéis e funcionário revogado
 
@@ -125,19 +125,20 @@ Próxima ação: Após APP-007, consolidar fonte oficial, prova de representaç�
 
 Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md
 
-## APP-009 — Implementar convite, busca e aceite do vínculo de funcionário
+## APP-009 — Implementar entrada direta por convite e aceite de pedido sem convite
 
 Estado: backlog
 
-- Convite de funcionário identifica empresa e papel, sem conceder acesso antes do aceite
+- Convite válido enviado pelo gestor identifica empresa/papel e libera entrada direta, sem segunda aprovação
 - Conta sem link busca empresa, solicita vínculo de funcionário e aguarda aceite
 - Gestor autorizado aprova, recusa e revoga com autoria e histórico
 - Pendente ou revogado não acessa chat, eventos, pacientes e anexos por nenhuma rota
-- Após aprovação, funcionário pode atender, conversar internamente e fornecer link de paciente no escopo autorizado
+- Após entrada autorizada por convite válido ou aceite do pedido sem convite, funcionário pode atender, conversar internamente e fornecer link de paciente
 - Funcionário tem inicialmente uma única empresa; convite, busca e aceite concorrente não criam segundo vínculo ativo; transferência não migra histórico
-- [R07] Nenhum vínculo pendente tem acesso; decisão por ator autorizado; aceite auditável; política de aprovação não é implícita.
+- Convite expirado/revogado/adulterado ou de uso indevido não concede acesso; controles técnicos não viram aprovação humana adicional
+- [R07] Sem acesso para vínculo pendente; pedido sem convite tem aceite auditável por ator autorizado; convite válido do gestor ativa vínculo diretamente sem segunda aprovação, com segurança técnica e trilha.
 
-Próxima ação: Após APP-007 e APP-008, implementar ambos os caminhos, estados e testes de convite adulterado, pedido duplicado e revogação de sessão ativa.
+Próxima ação: Implementar dois caminhos distintos: convite válido do gestor ativa vínculo diretamente; cadastro sem convite busca empresa e cria pedido pendente. Definir validade/revogação/uso/vinculação do convite e testar sem adicionar etapa humana ao caminho direto.
 
 Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md
 
@@ -682,3 +683,18 @@ Estado: backlog
 Próxima ação: Durante APP-002, fixar versões e matriz mínima; obter uso autorizado de imagem/dispositivo correspondente e testar. A imagem atualmente observada é apenas Android 36.
 
 Evidências: docs/project/PROTOTIPO-E-DESEMPENHO.md, docs/testing/ESTRATEGIA.md
+
+## APP-056 — Implementar áudio real no chat com gravação e reprodução privadas
+
+Estado: backlog
+
+- Permissão de microfone contextual; negada/revogada preserva texto e anexos
+- Gravar, parar, cancelar, ouvir prévia, enviar e reproduzir com estados de erro/rede e acessibilidade
+- Áudio original/derivadas privados por empresa/conversa; paciente só próprio chat e equipe aprovada da empresa conforme política
+- Limites de tamanho/duração, formato, interrupções e retenção definidos e testados com gravações sintéticas
+- Sem transcrição, análise clínica ou envio a IA/terceiros sem decisão específica
+- Protótipo atual é somente simulação visual sem som e não satisfaz aceite de áudio nativo
+
+Próxima ação: Após preparar Android e chat/anexos operacionais, selecionar módulo oficial compatível e implementar áudio real com controles/privacidade. A prévia 0.1.0 já ilustra controles sem pedir microfone.
+
+Evidências: docs/product/AUDIO.md, docs/testing/PROTOTIPO-0.1.0.md

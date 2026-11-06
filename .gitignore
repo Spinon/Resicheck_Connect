@@ -17,3 +17,6 @@ output/*
 coverage/
 test-results/
 *.log
+apps/mobile/android/
+apps/mobile/ios/
+apps/mobile/dist/

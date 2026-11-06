@@ -1,5 +1,7 @@
 # Ambiente observado — 06/11/2026
 
+Registro histórico anterior à implementação. Na fatia seguinte foram instaladas dependências locais Expo/React Native em `apps/mobile` e gerados fontes/bundles, sem alterar o SDK nem usar ADB. O estado atualizado e as autorizações pendentes estão em [PROTOTIPO-0.1.0.md](../testing/PROTOTIPO-0.1.0.md).
+
 Inspeção de leitura no Windows; nenhum software instalado e nenhum termo aceito.
 
 | Item | Resultado observado |

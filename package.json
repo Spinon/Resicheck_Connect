@@ -2,10 +2,15 @@
   "name": "atendimento-mobile-workspace",
   "private": true,
   "version": "0.0.0",
-  "description": "Organização inicial; não é ainda o pacote do aplicativo Android.",
+  "description": "Workspace do ResiCheck Connect; aplicativo em apps/mobile.",
   "scripts": {
     "project:check": "node scripts/project.mjs --check",
-    "project:status": "node scripts/project.mjs --write"
+    "project:status": "node scripts/project.mjs --write",
+    "mobile:typecheck": "npm --prefix apps/mobile run typecheck",
+    "mobile:test": "npm --prefix apps/mobile test",
+    "mobile:export:android": "npm --prefix apps/mobile run export:android"
   },
-  "engines": { "node": ">=22" }
+  "engines": {
+    "node": ">=22.13.0"
+  }
 }

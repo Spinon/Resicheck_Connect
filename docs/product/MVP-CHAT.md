@@ -1,10 +1,10 @@
 # Primeira fase: cadastro, vínculo e chat
 
-Decisão explícita do usuário em 06/11/2026, posterior ao plano de agenda e extensões. Estado: planejamento; nenhuma capacidade está implementada por este documento.
+Decisão explícita do usuário em 06/11/2026, posterior ao plano de agenda e extensões. As capacidades operacionais permanecem planejadas; existe agora uma demonstração local sem servidor, não um chat operacional. Ver [resultado do protótipo](../testing/PROTOTIPO-0.1.0.md).
 
 ## Entrega da primeira fase
 
-ResiCheck Connect Android com conta individual, cadastro/verificação de empresa, convite e aceite de funcionários, vínculo imediato de pacientes e chat empresa-paciente com anexos privados. Cada funcionário tem inicialmente uma empresa; pacientes podem ter várias, escolhem contexto após login ou vinculam nova.
+ResiCheck Connect Android com conta individual, cadastro/verificação de empresa, entrada direta de funcionário por convite válido do gestor, aceite apenas do pedido de funcionário sem convite, vínculo imediato de pacientes e chat empresa-paciente com anexos privados. Cada funcionário tem inicialmente uma empresa; pacientes podem ter várias, escolhem contexto após login ou vinculam nova. A correção do fluxo de convite substitui versões anteriores que exigiam espera em ambos os caminhos.
 
 Notificações e suas configurações fazem parte do produto de chat, conforme [NOTIFICACOES.md](NOTIFICACOES.md), sem depender das extensões adiadas. Negar permissão de notificação não impede acesso ao chat.
 
