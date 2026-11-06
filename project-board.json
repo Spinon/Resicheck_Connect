@@ -1,0 +1,2635 @@
+{
+  "schemaVersion": 1,
+  "project": "ResiCheck Connect (provisório)",
+  "updatedAt": "2026-11-06",
+  "currentFocus": "APP-002",
+  "items": [
+    {
+      "id": "APP-001",
+      "title": "Criar estrutura independente de trabalho e entrega",
+      "status": "done",
+      "acceptance": [
+        "Fila única e status gerado disponíveis",
+        "Escopo, proposta, testes e entrega documentados",
+        "Ambiente inspecionado sem modificar o ResiCheck"
+      ],
+      "nextAction": "Consultar a proposta técnica antes de iniciar a fatia executável.",
+      "evidence": [
+        "README.md",
+        "docs/project/AMBIENTE.md",
+        "docs/testing/ESTRATEGIA.md",
+        "docs/delivery/ENTREGAS.md"
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-002",
+      "title": "Validar proposta e preparar primeira fatia Android executável",
+      "status": "next",
+      "acceptance": [
+        "Registrar escolha de stack e dependências compatíveis",
+        "Resolver ambiente de emulador e executar app Android local com dados sintéticos",
+        "Demonstrar fluxo básico empresa/paciente sem backend de produção",
+        "APK demonstrativo próprio abre sem Expo Go/servidor de desenvolvimento e usa somente dados fictícios com simulação identificada; não exige agenda/IA/integrações"
+      ],
+      "nextAction": "Fixar stack mantida e recorte de APK demonstrativo; preparar instalação autorizada de dependências e resolver uso autorizado do ambiente Android, sem repetir ADB negado sem evidência nova. Compilar/instalar app mínimo e reestimar antes de ampliar chat.",
+      "evidence": [
+        "docs/architecture/PROPOSTA.md",
+        "docs/project/PROTOTIPO-E-DESEMPENHO.md",
+        "docs/product/MVP-CHAT.md"
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-003",
+      "title": "Implementar identidade, empresas, equipe e convite",
+      "status": "backlog",
+      "acceptance": [
+        "Subfatias APP-007 a APP-010 demonstradas com dados sintéticos",
+        "Funcionário com ou sem link aguarda aceite antes de acessar a empresa",
+        "Paciente por link ou busca conversa com a empresa sem escolher funcionário",
+        "Testes negativos de isolamento entre duas empresas, papéis e funcionário revogado"
+      ],
+      "nextAction": "Após APP-002, executar as subfatias APP-007, APP-008, APP-009 e APP-010; especificação não conta como implementação.",
+      "evidence": [
+        "docs/product/FLUXOS-E-IDENTIDADE.md"
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-004",
+      "title": "Entregar chat e anexos privados",
+      "status": "backlog",
+      "acceptance": [
+        "Todos os funcionários aprovados e ativos veem todas as conversas dos pacientes da própria empresa; acesso não depende de atendente atribuído",
+        "Paciente com vínculo imediato acessa só nome/endereço/telefones públicos da empresa e próprio chat/anexos, onde envia mensagem e aguarda",
+        "Funcionário pendente/revogado, outro paciente, outra empresa e gestor sem papel operacional não acessam conversa",
+        "Chat funciona sem agenda, IA ou APIs externas; mantém mensagens e anexos privados com recuperação de falhas",
+        "Atendente principal e da última mensagem são indicadores da equipe, não permissões; subfatia APP-050 resolve critérios antes de implementação",
+        "[R16] Sem objeto público; limites de link documentados; não prometer apagar cópia já baixada.",
+        "[R17] Arquivo não validado não é distribuído; processamento isolado e limitado; erros não expõem caminhos.",
+        "[R18] Trilha contém remetente, destino, versão e data; não modificar original assinado; sem mistura de acervos.",
+        "[R11] Paciente não escolhe funcionário; todos os funcionários aprovados da empresa podem ler as conversas; autoria real e revogação são preservadas",
+        "[R27] MVP não duplica mensagens por retry e preserva ordenação/autoria e significado dos estados de envio/entrega/leitura escolhidos; não exige desenvolver agenda. Garantias de reserva ficam na fase futura."
+      ],
+      "nextAction": "Após identidade e vínculos, implementar chat humano e anexos privados independente de agenda/IA/conectores; aplicar visibilidade por empresa e subfatia de indicadores APP-050.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md",
+        "docs/product/MVP-CHAT.md"
+      ],
+      "regulatoryRequirements": [
+        {
+          "id": "R11",
+          "title": "Gerir conversa da empresa e atribuição interna",
+          "priority": "P0",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "Produto e backend",
+          "dependencies": [
+            "R09",
+            "R10"
+          ],
+          "requirement": "Paciente conversa com a empresa. Todos os funcionários aprovados e ativos dessa empresa veem todas as conversas dos pacientes dela; indicadores de atendente não restringem acesso. Paciente vê somente o próprio chat e dados públicos gerais permitidos da empresa.",
+          "test": "Dois funcionários aprovados da empresa leem as mesmas conversas; funcionário pendente, revogado ou externo e outro paciente são negados. Validar autoria e indicadores após definir desempate/casos sem funcionário.",
+          "acceptance": "Paciente não escolhe funcionário; todos os funcionários aprovados da própria empresa acessam suas conversas, sem acesso cruzado. Indicadores não são ACL; desligado perde acesso.",
+          "sources": "S01 S26",
+          "dependenciesOriginal": "R09 R10",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        },
+        {
+          "id": "R16",
+          "title": "Restringir documentos e URLs",
+          "priority": "P0",
+          "nature": "LEGAL objetivo e RECOMENDAÇÃO",
+          "owner": "Backend e documentos",
+          "dependencies": [
+            "R09",
+            "R10"
+          ],
+          "requirement": "Manter objetos privados e autorizar original, miniatura e exportação; links de duração limitada quando necessários.",
+          "test": "Trocar paciente, reutilizar URL expirada/revogada e consultar objeto de outra empresa.",
+          "acceptance": "Sem objeto público; limites de link documentados; não prometer apagar cópia já baixada.",
+          "sources": "S01 S24 S26",
+          "dependenciesOriginal": "R09 R10",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S24",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        },
+        {
+          "id": "R17",
+          "title": "Validar upload e conteúdo ativo",
+          "priority": "P0",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "Backend e AppSec",
+          "dependencies": [
+            "R16"
+          ],
+          "requirement": "Validar tamanho, tipo real e conteúdo; limitar processamento e colocar suspeitos em quarentena.",
+          "test": "Enviar MIME falso, arquivo enorme, PDF ativo e arquivo de teste seguro; avaliar parser.",
+          "acceptance": "Arquivo não validado não é distribuído; processamento isolado e limitado; erros não expõem caminhos.",
+          "sources": "S26",
+          "dependenciesOriginal": "R16",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S26"
+          ],
+          "applicability": "pending-review"
+        },
+        {
+          "id": "R18",
+          "title": "Confirmar destinatário e versão",
+          "priority": "P0",
+          "nature": "LEGAL objetivo e RECOMENDAÇÃO",
+          "owner": "UX e documentos",
+          "dependencies": [
+            "R11",
+            "R16"
+          ],
+          "requirement": "Exibir empresa/paciente/destinatário antes do compartilhamento; preservar original e versões.",
+          "test": "Simular homônimos e documento substituído; conferir seleção em tela pequena.",
+          "acceptance": "Trilha contém remetente, destino, versão e data; não modificar original assinado; sem mistura de acervos.",
+          "sources": "S01 S26",
+          "dependenciesOriginal": "R11 R16",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        },
+        {
+          "id": "R27",
+          "title": "Garantir consistência da agenda e chat",
+          "priority": "P0",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "Backend e QA",
+          "dependencies": [
+            "R09",
+            "R11"
+          ],
+          "requirement": "Na primeira fase, garantir persistência, idempotência, ordenação e estados claros do chat; reservar garantias de agenda para fase futura, sem bloquear chat por falta de reservas.",
+          "test": "Validar mensagens simultâneas, retries após timeout/reconexão e ordem/autoria no servidor. Testes de dupla reserva, fuso e disponibilidade somente quando a agenda entrar no escopo.",
+          "acceptance": "MVP não duplica mensagens por retry e preserva ordenação/autoria e significado dos estados de envio/entrega/leitura escolhidos; não exige desenvolver agenda. Garantias de reserva ficam na fase futura.",
+          "sources": "S26",
+          "dependenciesOriginal": "R09 R11",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S26"
+          ],
+          "applicability": "pending-review",
+          "deferredAspects": [
+            "Dupla reserva",
+            "Fuso e disponibilidade de agenda",
+            "Estados solicitado/confirmado de agendamento"
+          ],
+          "scopeAdaptation": "Decisão posterior do usuário: MVP de chat independente de agenda/API externa/IA."
+        }
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-005",
+      "title": "Fase futura: desenvolver agenda de consultas e exames",
+      "status": "backlog",
+      "acceptance": [
+        "Fora da primeira fase; ausência de agenda não bloqueia o funcionamento nem a entrega do MVP de chat",
+        "Criar, remarcar e cancelar com regras de disponibilidade",
+        "Duas reservas simultâneas para o mesmo recurso/horário não são confirmadas",
+        "Fuso, duração e permissões são validados pelo servidor"
+      ],
+      "nextAction": "Somente depois do MVP de cadastro/vínculos/chat funcionar sem agenda, revisar escopo e desenvolver reservas; na primeira fase manter apenas fronteiras de arquitetura.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "post-mvp",
+      "mvpBlocking": false,
+      "futureRequirementAspects": [
+        "R27: fuso, estados, disponibilidade e concorrência de reservas, após ativar a fase de agenda"
+      ]
+    },
+    {
+      "id": "APP-006",
+      "title": "Homologar APK e disponibilizar lote de teste no Drive",
+      "status": "backlog",
+      "acceptance": [
+        "Candidato de chat instala e funciona sem agenda, IA, conectores ou requisitos de publicação em loja ainda não aplicáveis à entrega privada de teste",
+        "APK instalado e jornadas executadas em Android",
+        "Lote contém hash, release notes, imagens sintéticas e evidências",
+        "Upload privado verificado e links registrados sem dados reais"
+      ],
+      "nextAction": "Após validar cadastro/vínculos/chat Android e proteções pertinentes, montar APK de teste e lote privado autorizado; ausência de agenda/IA/integrações não bloqueia o candidato. Submissão de loja é APP-053.",
+      "evidence": [
+        "delivery/manifest.template.json",
+        "docs/delivery/ENTREGAS.md",
+        "docs/research/INTEGRACAO.md",
+        "docs/product/MVP-CHAT.md"
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-007",
+      "title": "Implementar conta individual com CPF e níveis de confirmação de identidade",
+      "status": "backlog",
+      "acceptance": [
+        "Conta única por CPF, login e recuperação demonstrados sem enumeração pública de cadastro",
+        "Validação de formato, consulta cadastral oficial, confirmação de contato e identidade mantêm estados distintos",
+        "Gestor recebe confirmação robusta; funcionário e paciente recebem verificação proporcional definida",
+        "Provedor e método autorizados documentados antes de integração; testes usam só respostas sintéticas",
+        "Cadastro indevido não bloqueia permanentemente o titular; contestação e recuperação testadas",
+        "Se Consulta CPF v3 do Serpro for escolhida, contrato inclui CPF e data de nascimento; custo e contratação avaliados antes de uso real",
+        "[R05] Consulta cadastral não comprova identidade; existência de empresa não comprova representação; evidência e prazo de guarda definidos."
+      ],
+      "nextAction": "Após APP-002 e pesquisa oficial, decidir métodos por papel e contrato do provedor; implementar com dados sintéticos, sem consultas reais nesta etapa.",
+      "evidence": [
+        "docs/product/FLUXOS-E-IDENTIDADE.md",
+        "docs/research/INTEGRACAO.md"
+      ],
+      "regulatoryRequirements": [
+        {
+          "id": "R05",
+          "title": "Separar identidade e representação",
+          "priority": "P0",
+          "nature": "LEGAL objetivo e RECOMENDAÇÃO",
+          "owner": "Identidade e jurídico",
+          "dependencies": [
+            "R02",
+            "R04"
+          ],
+          "requirement": "Distinguir validade cadastral, identidade da pessoa e poderes para representar empresa. Minimizar documentos e biometria.",
+          "test": "Simular cadastro com identificador válido de terceiro e gestor sem poderes; avaliar revisão manual e contestação.",
+          "acceptance": "Consulta cadastral não comprova identidade; existência de empresa não comprova representação; evidência e prazo de guarda definidos.",
+          "sources": "S01 S24 S26 S46",
+          "dependenciesOriginal": "R02 R04",
+          "stage": "A — Definição",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S24",
+            "S26",
+            "S46"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-008",
+      "title": "Implementar cadastro de empresa com CNPJ e comprovação de representação",
+      "status": "backlog",
+      "acceptance": [
+        "Gestor autenticado cadastra empresa dentro da sua conta",
+        "Existência e situação cadastral do CNPJ são separadas da autoridade do gestor para representar a empresa",
+        "Empresa pendente não concede privilégios de gestão por simples coincidência de dados",
+        "Duplicidade de CNPJ, disputa e mudança de gestor seguem política explícita e auditada",
+        "CNPJ/QSA e representação são testados com respostas e evidências sintéticas",
+        "CNPJ armazenado como string de 14 posições; interface e cálculo oficial aceitam formatos numérico e alfanumérico com testes sintéticos",
+        "[R06] Sem conversão numérica ou regex apenas numérica; normalização e validação aprovadas; validação não concede representação."
+      ],
+      "nextAction": "Após APP-007, consolidar fonte oficial, prova de representação, política de ativação e exceções; então implementar o cadastro.",
+      "evidence": [
+        "docs/product/FLUXOS-E-IDENTIDADE.md",
+        "docs/research/INTEGRACAO.md"
+      ],
+      "regulatoryRequirements": [
+        {
+          "id": "R06",
+          "title": "Validar cadastro empresarial sem ambiguidade",
+          "priority": "P0",
+          "nature": "RECOMENDAÇÃO e regra cadastral aplicável",
+          "owner": "Backend e produto",
+          "dependencies": [
+            "R05"
+          ],
+          "requirement": "Tratar identificador empresarial como texto; admitir formato alfanumérico conforme regra oficial e compatibilidade com cadastros existentes. O formato alfanumérico entrou em produção em julho de 2026.",
+          "test": "Usar fixtures oficiais, zeros iniciais, letras admitidas, dígitos verificadores, busca e integração externa. Utilizar somente exemplos de teste explicitamente fictícios ou gerados sinteticamente, sem copiar CNPJ real de notícia.",
+          "acceptance": "Sem conversão numérica ou regex apenas numérica; normalização e validação aprovadas; validação não concede representação.",
+          "sources": "S01 S26 S44 S45",
+          "dependenciesOriginal": "R05",
+          "stage": "A — Definição",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S26",
+            "S44",
+            "S45"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-009",
+      "title": "Implementar convite, busca e aceite do vínculo de funcionário",
+      "status": "backlog",
+      "acceptance": [
+        "Convite de funcionário identifica empresa e papel, sem conceder acesso antes do aceite",
+        "Conta sem link busca empresa, solicita vínculo de funcionário e aguarda aceite",
+        "Gestor autorizado aprova, recusa e revoga com autoria e histórico",
+        "Pendente ou revogado não acessa chat, eventos, pacientes e anexos por nenhuma rota",
+        "Após aprovação, funcionário pode atender, conversar internamente e fornecer link de paciente no escopo autorizado",
+        "Funcionário tem inicialmente uma única empresa; convite, busca e aceite concorrente não criam segundo vínculo ativo; transferência não migra histórico",
+        "[R07] Nenhum vínculo pendente tem acesso; decisão por ator autorizado; aceite auditável; política de aprovação não é implícita."
+      ],
+      "nextAction": "Após APP-007 e APP-008, implementar ambos os caminhos, estados e testes de convite adulterado, pedido duplicado e revogação de sessão ativa.",
+      "evidence": [
+        "docs/product/FLUXOS-E-IDENTIDADE.md",
+        "docs/research/INTEGRACAO.md"
+      ],
+      "regulatoryRequirements": [
+        {
+          "id": "R07",
+          "title": "Controlar convites e solicitações",
+          "priority": "P0",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "Backend e produto",
+          "dependencies": [
+            "R05",
+            "R06"
+          ],
+          "requirement": "Modelar pendente, aceito, recusado, expirado e revogado; distinguir convite do gestor e solicitação do funcionário. Funcionário por link e busca aguarda aceite e fica vinculado a uma única empresa inicialmente; exclusividade é garantida no servidor.",
+          "test": "Tentar autoaprovação, aceite por outra identidade, token reutilizado e corrida entre aprovação e revogação.",
+          "acceptance": "Nenhum vínculo pendente tem acesso; decisão por ator autorizado; aceite auditável; política de aprovação não é implícita.",
+          "sources": "S01 S26",
+          "dependenciesOriginal": "R05 R06",
+          "stage": "A — Definição",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-010",
+      "title": "Implementar vínculo de paciente por link e busca da empresa",
+      "status": "backlog",
+      "acceptance": [
+        "Paciente cria ou reutiliza conta individual com CPF e verificações proporcionais",
+        "Link da empresa e busca sem link conduzem ao vínculo de paciente",
+        "Após cadastro da conta, vínculo imediato dá acesso ao próprio chat com a empresa sem escolher funcionário",
+        "Vínculo de paciente é imediato, sem fila de aceite do gestor; mantém autenticação/verificação da conta sem aprovação empresarial adicional",
+        "Busca expõe apenas dados necessários da empresa; vínculo não revela equipe, outros pacientes ou conversas",
+        "Paciente pode ter múltiplas empresas; após login escolhe contexto ou vincula nova empresa, sem unificar históricos",
+        "Paciente só acessa nome/endereço/telefones públicos e próprio chat; troca de contexto separa API, realtime, cache, rascunhos e anexos sem agenda no MVP",
+        "[R08] Encontrar empresa não dá acesso ao acervo; convite não revela saúde; geração só por funcionário aprovado com permissão."
+      ],
+      "nextAction": "Após conta e cadastro empresarial, implementar vínculo imediato por link/busca, seleção de empresa e próprio chat, sem aceite do gestor e sem acesso ao acervo empresarial.",
+      "evidence": [
+        "docs/product/FLUXOS-E-IDENTIDADE.md",
+        "docs/research/INTEGRACAO.md",
+        "docs/product/MVP-CHAT.md"
+      ],
+      "regulatoryRequirements": [
+        {
+          "id": "R08",
+          "title": "Proteger vínculo de pacientes por link ou busca",
+          "priority": "P0",
+          "nature": "LEGAL objetivo e RECOMENDAÇÃO",
+          "owner": "Produto e backend",
+          "dependencies": [
+            "R07"
+          ],
+          "requirement": "Links não expõem identificadores pessoais; vínculo exige destinatário/empresa corretos e regra explícita de aceite. Paciente por link ou busca não ganha acesso ao acervo de terceiros e não exige aceite manual de gestor no fluxo definido; aceita múltiplas empresas e escolhe contexto após login.",
+          "test": "Testar link expirado, reutilizado, empresa trocada, paciente incorreto e busca em massa.",
+          "acceptance": "Encontrar empresa não dá acesso ao acervo; convite não revela saúde; geração só por funcionário aprovado com permissão.",
+          "sources": "S01 S26",
+          "dependenciesOriginal": "R07",
+          "stage": "A — Definição",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-011",
+      "title": "Implementar painel da plataforma com empresas, usuários, auditoria e logs",
+      "status": "backlog",
+      "acceptance": [
+        "Login administrativo separado do cadastro público, com autenticação reforçada e privilégios definidos",
+        "Painel lista empresas e usuários e oferece auditoria e logs necessários com dados minimizados",
+        "Gestor empresarial e usuário comum não acessam funções administrativas da plataforma",
+        "Papel administrativo não concede leitura irrestrita de chats, anexos ou personificação silenciosa",
+        "Ações privilegiadas têm autoria e trilha; acesso excepcional ao conteúdo depende de regra específica previamente definida e testada",
+        "Dados exclusivos de ADM, logs restritos e informações de desenvolvimento não aparecem ao gestor, funcionário ou paciente por interface/API/push/exportação",
+        "[R10] Gestor/admin não leem chat clínico por padrão; suporte excepcional tem finalidade, prazo e trilha."
+      ],
+      "nextAction": "Após definir identidade e entidades, decidir superfície do painel, matriz de privilégios, concessão inicial e operações de suporte; implementar testes negativos antes de ampliar acesso.",
+      "evidence": [
+        "docs/product/FLUXOS-E-IDENTIDADE.md",
+        "docs/testing/ESTRATEGIA.md",
+        "docs/architecture/CLASSIFICACAO-E-PERMISSOES.md",
+        "docs/research/INTEGRACAO.md"
+      ],
+      "regulatoryRequirements": [
+        {
+          "id": "R10",
+          "title": "Separar perfis e acesso administrativo",
+          "priority": "P0",
+          "nature": "LEGAL objetivo e RECOMENDAÇÃO",
+          "owner": "Produto e segurança",
+          "dependencies": [
+            "R09"
+          ],
+          "requirement": "Definir permissões por gestor, funcionário, paciente e ADM da plataforma; dados exclusivos de papel não aparecem aos demais. Funções internas como recepção ou faturamento são refinamentos futuros, não novos perfis já aprovados. Logs e desenvolvimento são restritos e segregados por ambiente.",
+          "test": "Testar escalada de privilégio, troca de papel e acesso do admin a conteúdo clínico.",
+          "acceptance": "Gestor/admin não leem chat clínico por padrão; suporte excepcional tem finalidade, prazo e trilha.",
+          "sources": "S01 S08 S26",
+          "dependenciesOriginal": "R09",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S08",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-012",
+      "title": "Preparar atendimento generativo no chat com política de execução e revisão",
+      "status": "backlog",
+      "acceptance": [
+        "Não desenvolver nesta primeira fase; manter somente fronteiras documentadas e chat executável sem esta extensão",
+        "Provedor de IA substituível, separado de persistência do chat, autorização e execução de ações",
+        "Atendimento automático limitado ao administrativo/operacional; telemedicina e decisões clínicas fora do escopo atual; demandas clínicas encaminhadas ao humano sem resposta substantiva autônoma",
+        "Contexto mínimo por conversa/empresa; modelo sem acesso irrestrito a banco, documentos ou credenciais",
+        "Handoff, suspensão, falha do provedor e revisão preservam autoria e não geram ações concorrentes ou duplicadas",
+        "Testes sintéticos de autorização, injeção de instruções e validação de ferramentas demonstrados antes de ativação",
+        "[R43] Uso clínico permanece bloqueado até validação do enquadramento e supervisão adequada. Para o piloto administrativo, todos os casos críticos definidos exigem resposta segura ou transferência humana; SLA, responsável e caminho de falha são aprovados.",
+        "[R44] Não usar dados reais no desenvolvimento. Nenhum dado real segue ao fornecedor antes de análise e autorização cabíveis; contrato, base legal, transferência, configuração de retenção e prova de isolamento aprovados.",
+        "[R45] Nenhuma escrita externa ocorre sem regras determinísticas e autorização válidas. Critérios e amostras são aprovados antes do piloto; resultados, falhas e revisão são registrados sem excesso de dados; regressão e rollback demonstrados.",
+        "Na fase futura, assistente se identifica como virtual/camada extra para evitar filas; atendente assume a qualquer momento com resumo de continuidade, sem resposta automática concorrente"
+      ],
+      "nextAction": "Fase posterior ao app de chat funcional: Após APP-004, identidade/autorização e pesquisa complementar, definir tarefas administrativas permitidas, revisão por risco e encaminhamento humano de demandas clínicas; iniciar em modo rascunho isolado, sem telemedicina.",
+      "evidence": [
+        "docs/architecture/EXTENSOES-IA-E-INTEGRACOES.md",
+        "docs/testing/ESTRATEGIA.md",
+        "docs/research/INTEGRACAO.md",
+        "docs/product/MVP-CHAT.md"
+      ],
+      "regulatoryRequirements": [
+        {
+          "id": "R43",
+          "title": "Delimitar autonomia e supervisão da IA",
+          "priority": "P0 da IA",
+          "nature": "LEGAL CONDICIONAL e RECOMENDAÇÃO",
+          "owner": "Produto, privacidade e responsável clínico",
+          "dependencies": [
+            "R01",
+            "R04",
+            "R26",
+            "R37",
+            "R39"
+          ],
+          "requirement": "Limitar IA atual ao atendimento administrativo/operacional; perguntas clínicas vão para uma pessoa, sem diagnóstico, prognóstico ou decisão terapêutica automatizados. Definir ações, assuntos permitidos, transparência, escalonamento e bloqueios prévios ao envio. Revisão posterior não substitui esses controles.",
+          "test": "Simular pedido diagnóstico, decisão terapêutica, urgência, ambiguidade, menor, falta de dados, indisponibilidade humana e tentativa de sair do escopo.",
+          "acceptance": "Uso clínico permanece bloqueado até validação do enquadramento e supervisão adequada. Para o piloto administrativo, todos os casos críticos definidos exigem resposta segura ou transferência humana; SLA, responsável e caminho de falha são aprovados.",
+          "sources": "S01 S09 S10 S14 S42 S47 S49",
+          "dependenciesOriginal": "R01 R04 R26 R37 R39",
+          "stage": "F — Capacidades futuras",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S09",
+            "S10",
+            "S14",
+            "S42",
+            "S47",
+            "S49"
+          ],
+          "applicability": "future-capability-not-enabled",
+          "gateInterpretation": "Dependências R37/R39 exigem avaliação documentada de que os gatilhos clínico/SaMD não foram ativados no uso administrativo; não exigem implementar telemedicina ou SaMD."
+        },
+        {
+          "id": "R44",
+          "title": "Controlar dados e fornecedor de IA",
+          "priority": "P0 da IA",
+          "nature": "LEGAL e RECOMENDAÇÃO",
+          "owner": "Privacidade, segurança e engenharia de IA",
+          "dependencies": [
+            "R02",
+            "R03",
+            "R22",
+            "R26",
+            "R43"
+          ],
+          "requirement": "Mapear prompts, respostas, anexos, recuperação de contexto, embeddings, retenção, uso para treinamento, suboperadores e países. Enviar apenas dados autorizados necessários; manter isolamento de empresa e paciente em busca/contexto.",
+          "test": "Testar consultas cruzadas, exclusão de documento indexado, observabilidade, cache, dados indevidos no prompt e recusa de fornecedor em apagar conteúdo.",
+          "acceptance": "Não usar dados reais no desenvolvimento. Nenhum dado real segue ao fornecedor antes de análise e autorização cabíveis; contrato, base legal, transferência, configuração de retenção e prova de isolamento aprovados.",
+          "sources": "S01 S05 S26 S49",
+          "dependenciesOriginal": "R02 R03 R22 R26 R43",
+          "stage": "F — Capacidades futuras",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S05",
+            "S26",
+            "S49"
+          ],
+          "applicability": "future-capability-not-enabled"
+        },
+        {
+          "id": "R45",
+          "title": "Validar respostas e ferramentas de IA",
+          "priority": "P0 da IA",
+          "nature": "RECOMENDAÇÃO técnica e LEGAL CONDICIONAL",
+          "owner": "Engenharia de IA, AppSec, QA e responsável clínico",
+          "dependencies": [
+            "R21",
+            "R43",
+            "R44"
+          ],
+          "requirement": "Definir conjunto de avaliação versionado, casos proibidos, política de fontes, limiares por risco, possibilidade de intervenção e desligamento. Tratar mensagens e documentos recuperados como conteúdo não confiável; o modelo não decide autorização nem obtém acesso amplo a ferramentas.",
+          "test": "Injetar instruções em documentos/chat; simular alucinação, vazamento entre tenants, ação duplicada, ferramenta fora de escopo, mudança de modelo e baixa confiança.",
+          "acceptance": "Nenhuma escrita externa ocorre sem regras determinísticas e autorização válidas. Critérios e amostras são aprovados antes do piloto; resultados, falhas e revisão são registrados sem excesso de dados; regressão e rollback demonstrados.",
+          "sources": "S01 S26 S42 S49",
+          "dependenciesOriginal": "R21 R43 R44",
+          "stage": "F — Capacidades futuras",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S26",
+            "S42",
+            "S49"
+          ],
+          "applicability": "future-capability-not-enabled"
+        }
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "post-mvp",
+      "mvpBlocking": false
+    },
+    {
+      "id": "APP-013",
+      "title": "Implementar API de saída versionada para sistemas externos de agenda",
+      "status": "backlog",
+      "acceptance": [
+        "Não desenvolver nesta primeira fase; manter somente fronteiras documentadas e chat executável sem esta extensão",
+        "Contrato canônico e adaptador específico versionados; disponibilidade e autorização da API externa verificadas",
+        "Escopos por empresa, destino e operação; envio mínimo de paciente, consulta/exame e campos explicitamente autorizados",
+        "Credenciais somente no backend; nenhum segredo no app, contexto de IA ou logs",
+        "Mapeamento de IDs, serviços, fuso e estados validado sem equivalência clínica adivinhada",
+        "Idempotência, retry após timeout, confirmação externa, revogação e auditoria testados com sistemas simulados",
+        "[R46] Cada integração tem dono, direção, fonte de verdade, campos, permissões, ambiente sandbox e evidência do fornecedor. Ausência de API autorizada mantém conector bloqueado; nenhuma chave ou dado real consta do documento."
+      ],
+      "nextAction": "Fase posterior ao app de chat funcional: Após APP-003 e APP-005, verificar documentação/contrato de uma API de destino autorizada; definir fonte de verdade e conector mínimo. ResiCheck/CPA são candidatos ainda não conectados.",
+      "evidence": [
+        "docs/architecture/EXTENSOES-IA-E-INTEGRACOES.md",
+        "docs/testing/ESTRATEGIA.md",
+        "docs/research/INTEGRACAO.md",
+        "docs/product/MVP-CHAT.md"
+      ],
+      "regulatoryRequirements": [
+        {
+          "id": "R46",
+          "title": "Especificar contratos de integração externa",
+          "priority": "P0 dos conectores",
+          "nature": "LEGAL e RECOMENDAÇÃO",
+          "owner": "Arquitetura, integrações e privacidade",
+          "dependencies": [
+            "R01",
+            "R02",
+            "R03",
+            "R26"
+          ],
+          "requirement": "Prever saída para agendas externas ResiCheck/CPA e entrada de agendas, procedimentos e dados pertinentes. Confirmar produto, fornecedor, documentação oficial, contrato, endpoints, versão, autenticação, limites, finalidade e campos necessários. Nomes informados não comprovam existência ou disponibilidade de APIs.",
+          "test": "Revisar documentação e exemplos sintéticos; confrontar contratos de entrada/saída com necessidade, escopos e identidade de empresa/paciente.",
+          "acceptance": "Cada integração tem dono, direção, fonte de verdade, campos, permissões, ambiente sandbox e evidência do fornecedor. Ausência de API autorizada mantém conector bloqueado; nenhuma chave ou dado real consta do documento.",
+          "sources": "S01 S05 S26 S48",
+          "dependenciesOriginal": "R01 R02 R03 R26",
+          "stage": "F — Capacidades futuras",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S05",
+            "S26",
+            "S48"
+          ],
+          "applicability": "future-capability-not-enabled"
+        }
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "post-mvp",
+      "mvpBlocking": false
+    },
+    {
+      "id": "APP-014",
+      "title": "Implementar API de entrada versionada para agendas e procedimentos",
+      "status": "backlog",
+      "acceptance": [
+        "Não desenvolver nesta primeira fase; manter somente fronteiras documentadas e chat executável sem esta extensão",
+        "Origem autenticada e autorizada por empresa/escopo; schema e limites validados antes de aplicar dados",
+        "Agenda, disponibilidade e catálogo de consultas/procedimentos mapeados para contrato interno com origem e versão",
+        "Evento repetido, fora de ordem, payload divergente e falha parcial têm resultado consistente e auditável",
+        "Sincronização de entrada e saída não cria ciclos; conflito respeita fonte de verdade definida por entidade/campo",
+        "Disponibilidade importada não substitui reserva autoritativa; testes sintéticos cobrem concorrência, fuso e IDs ambíguos",
+        "[R47] Sem evento duplicado ou mistura de tenants; estados solicitados não são mostrados como confirmados sem evidência; reconciliação e revogação verificadas; ações irreversíveis não são repetidas cegamente."
+      ],
+      "nextAction": "Fase posterior ao app de chat funcional: Após APP-003 e APP-005 e alinhamento do contrato de APP-013, decidir mecanismo de entrada, fontes autoritativas e reconciliação; testar primeiro com origem simulada.",
+      "evidence": [
+        "docs/architecture/EXTENSOES-IA-E-INTEGRACOES.md",
+        "docs/testing/ESTRATEGIA.md",
+        "docs/research/INTEGRACAO.md",
+        "docs/product/MVP-CHAT.md"
+      ],
+      "regulatoryRequirements": [
+        {
+          "id": "R47",
+          "title": "Garantir sincronização e segurança dos conectores",
+          "priority": "P0 dos conectores",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "Backend, integrações, segurança e QA",
+          "dependencies": [
+            "R09",
+            "R15",
+            "R21",
+            "R27",
+            "R46"
+          ],
+          "requirement": "Implementar credenciais por tenant em cofre, menor privilégio, autenticação de webhook, prevenção de replay, idempotência, fila de erro, reconciliação e limites. Fixar mapeamento, fuso e conflitos; proibir URLs arbitrárias e acesso à rede interna.",
+          "test": "Simular webhook adulterado/repetido, credencial revogada, indisponibilidade, timeout de resultado incerto, paginação, concorrência, falha parcial e identificador externo colidente.",
+          "acceptance": "Sem evento duplicado ou mistura de tenants; estados solicitados não são mostrados como confirmados sem evidência; reconciliação e revogação verificadas; ações irreversíveis não são repetidas cegamente.",
+          "sources": "S01 S26",
+          "dependenciesOriginal": "R09 R15 R21 R27 R46",
+          "stage": "F — Capacidades futuras",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S26"
+          ],
+          "applicability": "future-capability-not-enabled"
+        }
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "post-mvp",
+      "mvpBlocking": false
+    },
+    {
+      "id": "APP-015",
+      "title": "Criar configuração de conectores assistida por IA com revisão e testes",
+      "status": "backlog",
+      "acceptance": [
+        "Não desenvolver nesta primeira fase; manter somente fronteiras documentadas e chat executável sem esta extensão",
+        "IA propõe mapeamento/configuração a partir de documentação e exemplos sintéticos, sem acesso a segredos ou dados reais",
+        "Schema, contrato e adaptador gerados são revisados e testados em ambiente isolado antes de ativação autorizada",
+        "Documentação não confiável não promove privilégio, escolhe destino arbitrário ou executa código em produção",
+        "Mudanças versionadas têm diff, responsável, testes e possibilidade de desativar/reverter configuração",
+        "Mapeamento ambíguo de dados ou procedimento exige decisão explícita; nenhum conector universal é presumido",
+        "[R48] Proposta é separada de execução; nenhum segredo entra no contexto por padrão; validação determinística, revisão, versão e rollback obrigatórios; conexão real permanece desativada até aprovação de responsável autorizado."
+      ],
+      "nextAction": "Fase posterior ao app de chat funcional: Após um conector determinístico validado em APP-013/APP-014, definir formato de configuração e ferramenta assistiva com rede restrita; começar por proposta revisável, sem autoativação.",
+      "evidence": [
+        "docs/architecture/EXTENSOES-IA-E-INTEGRACOES.md",
+        "docs/testing/ESTRATEGIA.md",
+        "docs/research/INTEGRACAO.md",
+        "docs/product/MVP-CHAT.md"
+      ],
+      "regulatoryRequirements": [
+        {
+          "id": "R48",
+          "title": "Limitar configuração assistida por IA",
+          "priority": "P0 da função futura",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "Arquitetura, engenharia de IA e segurança",
+          "dependencies": [
+            "R43",
+            "R44",
+            "R45",
+            "R46",
+            "R47"
+          ],
+          "requirement": "Permitir IA propor mapeamentos e configurações de conectores em sandbox, com esquema validado, diferenças visíveis, testes e aprovação humana antes da ativação. Não conceder ao modelo poder autônomo de ampliar acesso, criar credenciais ou publicar código sem governança.",
+          "test": "Testar documentação maliciosa, campo sensível indevido, endpoint externo arbitrário, privilégio amplo, código inseguro, segredo em log e reversão de configuração.",
+          "acceptance": "Proposta é separada de execução; nenhum segredo entra no contexto por padrão; validação determinística, revisão, versão e rollback obrigatórios; conexão real permanece desativada até aprovação de responsável autorizado.",
+          "sources": "S01 S26 S49",
+          "dependenciesOriginal": "R43 R44 R45 R46 R47",
+          "stage": "F — Capacidades futuras",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S26",
+            "S49"
+          ],
+          "applicability": "future-capability-not-enabled"
+        }
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "post-mvp",
+      "mvpBlocking": false
+    },
+    {
+      "id": "APP-016",
+      "title": "Definir identidade visual e experiência Android do ResiCheck Connect",
+      "status": "backlog",
+      "acceptance": [
+        "Nome provisório ResiCheck Connect e referências de chat traduzidos em identidade própria",
+        "Logo ResiCheck localizado e origem/variante verificada antes de incorporar; ausência tem fallback textual",
+        "Conceito visual revisado em contexto Android sem tratá-lo como app implementado",
+        "Lista, conversa, teclado e ações principais validados para uso com uma mão, fonte ampliada e tecnologias assistivas"
+      ],
+      "nextAction": "Usar exemplos v0.2 e verde padrão aprovados como direção do protótipo, verificar logo autorizado e definir tokens/navegação; validar a implementação Android e acessibilidade sem marcar a aprovação visual como teste.",
+      "evidence": [
+        "docs/product/DIRECAO-VISUAL.md",
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-017",
+      "title": "Implementar temas com precedência pessoal, empresa e padrão",
+      "status": "backlog",
+      "acceptance": [
+        "Antes do vínculo e sem logo válido permanece padrão neutro/pastel com destaque verde aprovado",
+        "Paleta empresarial inicial deriva do logo com fallback e contraste verificável",
+        "Gestor altera cores globais; usuário sobrescreve só sua preferência na precedência usuário > empresa > padrão",
+        "Claro/escuro, reset pessoal, logo sem cores úteis e troca de sessão/empresa preservam legibilidade e isolamento",
+        "Troca de logo não apaga personalização global sem política explícita e revisão"
+      ],
+      "nextAction": "Após APP-016, definir tokens configuráveis e abrangência da preferência pessoal; implementar e testar a resolução de tema.",
+      "evidence": [
+        "docs/product/DIRECAO-VISUAL.md",
+        "docs/testing/ESTRATEGIA.md"
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-018",
+      "title": "Implementar upload seguro de logo e extração de paleta",
+      "status": "backlog",
+      "acceptance": [
+        "Só gestor autorizado altera logo da empresa; autorização no servidor",
+        "Tipo real, limites, decodificação e conteúdo ativo são tratados antes de extrair cores",
+        "Variante estática segura e metadados minimizados; preview antes da configuração global",
+        "Arquivo inválido ou extração falha preserva último tema válido e oferece fallback",
+        "Logos de teste são sintéticos; upload não muda compartilhamento de anexos"
+      ],
+      "nextAction": "Após APP-016 e autorização da empresa, decidir formatos/limites/visibilidade e demonstrar pipeline isolado com testes sintéticos.",
+      "evidence": [
+        "docs/product/DIRECAO-VISUAL.md",
+        "docs/testing/ESTRATEGIA.md"
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-019",
+      "title": "Fixar finalidade e enquadramento",
+      "status": "backlog",
+      "acceptance": [
+        "[R01] Cada função tem decisão justificada; pendência clínica bloqueia a função afetada."
+      ],
+      "nextAction": "Revisar requisito R01, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R01",
+          "title": "Fixar finalidade e enquadramento",
+          "priority": "P0",
+          "nature": "LEGAL CONDICIONAL",
+          "owner": "Produto e jurídico",
+          "dependencies": [],
+          "requirement": "Classificar chat, guia, registro, emissão, algoritmo e público.",
+          "test": "Revisar jornadas, contratos e alegações comerciais.",
+          "acceptance": "Cada função tem decisão justificada; pendência clínica bloqueia a função afetada.",
+          "sources": "S01 S09 S10 S11 S14 S17 S19",
+          "dependenciesOriginal": "Nenhuma",
+          "stage": "A — Definição",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S09",
+            "S10",
+            "S11",
+            "S14",
+            "S17",
+            "S19"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-020",
+      "title": "Inventariar dados e bases legais",
+      "status": "backlog",
+      "acceptance": [
+        "[R02] Todo campo/integração tem finalidade; dados sensíveis não usam legítimo interesse como base.",
+        "Classificação por destinatário e matriz por papel/vínculo/objeto cobrem gestor, funcionário, paciente e ADM; conversas privadas do projeto e dados de desenvolvimento ficam fora do produto"
+      ],
+      "nextAction": "Revisar requisito R02, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md",
+        "docs/architecture/CLASSIFICACAO-E-PERMISSOES.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R02",
+          "title": "Inventariar dados e bases legais",
+          "priority": "P0",
+          "nature": "LEGAL",
+          "owner": "Privacidade e arquitetura",
+          "dependencies": [
+            "R01"
+          ],
+          "requirement": "Mapear finalidade, dados, fundamento, controlador, operador e destinatário.",
+          "test": "Percorrer cadastro, agenda, chat, arquivos, suporte, push e logs com dados sintéticos.",
+          "acceptance": "Todo campo/integração tem finalidade; dados sensíveis não usam legítimo interesse como base.",
+          "sources": "S01",
+          "dependenciesOriginal": "R01",
+          "stage": "A — Definição",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-021",
+      "title": "Formalizar governança e contratos",
+      "status": "backlog",
+      "acceptance": [
+        "[R03] Responsáveis e contatos definidos; nenhuma dispensa presumida apenas por porte ou rótulo SaaS."
+      ],
+      "nextAction": "Revisar requisito R03, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R03",
+          "title": "Formalizar governança e contratos",
+          "priority": "P0",
+          "nature": "LEGAL",
+          "owner": "Jurídico e encarregado",
+          "dependencies": [
+            "R02"
+          ],
+          "requirement": "Definir instruções, subprocessadores, direitos, incidentes, saída e papel do encarregado.",
+          "test": "Comparar contratos e fluxo real; avaliar enquadramento de pequeno porte.",
+          "acceptance": "Responsáveis e contatos definidos; nenhuma dispensa presumida apenas por porte ou rótulo SaaS.",
+          "sources": "S01 S04",
+          "dependenciesOriginal": "R02",
+          "stage": "A — Definição",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S04"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-022",
+      "title": "Avaliar impacto e ameaças",
+      "status": "backlog",
+      "acceptance": [
+        "[R04] Cada risco tem dono, controle e evidência; alto risco residual requer decisão antes do piloto."
+      ],
+      "nextAction": "Revisar requisito R04, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R04",
+          "title": "Avaliar impacto e ameaças",
+          "priority": "P0",
+          "nature": "RECOMENDAÇÃO com gatilho LEGAL",
+          "owner": "AppSec e privacidade",
+          "dependencies": [
+            "R01",
+            "R02"
+          ],
+          "requirement": "Modelar vazamento entre empresas, abuso interno, aparelho perdido e destinatário errado; avaliar RIPD.",
+          "test": "Revisar riscos por fluxo e impacto ao paciente.",
+          "acceptance": "Cada risco tem dono, controle e evidência; alto risco residual requer decisão antes do piloto.",
+          "sources": "S06 S24 S26",
+          "dependenciesOriginal": "R01 R02",
+          "stage": "A — Definição",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S06",
+            "S24",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-023",
+      "title": "Isolar empresas e pacientes",
+      "status": "backlog",
+      "acceptance": [
+        "[R09] Zero acesso cruzado nos casos definidos; tenant vindo do cliente não é prova; regressão automatizada.",
+        "Regra de uma empresa por funcionário e multivínculo de paciente protegida no backend, sem fusão de históricos entre empresas",
+        "Testes negativos cobrem dados exclusivos por nível de conta em API, interface, push, exportação, realtime e erros de produção seguros"
+      ],
+      "nextAction": "Revisar requisito R09, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md",
+        "docs/architecture/CLASSIFICACAO-E-PERMISSOES.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R09",
+          "title": "Isolar empresas e pacientes",
+          "priority": "P0",
+          "nature": "LEGAL objetivo e RECOMENDAÇÃO",
+          "owner": "Backend e AppSec",
+          "dependencies": [
+            "R02",
+            "R07",
+            "R08"
+          ],
+          "requirement": "Aplicar autorização no servidor por tenant, paciente e objeto em API, realtime, storage, busca, cache e jobs.",
+          "test": "Duas empresas, dois pacientes por empresa, paciente com múltiplos vínculos e funcionário restrito a uma empresa; tentar acessos cruzados por API, realtime, storage, busca, cache e jobs, incluindo troca de contexto e sessão.",
+          "acceptance": "Zero acesso cruzado nos casos definidos; tenant vindo do cliente não é prova; regressão automatizada.",
+          "sources": "S01 S08 S26",
+          "dependenciesOriginal": "R02 R07 R08",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S08",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-024",
+      "title": "Proteger autenticação e recuperação",
+      "status": "backlog",
+      "acceptance": [
+        "[R12] Testes negativos passam; sem conta privilegiada compartilhada; recuperação não contorna controles de identidade."
+      ],
+      "nextAction": "Revisar requisito R12, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R12",
+          "title": "Proteger autenticação e recuperação",
+          "priority": "P0",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "Identidade e AppSec",
+          "dependencies": [
+            "R05",
+            "R10"
+          ],
+          "requirement": "Exigir contas individuais, propor MFA para privilégios e proteger recuperação e operações sensíveis.",
+          "test": "Testar enumeração, força bruta, recuperação indevida e reuso de token.",
+          "acceptance": "Testes negativos passam; sem conta privilegiada compartilhada; recuperação não contorna controles de identidade.",
+          "sources": "S08 S24 S26",
+          "dependenciesOriginal": "R05 R10",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S08",
+            "S24",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-025",
+      "title": "Revogar sessões e dispositivos",
+      "status": "backlog",
+      "acceptance": [
+        "[R13] Acesso servidor cessa após revogação confirmada; cache segue política; notificações não chegam à conta anterior."
+      ],
+      "nextAction": "Revisar requisito R13, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R13",
+          "title": "Revogar sessões e dispositivos",
+          "priority": "P0",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "Backend e mobile",
+          "dependencies": [
+            "R12"
+          ],
+          "requirement": "Revogar refresh tokens, realtime e push ao desligar vínculo/conta.",
+          "test": "Revogar com app aberto, WebSocket ativo, offline e troca de conta.",
+          "acceptance": "Acesso servidor cessa após revogação confirmada; cache segue política; notificações não chegam à conta anterior.",
+          "sources": "S24 S26",
+          "dependenciesOriginal": "R12",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S24",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-026",
+      "title": "Proteger armazenamento móvel",
+      "status": "backlog",
+      "acceptance": [
+        "[R14] Sem tokens públicos ou em logs; informação pessoal de saúde não é persistida em iCloud; política de backup comprovada."
+      ],
+      "nextAction": "Revisar requisito R14, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R14",
+          "title": "Proteger armazenamento móvel",
+          "priority": "P0",
+          "nature": "RECOMENDAÇÃO e LOJA",
+          "owner": "Android e iOS",
+          "dependencies": [
+            "R02",
+            "R13"
+          ],
+          "requirement": "Usar armazenamento seguro para segredos; minimizar e proteger cache e backup.",
+          "test": "Inspecionar arquivos, banco local, logs, clipboard, backup, troca de usuário e reinstalação.",
+          "acceptance": "Sem tokens públicos ou em logs; informação pessoal de saúde não é persistida em iCloud; política de backup comprovada.",
+          "sources": "S24 S25 S32",
+          "dependenciesOriginal": "R02 R13",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S24",
+            "S25",
+            "S32"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-027",
+      "title": "Proteger trânsito e chaves",
+      "status": "backlog",
+      "acceptance": [
+        "[R15] Conexões inválidas falham; segredos fora do código; plano de rotação testado; TLS não anunciado como E2EE."
+      ],
+      "nextAction": "Revisar requisito R15, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R15",
+          "title": "Proteger trânsito e chaves",
+          "priority": "P0",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "Infraestrutura e segurança",
+          "dependencies": [
+            "R04"
+          ],
+          "requirement": "Autenticar transporte, proteger repouso e separar gestão de chaves; decidir pinning conforme ameaça e rotação.",
+          "test": "Testar certificado/hostname inválido, HTTP, rotação e restauração de chaves.",
+          "acceptance": "Conexões inválidas falham; segredos fora do código; plano de rotação testado; TLS não anunciado como E2EE.",
+          "sources": "S24 S26 S38",
+          "dependenciesOriginal": "R04",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S24",
+            "S26",
+            "S38"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-028",
+      "title": "Implementar notificações com privacidade progressiva e telemetria mínima",
+      "status": "backlog",
+      "acceptance": [
+        "Padrão seguro proposto nível 1: somente app; quatro níveis aplicados ao payload e à apresentação por usuário/dispositivo, sem mensagem clínica por padrão",
+        "Filtro todas/somente importantes não supera autorização nem presume permissão do sistema; troca de conta/empresa e revogação não vazam conteúdo",
+        "Logs, analytics e crash reports não recebem conteúdo de mensagem/segredos; exposição adicional em notificação só conforme escolha e escopo autorizados",
+        "[R19] Nível 1 não revela empresa, atendente ou mensagem; níveis superiores refletem escolha explícita e autorização. Logs analíticos permanecem minimizados e sem conteúdo sensível. Preferência no app não presume permissão Android/iOS."
+      ],
+      "nextAction": "Definir política de importância inicial, preferência por usuário/dispositivo e preview; implementar transporte/payload com nível 1 por padrão e testes de lockscreen/permissão negada. Configuração e marcação são subfatia APP-051.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md",
+        "docs/product/NOTIFICACOES.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R19",
+          "title": "Minimizar push e telemetria",
+          "priority": "P0",
+          "nature": "LEGAL LOJA e RECOMENDAÇÃO",
+          "owner": "Mobile e privacidade",
+          "dependencies": [
+            "R02",
+            "R13"
+          ],
+          "requirement": "Push sem conteúdo clínico por padrão (nível 1: app), com quatro níveis de privacidade configuráveis e filtro todas/importantes. Cada nível respeita autorização e dados mínimos; remover conteúdo clínico de analytics/crash reports e inventariar SDKs.",
+          "test": "Usar dados sentinela sintéticos em quatro níveis e dois filtros; inspecionar payload/lockscreen e logs, permissão negada, troca de usuário/empresa, revogação e dispositivo. Conteúdo ampliado nunca é enviado por padrão ou fora do escopo.",
+          "acceptance": "Nível 1 não revela empresa, atendente ou mensagem; níveis superiores refletem escolha explícita e autorização. Logs analíticos permanecem minimizados e sem conteúdo sensível. Preferência no app não presume permissão Android/iOS.",
+          "sources": "S01 S24 S28 S30 S35",
+          "dependenciesOriginal": "R02 R13",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S24",
+            "S28",
+            "S30",
+            "S35"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-029",
+      "title": "Proteger interfaces com o sistema",
+      "status": "backlog",
+      "acceptance": [
+        "[R20] Entrada externa não concede acesso nem executa conteúdo arbitrário; falha segura."
+      ],
+      "nextAction": "Revisar requisito R20, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R20",
+          "title": "Proteger interfaces com o sistema",
+          "priority": "P0",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "Android e iOS",
+          "dependencies": [
+            "R13",
+            "R16"
+          ],
+          "requirement": "Validar deep links, intents, componentes exportados, WebViews e seletores.",
+          "test": "Abrir links maliciosos, alterar parâmetros, negar permissões e chamar componente por app externo.",
+          "acceptance": "Entrada externa não concede acesso nem executa conteúdo arbitrário; falha segura.",
+          "sources": "S24 S25",
+          "dependenciesOriginal": "R13 R16",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S24",
+            "S25"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-030",
+      "title": "Auditar ações e acessos",
+      "status": "backlog",
+      "acceptance": [
+        "[R21] Eventos reconstruíveis com hora do servidor; logs minimizados e protegidos; acesso ao log auditável.",
+        "Logs de diagnóstico, auditoria e dados de desenvolvimento separados por papel/ambiente; usuário comum vê mensagem segura e código opaco, sem stack, SQL, segredos ou discussões privadas"
+      ],
+      "nextAction": "Revisar requisito R21, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md",
+        "docs/architecture/CLASSIFICACAO-E-PERMISSOES.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R21",
+          "title": "Auditar ações e acessos",
+          "priority": "P0",
+          "nature": "LEGAL e RECOMENDAÇÃO",
+          "owner": "Backend e segurança",
+          "dependencies": [
+            "R09",
+            "R10"
+          ],
+          "requirement": "Registrar ator, tenant, objeto, data e resultado; proteger trilha e acesso aos logs.",
+          "test": "Tentar alterar/apagar trilha e manipular relógio cliente; buscar vazamento no log.",
+          "acceptance": "Eventos reconstruíveis com hora do servidor; logs minimizados e protegidos; acesso ao log auditável.",
+          "sources": "S01 S07 S08 S26",
+          "dependenciesOriginal": "R09 R10",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S07",
+            "S08",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-031",
+      "title": "Definir retenção e descarte",
+      "status": "backlog",
+      "acceptance": [
+        "[R22] Prazos justificados por categoria; seis meses de acesso não viram regra de conteúdo; vinte anos não são universais."
+      ],
+      "nextAction": "Revisar requisito R22, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R22",
+          "title": "Definir retenção e descarte",
+          "priority": "P0",
+          "nature": "LEGAL CONDICIONAL",
+          "owner": "Privacidade e dados",
+          "dependencies": [
+            "R02",
+            "R21"
+          ],
+          "requirement": "Separar conta, chat, documento, logs, backups e guarda legal.",
+          "test": "Simular vencimento, bloqueio legal, eliminação parcial e restauração antiga.",
+          "acceptance": "Prazos justificados por categoria; seis meses de acesso não viram regra de conteúdo; vinte anos não são universais.",
+          "sources": "S01 S07 S11",
+          "dependenciesOriginal": "R02 R21",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S07",
+            "S11"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-032",
+      "title": "Atender direitos e excluir conta",
+      "status": "backlog",
+      "acceptance": [
+        "[R23] Exportação só autorizada; retenção explicada; exclusão nos caminhos de loja aplicáveis; não confundir desativação com eliminação."
+      ],
+      "nextAction": "Revisar requisito R23, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R23",
+          "title": "Atender direitos e excluir conta",
+          "priority": "P0",
+          "nature": "LEGAL e LOJA",
+          "owner": "Privacidade e produto",
+          "dependencies": [
+            "R13",
+            "R22"
+          ],
+          "requirement": "Implementar acesso, correção, exportação e eliminação com identidade/representação proporcionais.",
+          "test": "Executar pedido de paciente e responsável e verificar exportação e vínculos restantes.",
+          "acceptance": "Exportação só autorizada; retenção explicada; exclusão nos caminhos de loja aplicáveis; não confundir desativação com eliminação.",
+          "sources": "S01 S29 S33",
+          "dependenciesOriginal": "R13 R22",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S29",
+            "S33"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-033",
+      "title": "Responder a incidentes",
+      "status": "backlog",
+      "acceptance": [
+        "[R24] Processo suporta prazo legal aplicável; decisão fundamentada e registro por cinco anos; SLA interno menor é contratual."
+      ],
+      "nextAction": "Revisar requisito R24, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R24",
+          "title": "Responder a incidentes",
+          "priority": "P0",
+          "nature": "LEGAL",
+          "owner": "Segurança e encarregado",
+          "dependencies": [
+            "R03",
+            "R21"
+          ],
+          "requirement": "Manter plano, contatos, avaliação de relevância e comunicação ao controlador.",
+          "test": "Simular vazamento multicliente com contagem de dias úteis e preservação de evidência.",
+          "acceptance": "Processo suporta prazo legal aplicável; decisão fundamentada e registro por cinco anos; SLA interno menor é contratual.",
+          "sources": "S02 S03",
+          "dependenciesOriginal": "R03 R21",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S02",
+            "S03"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-034",
+      "title": "Restaurar serviço e dados",
+      "status": "backlog",
+      "acceptance": [
+        "[R25] RPO/RTO medidos e aprovados; não misturar tenants nem reativar acesso revogado; evidência preservada."
+      ],
+      "nextAction": "Revisar requisito R25, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R25",
+          "title": "Restaurar serviço e dados",
+          "priority": "P0",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "SRE e dados",
+          "dependencies": [
+            "R15",
+            "R22"
+          ],
+          "requirement": "Aprovar RPO/RTO segundo criticidade e testar backup/restauração de banco e objetos.",
+          "test": "Restaurar em ambiente isolado; reconciliar objetos, vínculos e exclusões.",
+          "acceptance": "RPO/RTO medidos e aprovados; não misturar tenants nem reativar acesso revogado; evidência preservada.",
+          "sources": "S01 S26 S38",
+          "dependenciesOriginal": "R15 R22",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S26",
+            "S38"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-035",
+      "title": "Controlar fornecedores e transferências",
+      "status": "backlog",
+      "acceptance": [
+        "[R26] Todo fluxo internacional tem mecanismo e evidência; região local não é prova suficiente de ausência de transferência."
+      ],
+      "nextAction": "Revisar requisito R26, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R26",
+          "title": "Controlar fornecedores e transferências",
+          "priority": "P0",
+          "nature": "LEGAL",
+          "owner": "Jurídico e infraestrutura",
+          "dependencies": [
+            "R02",
+            "R03"
+          ],
+          "requirement": "Inventariar países, suporte, subprocessadores e mecanismos de transferência.",
+          "test": "Confrontar contratos, regiões, telemetria, backup e acesso remoto.",
+          "acceptance": "Todo fluxo internacional tem mecanismo e evidência; região local não é prova suficiente de ausência de transferência.",
+          "sources": "S01 S05",
+          "dependenciesOriginal": "R02 R03",
+          "stage": "B — Fundação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S05"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-036",
+      "title": "Versionar verificação OWASP",
+      "status": "backlog",
+      "acceptance": [
+        "[R28] Cada controle tem ID, caso, evidência, resultado e revisor; distinguir teste manual; não declarar certificação OWASP/LGPD."
+      ],
+      "nextAction": "Revisar requisito R28, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R28",
+          "title": "Versionar verificação OWASP",
+          "priority": "P1",
+          "nature": "NORMA VOLUNTÁRIA",
+          "owner": "AppSec e QA",
+          "dependencies": [
+            "R04",
+            "R09",
+            "R10",
+            "R11",
+            "R12",
+            "R13",
+            "R14",
+            "R15",
+            "R16",
+            "R17",
+            "R18",
+            "R19",
+            "R20",
+            "R21",
+            "R22",
+            "R23",
+            "R24",
+            "R25",
+            "R26",
+            "R27"
+          ],
+          "requirement": "Criar matriz MASVS 2.1.0, MASTG v2 para Android/iOS e ASVS 5.0.0 para backend/web.",
+          "test": "Selecionar testes aplicáveis, fixar versão/commit e justificar exclusões.",
+          "acceptance": "Cada controle tem ID, caso, evidência, resultado e revisor; distinguir teste manual; não declarar certificação OWASP/LGPD.",
+          "sources": "S24 S25 S26",
+          "dependenciesOriginal": "R04 R09 a R27",
+          "stage": "C — Piloto",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S24",
+            "S25",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-037",
+      "title": "Proteger desenvolvimento e cadeia de dependências",
+      "status": "backlog",
+      "acceptance": [
+        "[R29] Artefato liga a commit e evidência; sem dados de produção em teste; segredos e dependências críticas revisados."
+      ],
+      "nextAction": "Revisar requisito R29, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R29",
+          "title": "Proteger desenvolvimento e cadeia de dependências",
+          "priority": "P1",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "DevSecOps",
+          "dependencies": [
+            "R04"
+          ],
+          "requirement": "Manter SBOM, secret scanning, análise de dependências, revisão e build rastreável.",
+          "test": "Inserir fixtures controladas de segredo/vulnerabilidade e testar bloqueio do CI.",
+          "acceptance": "Artefato liga a commit e evidência; sem dados de produção em teste; segredos e dependências críticas revisados.",
+          "sources": "S24 S26",
+          "dependenciesOriginal": "R04",
+          "stage": "C — Piloto",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S24",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-038",
+      "title": "Executar teste de segurança independente",
+      "status": "backlog",
+      "acceptance": [
+        "[R30] Sem crítico/alto explorável aberto; demais riscos têm dono, decisão e prazo; relatório usa dados sintéticos."
+      ],
+      "nextAction": "Revisar requisito R30, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R30",
+          "title": "Executar teste de segurança independente",
+          "priority": "P1",
+          "nature": "RECOMENDAÇÃO técnica",
+          "owner": "AppSec independente",
+          "dependencies": [
+            "R28",
+            "R29"
+          ],
+          "requirement": "Testar API e builds móveis com cenário multicliente e dispositivos físicos.",
+          "test": "Avaliar autorização, sessão, recuperação, upload, configurações e integrações; retestar correções.",
+          "acceptance": "Sem crítico/alto explorável aberto; demais riscos têm dono, decisão e prazo; relatório usa dados sintéticos.",
+          "sources": "S24 S25 S26",
+          "dependenciesOriginal": "R28 R29",
+          "stage": "C — Piloto",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S24",
+            "S25",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-039",
+      "title": "Preparar privacidade nas lojas",
+      "status": "backlog",
+      "acceptance": [
+        "[R32] Declarações consistentes; política Play pública, ativa, sem geobloqueio e não apenas PDF."
+      ],
+      "nextAction": "Revisar requisito R32, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R32",
+          "title": "Preparar privacidade nas lojas",
+          "priority": "P1",
+          "nature": "LOJA e LEGAL",
+          "owner": "Release e privacidade",
+          "dependencies": [
+            "R19",
+            "R23",
+            "R26"
+          ],
+          "requirement": "Confrontar Data safety/App Privacy e política pública com comportamento real.",
+          "test": "Abrir URLs sem login e comparar SDKs e captura de tráfego com declarações.",
+          "acceptance": "Declarações consistentes; política Play pública, ativa, sem geobloqueio e não apenas PDF.",
+          "sources": "S27 S28 S30 S35",
+          "dependenciesOriginal": "R19 R23 R26",
+          "stage": "D — Lançamento",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S27",
+            "S28",
+            "S30",
+            "S35"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-040",
+      "title": "Revisar saúde e conteúdo nas lojas",
+      "status": "backlog",
+      "acceptance": [
+        "[R33] Sem alegações não comprovadas; salvaguardas de conteúdo e exigências de saúde mapeadas para a função real."
+      ],
+      "nextAction": "Revisar requisito R33, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R33",
+          "title": "Revisar saúde e conteúdo nas lojas",
+          "priority": "P1",
+          "nature": "LOJA CONDICIONAL",
+          "owner": "Produto e release",
+          "dependencies": [
+            "R01",
+            "R32"
+          ],
+          "requirement": "Completar declaração de saúde e revisar alegações, avisos, entidade publicadora e conteúdo de usuários.",
+          "test": "Revisar descrição/screenshots e testar denúncia, bloqueio e suporte quando exigidos.",
+          "acceptance": "Sem alegações não comprovadas; salvaguardas de conteúdo e exigências de saúde mapeadas para a função real.",
+          "sources": "S27 S32",
+          "dependenciesOriginal": "R01 R32",
+          "stage": "D — Lançamento",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S27",
+            "S32"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-041",
+      "title": "Validar permissões e SDKs móveis",
+      "status": "backlog",
+      "acceptance": [
+        "[R34] Sem acesso amplo injustificado; permissão opcional negada não torna fluxo inseguro; relatório Xcode revisado."
+      ],
+      "nextAction": "Revisar requisito R34, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R34",
+          "title": "Validar permissões e SDKs móveis",
+          "priority": "P1",
+          "nature": "LOJA e RECOMENDAÇÃO",
+          "owner": "Android e iOS",
+          "dependencies": [
+            "R19",
+            "R20",
+            "R29"
+          ],
+          "requirement": "Solicitar permissões necessárias no contexto; revisar manifestos e assinaturas dos SDKs abrangidos.",
+          "test": "Negar/revogar câmera, arquivos, microfone e push; inspecionar manifesto compilado.",
+          "acceptance": "Sem acesso amplo injustificado; permissão opcional negada não torna fluxo inseguro; relatório Xcode revisado.",
+          "sources": "S28 S34 S35",
+          "dependenciesOriginal": "R19 R20 R29",
+          "stage": "D — Lançamento",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S28",
+            "S34",
+            "S35"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-042",
+      "title": "Tratar menores e representantes",
+      "status": "backlog",
+      "acceptance": [
+        "[R36] Regras aprovadas antes de habilitar; responsável não recebe acesso clínico irrestrito por padrão."
+      ],
+      "nextAction": "Revisar requisito R36, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R36",
+          "title": "Tratar menores e representantes",
+          "priority": "P0 antes de público abrangido",
+          "nature": "LEGAL CONDICIONAL",
+          "owner": "Jurídico clínico e produto",
+          "dependencies": [
+            "R01",
+            "R05",
+            "R10"
+          ],
+          "requirement": "Avaliar ECA Digital e acesso provável; projetar vínculo e confidencialidade proporcional.",
+          "test": "Testar maioridade, responsável removido, vínculo expirado e pedido indevido.",
+          "acceptance": "Regras aprovadas antes de habilitar; responsável não recebe acesso clínico irrestrito por padrão.",
+          "sources": "S01 S19 S20",
+          "dependenciesOriginal": "R01 R05 R10",
+          "stage": "Condicional — avaliar gatilho antes de habilitar",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S19",
+            "S20"
+          ],
+          "applicability": "conditional-not-enabled"
+        }
+      ],
+      "deliveryPhase": "conditional-not-enabled",
+      "mvpBlocking": false
+    },
+    {
+      "id": "APP-043",
+      "title": "Reavaliar eventual assistência remota",
+      "status": "backlog",
+      "acceptance": [
+        "[R37] Requisitos institucionais e SRES resolvidos quando aplicáveis; ausência de vídeo não exclui telemedicina."
+      ],
+      "nextAction": "Revisar requisito R37, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R37",
+          "title": "Reavaliar eventual assistência remota",
+          "priority": "P0 antes da função clínica",
+          "nature": "LEGAL CONDICIONAL",
+          "owner": "Responsável técnico e jurídico",
+          "dependencies": [
+            "R01",
+            "R03",
+            "R24"
+          ],
+          "requirement": "Fora do escopo atual. Se uma mudança futura propuser assistência clínica, reabrir enquadramento antes de implementar consentimento, registro, encaminhamento e responsabilidades aplicáveis.",
+          "test": "Simular atendimento, interrupção, encaminhamento e cópia de registro.",
+          "acceptance": "Requisitos institucionais e SRES resolvidos quando aplicáveis; ausência de vídeo não exclui telemedicina.",
+          "sources": "S09 S10",
+          "dependenciesOriginal": "R01 R03 R24",
+          "stage": "Condicional — avaliar gatilho antes de habilitar",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S09",
+            "S10"
+          ],
+          "applicability": "conditional-not-enabled"
+        }
+      ],
+      "deliveryPhase": "conditional-not-enabled",
+      "mvpBlocking": false
+    },
+    {
+      "id": "APP-044",
+      "title": "Reavaliar prontuário e emissão médica",
+      "status": "backlog",
+      "acceptance": [
+        "[R38] Integridade e assinatura verificáveis; sem descarte automático genérico; foto de assinatura não substitui qualificada."
+      ],
+      "nextAction": "Revisar requisito R38, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R38",
+          "title": "Reavaliar prontuário e emissão médica",
+          "priority": "P0 antes da função",
+          "nature": "LEGAL CONDICIONAL",
+          "owner": "Responsável técnico e documentos",
+          "dependencies": [
+            "R01",
+            "R18",
+            "R22",
+            "R25"
+          ],
+          "requirement": "Não presumido no escopo atual. Se incluído, definir registro canônico, adendos, guarda e exportação; validar emissor, conteúdo e assinatura de documento médico.",
+          "test": "Testar adendo, exportação, migração e alteração de byte em documento assinado.",
+          "acceptance": "Integridade e assinatura verificáveis; sem descarte automático genérico; foto de assinatura não substitui qualificada.",
+          "sources": "S10 S11 S12 S13",
+          "dependenciesOriginal": "R01 R18 R22 R25",
+          "stage": "Condicional — avaliar gatilho antes de habilitar",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S10",
+            "S11",
+            "S12",
+            "S13"
+          ],
+          "applicability": "conditional-not-enabled"
+        }
+      ],
+      "deliveryPhase": "conditional-not-enabled",
+      "mvpBlocking": false
+    },
+    {
+      "id": "APP-045",
+      "title": "Reavaliar função SaMD",
+      "status": "backlog",
+      "acceptance": [
+        "[R39] Nenhuma função SaMD liberada sem obrigações resolvidas; normas selecionadas têm versão e justificativa."
+      ],
+      "nextAction": "Revisar requisito R39, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R39",
+          "title": "Reavaliar função SaMD",
+          "priority": "P0 antes da função",
+          "nature": "LEGAL CONDICIONAL e NORMA VOLUNTÁRIA",
+          "owner": "Regulatório e clínico",
+          "dependencies": [
+            "R01",
+            "R04"
+          ],
+          "requirement": "Avaliar finalidade, classe, qualidade, regularização, validação e pós-mercado.",
+          "test": "Revisar indicação de uso, algoritmo, saída clínica, usuários e alegações a cada mudança relevante.",
+          "acceptance": "Nenhuma função SaMD liberada sem obrigações resolvidas; normas selecionadas têm versão e justificativa.",
+          "sources": "S14 S15 S16 S41 S42 S43",
+          "dependenciesOriginal": "R01 R04",
+          "stage": "Condicional — avaliar gatilho antes de habilitar",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S14",
+            "S15",
+            "S16",
+            "S41",
+            "S42",
+            "S43"
+          ],
+          "applicability": "conditional-not-enabled"
+        }
+      ],
+      "deliveryPhase": "conditional-not-enabled",
+      "mvpBlocking": false
+    },
+    {
+      "id": "APP-046",
+      "title": "Integrar TISS quando aplicável",
+      "status": "backlog",
+      "acceptance": [
+        "[R40] Versão e cronograma por componente registrados; PDF de guia não é apresentado como conformidade TISS."
+      ],
+      "nextAction": "Revisar requisito R40, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R40",
+          "title": "Integrar TISS quando aplicável",
+          "priority": "P0 antes da integração",
+          "nature": "LEGAL CONDICIONAL",
+          "owner": "Integrações e especialista TISS",
+          "dependencies": [
+            "R01",
+            "R16",
+            "R27"
+          ],
+          "requirement": "Implementar componentes, terminologias e mensagens abrangidas pela ANS.",
+          "test": "Validar schemas, versão, erros, retries e homologação do parceiro.",
+          "acceptance": "Versão e cronograma por componente registrados; PDF de guia não é apresentado como conformidade TISS.",
+          "sources": "S17 S18",
+          "dependenciesOriginal": "R01 R16 R27",
+          "stage": "Condicional — avaliar gatilho antes de habilitar",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S17",
+            "S18"
+          ],
+          "applicability": "conditional-not-enabled"
+        }
+      ],
+      "deliveryPhase": "conditional-not-enabled",
+      "mvpBlocking": false
+    },
+    {
+      "id": "APP-047",
+      "title": "Revisar governança continuamente",
+      "status": "backlog",
+      "acceptance": [
+        "[R41] Cadência e donos aprovados; evidência preservada; nenhuma equivalência ISO/ABNT ou certificação sem verificação."
+      ],
+      "nextAction": "Revisar requisito R41, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R41",
+          "title": "Revisar governança continuamente",
+          "priority": "P2 contínuo",
+          "nature": "RECOMENDAÇÃO e LEGAL aplicável",
+          "owner": "Segurança e privacidade",
+          "dependencies": [
+            "R03",
+            "R24",
+            "R25",
+            "R30"
+          ],
+          "requirement": "Revisar acesso, fornecedores, incidentes, normas e controles; usar ISO conforme maturidade e contrato.",
+          "test": "Amostrar privilégios, repetir restauração e revisar ações vencidas.",
+          "acceptance": "Cadência e donos aprovados; evidência preservada; nenhuma equivalência ISO/ABNT ou certificação sem verificação.",
+          "sources": "S37 S38 S39 S40",
+          "dependenciesOriginal": "R03 R24 R25 R30",
+          "stage": "E — Operação",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S37",
+            "S38",
+            "S39",
+            "S40"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "operation",
+      "mvpBlocking": false
+    },
+    {
+      "id": "APP-048",
+      "title": "Controlar mudança de escopo e saída",
+      "status": "backlog",
+      "acceptance": [
+        "[R42] Sem acesso comercial indevido remanescente; dados sujeitos à guarda seguem plano; nova finalidade reabre R01."
+      ],
+      "nextAction": "Revisar requisito R42, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R42",
+          "title": "Controlar mudança de escopo e saída",
+          "priority": "P1",
+          "nature": "LEGAL e RECOMENDAÇÃO",
+          "owner": "Produto e operações",
+          "dependencies": [
+            "R22",
+            "R23",
+            "R25",
+            "R26"
+          ],
+          "requirement": "Reavaliar funções/público/IA e oferecer exportação e saída do tenant.",
+          "test": "Simular encerramento, exportação, revogação, conservação e nova integração de IA.",
+          "acceptance": "Sem acesso comercial indevido remanescente; dados sujeitos à guarda seguem plano; nova finalidade reabre R01.",
+          "sources": "S01 S05 S26",
+          "dependenciesOriginal": "R22 R23 R25 R26",
+          "stage": "D — Lançamento",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S01",
+            "S05",
+            "S26"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-049",
+      "title": "Validar acessibilidade das jornadas completas por plataforma",
+      "status": "backlog",
+      "acceptance": [
+        "[R31] Jornadas essenciais completadas com tecnologia assistiva; evidência manual além de scanner; não declarar selo sem avaliação.",
+        "Cobrir temas padrão, empresarial e pessoal no claro/escuro; conceito visual não substitui testes de jornada no Android"
+      ],
+      "nextAction": "Após os fluxos essenciais e R01/R27, executar matriz de acessibilidade móvel e, se houver web, WCAG no seu escopo; registrar testes manuais e limitações.",
+      "evidence": [
+        "docs/product/DIRECAO-VISUAL.md",
+        "docs/research/INTEGRACAO.md",
+        "docs/testing/ESTRATEGIA.md"
+      ],
+      "implementationEvidence": [],
+      "regulatoryRequirements": [
+        {
+          "id": "R31",
+          "title": "Validar acessibilidade completa",
+          "priority": "P1",
+          "nature": "LEGAL contextual e NORMA VOLUNTÁRIA",
+          "owner": "UX e QA acessibilidade",
+          "dependencies": [
+            "R01",
+            "R27"
+          ],
+          "requirement": "Propor WCAG 2.2 AA em web e matriz NBR 17060 em mobile.",
+          "test": "Usar VoiceOver/TalkBack, foco, teclado, texto ampliado, contraste, erros, agenda e anexos.",
+          "acceptance": "Jornadas essenciais completadas com tecnologia assistiva; evidência manual além de scanner; não declarar selo sem avaliação.",
+          "sources": "S21 S22 S23",
+          "dependenciesOriginal": "R01 R27",
+          "stage": "C — Piloto",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S21",
+            "S22",
+            "S23"
+          ],
+          "applicability": "pending-review"
+        }
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "status": "backlog",
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat",
+      "mvpBlocking": true,
+      "id": "APP-050",
+      "title": "Implementar indicadores de atendente principal e da última mensagem",
+      "acceptance": [
+        "Principal corresponde ao funcionário que mais enviou mensagens na conversa, sem restringir acesso dos demais aprovados",
+        "Indicador da última mensagem identifica autoria humana sem atribuir mensagem de paciente ao funcionário",
+        "Antes de implementar, decidir empate, ausência de mensagens de funcionário, janela/itens contados, edição/exclusão, desligado e ordenação concorrente",
+        "Mensagens futuras de IA têm autoria distinta; participação nos indicadores permanece decisão futura",
+        "Visibilidade inicial dos indicadores destinada à equipe; eventual apresentação ao paciente exige decisão explícita"
+      ],
+      "nextAction": "Durante a fatia de chat APP-004, consolidar as decisões pendentes dos indicadores e testar com históricos sintéticos; não inventar política de desempate.",
+      "evidence": [
+        "docs/product/MVP-CHAT.md"
+      ]
+    },
+    {
+      "status": "backlog",
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat",
+      "mvpBlocking": true,
+      "id": "APP-051",
+      "title": "Implementar marcação de importância e configurações de notificação",
+      "acceptance": [
+        "Funcionário aprovado pode marcar mensagem importante na empresa autorizada; paciente, pendente/revogado e outra empresa não podem",
+        "Usuário escolhe todas ou apenas importantes e um dos quatro níveis app; app+empresa; app+empresa+atendente; app+empresa+atendente+mensagem",
+        "Controle acessível de quatro paradas com descrição e preview sintético; padrão seguro proposto nível 1",
+        "Preferências por usuário/dispositivo e permissão do sistema tratadas separadamente, sem herança indevida entre contas",
+        "Importância inicial antes de marcação, renotificação, desmarcação e casos sem atendente são decisões validadas antes de implementar"
+      ],
+      "nextAction": "Definir as políticas em aberto e executar junto de APP-028; verificar payload e apresentação Android/iOS nos respectivos marcos, com lockscreen e permissão negada.",
+      "evidence": [
+        "docs/product/NOTIFICACOES.md",
+        "docs/testing/ESTRATEGIA.md"
+      ]
+    },
+    {
+      "status": "backlog",
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat",
+      "mvpBlocking": true,
+      "id": "APP-052",
+      "title": "Validar e implementar compactação de imagem com prévia e opção original",
+      "acceptance": [
+        "Envio de imagem compactada tem prévia e opção explícita como documento original; não copia parâmetros proprietários do WhatsApp",
+        "Texto pequeno, QR e códigos de barras fictícios passam por testes de leitura/decodificação antes de fixar parâmetros",
+        "Documento original preserva bytes; não recomprimir PDF assinado nem invalidar assinatura; fonte do usuário não é apagada",
+        "EXIF, orientação, cópia temporária e retenção são tratados por política explícita sem modificar silenciosamente o original",
+        "Falha/resultado inadequado permite recuperação e escolha consciente do original; nenhum percentual ou garantia de legibilidade presumido",
+        "Compactação no celular antes do upload, em cópia da fonte, com prévia ampliável; original mantém bytes/metadados sem excluir arquivo no aparelho",
+        "Perfil candidato de resolução mínima/qualidade só é fixado após testes e trade-offs registrados; sombras/desfoque incluídos e atendente pode ampliar/pedir foto melhor"
+      ],
+      "nextAction": "Após pesquisa técnica, registrar perfil candidato de resolução mínima/qualidade e executar testes sintéticos antes de fixá-lo; compactar no dispositivo antes do envio, com prévia ampliável e original opcional, sem regravar PDF/assinatura.",
+      "evidence": [
+        "docs/product/ANEXOS-E-IMAGENS.md",
+        "docs/testing/ESTRATEGIA.md"
+      ]
+    },
+    {
+      "status": "backlog",
+      "implementationEvidence": [],
+      "deliveryPhase": "store-release",
+      "mvpBlocking": false,
+      "id": "APP-053",
+      "title": "Preparar submissão às lojas após candidato funcional de chat",
+      "acceptance": [
+        "[R35] Revalidar na data: consulta atual indica API 36+ e Xcode 26+/SDK iOS 26; revisão não utiliza pacientes reais.",
+        "Submissão às lojas não bloqueia a geração de APK privado de teste; requisitos Apple aplicam-se antes da entrega iOS"
+      ],
+      "nextAction": "No marco de publicação autorizado, concluir dependências R30–R34 pertinentes, revalidar regras de loja e preparar demonstração sintética. Não executar publicação nesta etapa.",
+      "evidence": [
+        "docs/research/INTEGRACAO.md",
+        "docs/delivery/ENTREGAS.md"
+      ],
+      "regulatoryRequirements": [
+        {
+          "id": "R35",
+          "title": "Preparar submissão e demonstração",
+          "priority": "P1",
+          "nature": "LOJA",
+          "owner": "Release e QA",
+          "dependencies": [
+            "R30",
+            "R31",
+            "R32",
+            "R33",
+            "R34"
+          ],
+          "requirement": "Validar SDKs, metadados e conta de revisão com dados sintéticos e backend disponível.",
+          "test": "Smoke test do mesmo artefato enviado; conferir URLs, faixa etária e demonstração.",
+          "acceptance": "Revalidar na data: consulta atual indica API 36+ e Xcode 26+/SDK iOS 26; revisão não utiliza pacientes reais.",
+          "sources": "S31 S32 S36",
+          "dependenciesOriginal": "R30 a R34",
+          "stage": "D — Lançamento",
+          "sourceSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+          "sourceIds": [
+            "S31",
+            "S32",
+            "S36"
+          ],
+          "applicability": "pending-review"
+        }
+      ]
+    },
+    {
+      "id": "APP-054",
+      "title": "Definir e medir orçamento de desempenho em aparelho modesto",
+      "status": "backlog",
+      "deliveryPhase": "mvp-chat",
+      "mvpBlocking": true,
+      "acceptance": [
+        "Registrar alvos candidatos de tamanho, abertura, resposta visual, rolagem, memória e cache antes de medir, com build e aparelho identificados",
+        "Medição usa build representativo de release e carga sintética paginada; separar UI local de rede e confirmação do servidor",
+        "Chat e anexos não carregam histórico inteiro, originais ou SDKs de funções futuras no caminho crítico; compressão no celular não trava interface",
+        "Validar 2–3 GB RAM como perfil candidato de aparelho modesto, sem declarar número de emulador como desempenho físico",
+        "Regressão, limites e trade-offs registrados; nenhum orçamento é apresentado como alcançado sem evidência"
+      ],
+      "nextAction": "Depois do primeiro build, medir baseline e ajustar alvos propostos com justificativa; usar emulador para funcionalidade e aparelho acessível para validar desempenho físico.",
+      "evidence": [
+        "docs/project/PROTOTIPO-E-DESEMPENHO.md",
+        "docs/testing/ESTRATEGIA.md"
+      ],
+      "implementationEvidence": []
+    },
+    {
+      "id": "APP-055",
+      "title": "Fixar compatibilidade mínima e testar Android antigo suportado",
+      "status": "backlog",
+      "deliveryPhase": "mvp-chat",
+      "mvpBlocking": true,
+      "acceptance": [
+        "Escolher stack estável/mantida e confirmar versão mínima de cada dependência e ABI; não congelar biblioteca insegura só para ampliar suporte",
+        "Distinguir minSdk, compileSdk e targetSdk; SDK 36 disponível não define o Android mínimo",
+        "Avaliar Android 7/API 24 como candidato conforme referência Expo consultada, sem prometer suporte antes de executar na versão mínima",
+        "Matriz cobre Android mínimo/atual, fonte ampliada, teclado, rede/memória restritas, permissões e anexos em aparelhos modestos",
+        "iOS tem requisito e validação próprios antes de entrega iPhone; não declarar suporte por base compartilhada ou regra de loja"
+      ],
+      "nextAction": "Durante APP-002, fixar versões e matriz mínima; obter uso autorizado de imagem/dispositivo correspondente e testar. A imagem atualmente observada é apenas Android 36.",
+      "evidence": [
+        "docs/project/PROTOTIPO-E-DESEMPENHO.md",
+        "docs/testing/ESTRATEGIA.md"
+      ],
+      "implementationEvidence": []
+    }
+  ],
+  "regulatoryIntegration": {
+    "version": "1.0",
+    "importedAt": "2026-11-06",
+    "status": "planning-only-no-controls-implemented",
+    "planUrl": "https://drive.google.com/file/d/1YCQaVZlzitsgCh1t8O6Jk3qe4_qJOGeL/view",
+    "backlogUrl": "https://drive.google.com/file/d/12tfJicGU0aR7muMkSPB7k2JF1fCswhPC/view",
+    "planSnapshot": "docs/research/PLANO-TECNICO-v1.0.source.md",
+    "backlogSnapshot": "docs/research/BACKLOG-SAUDE-v1.0.source.json",
+    "sources": {
+      "S01": [
+        "LGPD Lei 13709 de 2018",
+        "https://www2.camara.leg.br/legin/fed/lei/2018/lei-13709-14-agosto-2018-787077-normaatualizada-pl.html",
+        "Lei obrigatória conforme tratamento. Finalidade, bases legais, direitos, segurança e responsabilidades."
+      ],
+      "S02": [
+        "ANPD comunicação de incidentes Resolução 15 de 2024",
+        "https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/comunicado-de-incidente-de-seguranca-cis",
+        "Prazo geral de três dias úteis para incidentes com risco ou dano relevante, com condições e exceções aplicáveis."
+      ],
+      "S03": [
+        "ANPD Resolução 15 de 2024 texto oficial",
+        "https://bibliotecadigital.mj.gov.br/bitstream/1/12879/2/RES_ANPD_2024_15.html",
+        "Registro dos incidentes por pelo menos cinco anos, inclusive não comunicados."
+      ],
+      "S04": [
+        "ANPD normas vigentes",
+        "https://www.gov.br/anpd/pt-br/acesso-a-informacao/institucional/atos-normativos/regulamentacoes_anpd/",
+        "Inclui Resoluções 18/2024 sobre encarregado, 2/2022 sobre pequeno porte, 19/2024 sobre transferências e 32/2026 sobre adequação da UE."
+      ],
+      "S05": [
+        "ANPD transferências internacionais",
+        "https://www.gov.br/anpd/pt-br/assuntos/assuntos-internacionais/transferencia-internacional-de-dados",
+        "Mapear países, mecanismo, subprocessadores e transferências posteriores. Considerar adequação da UE no âmbito definido na Resolução 32/2026."
+      ],
+      "S06": [
+        "ANPD orientações sobre RIPD",
+        "https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/relatorio-de-impacto-a-protecao-de-dados-pessoais-ripd",
+        "Avaliação de impacto e alto risco. Não afirmar exigência automática de RIPD para todo app."
+      ],
+      "S07": [
+        "Marco Civil Lei 12965 de 2014",
+        "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12965.htm",
+        "Art. 15: seis meses de registros de acesso para provedores abrangidos, não de todo conteúdo."
+      ],
+      "S08": [
+        "Decreto 8771 de 2016 consolidado",
+        "https://planalto.gov.br/ccivil_03/_ato2015-2018/2016/decreto/d8771.htm",
+        "Art. 13: controle, autenticação, inventário e proteção dos acessos aos registros."
+      ],
+      "S09": [
+        "Lei 14510 de 2022 telessaúde",
+        "https://www2.camara.leg.br/legin/fed/lei/2022/lei-14510-27-dezembro-2022-793576-publicacaooriginal-166678-pl.html",
+        "Aplicação condicional à prestação de telessaúde e modelo de intermediação médica."
+      ],
+      "S10": [
+        "CFM Resolução 2314 de 2022",
+        "https://sistemas.cfm.org.br/normas/arquivos/resolucoes/BR/2022/2314_2022.pdf",
+        "Telemedicina, SRES, NGS2, consentimento, assistência e responsabilidades. Examinar art. 17 para o modelo concreto."
+      ],
+      "S11": [
+        "Lei 13787 de 2018 prontuário",
+        "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13787.htm",
+        "Guarda e digitalização de prontuário. Vinte anos não devem ser estendidos automaticamente a todo chat."
+      ],
+      "S12": [
+        "CFM Resolução 2381 de 2024",
+        "https://sistemas.cfm.org.br/normas/arquivos/resolucoes/BR/2024/2381_2024.pdf",
+        "Emissão de documentos médicos, dados mínimos e assinatura qualificada no documento eletrônico."
+      ],
+      "S13": [
+        "CFM Resolução 2299 de 2021",
+        "https://sistemas.cfm.org.br/normas/arquivos/resolucoes/BR/2021/2299_2021.pdf",
+        "Emissão eletrônica, prescrição, regularidade profissional, assinatura verificável e requisitos institucionais."
+      ],
+      "S14": [
+        "Anvisa perguntas e respostas RDC 657 de 2022",
+        "https://www.gov.br/anvisa/pt-br/centraisdeconteudo/publicacoes/produtos-para-a-saude/manuais/software-como-dispositivo-medico-perguntas-e-respostas/%40%40download/file",
+        "Comunicação, agenda e prontuário sem finalidade enquadrável não são automaticamente SaMD."
+      ],
+      "S15": [
+        "Anvisa RDC 751 de 2022",
+        "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=1696&cod_modulo=134&link=S&numeroAto=00000751&orgao=RDC%2FDC%2FANVISA%2FMS&seqAto=000&tipo=RDC&valorAno=2022",
+        "Classificação de dispositivos e regra 11 para software."
+      ],
+      "S16": [
+        "Anvisa RDC 848 de 2024",
+        "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2024/norma-sobre-requisitos-de-seguranca-para-dispositivos-medicos-entra-em-vigor",
+        "Requisitos essenciais de segurança e desempenho para dispositivos abrangidos."
+      ],
+      "S17": [
+        "ANS RN 501 de 2022",
+        "https://bvs.saude.gov.br/bvs/saudelegis/ans/2022/res0501_01_04_2022.html",
+        "Regras TISS para operações abrangidas da saúde suplementar."
+      ],
+      "S18": [
+        "ANS Padrão TISS setembro de 2026",
+        "https://www.gov.br/ans/pt-br/assuntos/prestadores/padrao-para-troca-de-informacao-de-saude-suplementar-2013-tiss/padrao-tiss-setembro-2026",
+        "Conferir a versão e cronograma de cada componente, não apenas a competência geral."
+      ],
+      "S19": [
+        "ECA Digital Lei 15211 de 2025 atualizada",
+        "https://www2.camara.leg.br/legin/fed/lei/2025/lei-15211-17-setembro-2025-797997-normaatualizada-pl.html",
+        "Em vigor desde 17/3/2026. Avaliar público direcionado ou acesso provável de menores."
+      ],
+      "S20": [
+        "ANPD ECA Digital",
+        "https://www.gov.br/anpd/pt-br/assuntos/eca-digital",
+        "Orientações e Decreto 12880/2026; controles proporcionais a público e funcionalidades."
+      ],
+      "S21": [
+        "Lei Brasileira de Inclusão Lei 13146 de 2015",
+        "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm",
+        "Art. 63 para sítios da internet. Avaliar o conjunto de obrigações para aplicativos nativos."
+      ],
+      "S22": [
+        "ABNT NBR 17060 de 2022 acessibilidade móvel",
+        "https://www.nic.br/noticia/releases/norma-da-abnt-sobre-acessibilidade-para-dispositivos-moveis-torna-a-navegacao-mais-inclusiva/",
+        "Fonte institucional participante da elaboração. Confirmar edição e texto licenciado ABNT."
+      ],
+      "S23": [
+        "W3C WCAG 2.2",
+        "https://www.w3.org/TR/WCAG22/",
+        "Referência técnica. Proposta de meta AA para web; não declarar conformidade sem avaliação."
+      ],
+      "S24": [
+        "OWASP MASVS 2.1.0",
+        "https://github.com/OWASP/masvs/releases/tag/v2.1.0",
+        "Padrão voluntário de verificação móvel, incluindo privacidade. Não é certificação LGPD."
+      ],
+      "S25": [
+        "OWASP MASTG v2",
+        "https://mas.owasp.org/news/2026/07/04/mastg-v200-release/",
+        "MASTG 2.0.0 de 2026; rastrear controle MASVS, fraqueza MASWE e teste MASTG. Fixar versão/commit."
+      ],
+      "S26": [
+        "OWASP ASVS 5.0.0",
+        "https://asvs.owasp.org/",
+        "Publicado em 30/5/2025; referência para API, backend e web. IDs devem incluir versão."
+      ],
+      "S27": [
+        "Google Play Health Content and Services",
+        "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+        "Condição de distribuição: declaração de saúde, privacidade, permissões e alegações."
+      ],
+      "S28": [
+        "Google Play User Data",
+        "https://support.google.com/googleplay/android-developer/answer/10144311?rd=1",
+        "Dados sensíveis, transparência, consentimento e permissões."
+      ],
+      "S29": [
+        "Google Play exclusão de conta",
+        "https://support.google.com/googleplay/android-developer/answer/13327111?hl=en-en",
+        "Fluxo no app e recurso web quando criação de conta se enquadra; explicar conservação necessária."
+      ],
+      "S30": [
+        "Google Play Data safety",
+        "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en-en",
+        "Declarar práticas reais do app e SDKs."
+      ],
+      "S31": [
+        "Google Play target API",
+        "https://support.google.com/googleplay/android-developer/answer/11926878?hl=en",
+        "Consulta em 6/11/2026: Android comum target API 36 ou superior para novos apps/atualizações; há exceções por dispositivo."
+      ],
+      "S32": [
+        "Apple App Review Guidelines",
+        "https://developer.apple.com/app-store/review/guidelines/",
+        "Condições de distribuição para saúde, entidade publicadora, conteúdo de usuários e privacidade."
+      ],
+      "S33": [
+        "Apple exclusão de conta",
+        "https://developer.apple.com/support/offering-account-deletion-in-your-app/",
+        "Iniciar exclusão no app quando há criação de conta; conservação legal pode persistir com transparência."
+      ],
+      "S34": [
+        "Apple requisitos de SDKs de terceiros",
+        "https://developer.apple.com/support/third-party-SDK-requirements/",
+        "Manifestos e assinaturas para SDKs abrangidos; revisar lista atual e dependências."
+      ],
+      "S35": [
+        "Apple privacidade e uso de dados",
+        "https://developer.apple.com/app-store/user-privacy-and-data-use/",
+        "Transparência de coleta, rastreamento e responsabilidades por código de terceiros."
+      ],
+      "S36": [
+        "Apple requisitos de submissão",
+        "https://developer.apple.com/news/upcoming-requirements/",
+        "Desde 28/4/2026: Xcode 26+ e SDK iOS 26 ou correspondente; não equivale ao sistema mínimo suportado."
+      ],
+      "S37": [
+        "ISO IEC 27001 de 2022",
+        "https://www.iso.org/standard/27001",
+        "Gestão de segurança; considerar emenda 1:2024 e edição nacional aplicável."
+      ],
+      "S38": [
+        "ISO IEC 27002 de 2022",
+        "https://www.iso.org/standard/75652.html",
+        "Referência de controles de segurança."
+      ],
+      "S39": [
+        "ISO IEC 27701 de 2025",
+        "https://www.iso.org/standard/27701",
+        "Gestão de privacidade; edição internacional atual encontrada."
+      ],
+      "S40": [
+        "ISO 27799 de 2025",
+        "https://www.iso.org/standard/84647.html",
+        "Segurança em saúde; terceira edição de dezembro/2025 substitui 2016."
+      ],
+      "S41": [
+        "IEC 62304 de 2006 com emenda 2015",
+        "https://webstore.iec.ch/en/publication/22794",
+        "Ciclo de vida de software de dispositivo médico, se aplicável."
+      ],
+      "S42": [
+        "ISO 14971 de 2019",
+        "https://www.iso.org/standard/72704.html",
+        "Gerenciamento de risco de dispositivos médicos, se aplicável."
+      ],
+      "S43": [
+        "IEC 82304 parte 1 de 2016",
+        "https://www.iso.org/standard/59543.html",
+        "Segurança de produtos de software de saúde; avaliar escopo e incorporação contratual."
+      ],
+      "S47": [
+        "CFM Resolução 2454 de 2026 inteligência artificial",
+        "https://sistemas.cfm.org.br/normas/arquivos/resolucoes/BR/2026/2454_2026.pdf",
+        "Resolução de 11/2/2026, publicada em 27/2/2026 e retificada em 5/3/2026. Art. 5 §2 exige mediação humana na comunicação médica abrangida; avaliar âmbito real de médicos/instituições, sem equiparar todo chatbot administrativo a telemedicina."
+      ],
+      "S48": [
+        "HL7 FHIR R5 RESTful API",
+        "https://hl7.org/fhir/http.html",
+        "Especificação v5.0.0/R5 consultada; opção técnica de interoperabilidade, não obrigação genérica deste produto. Fixar versão e perfis acordados com o fornecedor."
+      ],
+      "S49": [
+        "OWASP Top 10 for LLM Applications 2026",
+        "https://github.com/GenAI-Security-Project/GenAI-LLM-Top10/blob/main/2026/README.md",
+        "Edição publicada em 4/8/2026; referência voluntária para riscos de IA. Usar fontes finais, não rascunhos, e fixar commit na matriz de avaliação."
+      ],
+      "S44": [
+        "Receita Federal primeiro CNPJ alfanumérico em julho de 2026",
+        "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/julho/receita-federal-gera-o-primeiro-cnpj-em-formato-alfanumerico",
+        "Produção alfanumérica em julho/2026; manter compatibilidade com CNPJs existentes."
+      ],
+      "S45": [
+        "Receita Federal documentação técnica do CNPJ",
+        "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/documentos-tecnicos/cnpj",
+        "Fonte para formato e cálculo dos dígitos verificadores. Fixar versão da especificação nos testes."
+      ],
+      "S46": [
+        "Serpro Consulta CPF versão 3",
+        "https://centraldeajuda.serpro.gov.br/duvidas/pt/avisos/avisoconsultacpfv3/",
+        "Integração solicita CPF e nascimento. Consulta cadastral não substitui prova de identidade ou representação; preços não verificados."
+      ]
+    },
+    "requirementToWorkItem": {
+      "R05": "APP-007",
+      "R06": "APP-008",
+      "R07": "APP-009",
+      "R08": "APP-010",
+      "R10": "APP-011",
+      "R11": "APP-004",
+      "R16": "APP-004",
+      "R17": "APP-004",
+      "R18": "APP-004",
+      "R27": "APP-004",
+      "R31": "APP-049",
+      "R35": "APP-053",
+      "R43": "APP-012",
+      "R44": "APP-012",
+      "R45": "APP-012",
+      "R46": "APP-013",
+      "R47": "APP-014",
+      "R48": "APP-015",
+      "R01": "APP-019",
+      "R02": "APP-020",
+      "R03": "APP-021",
+      "R04": "APP-022",
+      "R09": "APP-023",
+      "R12": "APP-024",
+      "R13": "APP-025",
+      "R14": "APP-026",
+      "R15": "APP-027",
+      "R19": "APP-028",
+      "R20": "APP-029",
+      "R21": "APP-030",
+      "R22": "APP-031",
+      "R23": "APP-032",
+      "R24": "APP-033",
+      "R25": "APP-034",
+      "R26": "APP-035",
+      "R28": "APP-036",
+      "R29": "APP-037",
+      "R30": "APP-038",
+      "R32": "APP-039",
+      "R33": "APP-040",
+      "R34": "APP-041",
+      "R36": "APP-042",
+      "R37": "APP-043",
+      "R38": "APP-044",
+      "R39": "APP-045",
+      "R40": "APP-046",
+      "R41": "APP-047",
+      "R42": "APP-048"
+    },
+    "stageRules": {
+      "P0": "Bloqueia dados reais ou apenas a função condicional correspondente, conforme aplicabilidade avaliada",
+      "P1": "Bloqueia o marco de lançamento/piloto indicado no plano",
+      "P2": "Operação e melhoria contínua em cadência a definir"
+    },
+    "evidenceRule": "Evidências documentais atuais comprovam planejamento, não implementação. Preencher implementationEvidence somente com testes/aceite reais da função.",
+    "conditionalRule": "R36–R40 não ativam menores, telemedicina, prontuário, SaMD ou TISS. Registrar avaliação/não aplicabilidade e condição de reabertura; não marcar done apenas por exclusão de escopo.",
+    "stageRule": "Dependências são requisitos Rxx, não conclusão integral do item agregador APP; resolver critérios prévios na ordem do grafo, sem ciclos artificiais por agregação. Aplicar cada requisito só às funções presentes no marco: R27 não exige agenda no MVP; integrações/IA ausentes não bloqueiam o chat.",
+    "releaseRule": "Android primeiro. Requisitos iOS/Apple bloqueiam a entrega iOS pertinente, sem declarar Android insuficiente por não ter release iOS; testar cada plataforma antes de prometê-la.",
+    "mvpAmendment": "Decisão posterior: MVP de chat sem agenda/IA/API externa. R27 executado no chat; aspectos de agenda adiados em APP-005. R43–R48 só pós-MVP. R35 em APP-053, sem bloquear APK privado por ausência de submissão."
+  },
+  "mvpPlan": {
+    "updatedAt": "2026-11-06",
+    "scope": "Conta, empresa, vínculos e chat humano com anexos e configurações de notificação; Android primeiro",
+    "deferred": [
+      "Agenda local e reservas",
+      "APIs externas de entrada/saída e importações",
+      "Atendimento generativo",
+      "Configuração de conectores com IA"
+    ],
+    "architectureOnly": "Preparar fronteiras substituíveis; não implementar nem exigir serviços dessas funções futuras para rodar chat",
+    "staffVisibility": "Todos os funcionários aprovados e ativos veem todas as conversas dos pacientes da própria empresa",
+    "patientAccess": "Vínculo imediato; somente nome/endereço/telefones públicos e próprio chat/anexos; múltiplas empresas com seleção de contexto",
+    "attendantIndicators": "Principal: mais mensagens de funcionário na conversa. Última mensagem: autor humano pertinente. Desempate e casos especiais pendentes de decisão",
+    "notificationDecisions": "Quatro níveis e filtro todas/importantes; padrão seguro proposto app somente. Importância inicial e regras de renotificação pendentes",
+    "gates": "P0 aplicáveis ao chat continuam necessários antes de dados reais; funcionalidades futuras ausentes não bloqueiam MVP",
+    "source": "docs/product/MVP-CHAT.md",
+    "prototypeEstimate": {
+      "range": "12–24 horas efetivas, aproximadamente 2–4 dias úteis de sessões após pré-requisitos",
+      "kind": "planning-estimate-not-date-promise",
+      "scope": "APK demonstrativo local com dados fictícios; não chat de produção ou verificação oficial",
+      "preconditions": [
+        "Instalação autorizada de dependências compatíveis",
+        "Ambiente Android autorizado e utilizável",
+        "Primeiro build e instalação para reestimativa"
+      ],
+      "evidence": "docs/project/PROTOTIPO-E-DESEMPENHO.md"
+    }
+  },
+  "designApproval": {
+    "date": "2026-11-06",
+    "status": "visual-direction-approved-not-functional-validation",
+    "defaultAccent": "green",
+    "references": [
+      "https://drive.google.com/file/d/1DNOU9BjjWfNL-iMPaI7S3XB9J2gkZqvR/view",
+      "https://drive.google.com/file/d/1gMWO1GeDdqtn_vhBWfiKWO42-Dyf_ai5/view"
+    ],
+    "precedence": "user > company > default",
+    "implementationEvidence": []
+  }
+}

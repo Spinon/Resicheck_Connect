@@ -1,0 +1,22 @@
+{
+  "syntheticOnly": true,
+  "description": "Identificadores fictícios; não são contas nem registros de um backend.",
+  "organizations": [
+    { "id": "org-demo-a", "name": "Empresa Demonstração A" },
+    { "id": "org-demo-b", "name": "Empresa Demonstração B" }
+  ],
+  "actors": [
+    { "id": "admin-a", "organizationId": "org-demo-a", "role": "admin" },
+    { "id": "staff-a", "organizationId": "org-demo-a", "role": "staff" },
+    { "id": "staff-b", "organizationId": "org-demo-b", "role": "staff" },
+    { "id": "patient-a1", "organizationId": "org-demo-a", "role": "patient" },
+    { "id": "patient-a2", "organizationId": "org-demo-a", "role": "patient" },
+    { "id": "patient-b1", "organizationId": "org-demo-b", "role": "patient" }
+  ],
+  "conversations": [
+    { "id": "conversation-a1", "organizationId": "org-demo-a", "participantIds": ["staff-a", "patient-a1"] },
+    { "id": "conversation-a2", "organizationId": "org-demo-a", "participantIds": ["staff-a", "patient-a2"] },
+    { "id": "conversation-b1", "organizationId": "org-demo-b", "participantIds": ["staff-b", "patient-b1"] }
+  ],
+  "attachment": { "name": "guia-ficticia.txt", "content": "DOCUMENTO SINTÉTICO SEM VALIDADE. Nenhum dado de paciente." }
+}

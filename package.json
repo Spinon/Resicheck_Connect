@@ -1,0 +1,11 @@
+{
+  "name": "atendimento-mobile-workspace",
+  "private": true,
+  "version": "0.0.0",
+  "description": "Organização inicial; não é ainda o pacote do aplicativo Android.",
+  "scripts": {
+    "project:check": "node scripts/project.mjs --check",
+    "project:status": "node scripts/project.mjs --write"
+  },
+  "engines": { "node": ">=22" }
+}

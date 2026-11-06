@@ -1,0 +1,878 @@
+{
+  "version": "1.0",
+  "status": "Proposto para revisão",
+  "date": "2026-11-06",
+  "backlog": [
+    {
+      "id": "R01",
+      "title": "Fixar finalidade e enquadramento",
+      "priority": "P0",
+      "nature": "LEGAL CONDICIONAL",
+      "owner": "Produto e jurídico",
+      "dependencies": "Nenhuma",
+      "requirement": "Classificar chat, guia, registro, emissão, algoritmo e público.",
+      "test": "Revisar jornadas, contratos e alegações comerciais.",
+      "acceptance": "Cada função tem decisão justificada; pendência clínica bloqueia a função afetada.",
+      "sources": "S01 S09 S10 S11 S14 S17 S19",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R02",
+      "title": "Inventariar dados e bases legais",
+      "priority": "P0",
+      "nature": "LEGAL",
+      "owner": "Privacidade e arquitetura",
+      "dependencies": "R01",
+      "requirement": "Mapear finalidade, dados, fundamento, controlador, operador e destinatário.",
+      "test": "Percorrer cadastro, agenda, chat, arquivos, suporte, push e logs com dados sintéticos.",
+      "acceptance": "Todo campo/integração tem finalidade; dados sensíveis não usam legítimo interesse como base.",
+      "sources": "S01",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R03",
+      "title": "Formalizar governança e contratos",
+      "priority": "P0",
+      "nature": "LEGAL",
+      "owner": "Jurídico e encarregado",
+      "dependencies": "R02",
+      "requirement": "Definir instruções, subprocessadores, direitos, incidentes, saída e papel do encarregado.",
+      "test": "Comparar contratos e fluxo real; avaliar enquadramento de pequeno porte.",
+      "acceptance": "Responsáveis e contatos definidos; nenhuma dispensa presumida apenas por porte ou rótulo SaaS.",
+      "sources": "S01 S04",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R04",
+      "title": "Avaliar impacto e ameaças",
+      "priority": "P0",
+      "nature": "RECOMENDAÇÃO com gatilho LEGAL",
+      "owner": "AppSec e privacidade",
+      "dependencies": "R01 R02",
+      "requirement": "Modelar vazamento entre empresas, abuso interno, aparelho perdido e destinatário errado; avaliar RIPD.",
+      "test": "Revisar riscos por fluxo e impacto ao paciente.",
+      "acceptance": "Cada risco tem dono, controle e evidência; alto risco residual requer decisão antes do piloto.",
+      "sources": "S06 S24 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R05",
+      "title": "Separar identidade e representação",
+      "priority": "P0",
+      "nature": "LEGAL objetivo e RECOMENDAÇÃO",
+      "owner": "Identidade e jurídico",
+      "dependencies": "R02 R04",
+      "requirement": "Distinguir validade cadastral, identidade da pessoa e poderes para representar empresa. Minimizar documentos e biometria.",
+      "test": "Simular cadastro com identificador válido de terceiro e gestor sem poderes; avaliar revisão manual e contestação.",
+      "acceptance": "Consulta cadastral não comprova identidade; existência de empresa não comprova representação; evidência e prazo de guarda definidos.",
+      "sources": "S01 S24 S26 S46",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R06",
+      "title": "Validar cadastro empresarial sem ambiguidade",
+      "priority": "P0",
+      "nature": "RECOMENDAÇÃO e regra cadastral aplicável",
+      "owner": "Backend e produto",
+      "dependencies": "R05",
+      "requirement": "Tratar identificador empresarial como texto; admitir formato alfanumérico conforme regra oficial e compatibilidade com cadastros existentes. O formato alfanumérico entrou em produção em julho de 2026.",
+      "test": "Usar fixtures oficiais, zeros iniciais, letras admitidas, dígitos verificadores, busca e integração externa.",
+      "acceptance": "Sem conversão numérica ou regex apenas numérica; normalização e validação aprovadas; validação não concede representação.",
+      "sources": "S01 S26 S44 S45",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R07",
+      "title": "Controlar convites e solicitações",
+      "priority": "P0",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "Backend e produto",
+      "dependencies": "R05 R06",
+      "requirement": "Modelar pendente, aceito, recusado, expirado e revogado; distinguir convite do gestor e solicitação do funcionário.",
+      "test": "Tentar autoaprovação, aceite por outra identidade, token reutilizado e corrida entre aprovação e revogação.",
+      "acceptance": "Nenhum vínculo pendente tem acesso; decisão por ator autorizado; aceite auditável; política de aprovação não é implícita.",
+      "sources": "S01 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R08",
+      "title": "Proteger vínculo de pacientes por link ou busca",
+      "priority": "P0",
+      "nature": "LEGAL objetivo e RECOMENDAÇÃO",
+      "owner": "Produto e backend",
+      "dependencies": "R07",
+      "requirement": "Links não expõem identificadores pessoais; vínculo exige destinatário/empresa corretos e regra explícita de aceite.",
+      "test": "Testar link expirado, reutilizado, empresa trocada, paciente incorreto e busca em massa.",
+      "acceptance": "Encontrar empresa não dá acesso ao acervo; convite não revela saúde; geração só por funcionário aprovado com permissão.",
+      "sources": "S01 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R09",
+      "title": "Isolar empresas e pacientes",
+      "priority": "P0",
+      "nature": "LEGAL objetivo e RECOMENDAÇÃO",
+      "owner": "Backend e AppSec",
+      "dependencies": "R02 R07 R08",
+      "requirement": "Aplicar autorização no servidor por tenant, paciente e objeto em API, realtime, storage, busca, cache e jobs.",
+      "test": "Executar tentativas cruzadas com duas empresas, dois pacientes e profissional multivínculo.",
+      "acceptance": "Zero acesso cruzado nos casos definidos; tenant vindo do cliente não é prova; regressão automatizada.",
+      "sources": "S01 S08 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R10",
+      "title": "Separar perfis e acesso administrativo",
+      "priority": "P0",
+      "nature": "LEGAL objetivo e RECOMENDAÇÃO",
+      "owner": "Produto e segurança",
+      "dependencies": "R09",
+      "requirement": "Definir recepção, clínico, faturamento, gestor, suporte e admin global. Listas globais usam mínimos metadados.",
+      "test": "Testar escalada de privilégio, troca de papel e acesso do admin a conteúdo clínico.",
+      "acceptance": "Gestor/admin não leem chat clínico por padrão; suporte excepcional tem finalidade, prazo e trilha.",
+      "sources": "S01 S08 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R11",
+      "title": "Gerir conversa da empresa e atribuição interna",
+      "priority": "P0",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "Produto e backend",
+      "dependencies": "R09 R10",
+      "requirement": "Paciente conversa com a empresa; atribuição interna a funcionário não altera tenant ou propriedade da conversa.",
+      "test": "Testar transferência, funcionário removido, equipes simultâneas e envio enquanto atribuição muda.",
+      "acceptance": "Paciente não precisa escolher funcionário; acesso interno segue função; autor real é auditável; desligado perde acesso.",
+      "sources": "S01 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R12",
+      "title": "Proteger autenticação e recuperação",
+      "priority": "P0",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "Identidade e AppSec",
+      "dependencies": "R05 R10",
+      "requirement": "Exigir contas individuais, propor MFA para privilégios e proteger recuperação e operações sensíveis.",
+      "test": "Testar enumeração, força bruta, recuperação indevida e reuso de token.",
+      "acceptance": "Testes negativos passam; sem conta privilegiada compartilhada; recuperação não contorna controles de identidade.",
+      "sources": "S08 S24 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R13",
+      "title": "Revogar sessões e dispositivos",
+      "priority": "P0",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "Backend e mobile",
+      "dependencies": "R12",
+      "requirement": "Revogar refresh tokens, realtime e push ao desligar vínculo/conta.",
+      "test": "Revogar com app aberto, WebSocket ativo, offline e troca de conta.",
+      "acceptance": "Acesso servidor cessa após revogação confirmada; cache segue política; notificações não chegam à conta anterior.",
+      "sources": "S24 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R14",
+      "title": "Proteger armazenamento móvel",
+      "priority": "P0",
+      "nature": "RECOMENDAÇÃO e LOJA",
+      "owner": "Android e iOS",
+      "dependencies": "R02 R13",
+      "requirement": "Usar armazenamento seguro para segredos; minimizar e proteger cache e backup.",
+      "test": "Inspecionar arquivos, banco local, logs, clipboard, backup, troca de usuário e reinstalação.",
+      "acceptance": "Sem tokens públicos ou em logs; informação pessoal de saúde não é persistida em iCloud; política de backup comprovada.",
+      "sources": "S24 S25 S32",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R15",
+      "title": "Proteger trânsito e chaves",
+      "priority": "P0",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "Infraestrutura e segurança",
+      "dependencies": "R04",
+      "requirement": "Autenticar transporte, proteger repouso e separar gestão de chaves; decidir pinning conforme ameaça e rotação.",
+      "test": "Testar certificado/hostname inválido, HTTP, rotação e restauração de chaves.",
+      "acceptance": "Conexões inválidas falham; segredos fora do código; plano de rotação testado; TLS não anunciado como E2EE.",
+      "sources": "S24 S26 S38",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R16",
+      "title": "Restringir documentos e URLs",
+      "priority": "P0",
+      "nature": "LEGAL objetivo e RECOMENDAÇÃO",
+      "owner": "Backend e documentos",
+      "dependencies": "R09 R10",
+      "requirement": "Manter objetos privados e autorizar original, miniatura e exportação; links de duração limitada quando necessários.",
+      "test": "Trocar paciente, reutilizar URL expirada/revogada e consultar objeto de outra empresa.",
+      "acceptance": "Sem objeto público; limites de link documentados; não prometer apagar cópia já baixada.",
+      "sources": "S01 S24 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R17",
+      "title": "Validar upload e conteúdo ativo",
+      "priority": "P0",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "Backend e AppSec",
+      "dependencies": "R16",
+      "requirement": "Validar tamanho, tipo real e conteúdo; limitar processamento e colocar suspeitos em quarentena.",
+      "test": "Enviar MIME falso, arquivo enorme, PDF ativo e arquivo de teste seguro; avaliar parser.",
+      "acceptance": "Arquivo não validado não é distribuído; processamento isolado e limitado; erros não expõem caminhos.",
+      "sources": "S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R18",
+      "title": "Confirmar destinatário e versão",
+      "priority": "P0",
+      "nature": "LEGAL objetivo e RECOMENDAÇÃO",
+      "owner": "UX e documentos",
+      "dependencies": "R11 R16",
+      "requirement": "Exibir empresa/paciente/destinatário antes do compartilhamento; preservar original e versões.",
+      "test": "Simular homônimos e documento substituído; conferir seleção em tela pequena.",
+      "acceptance": "Trilha contém remetente, destino, versão e data; não modificar original assinado; sem mistura de acervos.",
+      "sources": "S01 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R19",
+      "title": "Minimizar push e telemetria",
+      "priority": "P0",
+      "nature": "LEGAL LOJA e RECOMENDAÇÃO",
+      "owner": "Mobile e privacidade",
+      "dependencies": "R02 R13",
+      "requirement": "Usar push genérico e remover conteúdo clínico de analytics e crash reports; inventariar SDKs.",
+      "test": "Capturar tráfego em erro/background com dados sentinela sintéticos.",
+      "acceptance": "Nenhum dado sentinela sensível aparece em push/log analítico; exceções justificadas e aprovadas.",
+      "sources": "S01 S24 S28 S30 S35",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R20",
+      "title": "Proteger interfaces com o sistema",
+      "priority": "P0",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "Android e iOS",
+      "dependencies": "R13 R16",
+      "requirement": "Validar deep links, intents, componentes exportados, WebViews e seletores.",
+      "test": "Abrir links maliciosos, alterar parâmetros, negar permissões e chamar componente por app externo.",
+      "acceptance": "Entrada externa não concede acesso nem executa conteúdo arbitrário; falha segura.",
+      "sources": "S24 S25",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R21",
+      "title": "Auditar ações e acessos",
+      "priority": "P0",
+      "nature": "LEGAL e RECOMENDAÇÃO",
+      "owner": "Backend e segurança",
+      "dependencies": "R09 R10",
+      "requirement": "Registrar ator, tenant, objeto, data e resultado; proteger trilha e acesso aos logs.",
+      "test": "Tentar alterar/apagar trilha e manipular relógio cliente; buscar vazamento no log.",
+      "acceptance": "Eventos reconstruíveis com hora do servidor; logs minimizados e protegidos; acesso ao log auditável.",
+      "sources": "S01 S07 S08 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R22",
+      "title": "Definir retenção e descarte",
+      "priority": "P0",
+      "nature": "LEGAL CONDICIONAL",
+      "owner": "Privacidade e dados",
+      "dependencies": "R02 R21",
+      "requirement": "Separar conta, chat, documento, logs, backups e guarda legal.",
+      "test": "Simular vencimento, bloqueio legal, eliminação parcial e restauração antiga.",
+      "acceptance": "Prazos justificados por categoria; seis meses de acesso não viram regra de conteúdo; vinte anos não são universais.",
+      "sources": "S01 S07 S11",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R23",
+      "title": "Atender direitos e excluir conta",
+      "priority": "P0",
+      "nature": "LEGAL e LOJA",
+      "owner": "Privacidade e produto",
+      "dependencies": "R13 R22",
+      "requirement": "Implementar acesso, correção, exportação e eliminação com identidade/representação proporcionais.",
+      "test": "Executar pedido de paciente e responsável e verificar exportação e vínculos restantes.",
+      "acceptance": "Exportação só autorizada; retenção explicada; exclusão nos caminhos de loja aplicáveis; não confundir desativação com eliminação.",
+      "sources": "S01 S29 S33",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R24",
+      "title": "Responder a incidentes",
+      "priority": "P0",
+      "nature": "LEGAL",
+      "owner": "Segurança e encarregado",
+      "dependencies": "R03 R21",
+      "requirement": "Manter plano, contatos, avaliação de relevância e comunicação ao controlador.",
+      "test": "Simular vazamento multicliente com contagem de dias úteis e preservação de evidência.",
+      "acceptance": "Processo suporta prazo legal aplicável; decisão fundamentada e registro por cinco anos; SLA interno menor é contratual.",
+      "sources": "S02 S03",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R25",
+      "title": "Restaurar serviço e dados",
+      "priority": "P0",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "SRE e dados",
+      "dependencies": "R15 R22",
+      "requirement": "Aprovar RPO/RTO segundo criticidade e testar backup/restauração de banco e objetos.",
+      "test": "Restaurar em ambiente isolado; reconciliar objetos, vínculos e exclusões.",
+      "acceptance": "RPO/RTO medidos e aprovados; não misturar tenants nem reativar acesso revogado; evidência preservada.",
+      "sources": "S01 S26 S38",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R26",
+      "title": "Controlar fornecedores e transferências",
+      "priority": "P0",
+      "nature": "LEGAL",
+      "owner": "Jurídico e infraestrutura",
+      "dependencies": "R02 R03",
+      "requirement": "Inventariar países, suporte, subprocessadores e mecanismos de transferência.",
+      "test": "Confrontar contratos, regiões, telemetria, backup e acesso remoto.",
+      "acceptance": "Todo fluxo internacional tem mecanismo e evidência; região local não é prova suficiente de ausência de transferência.",
+      "sources": "S01 S05",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R27",
+      "title": "Garantir consistência da agenda e chat",
+      "priority": "P0",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "Backend e QA",
+      "dependencies": "R09 R11",
+      "requirement": "Implementar idempotência, estados claros, fuso, ordenação e concorrência.",
+      "test": "Testar reserva simultânea, retry, offline, cancelamento e envio fora de ordem.",
+      "acceptance": "Sem dupla reserva indevida ou duplicação por retry; estados solicitado/confirmado e entregue/lido têm significado documentado.",
+      "sources": "S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R28",
+      "title": "Versionar verificação OWASP",
+      "priority": "P1",
+      "nature": "NORMA VOLUNTÁRIA",
+      "owner": "AppSec e QA",
+      "dependencies": "R04 R09 a R27",
+      "requirement": "Criar matriz MASVS 2.1.0, MASTG v2 para Android/iOS e ASVS 5.0.0 para backend/web.",
+      "test": "Selecionar testes aplicáveis, fixar versão/commit e justificar exclusões.",
+      "acceptance": "Cada controle tem ID, caso, evidência, resultado e revisor; distinguir teste manual; não declarar certificação OWASP/LGPD.",
+      "sources": "S24 S25 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R29",
+      "title": "Proteger desenvolvimento e cadeia de dependências",
+      "priority": "P1",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "DevSecOps",
+      "dependencies": "R04",
+      "requirement": "Manter SBOM, secret scanning, análise de dependências, revisão e build rastreável.",
+      "test": "Inserir fixtures controladas de segredo/vulnerabilidade e testar bloqueio do CI.",
+      "acceptance": "Artefato liga a commit e evidência; sem dados de produção em teste; segredos e dependências críticas revisados.",
+      "sources": "S24 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R30",
+      "title": "Executar teste de segurança independente",
+      "priority": "P1",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "AppSec independente",
+      "dependencies": "R28 R29",
+      "requirement": "Testar API e builds móveis com cenário multicliente e dispositivos físicos.",
+      "test": "Avaliar autorização, sessão, recuperação, upload, configurações e integrações; retestar correções.",
+      "acceptance": "Sem crítico/alto explorável aberto; demais riscos têm dono, decisão e prazo; relatório usa dados sintéticos.",
+      "sources": "S24 S25 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R31",
+      "title": "Validar acessibilidade completa",
+      "priority": "P1",
+      "nature": "LEGAL contextual e NORMA VOLUNTÁRIA",
+      "owner": "UX e QA acessibilidade",
+      "dependencies": "R01 R27",
+      "requirement": "Propor WCAG 2.2 AA em web e matriz NBR 17060 em mobile.",
+      "test": "Usar VoiceOver/TalkBack, foco, teclado, texto ampliado, contraste, erros, agenda e anexos.",
+      "acceptance": "Jornadas essenciais completadas com tecnologia assistiva; evidência manual além de scanner; não declarar selo sem avaliação.",
+      "sources": "S21 S22 S23",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R32",
+      "title": "Preparar privacidade nas lojas",
+      "priority": "P1",
+      "nature": "LOJA e LEGAL",
+      "owner": "Release e privacidade",
+      "dependencies": "R19 R23 R26",
+      "requirement": "Confrontar Data safety/App Privacy e política pública com comportamento real.",
+      "test": "Abrir URLs sem login e comparar SDKs e captura de tráfego com declarações.",
+      "acceptance": "Declarações consistentes; política Play pública, ativa, sem geobloqueio e não apenas PDF.",
+      "sources": "S27 S28 S30 S35",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R33",
+      "title": "Revisar saúde e conteúdo nas lojas",
+      "priority": "P1",
+      "nature": "LOJA CONDICIONAL",
+      "owner": "Produto e release",
+      "dependencies": "R01 R32",
+      "requirement": "Completar declaração de saúde e revisar alegações, avisos, entidade publicadora e conteúdo de usuários.",
+      "test": "Revisar descrição/screenshots e testar denúncia, bloqueio e suporte quando exigidos.",
+      "acceptance": "Sem alegações não comprovadas; salvaguardas de conteúdo e exigências de saúde mapeadas para a função real.",
+      "sources": "S27 S32",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R34",
+      "title": "Validar permissões e SDKs móveis",
+      "priority": "P1",
+      "nature": "LOJA e RECOMENDAÇÃO",
+      "owner": "Android e iOS",
+      "dependencies": "R19 R20 R29",
+      "requirement": "Solicitar permissões necessárias no contexto; revisar manifestos e assinaturas dos SDKs abrangidos.",
+      "test": "Negar/revogar câmera, arquivos, microfone e push; inspecionar manifesto compilado.",
+      "acceptance": "Sem acesso amplo injustificado; permissão opcional negada não torna fluxo inseguro; relatório Xcode revisado.",
+      "sources": "S28 S34 S35",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R35",
+      "title": "Preparar submissão e demonstração",
+      "priority": "P1",
+      "nature": "LOJA",
+      "owner": "Release e QA",
+      "dependencies": "R30 a R34",
+      "requirement": "Validar SDKs, metadados e conta de revisão com dados sintéticos e backend disponível.",
+      "test": "Smoke test do mesmo artefato enviado; conferir URLs, faixa etária e demonstração.",
+      "acceptance": "Revalidar na data: consulta atual indica API 36+ e Xcode 26+/SDK iOS 26; revisão não utiliza pacientes reais.",
+      "sources": "S31 S32 S36",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R36",
+      "title": "Tratar menores e representantes",
+      "priority": "P0 antes de público abrangido",
+      "nature": "LEGAL CONDICIONAL",
+      "owner": "Jurídico clínico e produto",
+      "dependencies": "R01 R05 R10",
+      "requirement": "Avaliar ECA Digital e acesso provável; projetar vínculo e confidencialidade proporcional.",
+      "test": "Testar maioridade, responsável removido, vínculo expirado e pedido indevido.",
+      "acceptance": "Regras aprovadas antes de habilitar; responsável não recebe acesso clínico irrestrito por padrão.",
+      "sources": "S01 S19 S20",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R37",
+      "title": "Reavaliar eventual assistência remota",
+      "priority": "P0 antes da função clínica",
+      "nature": "LEGAL CONDICIONAL",
+      "owner": "Responsável técnico e jurídico",
+      "dependencies": "R01 R03 R24",
+      "requirement": "Fora do escopo atual. Se uma mudança futura propuser assistência clínica, reabrir enquadramento antes de implementar consentimento, registro, encaminhamento e responsabilidades aplicáveis.",
+      "test": "Simular atendimento, interrupção, encaminhamento e cópia de registro.",
+      "acceptance": "Requisitos institucionais e SRES resolvidos quando aplicáveis; ausência de vídeo não exclui telemedicina.",
+      "sources": "S09 S10",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R38",
+      "title": "Reavaliar prontuário e emissão médica",
+      "priority": "P0 antes da função",
+      "nature": "LEGAL CONDICIONAL",
+      "owner": "Responsável técnico e documentos",
+      "dependencies": "R01 R18 R22 R25",
+      "requirement": "Não presumido no escopo atual. Se incluído, definir registro canônico, adendos, guarda e exportação; validar emissor, conteúdo e assinatura de documento médico.",
+      "test": "Testar adendo, exportação, migração e alteração de byte em documento assinado.",
+      "acceptance": "Integridade e assinatura verificáveis; sem descarte automático genérico; foto de assinatura não substitui qualificada.",
+      "sources": "S10 S11 S12 S13",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R39",
+      "title": "Reavaliar função SaMD",
+      "priority": "P0 antes da função",
+      "nature": "LEGAL CONDICIONAL e NORMA VOLUNTÁRIA",
+      "owner": "Regulatório e clínico",
+      "dependencies": "R01 R04",
+      "requirement": "Avaliar finalidade, classe, qualidade, regularização, validação e pós-mercado.",
+      "test": "Revisar indicação de uso, algoritmo, saída clínica, usuários e alegações a cada mudança relevante.",
+      "acceptance": "Nenhuma função SaMD liberada sem obrigações resolvidas; normas selecionadas têm versão e justificativa.",
+      "sources": "S14 S15 S16 S41 S42 S43",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R40",
+      "title": "Integrar TISS quando aplicável",
+      "priority": "P0 antes da integração",
+      "nature": "LEGAL CONDICIONAL",
+      "owner": "Integrações e especialista TISS",
+      "dependencies": "R01 R16 R27",
+      "requirement": "Implementar componentes, terminologias e mensagens abrangidas pela ANS.",
+      "test": "Validar schemas, versão, erros, retries e homologação do parceiro.",
+      "acceptance": "Versão e cronograma por componente registrados; PDF de guia não é apresentado como conformidade TISS.",
+      "sources": "S17 S18",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R41",
+      "title": "Revisar governança continuamente",
+      "priority": "P2 contínuo",
+      "nature": "RECOMENDAÇÃO e LEGAL aplicável",
+      "owner": "Segurança e privacidade",
+      "dependencies": "R03 R24 R25 R30",
+      "requirement": "Revisar acesso, fornecedores, incidentes, normas e controles; usar ISO conforme maturidade e contrato.",
+      "test": "Amostrar privilégios, repetir restauração e revisar ações vencidas.",
+      "acceptance": "Cadência e donos aprovados; evidência preservada; nenhuma equivalência ISO/ABNT ou certificação sem verificação.",
+      "sources": "S37 S38 S39 S40",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R42",
+      "title": "Controlar mudança de escopo e saída",
+      "priority": "P1",
+      "nature": "LEGAL e RECOMENDAÇÃO",
+      "owner": "Produto e operações",
+      "dependencies": "R22 R23 R25 R26",
+      "requirement": "Reavaliar funções/público/IA e oferecer exportação e saída do tenant.",
+      "test": "Simular encerramento, exportação, revogação, conservação e nova integração de IA.",
+      "acceptance": "Sem acesso comercial indevido remanescente; dados sujeitos à guarda seguem plano; nova finalidade reabre R01.",
+      "sources": "S01 S05 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R43",
+      "title": "Delimitar autonomia e supervisão da IA",
+      "priority": "P0 da IA",
+      "nature": "LEGAL CONDICIONAL e RECOMENDAÇÃO",
+      "owner": "Produto, privacidade e responsável clínico",
+      "dependencies": "R01 R04 R26 R37 R39",
+      "requirement": "Limitar IA atual ao atendimento administrativo/operacional; perguntas clínicas vão para uma pessoa, sem diagnóstico, prognóstico ou decisão terapêutica automatizados. Definir ações, assuntos permitidos, transparência, escalonamento e bloqueios prévios ao envio. Revisão posterior não substitui esses controles.",
+      "test": "Simular pedido diagnóstico, decisão terapêutica, urgência, ambiguidade, menor, falta de dados, indisponibilidade humana e tentativa de sair do escopo.",
+      "acceptance": "Uso clínico permanece bloqueado até validação do enquadramento e supervisão adequada. Para o piloto administrativo, todos os casos críticos definidos exigem resposta segura ou transferência humana; SLA, responsável e caminho de falha são aprovados.",
+      "sources": "S01 S09 S10 S14 S42 S47 S49",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R44",
+      "title": "Controlar dados e fornecedor de IA",
+      "priority": "P0 da IA",
+      "nature": "LEGAL e RECOMENDAÇÃO",
+      "owner": "Privacidade, segurança e engenharia de IA",
+      "dependencies": "R02 R03 R22 R26 R43",
+      "requirement": "Mapear prompts, respostas, anexos, recuperação de contexto, embeddings, retenção, uso para treinamento, suboperadores e países. Enviar apenas dados autorizados necessários; manter isolamento de empresa e paciente em busca/contexto.",
+      "test": "Testar consultas cruzadas, exclusão de documento indexado, observabilidade, cache, dados indevidos no prompt e recusa de fornecedor em apagar conteúdo.",
+      "acceptance": "Não usar dados reais no desenvolvimento. Nenhum dado real segue ao fornecedor antes de análise e autorização cabíveis; contrato, base legal, transferência, configuração de retenção e prova de isolamento aprovados.",
+      "sources": "S01 S05 S26 S49",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R45",
+      "title": "Validar respostas e ferramentas de IA",
+      "priority": "P0 da IA",
+      "nature": "RECOMENDAÇÃO técnica e LEGAL CONDICIONAL",
+      "owner": "Engenharia de IA, AppSec, QA e responsável clínico",
+      "dependencies": "R21 R43 R44",
+      "requirement": "Definir conjunto de avaliação versionado, casos proibidos, política de fontes, limiares por risco, possibilidade de intervenção e desligamento. Tratar mensagens e documentos recuperados como conteúdo não confiável; o modelo não decide autorização nem obtém acesso amplo a ferramentas.",
+      "test": "Injetar instruções em documentos/chat; simular alucinação, vazamento entre tenants, ação duplicada, ferramenta fora de escopo, mudança de modelo e baixa confiança.",
+      "acceptance": "Nenhuma escrita externa ocorre sem regras determinísticas e autorização válidas. Critérios e amostras são aprovados antes do piloto; resultados, falhas e revisão são registrados sem excesso de dados; regressão e rollback demonstrados.",
+      "sources": "S01 S26 S42 S49",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R46",
+      "title": "Especificar contratos de integração externa",
+      "priority": "P0 dos conectores",
+      "nature": "LEGAL e RECOMENDAÇÃO",
+      "owner": "Arquitetura, integrações e privacidade",
+      "dependencies": "R01 R02 R03 R26",
+      "requirement": "Prever saída para agendas externas ResiCheck/CPA e entrada de agendas, procedimentos e dados pertinentes. Confirmar produto, fornecedor, documentação oficial, contrato, endpoints, versão, autenticação, limites, finalidade e campos necessários. Nomes informados não comprovam existência ou disponibilidade de APIs.",
+      "test": "Revisar documentação e exemplos sintéticos; confrontar contratos de entrada/saída com necessidade, escopos e identidade de empresa/paciente.",
+      "acceptance": "Cada integração tem dono, direção, fonte de verdade, campos, permissões, ambiente sandbox e evidência do fornecedor. Ausência de API autorizada mantém conector bloqueado; nenhuma chave ou dado real consta do documento.",
+      "sources": "S01 S05 S26 S48",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R47",
+      "title": "Garantir sincronização e segurança dos conectores",
+      "priority": "P0 dos conectores",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "Backend, integrações, segurança e QA",
+      "dependencies": "R09 R15 R21 R27 R46",
+      "requirement": "Implementar credenciais por tenant em cofre, menor privilégio, autenticação de webhook, prevenção de replay, idempotência, fila de erro, reconciliação e limites. Fixar mapeamento, fuso e conflitos; proibir URLs arbitrárias e acesso à rede interna.",
+      "test": "Simular webhook adulterado/repetido, credencial revogada, indisponibilidade, timeout de resultado incerto, paginação, concorrência, falha parcial e identificador externo colidente.",
+      "acceptance": "Sem evento duplicado ou mistura de tenants; estados solicitados não são mostrados como confirmados sem evidência; reconciliação e revogação verificadas; ações irreversíveis não são repetidas cegamente.",
+      "sources": "S01 S26",
+      "status": "Planejado para revisão"
+    },
+    {
+      "id": "R48",
+      "title": "Limitar configuração assistida por IA",
+      "priority": "P0 da função futura",
+      "nature": "RECOMENDAÇÃO técnica",
+      "owner": "Arquitetura, engenharia de IA e segurança",
+      "dependencies": "R43 R44 R45 R46 R47",
+      "requirement": "Permitir IA propor mapeamentos e configurações de conectores em sandbox, com esquema validado, diferenças visíveis, testes e aprovação humana antes da ativação. Não conceder ao modelo poder autônomo de ampliar acesso, criar credenciais ou publicar código sem governança.",
+      "test": "Testar documentação maliciosa, campo sensível indevido, endpoint externo arbitrário, privilégio amplo, código inseguro, segredo em log e reversão de configuração.",
+      "acceptance": "Proposta é separada de execução; nenhum segredo entra no contexto por padrão; validação determinística, revisão, versão e rollback obrigatórios; conexão real permanece desativada até aprovação de responsável autorizado.",
+      "sources": "S01 S26 S49",
+      "status": "Planejado para revisão"
+    }
+  ],
+  "sources": {
+    "S01": [
+      "LGPD Lei 13709 de 2018",
+      "https://www2.camara.leg.br/legin/fed/lei/2018/lei-13709-14-agosto-2018-787077-normaatualizada-pl.html",
+      "Lei obrigatória conforme tratamento. Finalidade, bases legais, direitos, segurança e responsabilidades."
+    ],
+    "S02": [
+      "ANPD comunicação de incidentes Resolução 15 de 2024",
+      "https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/comunicado-de-incidente-de-seguranca-cis",
+      "Prazo geral de três dias úteis para incidentes com risco ou dano relevante, com condições e exceções aplicáveis."
+    ],
+    "S03": [
+      "ANPD Resolução 15 de 2024 texto oficial",
+      "https://bibliotecadigital.mj.gov.br/bitstream/1/12879/2/RES_ANPD_2024_15.html",
+      "Registro dos incidentes por pelo menos cinco anos, inclusive não comunicados."
+    ],
+    "S04": [
+      "ANPD normas vigentes",
+      "https://www.gov.br/anpd/pt-br/acesso-a-informacao/institucional/atos-normativos/regulamentacoes_anpd/",
+      "Inclui Resoluções 18/2024 sobre encarregado, 2/2022 sobre pequeno porte, 19/2024 sobre transferências e 32/2026 sobre adequação da UE."
+    ],
+    "S05": [
+      "ANPD transferências internacionais",
+      "https://www.gov.br/anpd/pt-br/assuntos/assuntos-internacionais/transferencia-internacional-de-dados",
+      "Mapear países, mecanismo, subprocessadores e transferências posteriores. Considerar adequação da UE no âmbito definido na Resolução 32/2026."
+    ],
+    "S06": [
+      "ANPD orientações sobre RIPD",
+      "https://www.gov.br/anpd/pt-br/canais_atendimento/agente-de-tratamento/relatorio-de-impacto-a-protecao-de-dados-pessoais-ripd",
+      "Avaliação de impacto e alto risco. Não afirmar exigência automática de RIPD para todo app."
+    ],
+    "S07": [
+      "Marco Civil Lei 12965 de 2014",
+      "https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2014/lei/l12965.htm",
+      "Art. 15: seis meses de registros de acesso para provedores abrangidos, não de todo conteúdo."
+    ],
+    "S08": [
+      "Decreto 8771 de 2016 consolidado",
+      "https://planalto.gov.br/ccivil_03/_ato2015-2018/2016/decreto/d8771.htm",
+      "Art. 13: controle, autenticação, inventário e proteção dos acessos aos registros."
+    ],
+    "S09": [
+      "Lei 14510 de 2022 telessaúde",
+      "https://www2.camara.leg.br/legin/fed/lei/2022/lei-14510-27-dezembro-2022-793576-publicacaooriginal-166678-pl.html",
+      "Aplicação condicional à prestação de telessaúde e modelo de intermediação médica."
+    ],
+    "S10": [
+      "CFM Resolução 2314 de 2022",
+      "https://sistemas.cfm.org.br/normas/arquivos/resolucoes/BR/2022/2314_2022.pdf",
+      "Telemedicina, SRES, NGS2, consentimento, assistência e responsabilidades. Examinar art. 17 para o modelo concreto."
+    ],
+    "S11": [
+      "Lei 13787 de 2018 prontuário",
+      "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13787.htm",
+      "Guarda e digitalização de prontuário. Vinte anos não devem ser estendidos automaticamente a todo chat."
+    ],
+    "S12": [
+      "CFM Resolução 2381 de 2024",
+      "https://sistemas.cfm.org.br/normas/arquivos/resolucoes/BR/2024/2381_2024.pdf",
+      "Emissão de documentos médicos, dados mínimos e assinatura qualificada no documento eletrônico."
+    ],
+    "S13": [
+      "CFM Resolução 2299 de 2021",
+      "https://sistemas.cfm.org.br/normas/arquivos/resolucoes/BR/2021/2299_2021.pdf",
+      "Emissão eletrônica, prescrição, regularidade profissional, assinatura verificável e requisitos institucionais."
+    ],
+    "S14": [
+      "Anvisa perguntas e respostas RDC 657 de 2022",
+      "https://www.gov.br/anvisa/pt-br/centraisdeconteudo/publicacoes/produtos-para-a-saude/manuais/software-como-dispositivo-medico-perguntas-e-respostas/%40%40download/file",
+      "Comunicação, agenda e prontuário sem finalidade enquadrável não são automaticamente SaMD."
+    ],
+    "S15": [
+      "Anvisa RDC 751 de 2022",
+      "https://anvisalegis.datalegis.net/action/ActionDatalegis.php?acao=abrirTextoAto&cod_menu=1696&cod_modulo=134&link=S&numeroAto=00000751&orgao=RDC%2FDC%2FANVISA%2FMS&seqAto=000&tipo=RDC&valorAno=2022",
+      "Classificação de dispositivos e regra 11 para software."
+    ],
+    "S16": [
+      "Anvisa RDC 848 de 2024",
+      "https://www.gov.br/anvisa/pt-br/assuntos/noticias-anvisa/2024/norma-sobre-requisitos-de-seguranca-para-dispositivos-medicos-entra-em-vigor",
+      "Requisitos essenciais de segurança e desempenho para dispositivos abrangidos."
+    ],
+    "S17": [
+      "ANS RN 501 de 2022",
+      "https://bvs.saude.gov.br/bvs/saudelegis/ans/2022/res0501_01_04_2022.html",
+      "Regras TISS para operações abrangidas da saúde suplementar."
+    ],
+    "S18": [
+      "ANS Padrão TISS setembro de 2026",
+      "https://www.gov.br/ans/pt-br/assuntos/prestadores/padrao-para-troca-de-informacao-de-saude-suplementar-2013-tiss/padrao-tiss-setembro-2026",
+      "Conferir a versão e cronograma de cada componente, não apenas a competência geral."
+    ],
+    "S19": [
+      "ECA Digital Lei 15211 de 2025 atualizada",
+      "https://www2.camara.leg.br/legin/fed/lei/2025/lei-15211-17-setembro-2025-797997-normaatualizada-pl.html",
+      "Em vigor desde 17/3/2026. Avaliar público direcionado ou acesso provável de menores."
+    ],
+    "S20": [
+      "ANPD ECA Digital",
+      "https://www.gov.br/anpd/pt-br/assuntos/eca-digital",
+      "Orientações e Decreto 12880/2026; controles proporcionais a público e funcionalidades."
+    ],
+    "S21": [
+      "Lei Brasileira de Inclusão Lei 13146 de 2015",
+      "https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2015/lei/l13146.htm",
+      "Art. 63 para sítios da internet. Avaliar o conjunto de obrigações para aplicativos nativos."
+    ],
+    "S22": [
+      "ABNT NBR 17060 de 2022 acessibilidade móvel",
+      "https://www.nic.br/noticia/releases/norma-da-abnt-sobre-acessibilidade-para-dispositivos-moveis-torna-a-navegacao-mais-inclusiva/",
+      "Fonte institucional participante da elaboração. Confirmar edição e texto licenciado ABNT."
+    ],
+    "S23": [
+      "W3C WCAG 2.2",
+      "https://www.w3.org/TR/WCAG22/",
+      "Referência técnica. Proposta de meta AA para web; não declarar conformidade sem avaliação."
+    ],
+    "S24": [
+      "OWASP MASVS 2.1.0",
+      "https://github.com/OWASP/masvs/releases/tag/v2.1.0",
+      "Padrão voluntário de verificação móvel, incluindo privacidade. Não é certificação LGPD."
+    ],
+    "S25": [
+      "OWASP MASTG v2",
+      "https://mas.owasp.org/news/2026/07/04/mastg-v200-release/",
+      "MASTG 2.0.0 de 2026; rastrear controle MASVS, fraqueza MASWE e teste MASTG. Fixar versão/commit."
+    ],
+    "S26": [
+      "OWASP ASVS 5.0.0",
+      "https://asvs.owasp.org/",
+      "Publicado em 30/5/2025; referência para API, backend e web. IDs devem incluir versão."
+    ],
+    "S27": [
+      "Google Play Health Content and Services",
+      "https://support.google.com/googleplay/android-developer/answer/16679511?hl=en",
+      "Condição de distribuição: declaração de saúde, privacidade, permissões e alegações."
+    ],
+    "S28": [
+      "Google Play User Data",
+      "https://support.google.com/googleplay/android-developer/answer/10144311?rd=1",
+      "Dados sensíveis, transparência, consentimento e permissões."
+    ],
+    "S29": [
+      "Google Play exclusão de conta",
+      "https://support.google.com/googleplay/android-developer/answer/13327111?hl=en-en",
+      "Fluxo no app e recurso web quando criação de conta se enquadra; explicar conservação necessária."
+    ],
+    "S30": [
+      "Google Play Data safety",
+      "https://support.google.com/googleplay/android-developer/answer/10787469?hl=en-en",
+      "Declarar práticas reais do app e SDKs."
+    ],
+    "S31": [
+      "Google Play target API",
+      "https://support.google.com/googleplay/android-developer/answer/11926878?hl=en",
+      "Consulta em 6/11/2026: Android comum target API 36 ou superior para novos apps/atualizações; há exceções por dispositivo."
+    ],
+    "S32": [
+      "Apple App Review Guidelines",
+      "https://developer.apple.com/app-store/review/guidelines/",
+      "Condições de distribuição para saúde, entidade publicadora, conteúdo de usuários e privacidade."
+    ],
+    "S33": [
+      "Apple exclusão de conta",
+      "https://developer.apple.com/support/offering-account-deletion-in-your-app/",
+      "Iniciar exclusão no app quando há criação de conta; conservação legal pode persistir com transparência."
+    ],
+    "S34": [
+      "Apple requisitos de SDKs de terceiros",
+      "https://developer.apple.com/support/third-party-SDK-requirements/",
+      "Manifestos e assinaturas para SDKs abrangidos; revisar lista atual e dependências."
+    ],
+    "S35": [
+      "Apple privacidade e uso de dados",
+      "https://developer.apple.com/app-store/user-privacy-and-data-use/",
+      "Transparência de coleta, rastreamento e responsabilidades por código de terceiros."
+    ],
+    "S36": [
+      "Apple requisitos de submissão",
+      "https://developer.apple.com/news/upcoming-requirements/",
+      "Desde 28/4/2026: Xcode 26+ e SDK iOS 26 ou correspondente; não equivale ao sistema mínimo suportado."
+    ],
+    "S37": [
+      "ISO IEC 27001 de 2022",
+      "https://www.iso.org/standard/27001",
+      "Gestão de segurança; considerar emenda 1:2024 e edição nacional aplicável."
+    ],
+    "S38": [
+      "ISO IEC 27002 de 2022",
+      "https://www.iso.org/standard/75652.html",
+      "Referência de controles de segurança."
+    ],
+    "S39": [
+      "ISO IEC 27701 de 2025",
+      "https://www.iso.org/standard/27701",
+      "Gestão de privacidade; edição internacional atual encontrada."
+    ],
+    "S40": [
+      "ISO 27799 de 2025",
+      "https://www.iso.org/standard/84647.html",
+      "Segurança em saúde; terceira edição de dezembro/2025 substitui 2016."
+    ],
+    "S41": [
+      "IEC 62304 de 2006 com emenda 2015",
+      "https://webstore.iec.ch/en/publication/22794",
+      "Ciclo de vida de software de dispositivo médico, se aplicável."
+    ],
+    "S42": [
+      "ISO 14971 de 2019",
+      "https://www.iso.org/standard/72704.html",
+      "Gerenciamento de risco de dispositivos médicos, se aplicável."
+    ],
+    "S43": [
+      "IEC 82304 parte 1 de 2016",
+      "https://www.iso.org/standard/59543.html",
+      "Segurança de produtos de software de saúde; avaliar escopo e incorporação contratual."
+    ],
+    "S47": [
+      "CFM Resolução 2454 de 2026 inteligência artificial",
+      "https://sistemas.cfm.org.br/normas/arquivos/resolucoes/BR/2026/2454_2026.pdf",
+      "Resolução de 11/2/2026, publicada em 27/2/2026 e retificada em 5/3/2026. Art. 5 §2 exige mediação humana na comunicação médica abrangida; avaliar âmbito real de médicos/instituições, sem equiparar todo chatbot administrativo a telemedicina."
+    ],
+    "S48": [
+      "HL7 FHIR R5 RESTful API",
+      "https://hl7.org/fhir/http.html",
+      "Especificação v5.0.0/R5 consultada; opção técnica de interoperabilidade, não obrigação genérica deste produto. Fixar versão e perfis acordados com o fornecedor."
+    ],
+    "S49": [
+      "OWASP Top 10 for LLM Applications 2026",
+      "https://github.com/GenAI-Security-Project/GenAI-LLM-Top10/blob/main/2026/README.md",
+      "Edição publicada em 4/8/2026; referência voluntária para riscos de IA. Usar fontes finais, não rascunhos, e fixar commit na matriz de avaliação."
+    ],
+    "S44": [
+      "Receita Federal primeiro CNPJ alfanumérico em julho de 2026",
+      "https://www.gov.br/receitafederal/pt-br/assuntos/noticias/2026/julho/receita-federal-gera-o-primeiro-cnpj-em-formato-alfanumerico",
+      "Produção alfanumérica em julho/2026; manter compatibilidade com CNPJs existentes."
+    ],
+    "S45": [
+      "Receita Federal documentação técnica do CNPJ",
+      "https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/publicacoes/documentos-tecnicos/cnpj",
+      "Fonte para formato e cálculo dos dígitos verificadores. Fixar versão da especificação nos testes."
+    ],
+    "S46": [
+      "Serpro Consulta CPF versão 3",
+      "https://centraldeajuda.serpro.gov.br/duvidas/pt/avisos/avisoconsultacpfv3/",
+      "Integração solicita CPF e nascimento. Consulta cadastral não substitui prova de identidade ou representação; preços não verificados."
+    ]
+  }
+}

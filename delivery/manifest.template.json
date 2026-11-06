@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "status": "template-not-a-release",
+  "version": null,
+  "buildNumber": null,
+  "createdAt": null,
+  "sourceRevision": null,
+  "environment": "synthetic-only",
+  "platform": "android",
+  "apk": { "file": null, "sha256": null, "driveUrl": null },
+  "visualAssets": [],
+  "testEvidence": [],
+  "knownLimitations": [],
+  "releaseNotes": null
+}
