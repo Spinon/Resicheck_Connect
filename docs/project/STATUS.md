@@ -2,13 +2,13 @@
 
 > Gerado de project-board.json. Não editar manualmente.
 
-Atualizado em: 2026-11-06
+Atualizado em: 2026-11-07
 
-Demonstração local React Native implementada, 13 testes de modelo e QA de prévia web passaram; bundle Android gerado. APK/instalação aguardam preparação autorizada do toolchain e ADB. Sem backend real.
+Checkpoint local preparado após124 testes e6typechecks. Fila aceita maisde100 confirmações sem bloquear novasintenções; histórico paginado isolado testado. Modais corrigidos passaram10cenários web,13checks e37regressões; fonte Androidnova ainda não validada. Seleção localizada emcomportamento nativoAPI36; semworkaround. APK0.1.3 preservado; candidato0.1.4/code8 superado pela correçãofila. UnicodeSQL emavaliação local, Authpositivo/transporte reais pendentes. Sem mudança remota.
 
-Foco: **APP-002 — Validar proposta e preparar primeira fatia Android executável**
+Foco: **APP-064 — Alinhar limite Unicode do banco à validação confiável de mensagens**
 
-Próxima ação: Aguardar autorização específica para preparar Gradle 9.3.1, NDK 27.1.12297006, CMake 3.30.5 e configuração Android/ADB do perfil. Depois compilar APK com bundle embutido, verificar manifesto/assinatura e executar as jornadas no Android.
+Próxima ação: Divergência reproduzida no PostgreSQL local: char_length rejeita emojis compostos válidos. Envelope sóbytes não é correção segura. Avaliar contador Unicode17 privado no banco com corpus e limites, fora de migrations até revisão. Nada remoto.
 
 ## APP-001 — Criar estrutura independente de trabalho e entrega
 
@@ -24,33 +24,33 @@ Evidências: README.md, docs/project/AMBIENTE.md, docs/testing/ESTRATEGIA.md, do
 
 ## APP-002 — Validar proposta e preparar primeira fatia Android executável
 
-Estado: blocked
+Estado: done
 
 - Registrar escolha de stack e dependências compatíveis
 - Resolver ambiente de emulador e executar app Android local com dados sintéticos
 - Demonstrar fluxo básico empresa/paciente sem backend de produção
 - APK demonstrativo próprio abre sem Expo Go/servidor de desenvolvimento e usa somente dados fictícios com simulação identificada; não exige agenda/IA/integrações
 
-Próxima ação: Aguardar autorização específica para preparar Gradle 9.3.1, NDK 27.1.12297006, CMake 3.30.5 e configuração Android/ADB do perfil. Depois compilar APK com bundle embutido, verificar manifesto/assinatura e executar as jornadas no Android.
+Próxima ação: Primeira fatia Android demonstrativa concluída. Prosseguir identidade/vínculos e chat reais com dados sintéticos e testes de autorização; simulação não satisfaz os itens de backend.
 
-Evidências: docs/architecture/PROPOSTA.md, docs/project/PROTOTIPO-E-DESEMPENHO.md, docs/product/MVP-CHAT.md, apps/mobile/README.md, apps/mobile/App.tsx, apps/mobile/src/demo.ts, apps/mobile/tests/demo.test.ts, apps/mobile/package-lock.json, docs/testing/PROTOTIPO-0.1.0.md
+Evidências: docs/architecture/PROPOSTA.md, docs/project/PROTOTIPO-E-DESEMPENHO.md, docs/product/MVP-CHAT.md, apps/mobile/README.md, apps/mobile/App.tsx, apps/mobile/src/demo.ts, apps/mobile/tests/demo.test.ts, apps/mobile/package-lock.json, docs/testing/PROTOTIPO-0.1.0.md, docs/delivery/DEMO-0.1.0-LOTE2.md, docs/delivery/DEMO-0.1.1-BUILD2.md
 
 ## APP-003 — Implementar identidade, empresas, equipe e convite
 
-Estado: backlog
+Estado: in_progress
 
 - Subfatias APP-007 a APP-010 demonstradas com dados sintéticos
 - Funcionário por convite válido do gestor entra diretamente; só solicitação sem convite aguarda aceite
 - Paciente por link ou busca conversa com a empresa sem escolher funcionário
 - Testes negativos de isolamento entre duas empresas, papéis e funcionário revogado
 
-Próxima ação: Após APP-002, executar as subfatias APP-007, APP-008, APP-009 e APP-010; especificação não conta como implementação.
+Próxima ação: Sessão/contexto e política de acesso integrados à interface sintética:24 testes app,10 sessão,18 acesso,27 checks web e11 jornadas Android passaram. Candidato local69918a0c; APK entregue preservado. Prosseguir onboarding de menor privilégio e adaptador Auth nativo; testes positivos online dependem de canal Auth Admin seguro. Não contornar bloqueio do navegador nem fabricar sessões.
 
-Evidências: docs/product/FLUXOS-E-IDENTIDADE.md
+Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, packages/access/README.md, docs/architecture/CONTRATOS-DE-IDENTIDADE.md, docs/testing/CONTRATOS-LOCAIS-0.1.md, docs/architecture/BANCO-CONNECT.md, docs/architecture/MIGRACAO-E-PORTABILIDADE.md, docs/testing/BANCO-LOCAL-0.1.md, supabase/README-LOCAL.md, docs/delivery/PLANO-SUPABASE-ONLINE.md, supabase/deployment/candidate.json, docs/testing/PREFLIGHT-SUPABASE-ONLINE.md, docs/project/CUSTOS.md, docs/testing/REVISAO-CANDIDATO-BANCO.md, docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md, supabase/deployment/receipt.json, docs/architecture/LOGIN-BASE-RESICHECK.md, packages/session/README.md, packages/session/src/session-scope.ts, packages/session/src/public-auth-error.ts, packages/session/tests/session-scope.test.ts, docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md, apps/mobile/src/demo-session.ts, apps/mobile/src/demo-access.ts, apps/mobile/tests/demo-session.test.ts, apps/mobile/metro.config.cjs
 
 ## APP-004 — Entregar chat e anexos privados
 
-Estado: backlog
+Estado: in_progress
 
 - Todos os funcionários aprovados e ativos veem todas as conversas dos pacientes da própria empresa; acesso não depende de atendente atribuído
 - Paciente com vínculo imediato acessa só nome/endereço/telefones públicos da empresa e próprio chat/anexos, onde envia mensagem e aguarda
@@ -62,10 +62,11 @@ Estado: backlog
 - [R18] Trilha contém remetente, destino, versão e data; não modificar original assinado; sem mistura de acervos.
 - [R11] Paciente não escolhe funcionário; todos os funcionários aprovados da empresa podem ler as conversas; autoria real e revogação são preservadas
 - [R27] MVP não duplica mensagens por retry e preserva ordenação/autoria e significado dos estados de envio/entrega/leitura escolhidos; não exige desenvolver agenda. Garantias de reserva ficam na fase futura.
+- Emojis fazem parte das mensagens, com integridade Unicode e limite por grapheme sem cortar sequências; execução e testes estão na subfatia APP-057.
 
-Próxima ação: Após identidade e vínculos, implementar chat humano e anexos privados independente de agenda/IA/conectores; aplicar visibilidade por empresa e subfatia de indicadores APP-050.
+Próxima ação: Histórico paginado local APP-063 testado com servidor de referência e autorização por página; fila APP-061 continua integrada à demonstração. Próximo: adaptador autenticado/DTO banco e leitura Android quando Auth seguro disponível, sem contornar bloqueio. Áudio/anexos reais, persistência e RLS positivo permanecem pendentes.
 
-Evidências: docs/research/INTEGRACAO.md, docs/product/MVP-CHAT.md
+Evidências: docs/research/INTEGRACAO.md, docs/product/MVP-CHAT.md, docs/testing/CHAT-LOCAL-0.1.md, docs/architecture/BANCO-CONNECT.md, docs/architecture/MIGRACAO-E-PORTABILIDADE.md, docs/testing/BANCO-LOCAL-0.1.md, supabase/README-LOCAL.md, docs/delivery/PLANO-SUPABASE-ONLINE.md, supabase/deployment/candidate.json, docs/testing/PREFLIGHT-SUPABASE-ONLINE.md, docs/product/EMOJIS-E-UNICODE.md, docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md, supabase/deployment/receipt.json, packages/chat-client/src/text-send-queue.ts, packages/chat-client/tests/text-send-queue.test.ts, docs/testing/FILA-DE-ENVIO-LOCAL.md, packages/chat-client/README.md, packages/chat-client/validation.json, docs/testing/HISTORICO-CLIENTE-0.1.md, packages/chat-client/src/text-history.ts
 
 ## APP-005 — Fase futura: desenvolver agenda de consultas e exames
 
@@ -107,7 +108,7 @@ Estado: backlog
 
 Próxima ação: Após APP-002 e pesquisa oficial, decidir métodos por papel e contrato do provedor; implementar com dados sintéticos, sem consultas reais nesta etapa.
 
-Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md
+Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md, docs/architecture/LOGIN-BASE-RESICHECK.md, packages/session/README.md, packages/session/src/session-scope.ts, packages/session/src/public-auth-error.ts, packages/session/tests/session-scope.test.ts, docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md, apps/mobile/src/demo-session.ts, apps/mobile/src/demo-access.ts, apps/mobile/tests/demo-session.test.ts, apps/mobile/metro.config.cjs
 
 ## APP-008 — Implementar cadastro de empresa com CNPJ e comprovação de representação
 
@@ -127,7 +128,7 @@ Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md
 
 ## APP-009 — Implementar entrada direta por convite e aceite de pedido sem convite
 
-Estado: backlog
+Estado: in_progress
 
 - Convite válido enviado pelo gestor identifica empresa/papel e libera entrada direta, sem segunda aprovação
 - Conta sem link busca empresa, solicita vínculo de funcionário e aguarda aceite
@@ -138,13 +139,13 @@ Estado: backlog
 - Convite expirado/revogado/adulterado ou de uso indevido não concede acesso; controles técnicos não viram aprovação humana adicional
 - [R07] Sem acesso para vínculo pendente; pedido sem convite tem aceite auditável por ator autorizado; convite válido do gestor ativa vínculo diretamente sem segunda aprovação, com segurança técnica e trilha.
 
-Próxima ação: Implementar dois caminhos distintos: convite válido do gestor ativa vínculo diretamente; cadastro sem convite busca empresa e cria pedido pendente. Definir validade/revogação/uso/vinculação do convite e testar sem adicionar etapa humana ao caminho direto.
+Próxima ação: Banco comprova convite direto, pedido pendente, autorização do gestor, revogação e exclusividade com duas conexões reais. Definir emissão/prazo/destinatário final e integrar SupabaseAuth/API; reativação e auditoria operacional exigem caminhos próprios.
 
-Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md
+Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md, docs/testing/CONTRATOS-LOCAIS-0.1.md, docs/architecture/BANCO-CONNECT.md, docs/architecture/MIGRACAO-E-PORTABILIDADE.md, docs/testing/BANCO-LOCAL-0.1.md, supabase/README-LOCAL.md, docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md, supabase/deployment/receipt.json
 
 ## APP-010 — Implementar vínculo de paciente por link e busca da empresa
 
-Estado: backlog
+Estado: in_progress
 
 - Paciente cria ou reutiliza conta individual com CPF e verificações proporcionais
 - Link da empresa e busca sem link conduzem ao vínculo de paciente
@@ -155,9 +156,9 @@ Estado: backlog
 - Paciente só acessa nome/endereço/telefones públicos e próprio chat; troca de contexto separa API, realtime, cache, rascunhos e anexos sem agenda no MVP
 - [R08] Encontrar empresa não dá acesso ao acervo; convite não revela saúde; geração só por funcionário aprovado com permissão.
 
-Próxima ação: Após conta e cadastro empresarial, implementar vínculo imediato por link/busca, seleção de empresa e próprio chat, sem aceite do gestor e sem acesso ao acervo empresarial.
+Próxima ação: Vínculo imediato e conversa única por paciente/empresa testados no banco, sem histórico unificado. Próximo: integrar conta/identidade reais e seleção de empresa/assinaturas/cache Android com Supabase completo.
 
-Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md, docs/product/MVP-CHAT.md
+Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md, docs/product/MVP-CHAT.md, docs/architecture/BANCO-CONNECT.md, docs/architecture/MIGRACAO-E-PORTABILIDADE.md, docs/testing/BANCO-LOCAL-0.1.md, supabase/README-LOCAL.md, docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md, supabase/deployment/receipt.json
 
 ## APP-011 — Implementar painel da plataforma com empresas, usuários, auditoria e logs
 
@@ -244,16 +245,16 @@ Evidências: docs/architecture/EXTENSOES-IA-E-INTEGRACOES.md, docs/testing/ESTRA
 
 ## APP-016 — Definir identidade visual e experiência Android do ResiCheck Connect
 
-Estado: backlog
+Estado: in_progress
 
 - Nome provisório ResiCheck Connect e referências de chat traduzidos em identidade própria
 - Logo ResiCheck localizado e origem/variante verificada antes de incorporar; ausência tem fallback textual
 - Conceito visual revisado em contexto Android sem tratá-lo como app implementado
 - Lista, conversa, teclado e ações principais validados para uso com uma mão, fonte ampliada e tecnologias assistivas
 
-Próxima ação: Usar exemplos v0.2 e verde padrão aprovados como direção do protótipo, verificar logo autorizado e definir tokens/navegação; validar a implementação Android e acessibilidade sem marcar a aprovação visual como teste.
+Próxima ação: Integração sintética sessão/acesso validada:27 checks web e11 jornadas Android no candidato local69918a0c. Continuar acessibilidade (TalkBack/fonte ampliada), aparelhos modestos e integração real de Auth quando disponível; não marcar segurança de backend como demonstrada.
 
-Evidências: docs/product/DIRECAO-VISUAL.md, docs/research/INTEGRACAO.md
+Evidências: docs/product/DIRECAO-VISUAL.md, docs/research/INTEGRACAO.md, docs/testing/INTERFACE-NAVEGACAO-0.1.md, docs/testing/INTEGRACAO-INTERFACE-0.1.md, docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md, apps/mobile/src/demo-session.ts, apps/mobile/src/demo-access.ts, apps/mobile/tests/demo-session.test.ts, apps/mobile/metro.config.cjs, docs/delivery/DEMO-0.1.0-LOTE2.md, docs/delivery/DEMO-0.1.1-BUILD2.md
 
 ## APP-017 — Implementar temas com precedência pessoal, empresa e padrão
 
@@ -378,16 +379,16 @@ Evidências: docs/research/INTEGRACAO.md
 
 ## APP-028 — Implementar notificações com privacidade progressiva e telemetria mínima
 
-Estado: backlog
+Estado: in_progress
 
 - Padrão seguro proposto nível 1: somente app; quatro níveis aplicados ao payload e à apresentação por usuário/dispositivo, sem mensagem clínica por padrão
 - Filtro todas/somente importantes não supera autorização nem presume permissão do sistema; troca de conta/empresa e revogação não vazam conteúdo
 - Logs, analytics e crash reports não recebem conteúdo de mensagem/segredos; exposição adicional em notificação só conforme escolha e escopo autorizados
 - [R19] Nível 1 não revela empresa, atendente ou mensagem; níveis superiores refletem escolha explícita e autorização. Logs analíticos permanecem minimizados e sem conteúdo sensível. Preferência no app não presume permissão Android/iOS.
 
-Próxima ação: Definir política de importância inicial, preferência por usuário/dispositivo e preview; implementar transporte/payload com nível 1 por padrão e testes de lockscreen/permissão negada. Configuração e marcação são subfatia APP-051.
+Próxima ação: Projeção local de payload e autorização testadas, sem SDK push/OS. Definir resolução por usuário/dispositivo e importância/renotificação; depois integrar provedor autorizado e testar Android/lockscreen/permissões.
 
-Evidências: docs/research/INTEGRACAO.md, docs/product/NOTIFICACOES.md
+Evidências: docs/research/INTEGRACAO.md, docs/product/NOTIFICACOES.md, docs/testing/CHAT-LOCAL-0.1.md
 
 ## APP-029 — Proteger interfaces com o sistema
 
@@ -592,14 +593,14 @@ Evidências: docs/research/INTEGRACAO.md
 
 ## APP-049 — Validar acessibilidade das jornadas completas por plataforma
 
-Estado: backlog
+Estado: in_progress
 
 - [R31] Jornadas essenciais completadas com tecnologia assistiva; evidência manual além de scanner; não declarar selo sem avaliação.
 - Cobrir temas padrão, empresarial e pessoal no claro/escuro; conceito visual não substitui testes de jornada no Android
 
-Próxima ação: Após os fluxos essenciais e R01/R27, executar matriz de acessibilidade móvel e, se houver web, WCAG no seu escopo; registrar testes manuais e limitações.
+Próxima ação: Correções locais dos3modais passaram10/10 cenários web320/font1/2: conteúdo rolável, nome acessível e foco contínuo no áudio.13checks fila/opções+37regressões eTypeScript passaram. Próximo: compilar candidato próprio e validar nativo/TalkBack/jornadas completas; não alterar APK distribuído. Seleção apósresize segueAPP-062.
 
-Evidências: docs/product/DIRECAO-VISUAL.md, docs/research/INTEGRACAO.md, docs/testing/ESTRATEGIA.md
+Evidências: docs/product/DIRECAO-VISUAL.md, docs/research/INTEGRACAO.md, docs/testing/ESTRATEGIA.md, apps/mobile/App.tsx, docs/testing/ACESSIBILIDADE-MODAIS-0.1.md
 
 ## APP-050 — Implementar indicadores de atendente principal e da última mensagem
 
@@ -617,7 +618,7 @@ Evidências: docs/product/MVP-CHAT.md
 
 ## APP-051 — Implementar marcação de importância e configurações de notificação
 
-Estado: backlog
+Estado: in_progress
 
 - Funcionário aprovado pode marcar mensagem importante na empresa autorizada; paciente, pendente/revogado e outra empresa não podem
 - Usuário escolhe todas ou apenas importantes e um dos quatro níveis app; app+empresa; app+empresa+atendente; app+empresa+atendente+mensagem
@@ -625,9 +626,9 @@ Estado: backlog
 - Preferências por usuário/dispositivo e permissão do sistema tratadas separadamente, sem herança indevida entre contas
 - Importância inicial antes de marcação, renotificação, desmarcação e casos sem atendente são decisões validadas antes de implementar
 
-Próxima ação: Definir as políticas em aberto e executar junto de APP-028; verificar payload e apresentação Android/iOS nos respectivos marcos, com lockscreen e permissão negada.
+Próxima ação: Atribuição idempotente de importância só pela equipe e projeção mínima local implementadas; UI permanece demonstração do APK anterior. Próximo: decidir política de evento importante/renotificação, resolver preferências por dispositivo e integrar persistência/API/Android com testes reais.
 
-Evidências: docs/product/NOTIFICACOES.md, docs/testing/ESTRATEGIA.md
+Evidências: docs/product/NOTIFICACOES.md, docs/testing/ESTRATEGIA.md, docs/testing/CHAT-LOCAL-0.1.md
 
 ## APP-052 — Validar e implementar compactação de imagem com prévia e opção original
 
@@ -698,3 +699,107 @@ Estado: backlog
 Próxima ação: Após preparar Android e chat/anexos operacionais, selecionar módulo oficial compatível e implementar áudio real com controles/privacidade. A prévia 0.1.0 já ilustra controles sem pedir microfone.
 
 Evidências: docs/product/AUDIO.md, docs/testing/PROTOTIPO-0.1.0.md
+
+## APP-057 — Suportar emojis e Unicode íntegro nas mensagens
+
+Estado: in_progress
+
+- Entrada pelo teclado do sistema e renderização Android preservam Unicode válido, emojis compostos, ZWJ, tom de pele, bandeiras e seletores; iOS será validado quando adotado
+- Comprimento/contador/validação usam grapheme clusters; composição, colagem, edição e prévia não cortam sequências; orçamento técnico de bytes é separado e explícito
+- Roundtrip autenticado app/API/banco preserva o texto original e idempotência, sem normalização destrutiva ou mistura de empresa/conversa
+- Casos sintéticos de limite, família/profissão, modificadores, acentos combinantes e entrada inválida têm testes de integridade e erro seguro
+- TalkBack/VoiceOver, fonte ampliada e versões/aparelhos documentam leitura e desenho disponível sem prometer fonte idêntica
+- Não incluir reações, figurinhas, GIFs ou seletor próprio por inferência; permissões e privacidade do chat/notificações continuam aplicáveis
+
+Próxima ação: Texto local8testes/766casos,26app/26chat/37web passaram; Android12jornadasprévia+probes reais colagem/Gboard/envio/limite2000→2001→2000 passaram. Execuçãooriginalburst2000→1130 continua falha e causaaberta. PendentesTalkBack,aparelhosantigos,64KiBnativo eSQL+Authreal; APP-059 prioriza áudio sem bloquearoualterarAPKs entregues.
+
+Evidências: docs/product/EMOJIS-E-UNICODE.md, packages/text/README.md, docs/testing/EMOJIS-0.1.md, docs/testing/ENTRADA-SOB-RAJADA.md, docs/delivery/DEMO-0.1.1-BUILD2.md
+
+## APP-058 — Revisar índices e observações de desempenho do banco
+
+Estado: backlog
+
+- Analisar nove FKs sem índice apontadas pelo advisor com consultas e carga sintéticas, evitando índices redundantes em chaves compostas
+- Não remover índices planejados apenas por unused_index em banco vazio; registrar EXPLAIN/custo e cenário
+- Qualquer mudança de alocação de conexões Auth/plano/cobrança depende do escopo autorizado e não é aplicada só para silenciar INFO
+
+Próxima ação: Preparar revisão/migração própria de índices quando houver workload sintético e canal Auth pronto; manter a fundação aplicada imutável.
+
+Evidências: docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md
+
+## APP-059 — Corrigir balão de áudio e validar layout com fonte ampliada
+
+Estado: done
+
+- Defeito relatado no teste reproduzido em cenário nativo fictício
+- Autor, título, duração/descrição e horário não se sobrepõem nem cortam dentro do balão; sem reduzir fontes arbitrariamente
+- Áudio enviado/recebido e nome longo testados em larguras equivalentes/menores e fontScale maior, com teclado aberto/fechado no Android
+- Área da conversa continua rolável e acionamento acessível mantém rótulo explícito de áudio simulado
+- Nova versão/assinatura/hash identificados e APKs entregues anteriormente preservados
+
+Próxima ação: Correção entregue na0.1.1/code2. Geometria web32/64 e QA Android com medições completas/acesso por rolagem documentados; fonte2 retestada no final com suplemento. Manter TalkBack/aparelhos antigos em APP-016 e investigação de rajada em APP-060; não interpretar como áudio real ou backend pronto.
+
+Evidências: docs/testing/AUDIO-LAYOUT-0.1.1.md, docs/delivery/DEMO-0.1.1-BUILD2.md, apps/mobile/scripts/android-audio-layout.mjs
+
+## APP-060 — Investigar divergência de entrada sob rajada Android
+
+Estado: in_progress
+
+- Reproduzir e classificar a divergência2.000 teclas solicitadas/1.130 observadas com controles e tempos registrados
+- Distinguir injeção/IME, callback nativo e store com comparações controladas e contagens sintéticas, sem assumir causa
+- Comparar colagem, lotes pausados e digitação normal/rápida; texto/cursor/contador íntegros antes de concluir
+- Se houver defeito do app, corrigir e validar regressões nativas sem relaxar limites ou esconder a falha original
+
+Próxima ação: Rajadas divergiram em ambas as rotas: Connect1110/1232 e EditText1517/1602; lotes50+100ms preservaram2000 em ambas. Pré-IME do controle observou apenas1602 eventos na rajada; shellargument íntegro. Instrumentar entrega/InputConnection ou teste de IME real sem alterar configuração para localizar causa. Não refatorar App especulativamente; preservar evidência e separar teste de limite por lotes do stress por rajada.
+
+Evidências: docs/testing/ENTRADA-SOB-RAJADA.md, docs/testing/REPRODUZIR-RAJADA-ANDROID.md, apps/mobile/scripts/android-input-diagnostic.mjs, tools/android-input-probe/MainActivity.java, tools/android-input-probe/AndroidManifest.xml, tools/android-input-probe/build.ps1
+
+## APP-061 — Integrar fila local de envio à interface demonstrativa
+
+Estado: done
+
+- Interface distingue pendente, tentativa, confirmação e falha exclusivamente simuladas; nenhum envio real alegado
+- Retry no mesmo contexto conserva clientMessageId e texto sem duplicar bolha; capacidade preserva rascunho
+- Troca de empresa/conversa/conta e logout descartam respostas antigas e não expõem pendências de outro autor
+- Testes determinísticos de modelo e verificações renderizadas/Android documentados com limites; APK entregue anterior preservado
+
+Próxima ação: Revisão encontrou limite no101º aceito; correção local libera recibos aceitos antigos preservando pendências/retries eUI.205 envios nafila+105 na interface passaram. APK0.1.3 entregue e candidato localcode8 antecedem correção; próximo build deve ser novo e validado.
+
+Evidências: packages/chat-client/README.md, docs/testing/FILA-DE-ENVIO-LOCAL.md, apps/mobile/App.tsx, apps/mobile/src/demo-delivery.ts, apps/mobile/src/demo-session.ts, apps/mobile/tests/demo-delivery.test.ts, docs/testing/FILA-INTERFACE-0.1.2.md, docs/testing/FILA-LOCAL-ANDROID-PLANO.md, docs/testing/FILA-CAPACIDADE-0.1.md
+
+## APP-062 — Revisar ergonomia e redimensionamento do chat com texto ampliado
+
+Estado: in_progress
+
+- Reduzir disputa dos controles da demonstração com a última mensagem sem diminuir fonte nem retirar indicação de simulação
+- Reproduzir separadamente inicialização fria e mudança de altura com IME aberto/fechado, registrando dimensões e compositor dentro da janela
+- Localizar a causa do compositor fora da tela após redimensionamento antes de aplicar correção; preservar falhas históricas
+- Validar fluxo padrão e320dp/fontScale2 com teclado e rolagem; não confundir caixa cortada com texto integral legível
+
+Próxima ação: Compositor corrigido noAPK0.1.3. Investigação adicional localizou colapso da seleção em TextView.onConfigurationChanged/stopTextActionMode no EditText puro, mesmaActivity/input, reproduzindo comportamentoRN13. Não aplicar restauraçãoforçada sem validar IME. Causa interna de height e Android/TalkBack dos novosmodais continuam pendentes.
+
+Evidências: docs/testing/FILA-INTERFACE-0.1.2.md, apps/mobile/App.tsx, docs/testing/REDIMENSIONAMENTO-ANDROID-BASELINE.md, apps/mobile/scripts/android-resize-diagnostic.mjs, apps/mobile/scripts/android-resize-comparison.mjs, docs/delivery/DEMO-0.1.3-BUILD7.md, docs/testing/ERGONOMIA-E-TECLADO-0.1.3.md, apps/mobile/scripts/android-ergonomics-final.mjs, apps/mobile/scripts/android-selection-resize.mjs, docs/testing/SELECAO-REDIMENSIONAMENTO-CAUSAL.md
+
+## APP-063 — Implementar controlador local de histórico paginado com isolamento de contexto
+
+Estado: done
+
+- Validar páginas desconhecidas atomicamente por empresa/conversa, ordem, IDs, Unicode e metadados; projetar só dados públicos do chat
+- Invalidar handles e resultados atrasados em troca de contexto/logout; limpar histórico após negativa autoritativa
+- Demonstrar paginação, concorrência, timeout/retry, limite de memória e autorização com servidor local sintético; sem alegar Auth/RLS reais
+
+Próxima ação: Controlador local testado:21 testes combinados/8 novos e TypeScript. Preparar adaptador autenticado e integração Android quando canal Auth seguro estiver disponível; realtime, atualização de importância antiga e persistência não implementados.
+
+Evidências: packages/chat-client/src/text-history.ts, packages/chat-client/tests/text-history.test.ts, packages/chat-client/history-validation.json, docs/testing/HISTORICO-CLIENTE-0.1.md
+
+## APP-064 — Alinhar limite Unicode do banco à validação confiável de mensagens
+
+Estado: in_progress
+
+- Aceitar o contrato de2000 grafemas e64KiB íntegros em fronteira confiável sem bypass por RPC direto
+- Validar candidato local com corpus Unicode17, casos compostos, limites, autorização e custo antes de qualquer migração remota
+- Preservar fundação aplicada e preparar migração/rollback revisados, sem relaxar apenas o limite SQL
+
+Próxima ação: Divergência reproduzida no PostgreSQL local: char_length rejeita emojis compostos válidos. Envelope sóbytes não é correção segura. Avaliar contador Unicode17 privado no banco com corpus e limites, fora de migrations até revisão. Nada remoto.
+
+Evidências: docs/product/EMOJIS-E-UNICODE.md, supabase/migrations/20261106200713_connect_foundation.sql, packages/text/src/message-text.ts

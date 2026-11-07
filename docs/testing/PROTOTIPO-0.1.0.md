@@ -1,6 +1,6 @@
 # Protótipo 0.1.0 — evidências e limites
 
-Data: 06/11/2026. Resultado: código de demonstração implementado e validado localmente; **sem APK e sem execução Android**. A fatia APP-002 não está concluída.
+Data: 06/11/2026. Resultado atual: APK 0.1.0 build 1 compilado, instalado e validado em cinco jornadas no emulador Android 16/API 36. APP-002 concluída como demonstração sintética; backend e chat operacional continuam pendentes. [Entrega](../delivery/DEMO-0.1.0-BUILD1.md).
 
 ## O que funciona na demonstração
 
@@ -18,8 +18,9 @@ Mensagens e preferências ficam em memória e são reiniciadas ao sair. Não há
 | Expo export Android/Hermes | Passou, bundle de aproximadamente 1,5 MB; não é tamanho de APK |
 | Prévia web exportada | Passou |
 | Playwright/Chrome, prévia local | 19 checagens passaram, sem erros/warnings do console |
-| APK/manifesto final/instalação | Não executados: preparação nativa pendente |
-| Emulador/aparelho real/iOS | Não executados |
+| APK/manifesto final/instalação | Passou; 42.044.422 bytes, assinatura Android Debug v2, permissões verificadas |
+| Emulador Android 16/API 36 | Cinco jornadas passaram, sem avisos |
+| Aparelho real/Android mínimo/iOS | Não executados |
 | Desempenho físico, notificações nativas e acessibilidade completa | Não demonstrados |
 
 Os testes de modelo incluem convite direto vs. pedido sem convite, exclusividade da empresa e verificam escopo de paciente/empresa; equipe aprovada e pendente; vínculo sem duplicação; rascunhos separados; envio vazio; anexo e áudio fictícios; importância; privacidade progressiva; reset de sessão; indicadores com empate/sem funcionário. Não definem uma política definitiva de desempate ou implantação clínica.
@@ -38,10 +39,12 @@ Expo 57.0.32/React Native 0.86.3 selecionados a partir do template oficial 57.0.
 
 Auditoria npm de execução: 0 altos, 0 críticos e 4 moderados na cadeia `expo`/`@expo/fingerprint`/`glob`/`minimatch`. A correção automática sugerida pelo npm exige downgrade principal do Expo; não foi aplicada. Reavaliar atualização compatível e exposição antes de uso não demonstrativo; não declarar auditoria limpa. Relatório bruto local em `output/npm-audit-mobile.json`. Nenhum dado real foi usado.
 
-## Ação necessária para concluir o APK
+## QA Android concluída
 
-As leituras confirmaram ausentes nos locais do SDK/cache: Gradle **9.3.1** (wrapper nativo), Android NDK **27.1.12297006** e CMake **3.30.5** (versões do código React Native). SDK Platform/Build Tools 36 estão presentes. Baixar/preparar esses componentes é uma instalação de ferramentas e grava fora da área do projeto no SDK/perfil quando aplicável, portanto aguarda autorização.
+Depois da autorização específica, componentes oficiais e ADB foram preparados no perfil normal. Build Gradle 9.3.1 com NDK 27.1.12297006 e propriedade CMake 3.30.5 passou. CMake 3.22.1 havia causado falha Ninja; a seleção suportada da versão corrigiu sem alterar registro/permissões.
 
-ADB anteriormente negou criar `%USERPROFILE%\.android`; a pasta permanece ausente e a operação não foi repetida nem contornada com redirecionamento de home. É necessário uso autorizado dessa configuração/ADB para validar dispositivo/emulador. Não houve tentativa nova de ADB, aceite de termos ou instalação de NDK/CMake/Gradle nesta fatia. A solicitação de autorização foi apresentada enquanto o trabalho independente de código/QA foi concluído.
+APK autônomo assinado para teste, sem servidor Metro/Expo Go, instalado no AVD Connect_Demo_API36. Cinco jornadas passaram: paciente/empresa/chat; envio local; privacidade de prévia nível 1 e 4; funcionário por convite direto; funcionário sem convite pendente. Capturas verificadas; a prévia completa estava visível. Nenhum aviso na execução final.
 
-Após autorização: preparar componentes oficiais sem aceitar termos pendentes em nome do usuário; compilar APK com bundle embutido; conferir assinatura de teste e manifesto mesclado; instalar/abrir; executar jornadas no Android e registrar limitações. Só então disponibilizar APK e hash como entrega instalável. A geração de bundle ou a QA web não fecha esse aceite.
+Evidência: output/android-qa/2026-11-06T17-27-26-041Z/result.json e seis PNGs/XMLs. Harness reproduzível em apps/mobile/scripts/android-smoke.mjs; recusa dispositivos físicos e exige serial explícito de emulador. Não testa push, áudio, autenticação, segurança de convites ou backend reais. A nota anterior sobre capturas web refere-se apenas à evidência web, agora complementada pela Android.
+
+Manifesto empacotado: minSdk 24, target 36, ABIs ARM64/x86_64; sem INTERNET, RECORD_AUDIO ou armazenamento amplo, backup desativado. Não inclui ARM 32 bits. Android mínimo e celulares modestos continuam sem validação; não foi feita medição formal de desempenho ou acessibilidade completa.

@@ -19,7 +19,7 @@ Não executar o stack enquanto o daemon estiver indisponível ou sem verificar i
 CLI existente, utilizada sem instalar outra cópia:
 
 ```powershell
-$connectCli = 'C:\Users\Spynon\Documents\Resicheck\node_modules\.bin\supabase.cmd'
+$connectCli = '<caminho-da-cli-ja-instalada>'
 $env:SUPABASE_TELEMETRY_DISABLED = '1'
 & $connectCli --version
 & $connectCli start --help

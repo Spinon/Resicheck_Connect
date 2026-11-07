@@ -7,7 +7,7 @@ Nome provisório: ResiCheck Connect. Exemplos v0.2 e verde como padrão aprovado
 - Android primeiro; preservar a possibilidade de iOS. Web não substitui a validação Android.
 - Primeira fase apenas cadastro, vínculos e chat: não desenvolver agenda, integrações externas ou IA antes de o app funcionar sem eles. Preparar só fronteiras para o futuro; dependências de funções futuras não bloqueiam o MVP de chat.
 - Ler `docs/project/STATUS.md` e `project-board.json` antes de trabalho relevante. O board é a única fila atual.
-- A recomendação inicial é React Native, Expo e TypeScript; o backend permanece proposto. Não afirmar arquitetura aprovada, serviço disponível ou APK existente sem evidência.
+- A base atual usa React Native, Expo e TypeScript. A fundação Supabase foi aplicada no projeto Connect, mas Auth positivo e transporte real do app continuam pendentes. Distinguir modelos locais, testes negativos, código compilado e funcionalidade conectada; não afirmar disponibilidade ou segurança de produção sem evidência.
 - Avançar no trabalho local reversível autorizado. Contratação, contas, credenciais, instalação de software, publicação, compartilhamento e uso de dados reais exigem autorização correspondente.
 - Preservar o ResiCheck e outros projetos. Reutilizar seus padrões de organização, sem copiar implementação nem regras de negócio.
 

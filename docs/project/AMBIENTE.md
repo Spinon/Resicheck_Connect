@@ -31,3 +31,8 @@ Essas foram falhas de permissão do ambiente. Não houve solicitação de escalo
 Rechecagem de leitura nesta data: pasta mobile continua apenas com README, sem node_modules/lockfile; executáveis ADB/emulador e cmdline-tools `latest` presentes. Nenhuma instalação ou nova tentativa ADB foi feita. A análise de protótipo e compatibilidade está em [PROTOTIPO-E-DESEMPENHO.md](PROTOTIPO-E-DESEMPENHO.md).
 
 Fila canônica `project-board.json`, status derivado em `docs/project/STATUS.md`, critérios/evidências por fatia e validação proporcional ao risco. O projeto novo adota somente essa organização em versão pequena. A agenda e os demais módulos do ResiCheck não foram reutilizados. As instruções locais do ResiCheck foram lidas como referência do projeto existente, sem importar para o projeto novo regras clínicas, releases ou exigência de push.
+
+
+## Atualização após autorização e build, 06/11/2026
+
+As pendências de preparação nativa acima são históricas e foram resolvidas com autorização específica: Gradle 9.3.1, NDK 27.1.12297006, CMake 3.30.5 e ADB no perfil normal. APK compilado, instalado e aprovado em cinco jornadas no emulador Android 16/API 36. Não mede desempenho em aparelho físico nem comprova Android mínimo. Ver [relatório atual](../testing/PROTOTIPO-0.1.0.md) e [entrega](../delivery/DEMO-0.1.0-BUILD1.md).

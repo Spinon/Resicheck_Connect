@@ -65,3 +65,8 @@ Testar carga sintética paginada (por exemplo, 200 conversas e histórico com 10
 O assistente pode executar testes unitários, de interação, backend e jornadas no emulador quando o ambiente estiver liberado; gerar APK, hash, screenshots/vídeo sintéticos e relatório de cenários/limites. Precisará de dispositivo físico acessível para afirmar desempenho em aparelho antigo, comportamento de fabricante, teclado real e notificações/lockscreen. Número de emulador não comprova desempenho físico. [Android: medição com dispositivo e limite do emulador](https://developer.android.com/codelabs/android-macrobenchmark-inspect).
 
 Pendências para começar: fixar stack/versão mantida; autorizar instalações necessárias; resolver Android/AVD; decidir o recorte visual mínimo do conceito; distinguir demonstração local de backend sintético. Pendências de produto para funções completas: identidade/representação, regras dos indicadores, importância inicial e renotificação, preferências por dispositivo e perfil de compressão. Agenda, IA e conectores não entram nessa lista de pré-requisitos do APK demonstrativo.
+
+
+## Atualização após autorização e build, 06/11/2026
+
+As pendências de preparação nativa acima são históricas e foram resolvidas com autorização específica: Gradle 9.3.1, NDK 27.1.12297006, CMake 3.30.5 e ADB no perfil normal. APK compilado, instalado e aprovado em cinco jornadas no emulador Android 16/API 36. Não mede desempenho em aparelho físico nem comprova Android mínimo. Ver [relatório atual](../testing/PROTOTIPO-0.1.0.md) e [entrega](../delivery/DEMO-0.1.0-BUILD1.md).

@@ -4,10 +4,15 @@ Nome de trabalho provisório definido pelo usuário. Android é a plataforma pri
 
 Primeira fase: cadastro, vínculos e chat com anexos. Agenda, APIs de integração externa e IA ficam para depois de o app funcionar sem elas; reservar apenas fronteiras de arquitetura.
 
-**Estado em 06/11/2026:** demonstração React Native implementada em [apps/mobile](apps/mobile/README.md), com dependências instaladas, testes locais e bundle Android gerado. **Ainda sem APK ou teste em Android**, aguardando preparação autorizada do toolchain/ADB. Não há backend, contas reais ou serviços contratados. Mensagens, anexos, áudio e notificações são locais/simulados.
+**Estado em07/11/2026:** [Android0.1.3/build7 no Drive](docs/delivery/DEMO-0.1.3-BUILD7.md), com opções da demonstração em modal, fila sintética e compositor corrigido nos cenários IME/resize testados. [Cobertura e limitações](docs/testing/ERGONOMIA-E-TECLADO-0.1.3.md). Versões anteriores preservadas. Sem backend integrado, contas reais, áudio/anexos/push reais; seleção após resize, Auth positivo e aparelhos físicos ainda pendentes.
 
 ## Começar
 
+- [Contratos locais de identidade e acesso](packages/access/README.md), com testes sintéticos separados do APK.
+- [Chat local e prévias de notificação](packages/chat/README.md), com retry, autoria e isolamento testados sem serviços externos.
+- [Texto Unicode e emojis](packages/text/README.md), com limites por grapheme e fixtures oficiais.
+- [Banco Connect e RLS](docs/architecture/BANCO-CONNECT.md), com migração versionada e testes PostgreSQL reais; stack Supabase completo ainda bloqueado pelo Docker.
+- [Fundação Supabase online e testes](docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md): migração aplicada, controles de negação verificados; login positivo aguarda canal Auth Admin seguro.
 - [Status gerado](docs/project/STATUS.md) e [fila única](project-board.json).
 - [Escopo e jornadas](docs/product/ESCOPO.md).
 - [MVP de chat e decisões atuais](docs/product/MVP-CHAT.md).
@@ -34,6 +39,8 @@ npm run project:status
 ```
 
 Esses dois comandos verificam apenas a organização. Os comandos `mobile:typecheck` e `mobile:test` verificam o código da demonstração; não substituem teste no Android.
+
+Para código/testes, obter também a dependência compartilhada com `npm ci --prefix packages/text --ignore-scripts`, além de `npm ci --prefix apps/mobile`. Não são necessários para os dois comandos de organização acima. Instalações de projeto por prefixo e lockfiles são preservados.
 
 ## Estrutura
 

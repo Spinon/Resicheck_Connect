@@ -1,11 +1,15 @@
 # Entregas de teste e Drive
 
-Área privada criada pela coordenação no chat principal; links fornecidos em 06/11/2026. Esta tarefa local não fez upload nem modificou compartilhamentos.
+Área privada criada pela coordenação no chat principal; links fornecidos em 06/11/2026. As entregas autorizadas foram enviadas e verificadas por leitura de metadados, sem modificar compartilhamentos.
+
+Entrega anterior: [Android0.1.1/build2 — áudio corrigido e emojis locais](DEMO-0.1.1-BUILD2.md). Histórico preservado: [lote2 de sessão](DEMO-0.1.0-LOTE2.md) e [primeiro APK](DEMO-0.1.0-BUILD1.md). Todas continuam demonstrações sintéticas, sem backend integrado.
 
 - [Projeto — App de Consultas e Chat](https://drive.google.com/drive/folders/1a1rQzv361Ql4fEtXeJ7CMdxygXi-KCmC).
 - [APKs](https://drive.google.com/drive/folders/1e839A_ZtJxwJP_YrBiWK9-V6HoPRBYcK).
 - [Assets visuais](https://drive.google.com/drive/folders/1vZxqtqVQ0Zz8jrC5gP4BHE-Ai2mLkysA).
 - [Documentação](https://drive.google.com/drive/folders/1lvk8aU5FfQHMBmWG2sLWApd7S7DP8xhc).
+
+Entrega atual: [Android0.1.3/build7 — ergonomia e teclado](DEMO-0.1.3-BUILD7.md).
 
 ## Lote local antes de upload
 
@@ -30,4 +34,4 @@ O LEIA-ME explica em poucas linhas como instalar, que fluxo mudou, qual conta ex
 4. Quando autorizado, enviar arquivos às pastas existentes usando a integração Drive. Ler metadados e confirmar o destino antes de escrever, preservar acesso privado e verificar os arquivos retornados após o upload.
 5. Registrar os links observados e o hash do APK no manifesto e no board. Não adivinhar URLs nem criar links públicos automaticamente.
 
-Não há APK, imagem de tela, manifesto preenchido nem upload desta estrutura. A existência das pastas não significa entrega do app.
+Cada lote tem APK, instruções, hash, manifesto e evidências de seu escopo. A existência das pastas ou de um protótipo não significa chat operacional, validação de identidade ou segurança de produção concluída.

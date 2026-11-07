@@ -1,6 +1,6 @@
 # Proposta técnica — 06/11/2026
 
-Estado: recomendação inicial, ainda sem implementação nem contratação. Comparação voltada a Android primeiro, possível iOS e testes feitos principalmente pelo assistente.
+Estado deste documento: snapshot da recomendação inicial, preservado para explicar a comparação. Atualização em07/11/2026: React Native/Expo/TypeScript já geram APKs demonstrativos Android; a fundação Supabase foi aplicada separadamente no projeto Connect. Auth positivo e transporte real do aplicativo ainda não estão integrados. Consulte [estado atual](../project/STATUS.md), [banco](BANCO-CONNECT.md) e [entregas](../delivery/ENTREGAS.md). As descrições de ferramentas ausentes e ausência de schema abaixo retratam a preparação inicial, não o estado atual.
 
 Escopo da primeira fase atualizado: cadastro, vínculos e chat funcionais sem agenda, integrações externas ou IA. Reservar apenas fronteiras para as extensões futuras, conforme [MVP-CHAT.md](../product/MVP-CHAT.md); não instalar nem exigir provedores dessas extensões para rodar o chat.
 

@@ -1,6 +1,6 @@
-# ResiCheck Connect - demonstração 0.1.2 (candidato local)
+# ResiCheck Connect — demonstração Android
 
-O candidato local0.1.2/code3 integra a fila de texto com confirmação/falha explicitamente simuladas e retry sem duplicar bolha. Foram validados modelo, web e Android com limites documentados em [FILA-INTERFACE-0.1.2.md](../../docs/testing/FILA-INTERFACE-0.1.2.md). O APK distribuído permanece0.1.1; esta etapa não publicou outro arquivo no Drive ou código no Git.
+A entrega atual é0.1.3/code7, com fila de texto simulada, controles em modal e ajuste de teclado; [APK e limites](../../docs/delivery/DEMO-0.1.3-BUILD7.md). A fonte posterior corrige capacidade da fila e acessibilidade de outros modais, ainda sem novo APK distribuído. Auth, transporte remoto, áudio e arquivos reais continuam pendentes. [Checkpoint atual](../../docs/project/CHECKPOINT-2026-11-07.md). O histórico0.1.2 está preservado em [FILA-INTERFACE-0.1.2.md](../../docs/testing/FILA-INTERFACE-0.1.2.md).
 
 Base Expo 57.0.32, React Native 0.86.3, React 19.2.3 e TypeScript 6, com lockfile. A versão foi verificada no registro oficial e usa SDK de compilação Android 36/minSdk 24 no catálogo de dependências, validada somente em emulador Android 16.
 

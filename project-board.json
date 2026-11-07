@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "project": "ResiCheck Connect (provisório)",
-  "updatedAt": "2026-11-06",
-  "currentFocus": "APP-002",
+  "updatedAt": "2026-11-07",
+  "currentFocus": "APP-064",
   "items": [
     {
       "id": "APP-001",
@@ -26,14 +26,14 @@
     {
       "id": "APP-002",
       "title": "Validar proposta e preparar primeira fatia Android executável",
-      "status": "blocked",
+      "status": "done",
       "acceptance": [
         "Registrar escolha de stack e dependências compatíveis",
         "Resolver ambiente de emulador e executar app Android local com dados sintéticos",
         "Demonstrar fluxo básico empresa/paciente sem backend de produção",
         "APK demonstrativo próprio abre sem Expo Go/servidor de desenvolvimento e usa somente dados fictícios com simulação identificada; não exige agenda/IA/integrações"
       ],
-      "nextAction": "Aguardar autorização específica para preparar Gradle 9.3.1, NDK 27.1.12297006, CMake 3.30.5 e configuração Android/ADB do perfil. Depois compilar APK com bundle embutido, verificar manifesto/assinatura e executar as jornadas no Android.",
+      "nextAction": "Primeira fatia Android demonstrativa concluída. Prosseguir identidade/vínculos e chat reais com dados sintéticos e testes de autorização; simulação não satisfaz os itens de backend.",
       "evidence": [
         "docs/architecture/PROPOSTA.md",
         "docs/project/PROTOTIPO-E-DESEMPENHO.md",
@@ -43,50 +43,79 @@
         "apps/mobile/src/demo.ts",
         "apps/mobile/tests/demo.test.ts",
         "apps/mobile/package-lock.json",
-        "docs/testing/PROTOTIPO-0.1.0.md"
+        "docs/testing/PROTOTIPO-0.1.0.md",
+        "docs/delivery/DEMO-0.1.0-LOTE2.md",
+        "docs/delivery/DEMO-0.1.1-BUILD2.md"
       ],
       "deliveryPhase": "mvp-chat-or-applicable-release-stage",
       "mvpBlocking": true,
       "implementationEvidence": [
         "apps/mobile/App.tsx",
         "apps/mobile/tests/demo.test.ts",
-        "docs/testing/PROTOTIPO-0.1.0.md"
+        "docs/testing/PROTOTIPO-0.1.0.md",
+        "apps/mobile/scripts/android-smoke.mjs",
+        "apps/mobile/scripts/build-android.ps1",
+        "docs/delivery/DEMO-0.1.0-BUILD1.md"
       ],
-      "blockers": [
-        {
-          "state": "permission-request-pending",
-          "action": "Preparar componentes oficiais de compilação e configuração ADB fora da pasta do projeto",
-          "targets": [
-            "Gradle 9.3.1",
-            "Android NDK 27.1.12297006",
-            "CMake 3.30.5",
-            "%USERPROFILE%/.android"
-          ],
-          "reason": "Ferramentas ausentes e áreas fora dos writable roots. ADB negado antes; não repetido nem redirecionado. Nenhum termo foi aceito."
-        }
-      ]
+      "blockers": []
     },
     {
       "id": "APP-003",
       "title": "Implementar identidade, empresas, equipe e convite",
-      "status": "backlog",
+      "status": "in_progress",
       "acceptance": [
         "Subfatias APP-007 a APP-010 demonstradas com dados sintéticos",
         "Funcionário por convite válido do gestor entra diretamente; só solicitação sem convite aguarda aceite",
         "Paciente por link ou busca conversa com a empresa sem escolher funcionário",
         "Testes negativos de isolamento entre duas empresas, papéis e funcionário revogado"
       ],
-      "nextAction": "Após APP-002, executar as subfatias APP-007, APP-008, APP-009 e APP-010; especificação não conta como implementação.",
+      "nextAction": "Sessão/contexto e política de acesso integrados à interface sintética:24 testes app,10 sessão,18 acesso,27 checks web e11 jornadas Android passaram. Candidato local69918a0c; APK entregue preservado. Prosseguir onboarding de menor privilégio e adaptador Auth nativo; testes positivos online dependem de canal Auth Admin seguro. Não contornar bloqueio do navegador nem fabricar sessões.",
       "evidence": [
-        "docs/product/FLUXOS-E-IDENTIDADE.md"
+        "docs/product/FLUXOS-E-IDENTIDADE.md",
+        "packages/access/README.md",
+        "docs/architecture/CONTRATOS-DE-IDENTIDADE.md",
+        "docs/testing/CONTRATOS-LOCAIS-0.1.md",
+        "docs/architecture/BANCO-CONNECT.md",
+        "docs/architecture/MIGRACAO-E-PORTABILIDADE.md",
+        "docs/testing/BANCO-LOCAL-0.1.md",
+        "supabase/README-LOCAL.md",
+        "docs/delivery/PLANO-SUPABASE-ONLINE.md",
+        "supabase/deployment/candidate.json",
+        "docs/testing/PREFLIGHT-SUPABASE-ONLINE.md",
+        "docs/project/CUSTOS.md",
+        "docs/testing/REVISAO-CANDIDATO-BANCO.md",
+        "docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md",
+        "supabase/deployment/receipt.json",
+        "docs/architecture/LOGIN-BASE-RESICHECK.md",
+        "packages/session/README.md",
+        "packages/session/src/session-scope.ts",
+        "packages/session/src/public-auth-error.ts",
+        "packages/session/tests/session-scope.test.ts",
+        "docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md",
+        "apps/mobile/src/demo-session.ts",
+        "apps/mobile/src/demo-access.ts",
+        "apps/mobile/tests/demo-session.test.ts",
+        "apps/mobile/metro.config.cjs"
       ],
       "deliveryPhase": "mvp-chat-or-applicable-release-stage",
-      "mvpBlocking": true
+      "mvpBlocking": true,
+      "implementationEvidence": [
+        "packages/access/src/contracts.ts",
+        "packages/access/src/policy.ts",
+        "packages/access/src/membership.ts",
+        "packages/access/src/boundary.ts",
+        "packages/access/tests/policy.test.ts",
+        "packages/access/tests/membership.test.ts",
+        "packages/access/tests/http-boundary.test.ts",
+        "supabase/migrations/20261106200713_connect_foundation.sql",
+        "supabase/tests/rls_cases.sql",
+        "scripts/test-postgres-local.ps1"
+      ]
     },
     {
       "id": "APP-004",
       "title": "Entregar chat e anexos privados",
-      "status": "backlog",
+      "status": "in_progress",
       "acceptance": [
         "Todos os funcionários aprovados e ativos veem todas as conversas dos pacientes da própria empresa; acesso não depende de atendente atribuído",
         "Paciente com vínculo imediato acessa só nome/endereço/telefones públicos da empresa e próprio chat/anexos, onde envia mensagem e aguarda",
@@ -97,12 +126,31 @@
         "[R17] Arquivo não validado não é distribuído; processamento isolado e limitado; erros não expõem caminhos.",
         "[R18] Trilha contém remetente, destino, versão e data; não modificar original assinado; sem mistura de acervos.",
         "[R11] Paciente não escolhe funcionário; todos os funcionários aprovados da empresa podem ler as conversas; autoria real e revogação são preservadas",
-        "[R27] MVP não duplica mensagens por retry e preserva ordenação/autoria e significado dos estados de envio/entrega/leitura escolhidos; não exige desenvolver agenda. Garantias de reserva ficam na fase futura."
+        "[R27] MVP não duplica mensagens por retry e preserva ordenação/autoria e significado dos estados de envio/entrega/leitura escolhidos; não exige desenvolver agenda. Garantias de reserva ficam na fase futura.",
+        "Emojis fazem parte das mensagens, com integridade Unicode e limite por grapheme sem cortar sequências; execução e testes estão na subfatia APP-057."
       ],
-      "nextAction": "Após identidade e vínculos, implementar chat humano e anexos privados independente de agenda/IA/conectores; aplicar visibilidade por empresa e subfatia de indicadores APP-050.",
+      "nextAction": "Histórico paginado local APP-063 testado com servidor de referência e autorização por página; fila APP-061 continua integrada à demonstração. Próximo: adaptador autenticado/DTO banco e leitura Android quando Auth seguro disponível, sem contornar bloqueio. Áudio/anexos reais, persistência e RLS positivo permanecem pendentes.",
       "evidence": [
         "docs/research/INTEGRACAO.md",
-        "docs/product/MVP-CHAT.md"
+        "docs/product/MVP-CHAT.md",
+        "docs/testing/CHAT-LOCAL-0.1.md",
+        "docs/architecture/BANCO-CONNECT.md",
+        "docs/architecture/MIGRACAO-E-PORTABILIDADE.md",
+        "docs/testing/BANCO-LOCAL-0.1.md",
+        "supabase/README-LOCAL.md",
+        "docs/delivery/PLANO-SUPABASE-ONLINE.md",
+        "supabase/deployment/candidate.json",
+        "docs/testing/PREFLIGHT-SUPABASE-ONLINE.md",
+        "docs/product/EMOJIS-E-UNICODE.md",
+        "docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md",
+        "supabase/deployment/receipt.json",
+        "packages/chat-client/src/text-send-queue.ts",
+        "packages/chat-client/tests/text-send-queue.test.ts",
+        "docs/testing/FILA-DE-ENVIO-LOCAL.md",
+        "packages/chat-client/README.md",
+        "packages/chat-client/validation.json",
+        "docs/testing/HISTORICO-CLIENTE-0.1.md",
+        "packages/chat-client/src/text-history.ts"
       ],
       "regulatoryRequirements": [
         {
@@ -225,7 +273,14 @@
           "scopeAdaptation": "Decisão posterior do usuário: MVP de chat independente de agenda/API externa/IA."
         }
       ],
-      "implementationEvidence": [],
+      "implementationEvidence": [
+        "packages/chat/src/chat.ts",
+        "packages/chat/tests/chat.test.ts",
+        "packages/chat/tests/http-chat.test.ts",
+        "supabase/migrations/20261106200713_connect_foundation.sql",
+        "supabase/tests/rls_cases.sql",
+        "scripts/test-postgres-local.ps1"
+      ],
       "deliveryPhase": "mvp-chat-or-applicable-release-stage",
       "mvpBlocking": true
     },
@@ -269,7 +324,8 @@
       ],
       "implementationEvidence": [],
       "deliveryPhase": "mvp-chat-or-applicable-release-stage",
-      "mvpBlocking": true
+      "mvpBlocking": true,
+      "prototypeDeliveryEvidence": "docs/delivery/DEMO-0.1.0-BUILD1.md"
     },
     {
       "id": "APP-007",
@@ -287,7 +343,17 @@
       "nextAction": "Após APP-002 e pesquisa oficial, decidir métodos por papel e contrato do provedor; implementar com dados sintéticos, sem consultas reais nesta etapa.",
       "evidence": [
         "docs/product/FLUXOS-E-IDENTIDADE.md",
-        "docs/research/INTEGRACAO.md"
+        "docs/research/INTEGRACAO.md",
+        "docs/architecture/LOGIN-BASE-RESICHECK.md",
+        "packages/session/README.md",
+        "packages/session/src/session-scope.ts",
+        "packages/session/src/public-auth-error.ts",
+        "packages/session/tests/session-scope.test.ts",
+        "docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md",
+        "apps/mobile/src/demo-session.ts",
+        "apps/mobile/src/demo-access.ts",
+        "apps/mobile/tests/demo-session.test.ts",
+        "apps/mobile/metro.config.cjs"
       ],
       "regulatoryRequirements": [
         {
@@ -371,7 +437,7 @@
     {
       "id": "APP-009",
       "title": "Implementar entrada direta por convite e aceite de pedido sem convite",
-      "status": "backlog",
+      "status": "in_progress",
       "acceptance": [
         "Convite válido enviado pelo gestor identifica empresa/papel e libera entrada direta, sem segunda aprovação",
         "Conta sem link busca empresa, solicita vínculo de funcionário e aguarda aceite",
@@ -382,10 +448,17 @@
         "Convite expirado/revogado/adulterado ou de uso indevido não concede acesso; controles técnicos não viram aprovação humana adicional",
         "[R07] Sem acesso para vínculo pendente; pedido sem convite tem aceite auditável por ator autorizado; convite válido do gestor ativa vínculo diretamente sem segunda aprovação, com segurança técnica e trilha."
       ],
-      "nextAction": "Implementar dois caminhos distintos: convite válido do gestor ativa vínculo diretamente; cadastro sem convite busca empresa e cria pedido pendente. Definir validade/revogação/uso/vinculação do convite e testar sem adicionar etapa humana ao caminho direto.",
+      "nextAction": "Banco comprova convite direto, pedido pendente, autorização do gestor, revogação e exclusividade com duas conexões reais. Definir emissão/prazo/destinatário final e integrar SupabaseAuth/API; reativação e auditoria operacional exigem caminhos próprios.",
       "evidence": [
         "docs/product/FLUXOS-E-IDENTIDADE.md",
-        "docs/research/INTEGRACAO.md"
+        "docs/research/INTEGRACAO.md",
+        "docs/testing/CONTRATOS-LOCAIS-0.1.md",
+        "docs/architecture/BANCO-CONNECT.md",
+        "docs/architecture/MIGRACAO-E-PORTABILIDADE.md",
+        "docs/testing/BANCO-LOCAL-0.1.md",
+        "supabase/README-LOCAL.md",
+        "docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md",
+        "supabase/deployment/receipt.json"
       ],
       "regulatoryRequirements": [
         {
@@ -412,14 +485,20 @@
           "applicability": "pending-review"
         }
       ],
-      "implementationEvidence": [],
+      "implementationEvidence": [
+        "packages/access/src/membership.ts",
+        "packages/access/tests/membership.test.ts",
+        "supabase/migrations/20261106200713_connect_foundation.sql",
+        "supabase/tests/rls_cases.sql",
+        "scripts/test-postgres-local.ps1"
+      ],
       "deliveryPhase": "mvp-chat-or-applicable-release-stage",
       "mvpBlocking": true
     },
     {
       "id": "APP-010",
       "title": "Implementar vínculo de paciente por link e busca da empresa",
-      "status": "backlog",
+      "status": "in_progress",
       "acceptance": [
         "Paciente cria ou reutiliza conta individual com CPF e verificações proporcionais",
         "Link da empresa e busca sem link conduzem ao vínculo de paciente",
@@ -430,11 +509,17 @@
         "Paciente só acessa nome/endereço/telefones públicos e próprio chat; troca de contexto separa API, realtime, cache, rascunhos e anexos sem agenda no MVP",
         "[R08] Encontrar empresa não dá acesso ao acervo; convite não revela saúde; geração só por funcionário aprovado com permissão."
       ],
-      "nextAction": "Após conta e cadastro empresarial, implementar vínculo imediato por link/busca, seleção de empresa e próprio chat, sem aceite do gestor e sem acesso ao acervo empresarial.",
+      "nextAction": "Vínculo imediato e conversa única por paciente/empresa testados no banco, sem histórico unificado. Próximo: integrar conta/identidade reais e seleção de empresa/assinaturas/cache Android com Supabase completo.",
       "evidence": [
         "docs/product/FLUXOS-E-IDENTIDADE.md",
         "docs/research/INTEGRACAO.md",
-        "docs/product/MVP-CHAT.md"
+        "docs/product/MVP-CHAT.md",
+        "docs/architecture/BANCO-CONNECT.md",
+        "docs/architecture/MIGRACAO-E-PORTABILIDADE.md",
+        "docs/testing/BANCO-LOCAL-0.1.md",
+        "supabase/README-LOCAL.md",
+        "docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md",
+        "supabase/deployment/receipt.json"
       ],
       "regulatoryRequirements": [
         {
@@ -460,7 +545,11 @@
           "applicability": "pending-review"
         }
       ],
-      "implementationEvidence": [],
+      "implementationEvidence": [
+        "supabase/migrations/20261106200713_connect_foundation.sql",
+        "supabase/tests/rls_cases.sql",
+        "scripts/test-postgres-local.ps1"
+      ],
       "deliveryPhase": "mvp-chat-or-applicable-release-stage",
       "mvpBlocking": true
     },
@@ -789,19 +878,33 @@
     {
       "id": "APP-016",
       "title": "Definir identidade visual e experiência Android do ResiCheck Connect",
-      "status": "backlog",
+      "status": "in_progress",
       "acceptance": [
         "Nome provisório ResiCheck Connect e referências de chat traduzidos em identidade própria",
         "Logo ResiCheck localizado e origem/variante verificada antes de incorporar; ausência tem fallback textual",
         "Conceito visual revisado em contexto Android sem tratá-lo como app implementado",
         "Lista, conversa, teclado e ações principais validados para uso com uma mão, fonte ampliada e tecnologias assistivas"
       ],
-      "nextAction": "Usar exemplos v0.2 e verde padrão aprovados como direção do protótipo, verificar logo autorizado e definir tokens/navegação; validar a implementação Android e acessibilidade sem marcar a aprovação visual como teste.",
+      "nextAction": "Integração sintética sessão/acesso validada:27 checks web e11 jornadas Android no candidato local69918a0c. Continuar acessibilidade (TalkBack/fonte ampliada), aparelhos modestos e integração real de Auth quando disponível; não marcar segurança de backend como demonstrada.",
       "evidence": [
         "docs/product/DIRECAO-VISUAL.md",
-        "docs/research/INTEGRACAO.md"
+        "docs/research/INTEGRACAO.md",
+        "docs/testing/INTERFACE-NAVEGACAO-0.1.md",
+        "docs/testing/INTEGRACAO-INTERFACE-0.1.md",
+        "docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md",
+        "apps/mobile/src/demo-session.ts",
+        "apps/mobile/src/demo-access.ts",
+        "apps/mobile/tests/demo-session.test.ts",
+        "apps/mobile/metro.config.cjs",
+        "docs/delivery/DEMO-0.1.0-LOTE2.md",
+        "docs/delivery/DEMO-0.1.1-BUILD2.md"
       ],
-      "implementationEvidence": [],
+      "implementationEvidence": [
+        "apps/mobile/App.tsx",
+        "apps/mobile/src/navigation.ts",
+        "apps/mobile/tests/navigation.test.ts",
+        "apps/mobile/scripts/android-smoke.mjs"
+      ],
       "deliveryPhase": "mvp-chat-or-applicable-release-stage",
       "mvpBlocking": true
     },
@@ -1216,19 +1319,23 @@
     {
       "id": "APP-028",
       "title": "Implementar notificações com privacidade progressiva e telemetria mínima",
-      "status": "backlog",
+      "status": "in_progress",
       "acceptance": [
         "Padrão seguro proposto nível 1: somente app; quatro níveis aplicados ao payload e à apresentação por usuário/dispositivo, sem mensagem clínica por padrão",
         "Filtro todas/somente importantes não supera autorização nem presume permissão do sistema; troca de conta/empresa e revogação não vazam conteúdo",
         "Logs, analytics e crash reports não recebem conteúdo de mensagem/segredos; exposição adicional em notificação só conforme escolha e escopo autorizados",
         "[R19] Nível 1 não revela empresa, atendente ou mensagem; níveis superiores refletem escolha explícita e autorização. Logs analíticos permanecem minimizados e sem conteúdo sensível. Preferência no app não presume permissão Android/iOS."
       ],
-      "nextAction": "Definir política de importância inicial, preferência por usuário/dispositivo e preview; implementar transporte/payload com nível 1 por padrão e testes de lockscreen/permissão negada. Configuração e marcação são subfatia APP-051.",
+      "nextAction": "Projeção local de payload e autorização testadas, sem SDK push/OS. Definir resolução por usuário/dispositivo e importância/renotificação; depois integrar provedor autorizado e testar Android/lockscreen/permissões.",
       "evidence": [
         "docs/research/INTEGRACAO.md",
-        "docs/product/NOTIFICACOES.md"
+        "docs/product/NOTIFICACOES.md",
+        "docs/testing/CHAT-LOCAL-0.1.md"
       ],
-      "implementationEvidence": [],
+      "implementationEvidence": [
+        "packages/chat/src/notifications.ts",
+        "packages/chat/tests/notifications.test.ts"
+      ],
       "regulatoryRequirements": [
         {
           "id": "R19",
@@ -2113,16 +2220,18 @@
     {
       "id": "APP-049",
       "title": "Validar acessibilidade das jornadas completas por plataforma",
-      "status": "backlog",
+      "status": "in_progress",
       "acceptance": [
         "[R31] Jornadas essenciais completadas com tecnologia assistiva; evidência manual além de scanner; não declarar selo sem avaliação.",
         "Cobrir temas padrão, empresarial e pessoal no claro/escuro; conceito visual não substitui testes de jornada no Android"
       ],
-      "nextAction": "Após os fluxos essenciais e R01/R27, executar matriz de acessibilidade móvel e, se houver web, WCAG no seu escopo; registrar testes manuais e limitações.",
+      "nextAction": "Correções locais dos3modais passaram10/10 cenários web320/font1/2: conteúdo rolável, nome acessível e foco contínuo no áudio.13checks fila/opções+37regressões eTypeScript passaram. Próximo: compilar candidato próprio e validar nativo/TalkBack/jornadas completas; não alterar APK distribuído. Seleção apósresize segueAPP-062.",
       "evidence": [
         "docs/product/DIRECAO-VISUAL.md",
         "docs/research/INTEGRACAO.md",
-        "docs/testing/ESTRATEGIA.md"
+        "docs/testing/ESTRATEGIA.md",
+        "apps/mobile/App.tsx",
+        "docs/testing/ACESSIBILIDADE-MODAIS-0.1.md"
       ],
       "implementationEvidence": [],
       "regulatoryRequirements": [
@@ -2174,8 +2283,13 @@
       ]
     },
     {
-      "status": "backlog",
-      "implementationEvidence": [],
+      "status": "in_progress",
+      "implementationEvidence": [
+        "packages/chat/src/chat.ts",
+        "packages/chat/src/notifications.ts",
+        "packages/chat/tests/chat.test.ts",
+        "packages/chat/tests/notifications.test.ts"
+      ],
       "deliveryPhase": "mvp-chat",
       "mvpBlocking": true,
       "id": "APP-051",
@@ -2187,10 +2301,11 @@
         "Preferências por usuário/dispositivo e permissão do sistema tratadas separadamente, sem herança indevida entre contas",
         "Importância inicial antes de marcação, renotificação, desmarcação e casos sem atendente são decisões validadas antes de implementar"
       ],
-      "nextAction": "Definir as políticas em aberto e executar junto de APP-028; verificar payload e apresentação Android/iOS nos respectivos marcos, com lockscreen e permissão negada.",
+      "nextAction": "Atribuição idempotente de importância só pela equipe e projeção mínima local implementadas; UI permanece demonstração do APK anterior. Próximo: decidir política de evento importante/renotificação, resolver preferências por dispositivo e integrar persistência/API/Android com testes reais.",
       "evidence": [
         "docs/product/NOTIFICACOES.md",
-        "docs/testing/ESTRATEGIA.md"
+        "docs/testing/ESTRATEGIA.md",
+        "docs/testing/CHAT-LOCAL-0.1.md"
       ]
     },
     {
@@ -2321,6 +2436,192 @@
         "docs/testing/PROTOTIPO-0.1.0.md"
       ],
       "implementationEvidence": []
+    },
+    {
+      "id": "APP-057",
+      "title": "Suportar emojis e Unicode íntegro nas mensagens",
+      "status": "in_progress",
+      "acceptance": [
+        "Entrada pelo teclado do sistema e renderização Android preservam Unicode válido, emojis compostos, ZWJ, tom de pele, bandeiras e seletores; iOS será validado quando adotado",
+        "Comprimento/contador/validação usam grapheme clusters; composição, colagem, edição e prévia não cortam sequências; orçamento técnico de bytes é separado e explícito",
+        "Roundtrip autenticado app/API/banco preserva o texto original e idempotência, sem normalização destrutiva ou mistura de empresa/conversa",
+        "Casos sintéticos de limite, família/profissão, modificadores, acentos combinantes e entrada inválida têm testes de integridade e erro seguro",
+        "TalkBack/VoiceOver, fonte ampliada e versões/aparelhos documentam leitura e desenho disponível sem prometer fonte idêntica",
+        "Não incluir reações, figurinhas, GIFs ou seletor próprio por inferência; permissões e privacidade do chat/notificações continuam aplicáveis"
+      ],
+      "nextAction": "Texto local8testes/766casos,26app/26chat/37web passaram; Android12jornadasprévia+probes reais colagem/Gboard/envio/limite2000→2001→2000 passaram. Execuçãooriginalburst2000→1130 continua falha e causaaberta. PendentesTalkBack,aparelhosantigos,64KiBnativo eSQL+Authreal; APP-059 prioriza áudio sem bloquearoualterarAPKs entregues.",
+      "evidence": [
+        "docs/product/EMOJIS-E-UNICODE.md",
+        "packages/text/README.md",
+        "docs/testing/EMOJIS-0.1.md",
+        "docs/testing/ENTRADA-SOB-RAJADA.md",
+        "docs/delivery/DEMO-0.1.1-BUILD2.md"
+      ],
+      "implementationEvidence": [
+        "packages/text/src/message-text.ts",
+        "packages/text/package-lock.json",
+        "packages/text/tests/message-text.test.ts",
+        "packages/text/tests/grapheme-conformance.test.ts",
+        "apps/mobile/tests/emoji.test.ts",
+        "packages/chat/tests/emoji-persistence.test.ts",
+        "apps/mobile/App.tsx",
+        "packages/chat/src/notifications.ts"
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-058",
+      "title": "Revisar índices e observações de desempenho do banco",
+      "status": "backlog",
+      "acceptance": [
+        "Analisar nove FKs sem índice apontadas pelo advisor com consultas e carga sintéticas, evitando índices redundantes em chaves compostas",
+        "Não remover índices planejados apenas por unused_index em banco vazio; registrar EXPLAIN/custo e cenário",
+        "Qualquer mudança de alocação de conexões Auth/plano/cobrança depende do escopo autorizado e não é aplicada só para silenciar INFO"
+      ],
+      "nextAction": "Preparar revisão/migração própria de índices quando houver workload sintético e canal Auth pronto; manter a fundação aplicada imutável.",
+      "evidence": [
+        "docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md"
+      ],
+      "implementationEvidence": [],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": false
+    },
+    {
+      "id": "APP-059",
+      "title": "Corrigir balão de áudio e validar layout com fonte ampliada",
+      "status": "done",
+      "acceptance": [
+        "Defeito relatado no teste reproduzido em cenário nativo fictício",
+        "Autor, título, duração/descrição e horário não se sobrepõem nem cortam dentro do balão; sem reduzir fontes arbitrariamente",
+        "Áudio enviado/recebido e nome longo testados em larguras equivalentes/menores e fontScale maior, com teclado aberto/fechado no Android",
+        "Área da conversa continua rolável e acionamento acessível mantém rótulo explícito de áudio simulado",
+        "Nova versão/assinatura/hash identificados e APKs entregues anteriormente preservados"
+      ],
+      "nextAction": "Correção entregue na0.1.1/code2. Geometria web32/64 e QA Android com medições completas/acesso por rolagem documentados; fonte2 retestada no final com suplemento. Manter TalkBack/aparelhos antigos em APP-016 e investigação de rajada em APP-060; não interpretar como áudio real ou backend pronto.",
+      "evidence": [
+        "docs/testing/AUDIO-LAYOUT-0.1.1.md",
+        "docs/delivery/DEMO-0.1.1-BUILD2.md",
+        "apps/mobile/scripts/android-audio-layout.mjs"
+      ],
+      "implementationEvidence": [
+        "apps/mobile/App.tsx",
+        "apps/mobile/app.json",
+        "apps/mobile/package.json",
+        "apps/mobile/scripts/android-audio-layout.mjs"
+      ],
+      "deliveryPhase": "prototype-native-ui-fix",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-060",
+      "title": "Investigar divergência de entrada sob rajada Android",
+      "status": "in_progress",
+      "acceptance": [
+        "Reproduzir e classificar a divergência2.000 teclas solicitadas/1.130 observadas com controles e tempos registrados",
+        "Distinguir injeção/IME, callback nativo e store com comparações controladas e contagens sintéticas, sem assumir causa",
+        "Comparar colagem, lotes pausados e digitação normal/rápida; texto/cursor/contador íntegros antes de concluir",
+        "Se houver defeito do app, corrigir e validar regressões nativas sem relaxar limites ou esconder a falha original"
+      ],
+      "nextAction": "Rajadas divergiram em ambas as rotas: Connect1110/1232 e EditText1517/1602; lotes50+100ms preservaram2000 em ambas. Pré-IME do controle observou apenas1602 eventos na rajada; shellargument íntegro. Instrumentar entrega/InputConnection ou teste de IME real sem alterar configuração para localizar causa. Não refatorar App especulativamente; preservar evidência e separar teste de limite por lotes do stress por rajada.",
+      "evidence": [
+        "docs/testing/ENTRADA-SOB-RAJADA.md",
+        "docs/testing/REPRODUZIR-RAJADA-ANDROID.md",
+        "apps/mobile/scripts/android-input-diagnostic.mjs",
+        "tools/android-input-probe/MainActivity.java",
+        "tools/android-input-probe/AndroidManifest.xml",
+        "tools/android-input-probe/build.ps1"
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-061",
+      "title": "Integrar fila local de envio à interface demonstrativa",
+      "status": "done",
+      "acceptance": [
+        "Interface distingue pendente, tentativa, confirmação e falha exclusivamente simuladas; nenhum envio real alegado",
+        "Retry no mesmo contexto conserva clientMessageId e texto sem duplicar bolha; capacidade preserva rascunho",
+        "Troca de empresa/conversa/conta e logout descartam respostas antigas e não expõem pendências de outro autor",
+        "Testes determinísticos de modelo e verificações renderizadas/Android documentados com limites; APK entregue anterior preservado"
+      ],
+      "nextAction": "Revisão encontrou limite no101º aceito; correção local libera recibos aceitos antigos preservando pendências/retries eUI.205 envios nafila+105 na interface passaram. APK0.1.3 entregue e candidato localcode8 antecedem correção; próximo build deve ser novo e validado.",
+      "evidence": [
+        "packages/chat-client/README.md",
+        "docs/testing/FILA-DE-ENVIO-LOCAL.md",
+        "apps/mobile/App.tsx",
+        "apps/mobile/src/demo-delivery.ts",
+        "apps/mobile/src/demo-session.ts",
+        "apps/mobile/tests/demo-delivery.test.ts",
+        "docs/testing/FILA-INTERFACE-0.1.2.md",
+        "docs/testing/FILA-LOCAL-ANDROID-PLANO.md",
+        "docs/testing/FILA-CAPACIDADE-0.1.md"
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-062",
+      "title": "Revisar ergonomia e redimensionamento do chat com texto ampliado",
+      "status": "in_progress",
+      "acceptance": [
+        "Reduzir disputa dos controles da demonstração com a última mensagem sem diminuir fonte nem retirar indicação de simulação",
+        "Reproduzir separadamente inicialização fria e mudança de altura com IME aberto/fechado, registrando dimensões e compositor dentro da janela",
+        "Localizar a causa do compositor fora da tela após redimensionamento antes de aplicar correção; preservar falhas históricas",
+        "Validar fluxo padrão e320dp/fontScale2 com teclado e rolagem; não confundir caixa cortada com texto integral legível"
+      ],
+      "nextAction": "Compositor corrigido noAPK0.1.3. Investigação adicional localizou colapso da seleção em TextView.onConfigurationChanged/stopTextActionMode no EditText puro, mesmaActivity/input, reproduzindo comportamentoRN13. Não aplicar restauraçãoforçada sem validar IME. Causa interna de height e Android/TalkBack dos novosmodais continuam pendentes.",
+      "evidence": [
+        "docs/testing/FILA-INTERFACE-0.1.2.md",
+        "apps/mobile/App.tsx",
+        "docs/testing/REDIMENSIONAMENTO-ANDROID-BASELINE.md",
+        "apps/mobile/scripts/android-resize-diagnostic.mjs",
+        "apps/mobile/scripts/android-resize-comparison.mjs",
+        "docs/delivery/DEMO-0.1.3-BUILD7.md",
+        "docs/testing/ERGONOMIA-E-TECLADO-0.1.3.md",
+        "apps/mobile/scripts/android-ergonomics-final.mjs",
+        "apps/mobile/scripts/android-selection-resize.mjs",
+        "docs/testing/SELECAO-REDIMENSIONAMENTO-CAUSAL.md"
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-063",
+      "title": "Implementar controlador local de histórico paginado com isolamento de contexto",
+      "status": "done",
+      "acceptance": [
+        "Validar páginas desconhecidas atomicamente por empresa/conversa, ordem, IDs, Unicode e metadados; projetar só dados públicos do chat",
+        "Invalidar handles e resultados atrasados em troca de contexto/logout; limpar histórico após negativa autoritativa",
+        "Demonstrar paginação, concorrência, timeout/retry, limite de memória e autorização com servidor local sintético; sem alegar Auth/RLS reais"
+      ],
+      "nextAction": "Controlador local testado:21 testes combinados/8 novos e TypeScript. Preparar adaptador autenticado e integração Android quando canal Auth seguro estiver disponível; realtime, atualização de importância antiga e persistência não implementados.",
+      "evidence": [
+        "packages/chat-client/src/text-history.ts",
+        "packages/chat-client/tests/text-history.test.ts",
+        "packages/chat-client/history-validation.json",
+        "docs/testing/HISTORICO-CLIENTE-0.1.md"
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
+    },
+    {
+      "id": "APP-064",
+      "title": "Alinhar limite Unicode do banco à validação confiável de mensagens",
+      "status": "in_progress",
+      "acceptance": [
+        "Aceitar o contrato de2000 grafemas e64KiB íntegros em fronteira confiável sem bypass por RPC direto",
+        "Validar candidato local com corpus Unicode17, casos compostos, limites, autorização e custo antes de qualquer migração remota",
+        "Preservar fundação aplicada e preparar migração/rollback revisados, sem relaxar apenas o limite SQL"
+      ],
+      "nextAction": "Divergência reproduzida no PostgreSQL local: char_length rejeita emojis compostos válidos. Envelope sóbytes não é correção segura. Avaliar contador Unicode17 privado no banco com corpus e limites, fora de migrations até revisão. Nada remoto.",
+      "evidence": [
+        "docs/product/EMOJIS-E-UNICODE.md",
+        "supabase/migrations/20261106200713_connect_foundation.sql",
+        "packages/text/src/message-text.ts"
+      ],
+      "deliveryPhase": "mvp-chat-or-applicable-release-stage",
+      "mvpBlocking": true
     }
   ],
   "regulatoryIntegration": {
@@ -2679,7 +2980,7 @@
     "precedence": "user > company > default",
     "implementationEvidence": []
   },
-  "implementationSummary": "Demonstração local React Native implementada, 13 testes de modelo e QA de prévia web passaram; bundle Android gerado. APK/instalação aguardam preparação autorizada do toolchain e ADB. Sem backend real.",
+  "implementationSummary": "Checkpoint local preparado após124 testes e6typechecks. Fila aceita maisde100 confirmações sem bloquear novasintenções; histórico paginado isolado testado. Modais corrigidos passaram10cenários web,13checks e37regressões; fonte Androidnova ainda não validada. Seleção localizada emcomportamento nativoAPI36; semworkaround. APK0.1.3 preservado; candidato0.1.4/code8 superado pela correçãofila. UnicodeSQL emavaliação local, Authpositivo/transporte reais pendentes. Sem mudança remota.",
   "prototype": {
     "version": "0.1.0",
     "framework": {
@@ -2690,10 +2991,16 @@
     "mode": "synthetic-local-simulation",
     "typecheck": "pass",
     "modelTests": 13,
-    "previewQa": "19 checks pass; web preview only; Android not tested",
+    "previewQa": "19 checks pass; web preview",
     "androidBundle": "generated, not APK",
-    "apk": null,
-    "deviceTested": false,
+    "apk": {
+      "version": "0.1.0",
+      "build": 1,
+      "bytes": 42044422,
+      "sha256": "bf6e0a4095ac9e7630589f42e2eeea6d3d39cecf6e36968b877c9286cd11e719",
+      "url": "https://drive.google.com/file/d/1DY8cWL_2OswEmQXCh1CXw8wP99v1Fwps/view?usp=drivesdk"
+    },
+    "deviceTested": "Android 16/API 36 emulator only; 5 native journeys pass; physical/minimum Android/iOS not tested",
     "report": "docs/testing/PROTOTIPO-0.1.0.md",
     "dependencyAudit": {
       "high": 0,
@@ -2701,5 +3008,329 @@
       "moderate": 4,
       "status": "documented, compatible remediation pending"
     }
+  },
+  "localAccessReference": {
+    "version": "0.1",
+    "status": "synthetic-reference-only-not-production",
+    "typecheck": "pass",
+    "tests": 18,
+    "http": "loopback test adapter only; fixture sessions",
+    "report": "docs/testing/CONTRATOS-LOCAIS-0.1.md",
+    "notIntegratedIntoApk": true,
+    "realConcurrencyTested": false,
+    "productionSecurityCompleted": false
+  },
+  "localChatReference": {
+    "version": "0.1",
+    "status": "synthetic-in-memory-reference-only",
+    "typecheck": "pass",
+    "tests": 22,
+    "chatTests": 11,
+    "previewTests": 10,
+    "httpIntegrationTests": 1,
+    "report": "docs/testing/CHAT-LOCAL-0.1.md",
+    "notIntegratedIntoApk": true,
+    "realDelivery": false,
+    "realPush": false,
+    "realDatabaseConcurrencyTested": false
+  },
+  "localDatabase": {
+    "status": "postgres-verified-supabase-runtime-blocked",
+    "supabaseCli": "2.109.1",
+    "localProjectId": "resicheck-connect-local",
+    "migration": "supabase/migrations/20261106200713_connect_foundation.sql",
+    "postgresTestVersion": "17.9",
+    "sqlAssertions": 113,
+    "concurrencyChecks": 3,
+    "realNonprivilegedRls": true,
+    "authFixture": true,
+    "supabaseAuthVerified": false,
+    "remoteCreated": false,
+    "productionSecurityValidated": false,
+    "evidence": "docs/testing/BANCO-LOCAL-0.1.md",
+    "blocker": "Docker Desktop backend failed renaming sailor-ingest.sock to .stale; daemon unavailable. No permission change/reset/image download attempted.",
+    "migrationSha256": "445da1ce346266e485ae3e8103f2888337d626c5a280f90bb3f80b71d763b0f3",
+    "latestRun": "output/postgres-rls/20261106-191101-366"
+  },
+  "onlineDeploymentPlan": {
+    "status": "applied-negative-tests-pass-auth-positive-blocked",
+    "targetSource": "user-created-project",
+    "projectRef": "ibdlvlwdzmsrbqadrudb",
+    "url": "https://ibdlvlwdzmsrbqadrudb.supabase.co",
+    "connectorAccessVerified": true,
+    "migrationApprovalVerified": true,
+    "remoteMutationsExecuted": true,
+    "migrationSha256": "445da1ce346266e485ae3e8103f2888337d626c5a280f90bb3f80b71d763b0f3",
+    "manifest": "supabase/deployment/candidate.json",
+    "plan": "docs/delivery/PLANO-SUPABASE-ONLINE.md",
+    "projectIdentityVerified": true,
+    "preflightReport": "docs/testing/PREFLIGHT-SUPABASE-ONLINE.md",
+    "observed": {
+      "postgres": "17.11",
+      "publicTables": 0,
+      "migrations": 0,
+      "securityLints": 0,
+      "performanceInfo": [
+        "auth_db_connections_absolute"
+      ]
+    },
+    "candidateReview": "docs/testing/REVISAO-CANDIDATO-BANCO.md",
+    "remoteVersion": "20261106200713",
+    "receipt": "supabase/deployment/receipt.json",
+    "deploymentReport": "docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md",
+    "positiveAuthBlocked": true,
+    "syntheticAccountsCreated": 0
+  },
+  "interfaceIntegration": {
+    "status": "integrated-local-tested",
+    "patchSha256": "a2ff4e20b9d72f21f0116e99cbf13aabf50e6eca42ebb65835780ab3744b9706",
+    "patchCommit": "dd90c90bebcd749a8cc08934ae1530e8f4092289",
+    "sourceBaselineMatched": true,
+    "conflicts": false,
+    "typecheck": "pass",
+    "modelAndNavigationTests": 17,
+    "webChecks": 20,
+    "webConsoleErrors": 0,
+    "webConsoleWarnings": 0,
+    "androidBuild": "pass",
+    "candidateApkSha256": "6552c10b7d663e9b928f4a6ba96c56152a130b5695d6c70dc31f229ec5d55897",
+    "nativeAndroid": {
+      "checks": 10,
+      "warnings": 0,
+      "os": "Android16 API36 emulator",
+      "evidence": "output/android-qa/2026-11-06T19-51-01-265Z/result.json"
+    },
+    "deliveredApkPreserved": true,
+    "deliveredApkSha256": "bf6e0a4095ac9e7630589f42e2eeea6d3d39cecf6e36968b877c9286cd11e719",
+    "published": false,
+    "report": "docs/testing/INTEGRACAO-INTERFACE-0.1.md",
+    "sourceAppSha256": "c18727b11b457403af50437d0afe42df6e3005e52d8e91b68868981f341b59f8",
+    "candidateApkBytes": 42046842,
+    "emulatorStopped": true
+  },
+  "costs": {
+    "supabaseConnect": {
+      "projectRef": "ibdlvlwdzmsrbqadrudb",
+      "tier": "Micro additional project",
+      "indicatedMonthlyUsd": 10,
+      "source": "Lucas / project coordination, 2026-11-06",
+      "invoiceVerified": false,
+      "subjectToUsageAndTaxes": true,
+      "includesOtherProjects": false,
+      "evidence": "docs/project/CUSTOS.md"
+    }
+  },
+  "emojiRequirement": {
+    "item": "APP-057",
+    "status": "implemented-locally-native-qa-running-online-and-accessibility-pending",
+    "source": "Lucas 2026-11-06",
+    "evidence": "docs/product/EMOJIS-E-UNICODE.md",
+    "currentLimitCompatibility": "App/local chat use2000 Unicode17 graphemes+64KiB; appliedSQL stillchar_length2000 and mustbealignedbeforeintegration"
+  },
+  "onlineDatabaseTests": {
+    "sqlNegative": 33,
+    "httpChecks": 6,
+    "positiveLogin": false,
+    "positiveTenantRls": false,
+    "report": "docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md"
+  },
+  "authReferenceReview": {
+    "source": "Read-only authentication pattern reference, authorized for Connect",
+    "report": "docs/architecture/LOGIN-BASE-RESICHECK.md",
+    "implemented": false,
+    "resicheckModified": false,
+    "positiveAuthUnblocked": false,
+    "requiredAdaptations": [
+      "native-session-storage-and-AppState",
+      "session-generation-and-logout-precedence",
+      "safe-public-errors",
+      "own-profile-onboarding-and-authoritative-company-memberships"
+    ],
+    "blocker": "Secure Auth Admin fixture channel unavailable; positive authentication tests pending"
+  },
+  "localSessionGuard": {
+    "status": "integrated-into-synthetic-ui-not-real-auth",
+    "tests": 10,
+    "typecheck": true,
+    "report": "packages/session/README.md",
+    "provesOnlineAuth": false,
+    "changesDeliveredApk": false,
+    "integrationReport": "docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md"
+  },
+  "sessionInterfaceIntegration": {
+    "status": "synthetic-interface-integrated-and-verified",
+    "mobileTests": 24,
+    "sessionTests": 10,
+    "accessTests": 18,
+    "webChecks": 27,
+    "nativeChecks": 11,
+    "realAuthenticationTested": false,
+    "realBackendTested": false,
+    "deliveredApkPreserved": true,
+    "report": "docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md",
+    "candidateSha256": "69918a0c67a1919aaefbfc054431cf00af6c7545e09e5453ea4c1a589db3c378",
+    "nativeWarnings": 0,
+    "nativeEvidence": "output/android-qa/2026-11-06T20-43-00-453Z/result.json"
+  },
+  "emojiImplementation": {
+    "report": "docs/testing/EMOJIS-0.1.md",
+    "textTests": 8,
+    "unicodeConformanceCases": 766,
+    "mobileTests": 26,
+    "chatTests": 26,
+    "webChecks": 37,
+    "nativeStatus": "12-prior-checks-and-targeted-ime-paste-boundary-pass-original-stress-run-remains-failed",
+    "realAuth": false,
+    "realSupabasePersistence": false,
+    "stressFinding": {
+      "inputRequested": 2000,
+      "observedFieldAndCounter": 1130,
+      "cause": "unresolved-ADB-IME-event-controller-path",
+      "evidence": "output/android-qa/2026-11-06T21-10-06-203Z/result.json",
+      "deliveredApksUnaffected": true
+    },
+    "nativeTargetedEvidence": "output/emoji-integration/native-targeted-result.json",
+    "nativeImeEntry": true,
+    "nativeUnicodePaste": true,
+    "nativePacedBoundaryCases": [
+      2000,
+      2001,
+      2000
+    ],
+    "deliveredVersion": "0.1.1"
+  },
+  "latestDriveDelivery": {
+    "date": "2026-11-07",
+    "file": "resicheck-connect-demo-0.1.3-build7-arm64-x86_64.apk",
+    "size": 42089864,
+    "sha256": "528fa066c449080e13104ef2812685ba9fd05566b0ccbe2a7acf23bce5220ee9",
+    "package": "com.resicheck.connect.demo",
+    "versionName": "0.1.3",
+    "versionCode": 7,
+    "minSdk": 24,
+    "targetSdk": 36,
+    "abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "signature": {
+      "scheme": "v2",
+      "certificateSha256": "fac61745dc0903786fb9ede62a962b399f7348f0bb6f899b8332667591033b9c",
+      "kind": "Android Debug for testing"
+    },
+    "permissions": [
+      "com.resicheck.connect.demo.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+    ],
+    "mode": "synthetic-local-in-memory",
+    "realBackend": false,
+    "previousApksPreserved": true,
+    "sourceSha256": "9c60398aebdc5a7426a48933345da5ea85cdd581f49ac3a9a87f3792627ccf14",
+    "url": "https://drive.google.com/file/d/13UTaZeKXxY-NNH4gXHdTscq1wt24RdaH/view?usp=drivesdk",
+    "instructionsUrl": "https://drive.google.com/file/d/17zXmlrgTQJ-qXchdGpgRixEyxzq8Z8Gi/view?usp=drivesdk",
+    "qaUrl": "https://drive.google.com/file/d/1Kx2k3I9bYhNTzZeoGOe_DYzinxJuYegq/view?usp=drivesdk",
+    "report": "docs/delivery/DEMO-0.1.3-BUILD7.md",
+    "metadataReadbackVerified": true,
+    "privateOwnerOnly": true
+  },
+  "audioLayoutFix": {
+    "status": "delivered-synthetic-fix-with-documented-coverage",
+    "report": "docs/testing/AUDIO-LAYOUT-0.1.1.md",
+    "deliveryReport": "docs/delivery/DEMO-0.1.1-BUILD2.md",
+    "versionName": "0.1.1",
+    "versionCode": 2,
+    "sha256": "3eb80a054208dc970314611b63b4b6d4232b3b2b0e910e8a40bab1c9e093e948",
+    "webConfigurations": 32,
+    "webBubbles": 64,
+    "nativePrimaryConfigurations": 8,
+    "nativeFinalFont2FourComponentAccess": 4,
+    "nativeFinalUnresolvedAfterSupplement": 0,
+    "nativeReferencesDistinguished": true,
+    "originalScreenshotMaterialized": false,
+    "originalScreenshotBlocker": "Official Library helper failed on Windows os.setxattr; direct read provided metadata/caption. Own synthetic native baseline reproduced the visual defect.",
+    "settingsRestored": true,
+    "emulatorStopped": true,
+    "deliveredApksPreserved": true
+  },
+  "inputStressInvestigation": {
+    "item": "APP-060",
+    "webTypedCharacters": 2000,
+    "webInputEvents": 2000,
+    "webMonotonic": true,
+    "nativeBurstRequested": 2000,
+    "nativeBurstObserved": 1130,
+    "cause": "cadence-dependent-in-both-paths-exact-loss-point-unresolved",
+    "report": "docs/testing/ENTRADA-SOB-RAJADA.md",
+    "status": "native-comparison-reproduced-in-both-paths",
+    "storeAsciiCallbacks": 2000,
+    "storeComposedEmojiCallbacks": 2000,
+    "finalApkBurstObserved": 1110,
+    "nativeEditTextBurstObserved": 1517,
+    "firstComparison": "output/input-burst/run-2026-11-06T22-29-32-243Z/result.json",
+    "extendedComparison": "output/input-burst/run-2026-11-06T22-34-38-308Z/result.json",
+    "nativeInstrumentedBurstObserved": 1602,
+    "nativeInstrumentedPreImeDown": 1602,
+    "nativeInstrumentedPreImeUp": 1602,
+    "secondFinalApkBurstObserved": 1232,
+    "nativePacedObserved": 2000,
+    "finalApkPacedObserved": 2000,
+    "pacedChunkSize": 50,
+    "pauseMs": 100,
+    "shellArgumentIntact": true,
+    "appSourceModified": false,
+    "summary": "output/input-burst/summary.json",
+    "settingsRestored": true
+  },
+  "chatClientQueue": {
+    "status": "synthetic-ui-validated-with-limitations",
+    "tests": 13,
+    "typecheck": true,
+    "report": "docs/testing/FILA-DE-ENVIO-LOCAL.md",
+    "durableStorage": false,
+    "realTransport": false,
+    "deliveredApkChanged": false,
+    "appIntegrated": true,
+    "integrationModelTests": 39,
+    "newIntegrationTests": 13,
+    "webChecks": 10,
+    "webRegressionChecks": 37,
+    "integrationReport": "docs/testing/FILA-INTERFACE-0.1.2.md",
+    "candidate": {
+      "versionName": "0.1.2",
+      "versionCode": 3,
+      "sha256": "f62918470bd7f51b295736f4f52d3bd12c5110f7b5934a9b95c9c0ea4cafbb7c",
+      "uploaded": false
+    },
+    "nativeStandardJourneysPassed": 5,
+    "nativeDirectedFont2": "passed-with-limitations",
+    "nativeWarmResize": "unverified",
+    "emulatorStopped": true,
+    "settingsRestored": true,
+    "nativeSummary": "output/queue-qa/summary.json"
+  },
+  "previousDriveDeliveries": [
+    {
+      "versionName": "0.1.1",
+      "versionCode": 2,
+      "sha256": "3eb80a054208dc970314611b63b4b6d4232b3b2b0e910e8a40bab1c9e093e948",
+      "url": "https://drive.google.com/file/d/1r3RnuCEdTyaL9rE2-TvB37oFw91EXl14/view?usp=drivesdk",
+      "instructionsUrl": "https://drive.google.com/file/d/19WRDWyCGm9-OMb7qTNuJsVYQ4JD9Ai-m/view?usp=drivesdk",
+      "qaUrl": "https://drive.google.com/file/d/1v9csPMrCMNnvUk6FqdaBKePbBY_nJOyN/view?usp=drivesdk",
+      "beforeUrl": "https://drive.google.com/file/d/1vX2sDyBuwi2BelpszSTbWNYNvVzeC2vz/view?usp=drivesdk",
+      "afterUrl": "https://drive.google.com/file/d/1koCGQN1o8SuJg29qpuV0DESQWBn924A9/view?usp=drivesdk",
+      "report": "docs/delivery/DEMO-0.1.1-BUILD2.md",
+      "emojiIncluded": true,
+      "previousApksPreserved": true,
+      "metadataReadbackVerified": true,
+      "privateOwnerOnly": true
+    }
+  ],
+  "gitCheckpoint": {
+    "date": "2026-11-07",
+    "coreCommit": "e7a1839",
+    "mobileCommit": "d2bbe1d",
+    "testCount": 124,
+    "typecheckCount": 6,
+    "scope": "Reviewed source, synthetic tests and documentation only; no output/binaries/credentials/private review notes",
+    "report": "docs/project/CHECKPOINT-2026-11-07.md"
   }
 }

@@ -36,3 +36,7 @@ Telemedicina permanece fora do escopo. O backlog futuro é preservado, sem bloqu
 Quando essa fase for autorizada, o assistente virtual deve se identificar e explicar que é uma camada adicional de atendimento para evitar filas. Não se apresentar como funcionário humano, prometer fim das filas ou prazo não garantido. Um atendente pode assumir a qualquer momento, com resumo do atendimento para continuidade e revisão. Definir destinatário e conteúdo do resumo; respeitar a autorização da conversa.
 
 Handoff futuro deve suspender respostas automáticas concorrentes, preservar autoria e permitir correção do resumo pela equipe. Dados enviados ao modelo continuam mínimos e autorizados, sem decisões clínicas ou acesso irrestrito. Esta descrição não implementa nem ativa assistente ou resumo automático.
+
+## Atualização: emojis no texto
+
+O MVP inclui emojis como parte das mensagens, com entrada pelo teclado do sistema e persistência Unicode íntegra. Limites devem contar graphemes e não cortar sequências compostas. Reações/figurinhas não foram solicitadas. Ver [requisito e testes pendentes](EMOJIS-E-UNICODE.md); a demonstração atual ainda não satisfaz todo esse aceite.
