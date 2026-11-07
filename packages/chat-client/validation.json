@@ -1,0 +1,38 @@
+{
+  "recordedAt": "2026-11-06T22:30:22.314Z",
+  "scope": "Local TypeScript text send queue only; controlled async synthetic fixtures and local reference sendText",
+  "node": "v24.15.0",
+  "checks": [
+    {
+      "command": "npm --prefix packages/chat-client test",
+      "exitCode": 0,
+      "tests": 13,
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0
+    },
+    {
+      "command": "npm --prefix packages/chat-client run typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run project:check",
+      "exitCode": 0
+    }
+  ],
+  "sha256": {
+    "src/text-send-queue.ts": "ca1d9a51680c59e16e9a3b376b6df7abe842ac49ad5dadff68b48dbabccad50e",
+    "tests/text-send-queue.test.ts": "cf351df2bfb7e307f55989daeb499610c3ea22899f3b5af92dffd7f44f9227ba",
+    "README.md": "1e3d4bc64b4676f2c42818e9d7eb9781e75367eaf7a23681e19012081e6e53f0",
+    "package.json": "ccba7adc9dfc3acd992cc546262bbd80c4dedddc22749b72df93809d493b35f7",
+    "tsconfig.json": "7d82169a0fe1264e0c11a8368b672ee7911fa1795285efbbffbf36175c165607"
+  },
+  "noNewDependencies": true,
+  "appIntegrated": false,
+  "realTransportTested": false,
+  "persistenceTested": false,
+  "nativeTested": false,
+  "backendAuthorizationProven": false,
+  "boardEdited": false,
+  "note": "Receipt records successful executions observed in this task. No repeated execution for documentation/hash-only changes."
+}

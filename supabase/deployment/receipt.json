@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "status": "applied-negative-tests-pass-auth-positive-blocked",
+  "projectRef": "ibdlvlwdzmsrbqadrudb",
+  "url": "https://ibdlvlwdzmsrbqadrudb.supabase.co",
+  "approvedSha256": "445da1ce346266e485ae3e8103f2888337d626c5a280f90bb3f80b71d763b0f3",
+  "preparedVersion": "20261106185009",
+  "remoteVersion": "20261106200713",
+  "migrationName": "connect_foundation",
+  "canonicalMigrationFile": "supabase/migrations/20261106200713_connect_foundation.sql",
+  "approvedArtifactFile": "supabase/deployment/approved/20261106185009_connect_foundation.sql",
+  "confirmedAt": "2026-11-06T20:07:15.910Z",
+  "publicTables": [
+    "public.profiles",
+    "public.companies",
+    "public.memberships",
+    "public.conversations",
+    "public.messages"
+  ],
+  "catalogChecks": "passed",
+  "tests": {
+    "sqlNegativeChecks": 33,
+    "httpNegativeAndGatewayChecks": 6,
+    "positiveAuth": false,
+    "positiveOnlineTenantRls": false,
+    "localSqlAssertions": 113,
+    "localConcurrencyChecks": 3
+  },
+  "advisors": [
+    {
+      "type": "security",
+      "groups": [
+        {
+          "name": "rls_enabled_no_policy",
+          "level": "INFO",
+          "count": 7,
+          "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy"
+        }
+      ]
+    },
+    {
+      "type": "performance",
+      "groups": [
+        {
+          "name": "unindexed_foreign_keys",
+          "level": "INFO",
+          "count": 9,
+          "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0001_unindexed_foreign_keys"
+        },
+        {
+          "name": "unused_index",
+          "level": "INFO",
+          "count": 3,
+          "remediation": "https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index"
+        },
+        {
+          "name": "auth_db_connections_absolute",
+          "level": "INFO",
+          "count": 1,
+          "remediation": "https://supabase.com/docs/guides/deployment/going-into-prod"
+        }
+      ]
+    }
+  ],
+  "cleanup": {
+    "syntheticAccountsCreated": 0,
+    "applicationRows": {
+      "messages": 0,
+      "profiles": 0,
+      "companies": 0,
+      "memberships": 0,
+      "conversations": 0
+    },
+    "temporarySqlHelpers": "rolled back",
+    "persistentFixtureDataCreated": false
+  },
+  "blocker": {
+    "action": "Create synthetic Auth users and run positive login/tenant tests",
+    "mcp": "No Auth Admin creation/deletion capability or privileged admin credential channel",
+    "browser": "Computer Use stopped: browser URL policy enforcement is not yet supported for the current Windows browser",
+    "state": "not retried or bypassed"
+  },
+  "credentialsIncluded": false
+}

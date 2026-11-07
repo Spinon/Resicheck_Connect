@@ -1,0 +1,11 @@
+{
+  "name": "@resicheck-connect/chat-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "typecheck": "node ../../apps/mobile/node_modules/typescript/bin/tsc -p tsconfig.json"
+  },
+  "engines": { "node": ">=22.13.0" }
+}

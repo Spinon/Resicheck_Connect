@@ -1,0 +1,12 @@
+{
+  "name": "@resicheck-connect/text",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-strip-types --test tests/*.test.ts",
+    "typecheck": "node ../../apps/mobile/node_modules/typescript/bin/tsc -p tsconfig.json"
+  },
+  "dependencies": { "unicode-segmenter": "0.17.3" },
+  "engines": { "node": ">=22.13.0" }
+}

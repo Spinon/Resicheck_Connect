@@ -1,0 +1,30 @@
+{
+  "date": "2026-11-07",
+  "scope": "Local in-memory history controller and JSON roundtrip to synthetic authorized reference server; not Android/Auth/network/RLS proof",
+  "commands": [
+    {
+      "command": "npm run chat-client:typecheck",
+      "exitCode": 0
+    },
+    {
+      "command": "npm run chat-client:test",
+      "exitCode": 0,
+      "passed": 21,
+      "newHistoryTests": 8,
+      "priorSendTests": 13
+    }
+  ],
+  "files": {
+    "packages/chat-client/src/text-history.ts": "c1f3a86286d6e59baf5b6b68dacedbc658498d773c1a0d93ee520ce46712442a",
+    "packages/chat-client/tests/text-history.test.ts": "7fdb30456ff21406afd522f26ae3c6c02d552302a9f98d277f421f093ff937fb"
+  },
+  "report": "docs/testing/HISTORICO-CLIENTE-0.1.md",
+  "subsequentValidation": {
+    "date": "2026-11-07",
+    "tests": 22,
+    "historyTests": 8,
+    "sendQueueTests": 14,
+    "typecheckExitCode": 0,
+    "report": "docs/testing/FILA-CAPACIDADE-0.1.md"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "schemaVersion": 1,
+  "status": "applied-negative-tests-pass-auth-positive-blocked",
+  "target": {
+    "projectRef": "ibdlvlwdzmsrbqadrudb",
+    "url": "https://ibdlvlwdzmsrbqadrudb.supabase.co",
+    "source": "user-provided-new-project",
+    "connectorAccessVerified": true,
+    "projectIdentityVerified": true
+  },
+  "migration": {
+    "file": "supabase/migrations/20261106200713_connect_foundation.sql",
+    "version": "20261106200713",
+    "sha256": "445da1ce346266e485ae3e8103f2888337d626c5a280f90bb3f80b71d763b0f3",
+    "reviewNote": "Grant revocation narrowed to Connect objects only; supersedes prior locally tested hash 16d42c11f58dc62b4114b3c6c416868a95602d126d1d0681adfbe925f8b965b7.",
+    "preparedVersion": "20261106185009"
+  },
+  "localEvidence": {
+    "engine": "PostgreSQL 17.9 with fixture Auth context",
+    "run": "output/postgres-rls/20261106-191101-366",
+    "sqlAssertions": 113,
+    "concurrencyAndRollbackChecks": 3,
+    "supabaseAuthVerified": false
+  },
+  "gates": {
+    "accessAndIdentity": "verified-readonly-2026-11-06",
+    "readOnlyPreflight": "passed-online-readonly-2026-11-06",
+    "specificMigrationApproval": "authorized-and-applied-2026-11-06",
+    "syntheticAuthAndSeedApproval": "authorized-but-auth-admin-channel-blocked",
+    "onlineTests": "33 SQL negative and 6 HTTP checks passed; positive Auth/tenant tests blocked",
+    "cleanupScopeApproval": "authorized; no persistent fixture data created"
+  },
+  "allowedNow": "This candidate is already applied. Never reapply it. Continue tests only with an authorized Auth Admin channel; no bypass of browser policy.",
+  "prohibitedTargets": "Any existing ResiCheck project or organization whose access was denied; no alternate route.",
+  "credentialsIncluded": false,
+  "remoteMutationsExecuted": true,
+  "approvedArtifact": {
+    "file": "supabase/deployment/approved/20261106185009_connect_foundation.sql",
+    "sha256": "445da1ce346266e485ae3e8103f2888337d626c5a280f90bb3f80b71d763b0f3",
+    "preparedVersion": "20261106185009"
+  },
+  "receipt": "supabase/deployment/receipt.json"
+}

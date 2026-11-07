@@ -8,7 +8,19 @@
     "project:status": "node scripts/project.mjs --write",
     "mobile:typecheck": "npm --prefix apps/mobile run typecheck",
     "mobile:test": "npm --prefix apps/mobile test",
-    "mobile:export:android": "npm --prefix apps/mobile run export:android"
+    "mobile:export:android": "npm --prefix apps/mobile run export:android",
+    "access:typecheck": "npm --prefix packages/access run typecheck",
+    "session:typecheck": "npm --prefix packages/session run typecheck",
+    "session:test": "npm --prefix packages/session test",
+    "text:typecheck": "npm --prefix packages/text run typecheck",
+    "text:test": "npm --prefix packages/text test",
+    "access:test": "npm --prefix packages/access test",
+    "chat:typecheck": "npm --prefix packages/chat run typecheck",
+    "chat:test": "npm --prefix packages/chat test",
+    "db:test:postgres": "pwsh -NoProfile -File scripts/test-postgres-local.ps1",
+    "db:verify-candidate": "node scripts/verify-deployment-candidate.mjs",
+    "chat-client:test": "npm --prefix packages/chat-client test",
+    "chat-client:typecheck": "npm --prefix packages/chat-client run typecheck"
   },
   "engines": {
     "node": ">=22.13.0"

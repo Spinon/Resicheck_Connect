@@ -1,0 +1,26 @@
+// Local artifact checks only. Never connects, authenticates, deploys or grants permission.
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import assert from 'node:assert/strict';
+import { fileURLToPath } from 'node:url';
+const root = new URL('../', import.meta.url);
+const candidate = JSON.parse(readFileSync(new URL('supabase/deployment/candidate.json', root), 'utf8'));
+assert.equal(candidate.status, 'applied-negative-tests-pass-auth-positive-blocked');
+assert.equal(candidate.target.projectRef, 'ibdlvlwdzmsrbqadrudb');
+assert.equal(candidate.target.url, 'https://ibdlvlwdzmsrbqadrudb.supabase.co');
+assert.equal(candidate.target.connectorAccessVerified, true);
+assert.equal(candidate.target.projectIdentityVerified, true);
+assert.equal(candidate.gates.specificMigrationApproval, 'authorized-and-applied-2026-11-06');
+assert.equal(candidate.remoteMutationsExecuted, true);
+assert.equal(candidate.credentialsIncluded, false);
+assert.equal(candidate.migration.file, 'supabase/migrations/20261106200713_connect_foundation.sql');
+assert.equal(candidate.migration.version, '20261106200713');
+const sql = readFileSync(new URL(candidate.migration.file, root));
+assert.equal(createHash('sha256').update(sql).digest('hex'), candidate.migration.sha256);
+const approved = readFileSync(new URL(candidate.approvedArtifact.file,root));
+assert.equal(createHash('sha256').update(approved).digest('hex'),candidate.migration.sha256);
+assert.ok(!/revoke\s+all\s+on\s+all\s+(tables|functions|sequences)/i.test(sql.toString('utf8')), 'Candidate must scope revocation to Connect objects');
+const preflight=readFileSync(new URL('supabase/deployment/preflight-readonly.sql',root),'utf8');
+assert.ok(/begin read only;/i.test(preflight) && /commit;\s*$/i.test(preflight));
+assert.ok(!/\b(insert|update|delete|drop|alter|create|grant|revoke|truncate|copy|call|do)\b/i.test(preflight.replace(/--[^\n]*/g,'')), 'Read-only artifact contains unexpected statement keyword');
+process.stdout.write(JSON.stringify({status:'passed-local-artifact-checks',migration:fileURLToPath(new URL(candidate.migration.file,root)),sha256:candidate.migration.sha256,candidateApplied:true,remoteExecutedByVerifier:false})+'\n');
