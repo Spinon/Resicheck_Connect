@@ -1,0 +1,236 @@
+#!/usr/bin/env node
+// Window/IME geometry observation only. No App/model edits or real server operations.
+// Requires explicit owned emulator serial and exact baseline APK hash.
+import { execFileSync } from 'node:child_process';
+import { mkdirSync, writeFileSync, existsSync } from 'node:fs';
+import { dirname, resolve, join } from 'node:path';
+import { fileURLToPath } from 'node:url';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {readFileSync} from 'node:fs';
+import {resourceId} from './android-queue-smoke.mjs';
+
+let PACKAGE = 'com.resicheck.connect.demo';
+const args = process.argv.slice(2);
+const options = {};
+for (let i = 0; i < args.length; i += 2) {
+  if (!['--serial', '--adb', '--expected-sha256', '--target'].includes(args[i]) || !args[i + 1] || args[i + 1].startsWith('--')) {
+    throw new Error('Usage: node android-selection-causal.mjs --target rn|native-config|native-recreate --serial emulator-N --expected-sha256 HEX [--adb PATH]');
+  }
+  assert(!options[args[i]], `Duplicate option: ${args[i]}`);
+  options[args[i]] = args[i + 1];
+}
+assert(/^emulator-\d+$/.test(options['--serial'] ?? ''), 'An explicit emulator-N serial is required; physical devices are refused.');
+const serial = options['--serial'];
+const targets={rn:{package:'com.resicheck.connect.demo',activity:'MainActivity',field:'Mensagem fictícia'},'native-config':{package:'com.resicheck.connect.selectionprobe',activity:'ConfigurationActivity',field:'Synthetic selection probe input'},'native-recreate':{package:'com.resicheck.connect.selectionprobe',activity:'RecreateActivity',field:'Synthetic selection probe input'}};
+const target=options['--target'];assert(Object.hasOwn(targets,target),'Explicit allowlisted target required');const descriptor=targets[target];PACKAGE=descriptor.package;const FIELD_LABEL=descriptor.field;
+function isInput(n){return n['content-desc']===FIELD_LABEL&&/EditText|ProbeInput$/.test(n.class??'');}
+const sdk = process.env.ANDROID_HOME || process.env.ANDROID_SDK_ROOT || (process.env.LOCALAPPDATA && join(process.env.LOCALAPPDATA, 'Android', 'Sdk'));
+const candidate = sdk && join(sdk, 'platform-tools', process.platform === 'win32' ? 'adb.exe' : 'adb');
+const adb = options['--adb'] || (candidate && existsSync(candidate) ? candidate : 'adb');
+const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
+const runId = new Date().toISOString().replace(/[:.]/g, '-');
+const evidence = join(root, 'output', 'selection-causal', 'run-'+runId);
+mkdirSync(evidence, { recursive: true });
+const result = { scope: 'Native Android synthetic simulation UI', package: PACKAGE, serial, startedAt: new Date().toISOString(), checks: [], warnings: [], realAuthenticationTested: false, realChatTested: false, backendAuthorizationTested: false, realPushTested: false, realAudioTested: false };
+const remoteXml = `/sdcard/connect-demo-qa-${process.pid}.xml`;
+let verifiedEmulator = false;
+let lastXml = '';
+const delay = ms => new Promise(r => setTimeout(r, ms));
+function adbRun(parts, binary = false, timeout = 15000) {
+  return execFileSync(adb, ['-s', serial, ...parts], { encoding: binary ? null : 'utf8', timeout, maxBuffer: 24 * 1024 * 1024, windowsHide: true });
+}
+function shell(...parts) { return adbRun(['shell', ...parts]); }
+function decode(value) {
+  return value.replace(/&(#x[0-9a-f]+|#\d+|amp|lt|gt|quot|apos);/gi, (_, entity) => {
+    if (entity[0] === '#') {
+      const n = entity[1].toLowerCase() === 'x' ? parseInt(entity.slice(2), 16) : parseInt(entity.slice(1), 10);
+      return n >= 0 && n <= 0x10ffff ? String.fromCodePoint(n) : '\ufffd';
+    }
+    return { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'" }[entity.toLowerCase()];
+  });
+}
+const normalize = text => (text ?? '').replace(/\s+/g, ' ').trim();
+function parse(xml) {
+  return [...xml.matchAll(/<node\b[^>]*>/g)].map(match => {
+    const attrs = Object.fromEntries([...match[0].matchAll(/([\w:-]+)="([^"]*)"/g)].map(a => [a[1], decode(a[2])]));
+    const bounds = attrs.bounds?.match(/^\[(\d+),(\d+)\]\[(\d+),(\d+)\]$/);
+    return { ...attrs, rect: bounds ? bounds.slice(1).map(Number) : null };
+  });
+}
+function visible(node) { return node?.rect && node.rect[2] > node.rect[0] && node.rect[3] > node.rect[1] && node['visible-to-user'] !== 'false'; }
+function matches(node, label) { return normalize(node['content-desc']) === normalize(label) || normalize(node.text) === normalize(label); }
+function inApp() {
+  // API 36's "windows" subcommand can omit global focus fields. The full dump
+  // contains the authoritative focused window; still refuse input if absent.
+  const focus = shell('dumpsys', 'window').split(/\r?\n/).filter(line => /mCurrentFocus=|mFocusedApp=/.test(line));
+  assert(focus.some(line => line.includes(`${PACKAGE}/`) || line.includes(`${PACKAGE} `)), `Target app is not focused: ${focus.join(' | ')}`);
+  assert(!focus.some(line => /mCurrentFocus=/.test(line) && !line.includes(`${PACKAGE}/`)), 'A different window is focused; refusing input.');
+}
+function snapshot() {
+  inApp();
+  assert(/^\/sdcard\/connect-demo-qa-\d+\.xml$/.test(remoteXml));
+  let lastError;
+  for (let attempt=0;attempt<3;attempt++) {
+    try {
+      lastXml='';
+      // Delete only this process's previous dump, never app data. A failed dump
+      // must not silently reuse a stale XML file (uiautomator can exit zero).
+      shell('rm','-f',remoteXml);
+      const output=shell('uiautomator','dump',remoteXml);
+      assert(!/ERROR|could not get idle state/i.test(output),'UIAutomator dump reported failure');
+      lastXml=adbRun(['exec-out','cat',remoteXml]);
+      assert(lastXml.includes('<hierarchy'),'UIAutomator did not produce fresh XML');
+      return parse(lastXml).filter(n=>n.package===PACKAGE);
+    } catch(error) {lastError=error;}
+  }
+  throw lastError;
+}
+function screenshot(name) {
+  inApp();
+  const png = adbRun(['exec-out', 'screencap', '-p'], true);
+  assert(png.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10])), 'Invalid screenshot PNG bytes');
+  writeFileSync(join(evidence, `${name}.png`), png);
+  if (lastXml) writeFileSync(join(evidence, `${name}.xml`), lastXml, 'utf8');
+}
+async function waitFor(predicate, description, timeout = 22000) {
+  const deadline = Date.now() + timeout;
+  let nodes;
+  let focusError;
+  do {
+    try {
+      nodes = snapshot();
+      focusError = undefined;
+    } catch (error) {
+      // Launch/transition can briefly have no app focus. Retry observation only;
+      // input remains forbidden until the strict focus guard succeeds.
+      if (!/Target app is not focused|A different window is focused/.test(error.message)) throw error;
+      focusError = error;
+      await delay(350);
+      continue;
+    }
+    if (predicate(nodes)) return nodes;
+    await delay(350);
+  } while (Date.now() < deadline);
+  throw new Error(`Timed out: ${description}${focusError ? ` (${focusError.message})` : ''}`);
+}
+async function expect(label) { return waitFor(nodes => nodes.some(n => matches(n, label)), `visible label ${label}`); }
+async function hardwareBack() {
+  inApp();
+  shell('input', 'keyevent', 'KEYCODE_BACK');
+  await delay(450);
+}
+async function hideKeyboard() {
+  if (/mInputShown=true|isInputViewShown=true/.test(shell('dumpsys', 'input_method'))) await hardwareBack();
+}
+async function tap(label, scroll = false) {
+  let nodes;
+  for (let attempt = 0; attempt < (scroll ? 6 : 1); attempt++) {
+    nodes = await waitFor(n => scroll ? n.length > 0 : n.some(node => matches(node, label) && visible(node) && node.enabled !== 'false'), `enabled app control ${label}`);
+    const node = nodes.find(n => matches(n, label) && visible(n) && n.enabled !== 'false');
+    if (node) {
+      inApp();
+      const [x1, y1, x2, y2] = node.rect;
+      shell('input', 'tap', String(Math.floor((x1 + x2) / 2)), String(Math.floor((y1 + y2) / 2)));
+      await delay(400);
+      return;
+    }
+    if (!scroll) break;
+    const viewport = nodes.filter(n => n.scrollable === 'true' && visible(n)).sort((a, b) => (b.rect[3] - b.rect[1]) - (a.rect[3] - a.rect[1]))[0];
+    assert(viewport, `Cannot find ${label}; no observed scrollable app bounds`);
+    const [x1, y1, x2, y2] = viewport.rect;
+    const x = Math.floor((x1 + x2) / 2);
+    inApp();
+    shell('input', 'swipe', String(x), String(Math.floor(y1 + (y2 - y1) * .8)), String(x), String(Math.floor(y1 + (y2 - y1) * .25)), '350');
+    await delay(350);
+  }
+  throw new Error(`No enabled visible UI node for ${label}`);
+}
+async function restart() {
+  shell('am', 'force-stop', PACKAGE);
+  shell('am', 'start', '-W', '-n', `${PACKAGE}/.MainActivity`);
+  await expect('Conhecer como paciente');
+}
+assert(/^[a-f0-9]{64}$/.test(options['--expected-sha256'] ?? ''), 'Explicit expected candidate SHA-256 required');
+const BASELINE = options['--expected-sha256'];
+const byId=(ns,id)=>ns.find(n=>resourceId(n)===id);
+function imeState(){const raw=shell('dumpsys','input_method');return {shown:/mInputShown=true|isInputViewShown=true/.test(raw),observed:/mInputShown=|isInputViewShown=/.test(raw),lines:raw.split(/\r?\n/).filter(l=>/mInputShown=|isInputViewShown=|mCurId=|mCurFocusedWindow=|mCurAttribute=/.test(l)).map(l=>l.trim())};}
+async function awaitIme(shown){const until=Date.now()+8000;do{const s=imeState();if(s.observed&&s.shown===shown)return s;await delay(150);}while(Date.now()<until);throw Error('IME state did not become '+shown);}
+async function openKeyboard(){const ns=snapshot(),field=ns.find(n=>isInput(n)&&visible(n));if(!field)return false;inApp();shell('input','tap',String(Math.floor((field.rect[0]+field.rect[2])/2)),String(Math.floor((field.rect[1]+field.rect[3])/2)));await awaitIme(true);return true;}
+async function closeKeyboard(){if(imeState().shown){inApp();shell('input','keyevent','KEYCODE_BACK');}await awaitIme(false);}
+async function patient(){if(target==='rn'){await restart();await tap('Conhecer como paciente',true);await tap('Abrir Centro Vida',true);await tap('Abrir meu chat',true);}else{shell('am','force-stop',PACKAGE);shell('am','start','-W','-n',PACKAGE+'/.'+descriptor.activity);}await expect(FIELD_LABEL);}
+function ancestors(xml,target){
+  const stack=[],items=[];for(const token of xml.matchAll(/<\/?node\b[^>]*>/g)){if(token[0].startsWith('</')){stack.pop();continue;}const a=Object.fromEntries([...token[0].matchAll(/([\w:-]+)="([^"]*)"/g)].map(x=>[x[1],decode(x[2])]));const node={...a,index:items.length,parent:stack.at(-1)};items.push(node);if(!token[0].endsWith('/>'))stack.push(node.index);}
+  const n=items.find(target),path=[];let parent=n?.parent;while(parent!==undefined){const p=items[parent];path.push({class:p.class,id:p['resource-id'],bounds:p.bounds});parent=p.parent;}return path;
+}
+function activityViewLines(raw){const at=raw.indexOf('ACTIVITY '+PACKAGE);const own=at>=0?raw.slice(at,raw.indexOf('\nACTIVITY ',at+1)>=0?raw.indexOf('\nACTIVITY ',at+1):undefined):'';return {found:at>=0,own,viewLines:own.split(/\r?\n/).filter(l=>/ReactRootView|ReactSurfaceView|ReactViewGroup|ReactEditText|ReactScrollView|ProbeInput|View Hierarchy|ViewRoot/.test(l))};}
+let expectedHeight,expectedWidth=880,expectedFont=2;
+async function captureFrame(name){
+  const ns=snapshot(),xml=lastXml,field=ns.find(n=>isInput(n)),list=byId(ns,'chat-message-list');
+  const ime=imeState(),window=shell('dumpsys','window'),activity=activityViewLines(shell('dumpsys','activity','top'));
+  writeFileSync(join(evidence,name+'-activity-top.txt'),activity.own||'Own Activity block not found\n');
+  const windowLines=window.split(/\r?\n/).filter(l=>/mCurrentFocus=|mFocusedApp=|mDisplayInfo=|DisplayFrames|mBaseDisplayWidth|mBaseDisplayHeight|mOverrideDisplayWidth|mOverrideDisplayHeight/.test(l));
+  const frame={name,observedAt:new Date().toISOString(),size:shell('wm','size'),density:shell('wm','density'),font:shell('settings','get','system','font_scale').trim(),ime,rootRect:ns[0]?.rect,keyboardFrame:ns.find(n=>resourceId(n)==='chat-keyboard-frame')?.rect,composerFrame:ns.find(n=>resourceId(n)==='chat-composer')?.rect,listRect:list?.rect,composer:field?{rect:field.rect,visible:visible(field),focused:field.focused,textIsPlaceholder:field.text===field.hint}:null,send:ns.find(n=>matches(n,'Enviar mensagem local'))?.rect,listAncestors:ancestors(xml,n=>n['resource-id']==='chat-message-list'),composerAncestors:ancestors(xml,n=>isInput(n)),windowLines,activityViewLines:activity.viewLines,activityBlockFound:activity.found};
+  lastXml=xml;screenshot(name);result.frames.push(frame);writeFileSync(join(evidence,'progress.json'),JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify({frame:name,composer:!!field,list:frame.listRect,ime:ime.shown,size:frame.size.trim().replace(/\r?\n/g,' | ')}));assert.equal(Number(frame.font),expectedFont,'Requested fontScale must remain active');if(expectedHeight)assert.equal((frame.size.match(/Override size: (\d+x\d+)/)?.[1]??frame.size.match(/Physical size: (\d+x\d+)/)?.[1]),expectedWidth+'x'+expectedHeight,'Requested window size must remain active');return frame;
+}
+async function resize(height){shell('wm','size',expectedWidth+'x'+height);expectedHeight=height;await delay(650);}
+async function reenter(){await closeKeyboard();inApp();shell('input','keyevent','KEYCODE_BACK');await expect('Abrir meu chat');await tap('Abrir meu chat',true);}
+async function recover(prefix){
+  if(imeState().shown){await closeKeyboard();await captureFrame(prefix+'-after-hide');}
+  const opened=await openKeyboard();await captureFrame(prefix+(opened?'-show-or-reshow':'-cannot-show-composer-absent'));
+  if(opened){await closeKeyboard();await captureFrame(prefix+'-hide-again');}
+  await reenter();await captureFrame(prefix+'-reentered-closed');const after=await openKeyboard();await captureFrame(prefix+(after?'-reentered-open':'-reentered-still-absent'));await closeKeyboard();
+}
+async function begin(height){await closeKeyboard();await resize(height);await patient();}
+async function check(name,fn){try{await fn();result.checks.push({name,status:'observed'});console.log('DONE '+name);}catch(error){result.checks.push({name,status:'incomplete',error:error.stack});try{await captureFrame(name+'-failure');}catch{}console.error(name+': '+error.message);}writeFileSync(join(evidence,'progress.json'),JSON.stringify(result,null,2)+'\n');}
+
+async function verifiedDraft(name,text,shown){
+  const f=await captureFrame(name),ns=parse(lastXml),n=ns.find(n=>isInput(n));
+  assert(n,'Composer missing');assert.equal(n.text,text,'Draft changed');assert.equal(n.focused,'true','Native input lost focus');assert.equal(f.ime.shown,shown,'Unexpected IME state');
+  assert(n.rect[1]>=0&&n.rect[3]<=expectedHeight,'Composer outside screen');
+  return f;
+}
+async function typeDraft(text){assert(await openKeyboard());shell('input','text',text);await waitFor(ns=>ns.some(n=>isInput(n)&&n.text===text),'exact small synthetic draft');}
+async function modalProbe(prefix,text){
+  await closeKeyboard();await tap('Opções da demonstração',true);let ns=await expect('Fechar opções da demonstração');const close=ns.find(n=>matches(n,'Fechar opções da demonstração'));
+  assert(close&&visible(close),'Close button not visible');assert(close.rect[3]<=expectedHeight,'Close outside viewport');screenshot(prefix+'-modal');
+  result.modalEvidence??=[];result.modalEvidence.push({name:prefix+'-modal',close:close.rect,size:shell('wm','size'),font:shell('settings','get','system','font_scale').trim()});
+  await tap('Fechar opções da demonstração');await waitFor(ns=>!ns.some(n=>resourceId(n)==='demo-options-panel'),'modal closed by button');assert(snapshot().some(n=>isInput(n)&&n.text===text),'Draft changed after close');
+  await tap('Opções da demonstração',true);await expect('Fechar opções da demonstração');inApp();shell('input','keyevent','KEYCODE_BACK');await waitFor(ns=>!ns.some(n=>resourceId(n)==='demo-options-panel'),'modal closed by hardware BACK');assert(snapshot().some(n=>isInput(n)&&n.text===text),'Draft changed after BACK');await captureFrame(prefix+'-modal-back');
+}
+async function selectionProbe(prefix,text){
+  assert(await openKeyboard());const ns=snapshot(),n=ns.find(n=>isInput(n));assert(n&&n.text===text);const x=Math.floor(target==='rn'?(n.rect[0]+n.rect[2])/2:n.rect[0]+(n.rect[2]-n.rect[0])*0.15),y=Math.floor((n.rect[1]+n.rect[3])/2);inApp();shell('input','swipe',String(x),String(y),String(x),String(y),'850');await delay(250);snapshot();screenshot(prefix+'-selection-before-resize');
+  const menu=parse(lastXml).filter(n=>/^(Select all|Selecionar tudo|Copy|Copiar|Cut|Recortar)$/.test(n.text||n['content-desc']||''));
+  result.selectionEvidence??=[];result.selectionEvidence.push({name:prefix+'-selection-before-resize',menu:menu.map(n=>({text:n.text,label:n['content-desc'],rect:n.rect})),exactIndicesVerified:false});
+  await resize(4096);await captureFrame(prefix+'-selection-after-grow');assert(snapshot().some(n=>isInput(n)&&n.text===text),'Draft changed after selection+resize');
+  await resize(2048);await captureFrame(prefix+'-selection-after-shrink');assert(snapshot().some(n=>isInput(n)&&n.text===text),'Draft changed after selection+reverse resize');
+  result.warnings.push(prefix+': native selection gesture/pixels captured; exact selection indices are not exposed by UIAutomator and are not claimed verified.');
+  await closeKeyboard();
+}
+function readNativeLogs(pid,label){
+  assert(/^\d+$/.test(pid));
+  const raw=shell('logcat','-d','--pid='+pid,'-b','main','-v','raw','-s','ConnectSelectionProbe:I');
+  writeFileSync(join(evidence,label+'-native.log'),raw);
+  const lines=raw.split(/\r?\n/).filter(x=>x.startsWith('{'));
+  const events=lines.map(line=>JSON.parse(line));
+  assert(events.length,'Own diagnostic process produced no index events');assert.equal(events.at(-1).activity,descriptor.activity,'Wrong native activity observed');
+  writeFileSync(join(evidence,label+'-native.json'),JSON.stringify(events,null,2)+'\n');
+  return {path:label+'-native.json',events:events.length,last:events.at(-1),activityInstances:[...new Set(events.map(x=>x.activityInstance))],inputInstances:[...new Set(events.map(x=>x.inputInstance))],collapses:events.filter(x=>x.event==='selection-changed'&&x.previousSelectionFirst!==x.previousSelectionSecond&&x.previousSelectionFirst>=0&&x.selectionStart===x.selectionEnd)};
+}
+let original;
+try{
+  assert.equal(shell('getprop','ro.kernel.qemu').trim(),'1');assert.equal(adbRun(['emu','avd','name']).replace(/\r/g,'').split('\n')[0],'Connect_Demo_API36');verifiedEmulator=true;
+  const path=shell('pm','path',PACKAGE).trim().replace(/^package:/,'');assert(/^\/data\/app\/[A-Za-z0-9_/=.+~-]+\/base\.apk$/.test(path));assert.equal(shell('sha256sum',path).split(/\s+/)[0],BASELINE);result.artifactSha256=BASELINE;
+  original={size:shell('wm','size'),density:shell('wm','density'),font:shell('settings','get','system','font_scale').trim()};result.originalSettings=original;result.frames=[];result.scope='Synthetic RN versus isolated native selection/configuration comparison; no clipboard access';result.target=target;result.deletionCases=[];
+  expectedFont=1;expectedWidth=1080;shell('settings','put','system','font_scale','1');
+  for(const resized of [false,true]){
+    const label=resized?'resized':'control';await begin(2048);const pid=shell('pidof',PACKAGE).trim();assert(/^\d+$/.test(pid));const text='SYNTHETIC123';await typeDraft(text);let n=snapshot().find(n=>isInput(n));assert(n&&n.text===text);
+    const x=Math.floor(target==='rn'?(n.rect[0]+n.rect[2])/2:n.rect[0]+(n.rect[2]-n.rect[0])*0.15),y=Math.floor((n.rect[1]+n.rect[3])/2);inApp();shell('input','swipe',String(x),String(y),String(x),String(y),'850');await delay(250);await captureFrame(label+'-selection-before');const nativeBefore=target==='rn'?null:readNativeLogs(pid,label+'-before');if(nativeBefore)assert.deepEqual([nativeBefore.last.selectionStart,nativeBefore.last.selectionEnd],[0,text.length],'Native selection must cover the whole synthetic draft');
+    if(resized)await resize(4096);else await delay(650);await captureFrame(label+'-intermediate');if(resized)await resize(2048);else await delay(650);await captureFrame(label+'-before-delete');
+    assert(imeState().shown);assert.equal(shell('pidof',PACKAGE).trim(),pid,'Process changed during comparison');const nativeAfter=target==='rn'?null:readNativeLogs(pid,label+'-after-resize');assert(snapshot().some(n=>isInput(n)&&n.text===text&&n.focused==='true'));inApp();const at=new Date().toISOString(),deleteElapsedMs=Number(shell('cat','/proc/uptime').trim().split(' ')[0])*1000;shell('input','keyevent','KEYCODE_DEL');await delay(300);n=snapshot().find(n=>isInput(n));assert(n);const empty=n.text===''||n.text===(target==='rn'?'Digite…':'Synthetic ASCII only');result.deletionCases.push({label,actionAt:at,before:text,rawAfter:n.text,empty,remainingCharacters:empty?0:[...n.text].length,ime:imeState(),focused:n.focused,nativeBefore,nativeAfter,deleteElapsedMs});await captureFrame(label+'-after-delete');if(target!=='rn')result.deletionCases.at(-1).nativeFinal=readNativeLogs(pid,label+'-final');await closeKeyboard();
+  }
+  result.status='diagnostic-completed';result.interpretation=result.deletionCases.every(x=>x.empty)?'Deleting after the observed selection removed the whole draft in both control and resized cases; selection behavior retained in this probe.':result.deletionCases[0].empty&&!result.deletionCases[1].empty?'Control deletion removed whole draft; resized deletion left text. Selection behavior changed after resize in this probe.':'Inconclusive selection comparison; inspect before/after pixels and values.';
+}catch(error){result.status='diagnostic-incomplete';result.error=error.stack;process.exitCode=1;}
+finally{
+  if(original)try{try{await closeKeyboard();}catch{}shell('wm','size',original.size.match(/Override size: (\d+x\d+)/)?.[1]??'reset');shell('wm','density',original.density.match(/Override density: (\d+)/)?.[1]??'reset');shell('settings','put','system','font_scale',original.font);result.restoredSettings={size:shell('wm','size'),density:shell('wm','density'),font:shell('settings','get','system','font_scale').trim()};assert.deepEqual(result.restoredSettings,original);result.settingsRestored=true;}catch(error){result.restoreError=error.stack;result.status='failed';process.exitCode=1;}result.finishedAt=new Date().toISOString();writeFileSync(join(evidence,'result.json'),JSON.stringify(result,null,2)+'\n');console.log('Evidence: '+evidence);console.log(JSON.stringify({status:result.status,interpretation:result.interpretation,deletionCases:result.deletionCases?.map(x=>({label:x.label,after:x.rawAfter,beforeRange:x.nativeBefore?[x.nativeBefore.last.selectionStart,x.nativeBefore.last.selectionEnd]:null,afterRange:x.nativeAfter?[x.nativeAfter.last.selectionStart,x.nativeAfter.last.selectionEnd]:null})),restored:result.settingsRestored,error:result.error}));
+}

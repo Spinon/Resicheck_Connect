@@ -1,9 +1,14 @@
+import { demoAllows } from './demo-access.ts';
+import { analyzeMessage } from '../../../packages/text/src/message-text.ts';
+import { deliveryState } from './demo-delivery.ts';
+import type { DemoDeliveryState } from './demo-delivery.ts';
+import type { QueueEntry } from '../../../packages/chat-client/src/text-send-queue.ts';
 export type Role = 'patient' | 'staff';
 export type Actor = { id: string; name: string; role: Role; companyId?: string; approved?: boolean };
-export type Message = { id: string; authorId: string; authorName: string; authorRole: Role; text: string; time: string; important: boolean; attachment?: boolean; audio?: boolean };
+export type Message = { id: string; authorId: string; authorName: string; authorRole: Role; text: string; time: string; important: boolean; attachment?: boolean; audio?: boolean; delivery?: DemoDeliveryState };
 export type Conversation = { id: string; companyId: string; patientId: string; patientName: string; messages: Message[] };
 export type Preferences = { filter: 'all' | 'important'; privacy: 1 | 2 | 3 | 4 };
-export type DemoState = { actor: Actor | null; linkedCompanies: string[]; companyId: string; conversations: Conversation[]; drafts: Record<string, string>; preferences: Preferences; nextId: number };
+export type DemoState = { actor: Actor | null; linkedCompanies: string[]; companyId: string; activeConversationId: string | null; deliveryNotice: string | null; conversations: Conversation[]; drafts: Record<string, string>; preferences: Preferences; nextId: number };
 
 export const companies = [
   { id: 'horizonte', name: 'Clínica Horizonte', initials: 'CH', category: 'Atendimento administrativo', address: 'Rua Exemplo, 100 · Cidade Fictícia', phone: '(00) 0000-0000' },
@@ -15,28 +20,32 @@ export const ana: Actor = { id: 'staff-ana', name: 'Ana', role: 'staff', company
 export const bruno: Actor = { id: 'staff-bruno', name: 'Bruno', role: 'staff', companyId: 'horizonte', approved: true };
 const message = (id: string, author: Actor, text: string, time: string, important = false): Message => ({ id, authorId: author.id, authorName: author.name, authorRole: author.role, text, time, important });
 export function initialState(): DemoState {
-  return { actor: null, linkedCompanies: ['horizonte', 'vida'], companyId: 'horizonte', drafts: {}, preferences: { filter: 'all', privacy: 1 }, nextId: 20, conversations: [
+  return { actor: null, linkedCompanies: ['horizonte', 'vida'], companyId: 'horizonte', activeConversationId: null, deliveryNotice: null, drafts: {}, preferences: { filter: 'all', privacy: 1 }, nextId: 20, conversations: [
     { id: 'horizonte-marina', companyId: 'horizonte', patientId: patient.id, patientName: 'Marina', messages: [
       message('m1', ana, 'Olá, Marina! Como podemos ajudar?', '10:30'),
-      message('m2', patient, 'Oi! Posso enviar minha guia por aqui?', '10:31'),
+      message('m2', patient, 'Oi! Posso enviar minha guia por aqui? 👍🏽', '10:31'),
       message('m3', ana, 'Sim, você pode anexar o documento nesta conversa.', '10:32'),
       message('m4', bruno, 'Nossa equipe recebe sua mensagem por aqui.', '10:33', true),
     ] },
     { id: 'horizonte-pedro', companyId: 'horizonte', patientId: 'patient-pedro', patientName: 'Pedro', messages: [message('m5', { id: 'patient-pedro', name: 'Pedro', role: 'patient' }, 'Obrigado pela informação!', '09:48')] },
-    { id: 'vida-marina', companyId: 'vida', patientId: patient.id, patientName: 'Marina', messages: [message('m6', { id: 'staff-lia', name: 'Lia', role: 'staff', companyId: 'vida', approved: true }, 'Olá! Este é o seu chat com o Centro Vida.', '09:20')] },
+    { id: 'vida-marina', companyId: 'vida', patientId: patient.id, patientName: 'Marina', messages: [message('m6', { id: 'staff-lia', name: 'Lia', role: 'staff', companyId: 'vida', approved: true }, 'Olá! Este é o seu chat com o Centro Vida. 👩🏾‍⚕️ 🇧🇷', '09:20')] },
   ] };
 }
 // Selectors only simulate scoping locally; they are not authentication or server security.
 export function visibleConversations(state: DemoState): Conversation[] {
   const actor = state.actor;
   if (!actor) return [];
-  if (actor.role === 'staff') return actor.approved ? state.conversations.filter(c => c.companyId === actor.companyId) : [];
-  if (!state.linkedCompanies.includes(state.companyId)) return [];
-  return state.conversations.filter(c => c.companyId === state.companyId && c.patientId === actor.id);
+  const companyId = actor.role === 'staff' ? actor.companyId : state.companyId;
+  return state.conversations.filter(c => c.companyId === companyId && demoAllows(state, {
+    channel: 'api', action: 'read', resource: { kind: 'conversation', id: c.id, companyId: c.companyId },
+  }, companies)).map(c => {
+    const messages = c.messages.filter(m => !m.delivery || m.delivery.status === 'accepted' || m.authorId === actor.id);
+    return messages.length === c.messages.length ? c : { ...c, messages };
+  });
 }
 export function conversationById(state: DemoState, id: string) { return visibleConversations(state).find(c => c.id === id); }
 export function attendants(conversation: Conversation) {
-  const staffMessages = conversation.messages.filter(m => m.authorRole === 'staff');
+  const staffMessages = conversation.messages.filter(m => m.authorRole === 'staff' && (!m.delivery || m.delivery.status === 'accepted'));
   const counts = new Map<string, { name: string; count: number }>();
   for (const m of staffMessages) { const entry = counts.get(m.authorId); counts.set(m.authorId, { name: m.authorName, count: (entry?.count ?? 0) + 1 }); }
   const highest = Math.max(0, ...[...counts.values()].map(x => x.count));
@@ -54,6 +63,10 @@ export type Action =
   | { type: 'logout' }
   | { type: 'company'; id: string }
   | { type: 'link'; id: string }
+  | { type: 'open-conversation'; conversationId: string }
+  | { type: 'queue-message'; conversationId: string; time: string; entry: QueueEntry }
+  | { type: 'queue-state'; conversationId: string; entry: QueueEntry }
+  | { type: 'queue-notice'; conversationId: string }
   | { type: 'draft'; conversationId: string; text: string }
   | { type: 'send'; conversationId: string; time: string; attachment?: boolean; audio?: boolean }
   | { type: 'simulate-reply'; conversationId: string }
@@ -82,13 +95,27 @@ export function reducer(state: DemoState, action: Action): DemoState {
   }
   const conversation = conversationById(state, action.conversationId);
   if (!conversation) return state;
-  if (action.type === 'draft') return { ...state, drafts: { ...state.drafts, [conversation.id]: action.text.slice(0, 2000) } };
+  if (action.type === 'open-conversation') return state.activeConversationId === conversation.id ? state : { ...state, activeConversationId: conversation.id };
+  if (action.type === 'queue-notice') return state.activeConversationId !== conversation.id ? state : { ...state, deliveryNotice: 'Não foi possível iniciar o envio simulado. Seu rascunho foi mantido.' };
+  if (action.type === 'queue-message') {
+    if (state.activeConversationId !== conversation.id || action.entry.status !== 'pending' || !analyzeMessage(action.entry.text).valid
+      || action.entry.text !== (state.drafts[conversation.id] ?? '') || conversation.messages.some(m => m.delivery?.clientMessageId === action.entry.clientMessageId)) return state;
+    const queued = { ...message(`queued-${action.entry.clientMessageId}`, state.actor, action.entry.text, action.time), delivery: deliveryState(action.entry) };
+    return { ...state, deliveryNotice: null, drafts: { ...state.drafts, [conversation.id]: '' }, conversations: state.conversations.map(c => c.id === conversation.id ? { ...c, messages: [...c.messages, queued] } : c) };
+  }
+  if (action.type === 'queue-state') {
+    const target = conversation.messages.find(m => m.delivery?.clientMessageId === action.entry.clientMessageId && m.authorId === state.actor!.id);
+    if (state.activeConversationId !== conversation.id || !target || target.text !== action.entry.text || target.delivery?.status === 'accepted') return state;
+    return { ...state, conversations: state.conversations.map(c => c.id === conversation.id ? { ...c, messages: c.messages.map(m => m.id === target.id ? { ...m, delivery: deliveryState(action.entry) } : m) } : c) };
+  }
+  if (action.type === 'draft') return { ...state, drafts: { ...state.drafts, [conversation.id]: action.text } };
   if (action.type === 'important') {
-    if (state.actor.role !== 'staff' || !state.actor.approved) return state;
+    if (!conversation.messages.some(m => m.id === action.messageId && (!m.delivery || m.delivery.status === 'accepted'))) return state;
+    if (!demoAllows(state, { channel: 'api', action: 'mark-important', resource: { kind: 'message', id: action.messageId, companyId: conversation.companyId } }, companies)) return state;
     return { ...state, conversations: state.conversations.map(c => c.id !== conversation.id ? c : { ...c, messages: c.messages.map(m => m.id !== action.messageId ? m : { ...m, important: !m.important }) }) };
   }
-  const text = state.drafts[conversation.id]?.trim();
-  if (action.type === 'send' && !text && !action.attachment && !action.audio) return state;
+  const text = state.drafts[conversation.id] ?? '';
+  if (action.type === 'send' && !action.attachment && !action.audio && !analyzeMessage(text).valid) return state;
   const replyAuthor = conversation.companyId === 'horizonte' ? ana : { id: `staff-${conversation.companyId}`, name: 'Equipe demo', role: 'staff' as const, companyId: conversation.companyId, approved: true };
   if (action.type === 'simulate-reply' && state.actor.role !== 'patient') return state;
   const newMessage = action.type === 'simulate-reply'
