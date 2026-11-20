@@ -1,0 +1,17 @@
+# UNIX-only codec data plane. No TCP/admin endpoint.
+[Unit]
+Description=Connect private image decoder socket
+ConditionPathExists=/etc/connect-image-inspector/ENABLED
+[Socket]
+ListenStream=/run/connect-image-codec/inspect.sock
+SocketUser=root
+SocketGroup=connect-image-inspector
+SocketMode=0660
+DirectoryMode=0755
+Accept=yes
+MaxConnections=1
+MaxConnectionsPerSource=1
+Backlog=1
+RemoveOnStop=yes
+[Install]
+WantedBy=sockets.target

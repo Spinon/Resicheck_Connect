@@ -1,0 +1,142 @@
+{
+  "status": "closed-scoped-functions-local-only",
+  "remoteApplied": false,
+  "remoteAuthorized": false,
+  "runtimeEnabled": false,
+  "installReady": false,
+  "history": [
+    [
+      "20261106200713",
+      "connect_foundation"
+    ],
+    [
+      "20261109001359",
+      "connect_pending_registration_homolog"
+    ],
+    [
+      "20261109010823",
+      "connect_membership_read_homolog"
+    ],
+    [
+      "20261110124705",
+      "connect_messenger_inbox_recent_search_unread_maintenance"
+    ],
+    [
+      "20261110163040",
+      "connect_seen_messages_exact_read_maintenance"
+    ],
+    [
+      "20261110174417",
+      "connect_own_send_receipt_lookup_maintenance"
+    ],
+    [
+      "20261110190849",
+      "connect_company_registry_structure_maintenance"
+    ],
+    [
+      "20261110205536",
+      "connect_message_delivery_visual_receipts_maintenance"
+    ]
+  ],
+  "sources": [
+    {
+      "path": "supabase/deployment/audio-structure/structure.LOCAL-REHEARSAL.sql",
+      "sha256": "2a0d0596aea7c0823a4ef4de825df91d431d997159eb4111fb2290bd9ebe0b71"
+    },
+    {
+      "path": "supabase/candidates/audio-backend-binding/binding.CANDIDATE.sql",
+      "sha256": "98456686d0b6fd2c94b3ef759d14cad3543c24de8aa19e0cdf408ca3669b2f39"
+    }
+  ],
+  "artifactSha256": "beac906008a764d995df939168cc660d12c9251e2ca1deeea11f6a47c6d80070",
+  "newFunctionSignatures": [
+    "private.attachment_author_lock(uuid,uuid,uuid,uuid,timestamptz)",
+    "private.attachment_reserve(uuid,uuid,text,text,bytea,integer)",
+    "private.attachment_cancel(uuid,uuid)",
+    "private.attachment_record_blob(uuid,bytea)",
+    "private.attachment_inspect(uuid,bytea,boolean,text,integer,text)",
+    "private.attachment_status(uuid,uuid)",
+    "public.reserve_attachment(uuid,uuid,text,text,bytea,integer)",
+    "public.my_attachment_status(uuid,uuid)",
+    "public.cancel_attachment(uuid,uuid)",
+    "private.audio_catalog_reserve(uuid,uuid,text,text,integer)",
+    "private.audio_catalog_find_own(uuid,uuid,text)",
+    "private.audio_catalog_resolve_read(uuid,uuid,uuid)",
+    "private.audio_message_lookup(uuid,uuid,text,uuid)",
+    "private.audio_message_send(uuid,uuid,text,uuid)",
+    "private.audio_message_resolve(uuid,uuid,uuid)",
+    "public.resolve_connect_audio_message_v1(uuid,uuid,uuid)",
+    "private.audio_catalog_authorize(uuid,uuid)",
+    "private.audio_catalog_resolve_upload(uuid,uuid,uuid)",
+    "private.audio_catalog_record_uploaded(uuid,uuid,uuid,bytea)",
+    "private.audio_catalog_finish_inspection(uuid,uuid,uuid,text,boolean,text,integer,text)",
+    "public.send_connect_audio_message_v1(uuid,uuid,text,uuid)",
+    "public.lookup_connect_audio_message_v1(uuid,uuid,text,uuid)",
+    "private.audio_inspector_guard()",
+    "private.audio_inspector_active()",
+    "private.audio_reserve_scoped(uuid,uuid,text,text,integer)",
+    "private.audio_confirm_scoped(uuid,uuid,uuid)",
+    "private.audio_status_scoped(uuid,uuid,text)",
+    "private.audio_claim_scoped()",
+    "private.audio_finish_scoped(uuid,uuid,text,integer,boolean,integer,text)",
+    "private.audio_storage_insert(text,text,text)",
+    "private.audio_storage_ready(text,text)",
+    "private.audio_storage_leased(text,text)",
+    "public.reserve_connect_audio_scoped_v1(uuid,uuid,text,text,integer)",
+    "public.confirm_connect_audio_scoped_v1(uuid,uuid,uuid)",
+    "public.status_connect_audio_scoped_v1(uuid,uuid,text)",
+    "public.claim_connect_audio_inspection_v1()",
+    "public.finish_connect_audio_inspection_v1(uuid,uuid,text,integer,boolean,integer,text)",
+    "private.audio_read_scoped(uuid,uuid,uuid)",
+    "public.resolve_connect_audio_storage_v1(uuid,uuid,uuid)"
+  ],
+  "newTables": 5,
+  "modifiedFunctions": [
+    "private.membership_directory_inbox_recent",
+    "private.membership_directory_inbox_search"
+  ],
+  "receiptPreservation": true,
+  "permanentNewGrants": [],
+  "storageCreated": false,
+  "wrapperSha256": "aae203e1a70acc12266d0854054080fbc94e9752633463dba4ccc8387229d556",
+  "runtimeFunctions": [],
+  "clientFunctions": [
+    "public.send_connect_audio_message_v1(uuid,uuid,text,uuid)",
+    "public.lookup_connect_audio_message_v1(uuid,uuid,text,uuid)",
+    "public.resolve_connect_audio_message_v1(uuid,uuid,uuid)",
+    "private.audio_message_send(uuid,uuid,text,uuid)",
+    "private.audio_message_lookup(uuid,uuid,text,uuid)",
+    "private.audio_message_resolve(uuid,uuid,uuid)"
+  ],
+  "scopedSourceSha256": "123b315497f85441d296ea00436901f694be84a8945d2b95e16cde6c05c23458",
+  "triggers": [
+    "private.audio_inspectors:audio_inspector_identity",
+    "private.accounts:audio_inspector_account",
+    "public.memberships:audio_inspector_membership"
+  ],
+  "activationPolicyCount": 7,
+  "authenticatedExecute": [
+    "public.send_connect_audio_message_v1(uuid,uuid,text,uuid)",
+    "public.lookup_connect_audio_message_v1(uuid,uuid,text,uuid)",
+    "public.resolve_connect_audio_message_v1(uuid,uuid,uuid)",
+    "private.audio_message_send(uuid,uuid,text,uuid)",
+    "private.audio_message_lookup(uuid,uuid,text,uuid)",
+    "private.audio_message_resolve(uuid,uuid,uuid)",
+    "private.audio_reserve_scoped(uuid,uuid,text,text,integer)",
+    "private.audio_confirm_scoped(uuid,uuid,uuid)",
+    "private.audio_status_scoped(uuid,uuid,text)",
+    "private.audio_claim_scoped()",
+    "private.audio_finish_scoped(uuid,uuid,text,integer,boolean,integer,text)",
+    "private.audio_storage_insert(text,text,text)",
+    "private.audio_storage_ready(text,text)",
+    "private.audio_storage_leased(text,text)",
+    "public.reserve_connect_audio_scoped_v1(uuid,uuid,text,text,integer)",
+    "public.confirm_connect_audio_scoped_v1(uuid,uuid,uuid)",
+    "public.status_connect_audio_scoped_v1(uuid,uuid,text)",
+    "public.claim_connect_audio_inspection_v1()",
+    "public.finish_connect_audio_inspection_v1(uuid,uuid,text,integer,boolean,integer,text)",
+    "private.audio_read_scoped(uuid,uuid,uuid)",
+    "public.resolve_connect_audio_storage_v1(uuid,uuid,uuid)"
+  ],
+  "storagePolicyDeploymentVerified": false
+}

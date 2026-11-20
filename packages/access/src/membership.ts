@@ -40,6 +40,8 @@ export function transition(ledger: Ledger, principal: Principal | null, command:
       if (current?.state === 'revoked') return unavailable; // Explicit reactivation policy/command still required.
       state = 'active'; break;
     case 'request-staff':
+      if (db.memberships.some(m => m.userId === userId && m.role === 'staff'
+        && m.state === 'active' && m.companyId !== companyId)) return unavailable;
       if (current?.state === 'active' || current?.state === 'pending') return { ok: true, ledger, membership: current };
       if (current?.state === 'revoked') return unavailable; // Re-entry/dispute policy is not defined.
       state = 'pending'; break;

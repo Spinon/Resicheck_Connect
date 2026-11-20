@@ -1,0 +1,16 @@
+// Public build metadata only. No environment loading, network, Auth or global config mutation.
+import assert from 'node:assert/strict';import fs from 'node:fs';import path from 'node:path';import{fileURLToPath,pathToFileURL}from'node:url';import{createHash}from'node:crypto';
+const hash=b=>createHash('sha256').update(b).digest('hex');
+export function connectedExpoPublicConfig({profile,build,sdkVersion,base}){
+ assert(['qa','phone'].includes(profile));assert.equal(build.package,'com.resicheck.connect.pendingonline'+profile);assert(Number.isSafeInteger(build.versionCode)&&build.versionCode>0);assert.equal(build.versionName,'0.0.'+build.versionCode+'-connected-basic-text-'+profile);assert.equal(build.label,profile==='phone'?'Connect Cadastro Online Teste':'Connect Cadastro Online QA');assert.match(sdkVersion,/^\d+\.0\.0$/);assert.equal(base.expo.icon,'./assets/resicheck-icon-round.png');
+ return {name:build.label,slug:'resicheck-connect-connected-'+profile,version:build.versionName,icon:base.expo.icon,orientation:'portrait',userInterfaceStyle:'light',android:{package:build.package,versionCode:build.versionCode,permissions:['android.permission.INTERNET'],blockedPermissions:['android.permission.RECORD_AUDIO','android.permission.READ_EXTERNAL_STORAGE','android.permission.WRITE_EXTERNAL_STORAGE','android.permission.SYSTEM_ALERT_WINDOW','android.permission.VIBRATE'],allowBackup:false},extra:{mode:'connected-basic-text-test',buildProfile:profile,realBackend:true,syntheticDataOnly:true},updates:{enabled:false},sdkVersion,platforms:['android']};
+}
+export function verifyConnectedExpoPublicConfig(actual,options){const expected=connectedExpoPublicConfig(options);assert.deepEqual(actual,expected,'Embedded Expo metadata must exactly match this reviewed build profile');const text=JSON.stringify(actual);assert(!/sb_(?:secret|publishable)_|eyJ[A-Za-z0-9_-]+\.|@example\.invalid|synthetic-local-demo|Connect Demo|"realBackend":false/.test(text));return true;}
+if(process.argv[1]&&import.meta.url===pathToFileURL(process.argv[1]).href){
+ try{
+  const[profile,sourceArg,destinationArg,...rest]=process.argv.slice(2);assert.equal(rest.length,0);assert(['qa','phone'].includes(profile));const root=fileURLToPath(new URL('../../../',import.meta.url));const generated=path.join(root,'apps/mobile/android/connected-basic-text-generated',profile),destination=path.join(root,'apps/mobile/android/connected-basic-text-expo-constants-build',profile,'generated/assets/expo-constants');
+  assert.equal(path.resolve(sourceArg).toLowerCase(),path.join(generated,'expo-public-config.json').toLowerCase());assert.equal(path.resolve(destinationArg).toLowerCase(),destination.toLowerCase());
+  const bytes=fs.readFileSync(sourceArg),prep=JSON.parse(fs.readFileSync(path.join(generated,'preparation.json'),'utf8')),base=JSON.parse(fs.readFileSync(path.join(root,'apps/mobile/app.json'),'utf8'));assert.equal(hash(bytes),prep.expoConfigSha256);verifyConnectedExpoPublicConfig(JSON.parse(bytes.toString('utf8')),{profile,build:prep,sdkVersion:prep.expoSdkVersion,base});
+  fs.mkdirSync(destination,{recursive:true});fs.writeFileSync(path.join(destination,'app.config'),bytes);
+ }catch{console.error('Connected Expo asset generation unavailable');process.exitCode=1;}
+}

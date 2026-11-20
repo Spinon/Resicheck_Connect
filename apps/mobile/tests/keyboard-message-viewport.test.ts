@@ -1,0 +1,27 @@
+import test from'node:test';import assert from'node:assert/strict';import{keyboardViewport,keyboardMessageViewport,createKeyboardLatestIntent,currentKeyboardFrame}from'../src/keyboard-message-viewport.ts';
+test('keyboard clip removes covered and panned-offscreen area, never fabricates frame',()=>{assert.deepEqual(keyboardViewport(100,500,{visible:true,top:400}),{top:100,height:300});assert.deepEqual(keyboardViewport(-80,500,{visible:true,top:400}),{top:0,height:400});assert.deepEqual(keyboardViewport(100,500,{visible:false,top:null}),{top:100,height:500});assert.equal(keyboardViewport(100,500,{visible:true,top:null}),null);assert.equal(keyboardViewport(100,500,{visible:true,top:90}),null);assert.equal(keyboardViewport(NaN,500,{visible:false,top:null}),null);});
+test('stable viewport proxy remeasures current IME and refuses replaced native node',()=>{let complete!:(x:number,y:number,w:number,h:number)=>void;let node:{measureInWindow:(f:typeof complete)=>void}|null={measureInWindow:f=>{complete=f;}},top=400;const proxy=keyboardMessageViewport(()=>node,()=>({visible:true,top}));assert.equal(proxy(),proxy());let result:number[]|null=null;proxy()!.measureInWindow((...b)=>result=b);complete(10,100,200,500);assert.deepEqual(result,[10,100,200,300]);top=350;proxy()!.measureInWindow((...b)=>result=b);complete(10,100,200,500);assert.deepEqual(result,[10,100,200,250]);proxy()!.measureInWindow((...b)=>result=b);node=null;result=null;complete(10,100,200,500);assert.equal(result,null);assert.equal(proxy(),null);});
+test('capture before IME shrink is one-shot and does not overwrite original latest intent',()=>{let now=0;const p=createKeyboardLatestIntent(()=>now),owner={};assert(p.capture(owner,{offset:500,height:500,contentHeight:1000},true));assert(p.capture(owner,{offset:500,height:250,contentHeight:1000},true));now=350;assert(p.consume(owner));assert.equal(p.consume(owner),false);});
+test('older reader, changed host, screen-reader denial, drag and stale events never force latest',()=>{let now=0;const p=createKeyboardLatestIntent(()=>now),a={},b={};assert.equal(p.capture(a,{offset:100,height:500,contentHeight:1500},true),false);assert.equal(p.capture(a,{offset:1000,height:500,contentHeight:1500},false),false);assert(p.capture(a,{offset:1000,height:500,contentHeight:1500},true));assert.equal(p.consume(b),false);p.capture(a,{offset:1000,height:500,contentHeight:1500},true);p.cancel();assert.equal(p.consume(a),false);p.capture(a,{offset:1000,height:500,contentHeight:1500},true);now=2100;assert.equal(p.consume(a),false);});
+
+import{createMessageVisibilityObserver}from'../src/message-visibility-proof.ts';
+test('actual collector confirms only the bubble above the measured IME while typing',()=>{
+ const owner={},tasks:{at:number;fn:()=>void;cancelled:boolean}[]=[],seen:string[][]=[];let now=0,visible=true,top:number|null=400;
+ const schedule=(fn:()=>void,ms:number)=>{const t={at:now+ms,fn,cancelled:false};tasks.push(t);return()=>{t.cancelled=true;};},run=()=>{const t=tasks.filter(t=>!t.cancelled).sort((a,b)=>a.at-b.at)[0];assert(t);t.cancelled=true;now=t.at;t.fn();};
+ const node={measureInWindow:(f:(x:number,y:number,w:number,h:number)=>void)=>f(0,100,400,600)},viewport=keyboardMessageViewport(()=>node,()=>({visible,top})),o=createMessageVisibilityObserver({enabled:true,current:()=>owner,allowed:()=>true,viewport,now:()=>now,schedule,seen:ids=>{seen.push([...ids]);}});
+ const id1='63000000-0000-4000-8000-000000000001',id2='63000000-0000-4000-8000-000000000002';o.attach(id1,{measureInWindow:f=>f(0,200,100,60)});o.attach(id2,{measureInWindow:f=>f(0,380,100,60)});o.setActive(true);run();run();assert.deepEqual(seen,[[id1]]);
+ top=null;o.invalidate();run();run();assert.deepEqual(seen,[[id1]]);visible=false;o.invalidate();run();run();assert.deepEqual(seen,[[id1],[id2]]);o.dispose();
+});
+
+import{createQuietLatestRefresh}from'../src/quiet-latest-refresh.ts';
+
+test('visible latest bubble remains eligible above footer padding only with explicit caller policy',()=>{let now=0,reads=0,done!:Parameters<Parameters<typeof createQuietLatestRefresh>[0]['measure']>[0];const q:{fn:()=>void;off:boolean}[]=[];const schedule=(fn:()=>void)=>{const t={fn,off:false};q.push(t);return()=>{t.off=true;};},fire=()=>{const t=q.find(x=>!x.off)!;t.off=true;t.fn();};
+ const w=createQuietLatestRefresh({allowVisibleTail:true,current:()=>true,measure:f=>{done=f;},refresh:()=>{reads++;return true;},fallback:()=>{},schedule});fire();done({viewportTop:100,viewportHeight:400,tailBottom:450});assert.equal(reads,1);w.dispose();
+ const old=createQuietLatestRefresh({current:()=>true,measure:f=>{done=f;},refresh:()=>{reads++;return true;},fallback:()=>{},schedule});fire();done({viewportTop:100,viewportHeight:400,tailBottom:450});assert.equal(reads,1);old.dispose();
+});
+
+
+test('web geometry never calls native-only Keyboard API; missing native frame fails closed',()=>{
+ const absent={get isVisible():never{throw Error('Web has no native visibility');},get metrics():never{throw Error('Web has no native metrics');}};assert.deepEqual(currentKeyboardFrame('web',absent),{visible:false,top:null});
+ assert.deepEqual(currentKeyboardFrame('android',{isVisible:()=>true,metrics:()=>({screenY:400})}),{visible:true,top:400});assert.deepEqual(currentKeyboardFrame('android',{}),{visible:true,top:null});assert.deepEqual(currentKeyboardFrame('android',{isVisible:()=>{throw Error('retired view');}}),{visible:true,top:null});assert.equal(keyboardViewport(0,500,currentKeyboardFrame('android',{})),null);
+});

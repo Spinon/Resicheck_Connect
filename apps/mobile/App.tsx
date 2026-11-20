@@ -1,10 +1,13 @@
-import React, { useEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
-import { AccessibilityInfo, Alert, BackHandler, FlatList, Image, Keyboard, KeyboardAvoidingView, Modal, Platform, Pressable, ScrollView, StyleSheet, Text as NativeText, TextInput, View } from 'react-native';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from 'react';
+import { AccessibilityInfo, BackHandler, FlatList, Image, Keyboard, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text as NativeText, TextInput, View, useWindowDimensions } from 'react-native';
 import type { TextProps } from 'react-native';
+import type { CellRendererProps } from '@react-native/virtualized-lists';
+import {MediaWindow,MediaWindowHost} from './src/MediaWindow.tsx';
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { ana, attendants, bruno, companies, conversationById, notificationPreview, patient, visibleConversations } from './src/demo';
 import { createDemoSession } from './src/demo-session';
+import { createChatScrollFollow } from './src/chat-scroll-follow.ts';
 import { analyzeMessage, messageInputError, messageLimits } from '../../packages/text/src/message-text.ts';
 import type { Actor, Message, Preferences } from './src/demo';
 
@@ -24,11 +27,18 @@ function Avatar({ label, small = false }: { label: string; small?: boolean }) { 
 function SectionTitle({ children }: { children: React.ReactNode }) { return <Text style={s.sectionTitle}>{children}</Text>; }
 function Info({ children }: { children: React.ReactNode }) { return <View style={s.info}><Text style={s.infoText}>{children}</Text></View>; }
 
+// Decorative geometry stays responsive without constraining readable text scaling.
+function AudioWaveform() {
+  return <View testID="audio-demo-waveform" accessible={false} aria-hidden={true} accessibilityElementsHidden importantForAccessibility="no-hide-descendants" style={s.audioWaveform}>
+    {[6, 16, 28, 12, 24, 34, 16, 6].map((height, index) => <View key={index} style={[s.audioWaveBar, { height }]} />)}
+  </View>;
+}
+
 function DemoModal({ visible, title, closeLabel, onClose, children }: {
   visible: boolean; title: string; closeLabel: string; onClose: () => void; children: React.ReactNode;
 }) {
   const heading = useRef<React.ComponentRef<typeof NativeText>>(null);
-  return <Modal visible={visible} accessibilityLabel={title} transparent animationType="none" onRequestClose={onClose}
+  return <MediaWindow visible={visible} onClose={onClose}
     onShow={() => { if (Platform.OS !== 'web' && heading.current) AccessibilityInfo.sendAccessibilityEvent(heading.current, 'focus'); }}>
     <View style={s.modalOverlay}><View accessibilityViewIsModal style={[s.modalCard, s.demoOptionsCard]}>
       <View style={s.demoOptionsHeader}>
@@ -37,12 +47,15 @@ function DemoModal({ visible, title, closeLabel, onClose, children }: {
       </View>
       <ScrollView style={s.demoOptionsScroll} contentContainerStyle={s.demoOptionsContent} keyboardShouldPersistTaps="handled">{children}</ScrollView>
     </View></View>
-  </Modal>;
+  </MediaWindow>;
 }
 
-export default function App() { return <SafeAreaProvider><ConnectDemo /></SafeAreaProvider>; }
-export function ConnectDemo() {
-  const [demoSession] = useState(createDemoSession);
+export default function App() { return <SafeAreaProvider><MediaWindowHost><ConnectDemo /></MediaWindowHost></SafeAreaProvider>; }
+export type DemoAudioExtension={composer:(conversationId:string,close:()=>void)=>React.ReactNode;messages:(conversationId:string)=>React.ReactNode};
+export type DemoImageExtension={composer:(conversationId:string,close:()=>void)=>React.ReactNode;messages:(conversationId:string)=>React.ReactNode};
+export type DemoPrivacyBoundary=Readonly<{epoch:number|null;onPrepared:(epoch:number)=>boolean}>;
+export function ConnectDemo({session,audioExtension,imageExtension,privacyBoundary}:{session?:ReturnType<typeof createDemoSession>;audioExtension?:DemoAudioExtension;imageExtension?:DemoImageExtension;privacyBoundary?:DemoPrivacyBoundary}={}) {
+  const [demoSession] = useState(()=>session??createDemoSession());
   const state = useSyncExternalStore(demoSession.subscribe, demoSession.getSnapshot, demoSession.getSnapshot);
   const dispatch = demoSession.bindDispatch();
   const [screen, setScreen] = useState<Screen>('welcome');
@@ -51,12 +64,28 @@ export function ConnectDemo() {
   const [query, setQuery] = useState('');
   const [linking, setLinking] = useState(false);
   const [exitOpen, setExitOpen] = useState(false);
+  const [notice,setNotice]=useState<Readonly<{title:string;body:string}>|null>(null);
+  const [preparedEpoch,setPreparedEpoch]=useState<number|null>(null);
+  const acknowledgedEpoch=useRef<number|null>(null);
   const [profileOrigin, setProfileOrigin] = useState<Screen>('companies');
   const [attachmentOpen, setAttachmentOpen] = useState(false);
   const [audioOpen, setAudioOpen] = useState(false);
   const [audioStage, setAudioStage] = useState<'ready' | 'recording' | 'review'>('ready');
   const [failNext, setFailNext] = useState(false);
   const [demoOptionsOpen, setDemoOptionsOpen] = useState(false);
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
+  const { fontScale } = useWindowDimensions();
+  const compactChat = screen === 'chat' && keyboardVisible;
+  // Keep an enlarged line readable and scroll the draft internally, instead of
+  // consuming the entire conversation on a small screen. The text is untouched.
+  const compactInputHeight = compactChat && Platform.OS !== 'web' && fontScale >= 1.5
+    ? Math.ceil(20 * fontScale + 32) : undefined;
+  useEffect(() => {
+    if (Platform.OS === 'web') return;
+    const shown = Keyboard.addListener('keyboardDidShow', () => setKeyboardVisible(true));
+    const hidden = Keyboard.addListener('keyboardDidHide', () => setKeyboardVisible(false));
+    return () => { shown.remove(); hidden.remove(); };
+  }, []);
   const demoOptionsTrigger = useRef<React.ElementRef<typeof View>>(null);
   const demoOptionsTitle = useRef<React.ElementRef<typeof NativeText>>(null);
   const optionsWereOpen = useRef(false);
@@ -73,9 +102,27 @@ export function ConnectDemo() {
   const draftAnalysis = useMemo(() => analyzeMessage(draftText), [draftText]);
   const draftError = messageInputError(draftAnalysis);
   const currentOptionsContext = `${screen}/${actor?.id ?? ''}/${company.id}/${conversation?.id ?? ''}`;
-  useEffect(() => {
+  useLayoutEffect(() => {
     setDemoOptionsOpen(false);
   }, [screen, actor?.id, company.id, conversation?.id]);
+  const privateScope=`${actor?.id??''}/${actor?.role??''}/${actor?.companyId??''}/${state.companyId}/${state.activeConversationId??''}`;
+  useLayoutEffect(()=>{
+    // Identity/conversation changes must not inherit any previous window.
+    setExitOpen(false);setDemoOptionsOpen(false);setNotice(null);
+    setAttachmentOpen(false);setAudioOpen(false);
+  },[privateScope]);
+  useLayoutEffect(()=>{
+    const epoch=privacyBoundary?.epoch??null;
+    acknowledgedEpoch.current=null;setPreparedEpoch(epoch);
+    setExitOpen(false);setDemoOptionsOpen(false);setNotice(null);
+    // Media composers stay mounted across focus loss so an external picker
+    // can settle its original capability. Their privacy gate hides previews.
+  },[privacyBoundary?.epoch]);
+  useLayoutEffect(()=>{
+    const epoch=privacyBoundary?.epoch??null;
+    if(epoch===null||preparedEpoch!==epoch||acknowledgedEpoch.current===epoch||exitOpen||demoOptionsOpen||notice)return;
+    if(privacyBoundary?.onPrepared(epoch))acknowledgedEpoch.current=epoch;
+  },[privacyBoundary?.epoch,privacyBoundary?.onPrepared,preparedEpoch,exitOpen,demoOptionsOpen,notice]);
   useEffect(() => {
     if (!demoOptionsOpen && optionsWereOpen.current) {
       const trigger = demoOptionsTrigger.current;
@@ -91,14 +138,48 @@ export function ConnectDemo() {
     optionsWereOpen.current = demoOptionsOpen;
   }, [demoOptionsOpen, currentOptionsContext]);
   const stats = conversation ? attendants(conversation) : null;
-  useEffect(() => {
-    if (screen !== 'chat') return;
-    const timer = setTimeout(() => messageList.current?.scrollToEnd({ animated: false }), 100);
-    return () => clearTimeout(timer);
-  }, [screen, conversation?.id, conversation?.messages.length, conversation?.messages.at(-1)?.delivery?.status, audioOpen, attachmentOpen]);
+  const scrollScope = screen === 'chat' && conversation ? demoSession.captureConversationContext(conversation.id) : null;
+  const scrollFollow = useMemo(() => createChatScrollFollow(scrollScope?.current ?? (() => false)), [scrollScope?.token]);
+  const activeScrollFollow = useRef(scrollFollow); activeScrollFollow.current = scrollFollow;
+  const scrollFrame = useRef<{ owner: ReturnType<typeof createChatScrollFollow>; id: number } | null>(null);
+  function scheduleScrollFollow() {
+    if (activeScrollFollow.current !== scrollFollow || !scrollFollow.pending()) return;
+    if (scrollFrame.current) cancelAnimationFrame(scrollFrame.current.id);
+    const id = requestAnimationFrame(() => {
+      if (scrollFrame.current?.id !== id || scrollFrame.current.owner !== scrollFollow) return;
+      scrollFrame.current = null;
+      if (activeScrollFollow.current !== scrollFollow || !messageList.current) return;
+      if (scrollFollow.take()) messageList.current.scrollToEnd({ animated: false });
+    });
+    scrollFrame.current = { owner: scrollFollow, id };
+  }
+  // Stable for this immutable conversation capability. Forward the public
+  // VirtualizedList measurement first, then acknowledge that specific message.
+  // Media/header measurements alone must not release a pending own-send.
+  const MessageCell = useMemo(() => function MessageCell({ children, item, onLayout, onFocusCapture, style }: CellRendererProps<Message>) {
+    // CellRendererProps declares this capture callback; View's public typing
+    // omits it. Forward the existing framework prop unchanged through a spread.
+    return <View {...{ onFocusCapture }} collapsable={false} style={style} onLayout={event => {
+      onLayout?.(event);
+      scrollFollow.messageLayout(item.id);
+      scheduleScrollFollow();
+    }}>{children}</View>;
+  }, [scrollFollow]);
+  useLayoutEffect(() => {
+    // Register true arrivals before their native layout measurement. A status
+    // update or a footer play/pause resize is not a reason to scroll.
+    scrollFollow.messages(conversation?.messages.map(message => message.id) ?? []);
+    scheduleScrollFollow();
+  }, [scrollFollow, conversation?.messages]);
+  useEffect(() => () => {
+    if (scrollFrame.current?.owner === scrollFollow) {
+      cancelAnimationFrame(scrollFrame.current.id); scrollFrame.current = null;
+    }
+  }, [scrollFollow]);
   const preview = notificationPreview(state.preferences, { company: company.name, attendant: company.id === 'horizonte' ? 'Ana · equipe demo' : company.id === 'vida' ? 'Lia · equipe demo' : 'Equipe demo', message: 'Olá! Recebemos sua mensagem de exemplo.', important: true });
 
   const back = () => {
+    if (notice) { setNotice(null); return; }
     if (demoOptionsOpen) { setDemoOptionsOpen(false); return; }
     if (audioOpen) { setAudioOpen(false); return; }
     if (attachmentOpen) { setAttachmentOpen(false); return; }
@@ -107,7 +188,7 @@ export function ConnectDemo() {
     else if (target === 'close-search') { setLinking(false); setQuery(''); }
     else setScreen(target);
   };
-  useEffect(() => { const listener = BackHandler.addEventListener('hardwareBackPress', () => { if (screen === 'welcome') return false; back(); return true; }); return () => listener.remove(); }, [screen, attachmentOpen, audioOpen, demoOptionsOpen, linking, isStaff, profileOrigin]);
+  useEffect(() => { const listener = BackHandler.addEventListener('hardwareBackPress', () => { if (screen === 'welcome') return false; back(); return true; }); return () => listener.remove(); }, [screen, attachmentOpen, audioOpen, demoOptionsOpen, notice, linking, isStaff, profileOrigin]);
   function enter(nextActor: Actor) { dispatch({ type: 'enter', actor: nextActor }, () => { setFailNext(false); setScreen(nextActor.role === 'staff' ? nextActor.approved ? 'team' : 'pending' : 'companies'); setLinking(false); setQuery(''); setChatId(''); setAttachmentOpen(false); setAudioOpen(false); setAudioStage('ready'); }); }
   function openChat(id?: string) { const target = id ?? conversations[0]?.id; if (target) dispatch({ type: 'open-conversation', conversationId: target }, () => { setChatId(target); setScreen('chat'); setFailNext(false); }); }
   function openProfile() { if (screen !== 'profile' && screen !== 'settings') setProfileOrigin(screen === 'companies' ? 'companies' : isStaff ? 'team' : 'company'); setScreen('profile'); }
@@ -115,9 +196,13 @@ export function ConnectDemo() {
   function send(attachment = false) {
     if (!conversation) return false;
     const time = new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-    if (attachment) return dispatch({ type: 'send', conversationId: conversation.id, time, attachment });
-    const started = delivery?.sendDraft(time, failNext ? 'failure' : 'success') ?? false;
-    if (started) setFailNext(false);
+    const started = attachment ? dispatch({ type: 'send', conversationId: conversation.id, time, attachment })
+      : delivery?.sendDraft(time, failNext ? 'failure' : 'success') ?? false;
+    if (started) {
+      if (!attachment) setFailNext(false);
+      const sentId = conversationById(demoSession.getSnapshot(), conversation.id)?.messages.at(-1)?.id;
+      if (sentId) { scrollFollow.ownSend(sentId); scheduleScrollFollow(); }
+    }
     return started;
   }
   const companyResults = companies.filter(c => isStaffSearch || linking ? matchesCompany(c.name, query) : state.linkedCompanies.includes(c.id));
@@ -127,11 +212,11 @@ export function ConnectDemo() {
 
   return <SafeAreaView style={[s.safe, Platform.OS === 'web' && { width: '100%', maxWidth: 480, alignSelf: 'center' }]}>
     <StatusBar style="dark" />
-    {screen === 'chat' && conversation ? <Pressable ref={demoOptionsTrigger} testID="demo-options-trigger" accessibilityRole="button" accessibilityLabel="Opções da demonstração" accessibilityHint={failNext ? 'A próxima mensagem terá uma falha simulada. Abre os controles de teste.' : 'Abre os controles de falha e resposta fictícia.'} onPress={() => { optionsContext.current = currentOptionsContext; Keyboard.dismiss(); setDemoOptionsOpen(true); }} style={[s.demoStrip, s.demoOptionsTrigger, failNext && { backgroundColor: '#FFF3DD' }]}><View accessible={false} style={s.dot} /><Text style={[s.demoText, s.demoOptionsLabel]}>DEMONSTRAÇÃO · DADOS FICTÍCIOS</Text><Text accessible={false} style={s.demoOptionsSymbol}>{failNext ? '!' : '⋯'}</Text></Pressable> : <View style={s.demoStrip}><View style={s.dot} /><Text style={s.demoText}>DEMONSTRAÇÃO · DADOS FICTÍCIOS</Text></View>}
-    {screen !== 'welcome' ? <View style={s.header}>
+    {screen === 'chat' && conversation ? <Pressable ref={demoOptionsTrigger} testID="demo-options-trigger" accessibilityRole="button" accessibilityLabel="Opções da demonstração" accessibilityHint={'Demonstração com dados fictícios. ' + (failNext ? 'A próxima mensagem terá uma falha simulada. Abre os controles de teste.' : 'Abre os controles de falha e resposta fictícia.')} onPress={() => { optionsContext.current = currentOptionsContext; Keyboard.dismiss(); setDemoOptionsOpen(true); }} style={[s.demoStrip, s.demoOptionsTrigger, failNext && { backgroundColor: '#FFF3DD' }]}><View accessible={false} style={s.dot} /><Text style={[s.demoText, s.demoOptionsLabel]}>{compactChat ? 'DEMONSTRAÇÃO' : 'DEMONSTRAÇÃO · DADOS FICTÍCIOS'}</Text><Text accessible={false} style={s.demoOptionsSymbol}>{failNext ? '!' : '⋯'}</Text></Pressable> : <View style={s.demoStrip}><View style={s.dot} /><Text style={s.demoText}>DEMONSTRAÇÃO · DADOS FICTÍCIOS</Text></View>}
+    {screen !== 'welcome' ? <View style={[s.header, compactChat && s.headerCompact]}>
       <Pressable accessibilityRole="button" accessibilityLabel="Voltar" onPress={back} style={s.iconButton}><Text style={s.back}>‹</Text></Pressable>
-      <View style={{ flex: 1 }}><Text style={s.headerTitle} numberOfLines={2}>{headerTitle}</Text><Text style={s.caption}>{screen === 'chat' ? isStaff ? company.name : 'Conversa local' : screen === 'team' ? company.name : 'ResiCheck Connect'}</Text></View>
-      <View style={s.brandMark}><Image source={brandIcon} accessibilityLabel="Logo ResiCheck" style={{ width: 34, height: 34 }} resizeMode="contain" /></View>
+      <View style={{ flex: 1 }}><Text style={s.headerTitle} numberOfLines={2}>{headerTitle}</Text>{compactChat && !isStaff ? null : <Text style={s.caption}>{screen === 'chat' ? isStaff ? company.name : 'Conversa local' : screen === 'team' ? company.name : 'ResiCheck Connect'}</Text>}</View>
+      {!compactChat ? <View style={s.brandMark}><Image source={brandIcon} accessibilityLabel="Logo ResiCheck" style={{ width: 34, height: 34 }} resizeMode="contain" /></View> : null}
     </View> : null}
 
     {screen === 'welcome' ? <ScrollView contentContainerStyle={s.welcome}>
@@ -175,20 +260,20 @@ export function ConnectDemo() {
 
     {screen === 'chat' ? <KeyboardAvoidingView testID="chat-keyboard-frame" style={s.flex} behavior={Platform.OS === 'web' ? 'height' : 'padding'}>
       {conversation ? <>
-        <FlatList testID="chat-message-list" style={s.flex} ref={messageList} data={conversation.messages} keyExtractor={m => m.id} contentContainerStyle={s.messageContent} keyboardShouldPersistTaps="handled" onLayout={() => messageList.current?.scrollToEnd({ animated: false })} onContentSizeChange={() => messageList.current?.scrollToEnd({ animated: false })} ListHeaderComponent={<>{isStaff && stats ? <View style={s.chatSummary}><Text style={s.statText}>Principal: {stats.principal}</Text><Text style={s.statText}>Última da equipe: {stats.last}</Text></View> : null}<Text style={s.dayPill}>HOJE · CONVERSA DE EXEMPLO</Text></>} ListFooterComponent={draftError || state.deliveryNotice ? <View testID="chat-feedback"><Text accessibilityRole="alert" accessibilityLiveRegion="polite" style={s.textError}>{draftError ?? state.deliveryNotice}</Text></View> : null} ListEmptyComponent={<Info>Seu chat está pronto. Envie uma mensagem fictícia para experimentar.</Info>} renderItem={({ item }) => {
+        <FlatList CellRendererComponent={MessageCell} key={conversation.id} testID="chat-message-list" style={s.flex} ref={messageList} data={conversation.messages} keyExtractor={m => m.id} contentContainerStyle={s.messageContent} keyboardShouldPersistTaps="handled" scrollEventThrottle={32} onScroll={event => { const native = event.nativeEvent; scrollFollow.scroll(native.contentOffset.y, native.layoutMeasurement.height, native.contentSize.height); scheduleScrollFollow(); }} onScrollBeginDrag={() => scrollFollow.drag(true)} onScrollEndDrag={() => scrollFollow.drag(false)} onMomentumScrollBegin={() => scrollFollow.momentum(true)} onMomentumScrollEnd={() => scrollFollow.momentum(false)} onLayout={event => { scrollFollow.layout(event.nativeEvent.layout.height); scheduleScrollFollow(); }} onContentSizeChange={(_width, height) => { scrollFollow.content(height); scheduleScrollFollow(); }} maintainVisibleContentPosition={{ minIndexForVisible: 0 }} ListHeaderComponent={<>{isStaff && stats ? <View style={s.chatSummary}><Text style={s.statText}>Principal: {stats.principal}</Text><Text style={s.statText}>Última da equipe: {stats.last}</Text></View> : null}{/* These temporary copies are a review area, not delivered messages. Keep them before the history so following the end reaches the newest text. Native anchoring protects visible message rows when this header changes height. */}<View testID="chat-local-media-review">{audioExtension?.messages(conversation.id)}{imageExtension?.messages(conversation.id)}</View><Text style={s.dayPill}>HOJE · CONVERSA DE EXEMPLO</Text></>} ListFooterComponent={<>{draftError || state.deliveryNotice ? <View testID="chat-feedback"><Text accessibilityRole="alert" accessibilityLiveRegion="polite" style={s.textError}>{draftError ?? state.deliveryNotice}</Text></View> : null}</>} ListEmptyComponent={<Info>Seu chat está pronto. Envie uma mensagem fictícia para experimentar.</Info>} renderItem={({ item }) => {
           const mine = item.authorId === actor?.id;
           return <View testID={`message-${item.id}`} style={[s.message, (item.audio || item.attachment) && s.messageMedia, mine ? s.messageMine : s.messageOther]}>
             <View testID={`message-header-${item.id}`} style={[s.row, s.messageHeader]}>
               <Text style={s.messageAuthor}>{item.authorName}{item.authorRole === 'staff' ? ' · equipe demo' : ' · demo'}</Text>
               {item.important ? <Text style={s.importantLabel}>★</Text> : null}
             </View>
-            {item.audio ? <Pressable accessibilityRole="button" testID={`audio-demo-${item.id}`} accessibilityLabel="Prévia visual do áudio fictício" accessibilityHint="Duração fictícia de 8 segundos. Não contém som." onPress={() => Alert.alert('Áudio ilustrativo', 'Os controles de áudio são uma simulação visual. Nenhum som foi gravado, enviado ou reproduzido.')} style={s.attachmentCard}>
+            {item.audio ? <Pressable accessibilityRole="button" testID={`audio-demo-${item.id}`} accessibilityLabel="Prévia visual do áudio fictício" accessibilityHint="Duração fictícia de 8 segundos. Não contém som." onPress={() => setNotice({title:'Áudio ilustrativo',body:'Os controles de áudio são uma simulação visual. Nenhum som foi gravado, enviado ou reproduzido.'})} style={s.attachmentCard}>
               <Text accessible={false} style={s.attachmentIcon}>▷</Text>
               <View testID={`audio-content-${item.id}`} style={s.mediaContent}>
                 <Text testID={`audio-title-${item.id}`} style={s.messageText}>Áudio de exemplo</Text>
                 <Text testID={`audio-detail-${item.id}`} style={s.caption}>00:08 · simulado · sem gravação real</Text>
               </View>
-            </Pressable> : item.attachment ? <Pressable accessibilityRole="button" accessibilityLabel="Abrir anexo ilustrativo" onPress={() => Alert.alert('Anexo ilustrativo', 'Este cartão representa um documento fictício. Nenhum arquivo foi enviado ou salvo.')} style={s.attachmentCard}>
+            </Pressable> : item.attachment ? <Pressable accessibilityRole="button" accessibilityLabel="Abrir anexo ilustrativo" onPress={() => setNotice({title:'Anexo ilustrativo',body:'Este cartão representa um documento fictício. Nenhum arquivo foi enviado ou salvo.'})} style={s.attachmentCard}>
               <Text accessible={false} style={s.attachmentIcon}>▤</Text>
               <View style={s.mediaContent}><Text style={s.messageText}>Guia de exemplo</Text><Text style={s.caption}>Documento fictício · sem arquivo real</Text></View>
             </Pressable> : <Text selectable accessibilityLabel={item.text} style={s.messageText}>{item.text}</Text>}
@@ -204,7 +289,7 @@ export function ConnectDemo() {
           </View>;
         }} />
         <Text accessibilityLabel={draftAnalysis.graphemes === null ? 'Contagem indisponível. Revise a mensagem.' : `${draftAnalysis.graphemes} de ${messageLimits.graphemes} caracteres`} style={s.textCount}>{draftAnalysis.graphemes ?? '—'}/{messageLimits.graphemes}</Text>
-        <View testID="chat-composer" style={s.composer}><Pressable accessibilityRole="button" accessibilityLabel="Experimentar áudio fictício" onPress={() => { setAudioStage('ready'); setAudioOpen(true); }} style={s.attachButton}><MicIcon /></Pressable><Pressable accessibilityRole="button" accessibilityLabel="Adicionar anexo fictício" onPress={() => setAttachmentOpen(true)} style={s.attachButton}><Text style={s.attachSymbol}>＋</Text></Pressable><TextInput testID="chat-input" accessibilityLabel="Mensagem fictícia" accessibilityHint="Aceita emojis pelo teclado do sistema. Limite de 2.000 caracteres." placeholder="Digite…" placeholderTextColor={colors.muted} value={draftText} onChangeText={text => dispatch({ type: 'draft', conversationId: conversation.id, text })} multiline style={s.messageInput} /><Pressable accessibilityRole="button" accessibilityLabel="Enviar mensagem local" accessibilityState={{ disabled: !draftAnalysis.valid }} disabled={!draftAnalysis.valid} onPress={() => send()} style={[s.sendButton, !draftAnalysis.valid && s.disabled]}><Text style={s.sendSymbol}>↑</Text></Pressable></View>
+        <View testID="chat-composer" style={s.composer}><Pressable accessibilityRole="button" accessibilityLabel={audioExtension ? "Gravar áudio local" : "Experimentar áudio fictício"} onPress={() => { setAttachmentOpen(false); setAudioStage('ready'); setAudioOpen(true); }} style={s.attachButton}><MicIcon /></Pressable><Pressable accessibilityRole="button" accessibilityLabel="Adicionar anexo fictício" onPress={() => { setAudioOpen(false); setAttachmentOpen(true); }} style={s.attachButton}><Text style={s.attachSymbol}>＋</Text></Pressable><TextInput testID="chat-input" onFocus={() => { if (Platform.OS === 'web') setKeyboardVisible(true); }} onBlur={() => { if (Platform.OS === 'web') setKeyboardVisible(false); }} accessibilityLabel="Mensagem fictícia" accessibilityHint="Aceita emojis pelo teclado do sistema. Limite de 2.000 caracteres." placeholder="Digite…" placeholderTextColor={colors.muted} value={draftText} onChangeText={text => dispatch({ type: 'draft', conversationId: conversation.id, text })} multiline style={[s.messageInput, compactInputHeight !== undefined && { maxHeight: compactInputHeight }]} /><Pressable accessibilityRole="button" accessibilityLabel="Enviar mensagem local" accessibilityState={{ disabled: !draftAnalysis.valid }} disabled={!draftAnalysis.valid} onPress={() => send()} style={[s.sendButton, !draftAnalysis.valid && s.disabled]}><Text style={s.sendSymbol}>↑</Text></Pressable></View>
       </> : <View style={s.body}><Info>Esta conversa não está disponível neste perfil.</Info><Button secondary label="Voltar" onPress={back} /></View>}
     </KeyboardAvoidingView> : null}
 
@@ -221,29 +306,34 @@ export function ConnectDemo() {
 
     {showTabs ? <View style={s.tabs}>{(isStaff ? [{ label: 'Conversas', glyph: '○', page: 'team' as Screen }, { label: 'Perfil', glyph: '◉', page: 'profile' as Screen }] : [{ label: 'Empresa', glyph: '▥', page: 'company' as Screen }, { label: 'Chat', glyph: '○', page: 'chat' as Screen }, { label: 'Perfil', glyph: '◉', page: 'profile' as Screen }]).map(tab => <Pressable key={tab.label} accessibilityRole="tab" aria-selected={screen === tab.page || tab.page === 'profile' && screen === 'settings'} accessibilityLabel={tab.label} accessibilityState={{ selected: screen === tab.page || tab.page === 'profile' && screen === 'settings' }} onPress={() => tab.page === 'chat' ? openChat() : tab.page === 'profile' ? openProfile() : setScreen(tab.page)} style={s.tab}><View style={[s.tabIcon, (screen === tab.page || tab.page === 'profile' && screen === 'settings') && s.tabActive]}><Text style={s.tabGlyph}>{tab.glyph}</Text></View><Text style={s.tabLabel}>{tab.label}</Text></Pressable>)}</View> : null}
 
+    <DemoModal visible={notice!==null} title={notice?.title??'Aviso'} closeLabel="Fechar aviso" onClose={()=>setNotice(null)}>
+      <Text style={s.bodyText}>{notice?.body}</Text><Button label="Entendi" onPress={()=>setNotice(null)}/>
+    </DemoModal>
     <DemoModal visible={exitOpen} title="Sair da demonstração?" closeLabel="Fechar confirmação de saída" onClose={() => setExitOpen(false)}>
       <Text style={s.description}>Suas mensagens, rascunhos e escolhas ficam só nesta sessão. Ao sair, os dados fictícios serão reiniciados.</Text>
       <Button label="Continuar na demonstração" onPress={() => setExitOpen(false)} />
       <Button secondary label="Sair e reiniciar dados" onPress={logout} />
     </DemoModal>
     <DemoModal visible={attachmentOpen} title="Anexo de demonstração" closeLabel="Fechar anexo de demonstração" onClose={() => setAttachmentOpen(false)}>
-      <Text style={s.description}>Adicione um cartão fictício à conversa. O protótipo não acessa seus arquivos e não faz upload.</Text>
+      {attachmentOpen&&imageExtension&&conversation?imageExtension.composer(conversation.id,()=>setAttachmentOpen(false)):<><Text style={s.description}>Adicione um cartão fictício à conversa. O protótipo não acessa seus arquivos e não faz upload.</Text>
       <View style={s.documentPreview}><Text style={s.eyebrow}>DOCUMENTO DE EXEMPLO</Text><Text style={s.sectionTitle}>Guia fictícia</Text><Text style={s.caption}>Sem dados de pacientes · sem validade</Text></View>
       <Button label="Adicionar guia fictícia" onPress={() => { if (send(true)) setAttachmentOpen(false); }} />
-      <Button secondary label="Cancelar" onPress={() => setAttachmentOpen(false)} />
+      <Button secondary label="Cancelar" onPress={() => setAttachmentOpen(false)} /></>}
     </DemoModal>
     <DemoModal visible={audioOpen} title="Mensagem de áudio" closeLabel="Fechar áudio de demonstração" onClose={() => setAudioOpen(false)}>
+      {audioOpen&&audioExtension&&conversation?audioExtension.composer(conversation.id,()=>setAudioOpen(false)):<>
       <Text style={s.description}>Experimente os controles. O microfone não é acessado e nenhum som é gravado.</Text>
-      <View style={s.documentPreview}><Text accessibilityLiveRegion="polite" style={s.eyebrow}>{audioStage === 'recording' ? 'GRAVAÇÃO SIMULADA' : audioStage === 'review' ? 'PRÉVIA VISUAL · SEM SOM' : 'DEMONSTRAÇÃO'}</Text><Text accessible={false} style={[s.title, { textAlign: 'center' }]}>▁ ▃ ▆ ▂ ▅ ▇ ▃ ▁</Text><Text style={[s.caption, { textAlign: 'center' }]}>{audioStage === 'ready' ? '00:00' : '00:08 · duração fictícia'}</Text></View>
+      <View style={s.documentPreview}><Text accessibilityLiveRegion="polite" style={s.eyebrow}>{audioStage === 'recording' ? 'GRAVAÇÃO SIMULADA' : audioStage === 'review' ? 'PRÉVIA VISUAL · SEM SOM' : 'DEMONSTRAÇÃO'}</Text><AudioWaveform /><Text style={[s.caption, { textAlign: 'center' }]}>{audioStage === 'ready' ? '00:00' : '00:08 · duração fictícia'}</Text></View>
       <Button secondary={audioStage === 'review'} label={audioStage === 'ready' ? 'Simular gravação' : audioStage === 'recording' ? 'Parar e revisar' : 'Ouvir prévia ilustrativa'} onPress={() => {
         if (audioStage === 'ready') setAudioStage('recording');
         else if (audioStage === 'recording') setAudioStage('review');
-        else Alert.alert('Prévia visual', 'Este exemplo não contém som. A gravação e a reprodução reais serão desenvolvidas com permissão de microfone e arquivos privados.');
+        else setNotice({title:'Prévia visual',body:'Este exemplo não contém som. A gravação e a reprodução reais serão desenvolvidas com permissão de microfone e arquivos privados.'});
       }} />
       {audioStage === 'review' ? <Button label="Enviar áudio fictício" onPress={() => { if (conversation) dispatch({ type: 'send', conversationId: conversation.id, time: 'Agora', audio: true }, () => setAudioOpen(false)); }} /> : null}
       <Button secondary label="Cancelar áudio" onPress={() => setAudioOpen(false)} />
+      </>}
     </DemoModal>
-    <Modal visible={demoOptionsOpen} accessibilityLabel="Opções da demonstração" transparent animationType="none" onRequestClose={() => setDemoOptionsOpen(false)} onShow={() => { if (Platform.OS !== 'web' && demoOptionsTitle.current) AccessibilityInfo.sendAccessibilityEvent(demoOptionsTitle.current, 'focus'); }}>
+    <MediaWindow visible={demoOptionsOpen} onClose={() => setDemoOptionsOpen(false)} onShow={() => { if (Platform.OS !== 'web' && demoOptionsTitle.current) AccessibilityInfo.sendAccessibilityEvent(demoOptionsTitle.current, 'focus'); }}>
       <View style={s.modalOverlay}>
         <View testID="demo-options-panel" accessibilityViewIsModal style={[s.modalCard, s.demoOptionsCard]}>
           <View style={s.demoOptionsHeader}>
@@ -252,17 +342,21 @@ export function ConnectDemo() {
           </View>
           <ScrollView style={s.demoOptionsScroll} contentContainerStyle={s.demoOptionsContent} keyboardShouldPersistTaps="handled">
             <Text style={s.bodyText}>Mensagens e escolhas ficam apenas nesta sessão. Não há envio real.</Text>
+            <Button secondary label="Sobre esta demonstração" onPress={()=>{setDemoOptionsOpen(false);setNotice({title:'Sobre esta demonstração',body:'Mensagens e mídias deste teste ficam só neste aparelho. Nenhum atendimento foi iniciado.'});}}/>
             <Pressable testID="delivery-failure-toggle" accessibilityRole="checkbox" accessibilityLabel="Simular falha no próximo envio" aria-checked={failNext} accessibilityState={{ checked: failNext }} onPress={() => setFailNext(value => !value)} style={[s.deliveryToggle, failNext && { backgroundColor: colors.pale }]}><Text style={s.bodyText}>{failNext ? '☑' : '☐'} Simular falha no próximo envio</Text></Pressable>
             {!isStaff && conversation ? <Button secondary label="Experimentar uma resposta simulada" onPress={() => dispatch({ type: 'simulate-reply', conversationId: conversation.id }, () => setDemoOptionsOpen(false))} /> : null}
             <Text style={s.caption}>{draftText.trim() ? 'Rascunho nesta conversa · só nesta sessão' : 'Demonstração · mensagens apenas neste aparelho'}</Text>
           </ScrollView>
         </View>
       </View>
-    </Modal>
+    </MediaWindow>
   </SafeAreaView>;
 }
 
 const s = StyleSheet.create({
+  headerCompact: { paddingVertical: 8 },
+  audioWaveform: { height: 48, width: '100%', marginVertical: 6, flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 6 },
+  audioWaveBar: { flex: 1, maxWidth: 18, borderRadius: 3, backgroundColor: colors.dark },
   textCount: { paddingHorizontal: 18, paddingTop: 5, textAlign: 'right', fontSize: 11, color: colors.muted, backgroundColor: colors.white },
   textError: { paddingHorizontal: 18, paddingVertical: 6, fontSize: 12, color: '#8C3027', backgroundColor: colors.white },
   draftStatus: { paddingHorizontal: 18, paddingVertical: 6, backgroundColor: colors.white },

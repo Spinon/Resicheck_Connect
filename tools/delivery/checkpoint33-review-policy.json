@@ -1,0 +1,624 @@
+{
+  "state": "reviewed66-no-values-exported",
+  "count": 67,
+  "files": [
+    {
+      "path": "apps/mobile/previews/auth-diagnostic.android.tsx",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-preview-fixture",
+      "basis": "Local fake Auth response boundary in diagnostic/QA fixture; not a live credential.",
+      "sourceSha256": "33698f9d891b5d20ebfb381d137054cb619860bb80110f6b506335de397dc65b"
+    },
+    {
+      "path": "apps/mobile/previews/synthetic-registration-server.ts",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-preview-fixture",
+      "basis": "Local fake Auth response boundary in diagnostic/QA fixture; not a live credential.",
+      "sourceSha256": "ccc212b347cd032db34b15eebc5b9928c40940c565eb548ae765f185796cf311"
+    },
+    {
+      "path": "apps/mobile/src/RegistrationScreens.tsx",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "non-secret-ui-text",
+      "basis": "Reviewed text/field/style identifiers and public error presentation; no credential value assignment.",
+      "sourceSha256": "6792dbfcca0e9b19333b6d5f6d90404279050e5c164e4e2bcdfdc650ae9bf648"
+    },
+    {
+      "path": "apps/mobile/src/testing/company-registry-visual-qa-fixture.ts",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-preview-fixture",
+      "basis": "Local fake Auth response boundary in diagnostic/QA fixture; not a live credential.",
+      "sourceSha256": "66207a57bf2e6c51d7b103a877bbcf68a9997899c2c36af3fbbee57f9748367a"
+    },
+    {
+      "path": "apps/mobile/tests/account-delete-intent.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "ee597e28babc3caac49c423b03124a37baa257a6d105d9a4d4cc05bb38cc1936"
+    },
+    {
+      "path": "apps/mobile/tests/app204-expiry-auth-qa-core.test.ts",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "eba6a180340c7a7992bb3692e5a5cd5f45e4d97b6444fc9f5386d60246c8d984"
+    },
+    {
+      "path": "apps/mobile/tests/auth-provider-registration-admission.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "c62359ca499096da5bb00d944b534e369613b7c07a610b297b6c0ef749be4e18"
+    },
+    {
+      "path": "apps/mobile/tests/basic-text-phone10-admission.test.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "5d8fc93df83a8b9f4cbab2d9954a38c0fd767c89c0adf3e400e0bd67e7ab917e"
+    },
+    {
+      "path": "apps/mobile/tests/company-registration-phone10-admission.test.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "113f5c459d04dd0bfea8dd7e2428b8e45ba5971e1366d760861a47581587f591"
+    },
+    {
+      "path": "apps/mobile/tests/company-registry-on-demand.test.mjs",
+      "categories": [
+        "secret-key-like-literal"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "19e4c7fb4c0267b362adf414139d42451fa4798830e8bd8dc96fcb751b42f1e0"
+    },
+    {
+      "path": "apps/mobile/tests/connected-company-registry.test.ts",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "c5ec5eba7f34b94f9374462c99dc1cba6d8dbdcf3ff57d2abd768a7ce732470d"
+    },
+    {
+      "path": "apps/mobile/tests/connected-membership-management.test.ts",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "779cd19ee9549abf6af400b94b0d082c0503743325773e0a113924ba5ddab054"
+    },
+    {
+      "path": "apps/mobile/tests/connected-membership-read.test.ts",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "1a20cd4f34d495f47d34bc2a1cc5a8e62f2b47a1e55cf2f53d0efaa0887848b4"
+    },
+    {
+      "path": "apps/mobile/tests/connected-pending-registration.test.ts",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "e2b7b5044c03cd0722b1b8812048086ec40fc927cec777d196a97e757ba7b948"
+    },
+    {
+      "path": "apps/mobile/tests/membership-management-http.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "3253e35dd77748cfd6da58f09455b5030cbd47fe0333fbe28be8ecea1f9e4dbf"
+    },
+    {
+      "path": "apps/mobile/tests/membership-proof-ports.test.mjs",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "7da25f5572cf00ab2b76b30d61691bedc04b5648709c8dd61a03e0081eb488e3"
+    },
+    {
+      "path": "apps/mobile/tests/membership-read-http.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "11cf1002c6219e0fb074b594b9aaeb29105ab746ace83122601eb18320b85593"
+    },
+    {
+      "path": "apps/mobile/tests/password-visibility-component.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "a9041cdfefff29a39bca2f7f48c0225d48ad2da291dcb1605f4da17179829de8"
+    },
+    {
+      "path": "apps/mobile/tests/pending-registration-http.test.ts",
+      "categories": [
+        "password-like-literal-review",
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "e925c1cc6bb354f9d2559d5dc75bd6297164697dbc231ab8243c21cb9a587489"
+    },
+    {
+      "path": "apps/mobile/tests/registration-auth-notice.test.ts",
+      "categories": [
+        "password-like-literal-review",
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "e49cedda142cd4150d4b5e3f158986c466931c66fb2bc9635f2fca5823ef7c8b"
+    },
+    {
+      "path": "apps/mobile/tests/registration-feedback-phone11-admission.test.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "f31652ebf5980fe40ac64b196c9dd0f77534f90a15c4a0c6c832bd812c781211"
+    },
+    {
+      "path": "apps/mobile/tests/registration-forms.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "20215043faf3541314ed7d63d0f7b12aeb209e5c7f20d0ae230de7ff2f5cec4a"
+    },
+    {
+      "path": "apps/mobile/tests/registration-fresh-phone11-admission.test.mjs",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "82c94e9277b81ee6964d171df446d5855bcd52d10041e0ce11048ddddd98d83b"
+    },
+    {
+      "path": "apps/mobile/tests/registration-host.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "f6079ebd2066d858df1ec7f8d23fffc504e8681ef06e9f7d742bc66bfb11f75d"
+    },
+    {
+      "path": "apps/mobile/tests/registration-identifiers-component.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "2eb5d3a668f57d636cfee1686fb5000e433098d382aea45782638c8a3481e805"
+    },
+    {
+      "path": "apps/mobile/tests/registration-signup-outcome.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "9572b69cfb60c22c5f93980ed0e954a81fa5a5872cd41302215f62eeee86781d"
+    },
+    {
+      "path": "apps/mobile/tests/session-recovery-presentation.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "af53cd164fd41b9df26e4a1da79e0741125ec932986e0a0d3b1997e923a6b67b"
+    },
+    {
+      "path": "apps/mobile/tests/signup-receipt-runtime.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "ad33fbb5f1dc25684c272ae15c8201b55e7a6d54d247d7f16e2992b420199dfd"
+    },
+    {
+      "path": "apps/mobile/tests/web-connected-assembly.test.ts",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "6031c12a734fc9a66c916a177b86f5837f32c1c7b3326d8eb5735c5cca94a9f6"
+    },
+    {
+      "path": "packages/access/tests/account-deletion-review.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "f1a1a3628e31b5e26a2370b3766ff28fac17fa143b70f0de9099f998fc0f708c"
+    },
+    {
+      "path": "packages/session/src/public-auth-error.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "non-secret-ui-text",
+      "basis": "Reviewed text/field/style identifiers and public error presentation; no credential value assignment.",
+      "sourceSha256": "41bf61b7c6c833b91bdc004721f35df726d3d5f3340c3bdd203a33a5611f116f"
+    },
+    {
+      "path": "packages/session/tests/auth-controller.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "fea336ddf170096e37755f7ae2605c1220f6cfa7acfd1e177e2f325436a8220c"
+    },
+    {
+      "path": "packages/session/tests/auth-only-probe.test.ts",
+      "categories": [
+        "password-like-literal-review",
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "1cb0ca4e2dd7bb06aed580108e6706c826cc7edb13c472d7dc663663bfc5ce11"
+    },
+    {
+      "path": "packages/session/tests/auth-provider-admission.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "90af8bd93b8d0ffacca06425b6b4238c5a419bc33d1f9c96bf7a046a5fa319bc"
+    },
+    {
+      "path": "packages/session/tests/native-session-vault.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "cd232e8e7a0167614ff9baae19d65a6dcfb3baf71ab2d171ea74a3c06e30362e"
+    },
+    {
+      "path": "packages/session/tests/persistent-auth-provider.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "9f4e43eb2a6e8110e33629fcdb3a8f23e631b2b8281ca8b7e8aef2e298a445a4"
+    },
+    {
+      "path": "packages/session/tests/persistent-auth-recovery.test.ts",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "93c95c4c2c4cbd3e2871414670d1dff5e028b27f027bcbb48d0c24ae67802d5e"
+    },
+    {
+      "path": "packages/session/tests/supabase-auth-provider.test.ts",
+      "categories": [
+        "password-like-literal-review",
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "0b152cb2c4d1e034e740f7be6cffd0a648a29300a4313b246c2c93a5af2d2ddd"
+    },
+    {
+      "path": "supabase/runtime/audio-node/attachment-executor-composition.test.mjs",
+      "categories": [
+        "password-like-literal-review",
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "5e16830137b60942e195c2e13c6f1c9514f8d3fa91b9d35ef97e447abc04a85a"
+    },
+    {
+      "path": "supabase/runtime/audio-node/attachment-local-login.test.mjs",
+      "categories": [
+        "password-like-literal-review",
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "56c7fdde3e36a18044055e10211d81794b64627e6565f243abcb20b0654159c0"
+    },
+    {
+      "path": "supabase/runtime/audio-node/attachment-login-task-executor.test.mjs",
+      "categories": [
+        "password-like-literal-review",
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "c27a8597679fa05bded2db6edccbb04f609e82bf20f1d706b75704cb64d071fd"
+    },
+    {
+      "path": "supabase/runtime/audio-node/auth-only-once.test.mjs",
+      "categories": [
+        "password-like-literal-review",
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "43c7dfa71269930161981212d4d20e02a0e34bb1e5643e0ea50fbb1c73c24b6e"
+    },
+    {
+      "path": "supabase/runtime/audio-node/company-worker-session-v2.test.mjs",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "2081b58d7ea22c4122b41c2d127b577ed76925431ae51cea86249acc6909d6e8"
+    },
+    {
+      "path": "supabase/runtime/audio-node/dedicated-inspector-attachment.test.mjs",
+      "categories": [
+        "password-like-literal-review",
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "9237a2612510cf4e92e6cf89181a0ac4079d66f3060a72ade3ecc1a7ed5dbdc4"
+    },
+    {
+      "path": "supabase/runtime/audio-node/direct-signup-consumer.test.mjs",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "fb5beefcf9489df06274f66f0a1c12d75f6fefeaa3db7ff11b8fbac200ffa166"
+    },
+    {
+      "path": "supabase/runtime/audio-node/host-audio-company-worker-v2.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "public-technical-identity-pin",
+      "basis": "Reviewed comparison/import pin for dedicated service Auth account; no password/token embedded. Keep only if required by current runtime dependency graph.",
+      "sourceSha256": "6783c2191b700ecdd5b32dfee1f4ba028cfe30c6282f0714e5723e1ec47e5f53"
+    },
+    {
+      "path": "supabase/runtime/audio-node/host-audio-company-worker.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "public-technical-identity-pin",
+      "basis": "Reviewed comparison/import pin for dedicated service Auth account; no password/token embedded. Keep only if required by current runtime dependency graph.",
+      "sourceSha256": "0e67c34ff05314ccb1383cb3c2cffa50a74e754e970567c43ac46b53189235bd"
+    },
+    {
+      "path": "supabase/runtime/audio-node/host-audio-once-v2.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "public-technical-identity-pin",
+      "basis": "Reviewed comparison/import pin for dedicated service Auth account; no password/token embedded. Keep only if required by current runtime dependency graph.",
+      "sourceSha256": "b39e1ef978fc02a06ba9d43b2700d9d1710323b2f2b80533b8cd86f4126329b9"
+    },
+    {
+      "path": "supabase/runtime/audio-node/host-audio-once.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "public-technical-identity-pin",
+      "basis": "Reviewed comparison/import pin for dedicated service Auth account; no password/token embedded. Keep only if required by current runtime dependency graph.",
+      "sourceSha256": "c2bfaf0fef015ffd3baceb1bd3a1c0e064df3e9c1e18768a4d01a50e6993d4df"
+    },
+    {
+      "path": "supabase/runtime/audio-node/host-audio-public-keys.json",
+      "categories": [
+        "jwt-like-literal"
+      ],
+      "decision": "public-anon-binding",
+      "basis": "Existing public key object; decoded only role in memory, anon only. Exclude operational host binding from product checkpoint.",
+      "sourceSha256": "96a6115376575986fc14652ada68637413c432a0f4d030657b6fa1d53bb53f45"
+    },
+    {
+      "path": "supabase/runtime/audio-node/host-audio-service-worker.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "public-technical-identity-pin",
+      "basis": "Reviewed comparison/import pin for dedicated service Auth account; no password/token embedded. Keep only if required by current runtime dependency graph.",
+      "sourceSha256": "956e1f6b5b8ed403847daa5fcca4d6e3e759915a3705453ebb7820f128fb63cb"
+    },
+    {
+      "path": "supabase/runtime/audio-node/inspector-auth-only.test.mjs",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "88b94c32dd14a32a14cea06f239169ee706287bff55763a90a6faecea3a7a6b9"
+    },
+    {
+      "path": "supabase/runtime/audio-node/inspector-bootstrap-protocol.test.mjs",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "dd2a6819706defa1e830da9ab4856e722cadb21afd9ee5d4a5ef89e33312bde9"
+    },
+    {
+      "path": "supabase/runtime/audio-node/inspector-bootstrap-sync.test.mjs",
+      "categories": [
+        "password-like-literal-review",
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "59c4dd8735b18df895584c9a38cfb190ee6b7b63b977e25be6bb18843ee9907a"
+    },
+    {
+      "path": "supabase/runtime/audio-node/inspector-direct-signup-local.test.mjs",
+      "categories": [
+        "password-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "a88ac8dcfef571febe84220be44234471dc99daff675635e71853de348b932a7"
+    },
+    {
+      "path": "supabase/runtime/audio-node/inspector-local-login.test.mjs",
+      "categories": [
+        "password-like-literal-review",
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "adaacca9c4103e437776b937492f2bfd2144a2148080ee6408c767bdc312f21f"
+    },
+    {
+      "path": "supabase/runtime/audio-node/inspector-session-contract.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "public-technical-identity-pin",
+      "basis": "Reviewed comparison/import pin for dedicated service Auth account; no password/token embedded. Keep only if required by current runtime dependency graph.",
+      "sourceSha256": "f67e91cc5561dab9cb47a3dafb46b83043b9d1a48d2de8fea59d8527b8602b7e"
+    },
+    {
+      "path": "supabase/runtime/image-node/host-image-integration-once.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "public-technical-identity-pin",
+      "basis": "Reviewed comparison/import pin for dedicated service Auth account; no password/token embedded. Keep only if required by current runtime dependency graph.",
+      "sourceSha256": "176b02eba59dd56d939faae212209cfc27bc8082cf2f2dbefb9a6c506635429a"
+    },
+    {
+      "path": "supabase/runtime/image-node/host-image-regular-once.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "public-technical-identity-pin",
+      "basis": "Reviewed comparison/import pin for dedicated service Auth account; no password/token embedded. Keep only if required by current runtime dependency graph.",
+      "sourceSha256": "3f766cc9fdbd90684698b4af3fc1474701e45d183168fb3323f1d62e2cbdb522"
+    },
+    {
+      "path": "supabase/runtime/image-node/host-image-signup-once.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "public-technical-identity-pin",
+      "basis": "Reviewed comparison/import pin for dedicated service Auth account; no password/token embedded. Keep only if required by current runtime dependency graph.",
+      "sourceSha256": "c7b74fdc18fd34ee1074ee9b4d4ff23773253fa837af3f8ed6544b14fcb6a46a"
+    },
+    {
+      "path": "supabase/runtime/image-node/normal/credential.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "public-technical-identity-pin",
+      "basis": "Reviewed ACL correction pinned ab865517: exact named-UID read-only LoadCredential metadata, no issued password/token literal; validated before live installation.",
+      "sourceSha256": "462624450329ec30a052fec3e9ba80892b686172f49817491134dcb3baba7378"
+    },
+    {
+      "path": "supabase/runtime/image-node/owned-session-auth.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "public-technical-identity-pin",
+      "basis": "Reviewed comparison/import pin for dedicated service Auth account; no password/token embedded. Keep only if required by current runtime dependency graph. Public checkpoint: instance identities replaced by example bindings; no live credential or operation.",
+      "sourceSha256": "2e861730be14d0fbb0cb81245d50aca091033fa3a49213e61ae5b580a6b51b2d"
+    },
+    {
+      "path": "supabase/runtime/image-node/owned-session-auth.test.mjs",
+      "categories": [
+        "credential-value-like-literal-review",
+        "external-email-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "15ebefdb5a4866c50dd0e1f09a2370b17365e0cb4f9756edf3b0cb61151455ee"
+    },
+    {
+      "path": "supabase/runtime/image-node/service-auth-port.mjs",
+      "categories": [
+        "external-email-literal-review"
+      ],
+      "decision": "public-technical-identity-pin",
+      "basis": "Reviewed comparison/import pin for dedicated service Auth account; no password/token embedded. Keep only if required by current runtime dependency graph.",
+      "sourceSha256": "3de06dea0421001c54660a62963cf956f0cbb1d7af9a964502ca0292e12b2a36"
+    },
+    {
+      "path": "supabase/runtime/image-node/unprivileged-inspector.test.mjs",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-test-literals",
+      "basis": "Reviewed local test fixture with generated/fake values and expected refusals; not an account credential or copied session.",
+      "sourceSha256": "98d2fbd8ececedc1a7d31bc5208af176dac5f4a4def5d51bc964a8a5798da8bd"
+    },
+    {
+      "path": "apps/mobile/candidates/messaging33/prepare-web.test.mjs",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "synthetic-public-config-negative-fixture",
+      "basis": "Deliberately forbidden field in a public-config rejection fixture; no issued credential/session.",
+      "sourceSha256": "a6410f8b486bef0dc35a6da124116a6ba6ce60468fa93781b1b7c4589b54e67e"
+    },
+    {
+      "path": "supabase/runtime/image-node/normal/boundary.test.mjs",
+      "categories": [
+        "credential-looking-literal"
+      ],
+      "decision": "synthetic-fixture-only",
+      "basis": "Literal synthetic-not-for-journal and forbidden extra-key fixture; no issued credential or real session. Local lifecycle fixture only. Public checkpoint: instance identities replaced by example bindings; no live credential or operation.",
+      "sourceSha256": "456a83af7e9c73385052085a641b018509f71bba80771b674e590e9dc355f1f4"
+    }
+  ],
+  "originalProposed": 1090,
+  "purpose": "Reviewed source-literal policy only; no values, credentials or session evidence. Recheck changed source hashes before export.",
+  "originalReviewCount": 65
+}

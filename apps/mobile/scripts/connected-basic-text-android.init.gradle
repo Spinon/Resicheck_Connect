@@ -1,0 +1,57 @@
+// Opt-in protected connected candidate. No changes to original package/output.
+allprojects { p ->
+    if (p.path == ':expo-constants') {
+        def profile = p.findProperty('connectBasicTextProfile')
+        if (!(profile in ['qa', 'phone'])) throw new GradleException('Explicit connected Expo profile required')
+        p.layout.buildDirectory.set(new File(p.rootProject.projectDir, 'connected-basic-text-expo-constants-build/' + profile))
+    }
+    if (p.path == ':app') {
+        def profile = p.findProperty('connectBasicTextProfile')
+        if (!(profile in ['qa', 'phone'])) throw new GradleException('Explicit connected basic text profile required')
+        def mobile = p.rootProject.projectDir.parentFile
+        def generated = new File(p.rootProject.projectDir, 'connected-basic-text-generated/' + profile)
+        def spec = new groovy.json.JsonSlurper().parse(new File(mobile, 'candidates/connected-basic-text/build-spec.json'))
+        def selected = spec[profile]
+        if (!new File(generated, 'preparation.json').isFile()) throw new GradleException('Reviewed public preparation missing')
+        // Keep original app/build APKs intact, including when this build fails.
+        p.layout.buildDirectory.set(new File(p.rootProject.projectDir, 'connected-basic-text-build/' + profile))
+        p.plugins.withId('com.android.application') {
+            p.extensions.getByName('androidComponents').finalizeDsl { dsl ->
+                dsl.defaultConfig.applicationId = selected.package
+                dsl.defaultConfig.versionCode = selected.versionCode
+                dsl.defaultConfig.versionName = selected.versionName
+                dsl.buildTypes.getByName('release').debuggable = false
+                dsl.buildTypes.getByName('release').signingConfig = dsl.signingConfigs.getByName('debug')
+                dsl.sourceSets.getByName('main').manifest.srcFile(new File(generated, 'AndroidManifest.xml'))
+                dsl.sourceSets.getByName('main').res.srcDir(new File(mobile, 'candidates/connected-basic-text/res'))
+                dsl.sourceSets.getByName('main').java.srcDir(new File(mobile, 'native/privacy'))
+            }
+        }
+        p.plugins.withId('com.facebook.react') {
+            p.afterEvaluate {
+                def entry = new File(generated, 'entry.tsx')
+                if (!entry.isFile()) throw new GradleException('Reviewed generated pending entry missing')
+                p.extensions.getByName('react').entryFile.set(entry)
+                p.tasks.matching { it.name == 'createBundleReleaseJsAndAssets' }.configureEach { t -> t.entryFile.set(entry) }
+            }
+        }
+    }
+}
+
+// Override only this invocation's generated Expo public asset, never app.json or vendor sources.
+gradle.projectsEvaluated {
+    // Init scripts also apply to included plugin builds; only the Android app root owns this asset.
+    if (gradle.rootProject.findProject(':app') == null) return
+    def profile = gradle.rootProject.findProperty('connectBasicTextProfile')
+    if (!(profile in ['qa', 'phone'])) throw new GradleException('Explicit connected Expo profile required')
+    def constantsProject = gradle.rootProject.findProject(':expo-constants')
+    if (constantsProject == null) throw new GradleException('Expected expo-constants module missing')
+    def mobile = gradle.rootProject.projectDir.parentFile
+    def generated = new File(gradle.rootProject.projectDir, 'connected-basic-text-generated/' + profile)
+    def assetDir = new File(gradle.rootProject.projectDir, 'connected-basic-text-expo-constants-build/' + profile + '/generated/assets/expo-constants')
+    def task = constantsProject.tasks.findByName('createExpoConfig')
+    if (!(task instanceof org.gradle.api.tasks.Exec)) throw new GradleException('Reviewed Expo asset task missing')
+    task.workingDir(mobile)
+    task.commandLine('node', new File(mobile, 'scripts/connected-expo-config.mjs').absolutePath, profile, new File(generated, 'expo-public-config.json').absolutePath, assetDir.absolutePath)
+    task.inputs.file(new File(generated, 'expo-public-config.json'))
+}

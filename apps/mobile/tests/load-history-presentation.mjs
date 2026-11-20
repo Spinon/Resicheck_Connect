@@ -1,0 +1,4 @@
+import fs from'node:fs';import{createRequire}from'node:module';
+const local=createRequire(new URL('../package.json',import.meta.url)),ts=local('typescript');
+/** Load actual history presentation into legacy primitive-only component harnesses. */
+export function loadHistoryPresentation(React,rn,name){const file=name.endsWith('HistorySyncStatus.tsx')?'HistorySyncStatus.tsx':'HistoryPreparation.tsx',m={exports:{}};const code=ts.transpileModule(fs.readFileSync(new URL('../src/'+file,import.meta.url),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true}}).outputText;new Function('require','module','exports',code)(id=>id==='react'?React:id==='react-native'?{...rn,ActivityIndicator:rn.ActivityIndicator??(()=>null)}:id.endsWith('HistoryPreparation.tsx')?loadHistoryPresentation(React,rn,id):local(id),m,m.exports);return m.exports;}

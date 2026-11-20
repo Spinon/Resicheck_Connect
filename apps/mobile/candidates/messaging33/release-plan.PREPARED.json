@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "state": "prepared-not-bumped-not-built-not-published",
+  "release": "0.0.33-mensagens",
+  "versionCode": 33,
+  "previousRelease": "0.0.32-teclado-recibos",
+  "previousVersionCode": 32,
+  "projectRef": "ibdlvlwdzmsrbqadrudb",
+  "android": {
+    "package": "com.resicheck.connect.pendingonlinephone",
+    "label": "Connect Teste33",
+    "architectures": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "signingCertificateSha256": "fac61745dc0903786fb9ede62a962b399f7348f0bb6f899b8332667591033b9c",
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.RECORD_AUDIO"
+    ],
+    "allowBackup": false,
+    "usesCleartextTraffic": false,
+    "debuggable": false
+  },
+  "web": {
+    "origin": "https://connect.resicheck.com.br",
+    "basePath": "/",
+    "sameVersion": true,
+    "preserveMainSite": true
+  },
+  "sourceRoots": {
+    "android": "apps/mobile/previews/company-preview-lot.android.tsx",
+    "web": "apps/mobile/previews/company-preview-lot.web.tsx",
+    "imagesOption": "candidate-private-v1"
+  },
+  "scope": [
+    "imagens privadas com revisão/envio/leitura",
+    "remoção para mim/para todos com original e log preservados",
+    "refresh estável",
+    "empresa/CNPJ com prévia editável e representação distinta",
+    "convites funcionário/cliente existentes no candidato",
+    "regressão de texto/cache/recibos/áudio"
+  ],
+  "admissionBeforeBuild": [
+    "prova regular real de imagens concluída e fechamento/auditoria verificados",
+    "definir disponibilidade operacional real dos recursos durante validação do APK; prova de dez minutos encerrada não equivale a serviço contínuo",
+    "dataset sintético elegível para convites sem desfazer vínculos existentes",
+    "fontes estabilizadas e congeladas na preparação; single version source aplicado a Android nativo/Expo/build info e web",
+    "um único APK universal candidato agrupado, inspeção estática e validação do próprio arquivo",
+    "não usar os builders históricos que fixam0.0.23/0.0.30 sem adaptar a composição e seus pins"
+  ],
+  "actionsNow": {
+    "bumpApplied": false,
+    "build": false,
+    "webExport": false,
+    "publish": false,
+    "startEmulator": false,
+    "login": false,
+    "grants": false
+  },
+  "releasePolicy": {
+    "singleGroupedApk": true,
+    "noBuildPerSmallChange": true,
+    "webAfterValidatedApk": true,
+    "notesAndHashesSameLot": true
+  },
+  "regressionPlan": "docs/testing/ROTEIRO-APK-WEB-0.0.33-PREPARED.md",
+  "priorDeliveryReceipt": "output/entregas/connect-0.0.32-build32-20261117/delivery.json",
+  "publicHostedVersionReadback": "apps/mobile/next-lot-hosted-version-readonly.json",
+  "currentImagesRealProof": "supabase/candidates/image-message/normal-image-owned-session-corrected-execution-26f3284a-54f8-4562-9b2b-b2ae4e56de46.json",
+  "normalImageAvailability": {
+    "state": "off-preparation-only",
+    "service": "supabase/runtime/image-node/normal/remote-effects.PREPARED.json",
+    "localBoundaryCheck": "supabase/runtime/image-node/normal/local-validation.json",
+    "linuxSandboxAndRuntimeStillRequired": true,
+    "currentInspectorSingleCompany": true,
+    "localMultiCompanyEligibilityCandidate": "supabase/candidates/image-message/normal-eligibility/README.md",
+    "hostedMultiCompanyActivated": false
+  }
+}

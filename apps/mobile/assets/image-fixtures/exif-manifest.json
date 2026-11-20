@@ -1,0 +1,203 @@
+{
+  "syntheticOnly": true,
+  "base": "guide-clean-jpeg.jpg",
+  "sourceSha256": "e47d9a7cd7b47544aa340213b62a6cc9eb02f5c495bd2a10a15b06fecbdb3b25",
+  "sourcePreserved": true,
+  "fixtures": [
+    {
+      "file": "guide-exif-o1-gps.jpg",
+      "bytes": 615061,
+      "sha256": "c02d98f4ffae49f1591757b19a0679b3c48a75c5c25c4e732b7301b4d0bb2aa9",
+      "orientation": 1,
+      "gpsSyntheticOnly": true,
+      "encodedWidth": 2480,
+      "encodedHeight": 3508,
+      "expectedDisplayWidth": 2480,
+      "expectedDisplayHeight": 3508,
+      "expectedClockwiseRotation": 0,
+      "jpegReencoded": false,
+      "restoringOnlyInsertedSegmentRecoversBase": true,
+      "parsed": {
+        "status": "parsed-limited-exif-subset",
+        "byteOrder": "II",
+        "orientation": 1,
+        "description": "SYNTHETIC EXIF FIXTURE - NO PERSONAL DATA",
+        "gps": {
+          "version": [
+            2,
+            3,
+            0,
+            0
+          ],
+          "latitudeRef": "N",
+          "latitudeDms": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "longitudeRef": "E",
+          "longitudeDms": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        "segmentOffset": 2,
+        "segmentLength": 216,
+        "allMetadataRemoved": false
+      }
+    },
+    {
+      "file": "guide-exif-o6-gps.jpg",
+      "bytes": 615061,
+      "sha256": "005e0a35967aef43021b859ee5c756c159db1dff9bcef886ddea0fa58c13fada",
+      "orientation": 6,
+      "gpsSyntheticOnly": true,
+      "encodedWidth": 2480,
+      "encodedHeight": 3508,
+      "expectedDisplayWidth": 3508,
+      "expectedDisplayHeight": 2480,
+      "expectedClockwiseRotation": 90,
+      "jpegReencoded": false,
+      "restoringOnlyInsertedSegmentRecoversBase": true,
+      "parsed": {
+        "status": "parsed-limited-exif-subset",
+        "byteOrder": "II",
+        "orientation": 6,
+        "description": "SYNTHETIC EXIF FIXTURE - NO PERSONAL DATA",
+        "gps": {
+          "version": [
+            2,
+            3,
+            0,
+            0
+          ],
+          "latitudeRef": "N",
+          "latitudeDms": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "longitudeRef": "E",
+          "longitudeDms": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        "segmentOffset": 2,
+        "segmentLength": 216,
+        "allMetadataRemoved": false
+      }
+    },
+    {
+      "file": "guide-exif-o8-gps.jpg",
+      "bytes": 615061,
+      "sha256": "d19ecd03371433c00ea0eb9592f52aa00f276412b52986285d4304236d237462",
+      "orientation": 8,
+      "gpsSyntheticOnly": true,
+      "encodedWidth": 2480,
+      "encodedHeight": 3508,
+      "expectedDisplayWidth": 3508,
+      "expectedDisplayHeight": 2480,
+      "expectedClockwiseRotation": 270,
+      "jpegReencoded": false,
+      "restoringOnlyInsertedSegmentRecoversBase": true,
+      "parsed": {
+        "status": "parsed-limited-exif-subset",
+        "byteOrder": "II",
+        "orientation": 8,
+        "description": "SYNTHETIC EXIF FIXTURE - NO PERSONAL DATA",
+        "gps": {
+          "version": [
+            2,
+            3,
+            0,
+            0
+          ],
+          "latitudeRef": "N",
+          "latitudeDms": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "longitudeRef": "E",
+          "longitudeDms": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ]
+        },
+        "segmentOffset": 2,
+        "segmentLength": 216,
+        "allMetadataRemoved": false
+      }
+    }
+  ],
+  "gpsMeaning": "Explicit synthetic test value 0 degrees / 0 minutes / 0 seconds, N/E. Not a collected location.",
+  "nativeBehaviorValidated": false,
+  "limits": [
+    "JPEG image bytes retained; APP1 Exif metadata inserted only.",
+    "Parser supports a bounded TIFF subset, not arbitrary Exif or privacy sanitization.",
+    "No app GPS-removal, orientation-correction, picker/provider or Android test performed."
+  ],
+  "sources": [
+    "https://developer.android.com/reference/androidx/exifinterface/media/ExifInterface#TAG_ORIENTATION",
+    "https://developer.android.com/reference/androidx/exifinterface/media/ExifInterface#TAG_GPS_LATITUDE",
+    "https://raw.githubusercontent.com/androidx/androidx/androidx-main/exifinterface/exifinterface/src/main/java/androidx/exifinterface/media/ExifInterface.java"
+  ]
+}

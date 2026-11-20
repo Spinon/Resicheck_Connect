@@ -1,10 +1,11 @@
+import{decodeMessageContent}from './message-content.ts';
 import { analyzeMessage } from '../../text/src/message-text.ts';
 import type { SendContext } from './text-send-queue.ts';
 
 export type HistoryRequest = Readonly<{ companyId: string; conversationId: string; after: number; limit: number }>;
 export type HistoryMessage = Readonly<{
   id: string; companyId: string; conversationId: string; senderId: string;
-  senderRole: 'patient' | 'staff'; kind: 'text'; text: string;
+  removedScope?:'self'|'all';senderRole: 'patient' | 'staff'; kind: 'text'|'audio'|'image'; text: string;
   sequence: number; acceptedAt: number; important: boolean;
 }>;
 type ErrorCode = 'NETWORK' | 'TIMEOUT' | 'INVALID_RESPONSE' | 'UNAVAILABLE' | 'CAPACITY';
@@ -17,7 +18,7 @@ type Outcome = 'loaded' | 'failed' | 'discarded' | 'unavailable';
 type Dependencies = {
   transport: (request: HistoryRequest) => Promise<unknown>;
   schedule: (callback: () => void, delayMs: number) => () => void;
-  timeoutMs: number; pageSize?: number; maxMessages?: number;
+  timeoutMs: number; allowAudio?:boolean; pageSize?: number; maxMessages?: number;
 };
 const validId = (v: unknown): v is string => typeof v === 'string' && /^[A-Za-z0-9_-]{1,80}$/.test(v);
 const record = (v: unknown): v is Record<string, unknown> => !!v && typeof v === 'object' && !Array.isArray(v);
@@ -35,7 +36,7 @@ const problem = (code: ErrorCode) => Object.freeze({ code, message: errors[code]
 
 // Presentation-only, bounded and in memory. The transport/server must authorize each page.
 // sessionKey/userId are never sent as authentication. No IO, subscription or automatic retry.
-export function createTextHistory({ transport, schedule, timeoutMs, pageSize = 50, maxMessages = 1000 }: Dependencies) {
+export function createTextHistory({ transport, schedule, timeoutMs, allowAudio=false, pageSize = 50, maxMessages = 1000 }: Dependencies) {
   if (!Number.isFinite(timeoutMs) || timeoutMs <= 0 || !integer(pageSize, 1) || pageSize > 100 || !integer(maxMessages, 1)) throw new TypeError('Invalid history budget');
   let generation = 0;
   type Run = { generation: number; state: HistorySnapshot; closePending: (() => void) | null };
@@ -101,13 +102,14 @@ export function createTextHistory({ transport, schedule, timeoutMs, pageSize = 5
             if (!record(raw)) { reject('INVALID_RESPONSE'); return; }
             const { id, companyId: rowCompany, conversationId: rowConversation, senderId, senderRole, kind, text, sequence, acceptedAt, important } = raw;
             if (!validId(id) || ids.has(id) || rowCompany !== companyId || rowConversation !== conversationId
-              || !validId(senderId) || (senderRole !== 'staff' && senderRole !== 'patient') || kind !== 'text'
-              || typeof text !== 'string' || !analyzeMessage(text).valid || typeof important !== 'boolean'
+              || !validId(senderId) || (senderRole !== 'staff' && senderRole !== 'patient') 
+               || typeof important !== 'boolean'
               || !integer(sequence, 1) || sequence <= last || !integer(acceptedAt, 0)) { reject('INVALID_RESPONSE'); return; }
+            const content=decodeMessageContent(kind,kind==='audio'&&text==='Áudio'?null:text,allowAudio);
             ids.add(id); last = sequence;
             // Explicit public DTO: never retain envelope diagnostics, credentials or internal fields.
             rows.push(Object.freeze({ id, companyId, conversationId, senderId, senderRole,
-              kind: 'text', text, sequence, acceptedAt, important }));
+              kind:content.kind,text:content.text, sequence, acceptedAt, important }));
           }
           if (nextAfter !== null && (!rows.length || nextAfter !== last)) { reject('INVALID_RESPONSE'); return; }
           publish({ status: 'ready', messages: Object.freeze([...before.messages, ...rows]), after: last, hasMore: nextAfter !== null, error: null });

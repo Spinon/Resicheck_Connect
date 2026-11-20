@@ -1,0 +1,1 @@
+export async function webImageDigest(bytes:Uint8Array){if(!(bytes instanceof Uint8Array)||bytes.length<1||bytes.length>4194304||!globalThis.crypto?.subtle)throw Error('Image unavailable');const held=Uint8Array.from(bytes);try{return Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',held.buffer)),n=>n.toString(16).padStart(2,'0')).join('');}finally{held.fill(0);}}

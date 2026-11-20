@@ -1,0 +1,28 @@
+import {createSyntheticRegistrationServer} from './synthetic-registration-server.ts';import {createSyntheticMembershipBackend} from './synthetic-membership-backend.ts';import {createAuthController} from '../../../packages/session/src/auth-controller.ts';import {createSupabaseAuthProvider} from '../../../packages/session/src/supabase-auth-provider.ts';import {createSessionRpcTransport} from '../../../packages/chat-client/src/session-rpc.ts';import {createRegistrationHost} from '../src/registration-host.ts';import {createRegistrationMembershipGate} from '../src/registration-membership-gate.ts';import {createMembershipHost,type MembershipLease} from '../src/membership-host.ts';import type {OnboardingLease} from '../src/onboarding-adapter.ts';
+import {createTextSessionChannel,type TextSession} from '../../../packages/chat-client/src/text-session-channel.ts';
+import {createSyntheticJourneyTextServer} from './synthetic-journey-text-server.ts';
+import {createTextChatHost} from '../src/text-chat-host.ts';
+import {createMembershipTextBridge} from '../src/membership-text-bridge.ts';
+// Separate next-stage QA assembly preserves the earlier reproducible lab.
+// No HTTP or persistence; explicit fake profile approval is not verification.
+export function createSyntheticAccessChatJourney(json:(v:unknown,status?:number)=>Response,createId:()=>string){
+ const server=createSyntheticRegistrationServer(json),backend=createSyntheticMembershipBackend(createId),approved=new Set<string>(),names=new Map<string,string>(),schedule=(cb:()=>void,ms:number)=>{const t=setTimeout(cb,ms);return()=>clearTimeout(t);};
+ const textServer=createSyntheticJourneyTextServer({fetch:server.fetch,json,rpc:backend.rpc,createId,schedule});
+ const deps={projectUrl:'https://abcdefghijklmnopqrst.supabase.co',publishableKey:'sb_publishable_synthetic',fetch:textServer.fetch,now:Date.now,schedule,timeoutMs:3000},provider=createSupabaseAuthProvider(deps),base=createSessionRpcTransport(deps),channel=createTextSessionChannel(deps);
+ type Lease=OnboardingLease&MembershipLease&TextSession;
+ const transport={signOut:()=>{base.signOut();channel.signOut();},bindSession:async(input:Parameters<typeof base.bindSession>[0])=>{const r=await base.bindSession(input);if(!r.ok)return r;const original=r.value,t=await channel.bindSession(input);if(!t.ok){original.close();return{ok:false as const};}const lease:Lease=Object.freeze({userId:original.userId,sessionKey:original.sessionKey,openConversation:t.value.openConversation,close:()=>{original.close();t.value.close();},membership:backend.rpc(original.userId),staffEmployer:backend.employerRpc(original.userId),onboarding:async(command,signal)=>{
+  const reply=await original.onboarding(command,signal);if(reply.error!==null)return reply;
+  if(command.name==='register_profile'||command.name==='resubmit_profile'){names.set(original.userId,command.params.p_name);approved.delete(original.userId);backend.suspend(original.userId);}
+  if(command.name==='withdraw_profile'){approved.delete(original.userId);backend.suspend(original.userId);}
+  if(approved.has(original.userId)&&reply.data&&typeof reply.data==='object'&&'registration_state'in reply.data&&(reply.data as {registration_state:unknown}).registration_state==='pending'&&(command.name==='my_profile_registration'||command.name==='my_profile_registration_request'))return{data:{...reply.data,registration_state:'approved'},error:null};return reply;
+ }});return{ok:true as const,value:lease};}};
+ let members:ReturnType<typeof createMembershipHost>|null=null,text:ReturnType<typeof createTextChatHost>|null=null,foreground=true;
+ const auth=createAuthController({provider,transport,authorizeCompany:async(lease,co,signal)=>{const c=members?.snapshot().context;if(!foreground||!c||c.companyId!==co)return false;const ctx=lease.openConversation(co,c.conversationId);if(!ctx)return false;try{const r=await ctx.history({companyId:co,conversationId:c.conversationId,after:0,limit:1},signal) as {ok?:unknown};return r.ok===true;}catch{return false;}},clearPrivateView:()=>{text?.clearPrivateView();if(auth.snapshot().status!=='authenticated')members?.suspend();return undefined;},createSessionKey:createId,now:Date.now,schedule,timeoutMs:3000});
+ const registration=createRegistrationHost({auth,signUp:provider.signUp,createRequestId:createId,schedule,timeoutMs:5000}),gate=createRegistrationMembershipGate(auth,registration);
+ members=createMembershipHost({auth,gate,schedule,timeoutMs:5000});const host=members;text=createTextChatHost({auth,createId,schedule,timeoutMs:5000});const chat=text,bridge=createMembershipTextBridge(host,chat);const resumeAuth=auth.subscribe(()=>{const status=auth.snapshot().status;if(foreground&&(status==='authenticated'||status==='signed-out'))host.resume();});
+ return Object.freeze({auth,registration,gate,members:host,text:Object.freeze({...chat,backToCompanies:bridge.back}),backend,textServer,
+  approveProfileFixture:async()=>{const lease=auth.currentLease(),p=registration.snapshot().profile;if(!lease||p?.kind!=='profile'||p.state!=='pending')return false;approved.add(lease.userId);backend.activate(lease.userId,names.get(lease.userId)??p.name);await registration.bind().onRefresh(new AbortController().signal);if(foreground)host.resume();return true;},
+  resume:()=>{foreground=true;host.resume();},suspend:()=>{foreground=false;host.suspend();},
+  dispose:()=>{foreground=false;resumeAuth();bridge.dispose();chat.dispose();host.dispose();gate.dispose();registration.dispose();transport.signOut();provider.dispose();void auth.signOut().catch(()=>{});backend.release();textServer.releaseHistory();},
+ });
+}

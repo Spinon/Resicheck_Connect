@@ -1,0 +1,112 @@
+{
+  "state": "prepared-not-run",
+  "version": "0.0.33-mensagens",
+  "versionCode": 33,
+  "document": "docs/testing/ROTEIRO-APK-WEB-0.0.33-PREPARED.md",
+  "cases": [
+    {
+      "id": "M33-01",
+      "title": "Sessão, texto, teclado, cache e recibos",
+      "status": "not-run",
+      "apkSha256": null,
+      "platform": null,
+      "evidence": [],
+      "limitations": [],
+      "candidateChecks": [
+        "Texto/cache: smoke de enviar e reabrir; sem stress repetido.",
+        "Recibos reais: relogio pendente,1servidor,2destinatario,2coloridos visualizada; foco e sem simular entrega.",
+        "Teclado: ultima mensagem visivel ao digitar; preservar leitura antiga."
+      ]
+    },
+    {
+      "id": "M33-02",
+      "title": "Áudio normal existente",
+      "status": "not-run",
+      "apkSha256": null,
+      "platform": null,
+      "evidence": [],
+      "limitations": [],
+      "candidateChecks": [
+        "Somente smoke normal: gravar, enviar e reproduzir pelo fluxo real de audio existente; sem piloto.",
+        "Carregamento circular/play e volume de midia; limite fisico declarado."
+      ]
+    },
+    {
+      "id": "M33-03",
+      "title": "Imagens PNG/JPEG reais",
+      "status": "not-run",
+      "apkSha256": null,
+      "platform": null,
+      "evidence": [],
+      "limitations": [],
+      "candidateChecks": [
+        "Picker PNG/JPEG, revisao, envio privado, abertura pelo outro e negacao fora do vinculo.",
+        "Correlacionar o proprio APK/hash com backend normal disponivel; prova API nao substitui UI."
+      ]
+    },
+    {
+      "id": "M33-04",
+      "title": "Remover para mim/todos; preservar originais/log",
+      "status": "not-run",
+      "apkSha256": null,
+      "platform": null,
+      "evidence": [],
+      "limitations": [],
+      "candidateChecks": [
+        "Selecionar por toque longo e barra; remover para mim/todos; balao e cache/midia nao reaparecem.",
+        "Original e auditoria preservados; dados sinteticos somente."
+      ]
+    },
+    {
+      "id": "M33-05",
+      "title": "Refresh sem mudança e com mudança",
+      "status": "not-run",
+      "apkSha256": null,
+      "platform": null,
+      "evidence": [],
+      "limitations": [],
+      "candidateChecks": [
+        "Refresh equivalente nao altera DOM/posicao; mudanca real preserva ancora e rolagem intencional."
+      ]
+    },
+    {
+      "id": "M33-06",
+      "title": "Empresa/CNPJ e edição preservada",
+      "status": "not-run",
+      "apkSha256": null,
+      "platform": null,
+      "evidence": [],
+      "limitations": [],
+      "candidateChecks": [
+        "Previa autenticada CNPJ, edicoes preservadas, usuario confirma, existencia nao prova representacao."
+      ]
+    },
+    {
+      "id": "M33-07",
+      "title": "Convite funcionário/cliente",
+      "status": "not-run",
+      "apkSha256": null,
+      "platform": null,
+      "evidence": [],
+      "limitations": [],
+      "candidateChecks": [
+        "UI de convite funcionario/cliente: login, uso unico, prazo/revogacao e regras de vinculo."
+      ]
+    },
+    {
+      "id": "M33-08",
+      "title": "Retomada, privacidade e encerramento",
+      "status": "not-run",
+      "apkSha256": null,
+      "platform": null,
+      "evidence": [],
+      "limitations": [],
+      "candidateChecks": [
+        "Retomadas/primeiro retorno pos-update, logout e limpeza de acesso/caches.",
+        "Crash fisicoAPP261 continua aberto ate evidencia; emulador nao substitui aparelho."
+      ]
+    }
+  ],
+  "normalTextAndAudioDepth": "smoke only",
+  "groupedCandidateExecution": "not-run"
+}

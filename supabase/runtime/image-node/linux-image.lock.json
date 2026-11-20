@@ -1,0 +1,45 @@
+{
+  "status": "coordinator-verified-linux-runtime-smoke-not-activated",
+  "enabled": false,
+  "imageId": "sha256:27d6b28f9111c36fcf39cab1d8cc818daa2a5474f93fce305e1466010cdf695e",
+  "architecture": "amd64",
+  "os": "linux",
+  "user": "65532:65532",
+  "entrypoint": [
+    "/usr/local/bin/ffprobe"
+  ],
+  "version": "9.0.2",
+  "sourceSha256": "8c3850283eb25fa026482078a04051e0be17347b09ef81a0849bec15a96e002e",
+  "binarySha256": {
+    "ffmpeg": "9cab893cbfe1a45d3dc274fc02869b2e2c08cd84d149b6269ed2c69e869b48ba",
+    "ffprobe": "fc1605661aafd8aa12107a2ad3e6f5378ed97fa2bf8e625dfd6f8a35883f9cf1"
+  },
+  "receiptSha256": {
+    "runtimePackages": "b2488d41ab78c058b07ec1bc2ba25112467ab044715521d76d46cdd420252085",
+    "runtimeBinaryManifest": "9f5b567d560f0a66f975e0e8deb9ff57260534bb665039a4b2dfc0ed9f6acdf9",
+    "smokeLog": "553ef7648a9432b7ee6728e908338caf0cc76aab6874650b0d5ef18d0b4a3295",
+    "fixtureManifest": "b71d7398cf45bfec48b6f5d65cb3b7e3d899a92554fdeb98002b14c7f4f45473"
+  },
+  "provenance": "trusted readback supplied by sole VPS console coordinator on 2026-11-18; Desktop has not downloaded raw host receipts",
+  "smoke": {
+    "validPng": {
+      "width": 16,
+      "height": 16,
+      "frames": 1
+    },
+    "validJpeg": {
+      "width": 16,
+      "height": 16,
+      "frames": 1
+    },
+    "truncatedPngRejected": true,
+    "truncatedJpegRejected": true,
+    "exit": 0,
+    "oom": false,
+    "servicesCheckExit": 0
+  },
+  "restrictedHelperValidated": false,
+  "connectedTransportValidated": false,
+  "published": false,
+  "audioModified": false
+}

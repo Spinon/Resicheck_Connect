@@ -1,0 +1,7 @@
+import{createAudioJwtVerifier}from'./audio-jwt-verifier.ts';import{createImageRpcVerifier}from'./image-rpc-executor.ts';import{createImageS3Read}from'./image-s3-read.ts';import{createPrivateImageStorage}from'./image-private-storage.ts';import{openImageBackend}from'./image-backend-session.ts';import type{ImageScope}from'../../chat-client/src/image-contract.ts';
+/** Pool-free backend assembly. JWT user session handles only own catalog/storage.
+ * Inspection remains a separate fixed service identity + exact SQL lease. OFF. */
+export function createImageRpcBackendFactory(input:Readonly<{enabled?:boolean;publishableKey:string;publicAnonKey?:string;fetch:typeof fetch;now:()=>number;schedule:(f:()=>void,ms:number)=>()=>void;timeoutMs:number}>){
+ const d=Object.freeze({...input});const verifyJwt=createAudioJwtVerifier({enabled:d.enabled===true,publishableKey:d.publishableKey,fetch:d.fetch,now:d.now,timeoutMs:d.timeoutMs}),verify=createImageRpcVerifier({...d,verifyJwt}),source=createImageS3Read({...d});
+ return(credential:string,scope:ImageScope,signal:AbortSignal)=>openImageBackend({enabled:d.enabled===true,credential,scope,signal,verify,readPublished:(descriptor,s)=>source.read(descriptor,credential,s),storage:current=>createPrivateImageStorage({enabled:true,...scope,current,headers:()=>({apikey:d.publishableKey,authorization:'Bearer '+credential}),fetch:d.fetch,schedule:d.schedule,timeoutMs:d.timeoutMs})});
+}

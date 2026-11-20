@@ -1,0 +1,35 @@
+[Unit]
+Description=Connect unprivileged one-image decoder
+CollectMode=inactive-or-failed
+[Service]
+User=connect-image-decoder
+Group=connect-image-decoder
+ExecStart=/usr/bin/python3 -I -S /opt/connect-image-normal-v1/supabase/runtime/image-node/normal/codec-connection.py
+StandardInput=socket
+StandardOutput=inherit
+StandardError=journal
+UMask=0077
+PrivateNetwork=yes
+RestrictAddressFamilies=AF_UNIX
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectProc=invisible
+ProcSubset=pid
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+RestrictSUIDSGID=yes
+LockPersonality=yes
+SystemCallArchitectures=native
+InaccessiblePaths=-/run/credentials -/etc/connect-image-inspector -/var/lib/connect-image-inspector -/var/lib/connect-image-auth-bootstrap-v1 -/var/lib/connect-audio-auth-bootstrap -/run/docker.sock
+NoExecPaths=/tmp /var /run /home /root
+MemoryMax=256M
+CPUQuota=50%
+TasksMax=16
+LimitNOFILE=64
+LimitCORE=0
+RuntimeMaxSec=20s
+TimeoutStopSec=2s
+KillMode=control-group

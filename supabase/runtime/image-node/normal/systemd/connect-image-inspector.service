@@ -1,0 +1,50 @@
+# PREPARED ONLY. No service or account is installed by this file.
+[Unit]
+Description=Connect private image inspector
+After=network-online.target connect-image-codec.socket
+Wants=network-online.target
+Requires=connect-image-codec.socket
+ConditionPathExists=/etc/connect-image-inspector/ENABLED
+StartLimitIntervalSec=15min
+StartLimitBurst=3
+[Service]
+Type=simple
+User=connect-image-inspector
+Group=connect-image-inspector
+UMask=0077
+StateDirectory=connect-image-inspector
+StateDirectoryMode=0700
+LoadCredential=image-auth:/var/lib/connect-image-auth-bootstrap-v1/credential-private.json
+ExecStartPre=/usr/bin/python3 -I -S /opt/connect-image-normal-v1/supabase/runtime/image-node/normal/codec-connection.py --preflight
+ExecStart=/usr/bin/flock --nonblock /var/lib/connect-image-inspector/kernel.lock /opt/connect-image-normal-v1/node/bin/node --no-warnings --max-old-space-size=128 /opt/connect-image-normal-v1/supabase/runtime/image-node/normal/entry.mjs --serve
+Restart=always
+RestartSec=35s
+RestartPreventExitStatus=78 79
+RuntimeMaxSec=24h
+TimeoutStopSec=25s
+KillMode=control-group
+NoNewPrivileges=yes
+CapabilityBoundingSet=
+AmbientCapabilities=
+ProtectSystem=strict
+ProtectHome=yes
+PrivateTmp=yes
+PrivateDevices=yes
+ProtectProc=invisible
+ProcSubset=pid
+RestrictAddressFamilies=AF_UNIX AF_INET AF_INET6
+SocketBindDeny=any
+RestrictSUIDSGID=yes
+LockPersonality=yes
+SystemCallArchitectures=native
+InaccessiblePaths=-/run/docker.sock -/var/lib/connect-image-auth-bootstrap-v1 -/var/lib/connect-audio-auth-bootstrap
+ReadWritePaths=/var/lib/connect-image-inspector
+MemoryMax=192M
+CPUQuota=25%
+TasksMax=24
+LimitNOFILE=128
+LimitCORE=0
+StandardOutput=journal
+StandardError=journal
+[Install]
+WantedBy=multi-user.target

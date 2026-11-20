@@ -1,0 +1,91 @@
+{
+  "project": "ibdlvlwdzmsrbqadrudb",
+  "functions": [
+    {
+      "signature": "private.active_actor()",
+      "definition": "CREATE OR REPLACE FUNCTION private.active_actor()\n RETURNS boolean\n LANGUAGE plpgsql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare claims jsonb; expiration text;\nbegin\n  claims := auth.jwt(); expiration := claims->>'exp';\n  if auth.uid() is null or expiration is null or expiration !~ '^[0-9]{1,12}$' then return false; end if;\n  if expiration::numeric <= extract(epoch from now()) then return false; end if;\n  return exists(select 1 from private.accounts a join auth.sessions s on s.user_id=a.user_id\n    where a.user_id=auth.uid() and a.state='active' and s.id::text=claims->>'session_id'\n      and (s.not_after is null or s.not_after>now()));\nend $function$\n",
+      "owner": "postgres",
+      "securityDefiner": true,
+      "bodySha256": "42cc22d1661362da077f8e653b460f1f9f0c794cbd255a6330ee6097b2df8fc6"
+    },
+    {
+      "signature": "private.attachment_author_lock(uuid,uuid,uuid,uuid,timestamp with time zone)",
+      "definition": "CREATE OR REPLACE FUNCTION private.attachment_author_lock(p_sender uuid, p_company uuid, p_conversation uuid, p_session uuid, p_until timestamp with time zone)\n RETURNS boolean\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare account_state text; company_state text; session_end timestamptz; patient uuid;\nbegin\n  select state into account_state from private.accounts where user_id=p_sender for update;\n  if account_state is distinct from 'active' then return false;end if;\n  select state into company_state from private.company_controls where company_id=p_company for share;\n  if company_state is distinct from 'active' then return false;end if;\n  select not_after into session_end from auth.sessions where id=p_session and user_id=p_sender for share;\n  if not found or p_until is null or p_until<=clock_timestamp() or (session_end is not null and session_end<=clock_timestamp()) then return false;end if;\n  perform 1 from public.memberships where company_id=p_company and user_id=p_sender order by role for share;\n  select patient_id into patient from public.conversations where company_id=p_company and id=p_conversation for share;\n  if not found then return false;end if;\n  return exists(select 1 from public.memberships where company_id=p_company and user_id=p_sender and state='active'\n    and (role='staff' or (role='patient' and patient=p_sender)));\nend $function$\n",
+      "owner": "postgres",
+      "securityDefiner": true,
+      "bodySha256": "171a831966f34c2757466a2973fd27405728d15480ecc6631ae7025d1c674220"
+    },
+    {
+      "signature": "private.attachment_inspect(uuid,bytea,boolean,text,integer,text)",
+      "definition": "CREATE OR REPLACE FUNCTION private.attachment_inspect(p_id uuid, p_sha bytea, p_pass boolean, p_type text, p_duration integer, p_version text)\n RETURNS text\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare row private.attachment_catalog; accepted boolean;\nbegin\n  select * into row from private.attachment_catalog where id=p_id;\n  if not found then raise exception 'Attachment unavailable';end if;\n  if not private.attachment_author_lock(row.sender_id,row.company_id,row.conversation_id,row.session_id,row.valid_until) then raise exception 'Attachment unavailable';end if;\n  select * into row from private.attachment_catalog where id=p_id for update;\n  if row.state='ready' and p_pass is true and p_sha=row.observed_sha256 and p_type=row.detected_type\n    and p_duration is not distinct from row.duration_ms and p_version=row.inspection_version then return row.state;end if;\n  if row.state not in ('uploaded') then raise exception 'Attachment unavailable';end if;\n  accepted:=coalesce(p_pass and p_sha=row.observed_sha256 and p_sha=row.expected_sha256 and p_version ~ '^[A-Za-z0-9_.-]{1,64}$'\n    and case row.media_kind when 'audio' then p_type='audio/mp4' and p_duration between 500 and 60500\n      when 'image' then p_type in ('image/jpeg','image/png') and p_duration is null\n      when 'document' then p_type='application/pdf' and p_duration is null else false end,false);\n  update private.attachment_catalog set state=case when accepted then 'ready' else 'rejected' end,\n    detected_type=case when accepted then p_type end,duration_ms=case when accepted then p_duration end,\n    inspection_version=case when accepted then p_version end where id=p_id returning * into row;\n  insert into private.attachment_events(attachment_id,event) values(p_id,row.state);\n  return row.state;\nexception when others then raise exception using errcode='P0001',message='Attachment unavailable';\nend $function$\n",
+      "owner": "postgres",
+      "securityDefiner": true,
+      "bodySha256": "7db087388b9568a65427c9ac662881e415d193b0c70fc0d32fd14d5c74e96bc9"
+    },
+    {
+      "signature": "private.attachment_reserve(uuid,uuid,text,text,bytea,integer)",
+      "definition": "CREATE OR REPLACE FUNCTION private.attachment_reserve(p_company uuid, p_conversation uuid, p_client text, p_kind text, p_sha bytea, p_bytes integer)\n RETURNS jsonb\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\ndeclare row private.attachment_catalog; session uuid; until_time timestamptz; maximum integer;\nbegin\n  if not private.active_actor() then raise exception 'Attachment unavailable';end if;\n  maximum:=case p_kind when 'audio' then 1048576 when 'image' then 4194304 when 'document' then 10485760 else 0 end;\n  if p_client is null or p_client !~ '^[A-Za-z0-9_-]{1,80}$' or p_sha is null or octet_length(p_sha)<>32\n    or p_bytes is null or p_bytes<1 or p_bytes>maximum then raise exception 'Attachment unavailable';end if;\n  session:=(auth.jwt()->>'session_id')::uuid;until_time:=to_timestamp((auth.jwt()->>'exp')::double precision);\n  if not private.attachment_author_lock(auth.uid(),p_company,p_conversation,session,until_time) then raise exception 'Attachment unavailable';end if;\n  select * into row from private.attachment_catalog where sender_id=auth.uid() and company_id=p_company\n    and conversation_id=p_conversation and client_upload_id=p_client for update;\n  if found then\n    if row.expected_sha256<>p_sha or row.expected_bytes<>p_bytes or row.media_kind<>p_kind then raise exception 'Attachment unavailable';end if;\n    if row.state in ('reserved','uploaded') then\n      -- Refresh may extend the ORIGINAL live Auth session, never transfer a\n      -- pending object to another session or change its byte/context intent.\n      if row.session_id<>session then raise exception 'Attachment unavailable';end if;\n      if until_time>row.valid_until then\n        update private.attachment_catalog set valid_until=until_time where id=row.id returning * into row;\n        insert into private.attachment_events(attachment_id,event) values(row.id,'authorization-renewed');\n      end if;\n    end if;\n    return jsonb_build_object('id',row.id,'state',row.state);\n  end if;\n  -- Conservative LOCAL budgets, not an approved retention/product policy.\n  if (select count(*) from private.attachment_catalog where sender_id=auth.uid())>=100\n    or (select count(*) from private.attachment_catalog where sender_id=auth.uid() and state in ('reserved','uploaded'))>=16\n    then raise exception 'Attachment unavailable';end if;\n  insert into private.attachment_catalog(company_id,conversation_id,sender_id,session_id,valid_until,client_upload_id,media_kind,expected_sha256,expected_bytes)\n    values(p_company,p_conversation,auth.uid(),session,until_time,p_client,p_kind,p_sha,p_bytes) returning * into row;\n  insert into private.attachment_events(attachment_id,event) values(row.id,'reserved');\n  return jsonb_build_object('id',row.id,'state',row.state);\nexception when others then raise exception using errcode='P0001',message='Attachment unavailable';\nend $function$\n",
+      "owner": "postgres",
+      "securityDefiner": true,
+      "bodySha256": "d349bb2a3d2088979fcefc72b87a69aa1305caf2b3572b118ad3e8decf723841"
+    },
+    {
+      "signature": "private.can_read_conversation(uuid,uuid)",
+      "definition": "CREATE OR REPLACE FUNCTION private.can_read_conversation(p_company uuid, p_conversation uuid)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\n  select exists(select 1 from public.conversations c where c.id=p_conversation and c.company_id=p_company and private.can_chat(c.company_id,c.patient_id))\n$function$\n",
+      "owner": "postgres",
+      "securityDefiner": true,
+      "bodySha256": "84e689eb4cd850bc6f386e3c4bdbaa945776b760dff42832750e2a4ddc09692c"
+    },
+    {
+      "signature": "private.has_role(uuid,text)",
+      "definition": "CREATE OR REPLACE FUNCTION private.has_role(p_company uuid, p_role text)\n RETURNS boolean\n LANGUAGE sql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\n  select private.active_actor() and private.company_active(p_company) and exists(select 1 from public.memberships\n    where company_id=p_company and user_id=auth.uid() and role=p_role and state='active')\n$function$\n",
+      "owner": "postgres",
+      "securityDefiner": true,
+      "bodySha256": "d53e814a3e096982c3450a9481018c499c85eaef6616fecd3a89d45a23621b41"
+    },
+    {
+      "signature": "private.lock_accounts(uuid[])",
+      "definition": "CREATE OR REPLACE FUNCTION private.lock_accounts(p_users uuid[])\n RETURNS void\n LANGUAGE plpgsql\n SECURITY DEFINER\n SET search_path TO ''\nAS $function$\nbegin\n  perform 1 from private.accounts where user_id=any(p_users) order by user_id for update;\nend $function$\n",
+      "owner": "postgres",
+      "securityDefiner": true,
+      "bodySha256": "1d62bde4d7563e84f7b659244b6de95add39fec3dfb9017405dce46cbccc040f"
+    },
+    {
+      "signature": "private.message_is_removed(uuid,uuid,uuid)",
+      "definition": "CREATE OR REPLACE FUNCTION private.message_is_removed(p_company uuid, p_conversation uuid, p_message uuid)\n RETURNS boolean\n LANGUAGE plpgsql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\r\nbegin\r\n if not private.active_actor()or not private.can_read_conversation(p_company,p_conversation)then return true;end if;\r\n return exists(select 1 from private.message_removals_all where company_id=p_company and conversation_id=p_conversation and message_id=p_message)\r\n or exists(select 1 from private.message_removals_self where user_id=auth.uid()and company_id=p_company and conversation_id=p_conversation and message_id=p_message);\r\nexception when others then return true;end$function$\n",
+      "owner": "postgres",
+      "securityDefiner": true,
+      "bodySha256": "0eb11aa3dc86030caa7da3cb4981755b76c21b9627c96d3ddc5edf137b577092"
+    },
+    {
+      "signature": "private.read_messages_projection_v2(uuid,uuid,bigint,bigint,integer)",
+      "definition": "CREATE OR REPLACE FUNCTION private.read_messages_projection_v2(p_company uuid, p_conversation uuid, p_before bigint, p_after bigint, p_limit integer)\n RETURNS jsonb\n LANGUAGE plpgsql\n STABLE SECURITY DEFINER\n SET search_path TO ''\nAS $function$\r\ndeclare result jsonb;\r\nbegin\r\n if not private.active_actor()or not private.can_read_conversation(p_company,p_conversation)or p_limit is null or p_limit not between 1 and 100 or(p_before is not null and p_before<1)or(p_after is not null and p_after<0)or(p_before is not null and p_after is not null)then raise exception 'Message action unavailable';end if;\r\n with page as materialized(select m.*,case when exists(select 1 from private.message_removals_all g where g.message_id=m.id and g.company_id=p_company and g.conversation_id=p_conversation)then'all'when exists(select 1 from private.message_removals_self s where s.user_id=auth.uid()and s.message_id=m.id and s.company_id=p_company and s.conversation_id=p_conversation)then'self'else null end removed_scope\r\n from public.messages m where m.company_id=p_company and m.conversation_id=p_conversation and(p_before is null or m.sequence<p_before)and(p_after is null or m.sequence>p_after)\r\n order by case when p_after is not null then m.sequence end asc,case when p_after is null then m.sequence end desc limit p_limit)\r\n select coalesce(jsonb_agg(jsonb_build_object('id',id,'company_id',company_id,'conversation_id',conversation_id,'sender_id',sender_id,'sender_role',sender_role,'sequence',sequence,\r\n 'accepted_at',to_char(accepted_at at time zone 'UTC','YYYY-MM-DD\"T\"HH24:MI:SS.US\"Z\"'),'kind',case when removed_scope is null then kind else'text'end,'body',case when removed_scope is null then body else'Mensagem removida'end,'important',case when removed_scope is null then important else false end,'removed_scope',removed_scope)\r\n order by case when p_after is not null then sequence end asc,case when p_after is null then sequence end desc),'[]'::jsonb)into result from page;\r\n return result;\r\nexception when others then raise exception using errcode='P0001',message='Message action unavailable';end$function$\n",
+      "owner": "postgres",
+      "securityDefiner": true,
+      "bodySha256": "7e5a76d0a5e217772b57b10620a1d18ad92deefcdf216ac58425b18502a51015"
+    }
+  ],
+  "tables": [
+    {
+      "schema": "private",
+      "name": "accounts",
+      "owner": "connect_hmac_registration",
+      "acl": [
+        "connect_hmac_registration=arwdDxtm/connect_hmac_registration",
+        "postgres=arwdDxtm/connect_hmac_registration"
+      ]
+    },
+    {
+      "schema": "storage",
+      "name": "objects",
+      "owner": "supabase_storage_admin",
+      "acl": [
+        "supabase_storage_admin=a*r*w*d*D*x*t*m*/supabase_storage_admin",
+        "service_role=arwdDxtm/supabase_storage_admin",
+        "authenticated=arwd/supabase_storage_admin",
+        "anon=arwd/supabase_storage_admin",
+        "postgres=a*r*w*d*D*x*t*m*/supabase_storage_admin"
+      ]
+    }
+  ]
+}

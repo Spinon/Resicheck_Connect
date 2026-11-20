@@ -8,7 +8,7 @@
     "userInterfaceStyle": "light",
     "android": {
       "package": "com.resicheck.connect.demo",
-      "versionCode": 8,
+      "versionCode": 11,
       "permissions": [],
       "allowBackup": false,
       "blockedPermissions": [

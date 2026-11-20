@@ -1,0 +1,50 @@
+{
+  "syntheticOnly": true,
+  "expectedQrPayload": "RESICHECK-CONNECT:SYNTHETIC-GUIDE:V1:NO-PATIENT-DATA",
+  "renderer": "Windows System.Drawing, Arial, pixel fonts; fixed layout; small rasterization differences observed even on the same host, so record actual asset hashes",
+  "fixtures": [
+    {
+      "file": "guide-clean.png",
+      "width": 2480,
+      "height": 3508,
+      "kind": "clean source"
+    },
+    {
+      "file": "guide-clean-jpeg.jpg",
+      "width": 2480,
+      "height": 3508,
+      "kind": "JPEG source quality 94"
+    },
+    {
+      "file": "guide-shadow.png",
+      "width": 2480,
+      "height": 3508,
+      "kind": "source with synthetic gradient shadow"
+    },
+    {
+      "file": "guide-low-quality.png",
+      "width": 620,
+      "height": 877,
+      "kind": "deliberately low-resolution source; no restoration promised"
+    }
+  ],
+  "textSamples": [
+    {
+      "pixelFont": 36,
+      "text": "Guia de teste: procedimento ficticio - sem validade"
+    },
+    {
+      "pixelFont": 24,
+      "text": "Texto pequeno 24 px: ABCDEFG abcdefg 0123456789"
+    },
+    {
+      "pixelFont": 18,
+      "text": "Texto pequeno 18 px: guia ficticia; NAO usar em atendimento."
+    },
+    {
+      "pixelFont": 14,
+      "text": "Limite de leitura 14 px: 0123456789 abcdefghijklmnopqrstuvwxyz"
+    }
+  ],
+  "caveat": "QR decoding is one measurement, not proof of text readability or clinical suitability. Line ladder is not a standards-compliant barcode. No OCR performed."
+}

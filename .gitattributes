@@ -1,3 +1,7 @@
 * text=auto eol=lf
 # Preserve the official Unicode fixture byte-for-byte, including its header spaces.
 packages/text/tests/fixtures/GraphemeBreakTest-17.0.0.txt whitespace=-blank-at-eol
+
+# Connect checkpoint source fingerprints preserve exact reviewed bytes.
+# Normalize text deliberately before freezing, never implicitly on add/checkout.
+* -text

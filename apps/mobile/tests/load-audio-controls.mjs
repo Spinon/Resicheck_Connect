@@ -1,0 +1,4 @@
+import fs from 'node:fs';import{createRequire}from'node:module';
+const require=createRequire(new URL('../package.json',import.meta.url)),ts=require('typescript');
+/** Load the real shared presentation in legacy native-primitive harnesses. */
+export function loadAudioControls(React,rn){const m={exports:{}},code=ts.transpileModule(fs.readFileSync(new URL('../src/AudioControls.tsx',import.meta.url),'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true}}).outputText;new Function('require','module','exports',code)(id=>id==='react'?React:id==='react-native'?{...rn,Platform:rn.Platform??{OS:'android'},StyleSheet:rn.StyleSheet??{create:x=>x},ActivityIndicator:rn.ActivityIndicator??(()=>null)}:id.endsWith('ConnectIcon.tsx')?{ConnectIcon:()=>null}:require(id),m,m.exports);return m.exports;}

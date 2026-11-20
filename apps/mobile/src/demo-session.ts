@@ -15,6 +15,7 @@ export function createDemoSession(options: { delivery?: DemoDeliveryOptions } = 
   let deliveryHandle: ReturnType<typeof delivery.activate> | null = null;
   let activation = 0;
   let generation = 0;
+  let conversationToken:object|null=null;
   const notify = () => { for (const listener of listeners) { try { listener(); } catch { /* A subscriber cannot interrupt a committed send. */ } } };
   function dispatch(action: Action, ticket: ScopeTicket, capturedGeneration: number): boolean {
     let applied = false;
@@ -30,6 +31,7 @@ export function createDemoSession(options: { delivery?: DemoDeliveryOptions } = 
       const contextChanged = identityChanged || next.companyId !== state.companyId || next.activeConversationId !== state.activeConversationId;
       if (contextChanged) {
         generation++;
+        conversationToken=next.actor&&next.activeConversationId?Object.freeze({}):null;
         delivery.clear(); deliveryHandle = null;
         next = { ...next, deliveryNotice: null, conversations: next.conversations.map(c => ({ ...c, messages: c.messages.map(m => !m.delivery || m.delivery.status === 'accepted' ? m : { ...m, delivery: { ...m.delivery, status: 'failed', retryable: false, error: interruptedDeliveryError } }) })) };
       }
@@ -56,6 +58,7 @@ export function createDemoSession(options: { delivery?: DemoDeliveryOptions } = 
       // Logout always wins over in-flight work, including stale callbacks.
       scope.signOut();
       generation++;
+      conversationToken=null;
       delivery.clear(); deliveryHandle = null;
       state = initialState();
       notify();
@@ -73,6 +76,13 @@ export function createDemoSession(options: { delivery?: DemoDeliveryOptions } = 
   return Object.freeze({
     getSnapshot: () => state,
     subscribe: (listener: () => void) => { listeners.add(listener); return () => { listeners.delete(listener); }; },
+    // Opaque local capability for the active, demo-authorized conversation.
+    // This is not authentication, a persistent identifier or backend authority.
+    captureConversationContext:(conversationId:string)=>{
+      const ticket=scope.capture(),capturedGeneration=generation,token=conversationToken;
+      const current=()=>token!==null&&token===conversationToken&&capturedGeneration===generation&&ticket===scope.capture()&&state.activeConversationId===conversationId&&!!conversationById(state,conversationId);
+      return current()?Object.freeze({token:token!,current}):null;
+    },
     // Binding is pure: rendering or returning to the same chat never resets work.
     bindDelivery: (conversationId: string) => {
       const ticket = scope.capture(); const handle = deliveryHandle; const capturedGeneration = generation;

@@ -1,0 +1,31 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {createRequire} from 'node:module';
+const require=createRequire(new URL('../package.json',import.meta.url)),ts=require('typescript');
+test('normal connected Android root passes removal to the existing protected composition; local recording stays isolated',()=>{
+ const source=fs.readFileSync(new URL('../previews/connected-scoped-audio-root.tsx',import.meta.url),'utf8');
+ const code=ts.transpileModule(source,{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,jsx:ts.JsxEmit.React}}).outputText;
+ const calls=[],module={exports:{}};
+ const react={useMemo:fn=>fn(),createElement:()=>null};
+ new Function('require','module','exports',code)(name=>{
+  if(name==='react')return react;
+  if(name==='expo-audio')return{RecordingPresets:{HIGH_QUALITY:{}},useAudioRecorder:()=>({})};
+  if(name==='react-native')return{NativeModules:{ConnectAudioDigest:{}}};
+  if(name.includes('native-audio-digest'))return{createNativeAudioDigest:()=>()=>{}};
+  if(name.includes('connected-membership-management.android'))return{createConnectedMembershipManagementRoot:(...args)=>{calls.push(args);return()=>null;}};
+  if(name.includes('local-audio.ts'))return{LOCAL_AUDIO_LIMITS:{bytes:1024}};
+  return{};
+ },module,module.exports);
+ const factory=module.exports.createConnectedScopedAudioRoot,config={synthetic:true},fetcher=()=>{throw Error('Network must not run');};
+ factory(config,fetcher)();
+ factory(config,fetcher,'connected-pilot','candidate-observed-v1','candidate-on-demand-check','candidate-own-company')();
+ assert.equal(calls.length,2);
+ assert.equal(calls[0][7],undefined);
+ assert.equal(calls[1][7],'candidate-selection-v1');
+ assert.equal(calls[1][2],'basic-manual');
+ assert.equal(calls[1][4].playback.protocol,'scoped-v1');
+ assert.equal(calls[1][5],'candidate-on-demand-check');
+ assert.equal(calls[1][6],'candidate-own-company');
+ assert.throws(()=>factory(config,fetcher,'connected-pilot',undefined,undefined,undefined,'url-toggle'));
+});

@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "enabled": false,
+  "projectRef": "ibdlvlwdzmsrbqadrudb",
+  "inspectorId": "ee330000-0000-4000-8000-000000000202",
+  "decoderImage": "sha256:27d6b28f9111c36fcf39cab1d8cc818daa2a5474f93fce305e1466010cdf695e",
+  "stateRoot": "/var/lib/connect-image-inspector",
+  "sessionPolicy": "fresh-password-session-v1",
+  "publishableKey": "REPLACE_WITH_APPROVED_PUBLIC_KEY",
+  "publicAnonKey": "REPLACE_WITH_APPROVED_PUBLIC_LEGACY_ANON",
+  "companyIds": [
+    "ee330000-0000-4000-8000-000000000201"
+  ]
+}

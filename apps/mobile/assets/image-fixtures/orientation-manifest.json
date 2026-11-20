@@ -1,0 +1,24 @@
+{
+  "syntheticOnly": true,
+  "physicalPixelRotation": true,
+  "exifOrientationTested": false,
+  "referenceSha256": "0e929bb55041f8968d58603a3375ce04c1d647d276a2514647685a97558ae2a6",
+  "fixtures": [
+    {
+      "file": "apps/mobile/assets/image-fixtures/guide-rotate90.png",
+      "bytes": 345647,
+      "sha256": "3b5e4e899c1a7b9a71795fe387f9292f2b261b801a5c2fa5c2fd177533d89577",
+      "width": 3508,
+      "height": 2480,
+      "physicalRotationDegreesClockwise": 90
+    },
+    {
+      "file": "apps/mobile/assets/image-fixtures/guide-rotate180.png",
+      "bytes": 328690,
+      "sha256": "8a8ff9e7814b639209b6de025b809505f220c5554c75e8298ca4f5ae3804c30f",
+      "width": 2480,
+      "height": 3508,
+      "physicalRotationDegreesClockwise": 180
+    }
+  ]
+}

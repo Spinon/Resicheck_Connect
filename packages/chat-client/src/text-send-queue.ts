@@ -138,6 +138,20 @@ export function createTextSendQueue({ transport, createId, schedule, timeoutMs, 
       return attempt.promise;
     }
     return Object.freeze({
+      bindReceiptRecovery(id:string){
+        const entry=entries.get(id);if(!active()||!entry||attempts.has(id)||entry.status!=='failed'||entry.failure?.acceptanceUncertain!==true)return null;
+        let consumed=false;return Object.freeze({accept(receipt:NonNullable<QueueEntry['receipt']>){
+          if(consumed)return false;consumed=true;
+          if(!active()||attempts.has(id)||entries.get(id)!==entry||!receipt||!validId(receipt.id)||!Number.isSafeInteger(receipt.sequence)||receipt.sequence<1||!Number.isSafeInteger(receipt.acceptedAt)||receipt.acceptedAt<0)return false;
+          update({...entry,status:'accepted',failure:null,receipt:Object.freeze({...receipt})});return true;
+        }});
+      },
+      // Restore one unresolved local intent into a newly authorized context.
+      // It remains uncertain: no transport call, new ID, or acceptance inference.
+      restoreUncertain(entry:Pick<QueueEntry,'clientMessageId'|'text'|'attempts'>){
+        if(!active()||entries.size||attempts.size||!entry||!validId(entry.clientMessageId)||typeof entry.text!=='string'||!analyzeMessage(entry.text).valid||[...entry.text].length>2000||!Number.isSafeInteger(entry.attempts)||entry.attempts<0||entry.attempts>=Number.MAX_SAFE_INTEGER)return false;
+        return update({clientMessageId:entry.clientMessageId,text:entry.text,attempts:entry.attempts,status:'failed',failure:failure('NETWORK'),receipt:null});
+      },
       enqueue, send,
       snapshot: (): readonly QueueEntry[] => active() ? Object.freeze([...entries.values()]) : Object.freeze([]),
       // Must be called when the integration learns of revocation; it does not

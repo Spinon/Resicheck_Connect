@@ -1,0 +1,23 @@
+﻿{
+    "syntheticOnly":  true,
+    "symbology":  "CODE_39",
+    "payload":  "TEST0001",
+    "optionalChecksum":  false,
+    "narrowPixels":  4,
+    "widePixels":  8,
+    "interCharacterGapPixels":  4,
+    "quietZonePixels":  40,
+    "bars":  {
+                 "x":  170,
+                 "y":  3160,
+                 "width":  516,
+                 "height":  140
+             },
+    "sourceSha256":  "0e929bb55041f8968d58603a3375ce04c1d647d276a2514647685a97558ae2a6",
+    "sourcePreserved":  true,
+    "encodingReference":  "https://github.com/zxing/zxing/blob/master/core/src/main/java/com/google/zxing/oned/Code39Reader.java",
+    "writerReference":  "https://github.com/zxing/zxing/blob/master/core/src/main/java/com/google/zxing/oned/Code39Writer.java",
+    "decoderAvailable":  false,
+    "barcodeDecoded":  false,
+    "limitation":  "Code39 geometry generated from documented patterns; no independent barcode decode performed. QR/text are separate measurements."
+}
