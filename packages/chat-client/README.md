@@ -1,6 +1,6 @@
 # Fila local de envio de texto
 
-Fatia independente de APP-004. Módulo TypeScript portátil, sem SDK, rede, credenciais, IO, persistência, assinatura de eventos ou integração com o app. Reutiliza `packages/session/src/session-scope.ts` para invalidar resultados antigos e `packages/text/src/message-text.ts` para preservar/validar Unicode. Nenhuma dependência instalada.
+Fatia independente de APP-004. Fila e histórico TypeScript portáteis sem SDK, IO ou persistência; a fila já está integrada à demonstração sintética. Reutilizam os guards de sessão e validação Unicode. A ponte RPC e o transporte de sessão candidatos são separados, sem integração ao APK; testes usam apenas ports/fetch sintéticos. Nenhuma dependência instalada.
 
 ## Contrato mínimo
 
@@ -10,7 +10,7 @@ Fatia independente de APP-004. Módulo TypeScript portátil, sem SDK, rede, cred
 - `createId()`: identificador imprevisível e globalmente único para cada nova intenção, incluindo após reinício, logout e A → B → A. Usar gerador UUID seguro da plataforma na integração. Formato compatível com o contrato atual: 1–80 caracteres ASCII alfanuméricos, `_` e `-`. A fila detecta colisão no contexto atual; não consegue detectar IDs repetidos de contextos descartados ou outros processos.
 - `schedule(callback, delayMs)`: agenda um único timeout e retorna cancelamento síncrono. O cancelamento deve ser idempotente e não lançar; a fila também impede que exceção de limpeza deixe promessa pendente. O scheduler não pode reter callbacks cancelados indefinidamente.
 - `timeoutMs`: limite técnico positivo e finito, configurado pelo adaptador.
-- `maxEntries`: inteiro positivo, padrão **100 itens** por contexto, incluindo aceitos/falhos. Limite técnico local, não decisão de produto. O teto combinado é aproximadamente 100 × 64 KiB de corpos UTF-8, além do overhead de strings/estruturas. Enfileirar acima do teto retorna `QUEUE_FULL`; não descarta silenciosamente mensagens. A fila inicial não expurga itens aceitos; uma política de consumo/retirada precisa ser definida na integração, sem esvaziar intenções incertas apenas para liberar espaço.
+- `maxEntries`: inteiro positivo, padrão **100 itens** por contexto. O limite protege trabalho não aceito; novas inserções podem retirar confirmações antigas do mapa limitado, mantendo pendências/retries e o histórico separado. Acima do teto não resolvido retorna `QUEUE_FULL`. O teto técnico de corpos retidos é aproximadamente100 ×64KiB, além de overhead; não é limite de mensagens da conversa. Ver [correção de capacidade](../../docs/testing/FILA-CAPACIDADE-0.1.md).
 
 `openContext({ sessionKey, userId, companyId, conversationId })` devolve um handle vinculado àquela ativação. `sessionKey` é um identificador **local** do ciclo de sessão, nunca token. Estes campos não são prova de permissão. Abrir contexto sempre invalida os handles anteriores, mesmo com valores iguais, limpa o estado local e resolve tentativas em andamento como `discarded`. Chamar ao trocar login, usuário, empresa ou conversa; não chamar a cada render.
 
@@ -51,3 +51,7 @@ Não é evidência de Supabase Auth, transporte real, persistência, banco conco
 Histórico paginado local: `text-history.ts` valida páginas, cursor, timeout e contexto, limpa conteúdo após negativa e não expõe diagnósticos. 22 testes combinados (14 fila +8 histórico). Ainda sem integração Android/realtime/Auth. Ver [relatório](../../docs/testing/HISTORICO-CLIENTE-0.1.md).
 
 Capacidade corrigida após revisão: confirmações antigas liberam espaço para envios novos, mantendo pendências/retries e snapshot limitado. O gerador de IDs deve garantir unicidade além do cache. [Regressões e limites](../../docs/testing/FILA-CAPACIDADE-0.1.md).
+
+Ponte candidata Supabase: `supabase-send.ts` traduz o comando/retorno da RPC existente e aplica orçamento, cancelamento e validação de contexto.35 testes combinados passaram (13 novos). Sem SDK/rede/Auth real, sem integração ao APK e com restrição conservadora do SQL legado. O port preso à sessão ainda precisa ser implementado e validado. [Contrato, evidência e gates](../../docs/testing/SUPABASE-SEND-ADAPTER-0.1.md).
+
+Atualização posterior: `session-rpc.ts` implementa uma candidata do port preso à sessão com verificação Auth e chamadas HTTP injetadas.50 testes combinados passaram (15 novos), sempre com fetch falso, sem credenciais reais. Login, persistência/refresh, plataforma nativa e Auth/RLS online ainda pendentes. [Semântica, evidência e limites](../../docs/testing/TRANSPORTE-PRESO-A-SESSAO-0.1.md).

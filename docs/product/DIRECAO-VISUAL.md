@@ -1,10 +1,12 @@
 # ResiCheck Connect — direção visual
 
+Vocabulário atualizado em 10/11/2026: **Cliente** é o termo de produto. [Mapa de compatibilidade e limites](TERMINOLOGIA.md). Identificadores técnicos e evidências anteriores permanecem preservados; esta revisão não altera permissões nem comprova novas funcionalidades.
+
 Nome provisório e direção definidos pelo usuário em 06/11/2026. O usuário aprovou os exemplos de telas v0.2 e escolheu **verde como cor padrão**. Este documento orienta o produto; tema dinâmico completo e pipeline de logo empresarial continuam planejados. Aprovação visual não demonstra funcionamento operacional ou acessibilidade.
 
 Atualização da implementação: há agora telas demonstrativas React Native e QA em prévia web, com ícone original ResiCheck autorizado. Isso não significa APK, tema dinâmico completo ou validação Android/acessibilidade; ver [resultado do protótipo](../testing/PROTOTIPO-0.1.0.md).
 
-Referências v0.2 fornecidas pela coordenação: [exemplo visual 1](https://drive.google.com/file/d/1DNOU9BjjWfNL-iMPaI7S3XB9J2gkZqvR/view) e [exemplo visual 2](https://drive.google.com/file/d/1gMWO1GeDdqtn_vhBWfiKWO42-Dyf_ai5/view). A aprovação orienta o primeiro protótipo; estes links não foram tratados como prova de execução Android nem como assets finais já incorporados ao código.
+Referências v0.2 fornecidas pela coordenação: [exemplo visual 1](private-approved-reference-omitted) e [exemplo visual 2](private-approved-reference-omitted). A aprovação orienta o primeiro protótipo; estes links não foram tratados como prova de execução Android nem como assets finais já incorporados ao código.
 
 ## Experiência principal
 
@@ -48,13 +50,13 @@ Evitar que um novo logo sobrescreva silenciosamente cores globais já escolhidas
 
 Somente gestor autorizado altera logo e tema global da empresa. Usuário altera apenas sua preferência. Tema não concede papéis nem acesso a dados; cada atualização global tem empresa, autoria e versão. Troca de conta ou empresa deve carregar o tema correto sem vazar identidade visual ou cache da sessão anterior.
 
-Pacientes podem ter mais de um vínculo e escolhem empresa após login ou vinculam nova; funcionários ficam inicialmente em uma única empresa. Proposta: aplicar tema da empresa no contexto ativo e padrão do Connect em telas sem empresa; a abrangência da preferência pessoal (global ou por empresa) ainda será definida. A troca de empresa nunca deve recolorir conversas de outra empresa nem perder seu rascunho.
+Clientes podem ter mais de um vínculo e escolhem empresa após login ou vinculam nova; funcionários ficam inicialmente em uma única empresa. Proposta: aplicar tema da empresa no contexto ativo e padrão do Connect em telas sem empresa; a abrangência da preferência pessoal (global ou por empresa) ainda será definida. A troca de empresa nunca deve recolorir conversas de outra empresa nem perder seu rascunho.
 
 ## Upload e processamento do logo
 
 Proposta de fluxo: gestor autorizado seleciona imagem → validação de arquivo/tamanho/dimensões e decodificação controlada no servidor → remoção de metadados desnecessários e geração de variante estática segura → extração de cores → preview → salvar versão do logo/tema. Formatos e limites exatos serão escolhidos antes de implementar.
 
-Não confiar apenas na extensão/MIME declarado, aceitar conteúdo executável ou SVG não sanitizado, buscar URLs arbitrárias nem processar arquivos sem limites. Tratar imagem excessiva, arquivo malformado e metadados como entrada não confiável. O arquivo de logo não deve conter dados de pacientes; processamento deve ter acesso mínimo e não usar credenciais de documentos clínicos.
+Não confiar apenas na extensão/MIME declarado, aceitar conteúdo executável ou SVG não sanitizado, buscar URLs arbitrárias nem processar arquivos sem limites. Tratar imagem excessiva, arquivo malformado e metadados como entrada não confiável. O arquivo de logo não deve conter dados de clientes; processamento deve ter acesso mínimo e não usar credenciais de documentos privados.
 
 Disponibilidade do logo no diretório público, regras de acesso, retenção das versões e mecanismo de cache serão definidos separadamente; upload não muda compartilhamento de anexos. Usar placeholders e logos sintéticos nas evidências iniciais.
 
@@ -64,8 +66,12 @@ Adotar como alvo inicial texto comum com contraste mínimo de 4,5:1 e texto gran
 
 Alvo Android: áreas de toque de pelo menos 48 × 48 dp para controles interativos, com espaçamento e rótulos acessíveis. Referência: [Android — tamanho do alvo de toque](https://support.google.com/accessibility/android/answer/7101858?hl=en).
 
-Validar lista de chats, conversa com teclado e anexos, cadastro, vínculo pendente de funcionário e seleção da empresa em Android compacto, fonte ampliada e temas claro/escuro. Vínculo de paciente é imediato. A agenda fica para fase futura e não bloqueia o MVP visual de chat. Cobrir precedência completa, reset pessoal para seguir empresa, logo ausente/inválido, extração sem cores úteis, ajuste global, troca de logo, troca de empresa e sessão. Leitor de tela e foco não podem depender somente de cor. Capturas serão sintéticas; o conceito visual ainda precisa de avaliação na implementação.
+Validar lista de chats, conversa com teclado e anexos, cadastro, vínculo pendente de funcionário e seleção da empresa em Android compacto, fonte ampliada e temas claro/escuro. Vínculo de cliente é imediato. A agenda fica para fase futura e não bloqueia o MVP visual de chat. Cobrir precedência completa, reset pessoal para seguir empresa, logo ausente/inválido, extração sem cores úteis, ajuste global, troca de logo, troca de empresa e sessão. Leitor de tela e foco não podem depender somente de cor. Capturas serão sintéticas; o conceito visual ainda precisa de avaliação na implementação.
 
 ## Decisões em aberto
 
 Arquivo e variante do logo ResiCheck; tipografia e iconografia finais; tons/valores exatos do verde e da base neutra/pastel; navegação detalhada; quais tokens o gestor/usuário pode alterar; escolha claro/escuro; preferência pessoal global ou por vínculo; regras de rederivação após trocar logo; formatos/limites e visibilidade do logo. A direção dos exemplos v0.2 já está aprovada, restando implementação e testes. APP-016 a APP-018 no quadro são a fila canônica para essa direção.
+
+## Atualização aprovada em 16/11/2026
+
+Slogan principal: **Empresas ao seu alcance.** Usar na web, app e próximos materiais pertinentes. Lucas solicitou reformulação efetiva das interfaces web e móvel com Astra, em linguagem visual coesa: fundos claros, verde como destaque, navegação por papel, conversas apenas na área própria, conta acessível e menu lateral web retrátil. A entrega conjunta inclui o APK e melhorias de transição medidas; nenhum recurso inexistente deve ser apresentado como configuração disponível.

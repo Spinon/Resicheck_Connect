@@ -1,5 +1,7 @@
 # Imagens compactadas e documento original
 
+Vocabulário atualizado em 10/11/2026: **Cliente** é o termo de produto. [Mapa de compatibilidade e limites](TERMINOLOGIA.md). Identificadores técnicos e evidências anteriores permanecem preservados; esta revisão não altera permissões nem comprova novas funcionalidades.
+
 Requisito recebido em 06/11/2026. Estado: proposta para implementação e validação com dados sintéticos; pesquisa técnica em andamento. Nenhuma imagem foi transformada nesta etapa.
 
 ## Experiência proposta
@@ -29,6 +31,6 @@ Falha na compactação ou validação deve oferecer recuperação compreensível
 
 Usar guias fictícias com texto pequeno, baixo contraste, sombras, carimbos/linhas finas, foto inclinada/desfocada, orientação EXIF, diferentes tamanhos, QR e código de barras sintéticos. Comparar antes/depois, ampliar no Android e realizar leitura/decodificação dos códigos quando pertinente. Incluir prévia ampliável e arquivo baixado pelo destinatário, não só resultado local. Atendente deve poder ampliar e pedir foto melhor quando a fonte estiver ruim; compressão não restaura foco ou recupera informação ausente.
 
-Medir bytes, dimensões, consumo de memória/tempo e qualidade de leitura por cenário antes de fixar parâmetros. Registrar perfil candidato de resolução mínima e qualidade, testes e trade-offs de leitura, tráfego e desempenho; só promover o perfil após validação empírica. Nenhuma resolução universal nem percentual de redução garante leitura. Validar redes instáveis, timeout/retry, memória, download, original vs compactada e autorização cruzada por empresa/paciente. PDFs, especialmente assinados, não são regravados; comparar hash do original antes/depois e validar assinatura sintética quando aplicável. Criação de fixtures assinadas é uma tarefa futura, não uso de documento real.
+Medir bytes, dimensões, consumo de memória/tempo e qualidade de leitura por cenário antes de fixar parâmetros. Registrar perfil candidato de resolução mínima e qualidade, testes e trade-offs de leitura, tráfego e desempenho; só promover o perfil após validação empírica. Nenhuma resolução universal nem percentual de redução garante leitura. Validar redes instáveis, timeout/retry, memória, download, original vs compactada e autorização cruzada por empresa/cliente. PDFs, especialmente assinados, não são regravados; comparar hash do original antes/depois e validar assinatura sintética quando aplicável. Criação de fixtures assinadas é uma tarefa futura, não uso de documento real.
 
 Verificar EXIF na cópia transformada, preservação deliberada de bytes no envio original e limpeza da cópia temporária conforme política, sem apagar a fonte do usuário. A pesquisa técnica deve orientar os valores, seguida de testes; nenhum resultado de legibilidade foi demonstrado nesta preparação.

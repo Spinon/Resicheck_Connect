@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "state": "validated-candidates-not-web-published",
+  "version": "0.0.33-mensagens",
+  "versionCode": 33,
+  "source": {
+    "repository": "https://github.com/Spinon/Resicheck_Connect.git",
+    "branch": "release/connect-0.0.33-final",
+    "publicBase": "34d1066709ccc862c1234c575d96675ac1c3b86f",
+    "compiledFiles": 261,
+    "compiledFingerprint": "f7156dd19cf7193fb906a34fc4f95bebca1b2ba2995ca2adfc53a22c1458cfae",
+    "meaning": "All compiled Android/Web source bytes are exact. Backend identities are example-only templates requiring private bindings.",
+    "codeCommit": "a0015b15113cdc298e21c9036c44d8ee014c6634"
+  },
+  "android": {
+    "sha256": "cde1b78b392cdb2d76226fd50f5fa4fab705b8476f5a304f081fc2bcfdf860a9",
+    "bytes": 46929408,
+    "certificateSha256": "fac61745dc0903786fb9ede62a962b399f7348f0bb6f899b8332667591033b9c",
+    "package": "com.resicheck.connect.pendingonlinephone",
+    "versionCode": 33,
+    "versionName": "0.0.33-mensagens",
+    "architectures": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "privateQaDelivery": "uploaded, owner-only sharing preserved, full remote download SHA-256 matched",
+    "physicalDevice": false
+  },
+  "web": {
+    "exportFingerprint": "4d9612c2c6d031fbab293c0d59e1db080f322a2e81f004d5bbcb8539876a7b43",
+    "files": [
+      {
+        "path": "_expo/static/css/connect-web-e48c23d9063f6f6cd613bd1bb95d5e33.css",
+        "bytes": 8574,
+        "sha256": "0d125758e4ea5a6f758f9ebacda36ae09059da752a64f8dfbdaec6129b63476b"
+      },
+      {
+        "path": "_expo/static/js/web/index-677c7dd3f291a9b31dd5c8ea147b8e71.js",
+        "bytes": 1189979,
+        "sha256": "9c737faface2ebffd3b052bd4bb139b1c692ba7808b5b7fa72965d458333e841"
+      },
+      {
+        "path": "assets/assets/resicheck-icon-round.76924ea279aaaaaa999d97242bb7b8d8.png",
+        "bytes": 5139,
+        "sha256": "b4ff03d7ce4a11009a1eff9107abf3cb6c31ca10483bc9945a1b44948bbee4ec"
+      },
+      {
+        "path": "connect-public-config.json",
+        "bytes": 178,
+        "sha256": "dfbb5152a2fdc42fa55a2b9f73644518981044f4e6ec2f1f73fa37cc4957aa43"
+      },
+      {
+        "path": "index.html",
+        "bytes": 1385,
+        "sha256": "1fe88f0b0e1e92c0550ef96cc21dfd11817c823b24d01ed7122b9c31b4e6f5fd"
+      },
+      {
+        "path": "metadata.json",
+        "bytes": 49,
+        "sha256": "aa5f19cc84d41c0f8c70ececb2bc82e863227ea1e121632aca879eb616056991"
+      },
+      {
+        "path": "third-party/unicode-data-V3.txt",
+        "bytes": 1995,
+        "sha256": "e7a93b009565cfce55919a381437ac4db883e9da2126fa28b91d12732bc53d96"
+      },
+      {
+        "path": "third-party/unicode-segmenter-MIT.txt",
+        "bytes": 1088,
+        "sha256": "c6870e61278ca4af52f28b3ed644780d460bcd4ed927ebeb2a9555cb353b7aaa"
+      }
+    ],
+    "published": false,
+    "proof": "local export with real dev APIs, img-src blob proposal only"
+  },
+  "qa": {
+    "inbox": true,
+    "images": true,
+    "removalSelfAndAll": true,
+    "originalMediaAndAuditPreserved": true,
+    "quietRefresh": true,
+    "emulatorBackgroundCycles": 2,
+    "cnpj": "form navigation only",
+    "invitations": "entry screens only",
+    "audio": "one synthetic recording/upload/inspection/publication/other-role Web playback; same existing audio native AudioTrack/UI playback observed without re-upload",
+    "ownSessionsClosed": true,
+    "physicalVolumeSilentMode": false
+  },
+  "limits": [
+    "No physical-phone proof; intermittent physical resume report remains open.",
+    "CNPJ lookup/create and invite issuance/acceptance were not repeated by the final UI regression.",
+    "Images remain scoped to the previously authorized test company.",
+    "Web CSP and publication still pending; no source push in this stage."
+  ]
+}

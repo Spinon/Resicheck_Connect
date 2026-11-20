@@ -2,13 +2,19 @@
 
 > Gerado de project-board.json. Não editar manualmente.
 
-Atualizado em: 2026-11-07
+Atualizado em: 2026-11-20
 
-Checkpoint local preparado após124 testes e6typechecks. Fila aceita maisde100 confirmações sem bloquear novasintenções; histórico paginado isolado testado. Modais corrigidos passaram10cenários web,13checks e37regressões; fonte Androidnova ainda não validada. Seleção localizada emcomportamento nativoAPI36; semworkaround. APK0.1.3 preservado; candidato0.1.4/code8 superado pela correçãofila. UnicodeSQL emavaliação local, Authpositivo/transporte reais pendentes. Sem mudança remota.
+Connect pre-beta. Final0.0.33 Android/Web candidates share sourcef7156dd1; authenticated emulator/browser checks passed within recorded limits. Hosting CSP and coordinated publication remain pending; no source push yet. Historical references are opaque digests only, not private receipts or current verification.
 
-Foco: **APP-064 — Alinhar limite Unicode do banco à validação confiável de mensagens**
+Foco: **APP-052 — Validar e implementar compactação de imagem com prévia e opção original**
 
-Próxima ação: Divergência reproduzida no PostgreSQL local: char_length rejeita emojis compostos válidos. Envelope sóbytes não é correção segura. Avaliar contador Unicode17 privado no banco com corpus e limites, fora de migrations até revisão. Nada remoto.
+Prioridade: P0
+
+Responsavel: Assistente Connect
+
+Revisado em: 2026-11-20
+
+Próxima ação: Imagem existente aberta/removida emWeb eAPKfinal; origemprivada,registros eauditoria preservados. Inboxfallbackvalidado; audio restaurado e smokeunicoaprovado. Nao repetiruploads/codec. FinalizarCSP/entregaconjunta33 semampliarempresas.
 
 ## APP-001 — Criar estrutura independente de trabalho e entrega
 
@@ -44,9 +50,9 @@ Estado: in_progress
 - Paciente por link ou busca conversa com a empresa sem escolher funcionário
 - Testes negativos de isolamento entre duas empresas, papéis e funcionário revogado
 
-Próxima ação: Sessão/contexto e política de acesso integrados à interface sintética:24 testes app,10 sessão,18 acesso,27 checks web e11 jornadas Android passaram. Candidato local69918a0c; APK entregue preservado. Prosseguir onboarding de menor privilégio e adaptador Auth nativo; testes positivos online dependem de canal Auth Admin seguro. Não contornar bloqueio do navegador nem fabricar sessões.
+Próxima ação: CNPJ e convites têm provas API reais encerradas; candidato conjunto em fonte pronto. Próximo: validar jornada normal web/Android do lote com disponibilidade operacional revisada, sem repetir empresa ou fixture manual. Imagens separadas; não ofertar recurso fechado como disponível.
 
-Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, packages/access/README.md, docs/architecture/CONTRATOS-DE-IDENTIDADE.md, docs/testing/CONTRATOS-LOCAIS-0.1.md, docs/architecture/BANCO-CONNECT.md, docs/architecture/MIGRACAO-E-PORTABILIDADE.md, docs/testing/BANCO-LOCAL-0.1.md, supabase/README-LOCAL.md, docs/delivery/PLANO-SUPABASE-ONLINE.md, supabase/deployment/candidate.json, docs/testing/PREFLIGHT-SUPABASE-ONLINE.md, docs/project/CUSTOS.md, docs/testing/REVISAO-CANDIDATO-BANCO.md, docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md, supabase/deployment/receipt.json, docs/architecture/LOGIN-BASE-RESICHECK.md, packages/session/README.md, packages/session/src/session-scope.ts, packages/session/src/public-auth-error.ts, packages/session/tests/session-scope.test.ts, docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md, apps/mobile/src/demo-session.ts, apps/mobile/src/demo-access.ts, apps/mobile/tests/demo-session.test.ts, apps/mobile/metro.config.cjs
+Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, packages/access/README.md, docs/architecture/CONTRATOS-DE-IDENTIDADE.md, docs/testing/CONTRATOS-LOCAIS-0.1.md, docs/architecture/BANCO-CONNECT.md, docs/architecture/MIGRACAO-E-PORTABILIDADE.md, docs/testing/BANCO-LOCAL-0.1.md, supabase/README-LOCAL.md, docs/delivery/PLANO-SUPABASE-ONLINE.md, supabase/deployment/candidate.json, docs/testing/PREFLIGHT-SUPABASE-ONLINE.md, docs/project/CUSTOS.md, docs/testing/REVISAO-CANDIDATO-BANCO.md, docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md, supabase/deployment/receipt.json, docs/architecture/LOGIN-BASE-RESICHECK.md, packages/session/README.md, packages/session/src/session-scope.ts, packages/session/src/public-auth-error.ts, packages/session/tests/session-scope.test.ts, docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md, apps/mobile/src/demo-session.ts, apps/mobile/src/demo-access.ts, apps/mobile/tests/demo-session.test.ts, apps/mobile/metro.config.cjs, packages/chat-client/src/session-rpc.ts, historical/b90c76f32c05682a1ae2087e4076f8fd184729cb9341518afd71f8ac10e4fe8c.ref, historical/01126348f5fdf3cc7713ddba21ec8a9957bc20ede669d13eedd60b781d7072a2.ref, historical/2d3b487a56b2ebc0bf911830af7e5c9cd53d4949e7999de7d805016db90d5fe1.ref, packages/session/src/auth-controller.ts, historical/aeaf6583ef37d6d1b6e27be4f1764a91ea0beaec38129145d869fcca19304b98.ref, historical/373eda95a466a715ef94495f1fe3a4ecfa83cd30dd854ee47c76ce996a29664b.ref, historical/0e0767f6b32a770d7fc6c04e6f120ce7440708b00bb8c5d9658a3f298637a39f.ref, historical/5bf3852a426852c4ee2bcae982c7879954b82212ad3b726810c671e7e104b84e.ref, packages/session/src/native-session-vault.ts, packages/session/src/auth-screen-binding.ts, historical/960e1bc8c826cbf1fd0994843ca0184a20270c1bae6fbf5e502c6a84459319c5.ref, historical/4f168525816b530bbbd5f77a9bdd73218b15cb3f66dc970bcd7e11e0c010e6e6.ref, historical/6e6b9650ea48e1bcd8c7add9953f304fb026b2e21f68f11ba13973ea62985b70.ref, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref, historical/9f0b3bcfb08dade6e4c31a6727632070b34ff28a2aaf261cdc2f6a224996a50a.ref, historical/2a82f068ee44ae5d3553a959abb9f5eb4ec77e6c011dcd39e5ae3504347fcfb5.ref, historical/6519d109414ea339d486892636985fb439f75ebb9b40e1aef4c59c06eb2151dd.ref, historical/b15ae5c9aa2644aaaedb238a8bd6f839f75566d241aae0272454571e7e0fc1d2.ref, historical/92a438e3ab0b44c7dbd85b8313dd4b0f94a1da923a78904c48e69f7cac547382.ref, historical/95715ae39eb95d5d6411c8bf53e4c5e95c23a7f68e26432198ea5d05f6f7a824.ref, historical/749924b8b5ea084bbcd4ddb684217de490694d51c36a9aab85ce774abb93613e.ref, historical/cf8d1436dc34d0a98d0c4eef9076e017cb721e741263b83aeab000b97f1a53b3.ref, historical/dc53f98cd3b0155772c01390066776fd1fad0f4ff060b62026cec84ad6456c2f.ref, historical/560e8021cac103e43c73dff601e308bd7eb5664c1ce6d396c2ae99acfc7f4276.ref, historical/390c2fd80c0c7df4b9397b1e634f7be045323163675c44cabe47ef505bc7c268.ref, historical/b887d150f0f9dc680663db247da5e073bcb3272e5798268731c8c80cc638ca34.ref, historical/9e84b220cf5f2b188c1aac17283928997a3d8e01ec2300c518c70fcc782c0abc.ref, historical/7bc12738aea2559adf3861432d409c6798ea3d971616ebd2f48a324cb34ea8cb.ref, historical/9ddc8355d1793f5d0c5c64d180ced332aab618d5e0e751084c28bec43a4b4c33.ref, historical/a96e7f28cc0c6029ac673fd7d6904064650a8cb4019125adeb7e80c6fce4b657.ref, historical/745fec94595c18a09b5e88e80cfd606e33b43eace69205725479bc3c06f89f3c.ref, historical/105ca7c73c7602b401d20ccca7d6b9840db61435d8635143f4490622bf7ec8f8.ref, historical/121e84f1b0913a4d0d60059d20a17c3a6237e48618ae4641b16b8cf2bc656188.ref, historical/9b2e9ae1ed944b6ef5e43b38d16827a331cb81aeb1c2291ff41e41fe6ecee44f.ref, historical/7549363f55785c07f209f09670a4fd33f885ff7cc9a20f3aecb0a4e8d4ba4ec6.ref, historical/85a54a4b38df295cb6aa1c7a179f4a05cc963e15a36640fa89e8edbdf9484016.ref, historical/cc225abe225cf38fcd70f6deecf4eb64fe291c69350498fad85b4e470bb38b57.ref, historical/0441ff0f38cad7a4222432a03f94e2fbbd1bc46479075dd22bad3ab27f071007.ref, historical/0862fdaca1ec46cd6592fb9a05f8fed884404532cca71721a12a0112999740a7.ref, historical/dbc0d12d4e36cca87a8e9a763de03f3bc16dffc7ab0a3f446ea083fe52b3f6ba.ref, historical/33cb0c95e62b755b1e08953825a10ede9d6753f6e8d95621e87af187b5a725cb.ref, historical/47d2a90fd428c05e8dc4979f5c8ccdf9136105676eaaec7ef652718280ce2753.ref, historical/ccebff48186324804b507cacd6e7878722bb66797452725a29af0d748bc07896.ref, historical/453d0c48e4d961cae1000919b0d92a4427425a3023b8800e3bccd765981d7646.ref, historical/20d4cfe644f1651e1743f3778a6cdd3818ddcbc45e490440a9e06579e0017b8c.ref, historical/1ca1a7ebcbd1e55022fea3cba37ae0aef5ecb8cbeee7754d443df543dde31df4.ref, historical/e4a7a2bb2707f4d978aa56004783ffda6081a8818f56d49e40c193a29d5c2ebc.ref, historical/eb4e83aa63db08a6e69e67db26fadf033f731c3d1d44caec9bba289281da9239.ref, historical/20e220f04746d190f6537d3989d008a3b5ac30ad910f2c18d1187aef7bfe1b10.ref, historical/f67392596126f9eb0ab91500518bf5e48dee2fab08a419af265eae290822dcd6.ref, historical/74cd5775bfdf4397f16f301cbebdfc6fba2231bd21aa0b3aed7f502876e606a8.ref, historical/6511b603e0ac17e8e9bdc8db4a6811b8514623dfd85402b624bc9c5b6cbd430a.ref, historical/a9ca91dfc88a1293bfc3e4ea93bd6beafb4843f42507b59f4fe67cb29c9aea84.ref, historical/34aef60baa5bbf3bc9686129a161e53af65e734fdf5dbed2e43248a22588e6a3.ref, historical/b631cb8fd5f12f88e451f3c9ac5e8a722a80ee4f2a102956f295ccba2fbb5c54.ref, historical/0b960470a4775d4c3a8b6bdc16812341cfdfac12f5f8c525ddcc88f603a73ab1.ref, historical/e6211d0a1bb19e76fedb92200303a1ad2643187a8179556b9151d0f739331e22.ref, historical/80d72cb44fb80b7d5d96a7d24f4e3fc90358a80f032ba7096c8c55bfd774311f.ref, historical/fef6e7971cbc9d2655c4f4b2c2f320dfafde936579cdb3dfab6f3939244c5de7.ref, historical/b1ea60d7f81778117f180944cd729fc85c36469a054c8b3708e77c3a3409f447.ref, historical/10987489c8d0f0a771110328e22fa4375b037cbabe5e97ae4f96fca57da89d6d.ref, historical/53f6848ff337478c2ae4cc6a2496724e75c527f8109667ed738484e2c0550c20.ref, historical/f45391bdab660a6025ae41cefbdcef191cef8b0a3c469e68d20a5985be241545.ref, docs/product/EMPRESA-PREENCHIMENTO-CNPJ-PROPOSTA-2026-11-18.md, historical/f373676622fcf38c26a094a13e763b29a888ad1ef1ff280ffe309764324e5181.ref, historical/56a6bfad30ec00841cebd9ac063217557d7c3b76e3736a024152dd3bbb5127c6.ref, historical/8a71dd8fc1602d55d8f7476b5503019d066e103a89efbb84892eee315397959b.ref, historical/dfd260bc4401f3bf79d16aef85e46c9fc0b3f86a6c223895add2381ff4904b1a.ref, historical/e5116a8c9381a1237b84d3d10f8d81b781e270e6220b8730618621134881095f.ref, historical/3b1aae7e4038331a38618831a08469798308ce6bb7c5075c33dfe81008e8226f.ref
 
 ## APP-004 — Entregar chat e anexos privados
 
@@ -63,10 +69,15 @@ Estado: in_progress
 - [R11] Paciente não escolhe funcionário; todos os funcionários aprovados da empresa podem ler as conversas; autoria real e revogação são preservadas
 - [R27] MVP não duplica mensagens por retry e preserva ordenação/autoria e significado dos estados de envio/entrega/leitura escolhidos; não exige desenvolver agenda. Garantias de reserva ficam na fase futura.
 - Emojis fazem parte das mensagens, com integridade Unicode e limite por grapheme sem cortar sequências; execução e testes estão na subfatia APP-057.
+- Buscar trechos na janela já carregada da conversa atual, com alcance explícito, sem consulta global simulada, marcação de leitura, perda de rascunho ou mistura de contextos.
+- Ampliar explicitamente a busca para páginas anteriores com teto de leitura, parada por contexto/termo e cancelamento lógico claro, sem promessa de busca global ou inexistência além da janela.
+- Abrir contexto limitado de um resultado da busca e navegar entre resultados da janela autorizada, preservando termo/rascunho e sem emitir recibos ou misturar hosts.
+- Quando novas mensagens forem detectadas numa conversa recente confirmadamente vazia, atualizar sem toque somente após prova de área nativa visível e contexto/atenção atuais, preservando rascunho e fallback manual, sem inferir leitura.
+- Recuperar confirmação incerta com orçamento finito de consultas pelo identificador original, sem reenviar ou inferir falha por ausência, preservando rascunho e impedindo consultas físicas sobrepostas após timeout.
 
-Próxima ação: Histórico paginado local APP-063 testado com servidor de referência e autorização por página; fila APP-061 continua integrada à demonstração. Próximo: adaptador autenticado/DTO banco e leitura Android quando Auth seguro disponível, sem contornar bloqueio. Áudio/anexos reais, persistência e RLS positivo permanecem pendentes.
+Próxima ação: Áudio normal demonstrado em segundaempresa com1upload/1mensagem,hash e refusas403;APK25grava/envia/reproduz com backend real. Fechar entrega;outbox durável/acústica/físico são critérios próprios.
 
-Evidências: docs/research/INTEGRACAO.md, docs/product/MVP-CHAT.md, docs/testing/CHAT-LOCAL-0.1.md, docs/architecture/BANCO-CONNECT.md, docs/architecture/MIGRACAO-E-PORTABILIDADE.md, docs/testing/BANCO-LOCAL-0.1.md, supabase/README-LOCAL.md, docs/delivery/PLANO-SUPABASE-ONLINE.md, supabase/deployment/candidate.json, docs/testing/PREFLIGHT-SUPABASE-ONLINE.md, docs/product/EMOJIS-E-UNICODE.md, docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md, supabase/deployment/receipt.json, packages/chat-client/src/text-send-queue.ts, packages/chat-client/tests/text-send-queue.test.ts, docs/testing/FILA-DE-ENVIO-LOCAL.md, packages/chat-client/README.md, packages/chat-client/validation.json, docs/testing/HISTORICO-CLIENTE-0.1.md, packages/chat-client/src/text-history.ts
+Evidências: docs/research/INTEGRACAO.md, docs/product/MVP-CHAT.md, docs/testing/CHAT-LOCAL-0.1.md, docs/architecture/BANCO-CONNECT.md, docs/architecture/MIGRACAO-E-PORTABILIDADE.md, docs/testing/BANCO-LOCAL-0.1.md, supabase/README-LOCAL.md, docs/delivery/PLANO-SUPABASE-ONLINE.md, supabase/deployment/candidate.json, docs/testing/PREFLIGHT-SUPABASE-ONLINE.md, docs/product/EMOJIS-E-UNICODE.md, docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md, supabase/deployment/receipt.json, packages/chat-client/src/text-send-queue.ts, packages/chat-client/tests/text-send-queue.test.ts, docs/testing/FILA-DE-ENVIO-LOCAL.md, packages/chat-client/README.md, packages/chat-client/validation.json, docs/testing/HISTORICO-CLIENTE-0.1.md, packages/chat-client/src/text-history.ts, packages/chat-client/src/supabase-send.ts, historical/f2e072444931d0b88ace69e10e5f52da2ea137426cc73eb9cd9385334b00bcb1.ref, historical/8a750385e2914602ce28aa001d712248b764ae2a215092563d892e1a391e3dbc.ref, historical/1100e526d9f980fca77edb0803bf49c9eba4c39859ae20d14441c6a4c7282f3c.ref, historical/2d3b487a56b2ebc0bf911830af7e5c9cd53d4949e7999de7d805016db90d5fe1.ref, historical/01126348f5fdf3cc7713ddba21ec8a9957bc20ede669d13eedd60b781d7072a2.ref, historical/6487ca2e5483f2852e76d1b79623a82d541f69d15e63328cb5a196885b4b5bb6.ref, historical/e776754bcae3665b7a27c672427e55c691b4049547fae89488a8d9ced6e6d866.ref, historical/fb62a5ff82c00f86fa58985cb1e79fa19af69fb237db5315634be107fea47f6e.ref, historical/7e76c949b4cc4d116cc4134f062a753b306629f75954f6f42fa03c43b8cd4ae5.ref, historical/33189ae769a961dc87899259dda020f39c190c8f41b2ab62bcdd20d13e9669c8.ref, historical/4edfd3e886bd0dcfb9a048fce5d70407f6d3c8fa1d6de8593613733b298dcaca.ref, historical/d3c100ecc766d8708057306c6a7c34c1091d46d663c75f3bb64fbb2e19620af0.ref, historical/00ff31a6c0a1d9f38ed8544fb2b337d77ab2b65ecb6bf93d81a664a4f221eb74.ref, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref, historical/9f0b3bcfb08dade6e4c31a6727632070b34ff28a2aaf261cdc2f6a224996a50a.ref, historical/2a82f068ee44ae5d3553a959abb9f5eb4ec77e6c011dcd39e5ae3504347fcfb5.ref, historical/6519d109414ea339d486892636985fb439f75ebb9b40e1aef4c59c06eb2151dd.ref, historical/b15ae5c9aa2644aaaedb238a8bd6f839f75566d241aae0272454571e7e0fc1d2.ref, historical/9b2e9ae1ed944b6ef5e43b38d16827a331cb81aeb1c2291ff41e41fe6ecee44f.ref, historical/f2b34b86edd04d60197d7154e32139ec2fe28c67f9ab0bfb5a485403a1bfd6dd.ref, historical/2fe37db46bc4c01be5b69eaea3b5ab9ab63bfd9800bc00e97166eeba07b7bc81.ref, historical/9a43e0397a9c1e993a14b57dd90a9a205e4dafab58bf51ad07f466f8770b3b4d.ref, historical/c4a73c6ef1a81a9e1ad262f9f294aa0dda517a393eda35f1234cca677c563334.ref, historical/fa484cd19bf6dada5c2b70cbff3ea3f997039c24f1c483b3e717fd9dfa10f6d8.ref, apps/mobile/src/local-image.ts, apps/mobile/src/expo-local-image.ts, apps/mobile/src/expo-private-demo-audio.ts, packages/chat/src/private-attachments.ts, historical/d720beb315ff9184c36bb734f2881fecb81d825596751ee754cc17e3cf505f66.ref, historical/61304f5ef55b0f510d81d52bf297d2d0917638dd576c056bf7a9a9cf3a7d8e8d.ref, historical/7ba134688d3a652441142e13db484e6b078b3b1e2bbd5f36ccdf634fe7b706c8.ref, historical/cbda9e9c76628b78e3aaeb78b95246324607b4b1d1ec81238bd30f05125d49d2.ref, historical/815f6539a85bee73e41369346115aeac7ad8782463b7b1461a74bc016fc8463e.ref, historical/26866d0bf34e1977fb78e11ce733f139e169ed44fa2c989f60a52c76d57c7c01.ref, historical/a9bb70fbde2268ee067730fff9267976133012a887f804506a03e1824b100c6b.ref, historical/61f87d7287b007a7af2a0789a0c09518050aca7919069297133a840bc285bc1d.ref, historical/5e53c4c40cbdcf22e8104f6702957bcab4ee75fdd71fb45bf0720f8d27d999e6.ref, historical/90a700927bfd940695e10753cab4ab9515d8221ffd58c1ef8b55f1b92f0313bc.ref, historical/eb33f4ca31e0588214d4fb1f869b0fade7ce9a124f48b23dc8b5875b59c4d9ad.ref, historical/4d48f6b905a69d838495692190fb305e77eb7de77be57c53435595247f0541c5.ref, historical/28dc9d6c7fb8b8ef9b85757617a4b9c2199caccd116f61d82f7ff93615aebbb8.ref, historical/3c3a437dd2c6d40c9c146ebf5106163f327280171295247b1c8d70ad5aeff99d.ref, historical/0930b44a956033c25c5ba4ebf8119fd2cf51bb2cf004c9577f8d1dbfd0b67bef.ref, historical/23fd90bf9544b865cb9f2c5312c5725bb3cf9f6aae5b014cb0eb1ad08184ce20.ref, historical/d63f094c59910b8552f8fb1d2cb49e236b58645d9135cb3d900ee60ddc4b8d11.ref, historical/24f29627e1b85e5fa710146dd7bb6ef4d1ffeb94ee17a599f7a1cad4feee9fca.ref, historical/437fca9d532c1d8ca850accfb7189c55b645825e2b35ff4179fa41399a04fe1e.ref, historical/a19f855593c1b3157431c4fa88627ff69051063c2d4039002373466f9a8dae28.ref, historical/11c6eeddcadfa23ac3af375df4ca02b3a1f4cc2098e36b13fefcb6f28d95f0fc.ref, historical/ad4c857c2f6ef5add7a6f9e66e098a10944723ad8feb84637b10f572d58cc8e5.ref, historical/fd5958ad51f82f407f9ced0df44c679b1bcce6edb6bd90d060e1f35a1a059da2.ref, historical/a0287a7fedaa2c13529fcf9399cb62082817f81a61af9628836e8cf1594fdc0e.ref, historical/e2c0c67a8ceeb082a3757efed76bf257a5be025d107664e72769d1c3f908515a.ref, historical/c772a89fc4fb0f22bcc956281410d6ae9c818f7fca03af111f5da6ac335318d9.ref, apps/mobile/src/older-page-gesture.ts, historical/49c3c6a1a97cf7d0a9af297f4c3c2adb7c67b340ce93004dc95f966467e12e54.ref, historical/56a3a5e066e50c2f6d9395a727a286cd364b97fbdb6a0d2eb6e59d1e2f54ec16.ref, historical/452c12595b747ba72db87295c60535207c3456fe34f9f1f0545e5dcaac611cf0.ref, apps/mobile/src/loaded-message-search.ts, historical/3002722d5edef2867a2e4196a01a09d92e0640d45fa71f4a3add6ff041c558da.ref, historical/b6e82a9485181546451039fbecfdee7eba95f8ca6d79a39299dcb53685e60847.ref, historical/d0fbe9978ea89f5a70bb2722412790030a862be29b5549c9e1b6880d9afeaf57.ref, apps/mobile/src/search-older-messages.ts, historical/3ae63c54ceb44f80d82e9170d3a5aa69c791f98bc7c2388a29a8f183a9f8302f.ref, apps/mobile/src/RecentConversationView.tsx, historical/d7aa76eedd32c31695bbd930e586a0cf73b20e6c09005d6f019c3ee0460bf371.ref, historical/0d12db1e14d2e05cea777968b090994e298e684418d32ec494ea14dfbd42aa3a.ref, historical/ebfeaaba1275602e0ca5d0c56d0123397e30ae0c05da23211ddec6b9fb23a0d5.ref, apps/mobile/src/quiet-latest-refresh.ts, apps/mobile/src/recent-follow-readiness.ts, apps/mobile/tests/empty-conversation-refresh.test.mjs, historical/3745e56cefbe2d7d358be37a6dbca7e30b3f269d8a8e26bace085554e8fb75e0.ref, historical/d089312752953c0b1b2ede72a011fd8906ee01d01990b8cbded27509ff40ece7.ref, apps/mobile/src/uncertain-send-recovery.ts, packages/chat-client/src/recent-conversation.ts, historical/f26dbba4a7dfd78762dd01ba1e280312f739b277d60f21a7fc9b25773f606582.ref, historical/8a9fd129dcb350be35a5a179611dba25ec23c0eb38f76800163b5b5bf96a8c6a.ref, historical/a29dbe19c8a400252159c19089ddc44f492e9c260685fa6e020fb4ce1ec16165.ref, historical/eaae0a27a1ec4cdeecb6f0637dde705c5824d6b4ebf44c266dec990f41af3a44.ref, historical/21250f6c6b7f5452ba691d19a43bbdfa7807aa063a6dd4b1c7c2377be75664c9.ref, historical/f8ac7be07a6f7ee934b396201175862ab5a83e2a07b198f70e87a27ca82c8cf3.ref, historical/658217eed0da898b821a9cef9ce01019fa52a5cfb59b92fe8878b6ab37aabdf1.ref, historical/bc6147aa530366d48412aa6f8f3191ea67246a662da263e23547727c9fc046bd.ref, historical/55e8bc2c330ca361739494419ed52b67f74d9bfd1e59e1b3391e92b102c0e691.ref, historical/048d6ced714f69bec086d0e5e361335030997134758efa38a27771185fdbbdab.ref, historical/ea9c84b6db10dd50ec99a724bb633d3e683a666fe5983f648a7be3bdbb38cd5a.ref, historical/56de9ebc589eb994ae0130f7636c4249cfa8f572d53bae90e3034d29becd2429.ref, historical/d7e82f9474c105350e92ba2b76811b6bf5e47af4baff91751e011271d9e29a78.ref, historical/9dc9c4acc16bcd6f19fa10a01adf60c38191b0bca5a47cae9246d3f2a34369a2.ref, historical/cae440af3d1543779307471d31b93470f0040c5bf256fbc5e3f5cdedf207bea5.ref, apps/mobile/src/membership-recent-bridge.ts, historical/074826b80bf374a37ef79ab5604f41d1a017a316ac023159f45167c269282d0d.ref, historical/082317594fa82068db1b013235ad7928392ef61771775516180b4ede204574d2.ref, historical/50bdaaee669dff031390abf34c8be960f1c0c68b8cd8c1999ef4bbb76721f4b1.ref, apps/mobile/src/testing/preserved-send-qa-fetch.ts, historical/92363f73aa20ad5e03844de243ff49aceb5052cb2aa2fbaf10d2412591abf741.ref, historical/740f0304d73deb285160d1815fcb5672c137457b4bf05822a314ac10239f6645.ref, historical/c3657d76f7591dfd26a416c7f92f3efbadadc3cc00ed4a66831993e25cc3e72c.ref, historical/68bb006659e8b572ca10f999f97d562669eea8e79c83508dc4e903ac0d210989.ref, historical/402f2012137c5517eeb0ef2ad674e09e993136a0b0f0784b76416c8ab93eae15.ref, historical/b00f51cece8702d1a77cbc953871ba164a79d95367e3883efae6ef0bf75c1892.ref, historical/03b93eb8285c7de47e4df2f62d3053131fb3f1afb88d4bbc7021aeed89e77a16.ref, historical/227e0bcbd219afc7c811bb9d827aa53f1a014fa847c87205a780c34a4b06a3ae.ref, historical/89d26c274986f02ddc948900f1e9389fd8c84094e7981c4d2e397eb6a4ab3cd0.ref, historical/006916dab98c647c57f9951dd4dc05101e55b983495f4c472e073019db0a2bd7.ref, historical/d337b935a13f9e3e4cc2bbd1248a887c7def4b93d83726192e75cd84a50a7ddb.ref, historical/19db79d6a1c4c95d08328b29f98a24abfe964809008851243e23f436761d5dd8.ref, historical/58fb57081e4bccc3b3e27fd67cdbe617ac0e7bf9554dec0941b8e597cc3b9c02.ref, historical/47d2c87a4e89f3335d9fe65566ee85b3feb98cf444fac0f0875d46ae7084aa04.ref, historical/27a07ecbf2c897da82f3700cb0ff40ea1a0f95c19edcf30eb1787f08c0f53646.ref, historical/c5f94fa143e8ffe39ef734f940dec2bbaab60b64bfd32a9cb7d02fb05c22b786.ref, historical/3a15223395adfea7314cd506095c3ece06051c844d760c8e7ba6173f81eb06e4.ref, historical/d2f6f1ea5cd5bdccd332e2678f085237015b8816d1ff54efbf99688eaa8b2f14.ref, historical/fa6e608444f4e1a5e7d7371217e6934d3c18eb07883d6ba5c61206fd93c10df6.ref, historical/de0240c170a7de825c3280f681047d0aa1b3c106e5512d2d647907caf68fb3ed.ref, historical/6340ed7cc629b9bcb5d87191993ffe2ad70fdb0449879c392fbaa822384f360f.ref, historical/e98a4a3cd79bcad25b11bea7cfba4577698e44248930f5a6685dc334c20557bb.ref, historical/ff38e941f83a6ccb021b7f179091b61c0754688deb7e6f981128235133d41ee6.ref, historical/cc7cc2285c617958ab56a55553b1a76049216cc26e26afedaa2b019902fa05c3.ref, historical/57a217b189b6a95f820cf502214dbef3dd9001ac36f5ab173ee72b5ea17d4162.ref, historical/6289534d739eb510448fb0d24d3a2dadf5e4e957a16c10d365cec40d6c1cd0e3.ref, apps/mobile/src/web-chat-return.ts, historical/9627a65cd3e1b3bb51845b2e2953615d7acf51a6907a4924c88b5dbb770dd16b.ref, historical/f812265977c2670a70fe220b62bc121bad010c39700422adcaa178a9a94af51c.ref, historical/271831ceac4c2bddacc0c6a9aaab04214ff8910f6f43701a32854e1a6dbb1905.ref, historical/b54112bf3a44c0355ef6bc6399fbb2849345574ad8377f3841fab17f4e38620c.ref, historical/f67392596126f9eb0ab91500518bf5e48dee2fab08a419af265eae290822dcd6.ref, historical/74cd5775bfdf4397f16f301cbebdfc6fba2231bd21aa0b3aed7f502876e606a8.ref, historical/6511b603e0ac17e8e9bdc8db4a6811b8514623dfd85402b624bc9c5b6cbd430a.ref, historical/a9ca91dfc88a1293bfc3e4ea93bd6beafb4843f42507b59f4fe67cb29c9aea84.ref
 
 ## APP-005 — Fase futura: desenvolver agenda de consultas e exames
 
@@ -83,20 +94,47 @@ Evidências: docs/research/INTEGRACAO.md
 
 ## APP-006 — Homologar APK e disponibilizar lote de teste no Drive
 
-Estado: backlog
+Estado: in_progress
+
+Prioridade: P1
+
+Responsavel: Assistente Connect
+
+Depende de: APP-052, APP-262, APP-265
+
+Revisado em: 2026-11-20
+
+Trilha common: blocked - Gate de entrega pendente da CSP minima de imagens no Connect e das etapas de disponibilizacao/publicacao/Git, nao de nova prova de codec. Candidatos locais e QA concluidos nos limites registrados.
+
+Evidencias da trilha: docs/delivery/ENTREGAS.md, historical/e58ae1fb38bb536c409f502068f7ba6154f9f93e8f6bdf24b6ddbc2950a5506e.ref, historical/a7127eac03a890cabaedc01489bbdf365dfa94a2ce57884122b930dd56d5975e.ref, apps/mobile/candidates/messaging33/release-plan.PREPARED.json, apps/mobile/candidates/messaging33/regression-plan.json, historical/73b29c429369368a9a1d13c73bc47086e186d5f7cdadbebf3de16d1a7517d4db.ref, historical/0948410d91074e14c24efb0d554cfb18c6a8c2b526a8e16c58e6b8628e1157b6.ref, historical/35bed4192e07a6099e06b9d401f9bf6ca09e2e43c1ba86bc4c65098b7d4d919e.ref, delivery/manifest-0.0.33-CANDIDATE.json, historical/a46f8b3a7a850a2471f28de4daaff19c1b2f0e0808fc672540ede2d1b3ae895a.ref, historical/46cc4a0e39e1b4f1809776602a9343506587b3a27b9e75c0a01b7b132889f960.ref, historical/357442f71b6bcfa0f701906cc53c4d4909211261739326b496f4da6d69318c74.ref, historical/c481d70bd5a2977db88579f0f7e6fb5b1ee9dc1c82b8cd991bf8f55fdfec9166.ref, historical/dc48b9f93af2b816e472d157065c7498790f9f8f356868b8a6c195e9740edaf0.ref, historical/d4c602ff22212b4065a9875fc41f221671fef92892b4461e93a1e00c7ce703ab.ref
+
+Trilha android: ready - APKfinalcde1b78b/33 pronto localmente, assinatura/instalado/QAAPI36 conferidos. Nao regenerar. Disponibilizacao autorizada na entrega e teste fisico ainda faltam; preservar anteriores.
+
+Evidencias da trilha: historical/b1121c6953cb4ee5ebf7c454629ddfb0f6581a07e9ecd62488205334e66c2277.ref, historical/a7127eac03a890cabaedc01489bbdf365dfa94a2ce57884122b930dd56d5975e.ref, apps/mobile/candidates/messaging33/release-plan.PREPARED.json, apps/mobile/candidates/messaging33/regression-plan.json, historical/27c9752911e02c1f5080b57de9f7010bcb0652acaa5de3023a0a77fef575e8ed.ref, delivery/manifest-0.0.33-CANDIDATE.json, historical/a46f8b3a7a850a2471f28de4daaff19c1b2f0e0808fc672540ede2d1b3ae895a.ref, historical/357442f71b6bcfa0f701906cc53c4d4909211261739326b496f4da6d69318c74.ref, historical/c481d70bd5a2977db88579f0f7e6fb5b1ee9dc1c82b8cd991bf8f55fdfec9166.ref, historical/dc48b9f93af2b816e472d157065c7498790f9f8f356868b8a6c195e9740edaf0.ref, historical/d4c602ff22212b4065a9875fc41f221671fef92892b4461e93a1e00c7ce703ab.ref
+
+Trilha web: blocked - Export4d9612c2 da mesmafonte,QArealpassou sobCSPLOCAL. Headerpublico21:08 continua img-src self data. Revisar/aplicar somente propostaimg-src+blob comrollback e depoisdeploy33 naetapadeentrega; nada aplicadoagora.
+
+Evidencias da trilha: docs/delivery/ENTREGAS.md, historical/a7127eac03a890cabaedc01489bbdf365dfa94a2ce57884122b930dd56d5975e.ref, apps/mobile/candidates/messaging33/release-plan.PREPARED.json, apps/mobile/candidates/messaging33/regression-plan.json, historical/27c9752911e02c1f5080b57de9f7010bcb0652acaa5de3023a0a77fef575e8ed.ref, tools/web-e2e/smoke-messaging33-export.mjs, historical/8c345f125896d0fb746b2c1c586c58e77be7c1e032a005f20eef1a87b2c5971c.ref, delivery/manifest-0.0.33-CANDIDATE.json, historical/a46f8b3a7a850a2471f28de4daaff19c1b2f0e0808fc672540ede2d1b3ae895a.ref, historical/46cc4a0e39e1b4f1809776602a9343506587b3a27b9e75c0a01b7b132889f960.ref, historical/357442f71b6bcfa0f701906cc53c4d4909211261739326b496f4da6d69318c74.ref, historical/c481d70bd5a2977db88579f0f7e6fb5b1ee9dc1c82b8cd991bf8f55fdfec9166.ref, historical/dc48b9f93af2b816e472d157065c7498790f9f8f356868b8a6c195e9740edaf0.ref, historical/d4c602ff22212b4065a9875fc41f221671fef92892b4461e93a1e00c7ce703ab.ref
+
+Trilha git: in_progress - Quatro arquivos fonte/teste revisados sobrepostos no clonecurado3859d15,SEMstage/commit/push. Fechamentoainda exige atualizar metadadosportaveissemprivados,validarclone e commit/pushcurado para publicoSpinon/Resicheck_Connect,semhistorico193local.
+
+Evidencias da trilha: historical/e5777786cd2a192ad68cd0ef592a2866769e43dec4612bc1809b5eee825fb847.ref, tools/delivery/prepare-messaging33.mjs, docs/delivery/ENTREGAS.md, delivery/checkpoint33-SOURCE-EXPORT.md, tools/delivery/checkpoint33-export.mjs, tools/delivery/checkpoint33-review-policy.json, tools/delivery/review-messaging33-diff.mjs, delivery/manifest-0.0.33-CANDIDATE.json, historical/a46f8b3a7a850a2471f28de4daaff19c1b2f0e0808fc672540ede2d1b3ae895a.ref, historical/dc48b9f93af2b816e472d157065c7498790f9f8f356868b8a6c195e9740edaf0.ref, historical/d4c602ff22212b4065a9875fc41f221671fef92892b4461e93a1e00c7ce703ab.ref
 
 - Candidato de chat instala e funciona sem agenda, IA, conectores ou requisitos de publicação em loja ainda não aplicáveis à entrega privada de teste
 - APK instalado e jornadas executadas em Android
 - Lote contém hash, release notes, imagens sintéticas e evidências
 - Upload privado verificado e links registrados sem dados reais
+- Cada APK identifica versão, ambiente e funções simuladas/conectadas; o lote reproduz uma matriz de cadastro/vínculos/chat entre duas contas sintéticas com testes negativos por API/UI pertinentes.
+- Todo lote fechado tem revisao do diff/checks, checkpoint suficiente a outra estacao, clone limpo validado, commit/push na branch propria e ref/SHA remoto verificado, sem segredos/artefatos locais ou alteracao de main.
+- Par APK/web entregue somente com mesmo bump e evidencias independentes de Android e web; falha em uma trilha nao bloqueia preparacao da outra; push Git nao e deploy.
 
-Próxima ação: Após validar cadastro/vínculos/chat Android e proteções pertinentes, montar APK de teste e lote privado autorizado; ausência de agenda/IA/integrações não bloqueia o candidato. Submissão de loja é APP-053.
+Próxima ação: APK final33 no Drive privado, hash integral conferido; audio nativo existente passou no emulador sem reenvio. Fonte curada em branch propria a partir de origin/main; sem historico local desconexo. Falta decisao CSP e publicacao Web33, depois push verificado. Nao gerar novo APK nem repetir QA aprovada. Teste fisico/volume/silencioso e crash intermitente permanecem limitacoes.
 
-Evidências: delivery/manifest.template.json, docs/delivery/ENTREGAS.md, docs/research/INTEGRACAO.md, docs/product/MVP-CHAT.md
+Evidências: delivery/manifest.template.json, docs/delivery/ENTREGAS.md, docs/research/INTEGRACAO.md, docs/product/MVP-CHAT.md, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref, historical/9e84b220cf5f2b188c1aac17283928997a3d8e01ec2300c518c70fcc782c0abc.ref, historical/7bc12738aea2559adf3861432d409c6798ea3d971616ebd2f48a324cb34ea8cb.ref, historical/9b2e9ae1ed944b6ef5e43b38d16827a331cb81aeb1c2291ff41e41fe6ecee44f.ref, historical/ae5016890e304928bfadc057472f45321696449c9017eb5ad41dbc9b51f8bada.ref, historical/ac50b433f2ad83669d87abd8c44da589a3f95c62f6d1066dbd45c3069282f8cf.ref, historical/8473b454914e96f11c9e0cab3b3e64639e82083b076ae5ee28f81e22109dedd9.ref, historical/a4ffd39d43b810551aa36c6bd6d2fa4c66fa4270425ef4ddf3d89ae62eb02b87.ref, historical/032008b663bd0dee67f3c800a597e83cf1205e155088dbe181376d67fe7f33b4.ref, historical/eaae0a27a1ec4cdeecb6f0637dde705c5824d6b4ebf44c266dec990f41af3a44.ref, historical/21250f6c6b7f5452ba691d19a43bbdfa7807aa063a6dd4b1c7c2377be75664c9.ref, historical/8db7cc253e5dc4192c3e4cabea6b7866695161282092cdce5f50ecac2040c1b9.ref, historical/57a217b189b6a95f820cf502214dbef3dd9001ac36f5ab173ee72b5ea17d4162.ref, historical/6289534d739eb510448fb0d24d3a2dadf5e4e957a16c10d365cec40d6c1cd0e3.ref, apps/mobile/src/web-chat-return.ts, historical/9627a65cd3e1b3bb51845b2e2953615d7acf51a6907a4924c88b5dbb770dd16b.ref, historical/f812265977c2670a70fe220b62bc121bad010c39700422adcaa178a9a94af51c.ref, historical/271831ceac4c2bddacc0c6a9aaab04214ff8910f6f43701a32854e1a6dbb1905.ref, historical/b54112bf3a44c0355ef6bc6399fbb2849345574ad8377f3841fab17f4e38620c.ref, historical/b67c0bbe499ea2a71125f23c18776e3fa308d73e88352d2ad17953dc8984d570.ref, historical/4044267f483e497a7054e5222c13e21df61a4f16906c757e5cc18ce7c71fa06a.ref, historical/c0cd752872eb9ebcd378356ed440ec74e53132ac232ce7b00349cc28d272bf5a.ref, historical/aa550235602a3b993a46d21c6941a19b334063b9ed04d9912679a64c672b7dec.ref, historical/042205c3a086de513bd3a515ad571503eb87d27d6c2e1ad30d761d25fc4ee77b.ref, historical/63f1ed05d41470321afa7f0f7c8221ce36e7ac4efc7f2d370d961741aeb1cc70.ref, historical/3cb0834f097da8f690c755312863969054517c7a955b84b227c9e79d8dda215b.ref, historical/5f2c0b1e7bc0d955b426b38904210d5458ad07a7f876e804747c840c5a94bb1e.ref, historical/158be01161c6b5d53ba02f569f711c58b263a573427e1cb9b5786eff0d921367.ref, historical/0f066e74b55a507004f701b283c15a79f98b1d7aa72a80bf75e9ce3d8d12cc37.ref, historical/d8fe9cf84c303fa050d3237fa21ae26ee8a4f8c9f5596b4d315da1927d3fd341.ref, historical/90a0ae31731a96a42c38f1512eb13824441fc21ba1188212e126297184e48d19.ref, historical/2fc20355bde8d2721950825472b2b6a78f59e7165b42b23d50764c2af5ad4002.ref, historical/bf336312966627b47fffb87e7d32e38da08ac2f8adfb124053605f139385d1cb.ref, historical/f93218e149d8b38fe04e241dbcd4105f28146d6d0a6e0da73ae0c9f91cd55335.ref, historical/90c261618e17d2978102e671f103d6ea67db7319c7217cb4c17ef37abb328984.ref, historical/cd2cadd36f601d7dcd272b6461d81bc44e6c39de88a1f647ae57ba7cfcaec586.ref, historical/a4cc3320a2f9e90c78f87dfdea779c03f9c7c3e484e147070e05e1ed7929ef36.ref, historical/0acb1ae6fb8f32e693c9f43d668b3df829bdd8de12130c3e9c5bd06ca8c3e2fb.ref, historical/2871bebcbc3d9861baf131f85e218016eb3aa0377dd0cac905572bda14447656.ref, historical/a752df077bd63093783ddb2962516f047b5695351f5b6ace000e4dbddef16ace.ref, historical/ed2abce3cbe393ffd8f4b26690b92f188232d3fb199ccf2b6ff34d60ffd2130b.ref, historical/4e5548c42daed4a9e0d82f750b1a0f9dcfc9a74ce51b9b2ce120eff0673fc401.ref, historical/ec1e381071d87f41c7e6f21f5c0b23bd15b9b2927580c284d222f32f02441b44.ref, historical/67f9628a202b6502b0f163cd01ac5e1826b0c7187b0c6db430c3ad9d47df48c8.ref, historical/fe6e16da4f3d92a58137fcc9d5724f5beaeba85b69667250005cbe2517fce80b.ref, historical/c0cb062aca4f34c71afd893411df9887a177fcfb399c62da9ea621e721f9f4db.ref, historical/06725bf35462dfaa2b6cbb6a22e3f01309eacb1a807cf0ed813e09e5dcf030ba.ref, historical/ab3d52cfff7eaaa477850da2dc5feb762077461e36ebd55c5c21a2d58b337681.ref, historical/11a0e4d5aac6835f3b6a6628bcdda32921b4e5a5b0777d670afeb11078040065.ref, historical/f67392596126f9eb0ab91500518bf5e48dee2fab08a419af265eae290822dcd6.ref, historical/acc70885d74e9bcaf182d1ab581bae73ae616382ed0a99b34107802202fd1222.ref, historical/a9ca91dfc88a1293bfc3e4ea93bd6beafb4843f42507b59f4fe67cb29c9aea84.ref, historical/4237da7aada88e7d8bbf06fd50e1412708ae009c37f9c798282e1c5caec70922.ref, historical/22aa5f3e2bdfab4896c2d7c9c13f96c0cf8711654132dc4b98634b18905ad9eb.ref, supabase/migrations/20261116045954_connect_registry_on_demand_operation.sql, historical/efe7810c6ab91caac145c5cba8165e1c838ff9c78daa284332cf624949e90f56.ref, historical/75a55a1ac068c7fe58616dfd70be9c73006aeae54b6748c86d4888198355ee6f.ref, historical/d11bde9f7d3dd4851b88dafd6bfc1399c69403388a3ac6b58acf17ed466d7a24.ref, historical/3900ecef23aee649578f66ac2782959c559cb7794e877baa0e2079e4ad98ef45.ref, supabase/migrations/20261116070636_connect_audio_normal_operation.sql, historical/74cd5775bfdf4397f16f301cbebdfc6fba2231bd21aa0b3aed7f502876e606a8.ref, historical/6511b603e0ac17e8e9bdc8db4a6811b8514623dfd85402b624bc9c5b6cbd430a.ref, historical/807f322a159d64c8151fddf86cbd3e67b2b6c088723f3696c3423d0edf278db3.ref, historical/d08c558fcc9605ecbd32aa3776bd2e8f99780fc0a2f5c018e7824cafc38f8218.ref, historical/72d2279fca8e9fce6805f9acb31aa9424721b605e8ba726a6658222e6d617031.ref, apps/mobile/candidates/messaging33/release-plan.PREPARED.json, historical/e02a27b9b96e4b2cf1bfd3d1bc8644e6065b1e4ab17ba4155cbf15cd21e7daa7.ref, apps/mobile/candidates/messaging33/regression-plan.json, historical/5be5d9b2d8ab41460d17ee51c6d738e88ea5905a5f1a528f8f54a03607ba3c22.ref, docs/testing/ROTEIRO-APK-WEB-0.0.33-PREPARED.md, historical/4961d434eae74b4ffa7b8a21caa8f8cd3270c400fde70a02276c47f0339e3186.ref, historical/4b89ab16499f41a445bb170d04e2e44ff402064704cf2bf8444f2ca9f8614679.ref, historical/34dac49bb1eb683ddb092b65ad63edcbdf74e70b584d2ef79590b85336b9d533.ref, docs/project/AMBIENTE.md, historical/a7127eac03a890cabaedc01489bbdf365dfa94a2ce57884122b930dd56d5975e.ref, delivery/checkpoint33-SOURCE-EXPORT.md, tools/delivery/checkpoint33-retake-dry-run.mjs, tools/delivery/checkpoint33-classify-references.mjs, apps/mobile/candidates/messaging33/README.md, historical/27c9752911e02c1f5080b57de9f7010bcb0652acaa5de3023a0a77fef575e8ed.ref, apps/mobile/candidates/messaging33/TEMPLATE.lock.json, historical/edd55041c758f41cdc03ee6458659e556efb113d4283885dafa7713397b7e21c.ref, historical/f9e7347fa449107563afa0c26092a4f28d8c975b97168c0238dc9e4cf9a37b53.ref, tools/web-e2e/smoke-messaging33-export.mjs, historical/8c345f125896d0fb746b2c1c586c58e77be7c1e032a005f20eef1a87b2c5971c.ref, docs/delivery/CONNECT-0.0.33-CANDIDATO.md, delivery/manifest-0.0.33-CANDIDATE.json
 
 ## APP-007 — Implementar conta individual com CPF e níveis de confirmação de identidade
 
-Estado: backlog
+Estado: in_progress
 
 - Conta única por CPF, login e recuperação demonstrados sem enumeração pública de cadastro
 - Validação de formato, consulta cadastral oficial, confirmação de contato e identidade mantêm estados distintos
@@ -105,26 +143,27 @@ Estado: backlog
 - Cadastro indevido não bloqueia permanentemente o titular; contestação e recuperação testadas
 - Se Consulta CPF v3 do Serpro for escolhida, contrato inclui CPF e data de nascimento; custo e contratação avaliados antes de uso real
 - [R05] Consulta cadastral não comprova identidade; existência de empresa não comprova representação; evidência e prazo de guarda definidos.
+- Andamento e próximo passo do próprio cadastro ficam compreensíveis após reinício, sem confundir login, solicitação recebida e identidade ativa, nem expor motivos internos ou logs.
 
-Próxima ação: Após APP-002 e pesquisa oficial, decidir métodos por papel e contrato do provedor; implementar com dados sintéticos, sem consultas reais nesta etapa.
+Próxima ação: Revisão sintética conectada passou com MFA/atestação/finalização após compatibilidade autorizada; seis EXECUTEs e sessões fechados. CNPJ público real passou em piloto único. Definir operação/integração da revisão pessoal para cadastro geral; não apresentar identidade sintética como pessoa real verificada.
 
-Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md, docs/architecture/LOGIN-BASE-RESICHECK.md, packages/session/README.md, packages/session/src/session-scope.ts, packages/session/src/public-auth-error.ts, packages/session/tests/session-scope.test.ts, docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md, apps/mobile/src/demo-session.ts, apps/mobile/src/demo-access.ts, apps/mobile/tests/demo-session.test.ts, apps/mobile/metro.config.cjs
+Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md, docs/architecture/LOGIN-BASE-RESICHECK.md, packages/session/README.md, packages/session/src/session-scope.ts, packages/session/src/public-auth-error.ts, packages/session/tests/session-scope.test.ts, docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md, apps/mobile/src/demo-session.ts, apps/mobile/src/demo-access.ts, apps/mobile/tests/demo-session.test.ts, apps/mobile/metro.config.cjs, historical/4f168525816b530bbbd5f77a9bdd73218b15cb3f66dc970bcd7e11e0c010e6e6.ref, supabase/migrations/20261106200713_connect_foundation.sql, historical/6e6b9650ea48e1bcd8c7add9953f304fb026b2e21f68f11ba13973ea62985b70.ref, historical/9dd4a7c0e0db5a03d1a44762fc661295ff4d7657c9fef30efcd4f1bb7b763a5d.ref, historical/f49d62abe6243a803715e92878a92813eda979c837c1eea975dfde87e6400745.ref, historical/0168eb82931b9aae13538675884865fd1d6079c343057c616499f01522a7375b.ref, historical/5d878f7a5f3f00f4d22d665d2712d7162a1356e238e8121905e75a90a39a16a8.ref, historical/906bd842cd4d300badfaaedfd673b4860446a08f406be806d9a5c9c338e88a5f.ref, historical/953554f661ea08fcc51c1e705287e2b5779dd22e4103f0aec1b7f1f28c99deea.ref, packages/session/src/supabase-auth-provider.ts, historical/b0b44fdf277eb897b917cb55d6f039f2fd558744d79a900b206f650b63c0ca37.ref, apps/mobile/src/registration-forms.ts, apps/mobile/src/RegistrationScreens.tsx, historical/71ee6b50351c63eb5628dd72eff8bf514aaa06978b3a5524f09d7708a4d8daaf.ref, historical/e75c7a5e28d222b614189b5eb37da7982c5e41df8cab79622e21b92f501251d2.ref, historical/b1de33e2e2aaaf5145538081bd8c8c00c47eefdf60374022d98d115146f9b0fb.ref, historical/68c16aa52df765318812b2f8e5cc2576bb94aa1cf25e9c5db52db79803de1986.ref, historical/9be2593ffceadb3ab24e69c02ce673d9b7753519e52c3bdafb1633503b9f7c17.ref, historical/d6f08f5ae67aad3c8012540097eeb6b974e026b8916f11b3c47b58a833959a02.ref, historical/07ea97e6489353b7481707f6d66025a91421f7e49c7b44544ef4d226ecdc3136.ref, historical/f75d9b36abde44796b35591ba9978d32058dc54b31ffcb8dacb89928046f4a8f.ref, historical/c6d092fd8286e28bb4dbf2f9fa7834de5f9c45f3cf72a3d79441bbe744bc2a8b.ref, historical/896e487a381337ae7e47bbd4249cf737f38e4ae2f13262e42858cd927c19f470.ref, historical/45ec823dfdc71799da3952c4b9ef0b1a44ef32b8fd7c8bca0900ff20c7e38285.ref, historical/ba4caeb048dd3fa65fc34e67ca3efd8c5f9be0d8318ac5d53b895884557cff21.ref, historical/0e657600dff015609eeae4f712e872a78d8209a812143eea1ee0e811a4a9cad3.ref, historical/8c2233a2cc60923888f60a3ac85cad5cdeb2811be3e076ea44c8d4fc4e2a2e96.ref, historical/f7c737d4432a821d2bc4e9ea2669aea1a1047318770ba81340d15ecfd75cb1b5.ref, historical/4a09fa7e59624f561704e4aa4ac88233288996e754d9ada65acf88a6888a67be.ref, historical/751ba645a9bbd9e327506dc9341e119c4fd220c8aacb06b78499d50b24c7da4e.ref, historical/01cbbbd7b5b9fb274b2328b6842cd5a38064937357193c27d7f948d11c38c626.ref, historical/3d8beae22329a6dd4f7a57adf5ed90ae1c74932d09f01fb386363fb43ffc5d74.ref, historical/f2eb9b25a8e70fbd3621e20d661e2109c7eeb3935f13796304ff6326ae674d59.ref, historical/541911b1e5aa57e6d230728fab974adbcf375f9ae2e93df9f066000ab17336dc.ref, historical/beeef8c87a9f14a7c9e34a0a50d865396e7998d8c145aa756516e52e7cd6b496.ref, historical/1fd8a7f6069cfb02246aa464ecffe8956922467a385e3be951ee464ed56162ba.ref, historical/8289baabedb98bb4cf0c9b0b71470d91904fc822040a0a02b0cf71c6c7d8b53b.ref, historical/9df61bb5663e3d0d538449fe220bee459219c58c078fb553fa8a19b4e5ef4f9b.ref, historical/b54f75774e85445632a3404d634a2e5d37ecd7fe4cfc134dff08ad8cc6aa63a4.ref, historical/2b6e566a1314c2f579f0a127360e2d54268b7f74cdf220900ec2ef34b5764048.ref, historical/8b3aa5ffd257171d21583f36a3d79a383514963f50d640eaa79ff6a2629bd72e.ref, historical/bd2c16c58088fda591dac04546e1787a25937afb13b9a21fc395ac44bdf28c9a.ref, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref, historical/9f0b3bcfb08dade6e4c31a6727632070b34ff28a2aaf261cdc2f6a224996a50a.ref, historical/2a82f068ee44ae5d3553a959abb9f5eb4ec77e6c011dcd39e5ae3504347fcfb5.ref, historical/c3d792ae76ee9c8600790af30c3813e36d6500120db628181d9bf2bc9dcd0cd0.ref, historical/016a32f1dd6caeccbd22a899e50e265537a8689eb5189ffcdaeec286efb3d534.ref, historical/dc53f98cd3b0155772c01390066776fd1fad0f4ff060b62026cec84ad6456c2f.ref, historical/560e8021cac103e43c73dff601e308bd7eb5664c1ce6d396c2ae99acfc7f4276.ref, historical/390c2fd80c0c7df4b9397b1e634f7be045323163675c44cabe47ef505bc7c268.ref, historical/b887d150f0f9dc680663db247da5e073bcb3272e5798268731c8c80cc638ca34.ref, historical/9e84b220cf5f2b188c1aac17283928997a3d8e01ec2300c518c70fcc782c0abc.ref, historical/7bc12738aea2559adf3861432d409c6798ea3d971616ebd2f48a324cb34ea8cb.ref, historical/9ddc8355d1793f5d0c5c64d180ced332aab618d5e0e751084c28bec43a4b4c33.ref, historical/a96e7f28cc0c6029ac673fd7d6904064650a8cb4019125adeb7e80c6fce4b657.ref, historical/745fec94595c18a09b5e88e80cfd606e33b43eace69205725479bc3c06f89f3c.ref, historical/105ca7c73c7602b401d20ccca7d6b9840db61435d8635143f4490622bf7ec8f8.ref, historical/121e84f1b0913a4d0d60059d20a17c3a6237e48618ae4641b16b8cf2bc656188.ref, historical/9b2e9ae1ed944b6ef5e43b38d16827a331cb81aeb1c2291ff41e41fe6ecee44f.ref, historical/e023616d7c6558056728ad429c82298142cbc71885fc0574b2fba7ecbd6a2293.ref, historical/3233d960f2eebdfdbf865b332ab8131d478ce928ed38affe9b179c735c9a639d.ref, historical/ea3ea8fb690b5c6867bc4f265df57d747737e22a79b4a6f0be62ab104601ecad.ref, historical/94acbca12a95e5f824c5ae2d6340563705b9390015b48781aa014aa0fa803e87.ref, historical/2271a0208ebb493ce7838ccf85a9b5dc692ec4045bbe3bb774ec5eec36e4f569.ref, historical/6e7b923a9501d36f8833cad2f036c95afcab66d3754ccba6d51d4925bbf430b5.ref, historical/cdd50e7f2dc5263d4676ba8f370acd9563e9e28c8b15f7c4d073f9950918114d.ref, historical/a52f574013177c417098e57acfcc41b64c852dbd262fafc91db5ba3e9a47d929.ref, historical/09a10bb1088d29df0436bde30f9409b2822a944b322c627be53fee180ae083c5.ref, historical/427daffbbc8e203f9bdeabd8a154c43697402d6bb651a477e50084256aee494c.ref, historical/e6a4a1087f9fd460733ef0d1412e19111c705aca3133212cff159f47ae6da22f.ref, historical/a7c6fae8610cbd829b3c6f4503972919b9a67c16bf0583f6b80252ddbd04512e.ref, historical/e44afe8d6cb5a7a500ebc8b3c27aae74b2ab95c128dfe0e9c28885f8315b0217.ref, historical/0862fdaca1ec46cd6592fb9a05f8fed884404532cca71721a12a0112999740a7.ref, historical/dbc0d12d4e36cca87a8e9a763de03f3bc16dffc7ab0a3f446ea083fe52b3f6ba.ref, historical/33cb0c95e62b755b1e08953825a10ede9d6753f6e8d95621e87af187b5a725cb.ref, historical/47d2a90fd428c05e8dc4979f5c8ccdf9136105676eaaec7ef652718280ce2753.ref, historical/ccebff48186324804b507cacd6e7878722bb66797452725a29af0d748bc07896.ref, historical/453d0c48e4d961cae1000919b0d92a4427425a3023b8800e3bccd765981d7646.ref, historical/20d4cfe644f1651e1743f3778a6cdd3818ddcbc45e490440a9e06579e0017b8c.ref, historical/1ca1a7ebcbd1e55022fea3cba37ae0aef5ecb8cbeee7754d443df543dde31df4.ref, historical/98927758c2b53d52c5c87d4f4b15254a30f1e1ed040ed28234e97b40ff4ffe8d.ref, historical/5a661b709f3805d3e2aeef4df769c3fcb83ecb3a2cb903e48a03662f98b14752.ref, historical/c24a5d6e39298596e5747bc6318955c2da4d1e98ccd01621cf64a800b0b7e8fd.ref, historical/bcf94eaa46c5fa474d3a34bef06888d504f02cbd900dbc7f1ffd0ca44cb0b86b.ref, historical/7b0d01d8994e91fd0e7a05594b86245dff012b62c526ebb0aaf463a9ecadcd9a.ref, historical/0cbdfcb5f9344f3a82c86880938ca2f009b66eb91b570d013e8b828e88b98260.ref, historical/228355055ff90a51b90aef5aadd137d9e6066196b4c92d46c0b8ab0c09aa7c9e.ref, packages/chat-client/src/signup-review-rpc.ts, historical/63db81512f1f998704cff22be2ba18b9ab71ee2b99454ca84e6169c917f8d1a8.ref, historical/fd3015073d476f358cc6815bbb5e21b8565f1d404a17e240f32e4c8b06e7421e.ref, apps/mobile/src/onboarding-review-adapter.ts, historical/653e5173f2fb041521c4fd48ff6ccf52f462f6b1012296c68adef73e39abe673.ref, historical/1e204bfaf98c0d9503af2b29063218d39136d49b72215fda54eed7986ef2a4eb.ref, historical/b14303df64f03b35fcc5e544f7214b67dc911bf916fb3fdab4156aadeeea12f8.ref, historical/983ec65531ac09482dfd73919014efb130f0f909322b9ed6084cabe44ee1d1db.ref, historical/a42f411a79185f241c993a521bb69d765da9874b3d2ad6a27785d2d345fd00fb.ref, historical/1a885e9126f2f10d5a1663f2c49e74239b04a8bffd4f6c2822cf4b1473c49d15.ref, historical/f7af744d3a375042adfea2675e5462353641b8ce6755862ea1a5c8b310320607.ref, historical/40af5acbdf8226415bae1c00b52c9eda26a6151ac18f8fd20e03439cc113a451.ref, historical/8ec15296c0a1f898b49bfc43ba732426cc04cd97ab5d3a726a9ad5c9429a9ee3.ref, historical/2347f8999e90e79898e92c0eafc259cb1db1a815bc0f231e1c998f6ddcae50f2.ref, historical/0f61d9b910057e10566f6693c52f2d9e7462cf62c7d3d2b573dd9a05c9e73594.ref, historical/d523c652262a9cf1d0cd4d8a39bebfc3a8e87347b46ce0eb663259613ccb2264.ref, historical/ba30de477d5a488e966260d0093bba71586ecd992edd4a845e324ef71f308ef3.ref, historical/61a9ca7b38e6302f9bb12b80059031f53135c9eff365ee68a7d026189b00b356.ref, historical/406f9d2f7c4fbf3b0967e8fb82b64cd126dc46932f1c799fa4b2ce64e66ac70e.ref, historical/c5548d5ef50cd5dd531c34a82bd9245885b2d8349c4a931e81136534a857d90e.ref, historical/d25230567ffcb90606d0f3c9f0067e9ff4715f7c32546a8e1869c84a5f5b92fc.ref, historical/4308979bf169fcd593d8f1f1fd992c2f8adbd103648f0980432c188956e35c7a.ref, historical/309ca194c43b2f2d0613b91fab37055ccc0decfcce44bb721b196ba0750a9403.ref, historical/b840b161f928d18e6952c4b56dbf30340987da217f3976a998697c7f98b2eabd.ref, historical/cee901ec30f31083c28e7264fb0f50f50333db480c079776feb6781f415df691.ref, historical/67bf901204b2f85becdf01b594c24cc11ea709097d03ff1c9ab396cdfac15b38.ref, historical/27c71457403c2b731893ad08cb43eb5db34307c94e6419bea35e485235cdf827.ref, historical/7e3665b73dd2d6ec7f800fa30ba84f010d2f74ed148c239c4cdd90f423758658.ref
 
-## APP-008 — Implementar cadastro de empresa com CNPJ e comprovação de representação
+## APP-008 — Implementar cadastro de empresa com validação de CNPJ e contestação de titularidade
 
-Estado: backlog
+Estado: in_progress
 
 - Gestor autenticado cadastra empresa dentro da sua conta
 - Existência e situação cadastral do CNPJ são separadas da autoridade do gestor para representar a empresa
-- Empresa pendente não concede privilégios de gestão por simples coincidência de dados
 - Duplicidade de CNPJ, disputa e mudança de gestor seguem política explícita e auditada
-- CNPJ/QSA e representação são testados com respostas e evidências sintéticas
 - CNPJ armazenado como string de 14 posições; interface e cálculo oficial aceitam formatos numérico e alfanumérico com testes sintéticos
 - [R06] Sem conversão numérica ou regex apenas numérica; normalização e validação aprovadas; validação não concede representação.
+- Conferir automaticamente existência do CNPJ e correspondência com nome oficial; consulta não equivale a prova de titularidade
+- Titularidade contestável com documentos privados, análise humana de Lucas e transferência auditada no painel ADM; sem operação manual no banco
 
-Próxima ação: Após APP-007, consolidar fonte oficial, prova de representação, política de ativação e exceções; então implementar o cadastro.
+Próxima ação: Integração local pronta em createCompanyPreviewLotWebRoot/createCompanyPreviewLotAndroidRoot, sem registro ou build; proofOrigin HTTPS loopback exato preparado. Próximo: na validação de entrega, usar essas entradas e janela de UI para formulário web real/Android, sem repetir a prova API nem criar empresa duplicada; depois revisar promoção/versão/empacotamento. Backend última auditoria OFFv5, sem alterações nesta fase. Convites e resumo SQL têm pendências separadas.
 
-Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md
+Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md, historical/4f168525816b530bbbd5f77a9bdd73218b15cb3f66dc970bcd7e11e0c010e6e6.ref, historical/6e6b9650ea48e1bcd8c7add9953f304fb026b2e21f68f11ba13973ea62985b70.ref, historical/9dd4a7c0e0db5a03d1a44762fc661295ff4d7657c9fef30efcd4f1bb7b763a5d.ref, historical/f49d62abe6243a803715e92878a92813eda979c837c1eea975dfde87e6400745.ref, historical/0168eb82931b9aae13538675884865fd1d6079c343057c616499f01522a7375b.ref, historical/5d878f7a5f3f00f4d22d665d2712d7162a1356e238e8121905e75a90a39a16a8.ref, historical/906bd842cd4d300badfaaedfd673b4860446a08f406be806d9a5c9c338e88a5f.ref, historical/953554f661ea08fcc51c1e705287e2b5779dd22e4103f0aec1b7f1f28c99deea.ref, packages/session/src/supabase-auth-provider.ts, historical/b0b44fdf277eb897b917cb55d6f039f2fd558744d79a900b206f650b63c0ca37.ref, apps/mobile/src/registration-forms.ts, apps/mobile/src/RegistrationScreens.tsx, historical/71ee6b50351c63eb5628dd72eff8bf514aaa06978b3a5524f09d7708a4d8daaf.ref, historical/e75c7a5e28d222b614189b5eb37da7982c5e41df8cab79622e21b92f501251d2.ref, historical/b1de33e2e2aaaf5145538081bd8c8c00c47eefdf60374022d98d115146f9b0fb.ref, historical/68c16aa52df765318812b2f8e5cc2576bb94aa1cf25e9c5db52db79803de1986.ref, historical/9be2593ffceadb3ab24e69c02ce673d9b7753519e52c3bdafb1633503b9f7c17.ref, historical/d6f08f5ae67aad3c8012540097eeb6b974e026b8916f11b3c47b58a833959a02.ref, historical/07ea97e6489353b7481707f6d66025a91421f7e49c7b44544ef4d226ecdc3136.ref, historical/f75d9b36abde44796b35591ba9978d32058dc54b31ffcb8dacb89928046f4a8f.ref, historical/c6d092fd8286e28bb4dbf2f9fa7834de5f9c45f3cf72a3d79441bbe744bc2a8b.ref, historical/896e487a381337ae7e47bbd4249cf737f38e4ae2f13262e42858cd927c19f470.ref, historical/45ec823dfdc71799da3952c4b9ef0b1a44ef32b8fd7c8bca0900ff20c7e38285.ref, historical/ba4caeb048dd3fa65fc34e67ca3efd8c5f9be0d8318ac5d53b895884557cff21.ref, historical/0e657600dff015609eeae4f712e872a78d8209a812143eea1ee0e811a4a9cad3.ref, historical/8c2233a2cc60923888f60a3ac85cad5cdeb2811be3e076ea44c8d4fc4e2a2e96.ref, historical/f7c737d4432a821d2bc4e9ea2669aea1a1047318770ba81340d15ecfd75cb1b5.ref, historical/4a09fa7e59624f561704e4aa4ac88233288996e754d9ada65acf88a6888a67be.ref, historical/751ba645a9bbd9e327506dc9341e119c4fd220c8aacb06b78499d50b24c7da4e.ref, historical/01cbbbd7b5b9fb274b2328b6842cd5a38064937357193c27d7f948d11c38c626.ref, historical/3d8beae22329a6dd4f7a57adf5ed90ae1c74932d09f01fb386363fb43ffc5d74.ref, historical/f2eb9b25a8e70fbd3621e20d661e2109c7eeb3935f13796304ff6326ae674d59.ref, historical/541911b1e5aa57e6d230728fab974adbcf375f9ae2e93df9f066000ab17336dc.ref, historical/beeef8c87a9f14a7c9e34a0a50d865396e7998d8c145aa756516e52e7cd6b496.ref, historical/1fd8a7f6069cfb02246aa464ecffe8956922467a385e3be951ee464ed56162ba.ref, historical/8289baabedb98bb4cf0c9b0b71470d91904fc822040a0a02b0cf71c6c7d8b53b.ref, historical/9df61bb5663e3d0d538449fe220bee459219c58c078fb553fa8a19b4e5ef4f9b.ref, historical/b54f75774e85445632a3404d634a2e5d37ecd7fe4cfc134dff08ad8cc6aa63a4.ref, historical/2b6e566a1314c2f579f0a127360e2d54268b7f74cdf220900ec2ef34b5764048.ref, historical/8b3aa5ffd257171d21583f36a3d79a383514963f50d640eaa79ff6a2629bd72e.ref, historical/bd2c16c58088fda591dac04546e1787a25937afb13b9a21fc395ac44bdf28c9a.ref, historical/9e84b220cf5f2b188c1aac17283928997a3d8e01ec2300c518c70fcc782c0abc.ref, historical/7bc12738aea2559adf3861432d409c6798ea3d971616ebd2f48a324cb34ea8cb.ref, historical/9ddc8355d1793f5d0c5c64d180ced332aab618d5e0e751084c28bec43a4b4c33.ref, historical/a96e7f28cc0c6029ac673fd7d6904064650a8cb4019125adeb7e80c6fce4b657.ref, historical/745fec94595c18a09b5e88e80cfd606e33b43eace69205725479bc3c06f89f3c.ref, historical/105ca7c73c7602b401d20ccca7d6b9840db61435d8635143f4490622bf7ec8f8.ref, historical/121e84f1b0913a4d0d60059d20a17c3a6237e48618ae4641b16b8cf2bc656188.ref, historical/9b2e9ae1ed944b6ef5e43b38d16827a331cb81aeb1c2291ff41e41fe6ecee44f.ref, historical/a52f574013177c417098e57acfcc41b64c852dbd262fafc91db5ba3e9a47d929.ref, historical/427daffbbc8e203f9bdeabd8a154c43697402d6bb651a477e50084256aee494c.ref, historical/e6a4a1087f9fd460733ef0d1412e19111c705aca3133212cff159f47ae6da22f.ref, historical/addac0e6ba3727f6f4c21136ebd2e43345c643b3d334413d0aa932b8c399ce61.ref, historical/8cf88cdf28caf079ba34bdf3e204410d37fcee7f402014f5af92ff8ed9592e5d.ref, historical/6cc26592866d8902897ad2d28f40e3dcfc52c52fa0be2659b2da4908c311a295.ref, historical/2b240ffb7501caf39f20573654b9140ca83e2d2f66953be01a95fed8989e830b.ref, historical/5f1d472d6798eb6b7beaefb44f6736986169cebcdc4c0dbb148554101386ce10.ref, historical/5ebe698bbf3ee15b0a4740684b4d1122a23b19da44d642db83f1511e2b7ad058.ref, historical/36c96d37561310623257716e137b530e7cd85520872fac1eea33d4a6f20980c7.ref, historical/544a13ab89b14fe0a1c85a6c1f7e1bd51426e3a9ed8d1904e314aba0c3f4c56a.ref, historical/b14303df64f03b35fcc5e544f7214b67dc911bf916fb3fdab4156aadeeea12f8.ref, historical/3f40b143894c5592fa29c3c2d403a19f968b936e6a31ef9c5bccd47975c3b6ae.ref, historical/5eebf911e5a5b698830a645febef9b00dca5a58ddcf5452024ad3cad56979493.ref, historical/99dcae376cf96bca82d722ed7aa68639796f8dc86812be4a583817deabf60221.ref, historical/41f908e61da3e07e45b079f4c2fefbf097b63c40b05a75c113fb1784963c5851.ref, historical/983ec65531ac09482dfd73919014efb130f0f909322b9ed6084cabe44ee1d1db.ref, historical/8ec15296c0a1f898b49bfc43ba732426cc04cd97ab5d3a726a9ad5c9429a9ee3.ref, historical/2347f8999e90e79898e92c0eafc259cb1db1a815bc0f231e1c998f6ddcae50f2.ref, historical/0f61d9b910057e10566f6693c52f2d9e7462cf62c7d3d2b573dd9a05c9e73594.ref, historical/d523c652262a9cf1d0cd4d8a39bebfc3a8e87347b46ce0eb663259613ccb2264.ref, historical/ba30de477d5a488e966260d0093bba71586ecd992edd4a845e324ef71f308ef3.ref, historical/61a9ca7b38e6302f9bb12b80059031f53135c9eff365ee68a7d026189b00b356.ref, historical/406f9d2f7c4fbf3b0967e8fb82b64cd126dc46932f1c799fa4b2ce64e66ac70e.ref, historical/c5548d5ef50cd5dd531c34a82bd9245885b2d8349c4a931e81136534a857d90e.ref, docs/product/DIRETRIZES-LUCAS-2026-11-09.md, historical/eb4e83aa63db08a6e69e67db26fadf033f731c3d1d44caec9bba289281da9239.ref, historical/46f3c39005eb1810561953f27e351605b98925c105515261547761c7f0d683bf.ref, historical/20e220f04746d190f6537d3989d008a3b5ac30ad910f2c18d1187aef7bfe1b10.ref, historical/f7056f3103ba9a6d47fd4f2600743a1134ffb5f36d020813a7a08e6b66a9480d.ref, historical/7fe9d38001a690f7e5800009e924513391b6561e1a50480893fd80f5ea0c8353.ref, historical/a63cd55e015dfe0a97f850963b91dfabb6529837bdc23b0cd38fa18dbfd26b0e.ref, historical/9cfceddb7ce1de4f93ad65bace69ebb41dc7bd6c6295e0f7e62abf107a5880f7.ref, historical/23f3eaf104cef920c7afb6167badc7bc9d55a1225e2bd58298f81a33e2e9ac7d.ref, historical/9cada4241bbc60b10ef13ac36906b070441bb78c60b0803856cc8d6a19245657.ref, historical/44f43677d31c9de9bbe1e7e3107e2ed05bda0e9b64006e3e125867a4ce2b937a.ref, historical/f7372c8ed227dd2f3cad82efe8b59ad9759b94482d70f44b1fac889b80bee390.ref, historical/70cc519c0d2adf4a75aab775a0d0c85d743b6e5565443960a545fcd576e7a689.ref, historical/34aef60baa5bbf3bc9686129a161e53af65e734fdf5dbed2e43248a22588e6a3.ref, historical/b631cb8fd5f12f88e451f3c9ac5e8a722a80ee4f2a102956f295ccba2fbb5c54.ref, historical/0b960470a4775d4c3a8b6bdc16812341cfdfac12f5f8c525ddcc88f603a73ab1.ref, historical/e6211d0a1bb19e76fedb92200303a1ad2643187a8179556b9151d0f739331e22.ref, historical/80d72cb44fb80b7d5d96a7d24f4e3fc90358a80f032ba7096c8c55bfd774311f.ref, historical/fef6e7971cbc9d2655c4f4b2c2f320dfafde936579cdb3dfab6f3939244c5de7.ref, historical/b1ea60d7f81778117f180944cd729fc85c36469a054c8b3708e77c3a3409f447.ref, historical/10987489c8d0f0a771110328e22fa4375b037cbabe5e97ae4f96fca57da89d6d.ref, historical/53f6848ff337478c2ae4cc6a2496724e75c527f8109667ed738484e2c0550c20.ref, historical/f45391bdab660a6025ae41cefbdcef191cef8b0a3c469e68d20a5985be241545.ref, docs/product/EMPRESA-PREENCHIMENTO-CNPJ-PROPOSTA-2026-11-18.md, historical/f373676622fcf38c26a094a13e763b29a888ad1ef1ff280ffe309764324e5181.ref, historical/56a6bfad30ec00841cebd9ac063217557d7c3b76e3736a024152dd3bbb5127c6.ref, historical/8a71dd8fc1602d55d8f7476b5503019d066e103a89efbb84892eee315397959b.ref, historical/d451efa0229e452f764d7490c33bfbcde8867ec3c3103f367f7d7782464cd51e.ref, historical/70595b284a5a64c7342f64c5776db7a2f114a3703b3cb9c674787c4c8b320cb4.ref, historical/dfd260bc4401f3bf79d16aef85e46c9fc0b3f86a6c223895add2381ff4904b1a.ref, historical/f6ac2a25aafa792205abc51a34b066bd43ec36ad58a84efcb5dd3ba03565a90e.ref, historical/a7382d92cd17c2fecc150e7005c58a5e3d0bfab1c4039410f737a927e992b80f.ref, historical/85e1c5abf1be3f041b1a4a9f2c50febd906735b5b819bc18e28ab0e69a4ddd36.ref, historical/abb6d9f1ecc16a95525ecc9604e9397fd341d79ba89e830d8862f506d77f5a8a.ref, historical/f17559e08c131cff09ed4d5863edfae3570fdc975105ea9533de5c0e7f1c66f1.ref, historical/8b142b4985efff3db2ef68c423e0a5e5b645c04becff369b0b44f8398a77f7ce.ref, historical/e46df17bde95d6c36eef94bc4ae2ec8c559730f9e1a6ff41333bcd0017553b2f.ref, historical/12cce89d2efb9236dea1c1d83791b9ebc581ca30bde284a02e26eba38b7003b1.ref, historical/e76583013793d355b38e7ce1077ca4bfd094c7b231d08baa47075dd23e5877dd.ref, historical/e3566f2f003917bc92104f3b7f7534b9b1751f2e1cd93037f3bcecfac21fd35d.ref, historical/96e68759472ec349e0bca2f6b2ed3bf4ec1418f8414a421393e5ff2a67e4ce50.ref, historical/e5116a8c9381a1237b84d3d10f8d81b781e270e6220b8730618621134881095f.ref, historical/3b1aae7e4038331a38618831a08469798308ce6bb7c5075c33dfe81008e8226f.ref
 
 ## APP-009 — Implementar entrada direta por convite e aceite de pedido sem convite
 
@@ -138,10 +177,11 @@ Estado: in_progress
 - Funcionário tem inicialmente uma única empresa; convite, busca e aceite concorrente não criam segundo vínculo ativo; transferência não migra histórico
 - Convite expirado/revogado/adulterado ou de uso indevido não concede acesso; controles técnicos não viram aprovação humana adicional
 - [R07] Sem acesso para vínculo pendente; pedido sem convite tem aceite auditável por ator autorizado; convite válido do gestor ativa vínculo diretamente sem segunda aprovação, com segurança técnica e trilha.
+- Decisão provisória: funcionário ativo em uma empresa não solicita vínculo de funcionário em outra enquanto mantiver o vínculo atual; backend e UI devem aplicar, sem alterar paciente multivínculo ou conceder transferência automática.
 
-Próxima ação: Banco comprova convite direto, pedido pendente, autorização do gestor, revogação e exclusividade com duas conexões reais. Definir emissão/prazo/destinatário final e integrar SupabaseAuth/API; reativação e auditoria operacional exigem caminhos próprios.
+Próxima ação: Checagem breve Chromium passou: emissão e aceite explícito de convite funcionário/cliente, empresa/conta visíveis, controles por papel e390px,9critérios com Auth/HTTP simulados. Contratos conectados históricos permanecem fechados e não foram repetidos. Candidatas normais web/Android em fonte; completar jornada normal/plataforma e regressões agrupadas perto da entrega. Sem APK/publicação/ativação agora.
 
-Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md, docs/testing/CONTRATOS-LOCAIS-0.1.md, docs/architecture/BANCO-CONNECT.md, docs/architecture/MIGRACAO-E-PORTABILIDADE.md, docs/testing/BANCO-LOCAL-0.1.md, supabase/README-LOCAL.md, docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md, supabase/deployment/receipt.json
+Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md, docs/testing/CONTRATOS-LOCAIS-0.1.md, docs/architecture/BANCO-CONNECT.md, docs/architecture/MIGRACAO-E-PORTABILIDADE.md, docs/testing/BANCO-LOCAL-0.1.md, supabase/README-LOCAL.md, docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md, supabase/deployment/receipt.json, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref, historical/9f0b3bcfb08dade6e4c31a6727632070b34ff28a2aaf261cdc2f6a224996a50a.ref, historical/2a82f068ee44ae5d3553a959abb9f5eb4ec77e6c011dcd39e5ae3504347fcfb5.ref, historical/6519d109414ea339d486892636985fb439f75ebb9b40e1aef4c59c06eb2151dd.ref, historical/b15ae5c9aa2644aaaedb238a8bd6f839f75566d241aae0272454571e7e0fc1d2.ref, historical/92a438e3ab0b44c7dbd85b8313dd4b0f94a1da923a78904c48e69f7cac547382.ref, historical/95715ae39eb95d5d6411c8bf53e4c5e95c23a7f68e26432198ea5d05f6f7a824.ref, historical/749924b8b5ea084bbcd4ddb684217de490694d51c36a9aab85ce774abb93613e.ref, historical/cf8d1436dc34d0a98d0c4eef9076e017cb721e741263b83aeab000b97f1a53b3.ref, historical/c3d792ae76ee9c8600790af30c3813e36d6500120db628181d9bf2bc9dcd0cd0.ref, historical/016a32f1dd6caeccbd22a899e50e265537a8689eb5189ffcdaeec286efb3d534.ref, historical/dc53f98cd3b0155772c01390066776fd1fad0f4ff060b62026cec84ad6456c2f.ref, historical/560e8021cac103e43c73dff601e308bd7eb5664c1ce6d396c2ae99acfc7f4276.ref, historical/390c2fd80c0c7df4b9397b1e634f7be045323163675c44cabe47ef505bc7c268.ref, historical/b887d150f0f9dc680663db247da5e073bcb3272e5798268731c8c80cc638ca34.ref, historical/9e84b220cf5f2b188c1aac17283928997a3d8e01ec2300c518c70fcc782c0abc.ref, historical/7bc12738aea2559adf3861432d409c6798ea3d971616ebd2f48a324cb34ea8cb.ref, historical/fc8b82b438c7a247e9d0e0ebccaafc1f7bd080d149de8f849124a33bedab7f10.ref, historical/fdaaf4508d788118b5d5ab2c243a77231550b32cd03fb6a1a81021f578104d84.ref, historical/a3f3c68d042a7283793faf1390c054f04b7589312de2aadc9d13511ef8dce5f7.ref, docs/product/CONVITES-SECRETOS-CANDIDATO-2026-11-18.md, historical/9f5df948ebe542028fe97b1c2d44c2af6afe262a6f905de55b60d19c44be380c.ref, historical/333b069e044fa211d9b0abf691229498849da2795b9da69462bedf7e68265295.ref, historical/3bea9acf9ade093d899f8688cd573510c400635d8b5ea2c1182bedeb644a4fc6.ref, historical/27e17461184eb7c33e95c5c97cb69c718009310f855a2f208ecaaa9cd72ff49a.ref, packages/chat-client/src/membership-secret-link.ts, historical/637dd22f766c40391f6bdb54dc81c01dd2db529766fa70d700cc297c9c58f36a.ref, historical/a887d8ff7da70eb82d050050989b294b2256b506ff540211411075fad3186031.ref, historical/1639089475b83b8fce182f050824933c0c313cc962a70d27d8133a49e8c4a5ed.ref, historical/05673382125922879a7449cf332de6fa759cac3b05d9fa2a4959e34a6f10853e.ref, historical/a958dddcf842d7e8c0f02aa10f2007431e3957597918471c1cbd7d6d1f017f71.ref, historical/cc4eff2ffc3b55098b6b01eb36b6f1104a343738f18b5ae8c03ca5aebb6122c8.ref, historical/6fd4d4d3659c77d3dd181b11df5efcb970e31a52cffd910e88390e93ae05aab7.ref, apps/mobile/App.web.tsx, apps/mobile/previews/connected-membership-management.android.tsx, apps/mobile/previews/connected-scoped-audio-root.tsx, apps/mobile/src/ConnectedCompanyView.tsx, apps/mobile/src/connected-membership-management.ts, apps/mobile/src/connected-company-registry.ts, apps/mobile/src/membership-invite-binding.ts, apps/mobile/src/MembershipInviteSurface.tsx, apps/mobile/src/membership-secret-link-http.ts, apps/mobile/src/membership-invite-links.ts, apps/mobile/src/native-membership-invite-random.ts, apps/mobile/native/privacy/ConnectSecureSessionModule.kt, packages/chat-client/src/session-rpc.ts, packages/chat-client/src/text-session-channel.ts, apps/mobile/tests/membership-invite-flow.test.mjs, historical/eeb26f8d692070daec87544da32821476c4d3a5e2f59c0e6bbbc4a9bbb1efc2e.ref, historical/70e98ec446bdfef004ed2a4449c5570c75188e787d7fd738629cbe2f8b45aa0e.ref, historical/e5647e58ddc5250f9b2df48856f12beb0afcf5b7c080ef806ace5155d1e8ad14.ref, historical/34ca25c53688c388bd7a22485764a0b4eaecfd7ea540f63685e26523f325221d.ref, historical/45084bcaf3f853e80d24e245d74a85f0e39566915c24a75fe5ac13f18f49c8ca.ref, historical/244ec53a966ff21fcd0bd4240046017e634993d90a858002fbd2d197775cf5e5.ref, historical/638fad5105ad8f00194d7196ed062d80e1edacb7123e37b612e3d8f0627826bc.ref, historical/47f49b462b1006331a54cc40388b1f53b2c2082312a6547cafd8ee76d3ac6ab4.ref, historical/bb8a75c82bc0fda54e44b5b5868be96e16c94537f7a2320cf059f445f180a66e.ref, historical/20d190e9cb56b281422682726cc04559eaa27a17eb124499619aa9113c6f83ea.ref, historical/b6ea0407b548fe887c21a1d5ed4320cb8d940b765528d0d7976edee7653a8102.ref, historical/d568c0b363ee31a5a8369f1ca03a72f7b0282275666b2c31128c8ceb0caee484.ref, packages/chat-client/src/membership-link-management.ts, apps/mobile/scripts/membership-invite-manifest.mjs, historical/d298941eacd0a513268ed73cecb7bb410d28fd40a55170765e37b7ee36e89610.ref, historical/7e8a7a687e981446d44c43d584c139d633a8e4f8581ead9312e5b56525ed05d4.ref, historical/48781a7f17097daa53feeec20402b3cdaabf020cf11ac89f0922dfa17d2b9238.ref, historical/3fac8d7bd29fa40cc16772ac3da3466de3aab39d3dc81874d31b71cee947a573.ref, historical/54f7486d03921751a4fa8a6a1b0de42420c9d62394cd9bc4e71f46d929209bb3.ref, historical/0db3ecce0cd32b354999d1c3e8b9540e622e017c9d84f0bbc31bb3ab8570ea1a.ref, historical/051a10e47d65402269f9517a872cceb717ba2d9c35410e9df60bcdfa23e36fa4.ref, historical/8b45bfa265f987e8a9457863a1813249bf7ef726da20be345d98decf8a2f2e81.ref, historical/0c2fcc973ebf0204c69aec2e625932e8855a1abd3de55d213ed15dd1b81e303b.ref, historical/ebb4d0190f96cd5730730eb606c05780653ffbcbb9e220429484a4468dca7d86.ref, historical/e683c4a206c255c613983525c388b46915bd41c259a3df645eca4c40c5c9c615.ref, historical/d161c36af4120e30570e16eb8496786e023eb8fcb0ca9a7b7a803362e2fb19ec.ref, historical/9916a338e5a4ae5d8e3657348a0736a33ef8611de0e8ce08d80fa8145a799e5a.ref, historical/fa75e2918644b547a9d4c82b36406ab6469f84cdfe9c82061ef43dc5cf46f2bf.ref, historical/5f7bb5924f8f537f01fbd7d63649d913f13d8546a7bbf589f4266d59fcaa9814.ref, historical/bca2479d65ffe1eafe0fb915665d1fb2232d4f356e467da4a6603bc90d126ff6.ref, historical/669b517ed33bfcabe71eb34829b73aa9cb99d8750912ddd92a7d836889c3e630.ref, historical/e519461ba782091856ff3ae48e21c85ed55769abec9271ec7cdd58a9afd421e8.ref, historical/1005fc9389a35fcc09fb7fceacb2410c12501e7a3141dcd952a0a9375b9ee1aa.ref, historical/19039c3e4fc4626a7050499ab61b59878307c5898dcf91f603cd4967c70bbb86.ref, historical/78210b5770b9eb640111d17db755e4699a3a19b1f73c1a1f8731b2ba33ff1441.ref, historical/375b6943b7de0f63dc8deff0c4ad0e0e17e61b3b14c721cad50a78f2968b4ac5.ref, historical/927fdade9447f6434d1b7eab8e2f00a7a4837b85be0c381f7461c90d2748dfd5.ref, historical/667bdaa681ed988f217622708239ac1d9a2dc52306a0a195672ee21df42bb762.ref, historical/262cea4e2929915335dbfa1aadbcc05430449e262518411dd126fc4d6ac456af.ref, historical/685d07248971b0c88f485be36b228eaca30b032b571eb8dedc06990911122551.ref, historical/d0b065c32956327c9bd58c82f0347d68cba9bc35772d0dea802ecdf31a1269f9.ref, historical/cbbae4453b38f925d3b7b6d30908ec4918b2fac13b87d07e9b7da88196ea3158.ref, apps/mobile/src/membership-proof-actor.ts, historical/d961bf79e8d05bce423f836f1a92608165488234a7f66079d679d859a63689fc.ref, historical/e443600036e44b2bd8ef3cb8abcebff7fd553149c3146bff9dc04f15a8c9c58f.ref, historical/422f83635ce64e3f580e5385b995a3b1e28ff1810acd90f30c2050dea9b874b3.ref, historical/40838ab91249dfb56eba586487d4c0e820815ade57ae5333d66d28c13f874f4e.ref, historical/c51593a5f5702fba1ed082bbc34b39680b7e3afd9200549ccd69f1d912f74a25.ref, historical/b638553e7fc3ca8f27de341a7b23e1761b32887da48b9c947e7602fa5f6307e4.ref, historical/e6cfbffe5e80b5bddedbb35945954a6388eea282d02af472ace1fee3269ad212.ref, historical/b6c431765bda2bd99b787fe087a76391460c499c536298a0c7c44087f89e4529.ref, historical/a05fec7bed4b299bde12ee36f01889444acd2f0a6ec194c7f15202c09d2348df.ref, historical/3f9344465fe4d6f7cd9831fd8ab0fad779d11e2749d219d4461abc59de110ca2.ref, historical/fc38a24519e0128fd132dc553c295a477ec8f6030d7f81b4dffbbe5424599939.ref, historical/916a08c00693f1970b90e99ca3c5ca7bc1faa5759a4a1a984e665413562df88c.ref, historical/dc223a1bd301c4d5cee6c662810f07d82a6a0825c011b76aa0048d47705683ac.ref, historical/954c8dd7cf29d66aae7e866a7b4aa80bc87dad89a801f6986eb7a428a703ec97.ref, historical/08624b8a60d27d683d0ec0a8e80ad75de3b3da99d7f654288f705c0bf1b30af0.ref, historical/8aebab978bee27f4323d0bdaf22ac7a4b50e1e044be6c96dffee79aaff13cae2.ref, historical/660f84b31b2bc2dd0325d8a7924012f0b5a886e75792a3967fc2ada96d261743.ref, historical/68104461932a303340ad4dc2f9c359545520000bda7ba57fd24f06fa38616073.ref, historical/34aef60baa5bbf3bc9686129a161e53af65e734fdf5dbed2e43248a22588e6a3.ref, historical/ef09afa373cbf0f77103f90fe7856f2e8bed349f570a40f2e533312e77bfbafe.ref, historical/51953e2f4d59c1ddbd7424a64b5920a328945571dfb5325b2c0a0f2faa79bfee.ref, historical/87f686f54e0b5a4cae4e6acdce77327346f58953d38edb48e3294b512864ae10.ref, historical/3102623624d0b6cbe2bd9e4fc0667109221c459344cf26e01dc1c0bd379c07c9.ref, historical/ea62e52932d8b6fa585e1dd200f6bd78f4935824b9ede9f80a339cafbb34b70a.ref, historical/3bd83074c27f093b162c3082243e68be99660f86671b835bb41c5fbc78f14a10.ref, historical/367a77f7e9d0dfac202c46296206689e4880d58b680c9a602418d19de263cf3c.ref, historical/01499f0d3f4373d4f5ff7c11aafe457c9ae05933d5e75ad6244c4630c5527446.ref, historical/8e9e35eb99fe871e0b20514b1bf8bda21beff2671c4c7d005d85c19549d0de22.ref, historical/b2f71b00c8d0271505868ee38a61ae7b893e9355793d317902009d4b05e641d3.ref, historical/b871d6cb597d793d5d180b553786bfeb4edd95af5555144f702433624b08f184.ref, historical/7153142d34c030e57c662efb18ffaa0a4f5eaac3cad5b4ed6e06a9d2137e0372.ref, historical/ccde7c8cecdeab55a48882a808e8e2baaa09284a78ccc79961b46841290215f8.ref, historical/d0bfce69370f98736ffb75fee356339a760bb7a0e74b66752ad889708d251374.ref, historical/74406a90db3a9f65235d1c28c7f0ec674e548980c1555c490bfb4f378f116421.ref, apps/mobile/previews/company-preview-lot.web.tsx, apps/mobile/previews/company-preview-lot.android.tsx, historical/cd578efc1372529ae32dc52e20eb2febaa30d4bf4ec9366f03fdafd8df50eb7b.ref, historical/710be004ad460494a4f17530c67f3c5d7cf97d08bda0016abf398867351c07cf.ref, historical/0d617c51a02cc3f55ef88ca60780f0ee0376b3fa27f3e201e6b0f8dbdd24b416.ref, historical/e5116a8c9381a1237b84d3d10f8d81b781e270e6220b8730618621134881095f.ref, historical/3b1aae7e4038331a38618831a08469798308ce6bb7c5075c33dfe81008e8226f.ref
 
 ## APP-010 — Implementar vínculo de paciente por link e busca da empresa
 
@@ -156,9 +196,9 @@ Estado: in_progress
 - Paciente só acessa nome/endereço/telefones públicos e próprio chat; troca de contexto separa API, realtime, cache, rascunhos e anexos sem agenda no MVP
 - [R08] Encontrar empresa não dá acesso ao acervo; convite não revela saúde; geração só por funcionário aprovado com permissão.
 
-Próxima ação: Vínculo imediato e conversa única por paciente/empresa testados no banco, sem histórico unificado. Próximo: integrar conta/identidade reais e seleção de empresa/assinaturas/cache Android com Supabase completo.
+Próxima ação: Checagem breve Chromium passou: emissão e aceite explícito de convite funcionário/cliente, empresa/conta visíveis, controles por papel e390px,9critérios com Auth/HTTP simulados. Contratos conectados históricos permanecem fechados e não foram repetidos. Candidatas normais web/Android em fonte; completar jornada normal/plataforma e regressões agrupadas perto da entrega. Sem APK/publicação/ativação agora.
 
-Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md, docs/product/MVP-CHAT.md, docs/architecture/BANCO-CONNECT.md, docs/architecture/MIGRACAO-E-PORTABILIDADE.md, docs/testing/BANCO-LOCAL-0.1.md, supabase/README-LOCAL.md, docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md, supabase/deployment/receipt.json
+Evidências: docs/product/FLUXOS-E-IDENTIDADE.md, docs/research/INTEGRACAO.md, docs/product/MVP-CHAT.md, docs/architecture/BANCO-CONNECT.md, docs/architecture/MIGRACAO-E-PORTABILIDADE.md, docs/testing/BANCO-LOCAL-0.1.md, supabase/README-LOCAL.md, docs/testing/IMPLANTACAO-SUPABASE-ONLINE.md, supabase/deployment/receipt.json, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref, historical/9f0b3bcfb08dade6e4c31a6727632070b34ff28a2aaf261cdc2f6a224996a50a.ref, historical/2a82f068ee44ae5d3553a959abb9f5eb4ec77e6c011dcd39e5ae3504347fcfb5.ref, historical/6519d109414ea339d486892636985fb439f75ebb9b40e1aef4c59c06eb2151dd.ref, historical/b15ae5c9aa2644aaaedb238a8bd6f839f75566d241aae0272454571e7e0fc1d2.ref, historical/a3f3c68d042a7283793faf1390c054f04b7589312de2aadc9d13511ef8dce5f7.ref, docs/product/CONVITES-SECRETOS-CANDIDATO-2026-11-18.md, historical/9f5df948ebe542028fe97b1c2d44c2af6afe262a6f905de55b60d19c44be380c.ref, historical/333b069e044fa211d9b0abf691229498849da2795b9da69462bedf7e68265295.ref, historical/3bea9acf9ade093d899f8688cd573510c400635d8b5ea2c1182bedeb644a4fc6.ref, historical/27e17461184eb7c33e95c5c97cb69c718009310f855a2f208ecaaa9cd72ff49a.ref, packages/chat-client/src/membership-secret-link.ts, historical/637dd22f766c40391f6bdb54dc81c01dd2db529766fa70d700cc297c9c58f36a.ref, historical/a887d8ff7da70eb82d050050989b294b2256b506ff540211411075fad3186031.ref, historical/1639089475b83b8fce182f050824933c0c313cc962a70d27d8133a49e8c4a5ed.ref, historical/05673382125922879a7449cf332de6fa759cac3b05d9fa2a4959e34a6f10853e.ref, historical/a958dddcf842d7e8c0f02aa10f2007431e3957597918471c1cbd7d6d1f017f71.ref, historical/cc4eff2ffc3b55098b6b01eb36b6f1104a343738f18b5ae8c03ca5aebb6122c8.ref, historical/6fd4d4d3659c77d3dd181b11df5efcb970e31a52cffd910e88390e93ae05aab7.ref, apps/mobile/App.web.tsx, apps/mobile/previews/connected-membership-management.android.tsx, apps/mobile/previews/connected-scoped-audio-root.tsx, apps/mobile/src/ConnectedCompanyView.tsx, apps/mobile/src/connected-membership-management.ts, apps/mobile/src/connected-company-registry.ts, apps/mobile/src/membership-invite-binding.ts, apps/mobile/src/MembershipInviteSurface.tsx, apps/mobile/src/membership-secret-link-http.ts, apps/mobile/src/membership-invite-links.ts, apps/mobile/src/native-membership-invite-random.ts, apps/mobile/native/privacy/ConnectSecureSessionModule.kt, packages/chat-client/src/session-rpc.ts, packages/chat-client/src/text-session-channel.ts, apps/mobile/tests/membership-invite-flow.test.mjs, historical/eeb26f8d692070daec87544da32821476c4d3a5e2f59c0e6bbbc4a9bbb1efc2e.ref, historical/70e98ec446bdfef004ed2a4449c5570c75188e787d7fd738629cbe2f8b45aa0e.ref, historical/e5647e58ddc5250f9b2df48856f12beb0afcf5b7c080ef806ace5155d1e8ad14.ref, historical/34ca25c53688c388bd7a22485764a0b4eaecfd7ea540f63685e26523f325221d.ref, historical/45084bcaf3f853e80d24e245d74a85f0e39566915c24a75fe5ac13f18f49c8ca.ref, historical/244ec53a966ff21fcd0bd4240046017e634993d90a858002fbd2d197775cf5e5.ref, historical/638fad5105ad8f00194d7196ed062d80e1edacb7123e37b612e3d8f0627826bc.ref, historical/47f49b462b1006331a54cc40388b1f53b2c2082312a6547cafd8ee76d3ac6ab4.ref, historical/bb8a75c82bc0fda54e44b5b5868be96e16c94537f7a2320cf059f445f180a66e.ref, historical/20d190e9cb56b281422682726cc04559eaa27a17eb124499619aa9113c6f83ea.ref, historical/b6ea0407b548fe887c21a1d5ed4320cb8d940b765528d0d7976edee7653a8102.ref, historical/d568c0b363ee31a5a8369f1ca03a72f7b0282275666b2c31128c8ceb0caee484.ref, packages/chat-client/src/membership-link-management.ts, apps/mobile/scripts/membership-invite-manifest.mjs, historical/d298941eacd0a513268ed73cecb7bb410d28fd40a55170765e37b7ee36e89610.ref, historical/7e8a7a687e981446d44c43d584c139d633a8e4f8581ead9312e5b56525ed05d4.ref, historical/48781a7f17097daa53feeec20402b3cdaabf020cf11ac89f0922dfa17d2b9238.ref, historical/3fac8d7bd29fa40cc16772ac3da3466de3aab39d3dc81874d31b71cee947a573.ref, historical/54f7486d03921751a4fa8a6a1b0de42420c9d62394cd9bc4e71f46d929209bb3.ref, historical/0db3ecce0cd32b354999d1c3e8b9540e622e017c9d84f0bbc31bb3ab8570ea1a.ref, historical/051a10e47d65402269f9517a872cceb717ba2d9c35410e9df60bcdfa23e36fa4.ref, historical/8b45bfa265f987e8a9457863a1813249bf7ef726da20be345d98decf8a2f2e81.ref, historical/0c2fcc973ebf0204c69aec2e625932e8855a1abd3de55d213ed15dd1b81e303b.ref, historical/ebb4d0190f96cd5730730eb606c05780653ffbcbb9e220429484a4468dca7d86.ref, historical/e683c4a206c255c613983525c388b46915bd41c259a3df645eca4c40c5c9c615.ref, historical/d161c36af4120e30570e16eb8496786e023eb8fcb0ca9a7b7a803362e2fb19ec.ref, historical/9916a338e5a4ae5d8e3657348a0736a33ef8611de0e8ce08d80fa8145a799e5a.ref, historical/fa75e2918644b547a9d4c82b36406ab6469f84cdfe9c82061ef43dc5cf46f2bf.ref, historical/5f7bb5924f8f537f01fbd7d63649d913f13d8546a7bbf589f4266d59fcaa9814.ref, historical/bca2479d65ffe1eafe0fb915665d1fb2232d4f356e467da4a6603bc90d126ff6.ref, historical/669b517ed33bfcabe71eb34829b73aa9cb99d8750912ddd92a7d836889c3e630.ref, historical/e519461ba782091856ff3ae48e21c85ed55769abec9271ec7cdd58a9afd421e8.ref, historical/1005fc9389a35fcc09fb7fceacb2410c12501e7a3141dcd952a0a9375b9ee1aa.ref, historical/19039c3e4fc4626a7050499ab61b59878307c5898dcf91f603cd4967c70bbb86.ref, historical/78210b5770b9eb640111d17db755e4699a3a19b1f73c1a1f8731b2ba33ff1441.ref, historical/375b6943b7de0f63dc8deff0c4ad0e0e17e61b3b14c721cad50a78f2968b4ac5.ref, historical/927fdade9447f6434d1b7eab8e2f00a7a4837b85be0c381f7461c90d2748dfd5.ref, historical/667bdaa681ed988f217622708239ac1d9a2dc52306a0a195672ee21df42bb762.ref, historical/262cea4e2929915335dbfa1aadbcc05430449e262518411dd126fc4d6ac456af.ref, historical/685d07248971b0c88f485be36b228eaca30b032b571eb8dedc06990911122551.ref, historical/d0b065c32956327c9bd58c82f0347d68cba9bc35772d0dea802ecdf31a1269f9.ref, historical/cbbae4453b38f925d3b7b6d30908ec4918b2fac13b87d07e9b7da88196ea3158.ref, apps/mobile/src/membership-proof-actor.ts, historical/d961bf79e8d05bce423f836f1a92608165488234a7f66079d679d859a63689fc.ref, historical/e443600036e44b2bd8ef3cb8abcebff7fd553149c3146bff9dc04f15a8c9c58f.ref, historical/422f83635ce64e3f580e5385b995a3b1e28ff1810acd90f30c2050dea9b874b3.ref, historical/40838ab91249dfb56eba586487d4c0e820815ade57ae5333d66d28c13f874f4e.ref, historical/c51593a5f5702fba1ed082bbc34b39680b7e3afd9200549ccd69f1d912f74a25.ref, historical/b638553e7fc3ca8f27de341a7b23e1761b32887da48b9c947e7602fa5f6307e4.ref, historical/e6cfbffe5e80b5bddedbb35945954a6388eea282d02af472ace1fee3269ad212.ref, historical/b6c431765bda2bd99b787fe087a76391460c499c536298a0c7c44087f89e4529.ref, historical/a05fec7bed4b299bde12ee36f01889444acd2f0a6ec194c7f15202c09d2348df.ref, historical/3f9344465fe4d6f7cd9831fd8ab0fad779d11e2749d219d4461abc59de110ca2.ref, historical/fc38a24519e0128fd132dc553c295a477ec8f6030d7f81b4dffbbe5424599939.ref, historical/916a08c00693f1970b90e99ca3c5ca7bc1faa5759a4a1a984e665413562df88c.ref, historical/dc223a1bd301c4d5cee6c662810f07d82a6a0825c011b76aa0048d47705683ac.ref, historical/954c8dd7cf29d66aae7e866a7b4aa80bc87dad89a801f6986eb7a428a703ec97.ref, historical/08624b8a60d27d683d0ec0a8e80ad75de3b3da99d7f654288f705c0bf1b30af0.ref, historical/8aebab978bee27f4323d0bdaf22ac7a4b50e1e044be6c96dffee79aaff13cae2.ref, historical/660f84b31b2bc2dd0325d8a7924012f0b5a886e75792a3967fc2ada96d261743.ref, historical/68104461932a303340ad4dc2f9c359545520000bda7ba57fd24f06fa38616073.ref, historical/34aef60baa5bbf3bc9686129a161e53af65e734fdf5dbed2e43248a22588e6a3.ref, historical/ef09afa373cbf0f77103f90fe7856f2e8bed349f570a40f2e533312e77bfbafe.ref, historical/51953e2f4d59c1ddbd7424a64b5920a328945571dfb5325b2c0a0f2faa79bfee.ref, historical/87f686f54e0b5a4cae4e6acdce77327346f58953d38edb48e3294b512864ae10.ref, historical/3102623624d0b6cbe2bd9e4fc0667109221c459344cf26e01dc1c0bd379c07c9.ref, historical/ea62e52932d8b6fa585e1dd200f6bd78f4935824b9ede9f80a339cafbb34b70a.ref, historical/3bd83074c27f093b162c3082243e68be99660f86671b835bb41c5fbc78f14a10.ref, historical/367a77f7e9d0dfac202c46296206689e4880d58b680c9a602418d19de263cf3c.ref, historical/01499f0d3f4373d4f5ff7c11aafe457c9ae05933d5e75ad6244c4630c5527446.ref, historical/8e9e35eb99fe871e0b20514b1bf8bda21beff2671c4c7d005d85c19549d0de22.ref, historical/b2f71b00c8d0271505868ee38a61ae7b893e9355793d317902009d4b05e641d3.ref, historical/b871d6cb597d793d5d180b553786bfeb4edd95af5555144f702433624b08f184.ref, historical/7153142d34c030e57c662efb18ffaa0a4f5eaac3cad5b4ed6e06a9d2137e0372.ref, historical/ccde7c8cecdeab55a48882a808e8e2baaa09284a78ccc79961b46841290215f8.ref, historical/d0bfce69370f98736ffb75fee356339a760bb7a0e74b66752ad889708d251374.ref, historical/74406a90db3a9f65235d1c28c7f0ec674e548980c1555c490bfb4f378f116421.ref, apps/mobile/previews/company-preview-lot.web.tsx, apps/mobile/previews/company-preview-lot.android.tsx, historical/cd578efc1372529ae32dc52e20eb2febaa30d4bf4ec9366f03fdafd8df50eb7b.ref, historical/710be004ad460494a4f17530c67f3c5d7cf97d08bda0016abf398867351c07cf.ref, historical/0d617c51a02cc3f55ef88ca60780f0ee0376b3fa27f3e201e6b0f8dbdd24b416.ref, historical/e5116a8c9381a1237b84d3d10f8d81b781e270e6220b8730618621134881095f.ref, historical/3b1aae7e4038331a38618831a08469798308ce6bb7c5075c33dfe81008e8226f.ref
 
 ## APP-011 — Implementar painel da plataforma com empresas, usuários, auditoria e logs
 
@@ -251,10 +291,12 @@ Estado: in_progress
 - Logo ResiCheck localizado e origem/variante verificada antes de incorporar; ausência tem fallback textual
 - Conceito visual revisado em contexto Android sem tratá-lo como app implementado
 - Lista, conversa, teclado e ações principais validados para uso com uma mão, fonte ampliada e tecnologias assistivas
+- Saída voluntária com rascunho em edição tem escolha explícita e presa ao dono/contexto; fechamento obrigatório de privacidade/sessão permanece imediato.
+- Cancelamento voluntário de histórico conserva conteúdo somente após validação do contexto;negativa/timeout limpam e operações não cooperativas permanecem contabilizadas.
 
-Próxima ação: Integração sintética sessão/acesso validada:27 checks web e11 jornadas Android no candidato local69918a0c. Continuar acessibilidade (TalkBack/fonte ampliada), aparelhos modestos e integração real de Auth quando disponível; não marcar segurança de backend como demonstrada.
+Próxima ação: Lote visual/jornada Phone22 testado em Android API36 e entregue; cliente/empresa, lista leve, busca, badge, rascunho e logout com evidencias. Proxima revisao: aparelho fisico, fonte ampliada/TalkBack e feedback Lucas; imagem nao prova acessibilidade.
 
-Evidências: docs/product/DIRECAO-VISUAL.md, docs/research/INTEGRACAO.md, docs/testing/INTERFACE-NAVEGACAO-0.1.md, docs/testing/INTEGRACAO-INTERFACE-0.1.md, docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md, apps/mobile/src/demo-session.ts, apps/mobile/src/demo-access.ts, apps/mobile/tests/demo-session.test.ts, apps/mobile/metro.config.cjs, docs/delivery/DEMO-0.1.0-LOTE2.md, docs/delivery/DEMO-0.1.1-BUILD2.md
+Evidências: docs/product/DIRECAO-VISUAL.md, docs/research/INTEGRACAO.md, docs/testing/INTERFACE-NAVEGACAO-0.1.md, docs/testing/INTEGRACAO-INTERFACE-0.1.md, docs/testing/SESSAO-E-ACESSO-NA-INTERFACE.md, apps/mobile/src/demo-session.ts, apps/mobile/src/demo-access.ts, apps/mobile/tests/demo-session.test.ts, apps/mobile/metro.config.cjs, docs/delivery/DEMO-0.1.0-LOTE2.md, docs/delivery/DEMO-0.1.1-BUILD2.md, historical/07ea97e6489353b7481707f6d66025a91421f7e49c7b44544ef4d226ecdc3136.ref, historical/c6d092fd8286e28bb4dbf2f9fa7834de5f9c45f3cf72a3d79441bbe744bc2a8b.ref, historical/45ec823dfdc71799da3952c4b9ef0b1a44ef32b8fd7c8bca0900ff20c7e38285.ref, historical/ba4caeb048dd3fa65fc34e67ca3efd8c5f9be0d8318ac5d53b895884557cff21.ref, historical/014e316a6e9a32637fef5bbc2cfc2c68636e3d8a0d0474984c326e3ae6312c24.ref, historical/3d3932f0dcaa03cae3531327656db87eb2dd2b5f82f2d9a0b844d77467d6f105.ref, apps/mobile/src/MembershipHostView.tsx, historical/3c3bb463346bf11bb68d8fbd35f8eba345d7567374f75561343b26798345fb39.ref, apps/mobile/src/draft-exit-guard.ts, historical/14a502f1f38185cc65c199700c1d4638f2b5c4802888fcb7cc10d2a92e0225ed.ref, historical/a0287a7fedaa2c13529fcf9399cb62082817f81a61af9628836e8cf1594fdc0e.ref, historical/e2c0c67a8ceeb082a3757efed76bf257a5be025d107664e72769d1c3f908515a.ref, packages/chat-client/src/history-window.ts, historical/9349c1e8767ae27e09df33cddddadde7ddc88154527d1565cd6b1260558180d4.ref, apps/mobile/src/message-calendar.ts, historical/7dc15f6f98cde76b2ecda1591071a37892f92b3cd0e9ea8d7c1247da8a92e50c.ref, historical/3890bf44a9177a9405b475c3d944bed6fe327cd21b10ed373b0515781c2120f6.ref, historical/5981d3bcb7218d5d397c81866c42ade84ae0c463ca4a96e919058a64fc97215e.ref, apps/mobile/src/membership-recent-bridge.ts, historical/ae5016890e304928bfadc057472f45321696449c9017eb5ad41dbc9b51f8bada.ref, historical/638940304d8cd980ec085b258bd846cd8394733bda48964f8132465272eb89fb.ref, apps/mobile/src/quiet-latest-refresh.ts, apps/mobile/tests/quiet-latest-refresh.test.mjs, historical/eaae0a27a1ec4cdeecb6f0637dde705c5824d6b4ebf44c266dec990f41af3a44.ref, historical/21250f6c6b7f5452ba691d19a43bbdfa7807aa063a6dd4b1c7c2377be75664c9.ref
 
 ## APP-017 — Implementar temas com precedência pessoal, empresa e padrão
 
@@ -327,35 +369,35 @@ Evidências: docs/research/INTEGRACAO.md
 
 ## APP-023 — Isolar empresas e pacientes
 
-Estado: backlog
+Estado: in_progress
 
 - [R09] Zero acesso cruzado nos casos definidos; tenant vindo do cliente não é prova; regressão automatizada.
 - Regra de uma empresa por funcionário e multivínculo de paciente protegida no backend, sem fusão de históricos entre empresas
 - Testes negativos cobrem dados exclusivos por nível de conta em API, interface, push, exportação, realtime e erros de produção seguros
 
-Próxima ação: Revisar requisito R09, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.
+Próxima ação: Composição local de duas empresas passou97 verificações sob RLS sem bypass, com oito atores e concorrência. Revisar e validar JWT/PostgREST/Storage/push/exportação e montagem Android reais; testes locais não completam isolamento de todos os canais.
 
-Evidências: docs/research/INTEGRACAO.md, docs/architecture/CLASSIFICACAO-E-PERMISSOES.md
+Evidências: docs/research/INTEGRACAO.md, docs/architecture/CLASSIFICACAO-E-PERMISSOES.md, historical/6519d109414ea339d486892636985fb439f75ebb9b40e1aef4c59c06eb2151dd.ref, historical/b15ae5c9aa2644aaaedb238a8bd6f839f75566d241aae0272454571e7e0fc1d2.ref, historical/92a438e3ab0b44c7dbd85b8313dd4b0f94a1da923a78904c48e69f7cac547382.ref, historical/95715ae39eb95d5d6411c8bf53e4c5e95c23a7f68e26432198ea5d05f6f7a824.ref, historical/749924b8b5ea084bbcd4ddb684217de490694d51c36a9aab85ce774abb93613e.ref, historical/cf8d1436dc34d0a98d0c4eef9076e017cb721e741263b83aeab000b97f1a53b3.ref, historical/c3d792ae76ee9c8600790af30c3813e36d6500120db628181d9bf2bc9dcd0cd0.ref, historical/016a32f1dd6caeccbd22a899e50e265537a8689eb5189ffcdaeec286efb3d534.ref, historical/dc53f98cd3b0155772c01390066776fd1fad0f4ff060b62026cec84ad6456c2f.ref, historical/560e8021cac103e43c73dff601e308bd7eb5664c1ce6d396c2ae99acfc7f4276.ref, historical/390c2fd80c0c7df4b9397b1e634f7be045323163675c44cabe47ef505bc7c268.ref, historical/b887d150f0f9dc680663db247da5e073bcb3272e5798268731c8c80cc638ca34.ref
 
 ## APP-024 — Proteger autenticação e recuperação
 
-Estado: backlog
+Estado: in_progress
 
 - [R12] Testes negativos passam; sem conta privilegiada compartilhada; recuperação não contorna controles de identidade.
 
-Próxima ação: Revisar requisito R12, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.
+Próxima ação: Avisos públicos seguros agora integrados e comprovados no Phone8 em APP-203, preservando confirmação e recuperação. Auth individual/Keystore/restore explícito têm provas próprias. APP-204 registra expiração com app continuamente ativo; recuperar senha esquecida/reenvio/callback e demais critérios R12 continuam pendentes, sem contornar identidade.
 
-Evidências: docs/research/INTEGRACAO.md
+Evidências: docs/research/INTEGRACAO.md, historical/ec477bbd67cc0c50c7bee296cf77ba1dc6da0487c44a929df38067a7f1ba5b26.ref, historical/7cdb94454a4808d9a1146313827744014f53cde6150a636b291f982dae97cb7e.ref, historical/ae3d4c28d8b334584405da7d9c649c26d8fa6e5965022e827b6e6fefd66c19a4.ref, historical/1fd6c388e31922c782b6c32f96ec97b4b1dca5a066f560789e4f03486edff89d.ref
 
 ## APP-025 — Revogar sessões e dispositivos
 
-Estado: backlog
+Estado: in_progress
 
 - [R13] Acesso servidor cessa após revogação confirmada; cache segue política; notificações não chegam à conta anterior.
 
-Próxima ação: Revisar requisito R13, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.
+Próxima ação: Phone7 confirmou encerramento global da sessão sintética, negativa RLS do JWT existente e retirada da janela sem toque, com provas HTTP/Android delimitadas em APP-202. Revogação seletiva teve prova distinta5→6. Continuar demais dispositivos, Storage/realtime/push e política de cache antes de concluir R13; não extrapolar os cenários observados.
 
-Evidências: docs/research/INTEGRACAO.md
+Evidências: docs/research/INTEGRACAO.md, historical/6519d109414ea339d486892636985fb439f75ebb9b40e1aef4c59c06eb2151dd.ref, historical/b15ae5c9aa2644aaaedb238a8bd6f839f75566d241aae0272454571e7e0fc1d2.ref, historical/749924b8b5ea084bbcd4ddb684217de490694d51c36a9aab85ce774abb93613e.ref, historical/cf8d1436dc34d0a98d0c4eef9076e017cb721e741263b83aeab000b97f1a53b3.ref, historical/c3d792ae76ee9c8600790af30c3813e36d6500120db628181d9bf2bc9dcd0cd0.ref, historical/016a32f1dd6caeccbd22a899e50e265537a8689eb5189ffcdaeec286efb3d534.ref, historical/dc53f98cd3b0155772c01390066776fd1fad0f4ff060b62026cec84ad6456c2f.ref, historical/560e8021cac103e43c73dff601e308bd7eb5664c1ce6d396c2ae99acfc7f4276.ref, historical/390c2fd80c0c7df4b9397b1e634f7be045323163675c44cabe47ef505bc7c268.ref, historical/b887d150f0f9dc680663db247da5e073bcb3272e5798268731c8c80cc638ca34.ref, historical/821b5a8239ec49da6548590ee94dc29e76da5c8e259fa36022f649d4cb2dc624.ref
 
 ## APP-026 — Proteger armazenamento móvel
 
@@ -369,13 +411,13 @@ Evidências: docs/research/INTEGRACAO.md
 
 ## APP-027 — Proteger trânsito e chaves
 
-Estado: backlog
+Estado: in_progress
 
 - [R15] Conexões inválidas falham; segredos fora do código; plano de rotação testado; TLS não anunciado como E2EE.
 
-Próxima ação: Revisar requisito R15, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.
+Próxima ação: Consulta Vault original foi executada após nova revisão oficial, somente metadados. Plano server-side gera chave no próprio banco, sem retorno, e usa runtime NOLOGIN sem grants Auth; manutenção postgres ADMIN-only sem SET/INHERIT. Provisão/implantação ainda não ocorreram: a revisão automática exige confirmação específica desse compromisso. Não repetir sem nova evidência de autorização.
 
-Evidências: docs/research/INTEGRACAO.md
+Evidências: docs/research/INTEGRACAO.md, historical/906bd842cd4d300badfaaedfd673b4860446a08f406be806d9a5c9c338e88a5f.ref, historical/6e6b9650ea48e1bcd8c7add9953f304fb026b2e21f68f11ba13973ea62985b70.ref, historical/f75d9b36abde44796b35591ba9978d32058dc54b31ffcb8dacb89928046f4a8f.ref, historical/896e487a381337ae7e47bbd4249cf737f38e4ae2f13262e42858cd927c19f470.ref, historical/9e84b220cf5f2b188c1aac17283928997a3d8e01ec2300c518c70fcc782c0abc.ref, historical/7bc12738aea2559adf3861432d409c6798ea3d971616ebd2f48a324cb34ea8cb.ref, historical/9ddc8355d1793f5d0c5c64d180ced332aab618d5e0e751084c28bec43a4b4c33.ref, historical/a96e7f28cc0c6029ac673fd7d6904064650a8cb4019125adeb7e80c6fce4b657.ref, historical/745fec94595c18a09b5e88e80cfd606e33b43eace69205725479bc3c06f89f3c.ref, historical/105ca7c73c7602b401d20ccca7d6b9840db61435d8635143f4490622bf7ec8f8.ref, historical/121e84f1b0913a4d0d60059d20a17c3a6237e48618ae4641b16b8cf2bc656188.ref, historical/9b2e9ae1ed944b6ef5e43b38d16827a331cb81aeb1c2291ff41e41fe6ecee44f.ref, historical/e023616d7c6558056728ad429c82298142cbc71885fc0574b2fba7ecbd6a2293.ref, historical/3233d960f2eebdfdbf865b332ab8131d478ce928ed38affe9b179c735c9a639d.ref, historical/ea3ea8fb690b5c6867bc4f265df57d747737e22a79b4a6f0be62ab104601ecad.ref, historical/94acbca12a95e5f824c5ae2d6340563705b9390015b48781aa014aa0fa803e87.ref, historical/d7f6d8262e4658133ed2ffd9560e80c89aa8ef0a5ecbb9346f0074d7d059376f.ref, historical/df799b3794022660f17399152ad0cf07a2a91b43122ab4d62e2318e6379f9583.ref, historical/eaf79417384fae17554d96cd05c3b3cf0b1bf8449e17998b131f86f3776859eb.ref, historical/ae41ac8e4f2e191bb8b94b6be0579c4d847a700948c5246a48273e18d50dc8ab.ref, historical/a7c6fae8610cbd829b3c6f4503972919b9a67c16bf0583f6b80252ddbd04512e.ref, historical/e44afe8d6cb5a7a500ebc8b3c27aae74b2ab95c128dfe0e9c28885f8315b0217.ref, historical/0862fdaca1ec46cd6592fb9a05f8fed884404532cca71721a12a0112999740a7.ref, historical/dbc0d12d4e36cca87a8e9a763de03f3bc16dffc7ab0a3f446ea083fe52b3f6ba.ref, historical/33cb0c95e62b755b1e08953825a10ede9d6753f6e8d95621e87af187b5a725cb.ref, historical/47d2a90fd428c05e8dc4979f5c8ccdf9136105676eaaec7ef652718280ce2753.ref, historical/ccebff48186324804b507cacd6e7878722bb66797452725a29af0d748bc07896.ref, historical/453d0c48e4d961cae1000919b0d92a4427425a3023b8800e3bccd765981d7646.ref, historical/20d4cfe644f1651e1743f3778a6cdd3818ddcbc45e490440a9e06579e0017b8c.ref, historical/1ca1a7ebcbd1e55022fea3cba37ae0aef5ecb8cbeee7754d443df543dde31df4.ref
 
 ## APP-028 — Implementar notificações com privacidade progressiva e telemetria mínima
 
@@ -385,10 +427,11 @@ Estado: in_progress
 - Filtro todas/somente importantes não supera autorização nem presume permissão do sistema; troca de conta/empresa e revogação não vazam conteúdo
 - Logs, analytics e crash reports não recebem conteúdo de mensagem/segredos; exposição adicional em notificação só conforme escolha e escopo autorizados
 - [R19] Nível 1 não revela empresa, atendente ou mensagem; níveis superiores refletem escolha explícita e autorização. Logs analíticos permanecem minimizados e sem conteúdo sensível. Preferência no app não presume permissão Android/iOS.
+- Preferência persistente de produção não é herdada por outra conta no aparelho, não se perde silenciosamente no refresh e é relida antes de novos envios; proposta de resolução usuário/dispositivo precisa de decisão explícita.
 
-Próxima ação: Projeção local de payload e autorização testadas, sem SDK push/OS. Definir resolução por usuário/dispositivo e importância/renotificação; depois integrar provedor autorizado e testar Android/lockscreen/permissões.
+Próxima ação: Startup com erro seguro/retry explícito substitui logoeterno em montagemQA:10 testescontroller+4handoff/typechecks e5 critériosAndroid/12etapasfonte2. Bootstrapprivacy fechaantesdomain; factoryfailrestauraerro; tardioapósprazonãoabreappautomaticamente. Locktimeout500ms/processoparcial.newfailclosedprovados,semclaimpowerloss. Desktopreconectado,35hashes conferidos; cleanup1killreconciliadoreadonly(PID/serialausentes),CIMglobalindisponível,semrerun. BackendHTTP22checks/3waits pronto. Próximosgates: recuperaçãoassistidareal/quota/retenção/aparelhos eAuth/gatewayautorizados/OSpush. Phone0.1.11/remoto/políticaintactos;PostgREST 16.5 já instalado; preferências ainda não validadas nele.
 
-Evidências: docs/research/INTEGRACAO.md, docs/product/NOTIFICACOES.md, docs/testing/CHAT-LOCAL-0.1.md
+Evidências: docs/research/INTEGRACAO.md, docs/product/NOTIFICACOES.md, docs/testing/CHAT-LOCAL-0.1.md, historical/4aa62f82a0be0f6d6433eb41c1c656300120dc416ee5ac31a5f337861d289ff4.ref, historical/e42f154760570e666ee3163a4e9e06be7559c6c631aada1e74dd995ee64c4b52.ref, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref, historical/f43ca4fbe7a2d24edc326e9ec6440b2c71662ce90cdf893abd1b2be3186db522.ref, historical/03b3a79f50b5e99197784d8384e8f89c0bd018dee51d0a2f165ef191d2e43ebe.ref, historical/2b519c01028a252e36d3519b22cd0f76d31e58f4be8073708424539c1cfbab2b.ref, historical/d767df17358a17debfc9f2509a591956f564eb391aba8401436134b095739c44.ref, historical/9d02e16f4c8e37de8627bea0039bc947224aad9cff9c4473d0a10aaf991d43ca.ref, historical/84ebc3e1823018c46aae84fb6d215f44e4405de8c036bb569f0b879e96305d86.ref, historical/b0a2814ca47bfd0e627c5d621d2937cff2227500fa07e19fc39dded21f025fef.ref, historical/4f7f5b2a02931cde7e832906fd9f700141734eb2bc1a19a0d675a8f1acef9d57.ref, historical/cb181340b12aef580a0895069f4b3d321035e9ce2ae7c552d614a2be44126bfa.ref, historical/e1b0a2bfc615a51c80ab969e25832805fd267a7f7dd53f5589881545e427ebf2.ref, historical/23865d4bcd3f167323cb97eaf026c17d9473d7af160bbd88541df6d6978679c1.ref, historical/6fa40928bbb49af2f33f2dc02e3686e74db83cf239c747569fefe3617cf70f80.ref, historical/7e10d9f31473c28bc3d53bd0d043c51f7362445404102de8ecb9fc84dde4a2df.ref, historical/0c3679db55e62c9ff6f5acd63d3fbffdd91938cd45f6c0e9fdddab43895b5f72.ref, historical/841a18fc1b321d3a234854b52609a45e8d474ab50910ff924e5f1090ab7bbc80.ref, historical/7be4ecd5ee0c31ce7aa327d7036c4f408dcc0e9550daaec979465b08116bfa70.ref, historical/bf16c47ade129b5f2ff556b655eeb0ef8e1966d57950f91755f2c9067674e4c1.ref, historical/feef51e77480d3a605dfef8f8fc8a7698e9e259dbbac214ccf4414695f651304.ref, historical/b0c3c0600f45362c32b8fe98172131c5b592e234bd016f74129ec18260dbc444.ref, historical/cb4763663a76775809d7a049034ff3da481ebe29c2c4731edc033943498a1c87.ref, historical/928f14ba0b985ef908faa8771a56e5c69c66c33f824c95c61021d6a9d5782a25.ref, historical/5bc6ee6fec266c355532a5cfe92e9c3600baccbd2e492399e04b75ec6090e05c.ref, historical/3ef02a49a27d28f0c61d59503453d6b44a022751b16e2f5245e2e21b93eec8de.ref
 
 ## APP-029 — Proteger interfaces com o sistema
 
@@ -396,7 +439,7 @@ Estado: backlog
 
 - [R20] Entrada externa não concede acesso nem executa conteúdo arbitrário; falha segura.
 
-Próxima ação: Revisar requisito R20, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.
+Próxima ação: APP-147 registra retenção deViews noHome emActivityinvisível (SDKAPI36), sem comprovarleakvisual/Recents. Tratarbarreira nativa e retornoantesdadosreais, depoisdemaisrequisitosR20. Não confundirUIAutomatorsóSystemUI ouJSAppState comcertificação deprivacidade.
 
 Evidências: docs/research/INTEGRACAO.md
 
@@ -409,27 +452,28 @@ Estado: backlog
 
 Próxima ação: Revisar requisito R21, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.
 
-Evidências: docs/research/INTEGRACAO.md, docs/architecture/CLASSIFICACAO-E-PERMISSOES.md
+Evidências: docs/research/INTEGRACAO.md, docs/architecture/CLASSIFICACAO-E-PERMISSOES.md, historical/6519d109414ea339d486892636985fb439f75ebb9b40e1aef4c59c06eb2151dd.ref, historical/b15ae5c9aa2644aaaedb238a8bd6f839f75566d241aae0272454571e7e0fc1d2.ref
 
 ## APP-031 — Definir retenção e descarte
 
-Estado: backlog
+Estado: in_progress
 
 - [R22] Prazos justificados por categoria; seis meses de acesso não viram regra de conteúdo; vinte anos não são universais.
+- Áudios de agendamento:90 dias registrados como padrão proposto e transparência futura; logs de acesso e possíveis registros clínicos separados; nenhuma exclusão automática sem política validada.
 
-Próxima ação: Revisar requisito R22, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.
+Próxima ação: Lucas propôs90 dias para áudios usados no chat para combinar consultas. Fechar política por finalidade e comunicação com revisão jurídica: marco inicial, exceções específicas, logs de acesso separados, cache/backups/restauração e recibos mínimos. Não tratar90 dias como prazo legal nem aplicar a conteúdo clínico automaticamente. Sem exclusão definitiva ou executor destrutivo até política definida/validada; preservar dados sintéticos do piloto.
 
-Evidências: docs/research/INTEGRACAO.md
+Evidências: docs/research/INTEGRACAO.md, historical/906bd842cd4d300badfaaedfd673b4860446a08f406be806d9a5c9c338e88a5f.ref, historical/6e6b9650ea48e1bcd8c7add9953f304fb026b2e21f68f11ba13973ea62985b70.ref, historical/7d3c59b74550761ff1b58f1fe04b18e241d3e23fd8779b60fb2528289443db7f.ref, historical/d6afaf9eb9ac9998f37ad98937ea6f8c8ba6d4e9c64ea7ec52e5788f0b0f0336.ref, historical/eedee01c167653c0af5a83ee606eded148b4d36d0aa64e7b47b413c3e797bd8c.ref
 
 ## APP-032 — Atender direitos e excluir conta
 
-Estado: backlog
+Estado: in_progress
 
 - [R23] Exportação só autorizada; retenção explicada; exclusão nos caminhos de loja aplicáveis; não confundir desativação com eliminação.
 
-Próxima ação: Revisar requisito R23, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.
+Próxima ação: Preparação local sem efeitos em APP199/205. Faltam política/inventário autorizado, plano/recibo com resultados por categoria, executor reconciliável, reautenticação e confirmação Android; preparar recurso externo de pedido exigido pela Play antes da distribuição aplicável. Nenhuma página/DNS ou produto web nesta etapa, nem promessa de eliminação completa.
 
-Evidências: docs/research/INTEGRACAO.md
+Evidências: docs/research/INTEGRACAO.md, historical/906bd842cd4d300badfaaedfd673b4860446a08f406be806d9a5c9c338e88a5f.ref, historical/6e6b9650ea48e1bcd8c7add9953f304fb026b2e21f68f11ba13973ea62985b70.ref, historical/9e84b220cf5f2b188c1aac17283928997a3d8e01ec2300c518c70fcc782c0abc.ref, historical/7bc12738aea2559adf3861432d409c6798ea3d971616ebd2f48a324cb34ea8cb.ref, historical/7d3c59b74550761ff1b58f1fe04b18e241d3e23fd8779b60fb2528289443db7f.ref, historical/d6afaf9eb9ac9998f37ad98937ea6f8c8ba6d4e9c64ea7ec52e5788f0b0f0336.ref
 
 ## APP-033 — Responder a incidentes
 
@@ -487,9 +531,9 @@ Estado: backlog
 
 - [R30] Sem crítico/alto explorável aberto; demais riscos têm dono, decisão e prazo; relatório usa dados sintéticos.
 
-Próxima ação: Revisar requisito R30, sua aplicabilidade e dependências antes da execução; registrar responsável e evidência do marco pertinente.
+Próxima ação: Revisão independente final do candidato message-importance foi interrompida por bloqueio automático possible cybersecurity risk; não repetida/refraseada/contornada. Permanece gate de promoção, além de revisão da montagem conectada e canais reais; testes funcionais59/52 não substituem revisão final.
 
-Evidências: docs/research/INTEGRACAO.md
+Evidências: docs/research/INTEGRACAO.md, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref, historical/92a438e3ab0b44c7dbd85b8313dd4b0f94a1da923a78904c48e69f7cac547382.ref, historical/95715ae39eb95d5d6411c8bf53e4c5e95c23a7f68e26432198ea5d05f6f7a824.ref, historical/749924b8b5ea084bbcd4ddb684217de490694d51c36a9aab85ce774abb93613e.ref, historical/cf8d1436dc34d0a98d0c4eef9076e017cb721e741263b83aeab000b97f1a53b3.ref, historical/c3d792ae76ee9c8600790af30c3813e36d6500120db628181d9bf2bc9dcd0cd0.ref, historical/016a32f1dd6caeccbd22a899e50e265537a8689eb5189ffcdaeec286efb3d534.ref, historical/dc53f98cd3b0155772c01390066776fd1fad0f4ff060b62026cec84ad6456c2f.ref, historical/560e8021cac103e43c73dff601e308bd7eb5664c1ce6d396c2ae99acfc7f4276.ref, historical/390c2fd80c0c7df4b9397b1e634f7be045323163675c44cabe47ef505bc7c268.ref, historical/b887d150f0f9dc680663db247da5e073bcb3272e5798268731c8c80cc638ca34.ref, historical/9b2e9ae1ed944b6ef5e43b38d16827a331cb81aeb1c2291ff41e41fe6ecee44f.ref, historical/e023616d7c6558056728ad429c82298142cbc71885fc0574b2fba7ecbd6a2293.ref, historical/3233d960f2eebdfdbf865b332ab8131d478ce928ed38affe9b179c735c9a639d.ref, historical/ea3ea8fb690b5c6867bc4f265df57d747737e22a79b4a6f0be62ab104601ecad.ref, historical/94acbca12a95e5f824c5ae2d6340563705b9390015b48781aa014aa0fa803e87.ref
 
 ## APP-039 — Preparar privacidade nas lojas
 
@@ -597,10 +641,11 @@ Estado: in_progress
 
 - [R31] Jornadas essenciais completadas com tecnologia assistiva; evidência manual além de scanner; não declarar selo sem avaliação.
 - Cobrir temas padrão, empresarial e pessoal no claro/escuro; conceito visual não substitui testes de jornada no Android
+- Barra de quatro níveis anuncia valor e descrição pelo TalkBack e oferece ação alternativa sem arrasto; fonte2/roles no XML não substituem uso real do leitor.
 
-Próxima ação: Correções locais dos3modais passaram10/10 cenários web320/font1/2: conteúdo rolável, nome acessível e foco contínuo no áudio.13checks fila/opções+37regressões eTypeScript passaram. Próximo: compilar candidato próprio e validar nativo/TalkBack/jornadas completas; não alterar APK distribuído. Seleção apósresize segueAPP-062.
+Próxima ação: Fonte do laboratório de preferências agora declara ícones escuros sobre fundo claro; typecheck passou, mas a correção ainda precisa de inspeção no próximo build nativo pertinente. Evidências fonte2/teclado e controles ajustáveis existem em APP-101/104/105/106/112. Completar TalkBack em uso, aparelho físico/antigo, temas e jornadas conectadas; não declarar acessibilidade integral. APP231 comprovou controles originais em fonte200% no QA offline; runtimeRAM foi reinicializado explicitamente após configuração. Persistência Auth real/configuração, TalkBack e aparelho físico permanecem separados.
 
-Evidências: docs/product/DIRECAO-VISUAL.md, docs/research/INTEGRACAO.md, docs/testing/ESTRATEGIA.md, apps/mobile/App.tsx, docs/testing/ACESSIBILIDADE-MODAIS-0.1.md
+Evidências: docs/product/DIRECAO-VISUAL.md, docs/research/INTEGRACAO.md, docs/testing/ESTRATEGIA.md, apps/mobile/App.tsx, docs/testing/ACESSIBILIDADE-MODAIS-0.1.md, historical/f649e8afd7ccde455bd2a355f185006bb2ecbf0646fd50e5c05811bc280d05a2.ref, historical/ec45ab08385cff67ada656ddedcd8bca1248ddbe1aeeacdc67f15b0327858ae1.ref, historical/81ead72e2b92aaab0c966a81574d6721b9505bc0f694e442b409108873bba81b.ref, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref, historical/7f65c424c89fecb551d8dd3ce05a14ab69c9ad45ba0d390f16cf42a11e028e52.ref, historical/9b2e9ae1ed944b6ef5e43b38d16827a331cb81aeb1c2291ff41e41fe6ecee44f.ref, historical/5cf02a548de6f3bb80c24f8132efc482fcd395d2d3b900321216021ca809e712.ref
 
 ## APP-050 — Implementar indicadores de atendente principal e da última mensagem
 
@@ -626,13 +671,19 @@ Estado: in_progress
 - Preferências por usuário/dispositivo e permissão do sistema tratadas separadamente, sem herança indevida entre contas
 - Importância inicial antes de marcação, renotificação, desmarcação e casos sem atendente são decisões validadas antes de implementar
 
-Próxima ação: Atribuição idempotente de importância só pela equipe e projeção mínima local implementadas; UI permanece demonstração do APK anterior. Próximo: decidir política de evento importante/renotificação, resolver preferências por dispositivo e integrar persistência/API/Android com testes reais.
+Próxima ação: Prioridade adiada até primeiro texto paciente↔empresa conforme decisão de Lucas em09/11; não é dependência desse ensaio. APP148 ligou importância àlease ehost comHTTPfictício (190client/435mobile). Permanecefora dajornadaonline; gatesreviewfinalbloqueada/APP147privacidade/Authreais/promoção. Persistênciaprefs/OS/push/renotificação/importânciaautomática continuam etapas próprias.
 
-Evidências: docs/product/NOTIFICACOES.md, docs/testing/ESTRATEGIA.md, docs/testing/CHAT-LOCAL-0.1.md
+Evidências: docs/product/NOTIFICACOES.md, docs/testing/ESTRATEGIA.md, docs/testing/CHAT-LOCAL-0.1.md, historical/4aa62f82a0be0f6d6433eb41c1c656300120dc416ee5ac31a5f337861d289ff4.ref, historical/e42f154760570e666ee3163a4e9e06be7559c6c631aada1e74dd995ee64c4b52.ref, historical/9b2e9ae1ed944b6ef5e43b38d16827a331cb81aeb1c2291ff41e41fe6ecee44f.ref, historical/3c3a437dd2c6d40c9c146ebf5106163f327280171295247b1c8d70ad5aeff99d.ref, historical/0930b44a956033c25c5ba4ebf8119fd2cf51bb2cf004c9577f8d1dbfd0b67bef.ref
 
 ## APP-052 — Validar e implementar compactação de imagem com prévia e opção original
 
-Estado: backlog
+Estado: in_progress
+
+Prioridade: P0
+
+Responsavel: Assistente Connect
+
+Revisado em: 2026-11-20
 
 - Envio de imagem compactada tem prévia e opção explícita como documento original; não copia parâmetros proprietários do WhatsApp
 - Texto pequeno, QR e códigos de barras fictícios passam por testes de leitura/decodificação antes de fixar parâmetros
@@ -642,9 +693,9 @@ Estado: backlog
 - Compactação no celular antes do upload, em cópia da fonte, com prévia ampliável; original mantém bytes/metadados sem excluir arquivo no aparelho
 - Perfil candidato de resolução mínima/qualidade só é fixado após testes e trade-offs registrados; sombras/desfoque incluídos e atendente pode ampliar/pedir foto melhor
 
-Próxima ação: Após pesquisa técnica, registrar perfil candidato de resolução mínima/qualidade e executar testes sintéticos antes de fixá-lo; compactar no dispositivo antes do envio, com prévia ampliável e original opcional, sem regravar PDF/assinatura.
+Próxima ação: Imagem existente aberta/removida emWeb eAPKfinal; origemprivada,registros eauditoria preservados. Inboxfallbackvalidado; audio restaurado e smokeunicoaprovado. Nao repetiruploads/codec. FinalizarCSP/entregaconjunta33 semampliarempresas.
 
-Evidências: docs/product/ANEXOS-E-IMAGENS.md, docs/testing/ESTRATEGIA.md
+Evidências: docs/product/ANEXOS-E-IMAGENS.md, docs/testing/ESTRATEGIA.md, historical/f2b34b86edd04d60197d7154e32139ec2fe28c67f9ab0bfb5a485403a1bfd6dd.ref, historical/44d451698172622f1224c0f7479851525d82ad96b5da60b561da034719284bb2.ref, historical/0d7785f53ed8a4c85b27350d50453ea529a41ae95410dc301f1abe4ae6841c74.ref, historical/4b152f7496c662b6ab0013f2ae04b4766cb14a08d9f5ffdef22bc4365044ad8b.ref, historical/2b2412c3c4bf9920a5b2fe46bd72b8e725f49c4d4c1cc3c9ad0fcb286635dab1.ref, historical/99285f1233d4e29338cac196cf306908a1e6a70c2e1f2b3849fbdbddf50342a5.ref, historical/57008f5de81b83ee3d83bbdfb806fea8d82088f046ca776026f89e7cdb0a3312.ref, historical/55f8aa394526e3cc8504462fef46901c9d8d41b20469f0c4d98016d529acfff5.ref, historical/9c553d5bb9b65d76a231582db72f4cf635de6b5b2f071a80421c0142a448ed69.ref, historical/93674e0cb7e9d0bf2bade78a7365e31f2c8b89d049be8fd8dc7f5e380c2519fb.ref, historical/202852f0197cb6a4f829a43047d625431d23f0b74f6e9c0935ae618de7ccd89d.ref, historical/d3423762af7a88b18c4a6ff44769c206d078a1f28cd7b76231d68537aa59083e.ref, historical/c4a3a67ad001da8c253278d1742d589a66cd542c17907ee08ba7e3f9c7926672.ref, historical/5043e80d6ca5ecaa6d80c29537a062e5f1c927c2bf97a300548c2456e99d4df4.ref, historical/57d24987b2d685eea2f4f8eb56fb8df178b226af211b594de4811294285c12e5.ref, apps/mobile/src/web-local-image.ts, apps/mobile/src/image-review.ts, apps/mobile/src/image-header-bounds.ts, historical/6748f53816530580cd467afae639f9344f4af701c5a6da62c81df59ad53f6279.ref, historical/63dad97b572f5a37241a0a8233632e483b20d808460e688140f9b90a934c4c1c.ref, historical/54a702ab8ec1d8adc365fb4401de93fabab177622d21a6694ca1374f3a675e48.ref, historical/abd3f4b3f8237b79407610400bc0bdc7f259b81823cba2048dee29811f04d5ad.ref, apps/mobile/src/scoped-image-review-host.ts, apps/mobile/src/ScopedImageComposer.tsx, apps/mobile/src/read-local-image-header.ts, historical/3a0b7dc1fa7f393856d58251f7dd3c4576836e6abdd676a86fa51c5b02afd157.ref, historical/8abd4091ea8bae6091ce52cd075b0e694e92f31ee654d1fc4b4e455c336617d0.ref, historical/4416e2191e91ce3b66709b6a7eb286865afbb4fb1f6e7ba7f2dc6d56d31b70e9.ref, historical/35ddc9e7bac8f185e476fbe125fd6bb2e6c0dc0a6f7c23f6ce3d0bfa3f25f9b4.ref, historical/3e048693c8b594735ca04e82d1f6597a992806ebca93c9cb95277a3efbf7efe9.ref, historical/8046d808595ed87083df7a0159e7e7d26d48a3a7e4f692491e8e00dd914b84ae.ref, historical/9deecf499f5dc614b43a1f86c58a4b38ad14a0d3739ab515face4bd20acb1534.ref, historical/c3c2ef7d978843596dcd2f0dd38b9301dc70efa3ffac2a7b01eab39d6d31631d.ref, packages/chat/src/image-ffmpeg-inspector.ts, historical/d16097e1877eadfb8753913a08e6620b510bc0a3768ac0ef1de6f7999e4d8635.ref, historical/add6bd5f38109be760ba40827c4b0a1e89522ba70a07b235db824cbae76360b7.ref, historical/a9c4137d4622141378a1e215ea8c8529299eb03b3c6669688ff57cc438153c37.ref, historical/5bae138f62d4a4d1cca9d5f4c104d642b8f106521b267a9549fb2af84194af66.ref, historical/1d5d077d4dca023c07e6a54826cc63296bbd9ecddd2ea6a04ac2bbdade8ec58c.ref, historical/809a9b8fa6660fdff12ad2f7eb0711a966bf3638109db57f927a570619c2381d.ref, historical/79096f74cf7217af29691c64b97259ac28689e4c2871e4659e766770d912b758.ref, historical/f6b795fcd3287a6fbbf805e50003708b719fda0f0ab9ae3837a23f9f54852d5b.ref, historical/6d5a4cfef7f23b2ff28dba21114a8c360849ec4cced6257194335081a9888b29.ref, historical/d8d99fe7de4f445d64c3377996bbcf8962a3d32b56392d888c5662bb9038c7a7.ref, packages/chat-client/src/image-contract.ts, packages/chat-client/src/image-transfer.ts, packages/chat/src/image-private-read.ts, packages/chat/src/image-transfer-handler.ts, apps/mobile/src/scoped-reviewed-image.ts, apps/mobile/src/conversation-image-read.ts, apps/mobile/src/PrivateImageMessage.tsx, apps/mobile/src/web-received-image.ts, apps/mobile/src/expo-received-image.ts, apps/mobile/src/received-image-cache-sweep.ts, apps/mobile/src/RecentConversationView.tsx, apps/mobile/src/LocalImagePreviewView.tsx, packages/chat-client/src/message-content.ts, packages/chat-client/src/history-window.ts, packages/chat-client/src/recent-history-read.ts, packages/chat-client/src/text-session-channel.ts, historical/8e9cc38c7980f07c125b75b7e85f7045003cf2cdf9007bf494b0b5de86e3cd36.ref, historical/8b0a6d66a6d4a34d9c3c25d5447e74e4a54b2c65fb96fe72ec2cea453c75815d.ref, historical/a22c25835a5269bc3b666a2fd05a60a9c16ccaac93364f545cd99cc0220a53ca.ref, historical/fdfaea2590c3a73de5254036c9191157d63402ee93b026e07a9f1c9e7e2ca5f3.ref, historical/81cd86cd943f5c81ec6a7f7aaed6888cafff4fd98a7e9b2342a047986aec6933.ref, historical/b70a0f89ebfca7640fc2d8ab45bdd2199dd763416cb2f3c497f290dfd1d09461.ref, historical/3734ad58dadbc72d5ab4d9c91e630d62f456a40acc495c23e14b0a8269466579.ref, historical/aa8f52b1efd2b00b9fe9cc9f4eaa6c1177c0c18b3dd1ce5c1c56609e1508921d.ref, historical/a469adadc8183b3155cc0c42ce22a702c6241a6cfd920dce1ee7900671d9f7c3.ref, historical/e8e54e02c96efea1df5a8559cddb946612d9d0b214dabc328eed2e463ef7fa8d.ref, historical/5dbc27afe4cbcd31ee1dcc95f40ae54f544534fda12a6e2c31bb9bc710352e7a.ref, historical/962c0445af17d3771b67b8276507b1efa4ede14eda42d0f50721e94c411c1a15.ref, historical/7e723f7486a9b61343108385bc9db98bbfe5b0a4b0522dd6b3d296d638b7b164.ref, historical/fe9035c4816936ccfd035ff79580cd0992bc98f8193e4adabf578fb223413032.ref, historical/6020dce052dbbf74be067ddd87179b962397e3b5000d645f3fddaced12255cd9.ref, historical/690b7b9b33deabeba86371cbb16d0bf88a08430d0386b001c9130d63bad35e11.ref, historical/160058cc1509e3c25c3d16346eaa5d7c9b5ec80f0f2366adea4496790763e715.ref, historical/b1a95dc6ad919f40ef28d0c88b44a4940863175cef4b63bfffa130a782bdbbd3.ref, historical/a8f1571472aabf0546296db898f32eb61fb6a94cceed98baa060210d8a7f7e7b.ref, packages/chat/src/image-sql-executor.ts, packages/chat/src/image-private-storage.ts, packages/chat/src/image-s3-read.ts, packages/chat/src/image-backend-session.ts, packages/chat/src/image-backend-factory.ts, historical/0e245c73a8ccd21bc1cc3e9d74a3eac77564747ff8aae79adc954d6c499c68f1.ref, supabase/candidates/image-message/catalog.LOCAL.sql, historical/dc6895bbac9aaa68226839ab9127a29757f16fe95024f1902a9f3086a4bbcc86.ref, historical/794e16ed3bca027065dc59ae2a61114a21ed6cec6100ef071baee0e08122a2fb.ref, historical/ed16e3f801423ae1c01a49227bf09c579bdb512f1be07a62141708b54582658c.ref, historical/54c9353bdb27a7151cb415f9491fd781a79dc2182a173b1d24b9dd6e86d4e5e4.ref, historical/7e34b4ded3551f10e9e58a2c1e4764dda55c84d2564d4120266627b2f344b9fe.ref, historical/708b54eb0c9faedaec680b9a671b3326d31951d45391f6ed9f1c43701df74c0e.ref, historical/98aecf57c4b7f7bf7ae6beec3378958c71d2facee0c56a595e6a7d117d20959b.ref, historical/3dfcc64316c2a2f58bbf1ecb294a3c59b05cda4a078aab2ae4175a200188689b.ref, historical/9f3505e7f798a59d9291c7c649bd5f287670e987462499ed7ac4a1e9c6cd3560.ref, supabase/candidates/image-message/worker-policies.LOCAL.sql, supabase/candidates/image-message/compile-worker-protected.mjs, historical/deae97572671bf091549fe85c7753dfb5c68e60118e2b0d43aedbae684e15d70.ref, historical/f654e9ba7d64ade7b661e6dca5208997c02581ca1a6ff81d2c672c4af894572d.ref, historical/2462b2d6a77ade70faa275bc7867fd16c2627aeef0a0cfe52d432ecabfcbdd42.ref, historical/95a9b1b8b8187bb0ec468d86c80b1a6b159ddf78e32e30dbb01e0d0d7862475e.ref, supabase/candidates/image-message/install-WORKER-CLOSED.LOCAL.sql, supabase/candidates/image-message/rollback-WORKER-PRESERVE-DATA.LOCAL.sql, supabase/candidates/image-message/activate-STORAGE-POLICIES.LOCAL.sql, historical/69612ea76c7b3f96393a2f05194e7861c12d3dc5c012beb4defaf3d6320b30c6.ref, historical/f41f5210b8b7c6cf97659b9882fb9fe3aebb86e312ba6bbac6bb3291924efe95.ref, historical/a7b008b0f91a53692a692c10b76ddfb3bef896753ab3764d00ba39615569543b.ref, historical/114be70e9fc426b1b2f039f221864990566d73bc429a671d84bd2bcac696b096.ref, historical/2f17d777a41e3e618625b2d0ab83549b4bd7442058f882ff51113f3d4d3b307d.ref, historical/e25c40e42913a6c1fedf6218b42d2ac6494d2a45b7915f331f2e3300bb6322d4.ref, historical/12ff751985ff1822215ab7b18a67f065b403bd2aecea2b402133d8110ddd198d.ref, historical/36bf9bda5ff216ebe37124c7547ebef30fba51b4768c51a2410de958faa53a02.ref, supabase/candidates/image-message/compile-combined-closed.mjs, historical/50140fd8a37fa69c2b0e002eb6f071f673a18f8b26188e1a47796f7ddbb83257.ref, historical/1d8421a68ddaf2c4ca26e15c66775fc24e0d27211d09d893c76b9c5c63dc0478.ref, historical/3138f8782372c19105992c24f02859c262ac9a068a898c70a57b28433a38d6f8.ref, historical/0b723a4ec7262f6e695c498e3d4a32ea6c2afc36715614b2b3bf48b166920c54.ref, historical/e6a4d7f5203e2f575f390f718935fb4c1ee56d579afb5196d847ca46613ccb05.ref, historical/fba8f26fd7513b209dd86124d5d5497f9df46044ae5893793d101cbddf09eea7.ref, historical/9137ea0409143fd943bc309b7d95847fc96ced059f2f24a3d641430977683837.ref, historical/9e3752906f8769ca2f813f007cdce4e06815dccc33f8de7a1e0acb4dc791188e.ref, historical/d2dc6942b0c4bd33de2871e1c6d94377ecf9840514cd99ca15d1699dde72b656.ref, historical/480aecc73ce3ad71343812842a2eb85368a860d4be6f1afe2a020514618745ee.ref, historical/6bfbd6402e658a566c27787c6539914802a9a57eb8b15f0d52ea5c10d2364f47.ref, historical/0bb839404f90a79d26b9e8242ecb6e6fc6e130b64b45ed9f36c6db5f9f68a774.ref, historical/a03e419b69458e4c20b29b96f11844f37167d0a49a6421fb34eb600303b748a7.ref, historical/508ffe894d19015371236382b3782b934aa594617e3af8f721de6ded32dca4aa.ref, historical/8aae0baea6d4a8b04c1a1c1bdf3720fe4083f061c3ed0f2432dbd26c8a0d3f4d.ref, historical/ae94bc63d2ff7415cc8c064ee607d174700d1d56fd9a6007e902a802582fd2f8.ref, historical/5f24e8175de98dc7329093d42440f81ecea7c5cc91ea2eff5a6fc0082074b6d6.ref, supabase/runtime/image-node/inspection-executor.mjs, historical/09b5334895460694b615ef8e5f20f0765e7e99e3bfade70fa06dda16b866d304.ref, historical/a20fcb4037baab8300b0d43d98e82f14d096982c70e3878f08edc41310ed76c5.ref, historical/071b3346b53a59d0fe439b626c4eafc6f8194382d8ab00eb886fa1bb8321ad63.ref, historical/8a6c7046da59818c21f741bff4295886aef852430ffda2f5c2cd2f9916c16305.ref, historical/24a015f2050c9f89477bb49f98dc5b2bb13e10e15f5b35e7877f85ebb894d3c9.ref, historical/07f46a771238f5aef23f31d55f0c4c8cb1821e5d6283466bdca96c8bdc69b2e9.ref, supabase/runtime/image-node/linux-image.lock.json, historical/e22fd74e26cb30c23dc07d0d575905cee1ca97b9a7a5f7c2e94752f2fe378ce7.ref, historical/b5d35ce104d2a35dc14b55763ee89fa862b0a61108c2cfbcf34ac9ab63fda75a.ref, historical/870936d70f9ec1b0345e39d2f63cf2e80294385f18b42807d08521d775752c23.ref, historical/b1ac8468e2c38c76d03935e4db2eb958e81c24addfa6be19c1b6820e795bd82f.ref, historical/83541fd62f2869fa1ce2c5d49f763a3b66b04336a5f1796e8774a9bbf7767a9a.ref, historical/843d0a2769e59db98816d123957090ac39e7b6d041b842560ba23e3b5fbb7acb.ref, historical/287828358341c14d4d8531197d79468015986cd65b0bde58740265aac76c76f0.ref, apps/mobile/tests/conversation-image-read.test.ts, historical/f3df64cdd216fecd61217d0c57637327ca011e935cb5058f05bcb9d58ab4faac.ref, historical/10c77aeedb31286ac050c81ffc0a5e35ad363b647a28f4a311b14c4b238e5788.ref, historical/f5d0bbe73ffd841d8bbf3f967541731868c535206ee7db8edab709e77ad919f7.ref, historical/1ec4a29e63091a6fce8d4ce7a58b2dc95eb958f321d460a5406c52de2b12a317.ref, historical/c58c8e4bf9da57eca101c80d2d5dc84246a03d905d6e154f630c54ba07d8c36f.ref, historical/4b635edfbe6edbaed8f179465bd6ff438f914539e38d949fe6e71bca3da04649.ref, historical/e7f0da245cbfec54d317de492e2984ad3c4e66eb78e87290f5f3e7e45753f20b.ref, historical/67e68789170730e560ef38b8338f431f6af096e64a2e13b2e016fa366210020c.ref, historical/bd248caec382a1f30c9ee0400bc010c8c8c3435a623953e3ab0f02758c88ee5e.ref, historical/8659ac9c7fda6dec95a05f95a9fa1ccf925a0f68cdc6ff028942ecc6125c0de9.ref, historical/0c899f699e725fd2805b3c534bdd16dc57d2bd570777b8cbeace82aa15ffb584.ref, historical/cd578efc1372529ae32dc52e20eb2febaa30d4bf4ec9366f03fdafd8df50eb7b.ref, historical/fb8fbc828d852b753fd96fd9b8dd7bf65892535ea041f5b4ca1ade2ea365993f.ref, historical/78a033bec419565a626ec9525c31f24ecdfb51c35d76451aa24408f8e792c239.ref, historical/d221e499a24d1e29272d45d9d90c26d5874591bdc7df74d948578564ca10590f.ref, historical/786e1f1c95c409ed47f7b15bc314db664f3130bc4017768ab26c81d5220a8e0e.ref, historical/bbfc36ee7fd50990d4c39aafac10fcbf27ce7a29563a20b7510db34078aec0a0.ref, historical/9e0ee1104714b6fb072e0cd5071e1b5a6eec8fefc4149cd6d83ca07a82ea2877.ref, historical/1cca0d0a6825059d86f59a7944aec035bdcd322b70016859dc0a9fd30f970b87.ref, historical/4987ec5d4cedf1255d069e4536982b16ee026dd6880eb8b5a40995e52eaf5370.ref, historical/ee6531589b2dd64b0db4dc0ae629c1355dab21ebabfcd23e1338b3d8e05ddd33.ref, historical/31d00990a87274f82cdd857c7b57084feb8ae3a81ce30541ce26d8d763162d6a.ref, historical/bb6d1f226e6f1fd471c444d0f27240e817701b2f595a044eb6d86f2c6c54abd3.ref, historical/b2b707c70659bd2494474ce9564cd7abd8ada6c424cd8689371942d8db51da9a.ref, historical/89ac6d26102fb91b87046ebe827eb284671270c565f9340948df19570cc5e294.ref, historical/8d2b14976f1b1ed1771611cfb6e465ae615132527f8a54c8a098f751350e4af6.ref, historical/9ef56871ee4c7f1d610202b4deb968a4d41acdc327dc76dded4466617596fe14.ref, historical/2fd2b69b505c0ea106cb4ed58bf7fb4b10298eb7c3ad7e6078eb2e012f3a7eff.ref, supabase/candidates/image-message/exact-inspector-scope.LOCAL.sql, supabase/candidates/image-message/compile-exact-inspector-scope.mjs, historical/4fad6bd0a1ec4cd7e69dbe72a898efcc7d10442594325f88d527aa1193eaec05.ref, historical/916438687d477012ae6317ccc8f71a4bfb626b388ae7204f4618e6a39ed5d665.ref, historical/ff201b2e79c32273e0546177a1a1ff9bae447511ede87bde3240f46dbe56448f.ref, historical/8b162948b0a4c207875da103a1e4d2d35593729c098d750e733929ba491c0e6e.ref, historical/bfbadf36ca64e1bedf3d415cc943a0e5f05e3ca439718b9966ce018ad23ae28c.ref, historical/3bece0c96b441984288f63efd4417e365b2017fdb2b5685b8428136ea9dc209e.ref, historical/26e9a9cdcf1517e9ec091565d6ccb1181823fe757abb16d3ca372752e783c0e3.ref, historical/33b2f5bd9da5420c0ded9a9ca15175578f148a1610ea73f624361341b4c2c3d3.ref, historical/d5837cf02330d944ffbc59512ea42f7d2d1ee0046e254c01c08ef83a9288b760.ref, historical/164c71b65bdfeeaad6cab6d3f64b834c46266b7119e0c98d2ef5447dd24938c0.ref, historical/18c8fa075d5c97e6c47702d8ee0245019658e86675a8dddbccfda55b664b4caf.ref, historical/d58f77026edc41a471bad531161ef94f565db9414bae43f928239c8fe3ee0e71.ref, historical/6c4d2de6973c1af7fd1e21511a9f2426d90c37117267c74cf099be4ff89df684.ref, historical/92904ef112423599f462874025b24b4c0d205b327618e953b47b9902e02c9fc4.ref, historical/3b0c9f3d0a18d8e6749092a66ef91fcf7bb8ae95dab74b9e5356129b65750ea3.ref, historical/d25facf38b36f2608a3ab2e663bf4680aab29232f80575137c53492ee73d1214.ref, historical/bffedabb684f2f22f4d97650a237e337aa3162931e7c1d7fc143ae12077f61f1.ref, historical/e0f3a76624552c2b5b1d0002114daf5e870c474d51ccc7e003cf2ad6ba5a307d.ref, historical/f05f5c0e0fc2d7d4648fcf35419e8695ec781086abeeb60aee3269f6ba7c69e5.ref, historical/6e68c13c867d410642cd27ee1642d9d9971a9d480871ef5e05f2ba0d1eebf353.ref, historical/c2d9ad749e8e7060d7f3099436edc45ec70f0bd2eaafbcf8f2d993425fcb95c3.ref, historical/cb171afbbf069e5914907bb9385f7c9367a75d0ff798c9331389a9c29d1532e0.ref, historical/99f0a09ce2e16769a5e970aa34b11a692dcca176457c1a01e867d3e9e4525f82.ref, historical/c91da1b9eec1fed5a1d0c634954cf1b3bb8a3fd830c3a4be6168681efe669b68.ref, historical/fc0c6c601edd215452ec006e2ca09e02937178ddf96812d78584d9785904adc4.ref, historical/5c0427f033740360d0896322769f4ad0e84af91a6f2dae6eeecfc373ffb7ed1c.ref, historical/f50d1b07b38adbc850d101a2846a84831d7850868344d6def1986b960415d372.ref, historical/649ce71766a91fbc74ed9fd0985571710f4131f0950d06bc7d59f3bde3f45ca0.ref, historical/09460148b141fbead6d4069780be9183a248989d64890d97e307ec25bfa7842e.ref, historical/db7c4d9eae0442f911d3529e81ea62cf993e5a4de5449c1355c840681d2432c4.ref, historical/1581a72b3792e84e6d8f611093f2771b4d6408778b67c9474d34c61b3191073a.ref, historical/4d5f181614d9f6919f4ac99725ff176d369f022daddd5d7370e3b848f94ef744.ref, historical/9e0333f546501a41acd49ef00588ef3ed88c1574846df180bb5853e6a6902b63.ref, historical/447d4ddeb8d32c076c6099f67606f161b2b7c6abc57e4c8bc000537bf9f9c115.ref, historical/55730a9b8ac138da91e00080eb6c0fd863db7430887d4848f9ea19a77b5e98a1.ref, historical/d365b3e54aab1c901478418b54822c9eda58f6b2e3e23b1b2341f37d214b975e.ref, historical/84e6f00e8444d74dc97694ea317c902f315f285d69e7ad473f75e29966ee47b3.ref, historical/3ff71dbf1e0aa9b5a008cee69cb70c3f5ef16be8f09aac2ecf826b378f8ee194.ref, historical/c09f1f0edb9b88fc510efcfa28bbc911fcbfe6ef9100460d83309fcdedc90a4d.ref, historical/b5b56e0d05068a38cbf9d53625af9c3572d4030348ef3cbedd41a9fb380beded.ref, historical/27268cdee5f6951fb4b05bd6fd092e7c5e354ed30b5b71cbfce147e20717b2fa.ref, historical/45fee5cdf8c44014d5c43ae4c9fa1ff81c881e697e4447cfc17ad7a180f60991.ref, historical/51623db036656fee2ac5f4091688362a4697e807a57b21ba9251eb4c8a45b6db.ref, historical/a3c610265b34073687ba4eeaf2794001a736756e6acd77c608695ea3ac47705b.ref, historical/a2be601eb35863457d67ef887582c9defba9f2c0413a5f644961bc88d9821531.ref, historical/08a5c4a62dd0e12da65d5eafefdc8a0f8cb6bfb307a6ad228f54a0e9fd1ae251.ref, historical/48cc5b001700f05848ca7b0857ef9a51cd1eba9f74b0d77d2f582e389fe27fe2.ref, historical/d9b155e160ea3a07d75118f9a9d9cb66a70c27c718a8921d7f9281887edb641c.ref, historical/38ad68676445afe3729afe2d92157bd5a74932f11739cb84a581d34c43df8446.ref, historical/06e916a04cf6a01c5719ecfa78491b8f4010b5504050fd9601647cfadf7ff057.ref, historical/5ca114a050726ba7db54d59d9cc60919fdf6d7769c60617ae98e9672753ac970.ref, historical/d5e52331e3f244506a3aec5f6c7acd9fac1996c6cad790c309dcb3e8bfc62b35.ref, historical/e5116a8c9381a1237b84d3d10f8d81b781e270e6220b8730618621134881095f.ref, historical/8b8b0ed0ede77df871238a9509090dd7181fd5d3bd50bed9fc0b2432cbfdcedb.ref, historical/69535856e8158af94ad89577e24bd33773f7aa3f2406c904ad2c2eab84a4e504.ref, historical/2c7a3e1992c9f172bb335dcb9457130a8f52d7428c2f426479f6a442e6db12e0.ref, historical/bfc3bfeb1ce0f652138442b017eddc961ce3ae8510d90c9118a12db533aafa77.ref, historical/f4e072bd5712039011bc2d74940ed0c816dc7a0ca888059a3f7e93730141957a.ref, historical/18f53396b0dd88eadf43b7411efaafd4b753432b9777ea4fdde67cfe986672bd.ref, historical/70f866dc4cd11c29caf3ec7a92196af419d257061f25c259e40afd61b9f2f386.ref, historical/292c6c3b58ab7e60ab755dc2aed78e1849de2fb4a1b557b26becd62c78e179af.ref, historical/bd1a2b1e5b9756872761e4fc9dddef4d558c9c6eab35ea09e10c3cda28ebb577.ref, historical/bef717324f1cbabb5000ea0fdbee89ae469a6a7c491873eef7521eefb6290ff6.ref, historical/adad37303134ae4a184d45e82ed16ece394899431fe977bf5ab6bcde8afd70d4.ref, historical/996798e08fa047c75bd911628b1bb55457d63caf0445b7b590d1faee2a1bc49b.ref, historical/31778b6a844454030bff30cc19fc7b0637366de37ffb86fff71a60e584404d18.ref, historical/f5a10994bdfe981775128be829cc5806f6380f2023e7aa220b76e9607bd93999.ref, historical/a1e585d664f857ed4e8392120fa274814f4be4554e3ba79f4a61da5145531a79.ref, historical/8d0d401108143469d71f2cff5e46c5648030ea3b6c9fd9e7e4b666b75c44bbfd.ref, historical/327aa3bea684b163d2a6ee0547967e2b5e7dce957a1e820d6407441ccf487375.ref, historical/b4269a840ec011bc286d627b0fb665fcc83fadcf2582b6a44040df99c98abffe.ref, historical/22b2cd6f442e59670443a905ffeab07bebc26ae69a1a6dbcb97c11e99cfd671c.ref, historical/f07a0e87093b19abf770086756cdbe501e9b3a7d84de6e8a61a287b244023b5e.ref, historical/62c1b60dbe0013a5294794e47862401d2fda94426042c13448a2fdb1559fc3b1.ref, historical/65f0fa7f38c8b9deeebd983882419e19b2bcbf2bd2886c8ee7721722c2981da9.ref, historical/d786870c232093382abfd90e3dff6687cb0482eb66868c4bfc12d97c4918cf39.ref, historical/ea4cfd52b6891b6de545c218b994473bc5a4056ee79f0c2afe7d5a34f3d6651c.ref, historical/feb828b1447aa65672b9be30cbd488cbe0fc549798bcee0b53c42d211bda905b.ref, historical/403f28d8d7624ab5daffb62b5c14f75542b324678ec51847e82111870db056a5.ref, historical/9ef9d8135506a0a81d650fca327f91a4dd8e57ec8ffb02e83dda15a0eae50063.ref, historical/fceaaa0058511b9e45706cc76d6294aadc2cb7945635afbe31c55b29a686c940.ref, historical/223c5fce2b6774488e5858e2949768cafbe2c0976945da6a6791729a92519f51.ref, packages/chat/src/image-edge-runtime.ts, historical/6d895533ca1344883627578873d885d273076d8d209f87cc8b846ff8626b4137.ref, historical/232e66e38f54fe77ea9f262e0e87e6f8d16564ba9ebdd6f27f5c67356f68f9bc.ref, historical/6b324c237c79d315ffd0ed09941eb836549c16430ce1a79f4beab4d9bd6e05ef.ref, historical/c96b2a11ef99073121403b496d7e1d810d7bf35b7f60655eff73f2765fe130e4.ref, historical/d6cc243503ff6fe53b49a8b689a49df8b70ee877454676b14d8595196e8f8e54.ref, historical/67377ad829de961541e671df74a8bc93e42879a9fbaaa3508177392b88be1c92.ref, historical/3b03e6dc0a2f8effa808d6894b93694e426644c7754183a3089716d5c92c7007.ref, historical/16c19754c15fb23e5de7fc5cc056b94e0a8ad52300abea6b785f35592c9c17f8.ref, historical/cc28b325703b1f783bd7494c649cf6d519ab6219488c2209a4f76a8dfebb5d94.ref, historical/7dddd7175397a22e325371f8696bf99fc4e3238c2a6125cd62bcd96bc5bd9fd0.ref, historical/b5acbf6e77cc0b2018fdb03c88f0ecfde89591f42c4957cf838ea6645367ba67.ref, historical/9f1f048611a5a42c5e972d2024a2aca16480b4878005c2664c49dcc0997d7bca.ref, historical/e7c7da1e6aa8fb74ea97b747d82bb148fc6795dd9eb3f42af843a85ab98e9d7b.ref, historical/5a49d0fa659ef02f2d085d9ba34ac163406b8a574994d02f152133ff5392bcc1.ref, historical/34dac49bb1eb683ddb092b65ad63edcbdf74e70b584d2ef79590b85336b9d533.ref, historical/285460ac5877ded4474405fae6d86128571f01794ab6e3d9c87659d342023aef.ref, historical/10630f07ee0f2f619cd5981aabfdc0730edecdea05fbd7a6302561c96a3eb78a.ref, historical/5299fdd1bc8690d1fcd02f528841d922fa439eb6e269758ce03eac742596b0c0.ref, historical/664a5a853363d5e6d6b2ef6992a0a6300ff9e99a5a4bff06666613857f7f4e4d.ref, historical/9d6a58cde3ce94cfa926c366d14f9650c26df73eb28275d3d730233fd31316c3.ref, historical/75a15444faf147c25d683bcd80e906a1824c883a9955b81579ee40c91d1bc2b4.ref, historical/f636c87e537543a072f158ec924834042b1b63b0172896dbbe5b317da58a46ca.ref, historical/3e6ad65f5b331ca98624c14503217a3b0f2e49f6d863707d31fe06ba64b43de3.ref, historical/f4803ba5171db2a736c3cb115d9f7e709f403c9043dca7a033428cd81e39f01e.ref, historical/91d2bf861a1790862a40c5197aee85ad333a3e0a133e6eb1d351329a469f1aef.ref, historical/9faf58208a3444f5d60d2b137a1df9d7748bb56949c885a4666511a2f50c30e2.ref, historical/bb6a044fd94d05f06e622aaafb2b0bae28fc48ee44a99f2225afb5781b7d4e1f.ref, historical/c0b4c20901ea649ecf4968bf37cacf3f23be851d9963eb114dba5f273f85a293.ref, historical/3d84e58ddb6712cfa4042e6ddb02dd01c7acb835f2a74bef3590f3ad1a1ebbd3.ref, historical/057a3d95b5c90d0b4920403ba35b9fb6644c99859f1003ee42a009394a532b3a.ref, historical/1198a3481306c0aa7ff82b43c232f4649125528e884a8461184108dfef1e8d78.ref, historical/17d781108fda7d8dd27d5b8ff18b06c026c5f357cc597f3259093ae7fdad1a32.ref, historical/b52955744d6b220d71062e669b5d9adc08f9e96c667946af292c2a63d608c212.ref, historical/2adfdfd04ee5c53311a8265a77ae86c12dc4d2262580f92952dd8d07876b67e1.ref, historical/d5516c5edc350922f49cd07bcd7bddcf9a380d75bde030d4f24a8ad7e085091e.ref, historical/9c29d80b8cf5d7af4b3f2800340b1dbbedda9665f3feb7c19e7fa51f71f8b683.ref, historical/4d2b82e92e59b6db4ef79d4914fb8b8d80dff8babbbb3a05dbe303aac4503199.ref, historical/bf5fcc66eeea1cb786ef71259dcc9035198c58710b70f2b5681f463209102bd2.ref, historical/374467b9657a873e06878ae4f926e30e4eb3fda2d446e0960c14eb06a496fab4.ref, historical/29edd55351b941e6b3e1a70b5db5dbc4e280066bb0d10ac2b06a4ecfc898f53a.ref, historical/f5fe5705e5f979a6b919c2db0e76cd1f2798f90c4835d1d1c7468cfc5dd8baba.ref, historical/469eda6b0c2af369a8c284781836e10b8ae13ce4bfdade41758d5cd1e273f138.ref, historical/3b86d3585b1984128b13703d72d73185f9ce2d15b99f57302a6e226661cda291.ref, historical/364ebebb280a22d88edc124da901956d0431c102e6b39556f98ac8c200748fa0.ref, historical/01189d4cb9be5070695ba1bd7d963d4313ae2ee9ec8a0cdef576e3474eb1f345.ref, historical/8a4df807ab024fd665ab9f5893036d961e7e5c81f589736ac868b07ba6c1ca4c.ref, historical/2beac1ef6143a2326830f9266793713766ca4da05cbf5fd083389244265f1cd0.ref, historical/ba0a8e788b81f277db14e3584f8b9246c0b2c25bc76549af4fc7b1d54bd0fa3f.ref, historical/af38c82ea49c5fb12028ef8e9414768a6a4124afcc36907438d85fd25d6d41da.ref, historical/339def25f1da93fa826dc49d2269ce491010a8ac405d126e6554677b9c0f4e51.ref, historical/59c805f186f88c2874ac3efeae5a7553327b38a8ffe0f6d460d4af94e5018a08.ref, historical/202dd54d0510ca79641235b700f53fe3a895cb10a88ef03429710b20379ea396.ref, historical/4fe6aeaaae83b9faec8a83664f63c6d822d647f0285f38818f74392df31529fb.ref, historical/14fbb568c8cce938e5ff8b27ef07ee7d96fbcd26f5c0f6b3c0dd109a508a7d7f.ref, historical/40dbfe1c7549f9da95436c67252b16c5f3294101da973ce2625d30f1e0dca380.ref, historical/d88f756f23eb8780014cbc8ca7bd4eaabeebca28333551d7be59040fdd9b4264.ref, historical/25879a652f3eb3f74b1311c124a17fccc9ef1541fdd748eb86c635735b6bfb34.ref, historical/343b3b115694541698dc9370c676e8876c047421b0c3c0c88634d16c89e26633.ref, historical/1ca04da1a99e92901a119ada713b065690bd9a4e464bed4c0cc0ad717f800c36.ref, historical/ebcea6ab25eb5d8db4ebfb8470e8e86a1d95cd67b4714537a139609b81a4f80c.ref, historical/52b13f9105aba6635d571ff69a2f682fb303e285c53bcfdd8413b092da9546f3.ref, historical/cedd683187523b68877104dfbf7737d37815afc00b5206a21f05d8b7bce647e0.ref, historical/cac155ebb61cb424996577cdf9b13cc09bdf56123895e5ccc01b9fcd2420fd58.ref, historical/1a66f772ab2ef5680626d911ef9ed65986599d8b16438ec9696854c7b33996dd.ref, historical/b9803479238a7219b7280227a282ec67fe74dde44857b525c8f0fd777494ceea.ref, historical/1fd12e4ac522094acd7f34ea229fa46b71421ede284f6eeb1dcdf18581d80caa.ref, historical/e12deb727c2304dacc19a164d7346b99db41449538263db3587b842f1bd07532.ref, historical/a64b7f1b44147a0869e234bb16138f6e0162af66254c973d440579f674870d15.ref, historical/6cdcd97e2da78ee1b103644a84bbd2f7bc47278d403265661ad3f501885b3e85.ref, historical/c8f9be44a2a4c1353db6df585248872441481554c42eb13adda9ebb19efb1749.ref, historical/2ea5bb7132fffbb55af47f79cfe58d45ad04e9a772d3e7bb3154485366fa57b0.ref, historical/5beefb94911f696796d866e54a64fa58cd9591de4db3c4fafc0f25c79ea907bf.ref, historical/e7128debb16a1d7cedf26226d914a44acdc8a9a0ee8847e1fe5755bd9290c900.ref, historical/ab4582961aeb61eacf18246ba93613735dba1c26de78dda7b0eea6a64a6dabb3.ref, historical/f39709e38e9e9f38f224e0eaaa18492565da2f98da14762a89ee8fc6c82270c2.ref, historical/c28e925e0102688401b84d54dfe1194ccfdfa9913cd33bef116296daa30aab16.ref, historical/0ed29f07f3666dbc5b417a250a334c01719faa27f62ab061093557500a236bd3.ref, historical/4f34bdae059400685f5ab8fa4bb62adc5d3cfb3fe5d6b81510fe985ff04f9e29.ref, historical/ae0bba25f66526b4b5788a45d0865412c230b76919f38628abe8a45e8344e806.ref, historical/f6d0eb749c8611088567e7fc4ec60bdf42c6bd4704d9bb630eec2b63c517b607.ref, historical/bd6f21a797b5719ee9c4e556c0f109382765dce31f87b404179299f9c4871804.ref, historical/79409b3445d16c439e7c51c38db1d0c70c44a124a4377e03ed89c5c4221406c6.ref, historical/64bf8be5adbb58b08806f730a38c9e1e098ef5dea632e22df2928ad9c6a6feb8.ref, historical/6b606ca11317cefc4134bcb4bc3b2e42ce4178bec0ce8a1eff704b1a429e63de.ref, historical/272d127fdca4dce7d86de265e5a3539962bccbdb8a2e27669940b490d31fc934.ref, historical/d4dc46c0fbb73bf87c76aaf379bea2fd9e24acca76509efa14bf8e7cd63faa3c.ref, historical/1a9778f99879fc2711d8b9eff64b37381728731b6964c180d5c0b4099e2454e1.ref, historical/5372658a264ae7ce90d584d3cf2e7c60cc75e0e45201d92cb5cff4745d19240f.ref, historical/22f2677e413a27d32b4f2d83ba7e994e064dc94f0c0147c721b0e2f442bca4fc.ref, historical/7985cb2c4aa0846dbeaf7e6e2de80440ca4f40cbabcc65c37941b7585664c16e.ref, historical/c31d72632b5a266e1eb0044f931ffdd4f97c63251c20cd7a0497262f0fd3c5ee.ref, historical/4084ecadefb91939dbbda9f41a54da86e965dec1afa4311910cdca225f64d2d6.ref, historical/35545cee045e2d85bbd16079bb82c621a75050f0170fb54601af3eab5c32ca45.ref, packages/chat-client/src/image-upload-reconciliation.ts, historical/2561551e053ac897b419ff98e2c1dfb103ee6b0fd1045cfd73ec25252ed3b521.ref, historical/816ef08fd3b80cf359cc1093038bba25d257cc418a45031b770ae95ddf48753e.ref, historical/29f2da607af4410bc158ed776f86f03a4b67cc8b037d3ff7f159f9e62e820781.ref, historical/ec9e1c0dab2223346317f999d8041436298f8c298fb284d8263b581118981369.ref, historical/1a64852f3d39ca49078698fbfbc3d8b4d2aedbc454d2a6c3a1eb9bd9fe277c0f.ref, historical/637dd22f766c40391f6bdb54dc81c01dd2db529766fa70d700cc297c9c58f36a.ref, historical/c4050d8589bb11936f57349a055ea24e927cb0c10745d4e7cb9570f265dc5e0f.ref, historical/ae32cdf3fe05566802323901791f9c6075148b909062b73310c53390833562c5.ref, historical/93bd8e05ea1306795d61fccec8891a9476ccb365c7cb8f3e9a4421273cdae394.ref, historical/79dcf0b510f9c987c08ae636d2e6952d6c74eea3b9db780f41ac1fcb4f01ae66.ref, historical/3c7300fbcd6da92c047e21173f029dd20d26b3f636e6204624ca4fe324af10e5.ref, historical/9990767bfd06b86bdca0defe9e081999e96f5055db9980436ee131eacf978d99.ref, historical/bc4b506f301a011596d7d7ef85f170a9e750e03f00a557a193ae07d4aaf006bb.ref, historical/7c6f382d28a286afd58e86c21f6d1392b85464b4d24cb720c3994e8d663e6b99.ref, historical/c99d4eda6ab30928a21c2b01ef3fae42644532fcdb6638228248fee1525ffec5.ref, historical/1f587c7717ee1627b810a0c79bf2e6e35fe5ea7b659a9b78e6a6d0ed8472e4ae.ref, historical/462ac8b101d7db79db5b580d726b95a1961e7636ede06c46454c2fd276078b50.ref, historical/49253e53af85efe2bf216282f8e2314e7454d095c9a4b14869c25874aec4ab2a.ref, historical/67264b38ce3a1424ea460aaaa649aaea55b46088f38758043c726c19e3a652eb.ref, historical/020175d4020d36e6695a6c28227f936581821bd5a4669b0d132d98d596e7ffcf.ref, historical/aff9a44298ebeef2e01dc9f12fade423a3ce3fd42cc9dbec8db27d272c81126a.ref, historical/415439a33c828c3abd10d6dce26014ccacc44f4dfe391a808fd05955f5cc6c5d.ref, historical/b1121c6953cb4ee5ebf7c454629ddfb0f6581a07e9ecd62488205334e66c2277.ref, historical/8b5712f92ec65c05814c5a76263f2c550a7604821969ad5bf32afac114b1fc91.ref, AGENTS.md, docs/project/AMBIENTE.md, docs/delivery/ENTREGAS.md, historical/e5777786cd2a192ad68cd0ef592a2866769e43dec4612bc1809b5eee825fb847.ref, historical/09de1783768b5adcc15c9ae37c39c0ad18a25a17719e1411cea67a9e8a6b6971.ref, supabase/candidates/image-message/compile-normal-queue.mjs, supabase/runtime/image-node/service-worker.mjs, historical/ec808bb055e74a4d0b7d42062ea0fef9d74e03e1b37c98aab83c00ae96340917.ref, historical/a547d522a206514ce54005b6d9fc179e5e149fe8319850e6e5bf8e281dd08e9c.ref, historical/97600c722b9e2ae62e50232c821e86393ae1bc2b9d99f1065696df43fa771675.ref, historical/1f95193a0501ddadccb1c5aa1116dcccb93ab59d7764c4ff39941f106165a145.ref, historical/8e7b31838e5026692e8bdd764c13f1470e3c4a3e0bdb2e11e62473893d8fa182.ref, historical/c530c7cb25ec49c0ee796222189b3f463c8f3d9684b065a1fdf02d502370ebe1.ref, historical/183d31ad80055af0286cea449955dc816c7f547e0c1d23a416d795f54e7c3e04.ref, historical/6ff815c59de624da7b1094299be342889d6c7a2198aebc8bcec4369af4a48ac1.ref, historical/f0c3aaf9171159392589b4ab4294adb57aba68d2dcd1ca18573c7e02086d8537.ref, historical/03c7f4f0bf356d0d51e5f142df323df80f22fe22b008f8d9643413e58d05a3aa.ref, historical/cdcb35d72b12f19426979ce019d944103d1dbe927b1403b0b9bc10786641e5d1.ref, historical/3710d578cf0c5a2e9f3d58a12ec8dc15eb1c09248c45521d62a9b63d210cdd3d.ref, historical/c282864418099906b84e4db099b66f9f2c7bfe6ee8f6971517e10b1ecbcf5d9e.ref, historical/2132b3ee89865f06db9ee6092e5d6e3c06cff9643060be04e76bee6bf0bbe05d.ref, supabase/candidates/image-message/prepare-normal-service-edge.mjs, historical/1ca9b3b3fa301a550a34a52d4291201cf4f99f975bcc756b3fc9654a53e5c98b.ref, historical/bc9aef73b804019a9e0a90d1fba15a595ecc491b4534f8abd70784aea2ce6d36.ref, historical/1367fb626eb534ae1ca9a3dbf1989bba4a7059261ea3a85879bb23551e94f8af.ref, historical/21a29e4854d46cdcd31c620a0b836153ad198e119aabe85ce345e50ee1b297a1.ref, historical/b05889707e2485a19e0a991aebfbef6d3c9fc8c82a0337ded851a165c225c974.ref, historical/d4b0b9f7d31a9ee36900746a842272ce35f1347a818ed33209a4d395e973d156.ref, historical/4bf2584a805f1a1722167502b5f820fdfb5684fe43f026921f49eced1aa20812.ref, historical/1ea3261666224e7f0ce861a629ae0ababcd9a207f972b8b57f2f9b45b89e4247.ref, historical/82e13a01bf0eba141edb0ecaf241337219ff6d921b79c5fd8d152f5a885b9df5.ref, historical/29d23c7d1d473f2172f58b50bab61b7560da3c1d4de25b1f122df97e85eebf34.ref, historical/ce0ec07dcfe070751370a7d3a2e3e183db16c2d897751556fc989384f325770d.ref, historical/8925544ed94b6c26e37fe02644758639f7b25515ae5b5527c413bb52f6d8325f.ref, historical/129c224e5991518affda325abe3735503e3c01701dcf03c7806a26837bcdd648.ref, historical/cef79331072ae3bd76966be023cb71a5c71a6c91fdc1db3c5c1398149398c8c3.ref, historical/8347a6946fe837fefa48648934a509625b9cfcb469f0c3395a9d9c8c2f43d423.ref, historical/4a3cbb6b2cce90cd19997561b612820373819b326499d29e74c231f90d049a12.ref, historical/37222b58c8483a2241309da2573c7553799663f0eaf1ef65d01960d579bdcb7d.ref, historical/ebb4d4a103f25a60b0e4597a1a60ace484cdbbcd7ca43f3b94943029e803c40f.ref, historical/fcacc53101ddc49f644511641da96f5fe13962549fa23f07d4e16f3d2c7eb1c6.ref, historical/52fa8f7ac47feeaa460279331dcada93cfae14a5f7a826dabbb0787051ab8f94.ref, historical/bccb1a1b601bcd0610af7e93729890945615c1d54ea06b2c1e53ba34f8dc345b.ref, historical/d5e458544fbb510a3f7576f2cc3f32db6df10302c225cfb75bb4eba4216d9df8.ref, historical/b7bb53ded4defe5a872c756bd6d2b99048caebea1b4c5a3e5fbf1c07269dcbca.ref, historical/f9d6790c5fabddf8f2a8d0c88bb272e6ae447007b5ad894b6080b147c54d2678.ref, historical/da6d0d423fd445771b4191cad70a6b36561a3081fdc1608d4c591c0dc6b1e9bd.ref, historical/6a9c7371f9535c81a502dbe6029f90bf42544459d469da286871cae1fc05ed17.ref, historical/ea10ff26018cda97dc33968c6608c4fd5bdb0e82b927e7d356341394e9ee6ca1.ref, historical/25723c82a9c1836de6d76c4708015b6facc683c7252af2128dea80d796bd8799.ref, historical/64b4b2aefd1d4633856c5e0e7c5685d250e5e0e269ede31c3ab59bf86e80507b.ref, historical/751b4026933a9f537b6a7f52775915e2af4ce125537a9be770f8e1d9034bda03.ref, historical/29e27d3ffee460c55bb8176f503ebb05e387d79cc4668f6551d39031f3bcb170.ref, historical/246afbc9a344615c65cba0fd1898c98ac55b693015016999a7f713f2dc81c9a1.ref, supabase/runtime/image-node/owned-session-auth.mjs, historical/0b4da65fd9af437b80c71552ae7a2e9cd7225d7bd1285dbb205c2066339ffc01.ref, historical/c8469fb6bbff0a0d7bf8cd247b5141ef6b1e368807cf3f187baa12fa11c59e52.ref, historical/569283498ed56c733e85f7819050eed8d0411bb069b67c315642716deae38ab2.ref, historical/b168abf341edc19f296ff169483f10fdfbefeabb5faa286a033da611d0b452e3.ref, historical/05547679aa1519d60acd52a6ee7e83c9a39227fae5f13803d3cd7a319abfb133.ref, historical/8fb99763a8346f49ee8f1e9e68799bc8fdbf54d92705f987cc46fcc50bfbc12e.ref, historical/aa20c9313e5797929386ca9b8a003fb29edbb40b22b0a0aca8abe1206ea12cce.ref, packages/chat/src/image-edge-handler.ts, historical/d7b507bad92a2f3dfeef37c09c479bfa4f9c08b3905fde7d5da7833278206db5.ref, historical/241aab004e9e30173ab9f3dccdca0af7e6ec92fb813506738a38a38bcaded880.ref, historical/91475f63caed940ca8909d41a60b74b75054343b674100790df1f02584a60a26.ref, historical/e58ae1fb38bb536c409f502068f7ba6154f9f93e8f6bdf24b6ddbc2950a5506e.ref, historical/d9197151a85638dbdb47e123c653a43c13da2881a19c8acb9682a5cb655a3bfe.ref, supabase/runtime/image-node/normal/README.md, historical/1bfe6aa224220c7f4ab8dd69b90d3e035a5f0745fa9452aefb155212504eb4b5.ref, historical/4382f0125d3b623c5548c113abe8698d1f307d2710b23bd52c5bf000b9917aac.ref, historical/0bc0b41379ca08c47346fd5650cd4b08b88542d245cd150a1c6eabb34a0e476d.ref, historical/48bc61d987b855578d10678c8abba09a84a5a1ddd103558ee611f311833a9ab6.ref, supabase/runtime/image-node/normal/linux-validation/README.md, historical/fdb200277ffb9bfe7e73635051da687d3596bba5a0ba1c0b78d72d55a70d0b7b.ref, supabase/candidates/image-message/normal-eligibility/README.md, historical/db76584d0442be5e6210eb6cdab2e69895cb63f75eef485f40309d10f4163c71.ref, supabase/tests/checkpoint-fixture/README.md, supabase/runtime/image-node/normal/linux-validation/DENIALS-AND-ARTIFACT-PLAN.md, historical/59da53a97d0730cc96397964860501d48dbaa3a9578233ace2db3ffd5670dc98.ref, historical/3e3e3a4d08aa66c0f2cd7246e438fcf747d821ad442132a5255116e965cff882.ref, supabase/runtime/image-node/normal/ACTIVATION-PLAN.PREPARED.md, historical/fad29b843fac97a996c48b4728db104e605ab8ab83dad3eaa742b941bf1430dd.ref, historical/f73ea8feee7b2895d5981d83a87d98fd228b7a5f298fcb79b249971ea6ef2e5e.ref, supabase/candidates/image-message/normal-activation/README.md, supabase/candidates/image-message/normal-activation/compile.mjs, historical/085e132b15445fa6440a8a55af6969bad5810ac61aea0c57507fc260e433a76f.ref, historical/d1f709eb4937030608d171c84473dc55729bc3719217e2b6ce0f8b557b203da9.ref, historical/cb3be518088d76b425dc9ee4bcb04d227a741ce2df8b5890b5460f7576d1d00e.ref, historical/879d490679adb4ba5883413c3ade25e7e6e534a228d5ebee66dd7dee859e17e7.ref, historical/3f665c8d7a24c6c4af11741d3086936985e574a895fce55503f30b7112798115.ref, historical/286cb8eb10e8b412291962084ee4de72037360dae843226550926e072909f745.ref, supabase/candidates/image-message/normal-activation/prepare-managed.mjs, historical/45b9d4b8c2cc8da0559eff97c33c1469111aea66125d658846e9d396b05dfa4f.ref, historical/3ade3b951c09097b08c3353038d51f280cb65a88e35eb828faee5a297460c4a2.ref, historical/73b29c429369368a9a1d13c73bc47086e186d5f7cdadbebf3de16d1a7517d4db.ref, historical/0948410d91074e14c24efb0d554cfb18c6a8c2b526a8e16c58e6b8628e1157b6.ref, supabase/runtime/image-node/normal/linux-validation/selected-runtime-v4.py, supabase/runtime/image-node/normal/linux-validation/verify-staged-elf.py, supabase/runtime/image-node/normal/INSTALL-NORMAL.md, supabase/runtime/image-node/normal/install-normal.py, historical/7cca1efcdb1ba526a0f75c010bdc7068ded09979ce45d6c0a46a720c2b42ead9.ref, historical/83bc79381c689037cc36b51b6aa31e8c4ecb750c30928a6aa234fc78ba7a8209.ref, supabase/candidates/image-message/normal-activation/normal-access.mjs, historical/e697dd1575e430372187c989f12e38937c14158321ded249de9f9fb858a2ce7a.ref, historical/54e58cfd94d18edd1bd6e89776db2cbc6feda0b82737dcf458877f5248d970d4.ref, historical/c5169c7a4ad92560b019c800b9419b0ebcf45f8bf02a6779415f6ba30cfc5025.ref, historical/5e173d18847b950d9f7c71b223aa9e895d570db38a1dcac8b3cb1137b4e4e339.ref, supabase/runtime/image-node/normal/credential.mjs, supabase/runtime/image-node/normal/credential-acl.py, supabase/runtime/image-node/normal/credential-permissions.test.mjs, historical/35bed4192e07a6099e06b9d401f9bf6ca09e2e43c1ba86bc4c65098b7d4d919e.ref, supabase/runtime/image-node/normal/activation-gate.mjs, supabase/runtime/image-node/normal/activation-gate.test.mjs, historical/a46f8b3a7a850a2471f28de4daaff19c1b2f0e0808fc672540ede2d1b3ae895a.ref, historical/357442f71b6bcfa0f701906cc53c4d4909211261739326b496f4da6d69318c74.ref, historical/c481d70bd5a2977db88579f0f7e6fb5b1ee9dc1c82b8cd991bf8f55fdfec9166.ref, historical/dc48b9f93af2b816e472d157065c7498790f9f8f356868b8a6c195e9740edaf0.ref
 
 ## APP-053 — Preparar submissão às lojas após candidato funcional de chat
 
@@ -659,17 +710,18 @@ Evidências: docs/research/INTEGRACAO.md, docs/delivery/ENTREGAS.md
 
 ## APP-054 — Definir e medir orçamento de desempenho em aparelho modesto
 
-Estado: backlog
+Estado: in_progress
 
 - Registrar alvos candidatos de tamanho, abertura, resposta visual, rolagem, memória e cache antes de medir, com build e aparelho identificados
 - Medição usa build representativo de release e carga sintética paginada; separar UI local de rede e confirmação do servidor
 - Chat e anexos não carregam histórico inteiro, originais ou SDKs de funções futuras no caminho crítico; compressão no celular não trava interface
 - Validar 2–3 GB RAM como perfil candidato de aparelho modesto, sem declarar número de emulador como desempenho físico
 - Regressão, limites e trade-offs registrados; nenhum orçamento é apresentado como alcançado sem evidência
+- Astra reformula efetivamente o frontend móvel de ponta a ponta, com linguagem visual coesa e fluxos preservados, medição antes/depois das transições e entrega conjunta web/APK.
 
-Próxima ação: Depois do primeiro build, medir baseline e ajustar alvos propostos com justificativa; usar emulador para funcionalidade e aparelho acessível para validar desempenho físico.
+Próxima ação: Consolidar as medidas de abertura/retomada já obtidas nos lotes26–29 e priorizar lacunas de desempenho com ganho demonstrável, sem repetir provas concluídas. Travamento original, acústica e aparelho modesto continuam sem confirmação física.
 
-Evidências: docs/project/PROTOTIPO-E-DESEMPENHO.md, docs/testing/ESTRATEGIA.md
+Evidências: docs/project/PROTOTIPO-E-DESEMPENHO.md, docs/testing/ESTRATEGIA.md, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref, historical/9c32b48ccfd38008f7434ac8ce9dc74c8bfbbe42d067b59aa93f51786395d81b.ref, docs/product/DIRETRIZES-LUCAS-2026-11-09.md, historical/11c6eeddcadfa23ac3af375df4ca02b3a1f4cc2098e36b13fefcb6f28d95f0fc.ref, historical/f4fd7468cbad3b6558f52c13d09793cc6a38a79c3fda78c1181e1b75a238f03f.ref, historical/5cf02a548de6f3bb80c24f8132efc482fcd395d2d3b900321216021ca809e712.ref, historical/cff5a289f4a1db04ebe418a3025b95b24db3cd012e0eebeb783023280207fb3d.ref, historical/8f6743351de11afbe9ce1ccbf621a13c11d8d62225461a2e6328fe8bca934e04.ref, historical/fd5958ad51f82f407f9ced0df44c679b1bcce6edb6bd90d060e1f35a1a059da2.ref, historical/6198d56a4521d9236782bbf63450e51a76a44dca455651d9e0ad6bea2b4562bf.ref, historical/a28aee653f0dc0b374e293939a5cc9333d4fe9955a3bb5706a18248ada450369.ref, historical/775c2c2a3afdb7600fa604d445f1bf557cd51abfeab6702346ce1f15a77593aa.ref, historical/f7797007cc07cadaa36145809ada5a4f269ae99059ac67df262d35f2b681156d.ref, historical/d0ca9decd7c5d5a7cc75a6351399f69048936c1caba5e4f32f7d165914dbdf91.ref, historical/55c31bd2d85ea4666454910eaba94a15fd8b9eeb22594bd694025ca7bf3f8f71.ref, historical/63c81f552499c8c99739d8b5cf47af8b879a01512ac4c0ade22425edd65b8c0b.ref, historical/0fe1f66539279148e996cff6a031b85fed5f12d29650826dd1f9cba58adcaa61.ref, historical/056a14eeb91ee3a3b55633d1321284b67c5ec24b1ffee11dec8a08d1c5401eff.ref, historical/62a3bb29a8fff2886d324d027ec10c22e3dbc94b9a81e9c38445fa2c129e51cf.ref, historical/2839ff0820857110c286d4396d9903204d5dc3345808becae1591ff7c0d57627.ref, historical/1a3219ea9657803ddc4a1c7619d33325dc69c2274d0c42b294bb9098477fba43.ref, historical/5473ce1aecfc2b651e75f52866a34583cd6a12f3ac8a581c2e9875a38923694e.ref, historical/fa903dd693863bfc7cfa471526cfa3f688d4ef2716a7db23e1e909f42f800c43.ref
 
 ## APP-055 — Fixar compatibilidade mínima e testar Android antigo suportado
 
@@ -681,24 +733,29 @@ Estado: backlog
 - Matriz cobre Android mínimo/atual, fonte ampliada, teclado, rede/memória restritas, permissões e anexos em aparelhos modestos
 - iOS tem requisito e validação próprios antes de entrega iPhone; não declarar suporte por base compartilhada ou regra de loja
 
-Próxima ação: Durante APP-002, fixar versões e matriz mínima; obter uso autorizado de imagem/dispositivo correspondente e testar. A imagem atualmente observada é apenas Android 36.
+Próxima ação: Laboratório de preferências inspecionado declara minSdk24, target/compile36 e ABI x86_64, mas execução só em API36. Revalidar stack/build final e testar a versão mínima e aparelho modesto antes de prometer suporte; obter imagem/dispositivo por acesso autorizado. Não confundir manifesto com execução.
 
-Evidências: docs/project/PROTOTIPO-E-DESEMPENHO.md, docs/testing/ESTRATEGIA.md
+Evidências: docs/project/PROTOTIPO-E-DESEMPENHO.md, docs/testing/ESTRATEGIA.md, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref
 
 ## APP-056 — Implementar áudio real no chat com gravação e reprodução privadas
 
-Estado: backlog
+Estado: in_progress
 
 - Permissão de microfone contextual; negada/revogada preserva texto e anexos
 - Gravar, parar, cancelar, ouvir prévia, enviar e reproduzir com estados de erro/rede e acessibilidade
 - Áudio original/derivadas privados por empresa/conversa; paciente só próprio chat e equipe aprovada da empresa conforme política
 - Limites de tamanho/duração, formato, interrupções e retenção definidos e testados com gravações sintéticas
 - Sem transcrição, análise clínica ou envio a IA/terceiros sem decisão específica
-- Protótipo atual é somente simulação visual sem som e não satisfaz aceite de áudio nativo
+- Entrega0.1.7 possui áudio nativo temporário local; não satisfaz envio/isolamento remoto ou aceite completo
+- Áudio local distingue negativa comum e bloqueio permanente sem repetir prompt nem iniciar captura após concessão nova; término precoce da prévia não deixa reprodução falsa e texto permanece.
+- Revisão local pode reiniciar a prévia do mesmo rascunho sem gravar de novo; contexto cancelado entre reposicionamento e reprodução impede retomada tardia.
+- Contrato candidato de áudio vinculado à sessão captura contexto/intent, limita bytes e recupera upload incerto por consulta exata sem nova escrita; download confere contexto/tamanho/digest, sem prometer mensagem enviada.
+- Uma revisão explícita de áudio gera no máximo uma intenção e é invalidada por substituição do rascunho ou contexto, inclusive metadados iguais, sem ler/transmitir nada quando desativada.
+- Antes de habilitar gravação web, substituir o bloqueio temporário de microphone por self somente na origem HTTPS do Connect, mantendo câmera bloqueada/raiz intacta, e provar política efetiva/herança e captura/permissão reais.
 
-Próxima ação: Após preparar Android e chat/anexos operacionais, selecionar módulo oficial compatível e implementar áudio real com controles/privacidade. A prévia 0.1.0 já ilustra controles sem pedir microfone.
+Próxima ação: Compositor/progresso e envio/reprodução reais passaram no APK27; web27 publicada e reprodução hospedada conferida. Acústica/silencioso/TalkBack permanecem para telefone físico, sem bloquear lote28.
 
-Evidências: docs/product/AUDIO.md, docs/testing/PROTOTIPO-0.1.0.md
+Evidências: docs/product/AUDIO.md, docs/testing/PROTOTIPO-0.1.0.md, historical/93e1a989d31ac1ad6207c701191bdefb2460a4cc44b4aff45ab1a33e804ffe72.ref, historical/6dbf95a3ab817bbc09802a7ad7116de5700a420b888dfcd518556f625ceca813.ref, historical/b064215bad20758ffb0ec923a251afd2e2a37ecd29581e0eae6551cdc41e791d.ref, historical/25e50167a17fdc9288845a7c6c3ad50da7db3123e12e4cc8202bbd0c1ea615d6.ref, historical/6487ca2e5483f2852e76d1b79623a82d541f69d15e63328cb5a196885b4b5bb6.ref, historical/e776754bcae3665b7a27c672427e55c691b4049547fae89488a8d9ced6e6d866.ref, historical/fb62a5ff82c00f86fa58985cb1e79fa19af69fb237db5315634be107fea47f6e.ref, historical/7e76c949b4cc4d116cc4134f062a753b306629f75954f6f42fa03c43b8cd4ae5.ref, historical/33189ae769a961dc87899259dda020f39c190c8f41b2ab62bcdd20d13e9669c8.ref, historical/4edfd3e886bd0dcfb9a048fce5d70407f6d3c8fa1d6de8593613733b298dcaca.ref, historical/d3c100ecc766d8708057306c6a7c34c1091d46d663c75f3bb64fbb2e19620af0.ref, historical/00ff31a6c0a1d9f38ed8544fb2b337d77ab2b65ecb6bf93d81a664a4f221eb74.ref, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref, historical/9b2e9ae1ed944b6ef5e43b38d16827a331cb81aeb1c2291ff41e41fe6ecee44f.ref, historical/0b6275e3b824c2b2ce34e86c38afce0f4cefce805afedeb4f8da8d52d2e34b98.ref, historical/472ef20812adcc4da998d6d7332e9f02191acda4a624642378945e76f93a8f76.ref, historical/bac6c42a3bc8c99e97f59a7330f232771f1d5970d10e20c171e8c7ef44bf643d.ref, historical/c2a4c9a62b6ce337b9f2e93d6334a160793cee31fff414a5ae69bc9d3979e87c.ref, historical/0c52cdda09280dc33e9a8979078e8ea479b3278aa0f9f99965997a98a3acd75b.ref, historical/33ccee1352e63e4699abd36827b977bec595ecbddc1ff86b2d081a6ba14d9d89.ref, apps/mobile/src/audio-permission.ts, historical/4082e05f2e780e06329ffda5963cab0bb4416e7d73eb1b506564508493fe87aa.ref, historical/02bd6acc7806f9f5133ed75fdddebdeb3d272ab06651d363f111cf3b4f3383e4.ref, historical/3d043102719c3fd24cc907a46fcce7d3046310b2a1d30a89633623eb77395f93.ref, historical/4b77d27b3c0aebc0af723ddcaf66cecca7694bfb375e863c3df49f3c2187ca00.ref, historical/34b4f4b8c4ad2319d2c8181962699ac1b165ca54df3ffd7b1002009f9afba92c.ref, historical/5ce83a1bd95b56569196aeea273d32c4f49faf6a49068794adc73f31ff9437c4.ref, packages/chat-client/src/audio-transfer.ts, historical/21cf244b47bd479d8bfa0b6d1cf3cef49fa22ac062fe2d6f8bd4613db4398de9.ref, packages/chat-client/src/audio-upload.ts, historical/8c665cf09f24dd7be80bf9509bd72748f693ddf8a132aba11cceb53282c2c4f0.ref, apps/mobile/src/reviewed-audio-upload.ts, historical/8af6fc880e87b780669f9cdd8c7a2484d15c71d8f06d87dcb1d7a513174619f8.ref, apps/mobile/src/expo-reviewed-audio-source.ts, historical/04971993f9d04c9476eda2760bb408000bcf406425e4a6c52fee9d89c6bbaf1a.ref, apps/mobile/src/audio-transfer-http.ts, historical/4a998d837332d80ee7957e958ce31eb3045c890fc8f68824a8ec32c47645a873.ref, historical/d504e500e8a7738edb7350780b1aeaa68c19a6b3521ba8b018cfe1135fb21bc3.ref, apps/mobile/src/conversation-reviewed-audio.ts, historical/e5d74d8d89c4586b3701bd81bb6df49470b79cc8929527074e37f732cf369aa8.ref, packages/chat/src/audio-ingress.ts, historical/25de11416530cd481aadd9f2f97112371d803d8192e3ccc91c6a3072dc5c6eae.ref, historical/119b44c085676d306070a8498aed2a7e34233cbf453d27ca9cda5b0d0c25ca73.ref, historical/ae97170096a8cbe52c31ad72a56eeaaa14afe57a96c0c5f67b347d4874085a71.ref, supabase/candidates/audio-catalog-repository/repository.CANDIDATE.sql, historical/df909b133ec9b8b710d71f5d4f4a00ca9de99608f3dada1c9977457ce6ef9c78.ref, historical/78cbaaa467dabc456f9d96e316a7d96d88b843508208e36a808324d45c485a89.ref, historical/53b1eb4d21b14a0ff16001f164e96150de9259924d744bc9b5d8626d88566844.ref, packages/chat/src/audio-private-read.ts, historical/0f93e1382662dae2c40f94300aa9e767451f7d3ae2c916ce3463559378ffd13d.ref, historical/d057d99fe999716824298df52cc2000a04a59d0e3b7a2b3f8d788a8385b1e162.ref, packages/chat/src/audio-authenticated-catalog.ts, historical/01ed87d2d681cf93cc89ae9b5903aab5828199ac4d67dd7a1940499bb0b30968.ref, packages/chat-client/src/audio-message-commit.ts, historical/7841f64a29dc5c86bf764c993e5ae5ca48e9466f2ea25827adf8320fe9713a42.ref, historical/e582cab46ebff341da8fd7d0b827ee3f96db7c963cd44df73e44faadc88f8b5c.ref, historical/1e6791d8a7be4d56484905fae2ce438ef008c734fb353722c828a64814cf6f94.ref, supabase/candidates/audio-message/message.CANDIDATE.sql, historical/461c194eeca413630c6a08b7c59d0402789fc913dd1a7b63ea2e13a1572f7452.ref, historical/1004f46ed41296038c113e86b4660518e1bde1125687454932a85161e119a48b.ref, historical/28c9cfee03958e07114a9e9eed335689b582e9d65add31be03a93254cedf72cc.ref, historical/af4d28e0eb7458329299def1dfe3ec943e6138b8cb93657ee395c4b5541c1a12.ref, historical/4071466508148cb2c909e39b80c95ee24d279233c4e3089b24a39b153e7d5695.ref, packages/chat-client/src/message-content.ts, packages/chat-client/src/audio-message-rpc.ts, historical/f9e627d118d2ec0092b5603df63764a58bc8ccd012e9665c36e8d329f9240ed4.ref, historical/6a0184e184fa198f7d272dbb41eaf0d550be2075e17130be6cfdf1888875c01b.ref, historical/8147ae779f97e273b01ccc13df4b1c81e9d13793e976077f4b5d8a0279366d0d.ref, historical/0a78e13a81e6ccb4780271b64a9e4a8d356bcdd17a609f951b088c5b0f46eac2.ref, historical/ddf3e85a6d34390d4f760494c2a346ff8bed59a60d4ab0c475b2527d93de6b34.ref, historical/f7cf9f315b6048feb702895f0e7062a5e0d492278d32b5f24aea4b42ceda749a.ref, historical/f100e74b55e15ea6e1c4e238db27bbc384f5515eb5c1b0f4c707bf2803ddf233.ref, apps/mobile/src/conversation-audio-playback.ts, historical/72dd02a94e5aa5a96e987fd704f3863efead0fdc903a00b198de8f76ca05c560.ref, historical/362394ab37406035e50be7f24800b4928afb0e30d97fa1420ef29ca037fb2f3e.ref, historical/bef6af1b55befcdfc1d250f2198d1a26db64e2393553d638e9e653fb584a7619.ref, historical/494ce6cf3926b113e32ea61df253138c26548bee452465fe1cecf10cd055099e.ref, historical/224797c552b1b4bb84e29ae70a020793bccb913d9304771a2dd205f78309ce75.ref, historical/144bf5bdde4a88cc8b786ac879c3600642aa9610c1d9a95c98ed610163701449.ref, historical/1166130715f2730768d698ea000744451b73ce38cd668cf0f693a35025a71993.ref, packages/chat-client/src/audio-message-resolver.ts, apps/mobile/src/expo-received-audio-player.ts, apps/mobile/src/received-audio-player.ts, historical/7d2b55e725bbf5645c5f6392a0011a9df16073623a3877615a3807b403b0498e.ref, historical/c24c3ffdbdd410a54b9bc105f2d4a32dfee9231ce8555a5decf951336bd0eb2f.ref, apps/mobile/src/conversation-audio-ui.ts, historical/25c75143a94c59cb6d5001aa80f47153f8c3de0aa0479a5446a52d7d6608b829.ref, historical/223b587e8c37be66d9f047164fa2e01566a35666758c65c992a15a8d75bcea19.ref, historical/4db566aa90d00a77fc8f727d1b7cecfd760ef9ce57f25a858bcd3cf1f9f48f29.ref, historical/49efc49650f1e7f1a1fc70905a47d83b128043d6d3aa0b8d3ac2abc880d96df8.ref, historical/8f08de015457698519dcf4b47393fd4064478ffd228b8733ae55f613e6a237eb.ref, historical/1f3fd25e6014cfb119aa662538cd08ed61b23b195b730d8843dda59a51fd7655.ref, historical/74b64311db9a623f6ad3c286b74c971bcc1dfe119bd1716a5a0eb2f2adfea6d6.ref, historical/40828c46602d6a9e5e75599fc960d6508e55747eb4fedf583600fce87c333527.ref, historical/145607c1ac94e69381b640e79581a11ac36ebfb073fca93ea23d06c64c2cd190.ref, historical/c8d60d26e6012b542f3103633a4837d47891be4b90a88d275a265a13742afd35.ref, historical/44fa0bc42930e62ca3fc9c5b6b067a2ff021cd5dc693d6c0cf1d8f19e8f18528.ref, historical/972a33f95d81b3d0dff0f24fe98d908004a1453f7ee78c784105f67fdf4126bf.ref, historical/904d374373fad785bd48a5fa7f3526c3916ad7036bed6f486e69960982ac0b7a.ref, packages/chat/src/audio-private-storage.ts, historical/d7532b29e16ce2cd716643c4755cb99377609edac0bda2a09b43fcccd5f1b5d1.ref, historical/8047997185df2b4d90c6fb6de33025b61ea66e484c39ac29aaa03fc351dc2c75.ref, packages/chat/src/audio-backend-session.ts, historical/62f6f580cc5df917d9e04ac10f9cb6bcbb2bfaeea4de123db09fd0ac493d15b9.ref, historical/34f2d9d28c0c684309cc0a5fa11d2fa5682018bc3c7fb6aad4403fa901b79de5.ref, historical/6256dee5c61b85bb76e69f13357f731acec8ded182226350584717d4543fa5c2.ref, historical/89a100eeea42ba21be002670d51fa128850c312b02ad77762f44182834e75d0b.ref, historical/77f2d2a72fb0f47b6ab0b87194168603e6467781ebba970658d513caf29662e1.ref, historical/961f82691c289e0939f22e43ad5806aae5c6eb6538c098e0ba884b527b4b4883.ref, historical/5332102864a1f69f6f527c5817ccd85763f38ba991a9376ebeaa25a625a2bffc.ref, packages/chat/src/audio-jwt-verifier.ts, packages/chat/src/audio-sql-executor.ts, packages/chat/src/audio-ffmpeg-inspector.ts, historical/9295a45e80b8807b69c7769671cab271e7edac53deda11c6709f9880614f18d8.ref, historical/8a0ebfb9a5688354255f9d3dc255d1d0cb1c2cf9f4301b68c83d703ec6080b68.ref, historical/1ac397a6a445c4e3e17c2f79de68fff404252803769b6c449fbdfcc832000e51.ref, historical/fe45bb02af91bef787a7488fd246fea75a8c17452065814167495e3a5a02ba46.ref, historical/61a821be3a68742fd2c9045a814df594e548d06eac8a3e6048f4905ac6663616.ref, historical/9727475f3e61ec637738871641231b2fe7062b0cb7ba0b6129c488d8c0ade55b.ref, historical/53b7e7c7eff78fc7ea47941df7023fc3b7e779078baf636b6e17b833fd06e88c.ref, historical/301d5db6d054bc408bf9cad962f979f39bf98ed5af418766c143f3a00dede657.ref, historical/00570d716d3902e1d97af0bed1aa2a312c3f54c8da86f0cbd35d348282d4bedd.ref, historical/a488ba57dbed2f5053b96461dc8cc9fba301de343a9f951df5da1ed83ca8b654.ref, historical/feee8a86a61642969ba3b8dd17a42769ec1c0212816f92912efbaf5a28045d5b.ref, historical/66c0dc5c04bcc811a510a57153a2083fb73a3e67c9827e6fadd29281a673e5ea.ref, historical/ccb71b8d7c8dacf50f69f0a5bbd80caa605875989246659406901a7c7df7870d.ref, historical/ea8a597770b4e8c2b3de1f97f6b805b519b6e7f3950909e49883e80dca82917d.ref, historical/ed45b9576926042184f7ae1fad49651066d261703c202fcdde70888f059ff2ec.ref, historical/d1907c1b9b75daf83d3ab5ee071b0fec2335a760d96df49d6d646dd42c5db23a.ref, historical/1c6a3c54b53fe8c79d87bfb910d35606660208ded7188189e8e9dd8ae7fd0671.ref, historical/aa2b33a8ebab9886236a22b9384d04db90421e41a9413566019e3ee91e3725c7.ref, historical/974af0f0c1d25121869a94abe1fafb11a605c75ac664e3e20d2d52511e661426.ref, historical/eb0761f8966b93c4e8e38e3c0a64bfc00f982776105fe8cc6c43cf624e03c6d6.ref, historical/90ae0366ed5e7e183374f16f16e72e39e4e58054ab6018955d81483601110f75.ref, historical/6b7fd88790d02106f8c4f676da17daf6a681664f80e6d8f3bf36dd9309c9fd49.ref, historical/004fa52421b8af13f230fc577ebbd4148532da223fba66f68f084e39cb1bc35a.ref, historical/38f15c96d63cd423f711d1e2cd45d1b7fe2d2a627964d5ecf6f21f8fc8e4db78.ref, historical/9f7c5ec8cf8c958d9a4eba84559fb8b0c62b48ba0b207439e871e69a90361ae2.ref, historical/3a3aa1afc8fa19b912f4da56d9087ea7bfeab75e25551ccd8e06a7a913fb0477.ref, historical/3589c505197fd5d6edfc846d93243295ea79bc6e508b39b2d0be0e535934e819.ref, historical/021fcfba59afffe775e1faaa4c6fd2fd12c576c3087561e8c494ab11a467d9ea.ref, historical/399b3079941cb28d621313ecd7ffa434cf57052e2c0a0141d15036badaba915b.ref, historical/e2581ccbfb00e6d4e61a6569fdb62c158ef71ef400791234bbbf3ac52b56fe9c.ref, historical/f8d679af8ece31905575b53c8d0699ce79aae4ff9272f84ceefda72cf355fbf3.ref, historical/ce040f2aa5443fb39d4786ae6c0ea4e19a8b926cadc39a7b856ed263c240161b.ref, historical/f8249ed65cd2a4be47de6c4feb6a016266d78469176fadf8ec0db0304bb93b3d.ref, historical/db335e01ebd65aee3d65db0a4f2db6bd84ec963dd67cbe4621e44d5628cfe611.ref, packages/chat/src/audio-transfer-handler.ts, historical/bf9e60fcedf07d795ffa24d1dedd595be9cbc112477937ff7b3b5fdc9c74ee50.ref, historical/e9021b52401836ecd225f355bb3e6f0d931f1b5c8b7ba9fefb9332f174cdc6cf.ref, historical/2890d3cb1f1c1667c1992c593f9758eb11ea210e63b619725e39fe92adf8c5da.ref, historical/2cc4e586428c0a151b0105af36faefa0d9fc68ac484c7c9a9e47c7fc5eec813b.ref, historical/bafcbdc13d0608b9f37f7455ef5a476d71c9a496e84ce10169f1793d66e6c53e.ref, historical/0c2c1a74b17e84ad79e3537ede9f5e38ca65602921f7fc0582f5b9b897dddee9.ref, historical/ebde0396814c9a8c6a7099af4a31f32ee23c6d3b6119d7bf0192867ffa443cb0.ref, supabase/candidates/audio-runtime-install/wrappers.CANDIDATE.sql, historical/058c951a8d604707d77134dc3ab26263ca989431a81aa380cd7c6b6d08e5d031.ref, historical/cbaf011587d242fd60a7a749bbac6a79ac216ae74061d9f6f7866bd3801837d7.ref, historical/8e73cdecf6ec75d40de0ba64630f95851102d74a167fa32b866f66bdcf43eaa6.ref, historical/a8236122665b5c85ffe2589d4024de54b5d251218c45d47a40a125fbda1800e2.ref, historical/1fb498ce83e9c3f2a02f9164055cae055f39d6e79576851d9d13bb5fe3766eda.ref, historical/54b0a37f6cdcb7ef557f8165d010fa6030f32d0dc9635300ed0e9121d477ef5f.ref, historical/08e27eac4221857445be56d08e656f69ee856bf6ba1a4dc1a266af1fda9d04c4.ref, historical/48625ea416e68d52253f6ff58af40ab3295023da2f75feed49998bf319dd41b2.ref, historical/e3dacbd7b3127d327bf6b5c7a8e0cb2793c1f3d3638a42ebafb9f10f0425ab86.ref, historical/01fee781b11b5dbc568ba19a668904481d9c922f739ea91ffc9682cfffd86626.ref, historical/a130bd6a12437b43deba5eafc2d450e4a5d1d0b5faecf6ba7a79f3beb0c1a813.ref, historical/5f2e11e75e11f96742c23e9adc91c778504f68a97bbc2ec2a3f5df25e5ac598d.ref, historical/3662d9b8b30c6c02b31ecd3a8ca2bde9820acd22d77744515fe3733c3dbe7307.ref, historical/706a9ab70eaf3940c949877a3c13cb79296e10cda58e56ea10d893c84bb68aba.ref, historical/9c386773a58d3230eadcc02c4bde7341b376abc1d764669403944f9942cf4691.ref, historical/c96d9ec82c503e7a1675c131ec7a50c356ad34659dbf6389a2fd81b65a54be6c.ref, historical/94fa9283a0234ea78e443eaeb6cb4ef4dca550d69e1adaa09a83dd7745b70c65.ref, supabase/candidates/audio-scoped-storage/runtime.CANDIDATE.sql, supabase/candidates/audio-scoped-storage/activate.CANDIDATE.sql, historical/9218b4c4ac38076aad7379fcd0a27985c2173ab163cfb87e98b386084c205817.ref, supabase/candidates/audio-scoped-storage/manifest.json, supabase/candidates/audio-scoped-storage/install.LOCAL-REHEARSAL.sql, historical/6a03e8217bde02e6009a03384daa6d2ed074298a20849da2ee526cd5b300c6d4.ref, historical/e390a81627a3edcc553bbfffa2ed2baf49fc1e9777e9a22185c2734ab0a3f4a4.ref, historical/2ef2a8c96b83a731ab04fa9caf234fd69d76931a005a55e2f92cf6556aecc884.ref, historical/4dbeab3723004044f62d00b5d1f90622dd8a4a00cdce7cce61b18faf899dacd0.ref, historical/cefb746e3d008a430fe9b242be11f46cff62a621d445720474a07d30cc588085.ref, historical/97292314386e9731859220d822619156c5c6529b6e43ebcdf3e040002f812010.ref, historical/9ea4d65c498965fd1517f33d6db2fb1268c3f983596d6e3309e4991ae97bdb5e.ref, historical/ba28564f83c920b102a7f052ddd0258360d3a95228ffd3831f56b953b3baa4be.ref, historical/0656165c4589fc27025052f5c11da99335328e9f2554d0e192e90870114c5340.ref, packages/chat-client/src/scoped-audio-transfer.ts, apps/mobile/src/scoped-reviewed-audio.ts, apps/mobile/src/ScopedAudioReview.tsx, apps/mobile/src/scoped-audio-http.ts, historical/409eee279cc0b8ca4e6bbd5171f5f3dfc5c7bb6948c06819f0891b055dada009.ref, historical/bd18be302955aee969254e0ead7d37e5529b528ce14c9bec2ee1890bc912c17c.ref, historical/d6275952405f78feb8fbcb6a58d92203de46f5c86ffe68a89c8c6c4d10596be4.ref, historical/81eeb9f34b03295c4b7af7ca49aa99a85472843134f099f57e8b6ec96fee17a6.ref, historical/699e3fd58d0f25e2e96fd30b12cdeb3fee34132cde2d825fe2f40f3b9a09d245.ref, apps/mobile/src/scoped-recording-host.ts, apps/mobile/src/ScopedAudioComposer.tsx, apps/mobile/src/native-audio-digest.ts, apps/mobile/previews/connected-scoped-audio-root.tsx, apps/mobile/native/privacy/ConnectPrivacyPackage.kt, historical/26219d3a80158a1a4acbe42e447a98848b0678dd9e6e5c95e4b6f74f9fe1b0e8.ref, apps/mobile/src/membership-recent-bridge.ts, apps/mobile/previews/connected-membership-management.android.tsx, apps/mobile/src/RecentConversationView.tsx, apps/mobile/scripts/prepare-connected-basic-text.mjs, historical/8059bbaac73ccc4fb9881d41a206d7a4104dc2e52d59eeaf8e5fed55505ed402.ref, historical/7f9a406f5db9e6de36db0f222101db53d0c45e93f0ef369bd4daa8730536dc78.ref, historical/5a04d705962d4cb1b81d1792405016dfdf1e5d0b686ef8e32cfa9a6aac414c31.ref, historical/50f287a2b2d0355581af10720eddbbb6ca0618493aa5c9706a7c30fe333cf91c.ref, historical/794e16ed3bca027065dc59ae2a61114a21ed6cec6100ef071baee0e08122a2fb.ref, historical/d6028d09d6f041a43445f15dbb2b53ee3803b51af173dce6f4e350bb95aa2880.ref, historical/d5c01f46f3ce22d2c8233461f785ce0aa52d2ca34650a5dbaaaf61bafc606224.ref, historical/7daec02d2c46bc32b6b1e074d9e9017e169978fdbdb45f4ea583211fbcb9a421.ref, historical/c264f01b8112dcc3885ecdd8002da5e30eee9c478720c1ccef169ff9aa17bd61.ref, historical/8da997029465f68be511c8bf3431e4c9396e34b0d6398088e622cbd411c2ea59.ref, historical/fd6836656b7e2f752ad4418f348434f83d474b1e98c2b569014a43a814ae7495.ref, historical/21e2810d9c0ee9c36be79405cc455d4162a0af84988a5b12bfca97cbd5850af8.ref, historical/93ef53ec3ad9e3d9dcc8b94dbdf0b04b185b1f651afdee60da1dfe3dc36a8f8f.ref, historical/0a40ea275a947b2c5c241cf21ff1cd545b81b2b9d944269bc3ae547fcc843ef3.ref, historical/13c97158817849ab45f32d3d3b055cfa80cfca2de87cb08e4b0c266f5ec6f5f6.ref, historical/cfe00c1760fc182b31b1112de33cdb049a17fc8685c5b73b1a919e543a56f257.ref, historical/96ae636bded71785e270e0e8ae6eed03cdb659841e66d9d123686db0af1cbf94.ref, historical/2645a3c0e4336b0444558cccfd7416538863b9fc27d3a920029cefe815cf6581.ref, historical/875c5acc1bb010bbcffe8a754531f0ec9101fca12ecf4892fd0ca0c65829b006.ref, historical/8b82bda1bed11da2ebbc961b098a55d71e54132af0f676fcee4d30291c87905d.ref, historical/ddf2ca2eb1fba93a7c715838e90d5dc96946da572034d90b3363be0a686dbd6f.ref, supabase/candidates/audio-company-pilot/scope.CANDIDATE.sql, supabase/candidates/audio-company-pilot/compile.mjs, supabase/candidates/audio-company-pilot/install.CANDIDATE.sql, historical/25a0b5544167c28766a68a72a2e9e12ca14f36f39a0b779a5c39b6670d8515a1.ref, historical/fb0478c945b4afcf17e0c2941434ca81c3cdeac33051554902e2ea9eec976843.ref, historical/312acf983950ed79df87f60b0d0684e599b2d724d3e21b243f9ed9dd047ba28d.ref, historical/f7b31f5469722b40bb41e68e33ef1d2830d4dbc57c0f0bc77a4204740ce0ce84.ref, historical/0a9572dc3c8016a998d73a21fbf9985a1f0c2774b79023adf66d9f20a0772941.ref, historical/89e39ce8078db41db2709bea9c846790eb4903ae2a371841918b8d6336e96780.ref, historical/8d267418829642dab768ce3879e361e800d4be1805d220820e75d69b7526531f.ref, historical/041c0a24f6b1084ccc4f5860e173a5569fc5b2ca83a7ff057464306214cd01c1.ref, historical/a4434f1de18e11a4d32758ead8e1c098c8f58731a991e181a40eaffdfc6ef042.ref, historical/02be9be88f50149532966d94135f9844450ed811d5f82d27dd2400344952822b.ref, historical/13aaca83a1aea3e32b2b741e7ec9b215c88674e2902be99c4af36d320baa9224.ref, historical/ff0a2ee48cc96d804e5016ff013746b70929d6444c78c7a821f59723bc61ce59.ref, historical/1b838514027b2e2054330cc4c2f0ccd2f0214ca789681abbeb5716cc2061a40b.ref, historical/a1438dfac124d960a6efac6cf8bd8040a557a314a63d972e5d69482cc9b97b7d.ref, historical/f0ed8e2b42ec154fa443f8001d9dd00029f1b65c4e7eb959e10de5967035cfbd.ref, historical/3a889be5f874f56e518f00e07169e969ea06f0e2d6a9219c69ca432a7d8922ce.ref, historical/abb63e49ac85fe89337868d3ee76f68ae3bafbc976494ce87812cf8576f45555.ref, historical/3c62942595bdca1c436025a7a38dcea218749eb097d4d586d24297e0bdae03ec.ref, historical/3c122174874342194a754032b07ce6a41f22d56ebd8af46875bba45c887e468c.ref, historical/8b0fca6325d469212039320d711ce78e4868078c0dd0d62ee184703b08a5d599.ref, historical/6dda7c9346f123973f5433da2a6623593bb97615c8a160652e601041276eb4a7.ref, historical/79ab94e560340032f520ab991c14b8b1d2c1a65633be9698af3d36d23e7a29b1.ref, historical/1cb537dc823854dcf4efcd44c24c79783367060b4e9a8a0e244404e6f85afc0f.ref, historical/eedee01c167653c0af5a83ee606eded148b4d36d0aa64e7b47b413c3e797bd8c.ref, historical/d485c87db15a94038357cd2c4b143af4ac8e8b0b54e87e7fd9dca75d316666f0.ref, historical/176c120abe6b8d6ee8a42a3f016cd8c0e925a5552886f9bdc159103f1170fbad.ref, historical/c49ee6f12359ea0f39feb894ac72e4f3027a93aac22ec65b33b7f5bdde432699.ref, historical/fc3b80ed5782d3902061c2602629d4708e4e4480f1e338501251a9a0c30480c5.ref, historical/9113093394d833f9a7e28a097d57ea6193294dc49e3055adf91a4cad03c4b53c.ref, historical/bf8b010dc079227ef5754ebf6633434d28bfce0f7d9d33af4cb81ae0f8b20b42.ref, historical/f958e9d99295296dc40f33fc2957bda7271de76e42c493eb8812478c3f5d37b0.ref, historical/3cf3d176ff9e277d39655bd15526462e890fbc2e504edc7882e855e0093eaf42.ref, historical/524426e419e351aec93c68947dd82440c52fa30e8ec14a551a1c4c455d502557.ref, historical/d1bcf10a71fa3bf224f8b9e9cc134211975c8580b6beec4415dd55be68a14362.ref, historical/38e027fb7d6a3c85e8b06fb71f059507306cea06446bfcecba5ef43da797c190.ref, historical/9ed54079239984dc6c0d0e3fb7451b25fd23fbd33c6a9a4596948ea5f43fbd31.ref, historical/2a17e4a39af9a37594fd59397df43daff8ba9e5fbd247ea6be7cf8de10c6d6de.ref, historical/f0b22cfce4f5befa334be7dcbee25dec6e471112b7e160f182c2f3f5f0b35103.ref, historical/4fe7d209eecc705e2ca1b922e0c7c6e358464fb48dc750699ea0926f8c94426b.ref, historical/7c832c9b39902137ea1fffdbc0225cfdeeea578ce5f808ca92816d92f52911fb.ref, historical/a767147e1d04b6566cea689dc258a051fd4c82c05f4c1ecc65fedd8299ce9ffa.ref, historical/c65fea71420edbf018013e22df88d8cf86d44d13ef0cdaa84661821243a03f6a.ref, historical/9e8beaa1b10445987a881358a46396ca28e781694383115937bd565ddaa0ebef.ref, historical/14c78732a1e8bdf181052112c370aa4252de8b7f26c4fd0f2e7e372b8ab6b044.ref, historical/8e5c705896b2e11ab180fdbfd4e96bdddaabe53366634baba788c60096304e33.ref, historical/f7f17d9d3011bf10c8df3c24aab0be8480e6238569f04c3a9e86b3c7074cb780.ref, historical/2fc20355bde8d2721950825472b2b6a78f59e7165b42b23d50764c2af5ad4002.ref, historical/90872facfdd81636a5321a59b9441bbdfb87853271408f77948e9de22aadc96c.ref, historical/0f066e74b55a507004f701b283c15a79f98b1d7aa72a80bf75e9ce3d8d12cc37.ref, historical/3638376797cb091e03157ee76296ce4a5852e35980ac582c7360cdc4d5b570c6.ref, historical/0168edf89bb91a9e3e6a1c8f980765ed79c9c9e57e1edb859ac6dc166c195ef0.ref, historical/27cdd2856fe3d7784c14a2632f909dcae5cc6f00891acd17fdea336d17aef9bf.ref, historical/c6f16297c7a0a92265395575c687b30fac9904b3cf93ea6e21481c74d8e10d12.ref, historical/e013628f2f71dd12ab4feb78e51e405a4043be81665a5fa92ab13719869c4837.ref, historical/be199d1a294ba96e6ce27827316257613a387062f9c3849c704aea5a091665c3.ref, historical/bf076fda6f97ffbda0472cfe4e80a2eecde9468431e8daeb0015b73c4f171f49.ref, historical/b16677c9ef4e21d6c5b61985ed697fd4bc800655666db928314fadebb096401c.ref, historical/fb76216888c83353b3c428078ed3c78420902220a576dc922c0abb74dc44f7f7.ref, historical/58349fcd01cfe49a633f470d178f2e910d505d2d242f0747647d892b4255df67.ref, historical/a2de65537920b8362750e60d27fc9c7e9af9ac4116d098d665c6b2f81c2b0c28.ref, historical/5759d4f96e1bad832d2c0101ae9073fd17cd6a194d43f168eb67f91a668b79bf.ref, historical/570ce5b7b2e91b64cf29c85caad596b59a9a0bb2f5d8c42d2cf8938dc11010ac.ref, historical/7823e92ce51f4f0e54c11493c980f1c7972fb2cac58a646808e548297c2c91d7.ref, historical/2d2df307fab0e1d8ceb806ef7cf2ac386c7a3362f291b2b59ef178d579e15812.ref, historical/022b481ea1dab3a4b2383813a9ad9ccdc922eb30b310a5d70f13ea25ab2f7b64.ref, historical/cbd92100178bc2b96cd51ff93a8a0a158dbf3a3a901790f0bb3e52450309fced.ref, historical/f629233c5d3603ca5bcd1c3c2b02c1f169547bbdb9d81ef8f35c063939e8f004.ref, historical/047080548655f2b2de28e85008783e2824a32f90a1b95aa10b9284f86f87656c.ref, historical/06ef3cc19f8d8a963aab66ee968dd80557fef6017cc7b1a2a6d8689560bb65c0.ref, historical/8cbd42ed6d04fe91c9d090d0187fc1c2ee7d311a1b08b035dc74661af85591d8.ref, historical/07c7df7fa661a484abc4ee7e0b4c48f12b32460a2f998be9182c17fc83c4af81.ref, historical/d03dcfd87e4011df35260177bd0b61cd67945ddc2be3cbacd233b4c0a1da7411.ref, supabase/candidates/audio-one-producer/guard.LOCAL.sql, supabase/candidates/audio-one-producer/compile.mjs, historical/996ffa5d3b83855de11634889a14f0462409506e27bc2d125c22349355813be1.ref, historical/987c02271859f894a523a2eae81d9ff30b28b8273fd463709468afc4a4a62eaf.ref, historical/40c255ab95223a10c3edf90e0bc2d3e5044f29cd5f8db35639d56d1ec5338cb0.ref, historical/11629eda5969540f458ba9d824b66bf29d8c44e7c2973c077422136394f4ac1c.ref, historical/f60412b3f4a41cd7e0946c5735c00912794cb446e2c3b3cedcd299fd708b19ca.ref, historical/704ebdcaf67fb6255f20c034eacc9f67229224b557028990e78f533dbd228994.ref, historical/b3c40b921da12c26bf78cf20eedbfdd3b697edeb41f3752fbb924e99346226b8.ref, historical/3e5d6f6e0e42c753abb970e701c5e9cd3485e6fd81db13e960f942089f31b688.ref, historical/38f4743d5b9ae02e16bc2b278363045514ad38cd0c553e85b640795ddf202d35.ref, historical/94e4bc5dd533fc5bd37456525478554c18b71af8c7b9eb498fa36f174f0c7d59.ref, historical/5c8963c47c6eae873069adb12be6f389b47980b1bbc47d37f824517b9edfa03c.ref, historical/f4ccf548b8b7d83a5ca83c68ecce5d02f1ee4774b7a0dd53d637016a47742941.ref, historical/203ecbd1fc10e38e073caea97d80e75510781cc0a233f918fbfbe13a1907d915.ref, historical/9a2fe9b96162bbcfe59137313764617ab1621582d7b8fae3a4a995d1ed1527ce.ref, historical/794d9e271ef7f79d7ca0d28eeb1ba52368a81f1a66ff4ec3873ac79cc2a5c1fc.ref, historical/42228d63df92e687689ea195bcf0557568de482b15caf638cf1f0ca2e3ef99ed.ref, historical/1f3cdd8c74e6449f34fe534ac22ecdc50681e5f3ae177f895f4db7b64c8e0173.ref, historical/db1a1417dc878e64256bbd9b027e5bf2af22652324960dc3f2fb153597efaf68.ref, historical/6839777364d3843a8887ff027faefe7d8bd16af2b2b8ac7e2ac9b8dad181c66f.ref, historical/220dd4786d6de066462d4088b9301437cc7f3aff93e81699cfe13018c7386a7e.ref, historical/745791f13cd25815a639b36d145be71dd70834edaaa2d56addee2880bc0dcada.ref, historical/3f01e0bb6b6582d9b44043d1eb7b79de2ceab7ef46f52eba306c918328aa18c9.ref, historical/1364654737dd6bd9ebae6b1342c1b74f6751545e1184ef49010e7764f5973d39.ref, historical/50b058ddcfdf9a0e3a5b2be6e02b1dbd6647f4009e79d2cada3c19ae5a0198e1.ref, historical/19edbc28c8506aa4feb187e87db583424a1281e9ab00212f97a746033f00f2df.ref, historical/98168a71c6c3218b6cedba9c5795e6dbadf2bb0454283cbb3e5c38e869b2a717.ref, historical/9958c142e5d1f6ac26b85f0ba12cda68fa8d6588a21cc4b048d8f9301104da0d.ref, historical/8758dc924b59ce02a107277d7517e0a67a67aa6a6a511c94599aab0d68c5a326.ref, historical/a563f0a2b7d3246b7c64f3bd323ac90b7284d9bb308ac4d95abdff5598f8c4bc.ref, historical/4639d81316a1e16d8dbcb233ab7716f18e49decd1f5ac312b351726c04e30977.ref, historical/ee08427b44e13fbfbf71ed59f17e0ecb4df8951e5562a225762a440e837cd698.ref, historical/39c8bdc7784dfae9e89756dba294b7b8bd4f72bbe3589dbdc922b4a88cd379a2.ref, historical/3f770128973188023f135bea1c949d0534fc5a8a2037660d2b1ae5611118f27e.ref, historical/108cdd3d1f756f2f4aeb79aba5153b9f14db50c214fd570329675c14ca6de760.ref, historical/99a222a720f2b43eacae545cda4e5d74a6fba9cf2176824d53fadf9db5d999f3.ref, historical/16a19766f54b9715dbd94e91b29d38a8e1bd5a7694695bda30a127f9cf6411f1.ref, historical/caf8093f03e91144397da5f6d7297626ecd95a8b20b686b691d4c49f9e73690f.ref, historical/c9eb5341c4588cbad4b040774dac8c67498fb55317e49420bc7824cc4ff6121b.ref, historical/80459fd06450a547b1a223bbddf45d7fd59e24fbaf6b54b69c12b19ab2e6f6ab.ref, historical/b7b3148227153f9b8e4a0d5afdde6731e3c9f1f86f7c81e05a4c6836da1d6bf1.ref, historical/8c6144c173c8666f49e672dc2816918ea669eeae7b6fbbdf2e8dbb5ddb2313b4.ref, historical/cee901ec30f31083c28e7264fb0f50f50333db480c079776feb6781f415df691.ref, historical/c94033024c0767219652f036fa45c8477dd3248fe2a3bd14ff556e7ba1be6da3.ref, historical/d661628d8b844cc6f456461ef875baab9fcc3d7001a118e54e451e0a52ebe2ec.ref, historical/6ae271e189f5248853c4ef36cd3dcab322dce804500d76f49e8f0b537c48fa36.ref, historical/31cfb425bef173a408bfe42133337fa439b36d6e25b8f05cdb211c4366f458d6.ref, historical/af2176b918f74b7bcad9203c9a7f465124d4734281a60d569bafebdac6e4bc37.ref, historical/3210089d2bce65cc41275238b57c5759b13b217ab658e54267b7aa033a245d12.ref, historical/d49ec29268ac5e3868f1f11cb5bd901756aac0e7bdb40530fae79a62ee72ef31.ref, historical/8a57ab29daa1301bb02b10ee36e24dd80b2261e59018f6c356a29c33e3279ff3.ref, historical/af1fd296036b6f51f782bea17a2cbaef916216b484a7073959bb79641df351e6.ref, historical/cb4706f82ee7f4ab2cee6c9992acd007a59a9b646971089a875811bc125a61b4.ref, historical/3bd03d1eb41e32cf63ca4f34b80bb9973a46f78fc14bd2e4621b275805dd4c68.ref, historical/43d3510814da913a03a9047aeed9d45ee97906bba5431c0b9b5fc7d7dffe574c.ref, historical/3c699ae244bf7e739216ad164e2b4f2ddd579e49281c8ee0d6d442dacf93a4a4.ref, historical/a01490efb988d461c704385783c17a531740db37b33275b798865bbfd97acb9b.ref, historical/f604f82e292683065fa3154e6cfb507581e99aa72c7aaced086cbfc0f78e253e.ref, historical/56fd40eab78dbc4e7819b9261903f593841e3c18e1b9812aee9eff73b8208935.ref, historical/961d6900d0170a3f1859306d0b02e74260428d08328cdd39851c3c6a823c2cc8.ref, historical/bf6b09567ab86163b35075949e8073387f09ac6112ba94b96cbbd7a4b205da3f.ref, historical/cffcd097fa61f7e2090be0194712c79010685abc88413df2fde14c1200e3ba75.ref, historical/1ca3be752fbc76315363ce86aa266ec55aeaf07a3fb6bcbc8440f28f6441855c.ref, historical/ec2e5ac6535346044c1a029c2161e25bcb57b3693695fff5fb86c227ae4f8f70.ref, historical/058f255027bbb4532ca7172179eb8830d76e36dfb2d894be864f238a1ec2944f.ref, historical/6068f68cfce615a3e55081e990875ce8c27aeb6ab804386822c4bc8913a10773.ref, historical/3d2d53b9deae96840295f186fbe04e52b3fea442b5114286a649fba48e309d2a.ref, historical/cbab16a79de9ea707635eec7b20b8dbc39beac40d04aa31e083a3eb233286181.ref, historical/64afa983ba877af3f3397067ddf806dc174e2c116f3a417a6177cd442f75a7b6.ref, historical/956655dc27c35d250090a17490909ecc37655714c04e5fc1db90063b25e6881b.ref, historical/55fd0cb1749017e58c08485f59a09d07ffb08e68fda48316e65a0f4baea39f0c.ref, historical/0ec6ad2aacce5a814a53546bda594dbc005276ab39575b1323ee1fc163c316f8.ref, historical/54dfece28105fef290c95ef7cb54df61afb8b168148ee3103460f72dce2d5aea.ref, historical/82bcbe62f4dd5eb947971df0cf2c2a9cfc9677a23ca009f06d1988c1070a31e2.ref, historical/0872f7f3a12031863df805a03eb9a2078ace9a26567185ae173ffe5c2404a2c9.ref, historical/fe62beff4192fc78bcbf17df7997c17395c0ab9b85956006a067154f164e2a50.ref, historical/6154989c4b27bb1b7c8893e50f9d589df86d3b2bb4b4d6d212b716a461f2d873.ref, historical/dc51eca941777b62b404047a50b45a438423efb333bbd549e4b682d245d05b4a.ref, historical/60e5cf49d20cba415586652709f2bec5d2771d0c07c99dcf05144d687f5a2d8c.ref, historical/459b2ae6c9948accce4e0afbe9430677a4fc42ffedeae8b32ff46852e93e6624.ref, historical/2b316406f0ed28d335288a7d8235ec0075c3e5ea3e209b2c643e41a280f20685.ref, historical/cba0f99a0c2a3f18e0d61ab06e0947511db9604abf04b0d8c552723fb43465c0.ref, historical/55095498e4c7d0a370a13dd5845a3022981317a86f6258ea5ec07031a2c92a26.ref, historical/4d7a8c817b97499ee143a6ca68285b1b7b4c9f0506f72606ac4b65ebc1692106.ref, historical/d70ea31c0ab471e0220733668bb624321e6b28ba07ad426a8cb3db4ff78390d9.ref, historical/588bd4c2b6b47e81681fa46f69f56b1f2c358f41e8e2437f556d2c99efaf8f50.ref, historical/be523fd67acf418fb089489efa98231f89461ea44052b706c2df81173eda11fa.ref, historical/0d679dbfd83895b7755e0704b39a98f0582a0e2af8212c7f425a026ae84ea3e9.ref, historical/2b21f83884860834a43b4adfedecb6d24f655b2c5da68bfe2ba90e3d9a611af7.ref, historical/2296bd99ea638b9d05b9d3935d8569b77da43fc89f6db4c81fea7c9add6911b4.ref, historical/1ea0d38563ecfee3ebe799234d232d1500103e6e4bca4acdd24e98a499ed6f00.ref, historical/c59def7f110fd3dca8ae385b79589a9c87866f3bdef7223038a1acf30b58f2fe.ref, historical/9b821e1fcc6e36bbad5342f42cf8757bc65d67103b7f3ba7b9f71b6c5302da57.ref, historical/b10e63facf2d5ca9556bf0e7a6d0cba63dc3dd8510f6c20daddc82a504c7540b.ref, historical/6866562386761c9ca8cd9093ab448a5fb8dfe89c1e4924269b248b85c5fdb567.ref, historical/60cdd1ded611aa7a269e7f268fff9cf6fe931e19321fffa3aa114c9441ce5c40.ref, historical/fe0300dfd1b225e7389b49eeda9e3df4bc7846bcc70992f92d42e78cb7b87027.ref, historical/89eedfa133d0609f93224568179c3be352f4605fd771b0c197498e95cefe6149.ref, historical/64968849a78ca534d5b596fd397b4c209a9319ea05c936616c3447060118db6d.ref, historical/193c4b626eadb7d8712c443f35b9f9a702579b0dc924c05c680be8c0a4cd0bc9.ref, historical/796b514bbe93ac409a2bd72ab94eb01069cd71303baae700114c983879b0b31a.ref, historical/2f04b0afe39c43aeefea63dcd0d2452c29a3d79dc36b21df0f4f9a31119fdc76.ref, historical/0547f86d193c41b6a501a5cb600af519f79bea40f9ae6d366356f04c8baf31b1.ref, historical/aae4c299d273afb7cd49e60bec3e2842ada1a169c641e8517d6c700b6a566714.ref, historical/36745a75326d2d453a3532769d983e2e7d5177cd9a442e6fd19962b9d0fb5bd5.ref, historical/cf673a7bafab6f1625ea952a1f333a1017b2fc9631c7a95a308c482157223f58.ref, historical/3f476139e4a92de21482606cacabd774b74dfad089ef66e551febd704e2963e3.ref, historical/dd5d329a7ae1ac6fa5c79c9d50d19a9c8d638997db864f6c708ae45a7eded508.ref, historical/f6c15b60fca249588cdfffce96ab4b5fb2da6629d291b0add73971712a46cce7.ref, historical/3929c26334d52ea12b651995dc6b5ee65ab38e82932b56d966a7c62f2f7e9cc8.ref, historical/cc6d4002b71ee01626e562ffcca11aaaa7834fe0343441e5fcfc98352228eb45.ref, historical/0d731e65d054691e26e8b417362baa4f827ac6eed29759ecfd8805a77274a78d.ref, historical/51630501b165be7fe184cb4f6ac31fa611564c78ce6e7572e3a298bb3da87037.ref, historical/13b5cd1c61547e7d68dbebb24bdabaed53a0766bc6557de2fc7f899e4685d534.ref, historical/2de71df6f9cd23a59bee10e773aa8b8a7672644668806b778522e6c60903cd04.ref, historical/fdcf7d3c8598bb2b4e2408585fa768326d9ab52f7b3120cb57b00b50cd7ceb2b.ref, historical/91146010f7b986a9e22ffd5d086943f87f6e88006c118474b8443c69798458f3.ref, historical/59a59bffe743fb101d237d51fff462956f31e490772e03d70e3619ea2c5150b6.ref, historical/f4c8af997f2d61ad62af34c20265762ca539198f618d8a5bdb6926435be17103.ref, historical/93c988fec71486dfdbcdb9e4c48a7b6b27bc50b158ed3a65d68de41819591df1.ref, historical/9f634a8467d994bd7cbb2fa9b17fc75232219aab25936c512236f9d673bd000d.ref, historical/454ca46de7825ef8f5591d87a4abec9b63367eb9c93264e45787ebd2dff5ac52.ref, historical/78d49f7a2ed104f108219c1845aab51378e745f9117543fd05f760f0847127d8.ref, historical/40dbf95ac025d6c4a7167b52ce97245719ed9f8b5d31f9c09d37c93bb9d37db4.ref, apps/mobile/src/web-local-audio.ts, apps/mobile/src/web-recording-host.ts, historical/c1168ac6caa266466f1a8888aa5f93c24854cd7313c6cb028fc031d24e526196.ref, historical/de9fd5f958a134e15a518b5b573752ad3ec18333fbc7aa0bd504f227988b0388.ref, apps/mobile/src/web-received-audio-player.ts, historical/f189c94c546d284fa295e87b33493627c7444e5d7d065ff7e385dc49f664903d.ref, historical/0d48cebe8581a2c9e3c375d23f507b347d456b86d722736bd092bb194a89c238.ref, historical/80bee85445c99312d3f7ada135d7e20b61706b4efb9cfc7243b21d4c608ab25c.ref, apps/mobile/src/conversation-audio-ui-core.ts, apps/mobile/src/web-conversation-audio-ui.ts, apps/mobile/src/connected-web-audio-candidate.ts, historical/3542eeebd9931f70e50bc71e3a769146ddddf53603d33be8d36c8c74317e7f25.ref, historical/6c7c74318cc04dfbf29c606b62f11cf0cbd0e699b6ed234e69fe3adc40fe6b29.ref, historical/ee3d730d7498168a2fee3b5d01b68f54326b661548b4947b80143b39da7ac7ae.ref, historical/ef1aa7e1ca257138c45c0aa0b02aa95cb654de01e517c1fefa539195242a1459.ref, historical/6f5df911f0105f6eeaa892e52bb6f1559b40f3e0bf6734e21321a90e29b6d873.ref, historical/b21e7c908d72de4c378b4060c1471658fbeaf87328d32850ec44f2ec7bf294a4.ref, historical/afca48b277e247954e62467e859af3d7429ee7fa495d42a887c09b8ff0721a7e.ref, historical/4d738857805a5460d224f97a66ee764eceecef13b16c338da7f1600c24903b0a.ref, historical/6b82a4639132b88b9ec4667f9da3d9eb6822f2b954c7c9baeaee4323b4c018f4.ref, historical/4af0e7984cdf52dce7bf915a6462aabcee39e4f9bd0965303312eb0aadbf0e5c.ref, historical/523936483dd85c7491d8a83e282bfe1e6a26110bad94b7bd0098b78210bb7353.ref, historical/00310f5c6020e49118d823119c020951317c29130051fd6997687eab3905c616.ref, historical/1f12129c59012e57e2876241fb94b42423ce75a809b25adca225ca8c02b6e40c.ref, historical/a9cf7ab0af3eb4814a911f4f87c1895e85514451d9ed6a9bea5974f56a8dea2a.ref, historical/a47b10f1c876c24453733a8b978806368ae44f0fe6b74a31453328bac1a759ce.ref, historical/933260684e469f35f7a100d8e85f0299b272c3dc34480e9fcc13a59415df63db.ref, historical/05663f19d003d0fe74641e23cb67bc2c6887125e0a649287a7487ebe50494aa6.ref, historical/fb5ce5e85c95739e95ad44f8bac1cf809af26eac3a55e1a192915ea3bb283044.ref, historical/9f27a84210d47389b3dbf90955854c1183b95843610b5e4150a99e625346826a.ref, historical/7ceaa0c4c26bfad10eeea8f00b6d4a2e01bb8c66dfbf0a78ddb7cb22ed73904b.ref, historical/67c95d29d416e0a768dfce011eab551c2be54e17c36a3f9960e31b74ca014b8d.ref, historical/dac16ead22ed4807cd4841735a3cac9303372ea0408a780a51bc8bab6f5d0aee.ref, historical/3afbb7fcadba80a2931c51d36a332335dbc12c29d612852414d57cc3f790b528.ref, historical/5336e9f1869a9e9483bdbf8cef07ac600e07b57ca3af750acec0a9696a5f2115.ref, historical/cfc724edbb2557435fad96900ee3afc2f6a70b2c54299e3814671485f452e00f.ref, historical/0ab19e90ba0753f43a42b79cfd3b3b0de8ae386f2179dd783b86db55a9354c81.ref, historical/04bc50bf85e9162b05a10e4db7cab9f4bff80c6e4cc53c3030705d657566d05a.ref, historical/f7124e0f0cc4dd64d85921182ce57eed61ed3ffaf5043fe3d3f18664a8ac1a59.ref, historical/4044267f483e497a7054e5222c13e21df61a4f16906c757e5cc18ce7c71fa06a.ref, historical/c0cd752872eb9ebcd378356ed440ec74e53132ac232ce7b00349cc28d272bf5a.ref, historical/aa550235602a3b993a46d21c6941a19b334063b9ed04d9912679a64c672b7dec.ref, historical/042205c3a086de513bd3a515ad571503eb87d27d6c2e1ad30d761d25fc4ee77b.ref, historical/158be01161c6b5d53ba02f569f711c58b263a573427e1cb9b5786eff0d921367.ref, historical/09065c510e39dcb9a876c7b2f3f243666559e9373c8e6e074852c8dfb264f99c.ref, historical/63f1ed05d41470321afa7f0f7c8221ce36e7ac4efc7f2d370d961741aeb1cc70.ref, historical/3cb0834f097da8f690c755312863969054517c7a955b84b227c9e79d8dda215b.ref, historical/5f2c0b1e7bc0d955b426b38904210d5458ad07a7f876e804747c840c5a94bb1e.ref, historical/d8fe9cf84c303fa050d3237fa21ae26ee8a4f8c9f5596b4d315da1927d3fd341.ref, historical/90a0ae31731a96a42c38f1512eb13824441fc21ba1188212e126297184e48d19.ref, historical/bf336312966627b47fffb87e7d32e38da08ac2f8adfb124053605f139385d1cb.ref, historical/f93218e149d8b38fe04e241dbcd4105f28146d6d0a6e0da73ae0c9f91cd55335.ref, historical/4b7296bc9ca15763ffc23aca64f55e3ab44ef992c95fdacaa895e2a01d1e5084.ref, historical/2fdf48b29fa2de9cdb799cf79b84afa06dd5396c2666f53c53af08bbf8ac116d.ref, historical/48443af8ea03287bd30f51f0d6462bd8044537b1627ef6fee766813270e69bdf.ref, historical/424fe1e9aa9d0b5f322ebb92ee1f282e10e224bf3c2e967a2040b224d6b8c0fe.ref, historical/ab338f817f51fade1c2522b75fb8684a3801601ef9a0f2483ea5aeb72ab3735e.ref, historical/7e9abdd586dcca2e9fb489ae3d6fb5d83cf9251a6c53f6d927169fc73b4332a3.ref, historical/d2ee64881dd481415adf38ffd303aa84fac0a948d02f8461fdb8e9288dc299ac.ref, historical/b0138eebd2fb29b924b653a2453c6601ef6a1651ba7b0f9a3e71d8ee0d539329.ref, historical/e0d5de75d503567a690ef271bf2a0d843f31612947a0274fb156226ab4d5992b.ref, historical/317875389f7e50dd819be1ffd3a98cbee938627f7a53eb3711f17f8d5f869efb.ref, historical/b11275ec89ed0a805ea93d8fa15c73928b79169d5a414fcc11ac2bccbafba986.ref, historical/f729182f59acb9a8ad4b55e507bbad336a1b0f7c9d308d4101e90791f701e8c0.ref, historical/d45fd20a98d38d74886be171c4d8c26000863529ea4cc65d15ebfed7657a0658.ref, historical/0c7e024e93924aefc249e56c4df24a6b3b541620ad96b925ea3f2360865fcdb5.ref, historical/4390f24e3e50b2d1d275e2a184ce2a48f596b0fcf8450768d0b98ee61c95adfa.ref, historical/255f1d80b31d3bb29f45b5800b1912a2c5bfacaadef6407e21bcc8fc1cbaa36c.ref, historical/d40a5c19484549dcb38470ff8b9cfccc9474731bef93d7960b65eeac54145c2f.ref, historical/00791bfa70ddeb1668ed0199697f94db7016bbeba682c540a38de0083cc95b84.ref, historical/d4767c1357097da05ab8ae745c34cfc38681529be963f7f5947aa40ed69015e0.ref, historical/755d2c7b9c2ea477b4539400f57ed8c972fd3b5744104e360b295ccb9e0c49f2.ref, historical/f563c8f6ba0f838e87dd5bb0c8a032c9658b5df34a618e77224b170c75ccc4d9.ref, historical/ecb10c7d78e4589e08594480bd9c8a77fce6b69c6634840151951375b9ee543f.ref, historical/596ff56393d7c389d0a818c056831af84175bab3890d66564737dfe5ddc14875.ref, historical/3fc3d307c3f59d0d12c3f807cca1b86f50f4a075b6e333c218121d57612cd0e3.ref, historical/b8b18a78ee34ebc29b89d2611021845ffb2dfbe31922d562fef19ae3a5f69920.ref, historical/d8fa2181c64d7ca5100f9ebaa235117cca2db345b47121bbc091178f72c7ef3c.ref, historical/8cad0062802f08a5eb942cff03973059740ae8e8ecf7125aca94c6f62f6d2d78.ref, historical/f0186b266cca96c6595aa56a73903318d3f183cd48519716d56b31e432349229.ref, historical/070efccdaf46324520e41fe084726d4f4fd342523011bd3d88196ea8d10e30a7.ref, historical/f5f059adda89a9b771d83b301cf0b9095d99c302234d29ecb048221859c3be4f.ref, historical/132483e9925a26ba1e91898531265b50cb85b91c5dce915c38a89a7becffb4fc.ref, historical/ec41f3f07dcfaefe64bdc911e1cb14eec679c2165666797b9c8a7d8ca7501f2f.ref, historical/d5b4cf52b2b9b6a536ebd6637a1200aac038df74b82b3a97f71faebe03a30f80.ref, historical/cfb570a1d3baf5457473511977f862198060610c948b0b14d55a3d057b8c8a53.ref, historical/ce6f7662d9aff6c0619f72c809cf4070b632dea2f06a47428272b51654172ccd.ref, historical/dbac779e8471d5aca3771f265ae880f91b0877f5d40be69e88b4ae9032d17220.ref, historical/f30a93d24d4418b9b8fa4ab3396820bcad7e6073dfa2d24889a6826302fa4a6a.ref, historical/50c7d97d6ce8a719d835162669b33022ec1d02721472956e014f6fe690f5cd2e.ref, historical/396aaa7e20d1bc17195c135c8ac2c9149d02ddf6565d8c78639eaa36f957c9c7.ref, historical/ce63918812adbf6139ca44c4f30b939f96735fffccd3070c195b791523710f3b.ref, historical/c5125e87596fce38980d99435df9861316c398cf78e570811e87b7b36acf832e.ref, historical/27c57f5675a844289f5e107a8fb862d69f53bd9cc97d7c97986944e9f16dde12.ref, historical/f0837d00cafe0067bcf548ab9d8d320ccd4c4c0bbb2dbddd48e9ca274a83c387.ref, historical/0c27df355c9475ca94284cacd131b45a21bdcfbae11b0c6f5f27f0d02b570e8b.ref, historical/27e707aef6a239b8135f64d1db19015648289876dcff17d21ac94516b4f53042.ref, historical/67bd2cc29612f24252bc18bc3de7f27f4844125dba9d0dd0fea55cac07ec6069.ref, historical/1614065eab500980973167573efa0f80d726764678c39ab0020eb41a22b19ece.ref, historical/e18ed851a0dff2b1835472b083dd0b9655cb5027ff0d6f1744b4c2b0a61b34b8.ref, historical/52c96c5d62c92e91506d42cd945a04cfb6a70bbd8ff3ecc91b6430fc4467d54f.ref, historical/72f94652b9e57e22d8d45132322f95c292e30eb2cf1fd5f9f9d729ec100d08ce.ref, historical/debf72b0ee88ed45b3605e2e1a4294012e2159653ec4fb317886516fe0d4fd52.ref, historical/3bcd4f6ab94484fad0b3065083ba9fbe3b39382c879f81cbfd57b2c306cfd35b.ref, historical/c4504e802cd34c67c44bad77afdef8b6d29565708bdeea0952e0dd6e066e7acb.ref, historical/9f38a892d8a9b06fb1e3008e37d0400297f920f5f98af548f0be69a5ecb2a07e.ref, historical/f67109d2eb464169d876a773354dafe916220f9ab18e3b441018c672fc8b045a.ref, historical/a8c0950582456bd216f5dfe50a5c34f31defa1e65797280ba413188b96d614d6.ref, historical/7343dd5ffc2c2ae786ae45df6e90bc0ee8a7a3b3f572860acdc688ac25cfad84.ref, historical/adee18ca20ca17194f6b465eca903ea16d4b45472179c7b59b6d1a87cac044d0.ref, historical/6aa57fd4f6864dde8a8f53b41f71e5cbf422d323cc46374378513645dae635a0.ref, historical/45e02a808dff0bb8648190aa926e126dadddf95e2e644466315196bd039a654e.ref, historical/b28bf0b725265c97976d681010ee472294737bef5e7d9e5acbdf2fa64e29d0fb.ref, historical/33066c865aa9689679c8aee4b328da6e496502586af573c5ae14d11675543f26.ref, historical/a69952d2c35019106aa0079620aa967bf8f82d088c3e08847547209278600dc6.ref, historical/641eb924fa475dcda8b8d96939b6d126f7baff411f93fab9f914f13464adac8c.ref, historical/a10a28bcb70adda22d626f97644bd27939f1edc8ddaaabdb985fd1fc3ccd7224.ref, historical/f1f634ecb97175bdf89383b79498a8c3f65093237ad36325dc373545fb273dc2.ref, historical/5de6e56764b27d00800b350bf55025802e6f5881dc390cc1e31b2b577b9001d7.ref, historical/299ff5f1d33975c216b7951706914af8c2568dc25d6f558860d37ece5fdc3fb2.ref, historical/ea2fe235dedf73f8be1272d2ae9f1c6a9abdb76a313fdb04a357bb92f12f0c46.ref, historical/a854a104926d4f7725401a6978830c4853bc6dd29647863be76fe63943323818.ref, historical/cadfcdb39d0f97ce9a923b172a1d37c49b625cfe431932ab0812f856bccbab53.ref, historical/e160a27a1006a184949aab3a47b01e077af89cbebc10603726e5ac8b7b2498b3.ref, historical/9606a2635e66bb3abd0d3a29dbac4931493fba65601f9fe197a8fc60e9bf5533.ref, historical/bcd0d5fe83a4b6e4d845e744ff24d5ec1ccb2bfc9945cd287880591b50901c5f.ref, historical/d5b8f46305aba0ec042bb0eb1ddf69c300f7906698be05b0a922dc6a1a0efa0d.ref, historical/b68b26f43f8c7ff55dc1bc3c555ce674e5eff688864f5a0e57ab04428f7c111c.ref, historical/8028a5440c022b71ba29dcb5983d2d96a2b1544d5eab4b939c4855cbaaa5f3ed.ref, historical/cb6424ac1475f65e0c28e8172783a9d662c30859525a09dcd8ee8b21d44c96ee.ref, historical/6f8cc99442dedd731fb85c3d03ec775d58580184af62a5d0a69df106f16ff3dc.ref, historical/e98ec0ce14d0336d39da17ce0e3ef93d4ae326af4b7284cbcd9879291d8d522e.ref, historical/ec149687f1e09d8b14c2ac345d8a808aaaa047d6e719b15dcbc53a1d7844ebff.ref, historical/b87ed6247922cd36561961cff53c54668a20b3ad1ef8b8a70b27c02766c59d54.ref, historical/5ee908da48a56d60b8fb3f52548a3f17e1c1d42c374d8211c3c366c785ef8686.ref, historical/2168fdd861e5d6d94534f8a17e539ababed8e53b8570898eeed151c6cfc32c60.ref, historical/3f27d22829a35a0dc87e08a0790b67b46686ee9fbf32efc0ac0e4563c71c936f.ref, historical/fb548eb5b546fbd83f382aa78c3345debea63af69f2c0ee2d0b242662cd1ddab.ref, historical/3e1ef282bf5bc59cbd4c3f263d24b5bdf3d17c134107cfa4f5dc1048f78fb353.ref, historical/7369a19af07c77a34d220de3eedf5b856fd4958c95510a04736dc94bab17036c.ref, historical/1b6ec5ca863702f0c4969928b15b7c18b72e85e23f9dca59b314b03387b0f495.ref, historical/fcdbf8cfa6d29a949f62254246d62f49a393a9c2b256c3544a4886a48f432a47.ref, historical/413eb0572cda6d816626dfc53cac6ed7cbbc3cf74c24f5aa40fce1f242b37953.ref, historical/94f2a09ea5cdadbf81857b6ae4759289464cdd89d8f5eaefd3e2c6e6b1adfb70.ref, historical/47d3ace22155fb62e845cd9e7daa0b049ce115a2e1a4ea94e4d959f825ce579e.ref, historical/2b67436ed686c70abdbe9ee9464365342aa5df4fafc6feffa00d2828afe7efdc.ref, historical/ac50766fd969a6ff24ce8c622718fd38ebade7b06940ffbbcc5b182a08a5a8ca.ref, historical/a086b336561840cff4cdae0a651ce918cd6733a072238ab32681ca5ba58bd1f3.ref, historical/7947d27ce390a69c7f6d4a0cac6dd057b54081bdd3a6308c3bd17d5ddcecc6d3.ref, historical/799228f84d74f9e651dc7eb519cd7c98c6fda1e0799e75a89268a14aac0fde15.ref, historical/5cfa54519e53857effce8c2eb0854ef10cf7b4bd996b8b5b4f38dca8d8f9542b.ref, historical/f183b9d7cb3b4f6eb77ad5e66d146741634af6fc5b06da30039af6beae0941e5.ref, historical/a148a9864d88df82b2108482869127e562de1dfff61877e6659ba850b5e76a77.ref, historical/08d35ed6af1b0cbd625ddc04208b53f0a583472dc464082604d50e36feaee3e3.ref, historical/12c58e833fd0d6df2544f283877dd229abc885b52a1b70ce859b6796b453a959.ref, historical/1cb3cfcf7b5eb3f20172b5bdaefff4a213cd4b4fec7b43d2b7ad98a300720ae9.ref, historical/26d535319de43e8b38f70538233ed4ec8ac25b8712d5dbd494249352f602d069.ref, historical/8cf4fff08db2a382898c37033c93924aa5737395b3054a02790e1f2ad1dbffbf.ref, historical/3a89b9c9cfeea20a4df5e9c10cf3471c92e008666abc0b5a9515fdf50133753d.ref, historical/1938f928ffced5ba5ba5b9249033c7645a00b99ea396c5273d5e9b19483f96cc.ref, historical/eda3f7b0d2ba0f842af5743f0244e7b126864fff56f7d5cb1468ce85619c1a2a.ref, historical/24ffd0e60628ce7161d05545ba6e330d01c957cb2878cc96c1ee081b451bfe44.ref, historical/c3749a818a4cd66769e1f121292e4b45fcac4d02c3abc78649ab762a5f888a57.ref, historical/1fb9af48abe83d8dd8692f41fa6087b8124a7e967630a670b4734bfcad2a92ee.ref, historical/749dfbd654da87f6ce17cb01def96df5cb85b33ce4ede8ed3dc2a3f591a9cf73.ref, historical/ae524a1d6fc0ec897666299562a99b8989d16b2804f9c029876157bdc0ecf230.ref, historical/b7a224cbe574fac0af48847d0fb7cc7e57e7994a7f3ef984c6cafab040a265db.ref, historical/1eac39578bbcb1ea5249f20f510f911351a38e4cec803239f7a70cf944fa00f0.ref, historical/37e213c5b6eeac70521ff3f5026a421e4b2f7b85f72d81e0d3ca8737c2bdf105.ref, historical/f3722431baf97d7b5c15efa060d1a5540a73ee7e0a91d147210f28c1e2890317.ref, historical/616a5ddee38dc8f4378f6b19df9b50db4c76ceb21bef05955d22ecf82462cc7c.ref, historical/d268b14f61a51b9f8f47675b62299f60c06dac6a0ff1eec556e659579e1e5808.ref, historical/56aad775400e9bca7de6061493386d547796d0f3057e5173761d43013f1531c1.ref, historical/68cb039ad93e210cd289cb7cb38407af653c0ea03a17e4c65fb8e71b01c9ab5f.ref, historical/342dd4071e8dff72fc353cf44cba5547374deb787433d21ef92c9f2acfd5b330.ref, historical/64b916c1f91d8a6236a67b7152d803a4403d6f2f64bc1d02e8e47a8046d07dbd.ref, historical/4eebc43cb3202176910c91e9bd4363075866f9c050110f8f8e2bcd939f4b561c.ref, historical/d97fb9258beccecb41666d966af472199f56945d109248371f962372dd855e23.ref, historical/0ccf169fd28f7b40719924de21d18b6b06f0678b92d98ed6252c759b81be3b1b.ref, historical/77bdf83a64714bb04f344e79acf526fb272d9b13ea6e2144390a393b5905eb2f.ref, historical/579fe03e558601e40ada62b2b3b141419284445a0721df70e887394b289f6c48.ref, historical/9e666ea6861b201cb6917a41ef36ea1333d4f22073bd0db4f0d88e5c6c4aa61c.ref, historical/7dac74efe4903eab4552cff0823f6efda1a9128568f36351fc5b9af4a7cb730e.ref, historical/c053ce5401356d1ec91006159e11397b9315a3e269e19876b4ea1a5639d5abfe.ref, historical/f5c6b1ddedebe8a1d0c553e471d7b92eb577ab84ce065c72c6cd4b3b78098fac.ref, historical/634b7937c8834d2e43a8f89471f44f686725ea4babdde16eea8aaafae56081a6.ref, historical/501aa000248a27389e05680701c31b61d6fbb4878b0144a364467788905af21f.ref, historical/3391e21013c92e8a8bcdf661e658d141d4fc5937edd3fae4eb6b31ab9edee4c2.ref, historical/266c8797174532e73a3aa303c96b604c8b452dc0f733fe5b98deaade8d4c1655.ref, historical/4304175a23d8ec06ba9367da6c921e893c45501b4cb7467b409465f79062faab.ref, historical/c8f77e3ad0d7a63c7831186a6428e2a5a3c96eb7459a6a17c79d3cc6dc7100c6.ref, historical/7b15dfbb0c0c8db9c94b80d233493f428a95c0fe0062d7b35a976fa5cf42e9f8.ref, historical/2a848b803b2be7b1806770c22b43ecf92d8d60c8047bdcf23fbb11b854b9c82c.ref, historical/7e1c2c98eb486ed822a5542c97febe8b9a1548b9caac0e34e67ffaaf3784cf90.ref, historical/b1ac4315a2fdabbf1434507bcdff0f57652bc3ebcc124f64886dab910faae1ab.ref, historical/0c731899ec643e4d31c0cd17e46e118a1fa47b20e4b4df4dfebd571b46bb31fe.ref, historical/8a416ba4b9b2605d1c5e750500baa2d9f3d9bc893dc186b3a82bd06ace146f3f.ref, historical/822dce4f39244cd6b541d2a016f74426acfac3a7bcbcc4e9ec36a93be952025b.ref, historical/4d75630b1fd91144124104b37d07e0ac89f32e0611e821988c11895d977a9956.ref, historical/5c659fd6f300d9e5cd16eedc1021e6ae361c8ad42d1f4f2c3f1d6c32b3c97a7a.ref, historical/5b19634bd6f2a78d39697abcb439cd4900bfd935c631715121b7468922506a04.ref, historical/9457c3094e23f9bf8c21a8e0629c34c4b15b475778e8f3b84dbd72d5fb5861bf.ref, historical/b355ce74d3022fdcade6279dbd13aabc9e90a5b9a9463813ab7b1a68522559b4.ref, historical/69a083eca7a1e4d27da01b5f02ef53926071d81f66842c0060919d1c53641a63.ref, historical/6ef1286c84518a8f030026fe57044c19b370d894f3a7c71cca42fb5263986cd1.ref, historical/69d0f2d82c83f9cf70506b656b9de0358990745e6a361a7e1ea01cf18bbce1ae.ref, historical/cbeffae9391db7e558ebcd5142b7260c177dcb9db9bbf755b69ccd24957fd422.ref, historical/8a145f6179af98c965135a9643f0f4a444479674e3d4debe0a4e395591321d5b.ref, historical/31f8782fcb803919a051cff633f1dafe7a1d6d0eeab6325337d66760f28f6e45.ref, historical/6cc934efb532285c16f3249c835fd453f038aa2b25a9f9e294d0374bf0dcbcc0.ref, historical/02053c32e39b90ad69c7c06689cc53ab01b5607d69b5f4a989c12b0e8a934cd5.ref, historical/94c0b37d29f334433f56a22b067238ed8be0b528e6f7218f0ad408802d9070ec.ref, historical/ab47278e85038dbe1f031d9e51f340cf123d30be60861fa536dd4e683d635538.ref, historical/385d07561d00392728ce063c9dbebd53460876da38026fbdba2f2f0067516037.ref, historical/5897023e181e952734577ff23f4afabf020ff2074fed7fc88e5c1a3c607c0139.ref, historical/99a91db121cbc45bf027eb269f0b9802d24106267be5003c5b21c464017330cc.ref, historical/c698207b659bb7d3c47de84fa2c47fccc35a3d4cfaf1d893c64e14e495f486d5.ref, historical/96a8e77f2a9985337a11041949a301886631f09f9ad8f0005a48b9cce2aafae6.ref, historical/364a612541b3b71093cc5432b1800effda522016f17ab6018456cac3b0d9ab1d.ref, historical/4a05c77720ee200ab1674f515ceefc8fcbefe125b764ccfe42a465553e5e8a67.ref, historical/935be72f765912e1cd6c613082bdb74253d5d6ad030a73998048d359a574c122.ref, historical/d533f86f08c1ede7f43d3c80995e7e8de315dc904f156a8b10dcd58974a727a1.ref, historical/d9f623fe7f0fc5be5b01cf52ecec98a91f54ecb86c758544d027255484085ac3.ref, historical/6a1a2d922a5de810b54ad2f656231a1c1efbafbf6ac37de31954958c3d36db33.ref, historical/519332922ed359c1274cb0ee71ac087f9466603d06ce7aa614904b2bdfbeebad.ref, historical/a24f91bdb3eb0279828c71bcd21dc93e02b28bc0bccbc904df0234eaed28f38c.ref, historical/e583eebf6562ed3abcc97323cd7672e437e9219b5d3cad921f15ce4d4b568ce7.ref, historical/caba5b91eee5b8f8a4fd5411f96a8642463760c8eb4a36058f06fba6f5da9699.ref, historical/2f8662c6fd223cb9be91c93a84caf256eec5ff85b6e482e203ba1e386fa62889.ref, historical/94bbafc362e2c02fd0e5716a2ece04023779cd58cc5d50b95617c44ce9aca2df.ref, historical/d693dee94f9b26bf3bd6da0f70206aa9480143f342b64a588003516caef39db3.ref, historical/d878def13ba5d8ff42d491750b9d9ec6e3f4437610f36ae4e7a069d40286aea6.ref, historical/75bc0eb04920ccdcb68023dff1faf3a38ede1205675df3cab0afb421ddfca6de.ref, historical/fe577bff38754d94e627236edb30446b4d1368c4863e583924faed48dac36cd4.ref, historical/273a9edf4794852b16de48d366a3f614122fee88e40b60a1409c59d382ec8a2f.ref, historical/a1733c8f7fac38d7d3d98c5d81174ba5bc587d42d6a48ef03e29dc11c322754f.ref, historical/f51fc1ef057fdff2da1f71d355fc461f85d19d84a17744ce662b19d682290146.ref, historical/0ed14f27cb71c30448cfde103f47ff8facb8cfe2110b9c0d19f461bccde48ed9.ref, historical/36bbdf15108c3f300d65cded233ce73ca0a35547a9ea7598fd2cfe6870f5caf8.ref, historical/c4dad100b7e395690946cb49a17f24152523473e8bbfa2c9443c3ea1e2b2c231.ref, historical/84b5083eb7474ca110ef783ae512be20fc8f09412f0d5f97c77ebc256c192680.ref, historical/5990b2bb7c2553c1fea820f1e9641e0d5f4528f59dba85c89396e0ecba06f231.ref, historical/870e717c2aa7072a81784151bdb3064c671601adeb52f5b7a573ab9519673482.ref, historical/353bd36842ad60975be391a595cff27f7ecdfd6d74166d49fa79f70d00760313.ref, historical/b6d5d1f2e70792ce3973273c91f37173a34ed9784294965d020ecfcd7751f809.ref, historical/295c0b4af8a8da0e2de9014832975458aaf9c7881eb0a24c7fa2273980c0b74b.ref, historical/d6dbff39530103e89ec60372279dde83dfe146d0d8a4e0db0d5e3d7683e64745.ref, historical/b5e63f563d8b28aef61bee562f4401834d8962f6b3200bbf8852b2ef8762169d.ref, historical/fd595aaa1c1740c4b601a4204ddd005934e7fb286deb914989c883d194a95bbe.ref, historical/e7e42622e05122976d772aa872b228a663f75fbe45a4588e77a6a94575e28416.ref, historical/017bd8af5966a5ccadb5e200cefe6aca1104214cd1d615aaf21c26bbc6fcf00c.ref, historical/cb5b973c0fff06f566635c37b8492aec600ce4c4356ce64692d4b34c05cecf20.ref, historical/b73b2e2e6c4d3bf458561ce9b0d6824e3bf33afdfbc2668f06d535a84abe8c69.ref, historical/c0a7c3030faafead04dc6110823c66f595f8da3946347295903f8b14431ea428.ref, historical/a78c1c21f48a2432cc3b9cf2fcef767ba318810d8ccf045e273e8db733dcdf2d.ref, historical/7dc67f97e7fb18655158c21d23fe961dec8c2407243535b4980f8e902d1bef4b.ref, historical/9ecf709749a130b4c51e84cf7e73e34eb946027225947d2eddbb99d42bfc32d3.ref, historical/a351ccbf9526be32d8a022748fb21d4060b70d67949fd13999135569f20ad69d.ref, historical/fad1b13c2d22514ee16dd274b64aa2f356805414753a297e0ea9ac0b5fdba399.ref, historical/19340f2f2367473cc07c3a0bf3316881cd293a0a2085e112105a61a2a6dc4635.ref, historical/e1b8b31399504dd2e80464f875d18fecde7bd3548da458006222bdd976aa7f60.ref, historical/e54f95b6bc2831cf99b13e092e0a1f45b9df20b4b085344ce597eed630803f0a.ref, historical/c0f52076f413509e1947f7615c1c02931b5e932cab77887f494cdea2e5643928.ref, historical/a9e85baf3153608f1511e36238907a4a612e946a693629c079cc68c55c9e4c8c.ref, historical/e25e4bf907cc715b5b61cc8919f71d4538096dc0f4e42b0a3329a7e6adf7f2df.ref, historical/00911f746257052712b35effb7c2d7b197f485f26cd28514fcbd322d0ddd64e8.ref, historical/efa461e292c4ad9d793cc7a49b13321d1d8e65cc4f0c12a439aba98768e8410f.ref, historical/3eaa22003238ebba73adb42a4ee8518ae53ac742138948e7f8a85a8263d41bc6.ref, historical/3dfa343d875d928b6d7c15005bd80d1758620b4c09fe2bb7ffca2e6f4a073a97.ref, historical/d372f90a497beff6d7e943afe9bbc24dc53beaf02cb6f0342755204c6ed27a35.ref, historical/b184dfe9275a6105197009cfff695db4f33e9c757420b11dab2866eaa5a8528a.ref, historical/685439a3992b3815cd955706b62c1b897ec4a72899e334a2244fabdda82162c0.ref, historical/ba00a4fcfb104484f97ff4e2b106028a6a10461e92bad6ecf32973a919d8302c.ref, historical/050d00bdbc596627cc588f00823716360c372a4c33f04aeccb8fccd0279c3b31.ref, historical/8062ed71d360646dc171eb558af223d4cfd9b69489b73c6bc8960da02a9138d9.ref, historical/528e81623010aececa7f6ba2e9a6f4e0b5b7fafd0ee4d5dd67326afbe4b7b663.ref, historical/4655a395005a63ed3f5198575585d1f12dfbecbb320e1ae034877bd85e108035.ref, historical/8fcc3f47e80d37deca48123bb09cdf72ef3949f9b1bbf82afcbfd2c63236ba10.ref, historical/4849f3a90002657756db3db54b0dca76905e7e586648037721384de6ddcccd1f.ref, historical/bd2be80e716c753aa9de3a8d5d574fcada44ffacc24e012e2be4996f47bfa4a1.ref, historical/c04ceec640e50c753ccdbed57da7eea2574ed08395f71686da0bc608b9f03bc0.ref, historical/e8ede10ef0dd80690788cf0a89488f1546a41364f24a09b30da5bc31d9bfca63.ref, historical/0345c33a4d5216d908e47d610e1f2926c2c6a9f08b68d43d7daa4b8a23e80b89.ref, historical/de681b71c6fcd42a90a5d4faef24af4022479808d232ab477386088470ad75eb.ref, historical/b733a23121f85b48ba9fc77354e63a1bdf93c6dbdbf9b924eec8a261f2657d79.ref, historical/31946ed62ef2de8268bab5e7360437c261f6810779e2675e9dcaa3361cab0d92.ref, historical/2fcd5e1b31773d06414a25af948c377d73bb246eebbd5944282fd1fa965ddb38.ref, historical/5dc09a20f7a1cac690dc80a9a3d30605fa5bae9a8ee1d742ebe2f4ab92b40ab4.ref, historical/136ea63ff6c38f502ec14a173ff336ba8e238878116bd0b77ea547b8dfeed40d.ref, historical/760a9e2a719091953b9563d9d9aad0034bcd353f3e864672f2020510a96ddf75.ref, historical/2e24e97e1a951f0da983abbdff68b5286ac107d3460c63d8ec88ee4740a7bbe1.ref, historical/d90ee07f490c43b20e13c45d9217790f726625bca23a1a511671b83a39ddf5d2.ref, historical/3c73818617422a54bca2101eee5d0ad78a141e2b29f29354de6b9e491133a4ea.ref, historical/b798c3c32f6a943b5304ec348e70f6f20f78f96d95b2e3ea4f75e561cfc33f47.ref, historical/7918f9d51c38d0f6430b8bb303c7ae54a4f5078a7b188aac0456048c15e82f2d.ref, historical/231ced0e65a24226d9b3fb43f14d75537d21905434d006d1811fa247f030f358.ref, historical/8e3b8c132ecbd5e6a84e410331c06102e5ef114133b2e459ce238405f63e7456.ref, historical/6fc3adf2594fce2bd0f93e9537a314f989d892eebfc8f4b35ccdeb74b0d8d37d.ref, historical/622e41c1841adfb18507d4b5270c49365581581c935073944091f9177dd8ae14.ref, historical/dc6d93f2eb40a02bc98d2aecc22d2d01eeba5e7c9e241f4b6ba9aa79651c0f96.ref, historical/0f4531da8d10497033fba9634bcfe881c088e2e5bb4cb0dba8e4c295d70b1b74.ref, historical/9a80da9d348620716c9819a9fdc3d959109859845d36496f70ec837dae78a93b.ref, historical/c54b134a97f2e5dcfd8517bb61eb153adcdae6587cbf84e67c25c3457f739121.ref, historical/0886e679dbbe930322712495ce65d1d6b80b7a62a8409af6f81cb50c064185df.ref, historical/ec1e381071d87f41c7e6f21f5c0b23bd15b9b2927580c284d222f32f02441b44.ref, historical/67f9628a202b6502b0f163cd01ac5e1826b0c7187b0c6db430c3ad9d47df48c8.ref, historical/90c261618e17d2978102e671f103d6ea67db7319c7217cb4c17ef37abb328984.ref, historical/fe6e16da4f3d92a58137fcc9d5724f5beaeba85b69667250005cbe2517fce80b.ref, historical/c0cb062aca4f34c71afd893411df9887a177fcfb399c62da9ea621e721f9f4db.ref, historical/06725bf35462dfaa2b6cbb6a22e3f01309eacb1a807cf0ed813e09e5dcf030ba.ref, historical/ab3d52cfff7eaaa477850da2dc5feb762077461e36ebd55c5c21a2d58b337681.ref, historical/11a0e4d5aac6835f3b6a6628bcdda32921b4e5a5b0777d670afeb11078040065.ref, historical/f67392596126f9eb0ab91500518bf5e48dee2fab08a419af265eae290822dcd6.ref, historical/acc70885d74e9bcaf182d1ab581bae73ae616382ed0a99b34107802202fd1222.ref, historical/a9ca91dfc88a1293bfc3e4ea93bd6beafb4843f42507b59f4fe67cb29c9aea84.ref, historical/4237da7aada88e7d8bbf06fd50e1412708ae009c37f9c798282e1c5caec70922.ref, historical/22aa5f3e2bdfab4896c2d7c9c13f96c0cf8711654132dc4b98634b18905ad9eb.ref, supabase/migrations/20261116045954_connect_registry_on_demand_operation.sql, historical/efe7810c6ab91caac145c5cba8165e1c838ff9c78daa284332cf624949e90f56.ref, historical/75a55a1ac068c7fe58616dfd70be9c73006aeae54b6748c86d4888198355ee6f.ref, historical/d11bde9f7d3dd4851b88dafd6bfc1399c69403388a3ac6b58acf17ed466d7a24.ref, historical/3900ecef23aee649578f66ac2782959c559cb7794e877baa0e2079e4ad98ef45.ref, supabase/migrations/20261116070636_connect_audio_normal_operation.sql, historical/74cd5775bfdf4397f16f301cbebdfc6fba2231bd21aa0b3aed7f502876e606a8.ref, historical/6511b603e0ac17e8e9bdc8db4a6811b8514623dfd85402b624bc9c5b6cbd430a.ref, historical/1a3219ea9657803ddc4a1c7619d33325dc69c2274d0c42b294bb9098477fba43.ref, historical/5473ce1aecfc2b651e75f52866a34583cd6a12f3ac8a581c2e9875a38923694e.ref, historical/fa903dd693863bfc7cfa471526cfa3f688d4ef2716a7db23e1e909f42f800c43.ref
 
 ## APP-057 — Suportar emojis e Unicode íntegro nas mensagens
 
@@ -775,10 +832,11 @@ Estado: in_progress
 - Reproduzir separadamente inicialização fria e mudança de altura com IME aberto/fechado, registrando dimensões e compositor dentro da janela
 - Localizar a causa do compositor fora da tela após redimensionamento antes de aplicar correção; preservar falhas históricas
 - Validar fluxo padrão e320dp/fontScale2 com teclado e rolagem; não confundir caixa cortada com texto integral legível
+- Saída voluntária pode guardar rascunho apenas na sessão atual, por empresa/conversa, com limites explícitos e limpeza privada; restauração não envia e não recupera fila incerta.
 
-Próxima ação: Compositor corrigido noAPK0.1.3. Investigação adicional localizou colapso da seleção em TextView.onConfigurationChanged/stopTextActionMode no EditText puro, mesmaActivity/input, reproduzindo comportamentoRN13. Não aplicar restauraçãoforçada sem validar IME. Causa interna de height e Android/TalkBack dos novosmodais continuam pendentes.
+Próxima ação: Guardar rascunho e voltar integrado na fonte: memória limitada por lease/empresa/conversa, restauração só após autorização exata, sem enviar ou persistir em disco.20 textos/131072 unidades totais, capacidade recusa sem expulsão; contexto privado/logout/sessão/gate limpa.2 jornadas bridge+pool/guarda e tipos passaram. Validar Android/cortina/duas empresas/TalkBack e escolha de saída no lote solicitado. Sem APK.
 
-Evidências: docs/testing/FILA-INTERFACE-0.1.2.md, apps/mobile/App.tsx, docs/testing/REDIMENSIONAMENTO-ANDROID-BASELINE.md, apps/mobile/scripts/android-resize-diagnostic.mjs, apps/mobile/scripts/android-resize-comparison.mjs, docs/delivery/DEMO-0.1.3-BUILD7.md, docs/testing/ERGONOMIA-E-TECLADO-0.1.3.md, apps/mobile/scripts/android-ergonomics-final.mjs, apps/mobile/scripts/android-selection-resize.mjs, docs/testing/SELECAO-REDIMENSIONAMENTO-CAUSAL.md
+Evidências: docs/testing/FILA-INTERFACE-0.1.2.md, apps/mobile/App.tsx, docs/testing/REDIMENSIONAMENTO-ANDROID-BASELINE.md, apps/mobile/scripts/android-resize-diagnostic.mjs, apps/mobile/scripts/android-resize-comparison.mjs, docs/delivery/DEMO-0.1.3-BUILD7.md, docs/testing/ERGONOMIA-E-TECLADO-0.1.3.md, apps/mobile/scripts/android-ergonomics-final.mjs, apps/mobile/scripts/android-selection-resize.mjs, docs/testing/SELECAO-REDIMENSIONAMENTO-CAUSAL.md, historical/c1174f427843576b4cfcfdd6efd70c55fa9258028660b67874946c6f56a0d24a.ref, historical/287a6adc0f54b2ed64940d91c565fff4d122610594ad39f5b5fc300377dcbd88.ref, apps/mobile/src/RecentConversationView.tsx, historical/a8924c895cd1470f1e549310a17bf7eb830d0964a6bccd6c5e21abf9409fbb48.ref, packages/chat-client/src/recent-conversation.ts, historical/8e33f6b5375869cbea41d7b4ad3afe7b2f444e9390d39ce754358cc801e74e56.ref, historical/56a3a5e066e50c2f6d9395a727a286cd364b97fbdb6a0d2eb6e59d1e2f54ec16.ref, historical/be26849aa9d8602038355f3be221110b81ee4cd440466ac291817f97941c6cc4.ref, apps/mobile/src/session-drafts.ts, historical/9b92c6d63d42fda5f55c6f76160bfc81e4b070b7ff7327229f4625346e23a77e.ref, historical/255be6306c0e5198ec48e7f4265da5aa3d00fede41b1fa4e39490d180f80a278.ref, apps/mobile/src/draft-exit-guard.ts, historical/9627a65cd3e1b3bb51845b2e2953615d7acf51a6907a4924c88b5dbb770dd16b.ref, historical/f812265977c2670a70fe220b62bc121bad010c39700422adcaa178a9a94af51c.ref, historical/271831ceac4c2bddacc0c6a9aaab04214ff8910f6f43701a32854e1a6dbb1905.ref, historical/b54112bf3a44c0355ef6bc6399fbb2849345574ad8377f3841fab17f4e38620c.ref
 
 ## APP-063 — Implementar controlador local de histórico paginado com isolamento de contexto
 
@@ -800,6 +858,2609 @@ Estado: in_progress
 - Validar candidato local com corpus Unicode17, casos compostos, limites, autorização e custo antes de qualquer migração remota
 - Preservar fundação aplicada e preparar migração/rollback revisados, sem relaxar apenas o limite SQL
 
-Próxima ação: Divergência reproduzida no PostgreSQL local: char_length rejeita emojis compostos válidos. Envelope sóbytes não é correção segura. Avaliar contador Unicode17 privado no banco com corpus e limites, fora de migrations até revisão. Nada remoto.
+Próxima ação: Candidato Unicode permanece local, com rollout/locks/rollback já testados em fixtures. Fundação online ainda usa codepoints; cliente conserva limite atual e rascunho. Antes de promover: alvo/canal autorizados, custo/cardinalidade/writers reais, janela explícita, revisão e testes HTTP/JWT/RLS de negócio; diagnóstico Auth positivo não substitui esses gates.
 
-Evidências: docs/product/EMOJIS-E-UNICODE.md, supabase/migrations/20261106200713_connect_foundation.sql, packages/text/src/message-text.ts
+Evidências: docs/product/EMOJIS-E-UNICODE.md, supabase/migrations/20261106200713_connect_foundation.sql, packages/text/src/message-text.ts, historical/045e976ed4c937d5c3554b949d9f16cff68859b9f9a5556669385208ca685fe7.ref, historical/a7caaf35add22ff3e9461b3875de381a2113266ca3c26053d50dde54e81223ca.ref, historical/7505cbfea00519567d7561cf788491222d9abe533994f95fde896250e6e1b5df.ref, historical/c0156cfb33057d94f3eb12f283602902607b733ed7a37f120cf46e584b7ae864.ref, historical/01f8a0e1fb821b63c344a971726bef25c822bc5c9efc87af2149236d27a473c6.ref, historical/eb7ff877b027dac7fafa7526689858f9ca15e5ef82a59bbaadc9ca7c6e6c8e2c.ref, historical/f295ef18dfc505e54d21e7ea15dab68ffa1399a71d338b1fefe5eef2545d1669.ref, historical/544ae89fd66c8cbefa8aca13816ea0375d56ed0ab80cd7992c44103c559467e3.ref, historical/f2ca0fae0b53b96bcab2db4b89356442603a886915453721a0e297f8bce08b6e.ref, historical/076cfde10dd7b0bfb7b7b5926150e8f39eb0a79cc070bf26d31655db76472859.ref
+
+## APP-065 — Validar e entregar demonstração Android0.1.4 sem substituir versões anteriores
+
+Estado: done
+
+- Compilar candidato próprio com modais roláveis e contexto preservado em teclado/fonte ampliada
+- Verificar assinatura, hash e manifesto; documentar testes nativos e limites sem alegar backend real
+- Entregar novo lote privado verificável com instruções, evidência e versões anteriores preservadas
+
+Próxima ação: Lote0.1.4/code11 entregue e verificado; continuar MVP sem tratar simulação como chat conectado. TalkBack/aparelhos físicos e Auth/transporte real seguem itens próprios.
+
+Evidências: historical/f649e8afd7ccde455bd2a355f185006bb2ecbf0646fd50e5c05811bc280d05a2.ref, apps/mobile/App.tsx, apps/mobile/app.json, historical/ec45ab08385cff67ada656ddedcd8bca1248ddbe1aeeacdc67f15b0327858ae1.ref, historical/81ead72e2b92aaab0c966a81574d6721b9505bc0f694e442b409108873bba81b.ref, historical/c6fcd37322911efc9c309e22fb3dc78691712a639ac5768848f36e9ae425a451.ref
+
+## APP-066 — Preparar ponte local candidata da RPC Supabase para a fila de texto
+
+Estado: done
+
+- Projetar somente parâmetros e campos permitidos da RPC existente, preservando texto e recusando resposta de outro contexto
+- Testar deadline, cancelamento, sessão antiga/reentrada e retry com mesmo identificador sem ecoar erros técnicos
+- Manter código fora do APK e de serviços reais, documentando port autenticado pendente e restrição Unicode legada
+
+Próxima ação: Port de sessão e controlador existem como candidatas locais APP-067/068; validar provider/vault nativos, plataforma e Auth/RLS reais antes de ligar a ponte ao APK. Restrição Unicode legada permanece, sem migração online.
+
+Evidências: packages/chat-client/src/supabase-send.ts, historical/f2e072444931d0b88ace69e10e5f52da2ea137426cc73eb9cd9385334b00bcb1.ref, historical/8a750385e2914602ce28aa001d712248b764ae2a215092563d892e1a391e3dbc.ref, historical/1100e526d9f980fca77edb0803bf49c9eba4c39859ae20d14441c6a4c7282f3c.ref
+
+## APP-067 — Implementar transporte candidato preso à sessão com fetch sintético
+
+Estado: done
+
+- Verificar sujeito pelo endpoint Auth simulado antes de expor RPC, fixando bearer e endpoints por ativação
+- Invalidar logout/refresh/conta antiga, limitar prazo/concorrência/stream e não expor credenciais ou diagnósticos
+- Testar cadeia fila/ponte/transporte com confirmação incerta e retry do mesmo comando, preservando limite legado
+- Documentar gates de controlador, Android e Auth/RLS reais, sem alterar APK ou serviços online
+
+Próxima ação: Controlador candidato APP-068 compõe com o transporte em testes falsos. Próximo: provider/vault/restauração, eventos e validação da plataforma; depois Auth/RLS online pelo canal autorizado. Sem usar token real ou apresentar protocolo simulado como autenticação funcional.
+
+Evidências: packages/chat-client/src/session-rpc.ts, historical/b90c76f32c05682a1ae2087e4076f8fd184729cb9341518afd71f8ac10e4fe8c.ref, historical/01126348f5fdf3cc7713ddba21ec8a9957bc20ede669d13eedd60b781d7072a2.ref, historical/2d3b487a56b2ebc0bf911830af7e5c9cd53d4949e7999de7d805016db90d5fe1.ref
+
+## APP-068 — Coordenar autenticação e contexto em memória para futura integração Android
+
+Estado: done
+
+- Coordenar entrada/refresh/logout por ports e transporte preso à sessão, sem persistir ou expor credenciais
+- Descartar login/binding/empresa antigos, reautorizar empresa após refresh e testar conta A/B e contexto A/B/A
+- Bloquear acesso quando limpeza privada falha e manter logout local imediato com revogação remota presa ao snapshot antigo
+- Testar composição sintética e documentar provider/vault/AppState/Android/Auth online pendentes, preservando APK
+
+Próxima ação: Candidata em memória demonstrada; implementar e validar adapters nativos e armazenamento protegido antes de integrar ao APK ou usar credenciais reais. Não resolve restauração/revogação durável nem autorização de empresa no backend.
+
+Evidências: packages/session/src/auth-controller.ts, historical/aeaf6583ef37d6d1b6e27be4f1764a91ea0beaec38129145d869fcca19304b98.ref, historical/373eda95a466a715ef94495f1fe3a4ecfa83cd30dd854ee47c76ce996a29664b.ref, historical/0e0767f6b32a770d7fc6c04e6f120ce7440708b00bb8c5d9658a3f298637a39f.ref
+
+## APP-069 — Avaliar cofre nativo e preparar ponte de sessão para telas/ciclo de vida
+
+Estado: done
+
+- Implementar port de cofre sem fallback comum, com FIFO/exclusão verificada e invalidação de handles antigos
+- Projetar apenas rotas/IDs/avisos fixos e ocultar contexto ao perder foco, revalidando expiração antes do retorno privado
+- Testar storage/AppState fictícios, troca de conta/contexto, callbacks e falhas, documentando gates nativos e de durabilidade
+
+Próxima ação: Candidatas locais avaliadas; não instalar/ativar automaticamente. Priorizar APP-007/008 e Auth funcional. Depois integrar provider/cofre/restauração/telas e validar Android, backup/process-death e criptografia nativa. Não há persistência de credencial real nesta fatia.
+
+Evidências: historical/5bf3852a426852c4ee2bcae982c7879954b82212ad3b726810c671e7e104b84e.ref, packages/session/src/native-session-vault.ts, packages/session/src/auth-screen-binding.ts, historical/960e1bc8c826cbf1fd0994843ca0184a20270c1bae6fbf5e502c6a84459319c5.ref, historical/e881b41b5f9a92680a374184a3c28bff6c574ba62ffa91bdd1c936c1184aeb9c.ref, historical/8e841fe1f3b56d888298f2fa9d91e33a2aa548b93683bc8f3e7a39a9f1cd7017.ref
+
+## APP-070 — Implementar candidato SQL local de cadastro pendente de perfil e empresa
+
+Estado: done
+
+- Criar perfil/empresa próprios e status privado por RPC, sem identidade/papel/ativação por parâmetros de cliente
+- Validar CPF/CNPJ e limites, preservar CPF como HMAC privado com chave gerenciada não configurada no candidato
+- Testar autorização de roles reais locais, isolamento, idempotência, falha atômica e concorrência com duas conexões
+- Manter fora de migrations/online, com rollback vazio seguro e gates de Auth/chave/verificação/nativo explícitos
+
+Próxima ação: Nova RPC local my_company_registration_index permite descoberta própria, bounded com overflow explícito.93 assertions e9 cenários concorrentes passaram; rollback/admission atualizados. Revisar novo hash antes de qualquer migração; chave gerenciada, ativação/unicidade/exclusão/correção e validação real permanecem gates.
+
+Evidências: historical/6e6b9650ea48e1bcd8c7add9953f304fb026b2e21f68f11ba13973ea62985b70.ref, historical/9dd4a7c0e0db5a03d1a44762fc661295ff4d7657c9fef30efcd4f1bb7b763a5d.ref, historical/f49d62abe6243a803715e92878a92813eda979c837c1eea975dfde87e6400745.ref, historical/0168eb82931b9aae13538675884865fd1d6079c343057c616499f01522a7375b.ref, historical/5d878f7a5f3f00f4d22d665d2712d7162a1356e238e8121905e75a90a39a16a8.ref
+
+## APP-071 — Preparar provider Auth e telas de cadastro/andamento com testes fictícios
+
+Estado: done
+
+- Implementar port Auth sem estado global nem credenciais reais, com endpoints fixos, projeção, prazo e cancelamento
+- Preparar componentes de login/cadastro/perfil/empresa/status e DTOs próprios sem conceder acesso ao chat
+- Testar validação CPF/CNPJ, respostas/contas antigas, logout durante pedido e erros fixos em prévia isolada
+- Manter fora do APK/online e registrar gates de integração e Auth/RLS/Android reais
+
+Próxima ação: Host/adaptador/recuperação local APP-072 preparados. Restam montagem nativa, configuração publicável autorizada e validação Auth/JWT/PostgREST/logs/RLS/Android; chave HMAC gerenciada e revisão da candidata SQL antes de promover. Sem APK ou serviço online integrado.
+
+Evidências: historical/906bd842cd4d300badfaaedfd673b4860446a08f406be806d9a5c9c338e88a5f.ref, historical/953554f661ea08fcc51c1e705287e2b5779dd22e4103f0aec1b7f1f28c99deea.ref, packages/session/src/supabase-auth-provider.ts, historical/b0b44fdf277eb897b917cb55d6f039f2fd558744d79a900b206f650b63c0ca37.ref, apps/mobile/src/registration-forms.ts, apps/mobile/src/RegistrationScreens.tsx, historical/71ee6b50351c63eb5628dd72eff8bf514aaa06978b3a5524f09d7708a4d8daaf.ref, historical/e75c7a5e28d222b614189b5eb37da7982c5e41df8cab79622e21b92f501251d2.ref, historical/b1de33e2e2aaaf5145538081bd8c8c00c47eefdf60374022d98d115146f9b0fb.ref, historical/68c16aa52df765318812b2f8e5cc2576bb94aa1cf25e9c5db52db79803de1986.ref
+
+## APP-072 — Preparar host e adaptador RPC com recuperação própria após reinício
+
+Estado: done
+
+- Ligar provider/controlador/transporte candidatos às telas através de host testável com dados fictícios
+- Descobrir IDs de pedidos próprios por RPC local protegida, sem diário de CPF/tokens/formulários no aparelho
+- Testar reinício, confirmação perdida, logout/conta A/B/A, respostas antigas, limites e recusa segura sem escrita automática
+- Manter candidato fora do APK/banco remoto e preservar gates HMAC/Auth/isolamento/nativo
+
+Próxima ação: Montagem Android fictícia APP-073 testada. Recuperação real e segurança de backend continuam pendentes de Auth/JWT/PostgREST/RLS/logs reais e promoção autorizada; no QA o servidor permanece em memória e some com process death.
+
+Evidências: historical/9be2593ffceadb3ab24e69c02ce673d9b7753519e52c3bdafb1633503b9f7c17.ref, historical/d6f08f5ae67aad3c8012540097eeb6b974e026b8916f11b3c47b58a833959a02.ref, apps/mobile/src/onboarding-adapter.ts, apps/mobile/src/registration-host.ts, apps/mobile/src/RegistrationHostView.tsx, apps/mobile/src/RegistrationScreens.tsx, apps/mobile/src/registration-forms.ts, historical/b49500c90292f80f78da6918565e382244bb53a8f6ef32fa71082cc55dce4327.ref, historical/61d9df1865c2a57f3dfc76fdce85456c109cd2f9106e6718e7df16a13f20238a.ref, historical/b1de33e2e2aaaf5145538081bd8c8c00c47eefdf60374022d98d115146f9b0fb.ref, historical/d4c713c62dae54f882a35c8b02f8616fb3e04a049fdf8827e358d9ed3ef117e4.ref, historical/e9715f235be54756901c76bc80c2e6e005a94d18cc85eaac6bb644cc67b3fa7e.ref, packages/chat-client/src/onboarding-rpc.ts, packages/chat-client/src/session-rpc.ts, historical/39c2c8b7ac5ac18227536a1991ddd21d642a2e9a80957dac5ff2f9b9bda4ab9a.ref, historical/5d878f7a5f3f00f4d22d665d2712d7162a1356e238e8121905e75a90a39a16a8.ref
+
+## APP-073 — Montar cadastro Android QA e revisar plano de HMAC/promoção local
+
+Estado: done
+
+- Compilar e testar entrada Android separada sem INTERNET ou backend real, preservando APK entregue
+- Testar cadastro fictício, confirmação perdida, logout/troca de conta e privacidade ao perder foco
+- Corrigir e reproduzir ciclo de vida de fonte/Activity sem persistir tokens
+- Revisar candidata e proteção/rotação HMAC como proposta bloqueada, sem gerar segredos ou aplicar online
+
+Próxima ação: QA interno x86_64 concluído com9 verificações nativas,174 testes/3 typechecks. Não é APK conectado nem entrega ARM. Próximo: canal Auth sintético autorizado, mecanismo/chave gerenciada aprovados, revisão da candidata e política pending, testes reais Auth/JWT/PostgREST/RLS/logs e HTTP/INTERNET nativos; nada online alterado.
+
+Evidências: historical/07ea97e6489353b7481707f6d66025a91421f7e49c7b44544ef4d226ecdc3136.ref, historical/f75d9b36abde44796b35591ba9978d32058dc54b31ffcb8dacb89928046f4a8f.ref, historical/c6d092fd8286e28bb4dbf2f9fa7834de5f9c45f3cf72a3d79441bbe744bc2a8b.ref, historical/896e487a381337ae7e47bbd4249cf737f38e4ae2f13262e42858cd927c19f470.ref, historical/a308be40e4a48374da7975e06c69759a2c4439916a4009d81c6047e87ca30b54.ref, apps/mobile/previews/synthetic-registration-server.ts, historical/536e1b338d0de1332035289725238348e54488774344620fde05009bc50a5258.ref, historical/f2c71c3871bb595cb311d0d4fce3b964d010f0151e1cc56f18101a011a852220.ref, historical/b288cbcbde98dafbe48bcfd902976dcfdaac95ebb8627c4aba859bb49d660da4.ref, historical/31906b6510233c081be98bee3f6cc53844ddb315980ff76d87ba605900850041.ref
+
+## APP-074 — Melhorar validação, foco/teclado e consulta de andamento sem reenvio
+
+Estado: done
+
+- Identificar primeiro campo inválido, exibir erro sem eco de dados e mover foco com mensagens acessíveis
+- Validar credenciais também no host antes do port, projetando somente campos permitidos e preservando senha exata
+- Bloquear reenvio após falha de confirmação e oferecer consulta somente de leitura por interface, sem duplicar escrita
+- Reproduzir cadastro fictício Android e conferir campo/erro acima da IME, fonte2, privacidade e troca de conta, sem serviços reais
+
+Próxima ação: Fatia local demonstrada com177 testes/3 typechecks,29 verificações web e13 jornadas nativas com inspeção visual. Permanecem canal Auth autorizado, segredo/migração/revisão pending e HTTP/JWT/PostgREST/RLS/logs reais; não publicar nem apresentar QA x86_64 como APK conectado.
+
+Evidências: historical/45ec823dfdc71799da3952c4b9ef0b1a44ef32b8fd7c8bca0900ff20c7e38285.ref, historical/ba4caeb048dd3fa65fc34e67ca3efd8c5f9be0d8318ac5d53b895884557cff21.ref, apps/mobile/src/RegistrationScreens.tsx, apps/mobile/src/registration-forms.ts, apps/mobile/src/registration-host.ts, historical/71ee6b50351c63eb5628dd72eff8bf514aaa06978b3a5524f09d7708a4d8daaf.ref, historical/b49500c90292f80f78da6918565e382244bb53a8f6ef32fa71082cc55dce4327.ref, historical/a308be40e4a48374da7975e06c69759a2c4439916a4009d81c6047e87ca30b54.ref, historical/536e1b338d0de1332035289725238348e54488774344620fde05009bc50a5258.ref, historical/68c16aa52df765318812b2f8e5cc2576bb94aa1cf25e9c5db52db79803de1986.ref
+
+## APP-075 — Preparar prova Auth isolada e pacote verificável de promoção do cadastro
+
+Estado: done
+
+- Probe fixa projeto Connect e usa apenas login/getUser/logout com fetch fictício, sem cadastro ou acesso de negócio
+- Preflight somente de catálogo recusa namespace/ACL indevidos e comparador detecta drift de helpers/policies mesmo com RLS ligado
+- Plano fixa nove artefatos/hashes e registra gates sem autorizar execução remota
+- Documentar canal de conta de teste, trabalho técnico pendente e ações persistentes que precisam revisão específica
+
+Próxima ação: Preparação local concluída; montar cliente Auth isolado/HTTP nativo revisado. Coordenar conta de teste confirmada por canal permitido quando o cliente estiver pronto. Auth-only não depende de HMAC/migração nem universalmente de Auth Admin. Implementar/revisar getter e gates antes da migration final; não aplicar candidata atual.
+
+Evidências: historical/0e657600dff015609eeae4f712e872a78d8209a812143eea1ee0e811a4a9cad3.ref, historical/d5086c74d3a1d9c8b61ed22f06327f568eed8f034ee583168f2da4f8c032813e.ref, historical/5145c59675a37376159693794f155c92c6b4e9a0b04d1de2c0146f6f48e30ed2.ref, historical/0642b81dfd40d304290462fea220314bb8f8892150911d97e888f0f3b912f5dd.ref, historical/46a6d8fa2941d9e44193579a79b5602ff5491d1aed1b3acc89c35d022eb0e919.ref, historical/c02c1f6de734446e7e424534faed3a1b6b60ea78cdb33657bea73da69ddf2b06.ref, historical/62e26784a0da61067651f8b904aa19e931f6ac772f1aeb83ad2c454943456a58.ref, packages/session/src/auth-only-probe.ts, historical/1e97c0033442c71911efbe1e9a593dcd550479204e85205111a93dc9d28c27d0.ref
+
+## APP-076 — Montar diagnóstico Auth nativo isolado e revisar fronteira HTTP
+
+Estado: done
+
+- Tela nativa identifica teste fictício, limpa campos e permite cancelamento com privacidade em segundo plano
+- Controller descarta resultados antigos e fronteira HTTP fixa projeto/rotas sem signup, Admin, RPC, cookies ou redirects
+- Compilar e validar pacote Android separado, offline e com assinatura existente, usando somente dados fictícios
+- Registrar configuração online pendente e menor participação do operador sem pedir senha no chat
+
+Próxima ação: Obter/revisar configuração publicável do Connect pelo canal autorizado e montar entrada online/manifesto do pacote diagnóstico para revisão. Quando pronto, operador identifica conta de teste confirmada e digita senha diretamente no cliente; não criar contas ou pedir senha agora. HMAC/migration continuam separados.
+
+Evidências: historical/8c2233a2cc60923888f60a3ac85cad5cdeb2811be3e076ea44c8d4fc4e2a2e96.ref, historical/ac6e132436010dce853f73961494aaec5e549bd7fda6d4c1d396db595da3d4e4.ref, apps/mobile/src/AuthDiagnosticView.tsx, apps/mobile/src/auth-diagnostic-controller.ts, apps/mobile/src/auth-diagnostic-http.ts, apps/mobile/src/native-auth-diagnostic.ts, historical/1eb18c2c9d0512728f7c5cabdc54832a6d0444ae7a5f052e63f72b453171c2f3.ref, historical/934b11a6103927a9c9c0ca63182ad2ac5c25a85b541426d5a3b2665efca64d6f.ref, historical/9161cb2321d2ec01f188df20972bcaf91e1543e547c7ac9925d45b9f8c587cef.ref, historical/557635fe4889b0154a92f87b09c0f39084bcb3f1a8b02e3aeef883a3b3bbb7cb.ref, historical/4d6dc8786aa0e5539b9aa6d82e73f018f87dd2ccf81b7005637ff5fe266ec06b.ref
+
+## APP-077 — Preparar configuração publicável e manifesto do diagnóstico online
+
+Estado: done
+
+- Confirmar URL e chave publicável habilitada pela conexão Connect já autorizada, sem autenticar usuário ou alterar recursos
+- Configuração recusa outro projeto, segredo, JWT legado, placeholders e campos extras
+- Compilar candidato Android separado e inspecionar permissões, release sem debug, backup/tráfego claro desabilitados e XML de CAs do sistema referenciado pelo APK
+- Preservar app/entregas, não instalar/publicar/autenticar, e registrar conta de teste/canal como próxima etapa
+
+Próxima ação: Configuração e candidato arm64/x86_64 revisados; coordenar próximo teste Auth-only no pacote separado. Confirmar disponibilidade de conta de teste já confirmada, com senha digitada apenas no cliente quando a etapa for liberada. Não criar conta por rota bloqueada. HMAC/migration e RLS reais continuam pendentes separados.
+
+Evidências: historical/f7c737d4432a821d2bc4e9ea2669aea1a1047318770ba81340d15ecfd75cb1b5.ref, historical/1ccd4d40740c4052ca08501c5d3cb5291c14f0d6979b2772140df6fcf714907e.ref, .gitignore, apps/mobile/src/auth-diagnostic-config.ts, apps/mobile/src/native-auth-diagnostic.ts, historical/1eb18c2c9d0512728f7c5cabdc54832a6d0444ae7a5f052e63f72b453171c2f3.ref, historical/b5e0143c216f2521033d117d178d9fe8a750d11c733fdb638cf0dc71fbf7d615.ref, historical/b3499d93279e9ba36c52efd9d91fa5e5e935b0256a86b3a627ab5b6b1c8eba82.ref, historical/c1178f35c798a6f8545b6545c22ea0d0005471526dbed6fdb5e98d0521ca50b4.ref, historical/fbe5c15120772f0c65c837fe01336583eddd5183cd70fdbcbe809f7b5deb353c.ref, historical/4b95436ca2f03ed7a63be9253c38d1a00ad96c7fdd6602df9ad481424c49bc3c.ref, historical/c468c1d0d2c1141b9bcf81dcd4705e4088defb49c734160363acc4338da28001.ref, historical/651afaba3e0e5696f560ff01c5807236c33e0a4829d70191ad349d806f0e579f.ref
+
+## APP-078 — Revisar contrato HMAC e proteger erros de futuro provedor com testes SQL locais
+
+Estado: done
+
+- Preservar candidata base/segredos/serviço online; usar somente fixture de chave pública determinística e PostgreSQL descartável
+- Provar projeção segura de mensagem, detalhe e dica de provedor, inclusive interrupção e falha pela RPC fictícia sem gravações parciais
+- Conferir limites, digest compatível com Node, leitura única do getter e recusa de helpers por papéis não privilegiados
+- Testar admissão/timeout de manutenção e manter rotação/aliases/Vault/integração final como gates explícitos
+
+Próxima ação: Revisão local concluída. Integrar proteção somente à versão final revisada e retestar onboarding consolidado; não aplicar complemento a definição desconhecida. Seguem mecanismo/getter gerenciado, provisionamento seguro, aliases/rotação antes de ativação e Auth/JWT/RLS/logs reais. Aguardando resposta sobre conta de teste, sem solicitar senha.
+
+Evidências: historical/4a09fa7e59624f561704e4aa4ac88233288996e754d9ada65acf88a6888a67be.ref, historical/babb299f121aa37ed677807f677c374daf628edfd491d52fece6c2698fe8d1c4.ref, historical/af088649cf40a0ad402023e8468136be8cb66d0395a32e06cf69f0f81833419b.ref, historical/266aef472168c68403e0ba32e0f81afb32f2d3e9b293bcf49a103448ff2c5b7f.ref, historical/f75d9b36abde44796b35591ba9978d32058dc54b31ffcb8dacb89928046f4a8f.ref
+
+## APP-079 — Modelar provedor HMAC/rotação versionada com aliases e pendentes
+
+Estado: done
+
+- Modelo privado separado do onboarding, com reader de recusa e somente fixtures públicas no teste local
+- Testar versões/aliases sem reserva por pending, cobertura conjunta antes de retire e retorno de current preservando dados
+- Comprovar limites, key check, permissões e quatro interleavings em PostgreSQL local encerrado ao final
+- Registrar modelo de ameaças por MCP gerenciado, revisão independente de fonte e gates de integração/provedor/retenção sem alegar produção
+
+Próxima ação: Modelo local demonstrado; definir adapter/purpose/ACL, lifecycle de pending e recuperação de required indisponível antes de consolidar integração. Não aplicar modelo ou provisionar segredo agora. Manter gates de verificação confiável, auditoria/budgets e testes Auth/JWT/RLS reais.
+
+Evidências: historical/df068989c65cff479dd6d62c274c6721fad1fd7318c11b7dc3f1a5e5c50c51e7.ref, historical/ff3f4242d3c09265e6e9d4a6b7a2b1bb816551abc8311cba555bc3e55b5f959e.ref, historical/e99aff679c1ea36c553dbfa72e6406ee8e52d91301bf8be3d69191c5a91b0aaf.ref, historical/b38792f83c698cadd76ffd1430bfe67772077b4ca19257d1654703182e8a7d25.ref, historical/2f0cad52aaefeb55329c4117cf1ebe7736bee69d302f388b45b38c3320f5f459.ref, historical/59208310f816e896039b7c6ab9c1c5b5e948fe5ba15f0314b65375276c76f8b3.ref, historical/442dd267222ef6ae5fa1439dd826a7d1e32a7a7a2313e3fe42241785636a04fd.ref
+
+## APP-080 — Entregar diagnóstico de login privado para teste pessoal sem exigir perfil admin
+
+Estado: done
+
+- Revalidar APK/configuração/assinatura e abrir no emulador sem digitar credenciais ou pressionar login
+- Explicar conta Auth comum suficiente e limites: sem cadastro, papel administrador, empresa ou chat
+- Enviar arquivos novos na pasta APK autorizada e confirmar metadados/tamanho/privacidade sem mudar compartilhamentos
+- Preservar demo0.1.4 e registrar Auth positivo pendente do operador, sem executar login pelo assistente
+
+Próxima ação: Aguardar mensagens finais do teste pessoal no diagnóstico, sem solicitar senha/captura preenchida. Não inferir papel admin ou cadastro funcional de um login bem-sucedido. Continuar provedor/onboarding e testes locais independentes sem mudar banco remoto.
+
+Evidências: historical/751ba645a9bbd9e327506dc9341e119c4fd220c8aacb06b78499d50b24c7da4e.ref, historical/2c30280c58886d374c334899919384223c630142e67835922426082147e8e755.ref, docs/delivery/ENTREGAS.md, historical/4f168525816b530bbbd5f77a9bdd73218b15cb3f66dc970bcd7e11e0c010e6e6.ref
+
+## APP-081 — Preparar adapter HMAC gerenciado, resolução de pendentes e recuperação coberta
+
+Estado: done
+
+- Adapter privado usa referências aprovadas/scope fixado no servidor e recusa antes de configuração; testar somente mock Vault sem segredo real
+- Encerrar/reabrir pending conserva aliases e histórico, bloqueia ressurreição por retry e mantém atomicidade/idempotência
+- Recuperar current indisponível só pausado/com fallback coberto, sem ler chave falha ou retomar automaticamente; recusar caso sem alternativa
+- 71 assertions, três interleavings, três estados de catálogo e revisão independente de fonte registrados sem aprovar implantação
+
+Próxima ação: Próximo gate: validar metadados/ACL do Vault real por canal autorizado, fixar scope/principais e política de encerramento/retenção; consolidar bridge Auth/onboarding antes de qualquer provisão. Nenhum segredo persistente ou alteração remota está autorizado nesta fatia; sem fallback coberto manter pausa, sem apagar identidades.
+
+Evidências: historical/01cbbbd7b5b9fb274b2328b6842cd5a38064937357193c27d7f948d11c38c626.ref, historical/3845586b94d5e9c3a4f89019f3fc11238eb011fd6020fbae64824a70f5cc2ebd.ref, historical/0e1cdb8ca14c54b1b080ed92024c3d7f18ccd9fdb2a852e4756a8e12c4406e13.ref, historical/a7df806fa0a0e7d13ace38928a2c81e19185f47390b7597345d5ea96939f0b9a.ref, historical/7017b8b90e60e8185b228c38aaf2d9f4bfbdb0bddf0dd746c2c13a00beb67853.ref, historical/ecda5f98562957fa49ca9aa637f017e58791a63dda574fb42633e204d43f7aa2.ref, historical/287364093bb60108408bba269d09e0cc7ce4bb7b6b028a3070c23e379c108639.ref
+
+## APP-082 — Avaliar catálogo/ACL do Vault e recomendar custódia, rotação e retenção
+
+Estado: done
+
+- Confirmar o projeto Connect pela conexão autorizada e consultar somente catálogo/ACL/papéis, sem valores de segredos ou Auth
+- Distinguir SELECT observado de decriptação efetiva; registrar limite da checagem complementar bloqueada sem contornar o acesso
+- Registrar proposta concreta de custódia/rotação e retenção sintética, separada de aprovação e de políticas clínicas/contas Auth
+- Preservar remoto, APKs e segredos; não ampliar permissões ou contornar negativas
+
+Próxima ação: Consolidar localmente roles restritas/bridge Auth e timestamps/política de pending, depois rever migração e ensaio de restore. Scope/custódia e proposta14/14/90 ainda exigem decisão antes de automação/provisão. Não criar chave ou alterar Vault agora; leitura de catálogo não autoriza plaintext nem implantação. Checagem complementar de EXECUTE bloqueada antes do SQL: Failed to resolve project for permission check. Não repetir nem trocar de rota sem acesso autorizado restabelecido.
+
+Evidências: historical/3d8beae22329a6dd4f7a57adf5ed90ae1c74932d09f01fb386363fb43ffc5d74.ref, historical/c626f954169353f3e492bc97348d2185756e1b8caad4248dc37b9aa2ef3f0e7d.ref, historical/0126f60db79a335ffadd7d49925ea259f119a32d3e389d49c1c4ff5c7e2a8674.ref, historical/7017b8b90e60e8185b228c38aaf2d9f4bfbdb0bddf0dd746c2c13a00beb67853.ref, historical/0639f58dbea36173a7b68624168534204e8a26afc81ef626b9b85e5235a29a0c.ref, historical/fa811bcad1aa5832825bd4f00a129a659582acecce268e19063645ff545c02e6.ref, historical/aa04e7cd31ff175d45b3d0e687466efea0e146c749c255f7a462cba1faa73d8d.ref
+
+## APP-083 — Integrar localmente cadastro ao HMAC versionado e preparar revisão
+
+Estado: done
+
+- Executar RPCs públicas de perfil/empresa com sessões e provedor fictícios sem ativar contas ou papéis
+- Cobrir retry e aliases entre rotações, falhas sanitizadas e atomicidade, pausa e recuperação coberta
+- Testar concorrência de promoção/retry, revogação em espera e pedidos idênticos; proteger ACL dos helpers antigos e rollback vazio
+- Preparar pacote imutável de revisão sem afirmar Auth/Vault reais, promoção ou ciclo de vida completo; preservar remoto e APKs
+
+Próxima ação: Revisão independente do pacote; consolidar ativação/uniquidade e ciclo completo de rejeição/correção/encerramento do cadastro antes de promover. Manter a FK que bloqueia encerramento isolado. Validar Auth/JWT/PostgREST/RLS/logs e Android conectado por canal autorizado, depois rever migração e provisão segura específica. Sem repetir consulta ACL bloqueada.
+
+Evidências: historical/f2eb9b25a8e70fbd3621e20d661e2109c7eeb3935f13796304ff6326ae674d59.ref, historical/89dd3b866feb04823c92ff24232831e57404cad7d19fa5a04aa5673b86b3a845.ref, historical/051a0cbf9983dcc79e7c20e4273731fe3235e04afbb048c8f4592a5231ed1d97.ref, historical/fa75b785b2431a416f489fec0079da10708b977ab41a8cf289a6e242323c2cab.ref, historical/dbca739bc29a606ae80632926554df6feaea886590aa433c314495fd7d456df4.ref, historical/aa0f22ed088d9f1385102ba3aa9f79acf58ce555a25edf67c0d4e0b069c8c253.ref, historical/541911b1e5aa57e6d230728fab974adbcf375f9ae2e93df9f066000ab17336dc.ref
+
+## APP-084 — Modelar e testar ciclo local de verificação, correção e encerramento do cadastro
+
+Estado: done
+
+- Integrar estados e FK de perfil/pending ao encerramento e reapresentação transacionais sem remover histórico
+- Aprovar/atualizar aliases somente por getter de evidência confiável que recusa por padrão; expiração também exige política não habilitada
+- Testar disputas concorrentes, atomicidade, autorização e empresas; conexões persistentes durante DDL e contenção limitada
+- Preservar artefatos da revisão anterior, APKs e remoto; preparar nova revisão com hashes e limites explícitos
+
+Próxima ação: Revisão independente deste novo ciclo e autorização/auditoria do verificador; método de identidade e expiração continuam stubs. Implementar correção de empresa e disputa/correção de identidade confirmada em fluxo separado. Medir carga/rate limit e pool real; validar Auth/JWT/PostgREST/RLS/logs/Android e custódia antes de promover. Não repetir ACL remota bloqueada.
+
+Evidências: historical/beeef8c87a9f14a7c9e34a0a50d865396e7998d8c145aa756516e52e7cd6b496.ref, historical/b03d8dedb9efd9f123710363d902cb723d3e2e929e650ada85e5cef6b446698e.ref, historical/682aa4fa9f591a49806ebeff3b85f632081129e13ee2a3e7248a8820e041bd23.ref, historical/1cc116207b87048bebbccff198f98fd65ebcb7a680e5e96ef25b3e7083e434a2.ref, historical/b4a405cb87a70851c3e2d934074122089c38b3480c30252a14119dd286675337.ref, historical/b9d5102279acd177a7315b0d7ac8d9452d4bf4c82228a8db95e475887b1b5c4f.ref, historical/1fd8a7f6069cfb02246aa464ecffe8956922467a385e3be951ee464ed56162ba.ref
+
+## APP-085 — Modelar correção local de empresa e CNPJ com histórico privado
+
+Estado: done
+
+- Desistência/rejeição/reapresentação preservam empresa, histórico e estado pendente
+- CNPJ numérico/alfanumérico, isolamento e guards de empresa estabelecida verificados
+- Concorrência, revogação e falhas atômicas testadas sem verificação oficial ou remoto
+
+Próxima ação: Modelo histórico preservado. A integração posterior com runtime restrito encontrou SELECT de memberships sem privilégio na retirada pública; correção e testes do contexto novo estão emAPP216, sem alterar a evidência histórica nem tratar fixture de estado como jornada pública.
+
+Evidências: historical/8289baabedb98bb4cf0c9b0b71470d91904fc822040a0a02b0cf71c6c7d8b53b.ref, historical/0aa16e28685d10d20397455a012563fb8756f844383eec86a6f023827f20f7b9.ref, historical/735a3228097ed99b3b837259c89c197db4cf42db273380c318c6bbff03673406.ref, historical/2c077e6fe4d58ee3a9969a46af172d2e01873b7610f8f6abff169fe071690eba.ref, historical/3c558804b278e1520c8fb0a318f52633051b918026e746dc7c3e54a691a13531.ref, historical/745c2824d3444413559b05faba71294e5bd90b6df8713c46a4eea4eea7ddcabc.ref, historical/b54f75774e85445632a3404d634a2e5d37ecd7fe4cfc134dff08ad8cc6aa63a4.ref
+
+## APP-086 — Corrigir recuperação de UUID, paginação e orçamento contra churn do cadastro
+
+Estado: done
+
+- Perfil recupera request próprio após perda de memória sem CPF ou credenciais locais
+- Mais de dez pedidos são recuperáveis por páginas sem apagar histórico ou usar índice legado como fallback
+- Desistência não libera janela de novas admissões; retries e falhas não duplicam gasto; última vaga concorrente protegida
+- Cliente/host limpam IDs/cursor na troca de sessão; testes conectados só preparados, não executados
+
+Próxima ação: Revisão independente das correções e números propostos10/20 por24h, UX Android nativa e limites de carga/gateway. Roteiro conectado bloqueado até autorização, providers/custódia e migração revisada; sem repetir ACL negada.
+
+Evidências: historical/9df61bb5663e3d0d538449fe220bee459219c58c078fb553fa8a19b4e5ef4f9b.ref, historical/4f5a3e269cf4996059d0d18fbcec808d555163e4804f108164c09d5e8a90869e.ref, historical/2101b520fc4260efb706964af90e45e82c158fa1248beb8892c155c0d17f3407.ref, historical/1f66ddf2bc6fcfb35a89e14d626b4ebb6dfc73a0cd69ab9c1583754421cf2fe6.ref, historical/459b52c54f0824b677f2acf801dd0f39df0453d09cb56b49ea4123ab16f7bb54.ref, historical/7050a1bc22e0f379d34301371fb0292295e35694b2d476ebf29842a138418dc6.ref, historical/e18102ac86eb891f2f32390bb8a532a0cdaf27d5b4820c82b82c8276f52ef76d.ref, historical/3ba806d3f5a8ffe29fe7fa03d2bd69a1edb3add9e50a60c28e65e415a6c8c153.ref, historical/adae487d6a8c8bf4d8a2ee4e22190fdf1ae5b404429e1d58ac15b5d9f780edca.ref, historical/b54f75774e85445632a3404d634a2e5d37ecd7fe4cfc134dff08ad8cc6aa63a4.ref
+
+## APP-087 — Validar recuperação Android fictícia e corrigir intenção confirmada de reapresentação
+
+Estado: done
+
+- Dez verificações Android nativas de paginação, fonte200%, recuperação, logout/troca de conta e privacidade com dados fictícios
+- Confirmar correção sucessiva após rejeição e distinguir resultado confirmado de retry incerto com regressões locais
+- Vincular fonte/APK/assinatura/manifesto/capturas por hashes, preservar entregas e restaurar ambiente
+- Manter Auth/HTTP/banco e UX nativa completa de correção fora das afirmações demonstradas
+
+Próxima ação: Revisão independente do adaptador corrigido e montagem da UX completa de correção/desistência. Auth/JWT/PostgREST/RLS/logs/HTTP reais, custódia, política de identidade e migração consolidada seguem gates. Não repetir acesso ACL negado ou promover QA como cadastro conectado.
+
+Evidências: historical/2b6e566a1314c2f579f0a127360e2d54268b7f74cdf220900ec2ef34b5764048.ref, historical/33c30a8e34209be42300c126d4a3d862dbe658fbdd1688ddbd7c3c45c5301332.ref, historical/3ba806d3f5a8ffe29fe7fa03d2bd69a1edb3add9e50a60c28e65e415a6c8c153.ref, historical/f718322668a9c58eeb6721d2fd2dc24862f970255bcb8ec52ec21cc5ec7e6366.ref, historical/adae487d6a8c8bf4d8a2ee4e22190fdf1ae5b404429e1d58ac15b5d9f780edca.ref
+
+## APP-088 — Montar e validar UX nativa local de correção e desistência do cadastro
+
+Estado: done
+
+- Perfil e empresa próprios não aprovados têm correção com identificadores recuperados e campos sensíveis vazios
+- Desistência exige confirmação; cancelar e resposta incerta não geram reenvio automático
+- 16 verificações nativas do ciclo e10 de paginação no mesmo QA,144 testes locais, dois typechecks e11 checks web isolados
+- Privacidade, seleção por lease e fronteiras de simulação permanecem explícitas; sem remoto, credenciais reais ou entrega falsa
+
+Próxima ação: Revisão independente desta UX e da mesclagem de página/empresa confirmada. Consolidar migrações/provider/custódia e, com canal autorizado, validar Auth/JWT/PostgREST/RLS/logs/HTTP reais e persistência. Verificação de identidade/representação oficiais continua desativada; não repetir ACL negada ou publicar sem autorização.
+
+Evidências: historical/8b3aa5ffd257171d21583f36a3d79a383514963f50d640eaa79ff6a2629bd72e.ref, historical/72bfc97a3b0ea800062beff42d4a698f7655f41f438bb58813395ab791985ad1.ref, historical/6913c1dc5d8984a5c1a5f869519b1420770e93dfb7ff73079a4775b0af57d5d4.ref, historical/3ba806d3f5a8ffe29fe7fa03d2bd69a1edb3add9e50a60c28e65e415a6c8c153.ref, historical/62666b35667aa30efaae6fb6ae46f16a92eede84ffb46c3f033ab1eb71325f43.ref, historical/b49500c90292f80f78da6918565e382244bb53a8f6ef32fa71082cc55dce4327.ref, historical/31906b6510233c081be98bee3f6cc53844ddb315980ff76d87ba605900850041.ref
+
+## APP-089 — Verificar cadeia local de cadastro com matriz de empresas e papéis
+
+Estado: done
+
+- Oito camadas com hashes conferidos em PostgreSQL descartável
+- 23 assertions da jornada e duas execuções da matriz RLS de113 assertions, incluindo empresa pendente fora da primeira página
+- Sem Auth real, segredo persistente, migração canônica ou acesso remoto; servidor encerrado
+
+Próxima ação: Revisão independente da cadeia e gates de custódia, migração consolidada e Auth/PostgREST/Android conectado. Não repetir ACL negada.
+
+Evidências: historical/ccabaf7bacca4251c328ac456df01568d5327d7665d3cb3b99ccfcdb86e1152d.ref, historical/e34af521a5e808820a20a776fec933cf1cf0699a823ffbb4fc9e416022974ec4.ref, historical/06599e457faa55fd1d795900ee8d1e662458db0ea1c35b11c289622e5d791258.ref, historical/31b6a4b8fe8a9d91c2db2f93a2ec57c7eca36de233112ac2ac89741f1496e707.ref, historical/79c45f291e8e80837fbb6a475185b1f1304345c4eb13dc52d160cdee195c1f00.ref
+
+## APP-090 — Informar alcance completo da desistência do perfil antes da confirmação
+
+Estado: done
+
+- Aviso de desistência do perfil informa encerramento de todas as empresas pendentes, inclusive páginas não carregadas
+- Perfil e empresa próprios não aprovados têm correção com identificadores recuperados e campos sensíveis vazios
+- Desistência exige confirmação; cancelar e resposta incerta não geram reenvio automático
+- 16 verificações nativas do ciclo e10 de paginação no mesmo QA,144 testes locais, dois typechecks e12 checks web isolados
+- Privacidade, seleção por lease e fronteiras de simulação permanecem explícitas; sem remoto, credenciais reais ou entrega falsa
+
+Próxima ação: Revisão independente do aviso, confirmação e alcance sobre empresas pendentes não carregadas. Consolidar migrações/provider/custódia e, com canal autorizado, validar Auth/JWT/PostgREST/RLS/logs/HTTP reais e persistência. Verificação de identidade/representação oficiais continua desativada; não repetir ACL negada ou publicar sem autorização.
+
+Evidências: historical/bd2c16c58088fda591dac04546e1787a25937afb13b9a21fc395ac44bdf28c9a.ref, historical/9efdc4203f44bc3547e600c3013fcb88610298332f5508463c066944b5852626.ref, historical/6913c1dc5d8984a5c1a5f869519b1420770e93dfb7ff73079a4775b0af57d5d4.ref, historical/3ba806d3f5a8ffe29fe7fa03d2bd69a1edb3add9e50a60c28e65e415a6c8c153.ref, historical/62666b35667aa30efaae6fb6ae46f16a92eede84ffb46c3f033ab1eb71325f43.ref, historical/b49500c90292f80f78da6918565e382244bb53a8f6ef32fa71082cc55dce4327.ref, historical/31906b6510233c081be98bee3f6cc53844ddb315980ff76d87ba605900850041.ref
+
+## APP-091 — Preparar base local de áudio Android e validar ciclo no laboratório
+
+Estado: done
+
+- Permissão contextual, primeiro grant sem gravar e controle local de gravar/parar/prévia/play/pause/descarte
+- Leases e cleanup serializado impedem respostas tardias após troca de contexto; erros genéricos e cache próprio
+- 104 testes mobile, typecheck e11 checks Android com áudio virtual none, sem comprovar voz física ou envio
+- Microfone/fonte restaurados, AVD fechado e APKs entregues preservados; base separada do chat entregue
+
+Próxima ação: Revisão independente da base e testes físicos de microfone/decodificação/rota/fones/TalkBack. Integrar ao chat com contexto autorizado e entrega privada somente quando transporte/armazenamento forem demonstrados; não chamar demo ou laboratório de envio real.
+
+Evidências: historical/93e1a989d31ac1ad6207c701191bdefb2460a4cc44b4aff45ab1a33e804ffe72.ref, historical/954e2799c5e5e0a1fe6171a46284f045b6a100482dc8fb00910b94643a5c3896.ref, historical/6dbf95a3ab817bbc09802a7ad7116de5700a420b888dfcd518556f625ceca813.ref, historical/ab27146f56317af5865e3a826769c56fa20bf9c35dc3138ffbbeb5ed45197192.ref, historical/6f9afd7ce1e8d6e68f6373a1db7f022557fdf5a1a0b84ab26ea45e15f86264ed.ref
+
+## APP-092 — Corrigir duração após parada automática nativa do áudio
+
+Estado: done
+
+- Contador nativo zerado não descarta arquivo válido: duração lida do contêiner, sem relógio JavaScript
+- Regressão Android virtual de60s e rejeição de metadados vazios/inválidos demonstradas localmente
+
+Próxima ação: Validar captação e qualidade sonora em dispositivo físico antes de liberação conectada.
+
+Evidências: historical/b73004517811706c300e49590708803d8000a9af25e293ecd366b504f9fd36af.ref, historical/6dbf95a3ab817bbc09802a7ad7116de5700a420b888dfcd518556f625ceca813.ref, historical/6f9afd7ce1e8d6e68f6373a1db7f022557fdf5a1a0b84ab26ea45e15f86264ed.ref
+
+## APP-093 — Integrar gravação e cache privado local ao chat demonstrativo
+
+Estado: done
+
+- Revisar, guardar temporariamente e reproduzir sem criar mensagem ou alegar envio
+- Troca de empresa, perda de sessão, permissão negada, limpeza e operações atrasadas cobertas com dados sintéticos
+- 132 testes mobile, typecheck, nove checks nativos e37 checks web padrão aprovados; APKs entregues preservados
+
+Próxima ação: Ligar a sessão real validada e transporte/Storage privado; testar voz física e autorização entre empresas antes de declarar áudio conectado.
+
+Evidências: historical/b064215bad20758ffb0ec923a251afd2e2a37ecd29581e0eae6551cdc41e791d.ref, historical/3fd6ab47d47be18ba2eca303e63c867b992075ff4a8e63071f60f20ac42a7610.ref, historical/25e50167a17fdc9288845a7c6c3ad50da7db3123e12e4cc8202bbd0c1ea615d6.ref, historical/0a8f449cd55cb6a030122043b285b693514a6c76dea1ddc7d900c4074e2737a8.ref
+
+## APP-094 — Reaproveitar anexos privados e preparar upload local de áudio por portas
+
+Estado: done
+
+- Patch isolado de anexos verificado e integrado sem duplicação de serviço ou substituição do board
+- Cliente candidato limita bytes/duração, captura contexto e preserva chave/bytes no retry incerto; arquivo pronto não equivale a mensagem entregue
+- 74 testes chat-client e37 chat aprovados, incluindo disco/HTTP local e integração sintética; ambos typechecks passaram; nenhum Storage real ou APK alterado
+
+Próxima ação: Revisar candidato e validar Auth/políticas; preparar catálogo transacional e inspeção real antes de conectar Storage ou montar upload no Android.
+
+Evidências: historical/e776754bcae3665b7a27c672427e55c691b4049547fae89488a8d9ced6e6d866.ref, historical/6487ca2e5483f2852e76d1b79623a82d541f69d15e63328cb5a196885b4b5bb6.ref, historical/fb62a5ff82c00f86fa58985cb1e79fa19af69fb237db5315634be107fea47f6e.ref, historical/d4a308866039297f6f9af29f1906b0c8f05bd309582aa14a573d7e6520adaccf.ref, packages/chat/src/private-attachments.ts, historical/1fad5ad2b9f4c53dd5581943aa206990068e74f7fc8a2c8c5816df975d3a1204.ref
+
+## APP-095 — Preparar catálogo transacional local de anexos e políticas candidatas Storage/RLS
+
+Estado: done
+
+- Candidata separada preserva foundation e checkpoints, sem aplicar no Supabase ou conectar Storage
+- Reservas e estados de bytes/inspeção com trilha transacional e retry idempotente; ready separado de mensagem/entrega
+- 88 verificações SQL, quatro interleavings e conexão preparada durante instalação/rollback/reinstalação aprovados em PostgreSQL descartável com papéis não privilegiados
+- Matriz negativa de empresa/conversa/papel, metadados falsos, hash/tamanho/tipo/duração, políticas permissivas, quotas e rollback ocupado/populado cobertas; limites de fixtures explicitados
+
+Próxima ação: Revisão independente, combinação com cadeia completa e teste Auth/Storage real autorizado; implementar worker isolado, reconciliação/retenção e publicação idempotente de mídia antes de conexão.
+
+Evidências: historical/7e76c949b4cc4d116cc4134f062a753b306629f75954f6f42fa03c43b8cd4ae5.ref, historical/33189ae769a961dc87899259dda020f39c190c8f41b2ab62bcdd20d13e9669c8.ref, historical/a1d18665f14a98ffe8305ceea326bb16a713d7267f544d71deba88423083a183.ref, historical/2e6e030a8520676462f46f94b1b9d1b67df40638a7c2063ca1cc4cf24e5a4152.ref, historical/d14abbec26a2f3f1cbacb9c705072c5159d1169c7c72c761fdeadbbfcc7cf14d.ref
+
+## APP-096 — Corrigir autorização expirada e retomada de reservas de anexos
+
+Estado: done
+
+- JWT renovado da mesma sessão reautoriza exatamente a intenção original sob locks e registra renovação uma vez
+- Outra sessão não assume o upload; cancelamento próprio autorizado libera pending sem apagar histórico ou permitir acesso de outro usuário/empresa
+- 104 checks SQL e quatro interleavings anteriores passam em PostgreSQL descartável, incluindo renovação após expiração e cancelamento com quota cheia
+
+Próxima ação: Revisar a correção; implementar retenção/limpeza para pendências de contexto revogado e testar Auth/Storage reais antes de conexão.
+
+Evidências: historical/7e76c949b4cc4d116cc4134f062a753b306629f75954f6f42fa03c43b8cd4ae5.ref, historical/33189ae769a961dc87899259dda020f39c190c8f41b2ab62bcdd20d13e9669c8.ref, historical/a1d18665f14a98ffe8305ceea326bb16a713d7267f544d71deba88423083a183.ref, historical/d14abbec26a2f3f1cbacb9c705072c5159d1169c7c72c761fdeadbbfcc7cf14d.ref
+
+## APP-097 — Preparar preflight limitado de mídia e fonte privada Android
+
+Estado: done
+
+- Preflight confere hash/tamanho em Worker limitado e cabeçalhos/framing conservadores; nunca aprova codec/documento nem libera ready
+- Fonte Android lê arquivo próprio em ReadOnly por blocos limitados, revalida contexto/abort/tamanho e fecha descriptor sem devolver parcial
+- 138 testes mobile,43 chat, ambos typechecks e nove checks Android sintéticos passam; sem INTERNET/microfone/Storage e APKs entregues preservados
+
+Próxima ação: Selecionar e validar decoder/parser isolado com fixtures válidas e adversariais; ligar fonte a sessão real validada e só depois Storage/publicação de mídia. Não usar preflight como inspeção final.
+
+Evidências: historical/e8617c8defb228964cba21b6c4a29c992205669f3c852fb0b4a821951046e97a.ref, historical/81405575d92d173f75df60e8943c924706d657bbe70fdb71049088ba5f377c9b.ref, historical/d630637724564fe5d3c982af1bd445ead819f7cdf4ad0943f958698665d09913.ref
+
+## APP-098 — Testar recursos da inspeção e limpeza local de quarentena com revisão preparada
+
+Estado: done
+
+- Candidata separada exige aprovação/hold/prazo, bloqueia retomada antes da remoção e preserva ready/publicado/histórico
+- Versão/hash/conflito, falha após remoção, lease limitada, reconciliação somente leitura e arquivo alheio cobertos com disco sintético
+- 38 verificações de banco/disco, três interleavings e55 testes chat/typecheck passaram; sem Storage online ou política real ativada
+- Pacote de revisão documenta ausência de CAS Storage/sandbox decoder e caminho concreto do primeiro chat conectado, sem interferir no teste de login
+
+Próxima ação: Revisão independente e decisões de retenção/isolamento/CAS antes de qualquer ativação; priorizar sessão/contexto/envio/histórico do primeiro texto conectado conforme plano.
+
+Evidências: historical/4edfd3e886bd0dcfb9a048fce5d70407f6d3c8fa1d6de8593613733b298dcaca.ref, historical/d813bbf2a372c4a57c6d2e69ee096a49c3df932f4261d5ca81a4ebbe37773e5c.ref, historical/4d009bfffdb5b573835ded6f12aed36072abdc20872c4c310e023fd622ecbe2f.ref, historical/d3c100ecc766d8708057306c6a7c34c1091d46d663c75f3bb64fbb2e19620af0.ref, historical/00ff31a6c0a1d9f38ed8544fb2b337d77ab2b65ecb6bf93d81a664a4f221eb74.ref, historical/a2edcdc0e09dccaf6f0f3a7e2ccace1d42512a0e988a62578259ed1b339989ca.ref
+
+## APP-099 — Corrigir concorrência entre executores e prazo/hold antes da remoção
+
+Estado: done
+
+- Identidade por tentativa e CAS SQL begin emitem um único fence; segunda instância, replay e resposta perdida não rearmam exclusão
+- Hold e encurtamento da aprovação são rechecados antes do ponto irreversível; edição posterior é recusada explicitamente
+- 49 verificações banco/disco, quatro cenários concorrentes e58 testes chat/typecheck passaram; Storage real continua desativado
+
+Próxima ação: Revisar correção e aprovar semântica operacional; CAS/fencing Storage, governança de retenção e isolamento real continuam gates. Prosseguir texto conectado em frente independente.
+
+Evidências: historical/4edfd3e886bd0dcfb9a048fce5d70407f6d3c8fa1d6de8593613733b298dcaca.ref, historical/d813bbf2a372c4a57c6d2e69ee096a49c3df932f4261d5ca81a4ebbe37773e5c.ref, historical/4d009bfffdb5b573835ded6f12aed36072abdc20872c4c310e023fd622ecbe2f.ref, historical/a2edcdc0e09dccaf6f0f3a7e2ccace1d42512a0e988a62578259ed1b339989ca.ref
+
+## APP-100 — Compor sessão, envio e histórico de texto com validação local de RLS
+
+Estado: done
+
+- Canal candidato prende GET/RPC ao sujeito e contexto verificados, com paginação limitada, DTO mínimo e erros seguros
+- Logout, troca de empresa/conta, refresh e revogação consultada limpam host; respostas tardias não repovoam cache
+- Retry de ACK perdido deduplica intenção e integração PostgreSQL sob roles comuns cobre isolamento, paginação e revogação
+- Recibo distingue 88 testes cliente e 42 checks PostgreSQL local de Auth/PostgREST online e transporte Android não validados
+
+Próxima ação: Revisar candidato, aguardar resultado pessoal do diagnóstico e preparar montagem Android controlada; não ativar rede real ou inferir perfil/vínculo de um login.
+
+Evidências: packages/chat-client/src/text-session-channel.ts, packages/chat-client/src/bound-text-conversation.ts, historical/39066f4fdeccc682dc53c769891966b99b6a156a1350823f61ab30c2c2dace6a.ref, historical/77be8c3f3e7caf176d2c32c0b37b9352ae2eb98e836818d9441cd4313dcc6794.ref, historical/ca8fe418ac6c398c37f9a43f6e1f57f87fc1997c49a974475a03bd9e7160f063.ref, historical/179c21267b7cf1de867bc143db9f756b053ec32d82a43590009efde8ed3dd577.ref, historical/50bbc93464c7b93d4c641cb2f24a13415b86ba45c0fa6af1d6098c3866322e22.ref
+
+## APP-101 — Montar canal Android de texto com sessão e backend fictícios
+
+Estado: done
+
+- Montagem separada integra controlador Auth, canal, envio e histórico com servidor deliberadamente fictício, sem HTTP ou credenciais reais
+- Host limpa rascunho/fila/histórico ao trocar empresa/conta, renovar, sair ou entrar em segundo plano; retry incerto reutiliza intenção
+- 150 testes mobile/typecheck e13 verificações Android API36 x86_64 passam, incluindo fonte2, viewport estreito, Unicode e revogação fictícia
+- APK interno separado tem versão/hash/assinatura verificados, sem INTERNET ou microfone; entregas anteriores intactas e AVD encerrado
+
+Próxima ação: Revisar candidato; receber resultado do diagnóstico pessoal e validar contexto sintético/Auth/PostgREST autorizado antes de montar transporte real. APK interno x86_64 não é entrega de telefone nem cadastro conectado.
+
+Evidências: apps/mobile/src/text-chat-host.ts, apps/mobile/src/TextChatHostView.tsx, historical/d286fa1f58089a8161eef728080b74ee136c08eef89a51a7189101146d223803.ref, historical/960766ea7c9ca5091923ce45f05753054c8e51c37884fc6e6c2ebdedccef9986.ref, historical/b71193b9101465390cc5f2a290dabc96c7ce3480941368350f96b675df9a755f.ref, historical/3e2b1c25c542ce4010fb5150e55e99116f2c1b62576d6657b41ac62fac18c4c0.ref, historical/0a1498777e5d8ca31c157747897a4ed810107753ad9a7c64f21de2b2f331c832.ref, historical/8da3ca0d383811160d52aef4f6e4cd37830d44a107b2c97eaedd9c597c1752b5.ref, historical/ea9d94ec36002ffad291e698ce94b9bd8d1ca3fedcc6642a8d9f9e9cd031d8de.ref, historical/0ee0f29efe2604062a525a1b60745ee467a7e2604ab3f6166bc36773be1205e4.ref, historical/ac878f752292d6e55be8b0257953fb29e37ebd5f3d0d72f374ecb927a6031e61.ref
+
+## APP-102 — Preparar catálogo restrito e recuperação de vínculos com banco local
+
+Estado: done
+
+- Projeções candidatas separam busca pública, vínculos próprios, equipe do gestor e inbox do funcionário sem conceder acesso por perfil indevido
+- Paciente imediato, convite direto e pedido pendente reutilizam regras existentes, com recuperação após ACK perdido sem escrita automática
+- 76 verificações PostgreSQL e três cenários concorrentes validam isolamento, paginação, revogação e rollback sem perder dados
+- 101 testes cliente/typecheck passam; nenhuma mudança remota, emissão de convite, migração canônica ou montagem Android é presumida
+
+Próxima ação: Revisar candidato e políticas de emissão/visibilidade; implementar transporte autenticado e seleção Android somente após gates Auth/PostgREST. Cadastro e verificação oficial/HMAC continuam separados.
+
+Evidências: historical/410d092d2f2847f08bcc047940ef5c91192e44acc4b3fdcebac25be8fbd304d2.ref, historical/db4100750dabe5c87f65d49293d6796e7858969a3081a6db5c93cc2eaab0f6e8.ref, historical/aae0c22f6d9a3ee88dbd3787354981ba30bf518e3d2bf38ab7b8e3ab4cf32cfc.ref, historical/dd9ee9302998acd1233382b305bd7b8e022816ce32876bc40896eee6d6ceb486.ref, historical/bea40ccf46790561dba814ff9798d061b5577b03158c3ce1955667205d52e80f.ref, packages/chat-client/src/membership-directory.ts, historical/c08b93e6a2a78ad620924fb1db57015b5fe9f853ecadf7a18b63441d595453ca.ref, historical/8f7fada4339419e264de0ecd4738f0d187b7afc3ea6a631858a29a09e56eb9b5.ref
+
+## APP-103 — Manter resultado do diagnóstico legível e entregar atualização 0.0.2
+
+Estado: done
+
+- Resultado exclusivo permanece até novo teste explícito, reaparece após blur/background e não mantém campos ou credenciais
+- 153 testes mobile/typecheck e oito checks Android fictícios cobrem sucesso rápido, falha retida, cancelamento, fonte2 e logs seguros
+- Build online arm64+x86 código2 tem assinatura/configuração publicável e permissões estritas verificadas, sem login pelo assistente
+- APK/instruções salvos no Drive privado com metadados relidos; versões anteriores preservadas e relato real anterior continua inconclusivo
+
+Próxima ação: Teste do usuário confirmou login e encerramento no diagnóstico 0.0.2. Prosseguir cadastro/vínculos e seus gates independentes; não estender a evidência a ADM, RLS ou chat.
+
+Evidências: historical/eb1cf813affb8012a10e9e77f358b946233208bf7d850c0b29ab1b3fd13b165e.ref, apps/mobile/src/auth-diagnostic-controller.ts, apps/mobile/src/AuthDiagnosticView.tsx, historical/1eb18c2c9d0512728f7c5cabdc54832a6d0444ae7a5f052e63f72b453171c2f3.ref, historical/6fa7e9adc3fef572e3e5b791aa1ceefc9b9ddcd0e0d2e5156c586a08ddbb9281.ref, historical/09d802d0a7a3486ba3358f367ef0fcc74261e9b39151216ccb4b9a144d32a64c.ref, historical/bf6299a3514603a9e093a9b099effda27b57b6887d9c25ae5d512b75bb7ce908.ref
+
+## APP-104 — Integrar cadastro e vínculos em laboratório Android isolado
+
+Estado: done
+
+- Gate de apresentação acompanha lease/escopo sem conceder papel; paciente imediato, funcionário por busca pendente e convite direto respeitados com fixtures explícitas
+- 165 testes mobile, 12 regressões de host e typecheck passam; 34 checks contra PostgreSQL local preservam isolamento, revogação e paginação
+- 13 checks Android fictícios cobrem troca de conta, logout, retorno do segundo plano, incerteza e fonte2; correção do retorno ao login demonstrada
+- APK interno x86_64 sem INTERNET/microfone e recibo verificável; nenhuma promoção remota, segredo ou entrega de telefone presumida
+
+Próxima ação: Revisar montagem local e migrações, resolver custódia HMAC/ativação por canal autorizado e validar HTTP/JWT/RLS de negócio antes de conectar cadastro/vínculos. Contexto ainda não integra mensagens nesta montagem.
+
+Evidências: historical/f630829bbdd1f754d7974af405e0d2767eb6bb00c9c80bd20f29ffaaeff78bd1.ref, historical/fc055494d317844436c382589a33325866fa2080eb4cbf05d67d2d9c678b798a.ref, historical/6d214e147c11f0aba7a7efd273e7e4f413ec61da00863cae5bcff4af83286108.ref, apps/mobile/src/registration-membership-gate.ts, apps/mobile/src/membership-host.ts, apps/mobile/src/MembershipHostView.tsx, apps/mobile/previews/synthetic-membership-backend.ts, historical/a5e5ecc655a7f29169f0da77cb39646025db9b1bb5b7b5c8faa14341c24f03fa.ref, historical/343d19c3c350226743b74e97e5c7d493fd6fddc525e55a65dda6eb87656dce72.ref, historical/93ad90e80109ccd5a504d76c06388cecc7a6dc3bbe1708f660d9c6347c9c96e8.ref, historical/d11b91fc9a1423691ec65b9f9ff504a37f04c06ef6ef5c99c6e4c552f2c219cc.ref, historical/18bc7d528c3e3a602cd9f012632590b78d48ca824c74b17d6860b737377da90f.ref, historical/554a4046d7c54a4473fde4e415f8d5f3670367530af1b2a3ecba7cd0a6492eec.ref, historical/c1142907e22a9a7978efa465be9ab2e256b2d8a915b6699bb911490de0226009.ref
+
+## APP-105 — Compor cadastro, vínculos e texto na jornada Android local
+
+Estado: done
+
+- Conversa vem do diretório autorizado, com envio/histórico candidatos; empresas e sujeitos distintos não compartilham rascunho ou dados
+- 174 testes mobile, nove testes novos de composição e typecheck passam, incluindo retry incerto, seleção concorrente, logout tardio e revogação
+- Dez checks nativos fictícios cobrem paciente, funcionário convidado, resposta e relogin, fonte2/IME e retirada de papéis após negação
+- Recibo/assinatura/hashes do APK interno sem INTERNET/microfone verificáveis; entregas preservadas e nenhum cadastro remoto ou revisão independente presumido
+
+Próxima ação: Revisar composição e resolver gate de custódia/ACL HMAC por canal autorizado; validar ativação e HTTP/JWT/RLS de negócio antes de preparar APK conectado. Sem repetir consulta negada ou ampliar autorização.
+
+Evidências: historical/2a82f068ee44ae5d3553a959abb9f5eb4ec77e6c011dcd39e5ae3504347fcfb5.ref, historical/a0ffa9ed612040f1f576045a189f5b8e886fd4a5ecaf026878dcfe546278e46e.ref, historical/d0c72fe26b9feb3be5b1b25062a8e77d964e180e6b5791f27893db1ef067b3ce.ref, apps/mobile/src/membership-text-bridge.ts, apps/mobile/previews/synthetic-journey-text-server.ts, apps/mobile/previews/synthetic-access-chat-journey.ts, historical/4c0b80be93123ec5bc5c50de651cacce8a1fbef581b1c81043b41569e43e2fa3.ref, historical/a34e33f640636b385e3c5cc0811a115df78db2ba5c8bcd749a19ce6baf6bfaf6.ref, historical/41260385f5535fc874b288559fcdf5fabd58e6777170a9bc66c8b9dde9251548.ref, historical/ab1dcdd7b226a13b11dd4252efc0be32468c666608876cb1625c52c0e61c548b.ref, historical/95843b2ca2030f20c1454f11fc2530bde4138efdb6c005c27aafdf6843262100.ref
+
+## APP-106 — Montar preferências locais de notificação e quatro níveis no Android
+
+Estado: done
+
+- Filtro explícito e quatro níveis independentes com prévia sintética, barra discreta ajustável e botões de rádio alternativos
+- 183 testes mobile, nove testes de host e typecheck cobrem valores inválidos, leases/contas distintas, logout e descarte reentrante
+- Dez checks nativos fictícios demonstram níveis, barra, navegação, conta distinta e fonte2 sem solicitar permissão ou enviar push
+- Build interno sem INTERNET/microfone, assinatura/hashes e preservação dos APKs conferidos; persistência, push e iOS continuam pendentes
+
+Próxima ação: Revisar componente, validar TalkBack e definir persistência/resolução por dispositivo e política de evento importante antes de conectar permissões/push. APP-028/051 continuam em progresso.
+
+Evidências: historical/4aa62f82a0be0f6d6433eb41c1c656300120dc416ee5ac31a5f337861d289ff4.ref, historical/e42f154760570e666ee3163a4e9e06be7559c6c631aada1e74dd995ee64c4b52.ref, historical/70854eafc733e1be81499f155608e5ed7d6c1bef9dc940121d630ab536e28327.ref, apps/mobile/src/notification-preferences-host.ts, apps/mobile/src/NotificationPreferencesView.tsx, historical/a238a8129031f0a3bd7c117404ab209f2aa672d4610f9b2de93fe317d5c0f25b.ref, historical/d36a1218c5f6f938e21028949f66cf5e3081eab9b0af1f937accb657fc712204.ref, historical/8749a67f33fb49376e09de1c8bc7e3cc7b34c9c05cdf6709ed19e88310b37109.ref, historical/e95925711d33e5e9495488dc0aa342fdb8cab7d2a423ea5df883f9e520bdfa66.ref, historical/a20f07b09df09bcaff1b8590f5107f6ede6d6b6fb414b65af02d23f3bdd6a6c7.ref
+
+## APP-107 — Validar composição de duas empresas contra RLS em PostgreSQL local
+
+Estado: done
+
+- Oito atores sintéticos e duas empresas exercitam diretório, gate e canal de texto juntos, com SQL sob papel sem bypass RLS
+- 97 verificações demonstram isolamento entre empresa/paciente/papel, retry após commit, revogação tardia, logout e duas sessões SQL concorrentes
+- Unicidade de empregador ativo comprovada; solicitação adicional pendente observada e registrada como decisão de produto sem alterar a fundação
+- Recibo/relatório e entregas preservados; sem JWT/PostgREST/registro reais, novo APK ou mudança remota presumidos
+
+Próxima ação: Evidência histórica do comportamento anterior; decisão provisória e candidato de bloqueio de novo pedido em APP-108 a supersedem. Preservar recibo e validar matriz conectada após custódia/ativação autorizadas.
+
+Evidências: historical/6519d109414ea339d486892636985fb439f75ebb9b40e1aef4c59c06eb2151dd.ref, historical/b15ae5c9aa2644aaaedb238a8bd6f839f75566d241aae0272454571e7e0fc1d2.ref, historical/e659d2e4fa695b2a96d1dfbfd576a03222dc4f1b0fd44db54bec07fea347ba1a.ref, historical/e50f7aaa8e425abc1a48980443d924380ff37c0577d1c0ff489373667565db00.ref
+
+## APP-108 — Bloquear outro pedido de funcionário enquanto houver empregador ativo
+
+Estado: done
+
+- Decisão provisória registrada: outro pedido de funcionário é negado enquanto vínculo atual estiver ativo, com orientação clara; paciente multivínculo e convite direto sem conflito preservados
+- UI desabilita botão e host impede dispatch; lista incompleta não presume ausência de empregador;188 testes mobile,cinco novos testes e typecheck passam Modelo de referência alinhado com20 testes de acesso,dois novos casos e seu typecheck.
+- Candidato SQL local serializa pela conta, preserva dono/ACL/histórico, passa117 checks e três corridas reais, rollback/reinstalação e recusa de definição desconhecida
+- Seis checks Android fictícios cobrem bloqueio, explicação/fonte2, paciente e conta sem empregador; remoto e recibos históricos inalterados
+
+Próxima ação: Revisar/promover candidato somente após alvo/canal/custódia autorizados e testes JWT/PostgREST/Android conectados. Avaliar projeção própria de empregador ativo para evitar leitura completa de páginas numa evolução futura; transferências não implementadas.
+
+Evidências: historical/92a438e3ab0b44c7dbd85b8313dd4b0f94a1da923a78904c48e69f7cac547382.ref, historical/95715ae39eb95d5d6411c8bf53e4c5e95c23a7f68e26432198ea5d05f6f7a824.ref, historical/a501a40da4f45b66240e6fad42db230e6419d54338e19a05b0fe67c4031b077e.ref, historical/8436b54d0f138ce3b98d674a19e87bdf8379bd1df5039130d9a8dc141076d268.ref, historical/19360639716f17a5afb20c8abd7082fb0af985588be93ddd3e0cbbb7cc0f5b21.ref, historical/3eb41540ac6db27476537a45482dfd1f18d6c0f7f4e6050a7f311bffe6749232.ref, historical/bceb5afaa83af2b5afde65160c21f598df77ab14c4034850c50235b8b8c2d455.ref, apps/mobile/src/staff-request-policy.ts, apps/mobile/src/membership-host.ts, apps/mobile/src/MembershipHostView.tsx, historical/34815a88ec411a1aefd72faa720a74a9619cc8c293bb462ea7833c4254ca6514.ref, historical/54158f6c22c670194adbe708a72be07c9079082701fb5cf949f5c9d29a83db24.ref, historical/6d214e147c11f0aba7a7efd273e7e4f413ec61da00863cae5bcff4af83286108.ref, packages/access/src/membership.ts, packages/access/tests/membership.test.ts
+
+## APP-109 — Explicar vínculo próprio quando a empresa está indisponível
+
+Estado: done
+
+- Projeção mínima restrita ao próprio sujeito mantém vínculo ativo visível, sem contatos, causa administrativa ou autorização clínica
+- Reader e host descartam resposta tardia, falham de forma segura e preservam operações independentemente autorizadas:192 testes mobile e107 cliente, ambos typechecks
+- 153 checks PostgreSQL locais cobrem isolamento, revogação persistente, permissões, corridas e rollback sem perda
+- Nove checks Android fictícios cobrem empresa indisponível, fonte2, falha/releitura, paciente e troca de conta; APKs entregues preservados
+
+Próxima ação: Revisão independente e promoção condicionadas ao acesso autorizado, custódia/ativação e testes Auth/JWT/PostgREST reais. Implementar binding HTTP da porta à sessão e validar montagem conectada. APK atual é laboratório offline x86_64 interno.
+
+Evidências: historical/749924b8b5ea084bbcd4ddb684217de490694d51c36a9aab85ce774abb93613e.ref, historical/cf8d1436dc34d0a98d0c4eef9076e017cb721e741263b83aeab000b97f1a53b3.ref, historical/1d58fddcf5cf5f5242e98c45a8c9e6e8df6f8389b33c77bdaed05838b5ff422f.ref, historical/34129888a34a379c56b1056ed28e36c6bdd14061bc5563ede507789d733ad4b3.ref, historical/023af8691566916f375e4c5ecfc10c2fc25a764c8c74f9813829ce9bd11dfd92.ref, packages/chat-client/src/staff-employer.ts, historical/a064da35b92df834888aba71b234575eadd6bce59ec8579a23ebdb038ef83cb4.ref, historical/fca79ca65148096b7593ae7b263f50f84b504d206f5bcf34aa81628dd46e3aab.ref, historical/0ffedaa0158e777a8d02612df9abc163702ff23f6179ddd9b1412e1abf70312a.ref
+
+## APP-110 — Ligar consulta do próprio empregador à sessão HTTP candidata
+
+Estado: done
+
+- Porta fixa sem seletor de sujeito/empresa usa bearer da lease conferida e corpo vazio; resposta física limitada a4096 bytes
+- Nove novos testes HTTP fictícios cobrem contrato, DTO, tamanho, erros, renovação, troca, logout, cancelamento e capacidade
+- 116 testes cliente,63 sessão e192 mobile com seus typechecks; recibos e APKs anteriores preservados
+
+Próxima ação: Compor diretório/cadastro/gate/chat na montagem conectada; revisão e testes Auth/JWT/PostgREST reais e Android/Hermes antes da homologação. Não instalado no remoto; custódia HMAC/ativação permanecem gates.
+
+Evidências: historical/c3d792ae76ee9c8600790af30c3813e36d6500120db628181d9bf2bc9dcd0cd0.ref, historical/016a32f1dd6caeccbd22a899e50e265537a8689eb5189ffcdaeec286efb3d534.ref, packages/chat-client/src/session-rpc.ts, historical/cb58b5096605e8434e97d05b06ca0f75d1537bf2ef853b9c98736800bb1c6af0.ref, historical/3e2e8226b28d8c5aa60a1cc6a3a0f8dc2565eed2e9bdbc5a2b7cca9e0226a845.ref
+
+## APP-111 — Compor cadastro e vínculos na mesma sessão HTTP candidata
+
+Estado: done
+
+- Nove operações de vínculos têm endpoints fixos, parâmetros projetados, bearer da lease verificada e limite físico64 KiB
+- Montagem candidata sem aprovação fictícia mantém cadastros pendentes fora dos vínculos e servidor autoritativo
+- 123 testes cliente (sete novos),198 mobile (seis novos) e63 sessão, três typechecks; renovação, troca, confirmação incerta e empresa indisponível cobertas localmente
+
+Próxima ação: Validar revisão/promoção, custódia HMAC e ativação pelo canal autorizado; Auth/JWT/PostgREST/RLS reais e montagem Android com lifecycle antes da homologação. Mensagens não integradas a esta montagem.
+
+Evidências: historical/dc53f98cd3b0155772c01390066776fd1fad0f4ff060b62026cec84ad6456c2f.ref, historical/560e8021cac103e43c73dff601e308bd7eb5664c1ce6d396c2ae99acfc7f4276.ref, historical/69c8b513e90966475c32f09eaf05dc8516404d19c9c1fc0c6f44a6d024cc212a.ref, packages/chat-client/src/session-rpc.ts, historical/cddab890c64742ee3eb93e98d9b12605b68fd6f94d19ee0cadc4180540914ecf.ref, apps/mobile/src/access-journey.ts, historical/3f5530e3d3b75f6c8c5d3c150501ba5ab1fb074c25341649505768652c62aeb0.ref
+
+## APP-112 — Validar composição HTTP fictícia de cadastro e vínculos no Android
+
+Estado: done
+
+- Pacote Android offline separado usa montagem APP-111 por streams HTTP fictícios, com aprovação somente no preview e sem INTERNET/microfone
+- 200 testes mobile (dois novos) e typecheck; dez checks nativos cobrem contadores HTTP, cadastro pendente, convite, vínculo paciente, falha, empresa indisponível, fonte2, troca de conta e logs
+- AVD encerrado, configurações restauradas, APKs e recibos anteriores preservados; nenhuma alteração remota
+
+Próxima ação: Montagem permanece laboratório x86_64; resolver conexão/custódia/ativação por canal autorizado e validar Auth/JWT/PostgREST/RLS reais, lifecycle e Android conectado antes de homologação. Mensagens/anexos não integrados nesta montagem.
+
+Evidências: historical/390c2fd80c0c7df4b9397b1e634f7be045323163675c44cabe47ef505bc7c268.ref, historical/b887d150f0f9dc680663db247da5e073bcb3272e5798268731c8c80cc638ca34.ref, historical/12625a823eb944edbe17e01131698d5d63a5a6077e7a9feabc21176e87978477.ref, historical/17e641fc0e72524a6126dc1a6cd4633efe2b76c44bf9dc4199be725ecc1c2a9a.ref, historical/852fb969913e68265396251feedcbc8b05a87f7889d2bf3763ef5dc01890e306.ref, historical/a0a57f6cd269247af00bec3e4944d62d94e170197aabdf359594765a5cb622d0.ref, historical/54fca7b3d0a68326d340f453fe88b3379dbc5db841e6ca8539eef36636750796.ref, historical/005c405c68d194b03dc64a6af0f371544419929410a67644b4dc331f1bf95042.ref, historical/28985f548a2fe2e60fd2208bde0f1a4fd67aa1a843ffca6fc49a66584556617d.ref
+
+## APP-113 — Consolidar corte de homologação e gates de ativação atuais
+
+Estado: done
+
+- Corte A de persistência pendente separado do corte B de ativação/vínculos/chat, sem tratar Auth como identidade civil
+- Cadeia local conferida por hashes; fundação somente referência; manifesto sem executor ou autorização remota
+- Fila corrigida para evidências atuais sem reescrever recibos históricos ou solicitar novamente o diagnóstico já confirmado
+
+Próxima ação: Canal e preflight resolvidos no escopo documentado; pacote gerenciado pronto com revisão e21 etapas locais. Implantação exata aguarda confirmação específica exigida pela revisão automática. Depois validar Auth/API/Android de negócio; não oferecer o laboratório como online.
+
+Evidências: historical/9e84b220cf5f2b188c1aac17283928997a3d8e01ec2300c518c70fcc782c0abc.ref, historical/7bc12738aea2559adf3861432d409c6798ea3d971616ebd2f48a324cb34ea8cb.ref, historical/3d5297d422b6cab0e7784eb7518f282104974e2609498009ffe62a94ab62e9fb.ref, historical/0862fdaca1ec46cd6592fb9a05f8fed884404532cca71721a12a0112999740a7.ref, historical/dbc0d12d4e36cca87a8e9a763de03f3bc16dffc7ab0a3f446ea083fe52b3f6ba.ref, historical/453d0c48e4d961cae1000919b0d92a4427425a3023b8800e3bccd765981d7646.ref, historical/20d4cfe644f1651e1743f3778a6cdd3818ddcbc45e490440a9e06579e0017b8c.ref, historical/1ca1a7ebcbd1e55022fea3cba37ae0aef5ecb8cbeee7754d443df543dde31df4.ref
+
+## APP-114 — Implementar contrato local restrito do runtime HMAC
+
+Estado: done
+
+- Compilador puro de scope fixo recusa metadados não revisados; SQL faz preflight de owner/ACL/principal e modelo vazio sem criar grants/roles/chave
+- 32 etapas PostgreSQL locais passam com corpo original do reader e mock Vault; servidor descartável encerrado
+- Consulta remota complementar bloqueada antes de executar SQL, sem repetir por outra rota ou alterar política; nenhum segredo provisionado
+
+Próxima ação: Consolidar ownership e revisão local sem provisionar. Consulta catalogal exata permanece não executada: erro do cliente Codex com aprovação never; não é recusa Supabase. Não há ID de revisão comprovado nos eventos. Verificar elegibilidade na tarefa original ou disponibilização do fluxo permitido pelo responsável pelo cliente, sem trocar política ou rota. Custódia/provisão/promoção continuam gates.
+
+Evidências: historical/e023616d7c6558056728ad429c82298142cbc71885fc0574b2fba7ecbd6a2293.ref, historical/3233d960f2eebdfdbf865b332ab8131d478ce928ed38affe9b179c735c9a639d.ref, historical/60913b72241af76315d4727465079b4d42d8c852b2f6a55ca2ae4702f89989ee.ref, historical/4d19c39c736bf0b3f8a42ca81eb92c11ea1b47c517dd0dcc62f23a3f20880224.ref, historical/94acbca12a95e5f824c5ae2d6340563705b9390015b48781aa014aa0fa803e87.ref, historical/ea3ea8fb690b5c6867bc4f265df57d747737e22a79b4a6f0be62ab104601ecad.ref, historical/821e5ed85d02f5f640351ed5a47047547506f643cfb1bae92d7c98af5068ec87.ref, historical/d91b0543421e8ceda5223b935c04c2da4920ed8c778a01c9c9b0a9e52a4ea481.ref
+
+## APP-115 — Implementar e medir laboratório Android local de imagens
+
+Estado: done
+
+- Seleção nativa e cópia limitada em cache privado; original preservado e PDF não regravado
+- 216 testes mobile e typecheck; nove verificações Android e seleção real de fixture com hash
+- Medições e limites registrados; perfil candidato, sem upload ou alegação de legibilidade universal
+
+Próxima ação: Continuar APP-052: integrar jornada e políticas, testar EXIF/orientação, fotos, PDF e aparelhos físicos antes de promover perfil.
+
+Evidências: historical/44d451698172622f1224c0f7479851525d82ad96b5da60b561da034719284bb2.ref, historical/0d7785f53ed8a4c85b27350d50453ea529a41ae95410dc301f1abe4ae6841c74.ref, historical/1991f979ae252140d88dca42c124caadf3f66455460144f0b0bd37ea9589173c.ref
+
+## APP-116 — Refinar imagens para legibilidade e entregar laboratório Android de telefone
+
+Estado: done
+
+- Perfil candidato3508/q90, sem ampliar fonte e sem escolher derivada de tamanho igual/maior; original preservado com aviso
+- 218 testes mobile/typecheck,11 checks nativos com hashes e9 smoke UI em APK não debuggable fonte2; QR nas3 saídas, PNG pixels iguais da fixture
+- APK ARM64/x86_64 e instruções salvos em novo lote privado no Drive, anteriores preservados; sem upload/chat/autenticação real
+
+Próxima ação: Lucas pode testar o laboratório separado com as guias fictícias embarcadas. APP-052 continua em andamento: perfil/EXIF/orientação/PDF/aparelhos e integração segura ainda não homologados.
+
+Evidências: historical/4b152f7496c662b6ab0013f2ae04b4766cb14a08d9f5ffdef22bc4365044ad8b.ref, historical/2b2412c3c4bf9920a5b2fe46bd72b8e725f49c4d4c1cc3c9ad0fcb286635dab1.ref, historical/99285f1233d4e29338cac196cf306908a1e6a70c2e1f2b3849fbdbddf50342a5.ref, historical/1991f979ae252140d88dca42c124caadf3f66455460144f0b0bd37ea9589173c.ref
+
+## APP-117 — Integrar imagens privadas temporárias ao chat demonstrativo
+
+Estado: done
+
+- Selecionar/revisar/compactar/original e ampliar dentro do chat, sem transporte; cartão local-only separado da fila e texto intacto
+- Capability por conversa/empresa/identidade;22 regressões do controlador,240 testes mobile/typecheck e quatro verificações independentes de cancelamento/limpeza
+- APK QA Android passa10 core e2 extras; sombra/baixaqualidade comparadas em bytes/pixels/QR; zero cópias privadas controladas após descarte pela UI
+
+Próxima ação: APP-118 resolvida localmente com aviso e retry de inicialização; continuar ciclo de vida/privacidade e integração principal antes de conectar transporte. Cartões locais continuam não enviados.
+
+Evidências: historical/57008f5de81b83ee3d83bbdfb806fea8d82088f046ca776026f89e7cdb0a3312.ref, historical/55f8aa394526e3cc8504462fef46901c9d8d41b20469f0c4d98016d529acfff5.ref, apps/mobile/src/demo-image-session.ts, historical/1b1b15b9137c30729a927e8727ba1b7eb2f78e2ff1f7fb1a120b118bbe91516b.ref, historical/950bf4408e86dddf7ad375c1a110b47aba0512ab3186573fec474986be2c1e46.ref
+
+## APP-118 — Recuperar falha ao inicializar adaptador de imagens
+
+Estado: done
+
+- Falha simulada da fábrica mostra aviso genérico em conversa autorizada, sem stack/path e sem habilitar imagens indevidamente
+- Retentativa explícita cria adaptador próprio após cleanup, sem adquirir capability de outra conversa ou reusar bind revogado
+- Teste de falha inicial, recuperação, troca de contexto durante retry e Android pertinente antes de ativação no produto
+
+Próxima ação: Falha inicial agora expõe unavailable/setup e retry explícito preso à capability, sem alterar texto/fila; duas falhas e recuperação passaram no Android. Continuar APP-052/ativação principal e gates de mídia; I/O nativo defeituoso, TalkBack/aparelho físico ainda não homologados.
+
+Evidências: historical/55f8aa394526e3cc8504462fef46901c9d8d41b20469f0c4d98016d529acfff5.ref, historical/57008f5de81b83ee3d83bbdfb806fea8d82088f046ca776026f89e7cdb0a3312.ref, historical/9c553d5bb9b65d76a231582db72f4cf635de6b5b2f071a80421c0142a448ed69.ref, historical/e4a4763f9bfd5d586c3bc75c3373780d79ba4ad7e6eb91089dc5fd5f486d56ff.ref, historical/93674e0cb7e9d0bf2bade78a7365e31f2c8b89d049be8fd8dc7f5e380c2519fb.ref, historical/c4adf410355692d9beb0f32b0defa7ce59ce829b2b84feafead4cb1c466ca1f3.ref
+
+## APP-119 — Preparar original automaticamente e exibir nomes legíveis nos anexos
+
+Estado: done
+
+- Seleção abre revisão original sem guardar/enviar; Compactar/Guardar explícitos e revisão falha bloqueia salvar preservando referências/cards
+- Nomes são limitados por clusters Unicode, sem partir emojis/acentos; aparecem em revisão/cartão, com feedback seguro de prévia indisponível
+- 266 testes mobile,12 auto-review e5 nomes,dois typechecks e13 verificações do APK final passaram
+
+Próxima ação: Continuar providers/ciclo de vida, visualizador de documento e dados privados reais somente após gates; não tratar revisão visual como inspeção de segurança.
+
+Evidências: historical/202852f0197cb6a4f829a43047d625431d23f0b74f6e9c0935ae618de7ccd89d.ref, historical/d24b6425e8ce786ccac061625f800b85bb6d66adede5be09d104e7bfd7d2fa97.ref, historical/1d55be7908121e67384fbe5bb6188976db68821b9bf8f9e85820017c3b0cdfa4.ref, historical/d3423762af7a88b18c4a6ff44769c206d078a1f28cd7b76231d68537aa59083e.ref
+
+## APP-120 — Validar EXIF e recusa de cópia temporária ausente com fixtures Android
+
+Estado: done
+
+- JPEGs sintéticos1/6/8 comGPS0,0 preservam bytes fonte;41 testes de parser limitado e14 autotestes de avaliação
+- 6 checks nativos e comparação raster/MAE/QR confirmam orientação esperada; blocoinserido EXIF/GPS ausente nas saídas sem certificação universal
+- Fonte privada de fixture ausente recusa revisão e preserva original;3 checks nativos e limpeza somente por UI
+
+Próxima ação: Ampliar orientações2/3/4/5/7,metadataXMP/IPTC/MakerNote,HEIC/formatos futuros e aparelhos; parser dos testes não deve virar sanitizador de produção.
+
+Evidências: historical/202852f0197cb6a4f829a43047d625431d23f0b74f6e9c0935ae618de7ccd89d.ref, historical/802c61ff4bcf04e17cb3bc32f454d439b7c2f1a0406f4422674d058be5e5183e.ref, historical/a0456c5edba19394f3bff6a7d84211ef9c4b0bc808f274398e24308707917366.ref, historical/be0f65a8b7a3e9589b1d73f6b56f51423096fa4fa025f2726898da51bcc2d5cc.ref, historical/d3423762af7a88b18c4a6ff44769c206d078a1f28cd7b76231d68537aa59083e.ref
+
+## APP-121 — Entregar demo Android0.1.5 com chat e imagens locais no mesmo pacote
+
+Estado: done
+
+- APKcode12 ARM64/x86_64,mesmaassinatura0.1.4,não depurável e sem INTERNET/microfone
+- 13 checks emulador do APK final fonte2:originaisauto,compactação,nomes,zoom,remoção,empresa/logout e texto preservados
+- LoteAPK/instruções/QA/manifesto/hashes noDrive com5readbacks, anteriores preservados; modo local claro semAuth/Storage/push
+
+Próxima ação: Lucas pode testar o novo demo no telefone. Continuar implementação sem esperar teste; acesso remoto fica em espera conforme coordenação, sem bypass ou política alterada.
+
+Evidências: historical/d3423762af7a88b18c4a6ff44769c206d078a1f28cd7b76231d68537aa59083e.ref, historical/202852f0197cb6a4f829a43047d625431d23f0b74f6e9c0935ae618de7ccd89d.ref, historical/d4ba3fa7b499e5c485004741e9cf231b61215e209c8d92441de7882e6a7b0279.ref
+
+## APP-122 — Consolidar gravação e reprodução de áudio local com imagens no chat Android
+
+Estado: done
+
+- Uma sessão/contexto para ambos os hosts; namespaces de arquivo separados, rascunhos exclusivos na UI e texto/fila preservados
+- Controles de áudio comuns sem logs, caminhos, contagens de QA ou comando de sessão; guardar somente local claramente identificado
+- APK sem INTERNET, permissão de microfone contextual e ensaio Android sintético antes de entrega; teste físico de voz e envio real separados
+
+Próxima ação: Fatia nativa local entregue em0.1.7/code14; envio real segue APP-056, condicionado a Auth/Storage e políticas. Captação/qualidade sonora em aparelho físico ainda não verificadas.
+
+Evidências: apps/mobile/src/ChatMediaDemo.tsx, apps/mobile/src/DemoAudioViews.tsx, historical/bec28ab18d36ecd00652514f6617f1b1c353c341860868ad4a620b1e29efc26b.ref, historical/d05f313e0b8824d09ab2f772ab80bcaf0d857a687adab5f2ae671a264b77e3cd.ref, historical/c877b07aa351db9f7d9de6e2e5ceadcb9a121f3997c2f5cb682fd321be78e71c.ref, historical/d9d614f18008de497c90111d2946f43ca5ef87e3c575ab6edec9ebbb0621b8fd.ref, historical/fbdc92b076e63c15972afb3c548caa28c2ed61b1973420f781d7a7897aff3f42.ref, historical/0825b5bc12916701c4a7297c04e768509e62d6eefe69f8f940ac64d597bd9313.ref, historical/0b6275e3b824c2b2ce34e86c38afce0f4cefce805afedeb4f8da8d52d2e34b98.ref, historical/472ef20812adcc4da998d6d7332e9f02191acda4a624642378945e76f93a8f76.ref, historical/bac6c42a3bc8c99e97f59a7330f232771f1d5970d10e20c171e8c7ef44bf643d.ref, historical/c2a4c9a62b6ce337b9f2e93d6334a160793cee31fff414a5ae69bc9d3979e87c.ref, historical/0c52cdda09280dc33e9a8979078e8ea479b3278aa0f9f99965997a98a3acd75b.ref
+
+## APP-123 — Modelar cobertura local de mídia e fencing de picker no ciclo de vida
+
+Estado: done
+
+- Modelo puro cobre/fecha preview após background/blur; retorno exige revelação explícita
+- Picker pode concluir no mesmo contexto sem revelar e callbacks antigos não voltam a valer
+- 20 testes de modelo; sem alegar integração UI, proteção de Recents/screenshot ou FLAG_SECURE
+
+Próxima ação: Integrar em fatia separada mantendo Composer montado durante picker; testar Home/Recents/blur/zoom e callbacks tardios no Android antes de afirmar proteção visual.
+
+Evidências: apps/mobile/src/media-visibility.ts, historical/55fa4eba878aae20d056c142ae356ab311f02b7c07ef01ac0b5c035abb0b9d2d.ref, historical/4aa779af7ffa0b6a3197a1fea1423866d1c2ecbdb0bf30d8d141e5388ad390e2.ref
+
+## APP-124 — Adicionar zoom em pinça e deslocamento à revisão de imagens Android
+
+Estado: done
+
+- Gesto de dois dedos altera escala com foco estável e limites; um dedo desloca sem perder a imagem
+- Fechar/voltar/trocar contexto e background resetam ou encerram a revisão; sem URI exposta ou upload; não certifica screenshots/Recents
+- Botões de zoom e reset acessíveis continuam disponíveis, texto ampliado e viewport medidos; teste Android de gesto real antes de afirmar pinch validado
+- APK de imagens0.1.6/code13 preserva0.1.5 e é entregue somente após validação e hash/assinatura
+
+Próxima ação: Lucas pode testar0.1.6 no telefone. Prosseguir sem esperar: áudio local fica em APP-122/candidato0.1.7; físico/iOS/TalkBack e Storage real continuam pendentes.
+
+Evidências: apps/mobile/src/LocalImagePreviewView.tsx, apps/mobile/src/image-gestures.ts, historical/467233664489c7aa16c41b081037247c2583760a85e7ce9354b1890a077d4e93.ref, historical/ed5d9c9e89d2b35e72bcb0aa2884df8f60ddc8652c62fe05ec163235d3e0e1ad.ref, historical/81a51c27f96125af69ccbc87ffdc97cc6aeaffa436d6a746819d60de7b404627.ref, historical/75b959e5e74c3ed2b145c87a2bc585a5476fac718b4db153c180aeada543b7d7.ref, historical/def8b984207c089e586810b84871ecf9c41e662299947ae1ac50da6da1fa7c67.ref, historical/55ba2115a5aeaf310c95d81e0dcf29e6ba48cc9b359f0ae4269114bf502ac0b2.ref, historical/71f5c0da26ec1557db39439a5dc561f156f17a52254045a88d24abc171f5785d.ref, historical/799166746366f555a89b62319b4b6521f5ae1bef0668f2b8f75d83964c3c6f12.ref, historical/d536931196299db8614964140e3fc51296dd517e35f3e084936250703e801fc9.ref
+
+## APP-125 — Corrigir pausa e bloqueio após falha de limpeza do áudio local
+
+Estado: done
+
+- Regressão do modelo comprova que pause/background durante purge falha permanece blocked, sem solicitar microfone
+- Pausa somente de playback/loading; rechecagem scope/ticket/stopping, no-op nos demais estados preserva avisos
+- Compositor pausa reprodução salva sem descartar texto/imagens; validar Stop/prévia/coexistência no Android com silêncio virtual
+- Stop e Descartar inteiros durante gravação na fonte200%, sem rolagem; pausa confirmada antes de habilitar nova gravação
+
+Próxima ação: Fatia nativa local entregue em0.1.7/code14; envio real segue APP-056, condicionado a Auth/Storage e políticas. Captação/qualidade sonora em aparelho físico ainda não verificadas.
+
+Evidências: apps/mobile/src/private-demo-audio.ts, apps/mobile/src/DemoAudioViews.tsx, historical/bec28ab18d36ecd00652514f6617f1b1c353c341860868ad4a620b1e29efc26b.ref, historical/bac6c42a3bc8c99e97f59a7330f232771f1d5970d10e20c171e8c7ef44bf643d.ref, historical/0b6275e3b824c2b2ce34e86c38afce0f4cefce805afedeb4f8da8d52d2e34b98.ref, historical/472ef20812adcc4da998d6d7332e9f02191acda4a624642378945e76f93a8f76.ref, historical/c2a4c9a62b6ce337b9f2e93d6334a160793cee31fff414a5ae69bc9d3979e87c.ref, historical/0c52cdda09280dc33e9a8979078e8ea479b3278aa0f9f99965997a98a3acd75b.ref
+
+## APP-126 — Remover individualmente cópia de áudio temporário no chat local
+
+Estado: done
+
+- Ação explícita remove somente a cópia privada local selecionada, sem excluir original do aparelho ou mídia remota
+- Pausar reprodução antes da exclusão e preservar os demais áudios, imagem e texto
+- Falhas e callbacks após troca de contexto mantêm bloqueio seguro; testes sintéticos de concorrência e Android antes de entrega
+
+Próxima ação: Remoção individual validada no QA Android: Cancelar preserva2clipes, Confirmar mantém sobrevivente6s reproduzível por4s, imagem/texto e diálogo fonte2. Sem novo APKtelefone; próximo APP-127 corrige salto deviewport. Auth/Storage/envio real seguem fora desta fatia.
+
+Evidências: historical/bac6c42a3bc8c99e97f59a7330f232771f1d5970d10e20c171e8c7ef44bf643d.ref, historical/f0792c81f8b210458e6fa394416ef229fb30c7bcbc0cf36e24ea5bc9119e5b52.ref, historical/bec28ab18d36ecd00652514f6617f1b1c353c341860868ad4a620b1e29efc26b.ref, apps/mobile/src/private-demo-audio.ts, apps/mobile/src/demo-audio-session.ts, apps/mobile/src/DemoAudioViews.tsx, historical/d6983aab75c669aac6f9e6ac9b8c4cb09976254663b9b3af88c34f21caf045e9.ref, historical/a58afd9251085727491ddd43f8826fbb7768cf58d4eec37ab0d43588b3e7a4e6.ref, historical/83937846140dd809db4e58e8697938516036d46c66b332fdd29bd2ce384eec80.ref, historical/c2a4c9a62b6ce337b9f2e93d6334a160793cee31fff414a5ae69bc9d3979e87c.ref, historical/0c5245d9fac7e02943ac11afc72f3188bcbc474f5d624721389996bd8cbfccce.ref
+
+## APP-127 — Preservar posição de leitura ao operar áudio e outras mídias
+
+Estado: done
+
+- Pausar, reproduzir e remover mídia não puxam o histórico automaticamente para o rodapé
+- Acompanhamento de mensagens novas respeita a posição de leitura; entrada na conversa e envio próprio mantêm navegação útil
+- Testes locais e Android com fonte ampliada/teclado verificam o comportamento; sem afirmar estabilidade só pelo driver reposicionar a lista
+
+Próxima ação: Critérios de texto/leitura validados em QA e Phone0.1.9:9funcionais+1OS cada,fonte200%/IME. Header de revisão não é timeline de envios; controles fixos não certificam todos os elementos internos. Seguir APP-131.
+
+Evidências: apps/mobile/App.tsx, historical/bd2ec81b87e34aa813f6a32a03d3a9faadfb2a8844409f71b4fcc3d45e6143b5.ref, apps/mobile/src/chat-scroll-follow.ts, historical/8db5a566022860bef236672c6aeed06d53813d5fca2c95920bd7e12f34c052ab.ref, historical/830483543facb33c07971cbcde10348d8f16c92a5eddedb6e35bec22f1dcf512.ref, historical/b9130bafa2e599cab06b670db616da464468f93acbd3331fed7f4bef85be0fcc.ref, historical/68086975dc1f346f966be0c2b4aca3d51ae0f9c1aefcb3db3717e18ea79d3c7b.ref, historical/ddf70d8e6ee52b8af7c12ae96cd011167bd4162855aee7b03d757c9f41b0c9be.ref, historical/3dff19248feb6a842bb77c5cc7ea9d7663f8252729fe364a7a9a3264e03d4e14.ref, historical/44aeacd0b54cd1d0f81226d38994a9981c7e055e4467290aa908d1aebb0cdd5c.ref, historical/8db2ae335201bc467f330dc4528fe18aeb39d384cba35f62c3a364934e50fc0d.ref, historical/a9dca6b16ea8dec59b43ca0e16dfc18e4e2aa05772e0a2f891af75b4ad7c4e7f.ref, historical/91f9fd2e992c1c1f35040c119985d28e319e1be8c6f7ef1036e90da0b3e0960a.ref
+
+## APP-128 — Preparar entrega Android demonstrativa0.1.8 sem substituir anteriores
+
+Estado: done
+
+- Versão/code/assinatura/hash/permissões do APK conferidos, sem INTERNET ou segredos e sem sobrescrever entregas
+- Base da rolagem validada no QA e smoke do APKPhone antes de liberar ao telefone
+- Entrega privada com instruções e limites distingue mídiaslocais de envio/backend; anteriores preservados
+
+Próxima ação: Demo0.1.8/code15 entregue noDrive com5metadadosconferidos, SHA6335f6...,9cenários QA+9Phone. Sembackend; conhecidoAPP-129 e aceiteintegralAPP-127pendente. Próximo melhorar visibilidade do texto sem perder isolamento/rolagem.
+
+Evidências: historical/2397079b72ffa720a05df268c02c237e349fa35aa5259f66038ffe5de7500fbc.ref, historical/9a2e361bc65b2d46334c0f459f839b136d2291f6dd0f8490a7832e399ec92519.ref, historical/fd724d69b9a09bfcc89ed4d6f0335335d4bea36c2e5077f3689f7394bb1e0da4.ref, historical/b6d8512924a330117fc4c08b1a79c117639e599ac8bbf1bec5f5395159e8e434.ref, historical/3dff19248feb6a842bb77c5cc7ea9d7663f8252729fe364a7a9a3264e03d4e14.ref, historical/68086975dc1f346f966be0c2b4aca3d51ae0f9c1aefcb3db3717e18ea79d3c7b.ref
+
+## APP-129 — Exibir o texto recém-enviado mesmo com mídias locais altas
+
+Estado: done
+
+- Texto recém-enviado fica visível sem obrigar usuário a procurar acima do bloco de mídias
+- Solução preserva leitura, ordenação compreensível e rótulos de mídia local/não enviada; não simula transporte real
+- Testes cobrem texto antes/depois de mídias, exclusão, teclado/fonte ampliada e isolamento entre conversas/empresas
+
+Próxima ação: Critérios de texto/leitura validados em QA e Phone0.1.9:9funcionais+1OS cada,fonte200%/IME. Header de revisão não é timeline de envios; controles fixos não certificam todos os elementos internos. Seguir APP-131.
+
+Evidências: historical/ddf70d8e6ee52b8af7c12ae96cd011167bd4162855aee7b03d757c9f41b0c9be.ref, apps/mobile/App.tsx, historical/830483543facb33c07971cbcde10348d8f16c92a5eddedb6e35bec22f1dcf512.ref, apps/mobile/src/chat-scroll-follow.ts, historical/0fa5d6c345e166d03d07974e615b7bc13be6f94154cdc4128fc3f6ea70753d95.ref, historical/53e541ba28b134bd1d5a57a4fae44c736fe81499b11e3551472b982b0641dbe4.ref, historical/98e0ed54400f9ee40a0e24172006aae56e62f23f029123fb0a14f5ea4027714f.ref, historical/44aeacd0b54cd1d0f81226d38994a9981c7e055e4467290aa908d1aebb0cdd5c.ref, historical/8db2ae335201bc467f330dc4528fe18aeb39d384cba35f62c3a364934e50fc0d.ref, historical/a9dca6b16ea8dec59b43ca0e16dfc18e4e2aa05772e0a2f891af75b4ad7c4e7f.ref, historical/91f9fd2e992c1c1f35040c119985d28e319e1be8c6f7ef1036e90da0b3e0960a.ref
+
+## APP-130 — Preparar demoAndroid0.1.9 com texto visível após mídias
+
+Estado: done
+
+- Versão/code16/hash/assinatura/permissões conferidos sem substituir entregas anteriores
+- Exigir texto próprio integral e regressões de leitura/teclado/contextos noQA e noAPKPhone antes de liberar
+- Entregar lote privado com instruções/limites e evidências, sem fingir backend/envio real
+
+Próxima ação: 0.1.9/code16 entregue:5 arquivos privados verificados por metadados,8 APKs anteriores preservados. Sem backend/upload/push; testes físicos pendentes.
+
+Evidências: historical/8db2ae335201bc467f330dc4528fe18aeb39d384cba35f62c3a364934e50fc0d.ref, historical/fbd81eeb5ca64c16948f1fd16249ec0d84c3c0bfc04e9d467e1089901131146f.ref, historical/fd724d69b9a09bfcc89ed4d6f0335335d4bea36c2e5077f3689f7394bb1e0da4.ref, historical/b6d8512924a330117fc4c08b1a79c117639e599ac8bbf1bec5f5395159e8e434.ref, historical/44aeacd0b54cd1d0f81226d38994a9981c7e055e4467290aa908d1aebb0cdd5c.ref, historical/a9dca6b16ea8dec59b43ca0e16dfc18e4e2aa05772e0a2f891af75b4ad7c4e7f.ref, historical/91f9fd2e992c1c1f35040c119985d28e319e1be8c6f7ef1036e90da0b3e0960a.ref
+
+## APP-131 — Integrar cobertura de mídia ao ciclo de vida e picker Android
+
+Estado: done
+
+- Reutilizar media-visibility.ts na apresentação por contexto imutável; ocultar conteúdo ao perder foco/background e exigir revelação explícita ao retornar
+- Picker selecionado/cancelado/falho e callbacks antigos não revelam mídias de outra conversa/empresa; preservar limpeza e originais
+- Validar Android e acessibilidade sem afirmar proteção de screenshots/Recents ou FLAG_SECURE apenas por AppState
+
+Próxima ação: 383 testes/typecheck e QA Android fonte200%:7 critérios de privacidade+3 de áudio+1açãoOS passaram. Overlays mesmaActivity corrigem foco do Dialog. Sem novoPhone;0.1.9preservada. Não certifica screenshots/Recents/primeiroframe ou áudiofísico; próxima homologação conectada continua gates de backend.
+
+Evidências: apps/mobile/src/media-visibility.ts, historical/55fa4eba878aae20d056c142ae356ab311f02b7c07ef01ac0b5c035abb0b9d2d.ref, apps/mobile/src/media-presentation.ts, apps/mobile/src/MediaPrivacy.tsx, historical/335ada43d6ef2e98550788d29d7580fc910e737f2f57c42023487de6bd47ecce.ref, historical/d96da408fe52e20adc0a81c389bda25248f9fa5de8a1e0a4b2794430b2ffc0fc.ref, historical/1bdf38da636a700b6ce121e00f08044fe58b873e8b59aa50d0b43fad1b99c568.ref, historical/ba62b7ad8022b01554efd5cf73da1734ab51fb31711941fce7fd989a6ffd95ab.ref, apps/mobile/src/MediaWindow.tsx, historical/30410ae04f95939f6ee47e11fe1a32d732c390801c6217a9d011232362f416cd.ref
+
+## APP-132 — Compor instalação transacional local da cadeia de cadastro
+
+Estado: done
+
+- Compilar sete upgrades por ordem/caminho/hash fixos numa única transação, sem reaplicar a fundação nem aceitar executor/conexão/segredo
+- Executar PostgreSQL local: falha integral preserva fundação; cadastro pendente e retomada funcionam; sujeitos/roles privados isolados; reinstalação populada recusa sem perda
+- Registrar limites de mock Auth/HMAC e gates de owner/custódia/promoção sem alterar remoto
+
+Próxima ação: Corrigidas entradas getter mutáveis e limpeza após início incerto:6 testes+17 etapas PostgreSQL17 passaram. Prova de cadeia com principal NOLOGIN em frente separada; custódia/promoção/Auth HTTP/Android conectado pendentes.
+
+Evidências: historical/7a5e8f627a5745802d75f3f9eea83c06985bf082b62c6dd6429fabe90c4502eb.ref, historical/61fac1ef8a8966381706048ee5fa94cbd6f65387f0318b2db889219dc8ae1831.ref, historical/9081c8d2575c3fc800a962bbf4aa87300968a86d663484267d64b68223cd6b1b.ref, historical/2271a0208ebb493ce7838ccf85a9b5dc692ec4045bbe3bb774ec5eec36e4f569.ref, historical/097a5d8c1daaaf584e1b8340f4f2770da3fef6ab3fb34c5d372fdfb46d1093d9.ref, historical/ad72ebaa0b4cfc74a03cd7f108e8ba0539ae4108cc5998d2eeae46b3717f1f74.ref, historical/cdd50e7f2dc5263d4676ba8f370acd9563e9e28c8b15f7c4d073f9950918114d.ref, historical/e023616d7c6558056728ad429c82298142cbc71885fc0574b2fba7ecbd6a2293.ref
+
+## APP-133 — Validar cadeia completa e runtime HMAC sob NOLOGIN em PostgreSQL local
+
+Estado: done
+
+- Testar recusa de ownership/grants ausentes antes de fixture explícita mínima; runtime sem login/SUPER/BYPASSRLS/memberships
+- Instalar cadeia+runtime candidato, revogar CREATE public após instalar e executar cadastro/retomada como authenticated com isolamento entre sujeitos
+- Verificar matriz final de owners/colunas/EXECUTE e parar cluster próprio; distinguir mock/fixture e helpers bootstrap de produção
+
+Próxima ação: 24 etapas PostgreSQL17 passaram em cluster separado, com grants de fixture explícitos e SELECT Auth/Vault por colunas. Helper lock_accounts da fundação segue confiável/ownerbootstrap. Sem autorização de grants, ownership, custódia ou promoção online; completar APP-007 pelos gates remotos legítimos.
+
+Evidências: historical/4ece3290a810667ccf85d10bc22512b0b5ebb609b05efd87b24b07dd5394d206.ref, historical/6e7b923a9501d36f8833cad2f036c95afcab66d3754ccba6d51d4925bbf430b5.ref, historical/097a5d8c1daaaf584e1b8340f4f2770da3fef6ab3fb34c5d372fdfb46d1093d9.ref, historical/ad72ebaa0b4cfc74a03cd7f108e8ba0539ae4108cc5998d2eeae46b3717f1f74.ref, historical/4f168525816b530bbbd5f77a9bdd73218b15cb3f66dc970bcd7e11e0c010e6e6.ref
+
+## APP-134 — Exercitar cadastro por HTTP local até SQL real
+
+Estado: done
+
+- Cliente real usa HTTP loopback controlado e RPCs PostgreSQL reais com isolamento entre sujeitos
+- JWT de fixture e bridge são identificados; não afirmar PostgREST/GoTrue/TLS reais nem enfraquecer configuração de produção
+- Testar retomada, retry incerto e erros seguros; encerrar somente serviços locais próprios
+
+Próxima ação: 19 etapas SQL+21 checks HTTP+4 testes passaram: cliente real→HTTP loopback→RPC PG, retry após conexão cortada póscommit, retomada/cross-user e erros seguros. Bridge Node fixture, nãoPostgREST/GoTrue/TLS;HTTP ePG parados.
+
+Evidências: historical/097a5d8c1daaaf584e1b8340f4f2770da3fef6ab3fb34c5d372fdfb46d1093d9.ref, packages/chat-client/src/session-rpc.ts, historical/adb84224d23981e4d03810bcf01dea2cfa1f22101c9dd9da8f02e513bdb30449.ref, historical/2ba8aa2854b8a37c0a38b3dbf5cdee8ea720bad092605d7620693dbffa3b1112.ref, historical/4a7b06d64f0fcd19e285278ab7f304d73750c36a77142dea1cc7eda29dbe0e0b.ref, historical/ceadb4b08d8360fe92a5f106b65ca1203d72d5eb452d80e91c77fa0e40216560.ref, historical/02e972a53b1135658ae83d92fcfb5985578bab12a1967428496f6ea734ed94cd.ref, historical/39cedf688281ce48ed71aece418ac79c074ea6922070b317dd6bf3aa14fd8c0f.ref, historical/f2b7b43a482b45f6ad6fcee2f5092e633514548b7521e92398edeb8b35b77960.ref
+
+## APP-135 — Validar conexões persistentes e revogação no cadastro NOLOGIN
+
+Estado: done
+
+- Uma conexão/PID com RPC preparada alterna sujeitos e usa claims por transação sem vazar estado
+- Sessões ausentes, expiradas ou revogadas recusam na conexão reutilizada; retry concorrente não duplica pedido
+- Distinguir fixture GUC de validação JWT/PostgREST; manter grants mínimos e cleanup próprio
+
+Próxima ação: 31 etapas/19 assertions PG passaram;5retomadas conferem JSON do próprio EXECUTE no mesmoPID;2retries observados aguardando lock antesliberação. Revogação/expiração/ausência claims negadas;efeito único. Cleanupconfirmado. NãoSupavisor/PostgREST ou carga.
+
+Evidências: historical/6e7b923a9501d36f8833cad2f036c95afcab66d3754ccba6d51d4925bbf430b5.ref, historical/4ece3290a810667ccf85d10bc22512b0b5ebb609b05efd87b24b07dd5394d206.ref, historical/8641fe9a52d6de8eff4eaeeaf56d875f43590624d37840e83a99459fe6e009ad.ref, historical/61f7cf41a2d52199a5980133ab46efa5fda23897015a6811df8e741e27003095.ref, historical/c41e2141e49a15e4c0eff21a78f723dd3dfb45aee57781fb4d2a32811621d4e8.ref, historical/b8fdd1c911dcbe842b2f804d0b04e71233d93e2d7bdfb6ec9874ec623e2c0447.ref, historical/39cedf688281ce48ed71aece418ac79c074ea6922070b317dd6bf3aa14fd8c0f.ref, historical/f2b7b43a482b45f6ad6fcee2f5092e633514548b7521e92398edeb8b35b77960.ref
+
+## APP-136 — Fixar nome e parâmetros de RPC de cadastro antes de validar e emitir
+
+Estado: done
+
+- Getter mutável não altera endpoint/payload após validação
+- Projeção explícita mantém allowlist e remove sujeito/papel/flags extras
+- Regressão pela lease comprova ausência de fetch fora dos endpoints permitidos e testes/typechecks passam
+
+Próxima ação: Snapshotúnico de nome/params corrigido e reproduzido em2regressões/oito variantes.125 testes chat-client+383mobile e2typechecks passaram. Não demonstrou bypassservidor;projeção/allowlist mantidas.
+
+Evidências: packages/chat-client/src/onboarding-rpc.ts, historical/39c2c8b7ac5ac18227536a1991ddd21d642a2e9a80957dac5ff2f9b9bda4ab9a.ref, historical/fb00ce28f6808a4c7d77a2ebde9d02002d6fa50562b944f4dc1c9413426bc748.ref, historical/39cedf688281ce48ed71aece418ac79c074ea6922070b317dd6bf3aa14fd8c0f.ref, historical/f2b7b43a482b45f6ad6fcee2f5092e633514548b7521e92398edeb8b35b77960.ref
+
+## APP-137 — Validar e entregar demo0.1.10 com cobertura de mídia e regressões de texto
+
+Estado: done
+
+- Código17/versão/hash/assinatura/permissões conferidos sem sobrescrever entregas
+- QA e Phone exato passam cobertura de mídia e áudio, bolha própria inteira com mídias, near/far/IME e âncora sem driver corrigir leitura
+- Entrega privada com instruções explica revelação explícita e simulação; não afirmar backend conectado
+- Pinça/pan/reset/reabertura validados no APKPhone após mudança de janela da prévia, sem botões substituírem gestos
+
+Próxima ação: 0.1.10/code17 entregue:383tests/tsc,19funcionais+2OS porQA/Phone,5 gestos adicionais Phone;5arquivosDrive/metadadosprivados,9APKs anteriores preservados. Sem backend/chat/cadastro online; próximos gatesAPP-007/139 separados.
+
+Evidências: apps/mobile/App.tsx, historical/fd724d69b9a09bfcc89ed4d6f0335335d4bea36c2e5077f3689f7394bb1e0da4.ref, historical/b6d8512924a330117fc4c08b1a79c117639e599ac8bbf1bec5f5395159e8e434.ref, historical/ba62b7ad8022b01554efd5cf73da1734ab51fb31711941fce7fd989a6ffd95ab.ref, historical/3c349daf64e9158b5c6c5c20546b8733792292d56a871b115b4a7f49e6d20183.ref, historical/be78f28fe905e7819662697f0a302c0e580e34d9577b4bdff491218fe56bd2e2.ref, historical/d445dce8fead8a2a3f67acdcfbe77f03dac8b1ea854833092a1d384ae77d7215.ref, historical/d706aa0f505fedb9dde4e14e4cd4d1872196a8130093a58c90476e4f8f9ae1d0.ref, historical/df54a78b524d0a4405f5642faf34e6b0c70dcf3ad515f3baffd3abdf7fba37fa.ref
+
+## APP-138 — Validar revogação e expiração durante espera de RPC HTTP local
+
+Estado: done
+
+- Observar RPC aguardando trava SQL após JWT admitido no HTTP antes de revogar/expirar/liberar
+- Sessão revogada/not_after/JWT vencido recusam sem escrita parcial; abortoHTTP não implica cancelamentoSQL
+- Retry após commit com confirmação perdida mantém pedido único; encerrar bridge/PG e declarar ausência dePostgREST/GoTrue reais
+
+Próxima ação: 19setupSQL+4cenários HTTP→PG durante espera passaram;3tests cleanupdirigidos. Revogação/not_after/JWTexpirado negados sem escrita;abort podecommitar,retryúnico. Cleanupbounded/no killPIDgenérico. PostgREST/GoTrue não localizados em busca permitida; Docker não consultado. Custódia/canal/promoção/Authreais permanecem gates.
+
+Evidências: historical/adb84224d23981e4d03810bcf01dea2cfa1f22101c9dd9da8f02e513bdb30449.ref, historical/8641fe9a52d6de8eff4eaeeaf56d875f43590624d37840e83a99459fe6e009ad.ref, historical/da6dedf84c0650d7e9c626acd8b2bb575452f2238017ff55d192206450e56cb2.ref, historical/59d08136028d7d538484ae173588a9aa811041c0de1769c47714042d749bb954.ref, historical/d220a47ea457ebf9c3b758e928441efa039cacccba5aae2259e867a97f910157.ref, historical/fb29e473d8ba80a4ee083f52b9be3dea51aaf064192d317bc3c24c1ef8db8f21.ref, historical/1cb872fc1028dda5b7ca177b1816ec5106864bda853d042287f79aafadf05f35.ref, historical/6e50055924eef95dd86529bd00e75494ee08567aea2cd313893941a56bad0a78.ref, historical/1fa1a71eb4109d99a527a54208ea4ebfa0c419577b90748980a2224f9c181b4b.ref
+
+## APP-139 — Disponibilizar PostgREST portátil para integração local real após aprovação
+
+Estado: done
+
+- Aprovação específica para asset oficial16.5Windows por hash e destino workspace; sem alterar política/serviço/Docker/PATHglobal
+- Verificar binário e dependências existentes antes de teste; negar instalação extra silenciosa
+- Executar protocolo PostgREST real em127.0.0.1 e cluster próprio com JWT sintético, sem Auth/Vault online ou dados reais
+
+Próxima ação: PostgREST16.5 instalado/verificado sem mudança global; smoke APP160 passou23checks/11HTTP em loopback, API/cluster encerrados. Próximo corte conectado ainda exige custódia/promoção/Auth e Android reais. Instalação não autoriza repetir as duas validações recusadas.
+
+Evidências: historical/fb0b5567c99a53b7062015bb1277adbdb274c2275efb4e0025e1e27fa740be03.ref, historical/da6dedf84c0650d7e9c626acd8b2bb575452f2238017ff55d192206450e56cb2.ref, historical/150bea21045a16cd095d6115542723930d9c909d347df2a5a86c9f45e31db4c6.ref, historical/003ea79a224b206dc5b098028e306eedd003a6de350f17a8521db53824b77709.ref
+
+## APP-140 — Emitir e revogar convite de funcionário antes do cadastro em candidato local
+
+Estado: done
+
+- Gestor autorizado emite convite sem conta destinatária prévia, mantém digest e retry idempotente; revoga sem revogar vínculo já ativo
+- Aceite autenticado ativa diretamente sem segunda aprovação, preserva uma empresa por funcionário e nega replay indevido, expiração e revogação
+- Executar concorrências em PostgreSQL local sob owner NOLOGIN sem ampliar leitura de accounts/memberships; revisar janela de espera e encerrar cluster
+
+Próxima ação: 56 etapas/52 asserções PostgreSQL locais passaram, incluindo emissão antes da conta, quatro corridas e revogação/expiração durante espera de emissão. Revisão identificou e corrigiu janela pós-validação. Owner NOLOGIN sem SELECT/ownership accounts/memberships. Ainda candidato: decidir destinatário/bearer e TTL, limitar emissão, revisar logs/owner/migração/rollback; depois Auth/PostgREST/Android reais e promoção autorizada.
+
+Evidências: historical/217aa2faef7ff258e46a07efc640d723d4dedc263dc03da79a6cff86d9cf8bf1.ref, historical/82142c3a808b17ab5851795ff6e6b757c098e70e75620a214eecaeed2e9b8e7b.ref, historical/ec905994cc2eb3f413b3f7b47d0e06955a8605bb8e3d6aa0eb004fed7941f618.ref, historical/fc8b82b438c7a247e9d0e0ebccaafc1f7bd080d149de8f849124a33bedab7f10.ref, historical/4b0459f435b887976d77dc996df8b0884e94ec5d9497eb1e23a1534005e90d28.ref, historical/fdaaf4508d788118b5d5ab2c243a77231550b32cd03fb6a1a81021f578104d84.ref
+
+## APP-141 — Validar codec puro de link de convite com origem configurada
+
+Estado: done
+
+- Emitir e ler apenas link HTTPS canônico com origem confiável fixa, UUID e token256 em fragmento; rejeitar ambiguidades
+- Erros genéricos sem URL/token, getters capturados uma vez e intenção mínima imutável
+- 133 testes cliente incluindo oito do codec e typecheck; não confundir parse com autenticação ou aceite
+
+Próxima ação: Integrar futuramente ao fluxo autenticado após decisão de domínio, política do destinatário e validação Android App Links. Não há compartilhamento, token generator ou RPC neste codec.
+
+Evidências: packages/chat-client/src/staff-invite-link.ts, historical/d34c936855fa0cc5139c41526983fd1e0efa4cd25c0268a4b48f522993bb542d.ref, historical/2efab2911a16e15403cbe9851bdef6fdecf883db3992f81993109512e7875d10.ref, historical/62c538025ac99aafca1a4e62b1a5c0dce0d17bb17a7b2afdc433c61cf65edc4d.ref, historical/caa277dcfb9d733670218347f4c4838dfdf6f15dc52a4eae23f0478ed1bb1d43.ref
+
+## APP-142 — Compor convites locais com RPC candidato e confirmação Android
+
+Estado: done
+
+- Adapter preso à sessão valida comandos e recibos sem expor token nem repetir escrita; resultado após despacho pode ser incerto
+- Laboratório Android mostra conta e empresa fictícias antes do aceite; limpa ao trocar conta/background e distingue expiração antes/depois do envio
+- Executar testes unitários/tipos e validação nativa isolada sem INTERNET; servidor preview/expected-company e política destinatário são gates de promoção
+
+Próxima ação: Laboratório isolado validado:398mobile/144cliente/2tsc;15host+11adapter. AndroidAPI36/fonte200%:10critérios na base e5deltafoco na final (artefatosdiferentes). Corrigido retorno de NotificationShade; driverguardinconclusivo preservado. Nenhuma conexão real; seguir APP-143 prévia autorizada/empresa esperada e política destinatário antes promoção.
+
+Evidências: apps/mobile/src/staff-invite-host.ts, apps/mobile/src/StaffInviteHostView.tsx, historical/1a7664d9a03790176ef150ac344787c5fc7b582aa7451ca6181831788d5df9df.ref, historical/99e5fa00383cdf41ab629b4d06ab4416f04ed7fdf6c0ab57b244ad27ac0facf0.ref, historical/022d351d870187c72d564d67e859166ca219597d5c0de5a53068e1cc365ef418.ref, packages/chat-client/src/staff-invite-rpc.ts, historical/3d36a3b5f3487631dd8816d56e19fea1761d3c0919b2e89c1ce7b7a54f02cfc7.ref, historical/0bc97ff52387b94047c065de466640896585f4e702da230f594fb8c668b59007.ref, historical/97db7819487f32060cd37028eb3a2b111a1619e29c8d735856e6eacbc91302a8.ref, historical/5dcf643269982f0051be388ea1ddbb56dd43a80ec114777a02528d18a93db365.ref, historical/a4e99d63b68da06b1db5e69d658042546dbec85a574e073d80521a79be722571.ref, historical/bb38f12e68e964a4d320110250a6c6b24ba838247ae5e4db8febb9992bedcf5c.ref, historical/a5d2d7ea6f487bc8052a1dc62e5fdfdbab635fff1e43feb9ec93db6533cf7969.ref
+
+## APP-143 — Conferir empresa do convite no servidor antes do aceite
+
+Estado: done
+
+- Prévia mínima exige posse válida e sessão autorizada, sem expor dados de funcionários ou aceitar nome da empresa vindo do URL
+- Aceite valida empresa esperada atomicamente antes de criar vínculo, com expiração/revogação entre prévia e confirmação, sem acrescentar segunda aprovação humana
+- Testes negativos reais locais para preview adulterado, sessão trocada, empresa inesperada e aceite concorrente; preservar distinção de resposta incerta pós-despacho
+
+Próxima ação: APP-145 agora compõe transporte v2 e corte local com gate/rollback testado. Permanecem gates de owners/custódia/ACL reais, política final do destinatário/TTL, Auth/PostgREST reais e promoção autorizada; sem funcionamento online declarado.
+
+Evidências: historical/0bc97ff52387b94047c065de466640896585f4e702da230f594fb8c668b59007.ref, historical/fc8b82b438c7a247e9d0e0ebccaafc1f7bd080d149de8f849124a33bedab7f10.ref, apps/mobile/src/staff-invite-review-host.ts, historical/9e601d22f48344e12267d91ba14c151444759404db6f986daa80e09b32a6318b.ref, historical/dbbb8206d11000f17d7c70d3849f3805642c8a8d00ee09117077be9f1aba48e1.ref, historical/31516a2231b5e3e856c1a9cc036f274c81aeeaba477a5873d80d7f00aa3aad69.ref, historical/1027d2977d5a10f03c26c635f36c91de1939fa3288ca3bb6156bd1a7f6eac6de.ref, historical/ebb38fe1a6ab05b9a9ec57e1265fe6bdf603a7dba58d67e38752201c00832fea.ref, historical/4319f047ce5cef900ffbb346d8f199be0d2a8f6c2bd186dab8a18cebe752209e.ref, packages/chat-client/src/staff-invite-review-rpc.ts, historical/2e1cc90bf4db40378f6ce2fd9ceae93f39183980c4341adb9e62a2d1b25590e9.ref, historical/5bf2face06190828b4140ed46b4394d518029aabc7d25bc8414a06f9d2055731.ref, historical/79f06cc5027a03cab1567fdb45fb271212ccb5cd99a6db31afb3c8e82d2eb2e0.ref, historical/4468f5389452634b79242354db3356e9992be1294571e1c990b091226ecd6212.ref, historical/cc72e32fbeacc47ef256eebd5f1217c41f02457fb539ad9b59bc3a81429e0cc8.ref, historical/df1418318363d1c3779f3637e8e9f71761338cc2fae7f4a0b7432efe44d31c55.ref, historical/584effb629b3c35aaf6014a2524b6289355f9ab0067bd871bbefe79eca65689e.ref, historical/10571db6c88bdd2517e97fc8e13fd2e201f2d5264334ca6d67d69e7081f520ed.ref, historical/d1a022372c764f5051e53a2c1eb2923b55ecc8c2604d4f3606c812917e287c62.ref
+
+## APP-144 — Prender RPCs de convites ao transporte de sessão verificada
+
+Estado: done
+
+- Lease expõe apenas três endpoints fixos com params projetados, bearer verificado e schemas public
+- Expiração, logout, troca de conta e timeout descartam confirmações tardias; response budget4KiB sem URLs arbitrárias
+- 151 testes cliente incluindo7novos HTTPfictício e typecheckscliente/mobile; sem chamar servidor real
+
+Próxima ação: Transporte v1 é histórico e isolado. APP-145 oferece nova lease.staffInviteReview v2 sem fallback; corte SQL fecha v1. Não usar transporte legado como contorno nem promover sem gates reais.
+
+Evidências: packages/chat-client/src/session-rpc.ts, historical/21bcc2cca29039685d1338263f48e622da07b3c444962836d9b8da9ab6e47413.ref, historical/4968554ac4df78cb6e3edfd0eab47ea1a96417c513aa19ffe7c480ec1a7345b3.ref
+
+## APP-145 — Preparar corte compatível do transporte e instalação de convites v2
+
+Estado: done
+
+- Transporte da sessão verificada oferece apenas paths/params de prévia autorizada e aceite com empresa esperada, sem fallback automático para v1
+- Plano canônico de instalação, owner/grants e rollback preserva ACL e atomicidade do corte; cliente antigo trata v1 desativado sem conceder acesso ou repetir escrita
+- Testar compatibilidade, versão, respostas incertas e concorrência com PostgreSQL real local e HTTP injetado; manter Auth/PostgREST reais e promoção como gates até autorização, sem apresentar candidato como produção
+
+Próxima ação: Candidato local concluído:4fontespinadas/owners+gate em1TX;3unit+35PG/20assertions, writerdrain/preenteredwaiter/preparedplans/rollbackfault/ACLdefaults.170cliente/415mobile/2tsc; factoryv2composta àleaseverificada emHTTPinjetado. NenhumAPKconectado oupromoção: aguardaraprovPostgREST (APP-139), provisão/custódia/ACLreais eAuth/JWT/HTTP reais antesusaronline.
+
+Evidências: historical/cc72e32fbeacc47ef256eebd5f1217c41f02457fb539ad9b59bc3a81429e0cc8.ref, packages/chat-client/src/staff-invite-review-rpc.ts, packages/chat-client/src/session-rpc.ts, historical/cb56400a7bc5b6fc0a8d80644422374d8683583c384df68e79132ebccb7f6878.ref, apps/mobile/src/staff-invite-review-session.ts, historical/3ceb45f41d7ed6789cba91acba4a47a3943e1adda21b80a62e50369561187465.ref, historical/9acb32c5d96cfa4f16d41578b38d162ec4b4524af844fa6763ec93fd8d667017.ref, historical/e48908b93c731016867fb8c1c2ad6766d0bf0fd81cb76b1fe8ad21d2f24ae4c5.ref, historical/e30145c526b7264ad25abe59847e1e3688ed64c5c1ffb44cb1f0e7e218f11ac6.ref, historical/caa798a52b0d9e50900818d3d4904f060c651d73426453a5057a678771ad546b.ref, historical/ca653e54b9a08d476c167b34cb693eeaff48ffb0cf30c3914490f0d57fac748c.ref, historical/86e18d73451d39fa93db74d8be0f85a1bd8fbcce785e270a48ce9024c32b3947.ref, historical/e696c5697f8c338ceee114a833044d9f0453944b27555c10516112fee78d048d.ref, historical/72ec1b11024747e9f620219275512d30da8a50d15836c25a8d60461788dc35c4.ref, historical/e95473463cea9aa19077bbe32af09e5c73bc74a2192859075e004dfb7618c766.ref, historical/299ee91727b562c9081714119038a9cd93fed18b784ec30d3cac1925c8103a4e.ref
+
+## APP-146 — Integrar marcação manual de importância com concorrência segura ao chat local
+
+Estado: done
+
+- Somente staff ativo no contexto autorizado lê/revisa e altera flag por operação idempotente/CAS; revisão/ledger/auditoria privados sem corpo, rotas antigas de escrita não contornam nova regra
+- Cliente relê estado após ACK, não aplica recibo antigo nem rebase automático; conflito e confirmação incerta distintos com mesma tentativa preservada
+- Validar PostgreSQL real isolado, adapter/host e controle Android sintético quando pertinente; não disparar push/renotificação nem classificar importância automaticamente
+
+Próxima ação: APP148 compõeporta ehost deimportância àleaseverificada, semonline. LocalSQL59/52 eAndroidfuncional7 sãohistóricos/preservados; finalindependentreviewbloqueadoeHomeViewsretidos(APP147) continuamgates. Não repetiroucontornar revisãobloqueada.
+
+Evidências: packages/chat-client/src/message-importance.ts, historical/7dc0b62750c51c040ca5086615f42b7b5f930b054b050c17eaf4123bec71d82a.ref, apps/mobile/src/message-importance-host.ts, apps/mobile/src/MessageImportanceControl.tsx, historical/760ff0acc88645148ee926e9e24a4ce10bea810510bcfe2167387fd6fa39e76d.ref, apps/mobile/previews/synthetic-importance-chat.ts, historical/cbb9de025fd9c993686e51c9072906a48eefe8db5c63402250d88e7a0ae8c6ab.ref, historical/409b91db0673bf1d28d8b4959b8f6527495edbe09182d3ab150f92dc06db059a.ref, historical/fd5286a75e2bd395c90889686fb7f9b028e814e337137531120f18678467ddc3.ref, historical/d07c83df5bdee8f2e6ef2bf530bb52870e54279cab7e49fb2d4e5ff9d8eddcf0.ref, historical/09da3da0890080297808752b5f591d4d0625c3f841f383ed9857f41a0e1d59a4.ref, historical/f5e66affd491c061e83ced900474b4b30bf6f1a660ffd383ece7dd448a014bfb.ref, historical/c1afa9b68fcad8ec91f8d796313603663ac2c923428e148efe54ee7cb118d367.ref, historical/4672fe6ae2de0d58f6fd9563d8f6fcea78b97cd9d35bacb40d856d473482c9ad.ref, historical/160f9c4332c3cf541e43638fe4f0ff4c3fa3acccc56b8368ed610b3fd074738f.ref, historical/e42d6ccb2dd2d66ab78d3c83f7e8933b5569843b4f5424af790780c563509797.ref, historical/a27dd089a508637ff31d3b3d77212d98c21e26967fda6816fc5bf03b916fc7b9.ref, historical/a8a071ee27d979131a021230e84c78972a2f23ef035882c9366b01d03cbbd8dd.ref, historical/4bcaed59a8db204fb744bc8df9d90972e5730b3f507a74a2557d14cd0e3d24e7.ref, historical/f3739e0e958c063ac76f09747e123432ac61889fd1484898958a25bc1c7abfda.ref, historical/34d6033524b907d8b9e62c384c82d1637e24fcd7c895e8b94da6ffd81610da7b.ref
+
+## APP-147 — Concluir proteção nativa da conversa ao ir para Home e retornar
+
+Estado: done
+
+- Usar diagnóstico reproduzível da própria Activity para distinguir foco, visibilidade e retenção de TextViews em API36; preservar shade PASS/Home redaction FAIL sem reclassificar
+- Definir e implementar barreira nativa de privacidade/retorno apropriada antes de dados reais, respeitando decisão sobre capturas/Recents e sem depender só de callback JS
+- Testar Home/retorno, shade e troca de conta com dados sintéticos; não afirmar proteção de Recents/primeiro frame ou apagamento de memória sem prova específica
+
+Próxima ação: Demo0.1.11/build18 entregue e verificado no Drive: cinco arquivos privados,64 itens anteriores inalterados. Phone10 critérios/28 etapas/80 gestos,467 testes mobile e typecheck. Continuar APP-149 na montagem conectada; sem backend online ou nova publicação Git.
+
+Evidências: historical/f3739e0e958c063ac76f09747e123432ac61889fd1484898958a25bc1c7abfda.ref, historical/ded56b72753a8c0901346db10a039dd5d7ae4fe4bead307c3308ec31583c048f.ref, historical/2b04f4084140dcf0963e42df55400c7b415820b947a8eb77b8ce1b41675f300e.ref, historical/eefbf7575587cda3f9561e400d6d2cd8231564c762f55462de942a6c85da1b1c.ref, historical/1df5fdd024432d34d819b9f8d3bc6ae554ba88bae46a6024ef373df0f99cac93.ref, historical/2f838b10a1f6a270bec1e20902d0fedd5f6504f66686f22161b0ebe48471118f.ref, historical/dd4c14852e5fc0c28e89bfdf7d302ffd631ff28befebfeca8a91956362ab6599.ref, historical/aaebc01845b031614c2c8f0c93a7814d52a4236d5d0b1fc628459b8094fa7b83.ref, historical/7306145dfde31dff19d8651921e4526647d05cd2f03cd36141d26818d063a418.ref, historical/2b1c1ec5cd2b06bedab1f9a9c3d38051ea1cd775ca304dac2a20f5601652c52e.ref, historical/b16418ca73311269a33c7f006a682fbff98719bd60b03df49e36f8d6c47bc8e5.ref, historical/f901c67db5bdbd81bfb5ca95a22e1f70d1ec600021a32310d9a05363fadf687e.ref, historical/fed1d615671869c979279db49e6fde72507416c666afe4817fb8da84e90be7b0.ref
+
+## APP-148 — Ligar importância da mensagem à sessão e ao contexto autorizado
+
+Estado: done
+
+- Lease verificada oferece somente read/set novos de importância com validação/projeção, bearer e limites compartilhados; sem fallback legado
+- Factory liga conta/sessão/empresa/conversa/mensagem e invalida contexto trocado ou mutado, sem fechar sessão compartilhada; ACK antigo não repõe estado e conflito não reenvia automaticamente
+- Validar HTTP injetado, integração e tipos, preservando exatamente os gates da revisão SQL bloqueada e privacidade nativa; não habilitar online ou repetir testes SQL/nativos inalterados
+
+Próxima ação: Candidato ligado àlease ehost:190cliente(agenttoolattestation, semrerunpara log),435mobile/2tsc. Antesjornadaconectada: revisãoindependentefinal message-importance ainda bloqueada; APP147Homeprivacidade; Auth/PostgREST/canais reais quandoautorizados e promoção própria. Semsoftware/remoto/políticaalterados.
+
+Evidências: packages/chat-client/src/session-rpc.ts, historical/da2da649413b4db96f6dbf7012b712f3e0363cff2eb471e164f597cfe93cefaf.ref, apps/mobile/src/message-importance-session.ts, historical/ac4f2b95384ed6939ea175e9ab89955122d84c103bb517fec9087b0b2bac23d4.ref, historical/c45f49149635bc1cddfffe591b653110fd99e66c0fe50092eb6c17026d0a88c1.ref, historical/e7111d0548965bbe66500cf8409323c3ed95d8e9fd54cb843fd2b3983e3e8adc.ref, historical/5350ab25ec764160e500c83b8db6efae97d5137112e504029135ec4b874884f0.ref, historical/299ee91727b562c9081714119038a9cd93fed18b784ec30d3cac1925c8103a4e.ref
+
+## APP-149 — Aplicar a barreira à montagem conectada e às confirmações administrativas
+
+Estado: in_progress
+
+- Integrar a barreira à futura montagem Auth/cadastro/vínculos/chat conectada, com invalidação por lease/empresa/papel e preparação atual antes de dados reais; respeitar gates de ativação remota
+- Converter e testar confirmações ainda nativas de outros protótipos, incluindo revogação administrativa no MembershipHostView, com intenção vinculada ao contexto e sem ação antiga sobre outra sessão
+- Validar isolamento e retorno no próprio candidato, cobrindo janelas auxiliares e falhas; manter separados os limites de primeiro frame, Recents, memória e aparelho físico
+
+Próxima ação: Montagem conectada e revogação com confirmação tiveram cadeia real preservada5→6 em APP-197, incluindo cancelar/Home e revogação seletiva. AX normal oculta fundo; flags de debug explicaram falso alarme. Continuar outras janelas e limites físicos/TalkBack; APP-202 trata consulta de autorização periódica, sem considerar RLS suficiente para limpar cache ocioso.
+
+Evidências: historical/7306145dfde31dff19d8651921e4526647d05cd2f03cd36141d26818d063a418.ref, historical/2f838b10a1f6a270bec1e20902d0fedd5f6504f66686f22161b0ebe48471118f.ref, historical/192e2ca02d76414848046b0620b1f407d1d9283c441c8bb250b01c5d1317a468.ref, historical/61ff17bc03ae0fc14e22b30f723941411b11d1dc8b9aeff02338c216ba46a087.ref, historical/68dcad9ae8c62f873eca9beda5d224366c0d15847bf4ca3c95d7165ea3ec6ce9.ref, historical/76fe011b8c1330a45de795100524784ca7de219a8e129b02f13ab65f0b52a897.ref, historical/841a18fc1b321d3a234854b52609a45e8d474ab50910ff924e5f1090ab7bbc80.ref, historical/7be4ecd5ee0c31ce7aa327d7036c4f408dcc0e9550daaec979465b08116bfa70.ref, historical/bf16c47ade129b5f2ff556b655eeb0ef8e1966d57950f91755f2c9067674e4c1.ref, historical/feef51e77480d3a605dfef8f8fc8a7698e9e259dbbac214ccf4414695f651304.ref, historical/5bc6ee6fec266c355532a5cfe92e9c3600baccbd2e492399e04b75ec6090e05c.ref, historical/3ef02a49a27d28f0c61d59503453d6b44a022751b16e2f5245e2e21b93eec8de.ref, historical/65c7319b173a6102e4a0ac3af99f57b6a31588f6b796863df255fa9968384fda.ref, historical/d97eaf1316dcc047b38fa56b0a5cf5f4fa8a9da0c5a370fbd93450c06a9cbc92.ref
+
+## APP-150 — Abrir histórico recente e navegar mensagens anteriores com memória limitada
+
+Estado: done
+
+- Página inicial e refresh mostram últimas25 mensagens, leitura ordenada e busca anterior por cursor exclusivo sem duplicar nem exigir sequência contígua
+- Manter janela limitada100 com navegação para antigas/retorno às recentes, sem excluir registros do backend
+- Validar contexto/página/bytes/late responses e autorização por leitura em HTTP/PostgreSQL local com fixtures, sem ampliar permissões de gestor ou ADM
+- Validar montagem Android própria com fonte ampliada, rolagem/contextos/logout e barreira real; distinguir fixtures de conexão real
+
+Próxima ação: FatiaLOCALconcluída:11core+3runtime/typechecks,34HTTP/RLS e7critériosAndroid/21etapasfonte2. Latest240/241fullbodyantesqualquerscrollmanual;olderalém100semapagardataset,lateA/B/empresa/logout/back/Home/shadeprotegidos. SDKsubconjuntovirtualizadonãoétodabuffer; Androidserviçoésintético. AntesMVPconectado: transporteAuth/PostgREST/TLS/JWT/owners/promoçãoautorizados, aparelho/TalkBack; semalterarlegacyfoundation/envio/remoto/política/Phone.
+
+Evidências: historical/2fe37db46bc4c01be5b69eaea3b5ab9ab63bfd9800bc00e97166eeba07b7bc81.ref, historical/9a43e0397a9c1e993a14b57dd90a9a205e4dafab58bf51ad07f466f8770b3b4d.ref, historical/684a82e1d1d5759624cadbdf3f61402002fd8468fa10c3db2a1c44c8db2ef22e.ref, historical/c4a73c6ef1a81a9e1ad262f9f294aa0dda517a393eda35f1234cca677c563334.ref, historical/fa484cd19bf6dada5c2b70cbff3ea3f997039c24f1c483b3e717fd9dfa10f6d8.ref
+
+## APP-151 — Validar envio de texto idempotente por HTTP/PostgreSQL local
+
+Estado: blocked
+
+- Adaptador/fila reais trafegam HTTP loopback até PostgreSQL local por conexão restrita, com fixtures e sem PostgREST/TLS reais
+- ACK perdido e retry explícito do mesmo ID não duplicam mensagem/receipt; dados e papéis ficam isolados
+- Investigar autorização durante esperas somente após resolução da revisão automática; hipótese não confirmada e fundação original preservada
+
+Próxima ação: Parte básica local comprovada separadamente em APP-208: envio/ACK/idempotência/negativas anteriores à chamada. Histórico original mostra erro de conteúdo no turno, sem ferramenta específica negada; recibo preservado. Parciais e hipótese de autorização durante espera/lock continuam não retomados/não confirmados. Protocolo <private-binding> sem liberação geral. Não confundir status deste cenário histórico com impedimento de toda implementação de texto.
+
+Evidências: historical/013a97e893d2b0023d50ba1ced2cf6b2c326c3cefbef40190c74c194fcbb5fca.ref, historical/28a0a0f94b932bcbc4f16ca198ffc9440b49eccce0f1760020f9501b90e00ba0.ref, historical/5743e53958e427b9511766d75f0e7258212410292ce45220cdd89846e9e4758e.ref, historical/61b98af1986cb3fb1f77ed4c8ab3e6ae87383b623c723b099dd8253f82b45212.ref, historical/fe05534cadc7250fe7bc153568585bd99e90c2a8b9757121be8432476a0abc07.ref, historical/5e53c4c40cbdcf22e8104f6702957bcab4ee75fdd71fb45bf0720f8d27d999e6.ref, historical/90a700927bfd940695e10753cab4ab9515d8221ffd58c1ef8b55f1b92f0313bc.ref, historical/3c3a437dd2c6d40c9c146ebf5106163f327280171295247b1c8d70ad5aeff99d.ref, historical/0930b44a956033c25c5ba4ebf8119fd2cf51bb2cf004c9577f8d1dbfd0b67bef.ref, historical/23fd90bf9544b865cb9f2c5312c5725bb3cf9f6aae5b014cb0eb1ad08184ce20.ref, historical/d63f094c59910b8552f8fb1d2cb49e236b58645d9135cb3d900ee60ddc4b8d11.ref, historical/24f29627e1b85e5fa710146dd7bb6ef4d1ffeb94ee17a599f7a1cad4feee9fca.ref, historical/437fca9d532c1d8ca850accfb7189c55b645825e2b35ff4179fa41399a04fe1e.ref
+
+## APP-152 — Compor fila, envio e histórico recente com portas locais fictícias
+
+Estado: done
+
+- Capturar ID/texto/contexto de envio, preservar rascunho até ACK correspondente e manter retry explícito sem duplicação ou rebase
+- Unir recibos provisórios e histórico sem reemergência após poda, com estruturas limitadas e limpeza de contexto/logout/tardio
+- Validar interface Android própria fonte ampliada/teclado e estados de envio/uncerteza com fixtures; não alegar backend real ou remover gateAPP151
+
+Próxima ação: Concluído apenas no escopo fictício local: 9 testes do cliente, 3 testes da montagem, typechecks e 6 critérios Android/14 etapas. Compositor acima do IME com fonte 2.0 após correção medida. Registro histórico preservado e AVD próprio encerrado. Rolagem da última bolha ainda exige APP-153; backend real bloqueado em APP-151. Sem remoto, PostgREST, publicação ou alteração do APK entregue.
+
+Evidências: historical/021fd404a6700ac8de4334c465fd298e8d5c68abdfe85b8c2126f183e0e9a332.ref, historical/3028f278f848c4f1a133c7fa80ddc11514271b27270e0a789eb6faf17d77dddf.ref, historical/5cd19cea23d8c36d05fffe2544bd2956b53f91b2ec43b48e5577ee52641d136d.ref, historical/67464e2970d5b134e1c60f23c62b9c4ffaf7e832beedda63b79b2617fd1892f7.ref
+
+## APP-153 — Garantir legibilidade da última mensagem após aceite e retry no Android
+
+Estado: done
+
+- Após aceite ou retry, o texto final cabe integralmente na janela quando sua altura permite, sem esconder rodapé ou reduzir fonte
+- Testar geometria integral da última bolha com fonte ampliada e teclado aberto/fechado; para bolhas maiores que a janela, garantir rolagem manual e política explícita
+- Preservar cancelamento da rolagem ao arrastar e impedir ação tardia após troca de contexto
+
+Próxima ação: Concluído apenas na montagem local com dados fictícios: correção guiada pelos traces, 17 testes de replay/typechecks e duas execuções Android consecutivas sem observador, com dois cenários e 34 etapas cada. Texto e cartões inteiros após envio/retry, teclado aberto/fechado, navegação AX, aviso pendente e contexto foram verificados com fonte 2.0. A prova histórica da bolha longa permanece preservada. Não é backend real, Phone novo ou TalkBack completo; testes físicos/iOS/transporte seguem seus gates.
+
+Evidências: historical/5cd19cea23d8c36d05fffe2544bd2956b53f91b2ec43b48e5577ee52641d136d.ref, historical/a6ba86f41aa77b38e263b3f4ad74f060d623aec04dd5399847d9b87b7d04a08c.ref, historical/ca3a325e1c5d73e832bb7861a78fc4f1afd81a7e78dac195ebcad8dd28be3887.ref, historical/ba4fb81b702fc197c4c78d5fd064166197a54d8f80add1618a863cfcaa57a368.ref, historical/c55116c1f3b1d5c821b009b4b365cd57685230161c1bbd6536b6c84ff1414ce3.ref, historical/51b2d9c3753ee830c5da8375381fcdc649c33d1bbfe0e0f268347cdc5f1c3534.ref
+
+## APP-154 — Respeitar rolagem por acessibilidade e acesso a avisos pendentes no chat
+
+Estado: done
+
+- Ações de rolagem por acessibilidade cancelam o acompanhamento automático sem desativar rolagem nativa ou leitura manual
+- Histórico e aviso de confirmação pendente podem ser alcançados por API pública de acessibilidade, sem retorno imposto pela View
+- Preservar geometria completa da bolha após aceite, isolamento de contexto e limites de correção; validar no Android sem backend real
+
+Próxima ação: Concluído apenas na montagem local com dados fictícios: correção guiada pelos traces, 17 testes de replay/typechecks e duas execuções Android consecutivas sem observador, com dois cenários e 34 etapas cada. Texto e cartões inteiros após envio/retry, teclado aberto/fechado, navegação AX, aviso pendente e contexto foram verificados com fonte 2.0. A prova histórica da bolha longa permanece preservada. Não é backend real, Phone novo ou TalkBack completo; testes físicos/iOS/transporte seguem seus gates.
+
+Evidências: historical/ca3a325e1c5d73e832bb7861a78fc4f1afd81a7e78dac195ebcad8dd28be3887.ref, historical/187834ea1c96fb25a76abaf385518116a40ec67d99a1283f7f3a7c295f4524f4.ref, historical/8d1863041fd164c878d80ff7d7a3b65cf7d208f4c0c8a175cbfd47149afd711b.ref, historical/e4d0fb904291c0c9104ed9883015206505d1955151ae1d194d4121a91cea60e6.ref, historical/4d301bc3c9a4c0c6c607bf6be1ab4bccdd0355ee6044a3de31c2bccfa9366dd8.ref, historical/25f0b3141dc37ab1bc17daed0e97ed1294ca34e3380f1f6290146af04b8102a4.ref, historical/2e03798a109f7ebc537436b6216f6032e91ac6cdf92694bb3de25a475d10f409.ref, historical/e58dbd06e439b2b38e047f6984d47ce398fe64b1549fa87fcfe8eb30c1e9bc6b.ref, historical/130ee6a939af881c5f6fddf94d78596b106d0291cebc893e8181c18d6a6c501a.ref, historical/2265577a78a186bd121e4028c7e39324038d64a04994ef2723f98501b94e302d.ref, historical/c55116c1f3b1d5c821b009b4b365cd57685230161c1bbd6536b6c84ff1414ce3.ref, historical/51b2d9c3753ee830c5da8375381fcdc649c33d1bbfe0e0f268347cdc5f1c3534.ref
+
+## APP-155 — Adicionar leitura recente ao canal de sessão cliente
+
+Estado: done
+
+- Capacidade de leitura opcional entrega últimas 25 e páginas before com lookahead validado, sem drenar histórico crescente
+- Reutilizar sessão, contexto, limites e cancelamento existentes; não alterar Auth, envio, SQL ou políticas
+- Testes com fetch em memória e typecheck, preservando provas históricas e sem alegar backend conectado
+
+Próxima ação: Concluído no escopo cliente: dez testes dirigidos e typecheck passaram. readRecent usa GET descendente/before exclusivo, valida todo lookahead e conserva guards existentes. Regiões de RPC/envio, histórico legado e bindSession comparadas byte a byte com a fonte anterior. Validar API real, limite de 26 linhas, Auth/JWT/RLS e montagem conectada somente após seus gates; PostgREST segue pendente.
+
+Evidências: historical/59851659a70090aa4f9c9087e8181fcf2b1e9d5e0bd8c969a226e87a2459335f.ref, historical/2efd0a8759dbc4e22889d38be4c4dde820ed64e081af537f688cd7f1fff746ea.ref
+
+## APP-156 — Integrar seleção de vínculos à conversa recente com owner único
+
+Estado: done
+
+- Capturar sessão, contexto, estado do gate e geração; retirar host/canal anterior antes de troca, saída ou suspensão, sem publicar tokens
+- Reutilizar cadastro/vínculos/controladores e uma barreira nativa, sem manter host antigo ativo nem conceder autorização por apresentação
+- Validar owner e jornada fictícia no Android com duas empresas, retorno, resposta tardia e foreground; não repetir matrizes anteriores sem mudança
+
+Próxima ação: Escopo local concluído: 14 testes dirigidos e typecheck; Android API36/fonte2,0 passou três critérios/nove etapas de cadastro/vínculos fictícios até Recent, IME, Back/reabertura, Home e logout/troca de conta com resposta tardia. Owner único; nenhum host legado paralelo. Cleanup reconciliado somente leitura, entregas preservadas. Conexão real continua bloqueada por promoção/custódia e testes Auth/PostgREST/autorização; não instalar PostgREST sem autorização.
+
+Evidências: historical/f6db3ad43f549d61b8b17f6288fc7bc12e4051e650b0ba4e1417c5dd151748b9.ref, historical/a33b4962337f8d6518e050d89432e0dd4851d62a20f098fb305fadf8f2013355.ref, historical/dd7deb4440a2bf85e3be83101769b463f8f0e84819424c572e60c5e0adb88b76.ref
+
+## APP-157 — Manter histórico visível durante atualização no mesmo contexto
+
+Estado: done
+
+- Manter somente mensagens já validadas enquanto a leitura está pendente; substituir atomicamente após resposta válida
+- Limpar em erro, timeout, fechamento ou perda de contexto; impedir sobreposição mesmo se a porta ignorar abort
+- Preservar rascunho sem tentar escrita; testar janela, composição e resposta tardia com portas fictícias
+
+Próxima ação: Escopo de cliente e QA local concluído:18 testes janela+3 composição/typecheck; APP-159 validou a retenção no Android API36/fonte2,0 durante refresh retido, liberação e logout, dois critérios/11 etapas junto da busca. Sem novo Phone nem backend conectado. Erros/timeouts ainda limpam dados conforme contrato; transporte real permanece nos gates próprios.
+
+Evidências: historical/bc19b83d551457ee06cb293c29f949d4122ba4bbc494587a90051b0cbb0c7d25.ref, historical/80cd6c976b157fcef03529469e6c94a5e62a84b44ccc4c1cb7823269029d377d.ref
+
+## APP-158 — Buscar nomes públicos de empresas sem distinção de acento no backend
+
+Estado: done
+
+- Encontrar nomes portugueses precompostos e NFD por consulta com/sem acento e caixa, mantendo o nome original
+- Preservar projeção pública, literalidade, limite e cursor existentes; negar consulta vazia após normalização e atores não autorizados
+- Testar candidato e rollback guardados em PostgreSQL local como authenticated sem bypass; não alterar remoto nem adicionar extensão
+
+Próxima ação: Candidato local passou 32 verificações/46 chamadas SQL totais (41 consultas/negativas numeradas), incluindo paginação 23 empresas, estados/role/sessão, rollback recusado se helper mudou e preservação integral de dados preenchidos. Dois achados da revisão somente leitura corrigidos e reconferidos. Não aplicado online; Auth/HTTP/PostgREST/carga não validados. Integrar somente após revisão/promoção autorizadas; avaliar custo da normalização. APP-157 aguarda próximo build Android pertinente.
+
+Evidências: historical/194a392656a846b041b50950979a482f26896423e7dc2fde75bc233ee15729a3.ref, historical/f9316c572315fe17a4ef32a07584329fe26671a13f5f48ec6a13ca95897bc6b2.ref
+
+## APP-159 — Alinhar busca entre cliente, PostgreSQL local e jornada Android
+
+Estado: done
+
+- Recusar consulta normalizada curta antes da RPC, sem modificar grafia válida enviada ou nomes exibidos
+- Exercitar decoder e paginação reais contra SQL local com projeção pública e autorização por fixture, sem HTTP/Auth real
+- Validar busca sem acento e APP-157 no Android QA existente, preservando rascunho durante refresh e limpeza ao sair
+
+Próxima ação: Escopo local concluído:17 testes cliente, dois da jornada, typechecks e22 verificações cliente→PostgreSQL real; Android QA existente passou dois critérios/11 etapas em fonte2,0 com busca sem acento, vínculo/chat, refresh retido/draft/epoch e logout após resposta tardia. Freeze40/cleanup único/11entregas preservados. Sem backend real no Android; integrar ao corte conectado apenas após gates Auth/cadastro/promoção/PostgREST. Não publicar nem oferecer QA x86_64 como Phone.
+
+Evidências: historical/5f08f17ef34844ecfea9182a68ea3a43c8c606b7b30af822fb8747968218ebac.ref, historical/1d9323589012c03e1465c8842ec25332ff0d4a1a8763c4a80934e1dcc9b36815.ref, historical/a579b15084443717ecb8286ce564dc09e068ae3353688485c156a7c798cd9cdc.ref
+
+## APP-160 — Resolver dados públicos da empresa por identificador para entrada de paciente
+
+Estado: done
+
+- Fornecer leitura direta mínima de empresa ativa para ator autenticado ativo, sem criar vínculo, conta ou chat
+- Preservar controles por conta/sessão/empresa, erro genérico, ACL mínima e rollback guardado sem apagar dados
+- Testar candidato no PostgreSQL local e contrato cliente separadamente, marcando integração e Android ainda não demonstrados
+
+Próxima ação: APP-161 integrou adaptador à RPC PostgreSQL local (22 verificações) e jornada Android fictícia (16 modelos+TC,2 critérios/8 etapas). Fundação/candidatooriginais preservados. Para uso conectado restam owners/custódia/promoção, Auth de negócio/HTTP/PostgREST e domínio/App Links. Leitura pública não cria vínculo nem autoriza chat.
+
+Evidências: historical/d51202e796adb5b9cc30dcf8d666a0e21123ea9b8176b210a934bea6a0ae2440.ref, historical/45637deff6c660940279a53a53d63f752cf960501012ae0eceecf0c9e12d44ca.ref, historical/931a1375c169e9a48fbee367177577df2de5031750e6118911be449a85cdb9dc.ref, historical/f62e57bf297be95e980cc94d0fbc890a5e48cf589932156ac047cf59817cb5bd.ref
+
+## APP-161 — Integrar entrada de paciente ao adaptador e à jornada Android local
+
+Estado: done
+
+- Validar adaptador real com RPC SQL fixa de APP-160 em cluster local, sem repetir matriz inteira ou ativar serviços
+- Resolver destino após sessão/gate sem criar vínculo; vincular pela operação existente e recuperar estado antes de seleção autorizada
+- Retirar intenção, preview e respostas tardias em troca de conta/contexto, logout e foreground; validar host e Android QA sem inventar domínio/App Links
+
+Próxima ação: Escopo local concluído:22 verificações adaptador→PostgreSQL;16 testes host/composição+TC reconferidos após outage com freeze9;AndroidQA2 critérios/8 etapas API36/fonte2,0 para destino pré-cadastro→preview→vínculo→Recent e lookupretido/logout/late. Freeze45/cleanup1kill/11APKs preservados. Próximo corte conectado ainda exige gates Auth/cadastro/custódia/owners/promoção/HTTP/PostgREST. Não é OS App Link, backend Android real ou novoPhone.
+
+Evidências: historical/4ed164e2225f28603fbf60dc7680594fd6ec8411136c49248f99efaa5e346fa1.ref, historical/8033dcc4b16ce7b12cadc66c5350be0cf06b2b5b178edb0359ea1c02b8d66611.ref, historical/5207d16c4b995f4095d2aa7385ba0f39535a3c1b26f0e9a26b96b88ef1624b20.ref, historical/842efde79db42206cdd31bdae101e3665e9cde6658d177f828b49ec61681b862.ref
+
+## APP-162 — Receber destino por HTTPS com guards de sessão e preparar App Links
+
+Estado: done
+
+- Codec de origem configurada e URI canônico somente para empresa, sem autoridade/credenciais e sem normalizações ambíguas
+- Binding único para cold/warm, dedup e descarte de eventos tardios; fila/admissão limitadas e sem lookup antes de foreground/gate
+- Validar intents Android no QA com domínio reservado e sem autoVerify, mantendo verificação/publicação de domínio e release como gates separados
+
+Próxima ação: Escopo local concluído:5 codec+14 binding+2 jornada/typechecks; Android API36/fonte2 passou2 critérios/6 etapas cold/warm com Intent explícito e mesma Activity singleTask. Fonte50 e conteúdo11 igual009a331 conferidos; cleanup1kill/11APKs preservados. A associação real é APP-163, ainda sem domínio/publicação/certificado release definidos. Backend Android continua fictício, PostgREST e gates remotos preservados; sem novoPhone.
+
+Evidências: historical/37a125f56c6b832810d04919d56f7c419062442238de1909756219b4c5979d6a.ref, historical/2f5b9b74436fe1e4a1d3da7b44c03d15b6ad1d83c34e931468e1d07e11a63af4.ref, historical/e944a65234ff09e7d41f7df841d9b23424631e980df63ab8d79f42d6b23f258a.ref, historical/c18b45a46e51ce79b5336d7a71566c200e0a4902e2898ca22a63a70054abd1e5.ref, historical/1fe4fcee431a24894370449198b8cabc904d9f966a6983e0999ca94e522fcdd2.ref
+
+## APP-163 — Ativar e validar associação HTTPS do domínio no release Android
+
+Estado: backlog
+
+- Confirmar domínio controlado/autorizado, pacote final e certificado de assinatura distribuído sem expor chave privada
+- Publicar assetlinks.json e configuração de verificação somente após autorização concreta, preservando fallback e caminhos aprovados
+- Testar associação real, toque de link, instalação limpa, domínio errado e diferenças de versão Android; não tratar Intent explícito ou override manual como verificação
+
+Próxima ação: Aguardar domínio/release e autorização de publicação; roteiro concreto em APP-LINKS-ATIVACAO.md. QA reservado de APP-162 não demonstra domínio verificado. Não alterar associações, preferências do sistema, DNS ou serviços para simular conclusão.
+
+Evidências: historical/2f5b9b74436fe1e4a1d3da7b44c03d15b6ad1d83c34e931468e1d07e11a63af4.ref, historical/37a125f56c6b832810d04919d56f7c419062442238de1909756219b4c5979d6a.ref
+
+## APP-164 — Conter requisições Auth pendentes durante timeout e cancelamento
+
+Estado: done
+
+- Reproduzir liberação prematura de slot em fetch/read não cooperativo sem autenticar conta ou chamar serviço real
+- Manter maxPending até operação e cancelamento terminarem; não bloquear timeout do chamador nem ativar sessão por signup
+- Testar abort/dispose/falha pré-despacho e repetição no RegistrationHost, com revisão e evidência histórica preservada
+
+Próxima ação: Escopo local concluído:4 falhas reproduzidas antes;21 testes (12existentes/9novos) e dois typechecks passaram. Revisão detectou cancel pendente após read concluído, corrigido e reconferido. Validar fetch/cancel Android no próximo build pertinente; signup remoto/confirmations/custódia/promoção/PostgREST continuam gates. Não é prova de cancelamento do servidor nem APK novo.
+
+Evidências: historical/31a5348c918c4acade7345a0adcf9acfdce80cb4e906099bc6b19146e305b7d3.ref, historical/b0d2cd903bc55cc5e7ce982024d4d8fd49e9fee3fb95c4c27b6db30331f1d401.ref
+
+## APP-165 — Reter recibo de cadastro e exigir retomada explícita após resultado incerto
+
+Estado: done
+
+- Guardar somente estado genérico de resultado no host, sem email/senha/token; sobreviver à remontagem da view na mesma sessão local
+- Não reenviar automaticamente após resultado incerto; nova solicitação é ação explícita que limpa formulário e recibo
+- Testar logout/troca de conta/respostas tardias e confirmar UX no Android fictício sem autenticação real
+
+Próxima ação: Escopo local concluído:32testes/typecheck e2critérios Android/5etapas fonte200%, fonteAPK00ff7bc. Falha inicial sódriver arquivada e corrigida no mesmoAPK. Cleanup1kill/11entregas preservadas. Recibo sómemória; cadastro conectado/confirmations/custódia/promoção/Authnegócio continuam gates.
+
+Evidências: historical/fff076e61c674d7795da40076f54f00bf52c2dcb0e0d93f7e072b9ef8c8ac384.ref, historical/16c4e1f7ce2b09f360ffddb5c5bae8e71e1693f17e1001dab3922787e16765a1.ref
+
+## APP-166 — Validar vínculos e transporte produtivo pela API PostgREST real local
+
+Estado: done
+
+- API limitada em127.0.0.1 e PG descartável, atores/JWTs fictícios, sem alvos das validações recusadas
+- Jornada paciente/funcionário/gestor por endpoints existentes com leitura de estado e isolamento; nenhum fixture contado como cadastro ativo real
+- Transportar statuses e corpos originais ao cliente; corrigir somente incompatibilidade comprovada com RPCvoid; registrar cleanup
+
+Próxima ação: Escopo local concluído: 31 checks/24 HTTP da API e 10 checks/24 HTTP da porta/host; cinco testes do protocolo e dois typechecks passaram. Corrigido o tratamento de 204 vazio após reprodução. A tentativa inicial com erro 10013 foi resolvida pelo mecanismo de aprovação suportado, sem alterar políticas ou rota. API e PostgreSQL próprios encerrados. Auth gerenciado, custódia, promoção, Android conectado e convites reais permanecem gates.
+
+Evidências: historical/7549363f55785c07f209f09670a4fd33f885ff7cc9a20f3aecb0a4e8d4ba4ec6.ref, historical/85a54a4b38df295cb6aa1c7a179f4a05cc963e15a36640fa89e8edbdf9484016.ref, historical/cc225abe225cf38fcd70f6deecf4eb64fe291c69350498fad85b4e470bb38b57.ref, historical/0441ff0f38cad7a4222432a03f94e2fbbd1bc46479075dd22bad3ab27f071007.ref
+
+## APP-167 — Distinguir busca de empresa sem resultado de busca não feita ou falha
+
+Estado: done
+
+- Aviso de nenhuma empresa apenas após busca válida atual concluída sem itens/cursor
+- Busca pendente, erro, entrada inválida, capacidade/paginação e resposta tardia não geram mensagem falsa de lista vazia
+- Reset por contexto/conta/logout e anúncio acessível testados; validar Android no próximo build pertinente
+
+Próxima ação: Escopo local concluído: sete testes dirigidos/typecheck e um critério Android em duas etapas com fonte 200%. Aviso vazio legível e removido após resultado válido. Fontes 531aa85, AVD encerrada uma vez e 11 APKs preservados. Sem backend Android real ou novo Phone; validar dispositivo físico no próximo lote pertinente.
+
+Evidências: historical/2baefc6b089f42cb0929e07c06a203bcec11a1fae384ef3e4c99db725b31c424.ref, historical/fb98e52ae06772dcde3b9a7b47601fbe2d55738e05cebd5f56090d1d2b8d172b.ref
+
+## APP-168 — Validar aceite direto de convite conhecido e revogação pela API real local
+
+Estado: done
+
+- Convite legado com destinatário conhecido e dados fictícios ativa funcionário diretamente, sem aprovação adicional; não adotar política bearer v1
+- API real local preserva 204 vazio; revogação do gestor remove acesso e replay não reativa vínculo
+- Porta/host usam as mesmas RPCs em corte restrito; tokens somente em RAM, logs sem capacidades, processos próprios encerrados
+
+Próxima ação: Escopo local concluído: 28 verificações/21 HTTP no backend e oito verificações/15 HTTP na porta/host. Aceite legado direto e revogação 204 comprovados; mesma sessão perde inbox. Tokens somente em RAM e ausentes dos logs verificados; API/PG encerrados. Não implementa emissão, cadastro anterior ao convite, política bearer v1 ou Auth real; promoção continua separada.
+
+Evidências: historical/dfbff8978fad9c70ac7950b3f2b1db23cd314d46017f1bb0e092846fd50c11b5.ref, historical/80ecfbc2068fd28fc628b7ee6f2372d005352b41dd5f728cc81b17a8992b7a0d.ref, historical/5f95ba428984bde4180a897394c72deb942be7f125619a4ee0a07b271b7d8822.ref
+
+## APP-169 — Mostrar progresso e cancelar somente a busca de empresa atual
+
+Estado: done
+
+- Progresso acessível somente durante busca de empresa, com intenção de cancelamento ligada ao job/lease/contexto renderizados
+- Cancelar limpa resultados/cursor e impede resposta tardia; não cancela escrita, outra leitura ou busca de outra conta
+- Testar reentrância, substituição de busca, logout e contexto; validar um critério Android após freeze
+
+Próxima ação: Escopo local concluído: dez modelos/typechecks e um critério Android em quatro etapas, fonte 200%. Progresso, cancelamento, resposta tardia ignorada e nova busca explícita validados no diretório inicial. AVD encerrada uma vez; 11 APKs preservados. Transições de contexto seguem APP-170; nenhum backend Android real ou novo Phone.
+
+Evidências: historical/449055197c5c8337cb72c66f56e879f4380f2bcc51a2d67cd7d92eabdeae2b32.ref, historical/ec1bf268cd653409494c23706f364f2d3270e18c653a67ddd332b632253442a9.ref
+
+## APP-170 — Manter cancelamento da busca durante transição protegida
+
+Estado: done
+
+- Reproduzir em Android busca demorada iniciada a partir de equipe, inbox ou contexto selecionado, distinguindo transição de proteção de busca inicial
+- Oferecer recuperação ou cancelamento seguro sem relaxar barreira, revelar dados antigos ou cancelar operação de outro contexto
+- Preservar testes e guards existentes; não tratar a prova do diretório inicial como cobertura dessas transições
+
+Próxima ação: Caso reproduzido corrigido no QA local: 15 modelos/typecheck e um caso Android/cinco etapas, fonte 200%. Superfície validada permanece durante busca pública; resultado/erro/cancel limpam dados e busy atomicamente, com guards de reentrância. Native/runtime/settled/Auth intactos. Cleanup único e 11 APKs preservados. Validar aparelho físico/iOS e lote Phone pertinente; não é certificação de produção.
+
+Evidências: historical/07c89bc5c1459723cfa7ba74ac54a5d990da4a45c7c735a45d15dce2c8d9e907.ref, historical/b115e55e1c38fb3ec49595c6c3151a8f1af571a3bcce5ce9daf7376b01b7d1aa.ref, apps/mobile/src/privacy-access-recent-runtime.ts, historical/88dd401e2137ea60ae680670359751e261bb57bccdc5f1ee1b9cd679c454226a.ref, historical/935dede02c8c4d349a06b1c8c59735f9bee5c5f9e28bb10c67736d3b913ecccf.ref
+
+## APP-171 — Validar paginação do diretório e vínculos pela API real local
+
+Estado: done
+
+- Busca, vínculos próprios, equipe e inbox com mais de dez itens são recuperados por cursor em duas páginas via PostgREST real e adaptador existente
+- Fronteira de mesmo company_id com papéis diferentes preserva ambos os registros e cursor composto, sem duplicação ou omissão
+- Leituras continuam restritas ao próprio ator/empresa e não alteram estado; recursos locais encerrados, sem SQL de produto ou testes recusados
+
+Próxima ação: Escopo local concluído: 34 verificações/11 HTTP, duas páginas para empresas, vínculos próprios, equipe e inbox. Cursor composto preservou manager→patient na mesma empresa. Nenhum estado de negócio alterado; API/PG encerrados. Auth e perfis continuam fixtures; não valida host/Android, concorrência, carga ou produção.
+
+Evidências: historical/1d78cf293498c845b00ff916cb256f0e2c28528f3099ef24a9cec563688d7b40.ref, historical/fb5a014eaec1ef57a2075a817b903fc9604ebbe63ad7ac50d9d465593e3de7c7.ref
+
+## APP-172 — Integrar cadastro pendente à API PostgREST real local
+
+Estado: done
+
+- Instalar somente a cadeia candidata local já testada, com runtime NOLOGIN e HMAC/Vault explicitamente fictícios, sem custódia ou recurso remoto real
+- Pedir perfil e empresa pendentes e retomar por leitura através de PostgREST e SessionRPC/RegistrationHost existentes, isolando outro ator
+- Perfil pendente não libera MembershipGate/vínculos/chat; sem credenciais reais ou dados sensíveis nos recibos; processos locais encerrados
+
+Próxima ação: Corte normal pendente passou: 21 verificações/12 HTTP no banco/API e sete/19 HTTP via SessionRPC/RegistrationHost; retomada read-only, outra conta isolada e gate fechado. Faltam custódia real, promoção revisada, Auth gerenciado e Android conectado; nenhum lifecycle ou cenário recusado executado.
+
+Evidências: historical/3d6f8e0818be5234d504d7f85b4b44be4458943f755f1d8bf906915094aef992.ref, historical/aab103a2a86c4a2ff8c079409ee0c9560dcf6a86ff5432b6872832e8aca308fe.ref, historical/a59d094ef98111dcb7ba8c878332e55cb8ef55f7679dcd53dd071ebe313a2424.ref, historical/a52f574013177c417098e57acfcc41b64c852dbd262fafc91db5ba3e9a47d929.ref, historical/c1003efe7c5cbc92ed3cd1e4082497488987d2f14b43aff008cee1bf466e1dec.ref
+
+## APP-173 — Exercitar leitura do chat pela Data API local real
+
+Estado: done
+
+- Usar TextSessionChannel/janela existentes com GETs fixos de PostgREST em conversas e mensagens sintéticas, sem endpoint de envio
+- Paginar histórico e testar acesso ao próprio chat/empresa, troca de contexto e logout sem inferir Auth ou RLS de produção
+- Preservar corpos/status reais, limites e projeções públicas; não consultar contador privado, gerar segredos persistentes ou executar cenários recusados
+
+Próxima ação: Corte de leitura passou 35 verificações/21 GET reais locais com 28 mensagens sintéticas, duas páginas, paciente entre empresas, funcionário da própria empresa, gestor sem staff negado e logout/contexto limpos. Auth/TLS/Android conectados e envio permanecem gates; sem promoção online.
+
+Evidências: historical/eafab1cc812a3d65b140104b7e801ff8c0707b3054ace97a0f12b02faf26d229.ref, historical/f102321b0458013fc11060e40133e65d2469293c04f88e4df1057eabf7578e38.ref, historical/c55809653432b519ba5dff2a821310f7e7aa48670e2bdd8576c4838ff4cb0e79.ref, historical/3d10b9fe5c19099f6d34bead687ffb2cc268a0461e6fcef2358bfcce105db95e.ref, historical/295460afab81881b763d3bc6fa4d4c9b059b07141bb32aaf8553b1cc74c01fd6.ref, historical/4ed2e559ef81280efed7b9d770d7aee8ab60e04a3c11dcb5a886410db26ce831.ref
+
+## APP-174 — Aceitar fuso horário válido no histórico recebido do PostgREST
+
+Estado: done
+
+- Preservar resposta real -03:00 e evidência da rejeição anterior, sem normalizar relay ou alterar fuso do banco
+- Decodificar offsets RFC3339 e validar calendário/limites sem aceitar datas normalizadas inválidas
+- Regressões dirigidas e API de leitura local comprovam correção; preservar histórico e gates online/Android
+
+Próxima ação: Parser compartilhado nos três decoders passou 43 testes dirigidos/typecheck e leitura real pósfix35/21. Falha original4checks/3GET preservada; wire -03:00 e Unicode intactos, sem normalizar relay/timezone. Validar Android no próximo corte pertinente.
+
+Evidências: historical/2b0b7675778fa22ded61766565569c9e17f89e594eda19adc6a97716cc013755.ref, historical/d3a1f4ba7d7866d990acb1d25967807dd813c08e1f78fbfc2d3050c7041b6cee.ref, historical/4e00695f75dba5e10b23c3e12658d1292ff9b260bada95175b1da7cdfb4d5561.ref, historical/11731e8e3f512580d10accd5cafac8083cd7a7026ae3487e1d5557bb3771a720.ref, historical/8eb26a48bfd85d21cce50085847502cf062aedd2ee0ea697c5188392f0c72ef7.ref, packages/chat-client/src/history-timestamp.ts, historical/295460afab81881b763d3bc6fa4d4c9b059b07141bb32aaf8553b1cc74c01fd6.ref
+
+## APP-175 — Integrar vínculos e abertura do histórico na mesma API local real
+
+Estado: done
+
+- Usar MembershipHost e ponte de conversa existentes com leituras PostgREST fixas de vínculos e histórico no mesmo cluster sintético
+- Compor sessão de descoberta e conversa com fechamento/logout e troca de conta/contexto seguros, sem credenciais no estado de apresentação
+- Confirmar isolamento e abertura somente do chat autorizado sem escrever mensagens, ativar cadastro ou retomar validações recusadas
+
+Próxima ação: Sessão única compartilha diretório e conversa: seis modelos novos+14 regressões/typechecks passaram; jornada real local passou dez verificações/26 HTTP (cinco RPCs de leitura e21 GET), sem writes. Paciente A/B, página anterior, fechamento síncrono e logout, staff inbox→outro paciente validados. Perfis ativos/Auth/TLS são fixtures; integração do cadastro/onboarding, Android conectado e promoção continuam gates.
+
+Evidências: packages/chat-client/src/text-session-channel.ts, historical/94ef1ceadb422595cf43aaabffec24b8b0a2514fcdda97a9e80493a10e22a9e8.ref, historical/b91bfdbac8d4963267cb06f463352cce13bf1b3c94e0364a0147db24512b81d0.ref, historical/617fb501b4389fd222125b1893306e773f898c7fcbd98555ee1503c3d1c3aa67.ref, historical/df28d3fed64cd5443ebe8bccbafdbfa3be9aaa6a3173dc75756a2f57c41f50d2.ref, historical/4640e1f0372634ccdcfdf62afbf48ce70e65760e32509d5a0a5834827cffce8f.ref, historical/35753c347ba47180545ad2e96e1391e00de71b8137561612bdaceb2f51c3bc60.ref
+
+## APP-176 — Validar timestamps com fuso no histórico Android local
+
+Estado: done
+
+- Laboratório Android sintético demonstra histórico com fuso e Unicode íntegros após parser APP-174
+- Verificar apresentação com texto ampliado e limpeza ao sair sem alegar Auth ou transporte conectado
+- Preservar entregas Phone e registrar encerramento do emulador e limites reais da prova
+
+Próxima ação: Laboratório Android API36/x86_64 offline passou um critério/três observações/sete stages em fonte200%, incluindo Unicode completo, Back/troca e logout. Modelo verifica instante UTC; SDK prova render/limpeza, não hora formatada nem API conectada. Cleanup1kill/PIDserialausentes/helperremovido/fonterestaurada e11Phone preservados. Validar aparelho/TalkBack/integração conectada em cortes próprios.
+
+Evidências: historical/17763b7ccedf700004eb29cfbec235234da39630dd24e6b1414a7e42c603a9e6.ref, historical/890e0c16f634aafbd58d50173770782cca412bbe7cf80d772552cd35d3f7a1f4.ref, historical/1de957b1492c7cb8b6eddf17ef5c5c3f2d9c35c69b1243833393bd7c508cc512.ref, historical/de1924f6897bb7258fd601a21f37eb2401c036f9df5c608e9a91f85214f2c47c.ref, historical/cfe07a7b634700b833a517ab2d797be14cd57b6ce14b0d54d2be5d8164c87ebc.ref, historical/93e5c7a4b5d7b1b889f0446200ac2550890eda25e0f07e8debf2c1b35cbd38cd.ref, historical/1e658308a64091a5b1479bfb259c4a1137295c9a5f8df31027e55431fb2ab606.ref
+
+## APP-177 — Integrar cadastro pendente e gate à sessão unificada
+
+Estado: done
+
+- Reaproveitar onboarding da mesma verificação interna de sessão, sem segundo login ou credenciais na apresentação
+- Registro pendente e recuperação por leitura mantêm diretório/chat fechados e isolados ao mudar conta ou sair
+- Validar com cadeia de cadastro/PostgREST local e fixtures explícitas, sem ativação automática nem promoção online
+
+Próxima ação: Cadastro pendente compõe AuthController/RegistrationHost/gate/MembershipHost/ponte na mesma lease: sete modelos novos+14 regressões/typechecks e oito verificações/19 RPC reais locais passaram. Retomada sem reenvio, B isolado, zero consultas de diretório/chat; UI gate não é prova de negativa RLS. Mock Vault/Auth/TLS, promoção e Android conectado seguem gates.
+
+Evidências: historical/a52f574013177c417098e57acfcc41b64c852dbd262fafc91db5ba3e9a47d929.ref, packages/chat-client/src/text-session-channel.ts, historical/dae6395396eb835d9186b1730a30bd0f3041d73733978675b8d53c8077dab44e.ref, historical/fa0dc60c033091fb0150c4f5318a3a64cb3c86fb1127feece4a0375f33caa291.ref, historical/979d5911d441da519cb23e3623ba2b72bba02d22b38b7136c23906534950f372.ref, historical/c93bea137f7276ae3d1e242300bd5acacb026165f7bfc154055f144261a150f9.ref, historical/09a10bb1088d29df0436bde30f9409b2822a944b322c627be53fee180ae083c5.ref, historical/31a0ddb3156158e96d6e817ed8610df37615010f535bbbc73655ea7e75a29cc0.ref, historical/33824d7f724bfef35bb36f802d73707be87cec204408bd6962e31bcbe3d5ea0a.ref
+
+## APP-178 — Reusar a montagem unificada de cadastro e chat na aplicação
+
+Estado: done
+
+- Inspecionar montagem existente e reaproveitar controllers/ponte com a lease única, sem duplicar login ou autenticação
+- Separar configuração pública e portas injetadas de credenciais; não ativar backend remoto nem apresentar mocks como conexão real
+- Validar cadastro pendente e seleção de contexto na montagem consumida pelas telas, com logout e troca de conta limpando projeções
+
+Próxima ação: Factory produtiva foi consumida por três Views no QA: sete unitários+dois modelos de montagem/TC e cinco regressões de core passaram; API local passou8/19, Android2critérios/3etapas fonte200%. Core único preserva guards por comparação byte; helper inicial esperava botão ausente, correção mínima/mesmoAPK passou. PhoneLAB separado é APP-179; Auth/Vault/serviçoonline permanecem gates.
+
+Evidências: historical/fa0dc60c033091fb0150c4f5318a3a64cb3c86fb1127feece4a0375f33caa291.ref, apps/mobile/previews/synthetic-access-chat-journey.ts, apps/mobile/src/access-recent-controllers.ts, apps/mobile/src/privacy-access-recent-core.ts, historical/7d4445271ba25acf3331b7db8e2ed5fbe692050fbdc0542a55ae18069cad8cc6.ref, historical/58949348c5fccea96f858d77b28e61d901ed57ed81e02823b514180c9eca64d1.ref, historical/7353aab271b828fce0773b6cf4d5c6f23f4d16d08687af90bf607dcdbe2da3e2.ref, historical/7c01bb69c06d4dad11e05858c0416454caa1b2a0a83fb4511822f2393427aacc.ref, historical/bf411ec02d1d643712e6f1a26709ce7096fb87d99977be6f7bd7cff2d9055c5c.ref, historical/a5a5118e6315ff44a8ec6282d79db89ea3d65c66483577c15a4cc5d1aa9d7d56.ref, historical/00b0266047de202739b4c41a5a4b34feec374b312f7fa22124454c3c6cdf374d.ref
+
+## APP-179 — Entregar laboratório de cadastro Android para celular
+
+Estado: done
+
+- APK arm64+x86 com assinatura existente, pacote novo perante entregas anteriores, aviso claro de dados fictícios/temporários e ausência de servidor
+- Testar o próprio artefato de entrega com fluxo de cadastro pendente, vínculo/chat após liberação fictícia e logout; preservar QA anterior e evidências de diferenças
+- Guardar APK e instruções/hash no Drive privado autorizado sem substituir versões anteriores nem alterar compartilhamentos
+
+Próxima ação: PhoneLab2013 passou2critérios/3etapas no próprio universal(API36/x86,font200); assinatura/perms/ABIs confirmados. APK/guia/checksum/manifesto salvos e lidos de volta no Drive privado, sem substituir versões. Liberação limitada ao LAB local sintético; aviso externo não certificado semprevisível, APP-180. Auth/servidor/ARMfísico/envio/persistência real continuam não validados.
+
+Evidências: historical/7353aab271b828fce0773b6cf4d5c6f23f4d16d08687af90bf607dcdbe2da3e2.ref, historical/ab928e104f4fa03a0676ae49f59c0f0063c1a8c0c15613a3d463f6cf5681fa0c.ref, historical/750b5a2f80065a361e9a213734c254f1b8b86e44a4b4df5641158df064f25c5e.ref, historical/0edbf911a62fd244225a4983264a369bd1e501ed60514fd58a818c11a54488be.ref, historical/d8671698c6d42f7a40b601616a014cdb65312e781f96d465e76c77bdaada33e5.ref, historical/31c95261a76f7bb3a1653501cccc50abc076eb1bf6e7e78c93df8a1a6359324b.ref, historical/81c979529f29631aeed53b196241df89f3b7c33545fabca36d5512ee0a4a630b.ref, historical/3d8f5042f16417885e967a93e2143406be1a41b2822ca580b90848ea2e629cd9.ref, historical/69ed938d59cf29f1923792818f76319efcd99784dec6480c560ce170d7cede88.ref, historical/bab9829af83bc2171b12a166ac0063ee502d2c2d18293e7bb3aebb469147ca9f.ref
+
+## APP-180 — Investigar aviso local fora do recorte em formulários com texto ampliado
+
+Estado: done
+
+- Identificar se o recorte atribuído ao aviso existe nos artefatos, medindo layout Android e comparando pixels salvos sem alterar o produto por hipótese.
+- Preservar APKs, capturas, revisões históricas e recibos; registrar resultado, limites e limpeza dos processos próprios.
+
+Próxima ação: Diagnóstico encerrado: nove PNGs/18 regiões RGB idênticas à referência legível e 27 medidas SDK sem recorte. Classificações visuais anteriores eram incorretas; nenhum fix de aplicativo necessário por esta evidência. Não extrapolar para todo frame/aparelho/acessibilidade. Prosseguir APP-181 e gates de cadastro conectado.
+
+Evidências: historical/584addad5ce78b6fc10a9db29e7002050ab2bdce6ca8cb2b8352459505c85757.ref, historical/5c427af50314b57883ace9d21db505c4b9e5d8a1153214034306110ead5e8f4f.ref, historical/a7f34caa027f83c692708e64ce0e1c7461e886ea73799d2b62017852c9b6cae1.ref, historical/5843a1b624c04f3fc78f66c9daaea111ad01dd40942b1f3e1eb2022d6a5d4cfa.ref, historical/8fa3a070c424e66513e4030e4a189c40fc3a83fe55563f3e794b25213ca7f2ce.ref, historical/26279e4990836b21dd4b790df20736851c32fce82e60f4ac265d7fa8351de7e2.ref, historical/cee660ef8748c6f45f8577a9b12714d5e0d709048629e8aac1157dc3c9a06b1b.ref, historical/445ab19ff8eae745eca7c15ddb2f489226cc3aa464136cae8067135b07739ea6.ref, historical/05a160aa6dba0dd2b6b2efe19d9c63d9080971aadcd2cba9875e5d15b45d7fdf.ref, historical/81915fb618fcb2c37fac85a4498b15d14d163364cad752fabfaeea8c43000bd5.ref
+
+## APP-181 — Reaproveitar mídia local na montagem unificada de cadastro e chat
+
+Estado: done
+
+- Inspecionar controles de imagem/áudio já existentes e reusar componentes sem duplicar implementação
+- Preservar vínculo de arquivos temporários à sessão, empresa e conversa, com limpeza ao sair/trocar contexto
+- Distinguir prévia/cache local de entrega ao servidor; Storage/Auth/políticas reais continuam gates próprios
+
+Próxima ação: Reutilização local de imagem/áudio concluída na jornada: 84 modelos/typecheck e dois critérios Android de áudio API36/fonte200%, 27 observações e 12 capturas revisadas. Permissão contextual, segundo toque, gravação/reprodução, remoção e encerramento por Home/logout validados no escopo descrito. Entrega online permanece APP-004/APP-056, sem novo Phone ou alteração remota.
+
+Evidências: apps/mobile/src/access-recent-controllers.ts, historical/00b0266047de202739b4c41a5a4b34feec374b312f7fa22124454c3c6cdf374d.ref, apps/mobile/src/conversation-media-scope.ts, apps/mobile/src/recent-media-scope.ts, apps/mobile/src/recent-local-images.ts, historical/00aba8697183e2e860f1ff005cd102ce0cb76777eb8ec61b9d2cdc0e9110ddcc.ref, apps/mobile/tests/recent-local-images.test.ts, historical/016d5baa7d1c33ef5033bd788758d072f037dc2ff68db130313fca45c96b5be2.ref, historical/1051dcf2b929b041fcae5ef6754458abb8391a9aed6dee0b4d1a07de719be1a3.ref, historical/8c727dcff972f9226e51ff26d08931291a1f2598eb4c0e4737c6c5d6132938d4.ref, historical/0b9968ad58e94d20bd905e38a17617db825a7e0214afe268663ab1975beeaffc.ref, historical/61c25d8520c6e7b4044df2c7652b4e440f3970e5dcdfbc2ecd2106a5f42938b3.ref, historical/f53b2c5ca548a5a6c6b627b6f53d6020a73233c525ba9eac05fc674afb15bf14.ref, historical/10b0923792996dd5980039e043cf37b9f29b15c723531802ddc92063b13ec617.ref, historical/e8e95bbac87f5510c937967940b26e15c047c6edc35cf532ab61f78b4fc63689.ref, historical/8cde3af934df6bf12c90dc1dbc0d12aef1a37f7e6df6a45f59507f344d5f1760.ref, historical/40df5e03c353921b323532b5c81455f1f300ef98cabd53531444bfd271fd3f28.ref, historical/81f7a511a42dd11739b2e96159a15722d2d365a2478af10214b1e454c9ca5db7.ref, historical/c9e3e36de330af1a70e038392edd564bd40293abc86f687bd94a169ba7473cb3.ref, historical/06834e64f1699c0b8dc7869f4450c6860b554bf193ca8db16b14224ffcb05ea4.ref, apps/mobile/src/external-image-selection.ts, historical/e93c37a46665506cbbfeb0c57b8aff5f67cf2ac50c980494e7746c1eea8d4b9c.ref, historical/ae67c9abbb853dec980f43edc0891867a83773b7875cfde641fc229edf71f473.ref, historical/1cc6954e15b072c64b20e899d44829301459e30b183d0cc356afea0ee74b8650.ref, historical/7da13302c58081dfd7892ec050a9a71eecf02351c403e47a819347558de71472.ref, historical/6cd273df44241a597b6f388c8f3537f627d70be6b51ee60a2019755671965b11.ref, historical/2b1c9dd0865e68193758e6e222c382d76e25f60066b5397c33d826e470af1274.ref, apps/mobile/src/recent-local-audio.ts, historical/02bd6acc7806f9f5133ed75fdddebdeb3d272ab06651d363f111cf3b4f3383e4.ref, historical/98aecf57c4b7f7bf7ae6beec3378958c71d2facee0c56a595e6a7d117d20959b.ref, historical/c858de325bb377242d4316ca55f2c3eae277dbf407da992e224a2fbe83ff4184.ref, historical/fa58fe10a447489c6084974db02e5d271aac6da6eb4e4115fa99ed825d21f739.ref, historical/cbb9d818d3937fb78399dc55880aa6a31f70973f0abd6369df07fb17f5cd107a.ref, historical/59a55c86e6ef65754a036e9ca723de5f0627aaa032e6875a61660a4423e98eed.ref, historical/d30c14789b20087315d580a325f0adb953dcb20e8ea4dea25f591304e9611cd8.ref, historical/f39aa4047cf5cacb55ed459b08788951886b999713c8a5fbe6eab8ec13472577.ref, historical/a7c6fae8610cbd829b3c6f4503972919b9a67c16bf0583f6b80252ddbd04512e.ref, historical/e44afe8d6cb5a7a500ebc8b3c27aae74b2ab95c128dfe0e9c28885f8315b0217.ref
+
+## APP-182 — Validar montagem reutilizável ativa com histórico pela API local real
+
+Estado: done
+
+- Consumir fábrica APP-178 no caminho ativo por MembershipHost/ponte/histórico, sem copiar controllers ou repetir runner inline antigo
+- Usar exclusivamente as três RPCs de descoberta e GETs públicos do harness175 imutável; perfil aprovado/Auth vêm de fixtures explícitas, não de ativação ou verificação real
+- Confirmar contexto por empresa, histórico, staff inbox e limpeza ao sair com API/PG encerrados; sem envio/mutação/esperas/serviços remotos
+
+Próxima ação: Montagem ativa reutilizável passou 10 verificações/27 HTTP de leitura em PostgreSQL/PostgREST local. Auth e aprovação são fixtures RAM; não promover ativação/produção ou afirmar cadastro conectado. Próximo corte deve respeitar custódia e gates remotos existentes.
+
+Evidências: historical/ee962fe4f70313803dfb322215aa34f359f10e74e4317a099e6a871939b0a00b.ref, historical/66c54cfa438e19429fd74ddbefbaff247d810b6062d033c0ac8da60078eceedf.ref, historical/9afb0c322625cdb8be9b13508cb80b55d2a60437cd1f3bc5eacccfd71dad6770.ref, historical/df4af61b31d7d29fce39e677b7fbec5ee70f26d81e39a16a94532b806e270c55.ref, historical/24ec039bd6982098fe3b84fb8255e75be6c6ad68af0fc1869057cbafd73f4943.ref
+
+## APP-183 — Limitar leitura incremental de mídia antes do preflight local
+
+Estado: done
+
+- Ler fonte confiável em blocos com budgets de bytes, chunks, prazo e duas admissões por instância carregada, sem buffer ilimitado
+- Manter vaga ocupada até fechamento confirmado, inclusive após cancelamento/timeout e fonte retornada sem closer utilizável
+- Demonstrar arquivo sintético real, worker existente, falha antes da correção e regressão aprovada; não autorizar upload/publicação
+
+Próxima ação: 13 testes novos após correção e nove regressões inalteradas de execução anterior passaram (22 distintos, não uma execução única), além de typecheck. Recibo e hashes verificados sem replay. Antes de conectar: porta autorizada imutável/fechamento real, quotas entre processos, inspeção final e Storage. Não equivale a decoder, sandbox do SO ou anexo entregue.
+
+Evidências: packages/chat/src/media-stream-preflight.ts, historical/79fc4baef27a55eb31d5f3d8f4271ea2b84be92943861664c7af60c5f7799932.ref, historical/ba8bcb81fbb47135e08387ed6d89d10133e5cec17e973f917fae7961821f72ed.ref, historical/a962e8be5860269437ab96c6cff5ce290f1f9d28a00574d9d0b0a2fc1f2456d0.ref, historical/f89678b93741faee9b1866b16ace5f84d3132aa1f13f795b2031251528e0ba39.ref
+
+## APP-184 — Explicitar limites de prévia local e envio de anexos
+
+Estado: backlog
+
+- Distinguir limite de seleção/prévia local do limite de ingresso do servidor por tipo
+- Ao exceder envio permitido, preservar original e rascunho, explicar opção segura e impedir envio incompatível
+- Validar imagem/documento nos limites com arquivos sintéticos sem ampliar budgets arbitrariamente
+
+Próxima ação: Conferido após APP-181: seleção/prévia até12MiB e candidatos de ingresso imagem4MiB/documento10MiB têm finalidades distintas. Não há upload de imagem integrado à jornada; aplicar política/rechecagem de bytes no adaptador de ingresso autorizado, preservando original/rascunho. Não alterar budgets ou apresentar limites candidatos como online. Não bloqueia texto.
+
+Evidências: historical/f89678b93741faee9b1866b16ace5f84d3132aa1f13f795b2031251528e0ba39.ref, apps/mobile/src/local-image.ts, packages/chat/src/media-envelope.ts, historical/0c663a4b6b0b4a25225ed7d205855db7eba52688dc28c7139251bda0c8628a21.ref
+
+## APP-185 — Restringir transporte do primeiro cadastro conectado ao corte pendente
+
+Estado: done
+
+- Permitir somente Auth e as seis RPCs necessárias ao cadastro inicial e consulta dos próprios pedidos no projeto Connect fixo
+- Recusar rotas, métodos, headers e payloads fora do corte antes do I/O; erros sem dados privados
+- Demonstrar compatibilidade com provider/transport existentes e API local de cadastro sem ativação, vínculos, chat ou recursos remotos
+
+Próxima ação: Fronteira candidata passou sete casos unitários/typecheck e sete verificações/19 HTTP reais locais: pedidos pendentes, retomada sem reenvio e segunda conta isolada. API/cluster encerrados e logs sem entradas. Não montada no Android; Auth/HTTPS/Vault são fixtures. APP-186 prepara ações de tela compatíveis antes de integrar; custódia/promoção/testes online permanecem gates.
+
+Evidências: historical/4f168525816b530bbbd5f77a9bdd73218b15cb3f66dc970bcd7e11e0c010e6e6.ref, historical/3d6f8e0818be5234d504d7f85b4b44be4458943f755f1d8bf906915094aef992.ref, apps/mobile/src/pending-registration-http.ts, historical/25a63197b099fbff34e5ab19f6eb473227564b2dcc633c3b0b326a252368155e.ref, historical/1d802974bc361fa28581da60f4ef847fcc990c1b37551e727e67050270cad632.ref, historical/2fb5c648484a10471e4444f981ddc6ef82cc835c23c14c10e95eef59e732efb8.ref, historical/e000069e44ecb8328753fe3737f46984b413b5ace6c8a300615dadd407fcc71c.ref, historical/425505fda4dfd87c901d7cbea877f9d0fcbffbdaca9afe8ffe530a38dbc542f5.ref
+
+## APP-186 — Adequar ações da tela ao primeiro corte de cadastro pendente
+
+Estado: done
+
+- Montagem restrita oferece apenas signup/login, pedido inicial e consulta/retomada suportados
+- Correção, desistência, ativação e acesso de negócio não aparecem como ações disponíveis quando o corte não as suporta
+- Preservar telas e capacidades das versões existentes; validar mensagens, logout e recuperação no Android antes de montar configuração real
+
+Próxima ação: Concluído no corte local: seis modelos, typecheck e uma execução Android com dois critérios/quatro capturas em fonte 200%. Perfil/empresa pendentes, troca A→B→A sem dados antigos ou duplicação; recuperação somente em RAM. Para montagem conectada, adequar texto offline, validar configuração e concluir custódia/promoção/Auth de negócio. Nenhuma consulta recusada repetida ou novo Phone entregue.
+
+Evidências: historical/425505fda4dfd87c901d7cbea877f9d0fcbffbdaca9afe8ffe530a38dbc542f5.ref, apps/mobile/src/RegistrationHostView.tsx, apps/mobile/src/pending-registration-presentation.ts, apps/mobile/src/PendingRegistrationHostView.tsx, historical/26ed1207f7c54000f4b11eec8327e12b00dbcd80d16ec61e60a6fa66f3253641.ref, historical/427daffbbc8e203f9bdeabd8a154c43697402d6bb651a477e50084256aee494c.ref, historical/b6f2a6cc81a2b540b4ee35199c32dc80e06775945cac4ea523897ef3c6e8313c.ref, historical/5dc15efa07529915184a6e9a7629081fc951d5e72c78f111d9a8a52d5435e0bf.ref, historical/9450f98e0e21ef4ee04bd9287563a96e8fac53fb87f2aab007c868e0f4fee038.ref, historical/cac067027392cd0d9c8a7ee5e51b553d526b5ab32f4b66fb0cc230ad2be0ce02.ref, historical/217b93b6bdbdb0f954f8c556818ddb77ca762056b34f759ae1e7cb5e85871318.ref, historical/d3f15e900ad51ab4747271775896fa16809d73af1da5df01f08476651bff4c1a.ref, historical/a575a1b3b2d6e9dc3581600632ea5250d2023d2594b251a2bda65554f0d23570.ref, historical/05ed02f0629149590224b4317f7c89e778bca4232f457b04dd00f642c0814525.ref, historical/07f7a881e335aa391e501c100c0596604fcd3dae98f519f91869af5bae5a0a9b.ref, historical/be70dda298be37082a61d6cb779d228403b8b0f355e07a106af215b5310eaaee.ref, historical/506ad481b71f14148e49ccb1959d99bda156c70e27b5504b16504243eabe6136.ref, historical/2b887366396fd587ad73bb7cf3ce84317f135c8f694ab53c3856d22f2eecc1ef.ref, historical/a7c6fae8610cbd829b3c6f4503972919b9a67c16bf0583f6b80252ddbd04512e.ref, historical/e44afe8d6cb5a7a500ebc8b3c27aae74b2ab95c128dfe0e9c28885f8315b0217.ref
+
+## APP-187 — Validar recuperação de cadastro após perda de confirmação na API local real
+
+Estado: done
+
+- Perda da confirmação após gravação não provoca reenvio automático ou duplicação
+- Falha ou projeção inválida na descoberta oculta estado parcial e permite consulta explícita
+- Cliente reconstruído recupera pedidos sem IDs locais; registrar limites Auth/HTTPS e cleanup
+
+Próxima ação: Sete verificações/18 HTTP reais locais passaram; quatro falhas de resposta controladas, dois pedidos pendentes e nenhuma escrita repetida. Não foi necessário alterar produção ou criar APK. Cadastro online depende do mecanismo de aprovação catalogal, custódia/promoção e testes de negócio; não repetir operação recusada.
+
+Evidências: historical/e6a4a1087f9fd460733ef0d1412e19111c705aca3133212cff159f47ae6da22f.ref, historical/3a5fd5948b1b42ca57c2d0e48aba00e28a69d644e8aa545db01360764e7155e6.ref, historical/b27268ca5b3f22fb6a17c6e44198ec3a4c89cb24ec3d21ee1f21c93f56e8f2ee.ref, historical/820c92a0674719b15f3ca03585d35904fc4347c863480ca136d81401d3fabc87.ref
+
+## APP-188 — Fechar grants automáticos revisados e validar preflight online do cadastro
+
+Estado: done
+
+- Diagnosticar sem linhas de usuários o único requisito incompatível do preflight online
+- Reduzir somente os grants padrão exatos de criação em public, preservando ACLs existentes e recusando drift
+- Demonstrar rollback/isolamento no PostgreSQL local e compatibilidade da fundação real após aplicação
+- Manter separadas as operações recusadas e não declarar cadastro/chat online
+
+Próxima ação: Concluído apenas o DCL de defaults e o preflight da fundação: dez etapas locais e dez flags online passaram, hashes originais preservados. Cadeia gerada para revisão sem promover; custódia/principal HMAC e consulta anteriormente bloqueada mantêm gates próprios.
+
+Evidências: historical/33cb0c95e62b755b1e08953825a10ede9d6753f6e8d95621e87af187b5a725cb.ref, historical/47d2a90fd428c05e8dc4979f5c8ccdf9136105676eaaec7ef652718280ce2753.ref, historical/a588d10b71367ea51038006ca96e2e79d2400964a6652702a3b14bcc19e8584f.ref, historical/a8662e93fb8696683fd3a859e20bd6e966f1ec9ba6566ef0ee19f3dbeb9d70d2.ref, historical/c0183ab5e1ff10206e4afe777d349601adf8edd27e4e44b5800d399f96ed5cbf.ref, historical/ccebff48186324804b507cacd6e7878722bb66797452725a29af0d748bc07896.ref
+
+## APP-189 — Revisar e promover cadastro pendente com HMAC gerenciado
+
+Estado: done
+
+- Instalador gerenciado e chave server-side em transação única ensaiados no PostgreSQL e na CLI local
+- Somente seis RPCs pendentes, sem ativação e sem leitura de Auth pelo runtime
+- Execução da migração exata aprovada e verificada no Connect
+- Auth/API/RLS e persistência reais validados com dados exclusivamente sintéticos
+
+Próxima ação: Migração exata aplicada após autorização/revisão oficial. Postflight e API reais passaram:13 verificações/31HTTP com contas sintéticas, duas escritas, retomada e negativa entre sujeitos. Seguir Android conectado em APP-191; ativação/vínculos/chat e confirmação de e-mail próprios seguem pendentes.
+
+Evidências: historical/453d0c48e4d961cae1000919b0d92a4427425a3023b8800e3bccd765981d7646.ref, historical/3ec753c8a2ffd77fc97f47177c178c752c525791d634af0c94dfb709a8ac2efb.ref, historical/20d4cfe644f1651e1743f3778a6cdd3818ddcbc45e490440a9e06579e0017b8c.ref, historical/8c885b22bcf1f63e8c5ae700576655a707bd3a4a057c5c721cf4c276658d5e15.ref, historical/cb7b344d5dc70058cc9926259c5c7d959b7243ad1c70bc3475a076b1caa3afb0.ref, supabase/migrations/20261109001359_connect_pending_registration_homolog.sql, historical/1ca1a7ebcbd1e55022fea3cba37ae0aef5ecb8cbeee7754d443df543dde31df4.ref, historical/98927758c2b53d52c5c87d4f4b15254a30f1e1ed040ed28234e97b40ff4ffe8d.ref, historical/89b1285fe9fce06f9742d83cd0c4b38be430adbacc34651915df0b108b754f41.ref, historical/0de46002b4229390c65398853df71aea088b8fb33b47338a3fce583e36f4a0ab.ref, historical/6343e0a02eceed5d81d0083eeb60921931df818f0fd38506df642c3049210e5c.ref, historical/83764560cc0811b7b43a8700d3c3abd4f389fa434cc245b912971ee2b84b6fcb.ref
+
+## APP-190 — Preparar montagem Android conectada restrita ao cadastro pendente
+
+Estado: done
+
+- Factory com configuração pública explícita e fetch injetado, sem fallback sintético
+- Reutilizar host/telas/privacidade com default offline preservado e sucesso apenas pendente
+- Cobrir admissão de configuração, dispose e fronteira por testes locais/typecheck
+- Distinguir preparação de build, execução Android e validação online
+
+Próxima ação: Preparação local concluída:34 testes reportados, nove novos e typecheck. Integrar bootstrap/configuração publicável revisada e executar Auth/API/Android reais após implantação autorizada do cadastro. Sem APK novo ou alegação de online.
+
+Evidências: historical/453d0c48e4d961cae1000919b0d92a4427425a3023b8800e3bccd765981d7646.ref, historical/8dc12d0ce638dfed7aa0af5090c60a3d95ab62d5d3d0f6c74047938b333046ed.ref, apps/mobile/src/connected-pending-registration.ts, historical/371b43d65fca556b162940060d3c4e7bf483f2832a27680d3fd85f8fbb92d550.ref, historical/92083fa5f836ac3a05f0a25318465d958201026db0d339b7558fbd1965b5ce5a.ref, apps/mobile/src/PendingRegistrationHostView.tsx, apps/mobile/src/RegistrationScreens.tsx
+
+## APP-191 — Validar cadastro pendente conectado no Android protegido
+
+Estado: done
+
+- Montagem separada com configuração publicável fixada ao Connect e recibo/hash, sem segredos no APK
+- Executar o próprio artefato Android com Auth/API reais e somente dados sintéticos
+- Validar retomada por leitura, isolamento entre contas e privacidade/logout no Android
+- Registrar versão, SHA256, assinatura, permissões e limites antes de entrega
+
+Próxima ação: Concluído e entregue no Drive privado com readback: QA9/Phone7 verificações Android reais, API13/31HTTPS e lote com guia/hash/evidências. Próximos gates próprios: identidade/ativação/vínculos/chat, confirmação de e-mail e aparelho físico; APP-151 não retomada.
+
+Evidências: apps/mobile/src/connected-pending-registration.ts, historical/371b43d65fca556b162940060d3c4e7bf483f2832a27680d3fd85f8fbb92d550.ref, historical/98927758c2b53d52c5c87d4f4b15254a30f1e1ed040ed28234e97b40ff4ffe8d.ref, historical/952516ff5ea4218ea71876bc67926b23e1f8d8d5aa8b45f4805a7c7e6f41bcf6.ref, historical/5a661b709f3805d3e2aeef4df769c3fcb83ecb3a2cb903e48a03662f98b14752.ref, historical/e43e37919f6314ded81def8914e4421a402ad71679ba0d15884a3a031fa570f7.ref, historical/f984e17ddf6ace6a30e5bc912a27d1efcdd229cc820a7d1ad21c46bc58ce088e.ref, historical/bfc7d0e55a254fd5fac2670d47d640ca3d2f66421a2d262a810cc7efdeae7d4c.ref, historical/c24a5d6e39298596e5747bc6318955c2da4d1e98ccd01621cf64a800b0b7e8fd.ref, historical/bcf94eaa46c5fa474d3a34bef06888d504f02cbd900dbc7f1ffd0ca44cb0b86b.ref
+
+## APP-192 — Promover e validar vínculos e leitura de conversa no Connect
+
+Estado: done
+
+- Cadeia mínima existente revisada e adaptada ao estado gerenciado com preflight/hashes e ACLs explícitas
+- Migração exata submetida à revisão oficial antes de qualquer alteração remota
+- Auth/API reais de duas empresas sintéticas verificam paciente próprio, equipe própria, gestor sem staff, outra empresa e revogação
+- Paciente tem vínculo imediato e multicontexto; funcionário sem convite aguarda aceite e convite válido não exige segunda aprovação
+- Distinguir ativação de fixture sintética de identidade/representação reais; não reabrir APP-151 nem revisão de importância recusadas
+
+Próxima ação: EscopoAPI concluído:37checks/105HTTPS reais,7atores2empresassintéticas, permissões/negativas/revogação e factoryA→B verificados. Fixturedeaprovação explicitamente não é identidadereal/ativação pública. APP-194 integraAndroiddeconsulta; envio/importância e APP-151 permanecemfora.
+
+Evidências: historical/98927758c2b53d52c5c87d4f4b15254a30f1e1ed040ed28234e97b40ff4ffe8d.ref, historical/5a661b709f3805d3e2aeef4df769c3fcb83ecb3a2cb903e48a03662f98b14752.ref, historical/410d092d2f2847f08bcc047940ef5c91192e44acc4b3fdcebac25be8fbd304d2.ref, historical/7549363f55785c07f209f09670a4fd33f885ff7cc9a20f3aecb0a4e8d4ba4ec6.ref, historical/929e1c305966bf066f63736d78bb54554b1104a44a12e697805445eb94538316.ref, historical/dd2f26c574849d62e1d0e45e2b71013087ef82c367ad2089eb5ccb23480200c1.ref, supabase/migrations/20261109010823_connect_membership_read_homolog.sql, apps/mobile/src/connected-membership-read.ts, apps/mobile/src/membership-read-http.ts, historical/b4f93ad86d456c0043a390bab328e333d798e3638bf2a19584122411a1ebf7c8.ref, historical/ea1fd4e2da2fdd90085b75fcd303289a4d8d36f984cd1dd636bc99980055e109.ref, historical/5c6cb0cfd19a6ac97d7c4da850f0f8a54e0e8a3b1d23a6560b1d05b65c069b37.ref, historical/de5dde5fd4eee3336925c0c0ec8db28b4b9ec5d5586d9a1c2d274776d37ba7c8.ref, historical/199e361fac76f86961d04e2f2dd7d56d284231339bb55ca6ee2046a30f43c069.ref, historical/dcd899a51e99fb583b3cb076866d1ccc034fc4ba7920ac3a37054ebea15a43b1.ref, historical/efcded586b7f8b0c0a58212aaea8e3f6b2d820b51c393633d23c2bfe36c5247f.ref, historical/b058a2e9a53ea064d87a9977388988d889f3a8d5087d4a4604bf4ea40c0de0a4.ref
+
+## APP-193 — Exibir orientação persistente de confirmação de e-mail no login
+
+Estado: done
+
+- Reproduzir no Phone entregue falta de aviso de email não confirmado sem credenciais reais
+- Aviso seguro persiste através da remontagem de privacidade, com orientação de confirmação e nova tentativa
+- Confirmação permanece exigida no servidor; credenciais e detalhes privados não aparecem em estado/erro
+- Validar o próprio APK corrigido com conta sintética não confirmada, confirmação administrativa só dessa fixture, entrada válida e limpeza
+- Nova versão/hash/guia/evidência entregues sem sobrescrever o lote anterior
+
+Próxima ação: Correção entregue no Drive privado com readback: Phone2/SHA d846448e...,5 checksAndroid/Auth reais e42modelos/typecheck; nenhuma senha real/confirmacaodesativada, contas descartáveis removidas. Retomar APP-192 sem depender de teste do operador.
+
+Evidências: historical/c24a5d6e39298596e5747bc6318955c2da4d1e98ccd01621cf64a800b0b7e8fd.ref, apps/mobile/src/registration-host.ts, historical/85727174f72e7c2213f0e2de2324e35c85e58762c3fc11a9a41618bdaa2786fb.ref, historical/f0972ab94f0030bb8575bbef2f546f937a91310a77bf3e91b3891eb0ee64879c.ref, historical/afd53ca03af8e0c9ab9703789fc6bd0b03b0244dc6995ffc05668ddc553285a4.ref, historical/356417eb813a91924ffd6cf45c23c81b6234209171d62619ff3e307a33ecb925.ref, historical/82b615455bf998063749a42dcd68ded4710bf33464a1ce93377ba15302905478.ref, historical/5bf9b0858dcf87848bdc34934c2a5707e9f04574cfcc3c681a90937d3b3be14a.ref
+
+## APP-194 — Validar Android conectado de consulta de vínculos e histórico
+
+Estado: done
+
+- Entry/factory reais reutilizam mesmolease e privacidade, semfixtures/credenciais noAPK
+- UIoferece apenas consultas/seleção/paginação/logouts; nenhuma ação deenvio ou mutação devínculo não admitida
+- PróprioPhone com Auth/API reais valida paciente A/B, equipeprópria e ausência de dados/controlesproibidos
+- Versão/hash/assinatura/bundle/permissões e evidência antes deentrega; diferenciar coorteaprovada de ativaçãogeral
+
+Próxima ação: Consulta validada no próprio Phone4: dez checks Auth/PostgREST reais em API36, paciente A/B, paginação28, equipe B com dois pacientes, gestor sem entrada clínica, logout e fonte200%. Entregar no mesmo lote após máscaras; envio e importância não liberados. Entregue no lote privado0.0.4/code4; manter limites de cada evidência.
+
+Evidências: historical/b058a2e9a53ea064d87a9977388988d889f3a8d5087d4a4604bf4ea40c0de0a4.ref, apps/mobile/src/connected-membership-read.ts, apps/mobile/src/membership-read-http.ts, historical/9bd674125b80562eee3b8d10aa4127f66bcbee9db6711bd034d1ce30894a8a33.ref, historical/bc07ca26fa0696afa1bdca68571c77f3ac6ea5e72aab42893fb39b209c3a1c1c.ref, historical/8618a3191b1d1980c029fa5891534e1b996cc393c718e9514c39c54b7548d208.ref
+
+## APP-195 — Restaurar sessão Android com segurança após background e recriação
+
+Estado: done
+
+- Registrar relato físico e reproduzir separadamente troca normal, recriação e reinício de processo no próprioAPK
+- Preservar autenticação sem remover cortina/isolamento e recuperar dados do servidor por sessão revalidada
+- Persistir somente refreshToken com projeto/sujeito vinculados, criptografado com AndroidKeyStore; nunca senha/accessJWT/plaintext
+- Logout e troca de conta impedem restauração ou gravação tardia; falha de storage/rede não finge sessão válida
+- Testar próprioAPK, sessões reais sintéticas, processos/foreground e limpeza antes de entrega
+
+Próxima ação: Lucas confirmou persistência no aparelho físico inclusive após fechar manualmente e reabrir o APK0.0.4. Registrar essa abrangência relatada, sem hash/modelo de aparelho conferidos e sem estender a aprovação a todos os recursos. Seguir APP-197 sem aguardar novo teste desta correção.
+
+Evidências: historical/82b615455bf998063749a42dcd68ded4710bf33464a1ce93377ba15302905478.ref, historical/8bd8ef8cb8756afe4a6abe193a6ad9b3f07c84abf069a98e148037e2fa19ba07.ref, historical/362c8aa355d0bc9c8beb5c2b8d8a9487d7ccd8886f1f3d98f96a9b0b474b4a63.ref, historical/03da8300b1bbb10aababcdd813f5f3de9aa10d98ec35178af92b0878bf5b4f4c.ref, historical/9a9a24bbd987fd624d2ca2c86c19eabd5db99e0e71ece3c2ec77a22109d868d5.ref, historical/8de98fcb45f685e6357cc739a2df8e6d31e2e84dd43a8d031e40908ccd948c51.ref, historical/9bb05be39c4f6dec1e5637cdfe99e55a076c4d95ab72ed405aae1b87e66deec9.ref, historical/8618a3191b1d1980c029fa5891534e1b996cc393c718e9514c39c54b7548d208.ref, historical/de69d8570c12247186159d6af82f5fd8858ff7a9ee13eea1cc9b56ed6c565597.ref
+
+## APP-196 — Formatar CPF e CNPJ progressivamente e aceitar canonical ou máscara
+
+Estado: done
+
+- Registrar relato físico de rejeição sem pontuação; provar validação raw/masked e payload canonical sem dados pessoais
+- Máscara progressiva CPF e CNPJ inclusive alfanumérico, preservando validação dos dígitos e rejeição de conteúdo inválido
+- Cobrir digitação, backspace em separador, remoção, edição no meio e colagem com cursor estável
+- Verificar no Android próprio artefato e preservar dados/segredos e evidência do corte
+
+Próxima ação: Máscara comprovada no próprio Phone4 via teclado real, ClipboardManager + ACTION_PASTE, raw/formatado numérico/alfanumérico, backspace/Delete/edição no meio e rejeição de letra/overflow. Um cadastro de perfil e empresa aceito e recuperado pendente. Publicar lote0.0.4 após checks finais; causa da rejeição física antiga não foi estabelecida pela baseline local. Entregue no lote privado0.0.4/code4; manter limites de cada evidência.
+
+Evidências: apps/mobile/src/registration-forms.ts, apps/mobile/src/RegistrationScreens.tsx, historical/217a79209e1214590b5c783a601bd3754b05593554d479c2e70635a7f88b2d49.ref, historical/5c9f92c0adf899723a1f5254ae40cb8d324029412294510a62617b45a8f07021.ref, historical/56586c8086bb49a7b3f8ef08ffb95cadff955a315d14f74a6f0188e666c446a0.ref, historical/8618a3191b1d1980c029fa5891534e1b996cc393c718e9514c39c54b7548d208.ref
+
+## APP-197 — Ligar gerenciamento de vínculos ao Android conectado
+
+Estado: done
+
+- Boundary cliente admite somente busca/equipe e link_patient/request_staff/approve_staff/revoke_staff com payloads exatos; mantém envio/importância/convites bloqueados
+- Mesma sessão revalidada/gate/Keystore/privacidade fornece busca, vínculo imediato de paciente, pedido sem convite pendente e decisão do próprio gestor
+- Testes reais com fixtures sintéticas demonstram autorização por empresa, pending sem inbox, aprovação e revogação efetivas; sem SQL de ativação ou dados reais
+- Confirmação de revogação fica na Activity protegida, cancela ao sair/retornar e não executa intenção antiga
+- Candidato Android próprio validado com hash/versão/limitações, preservando Phone4 entregue e evidências anteriores
+
+Próxima ação: Fatia de gerenciamento demonstrada por cadeia sintética preservada5→6 e entregue noPhone6 privado, com guia/hash/evidências. Não repetir continuations consumidas. Cadastro normal pendente; convite/identidade/representação e envio têm gates próprios. Relato físico6 ainda não recebido.
+
+Evidências: historical/b058a2e9a53ea064d87a9977388988d889f3a8d5087d4a4604bf4ea40c0de0a4.ref, historical/9bd674125b80562eee3b8d10aa4127f66bcbee9db6711bd034d1ce30894a8a33.ref, historical/66cd148bcf608ed96898d27d274c76b74983e6d5d213581fc1c0509e6fe2e126.ref, historical/24bd061e8107a7dbfd74b4e60946d32ed4a211b5845b2a78c35d6350469a6eee.ref, historical/850634684ce5140fdf327b5bf5cb69005ecb829b74da1ae6a6bee03e98c78211.ref, historical/d97eaf1316dcc047b38fa56b0a5cf5f4fa8a9da0c5a370fbd93450c06a9cbc92.ref, historical/3876b2075295e6307cbdc35a6ca893c396d4f3c5668c545034d2c739128bca1a.ref, historical/65c7319b173a6102e4a0ac3af99f57b6a31588f6b796863df255fa9968384fda.ref, historical/18ec7c57a6b880409a5f2469513480b7e1c663f6c7edcf7185495d39bd373e85.ref, historical/71653cb78f063d09cb6dddf9f58b49a4741a7a432cb14ddb0488ae6a779d1afa.ref, historical/baf25f50612189098f3a74b719a0892d6b5ca6f3b2f9fe41939c877c4606c8d0.ref, historical/b810a0366e9966e3d94cd49c522a51686f85ad5682ba8f587610d325d0101977.ref, historical/aa83946caf9d5a8076afd48bc211be2cab258ec2325d950cca4ce632ff822a78.ref
+
+## APP-198 — Mostrar e ocultar senha com controle acessível
+
+Estado: done
+
+- Login e criação de conta oferecem Mostrar senha/Ocultar senha com padrão oculto
+- Alternar não altera senha, não registra credencial nem remove proteção de tela
+- Envio, troca de etapa, logout e recriação protegida retornam ao estado oculto
+- Testes de componente e próprio candidato Android verificam alternância sem salvar texto revelado em evidências
+
+Próxima ação: Alternância de senha comprovada nativo5 em login/criação sem registrar senha revelada, quatro testes componente. Mesmos fontesRegistrationScreens fixados noPhone6; manter verificação física6 separada.
+
+Evidências: historical/de69d8570c12247186159d6af82f5fd8858ff7a9ee13eea1cc9b56ed6c565597.ref, historical/7e34b4ded3551f10e9e58a2c1e4764dda55c84d2564d4120266627b2f344b9fe.ref, historical/66cd148bcf608ed96898d27d274c76b74983e6d5d213581fc1c0509e6fe2e126.ref
+
+## APP-199 — Preparar exclusão da própria conta com confirmação forte e retenção revisada
+
+Estado: in_progress
+
+- Mapear conta/Auth, vínculos, representação, conversas, documentos e retenção antes de habilitar deleção
+- Reautenticação recente e confirmação explícita vinculadas à própria conta, com invalidação por logout/troca/background e uso único
+- Ação definitiva depende do ato final do usuário; testes de desenvolvimento não excluem contas/dados reais
+- Backend usa autorização própria e trilha restrita, sem secret/service_role no cliente ou promessa de apagar acervos sujeitos a retenção
+- Nenhuma simulação/port sem backend é apresentada como exclusão online disponível
+
+Próxima ação: Ciclo de vida preparado em APP207:21 testes novos/15 regressões, sem montagem nem exclusão. Revisão de impacto APP205 permanece preparação. Antes da integração, aprovar política/inventário por categoria, revisar plano/recibo e implementar executor/status/idempotência autorizados, UI/reautenticação e confirmação Android reais. Phone9 preservado; nenhuma exclusão disponível.
+
+Evidências: docs/architecture/CLASSIFICACAO-E-PERMISSOES.md, historical/e8e9f31bad1e5f3ea97afa8d8d67317c2e53c63661274a386e8f0b222305ed94.ref, historical/1cfca473e1e9c5a6d4b04c6406542eda7adda41317e81fb68ae492b18df1d106.ref, historical/7d3c59b74550761ff1b58f1fe04b18e241d3e23fd8779b60fb2528289443db7f.ref, historical/d6afaf9eb9ac9998f37ad98937ea6f8c8ba6d4e9c64ea7ec52e5788f0b0f0336.ref, historical/274c66b31d9729580a69226ed9bea398e495e262ac27106faa609e22fba70c18.ref, historical/73bd8208412610dd89faaf37045c43c7863fc8f0c026dd2695dc7dbf862d48c5.ref, historical/1168ceae156b8aa961db2689080933d63a0bfa820f0d698238550d1973f63859.ref
+
+## APP-200 — Disponibilizar interface web de testes e evoluir versão para atendentes
+
+Estado: done
+
+- Preparar interface web de testes sintéticos conforme novo pedido de Lucas, sem interromper a frente CNPJ atual; Android permanece principal e validação web não substitui Android
+- Avaliar reaproveitamento de Expo/React Native e adaptações de sessão, navegação e mídia do navegador
+- Validar isolamento multiempresa e papéis nos canais web/API/Storage sem reduzir garantias do Android
+- Avaliar domínio candidato connect.resicheck.com.br, hospedagem Hostinger e custo com pesquisa atual no marco autorizado
+- Não implantar, publicar ou alterar DNS por criação deste item; domínio e hospedagem exigem revisão e autorização concretas
+- Usar WhatsApp Web como referência de lista/painel de conversa, adaptando identidade e fluxos próprios do Connect; não simular funcionalidades indisponíveis
+- Antes de habilitar gravação web, substituir o bloqueio temporário de microphone por self somente na origem HTTPS do Connect, mantendo câmera bloqueada/raiz intacta, e provar política efetiva/herança e captura/permissão reais.
+- Reformulação solicitada em 16/11: todas as empresas exibidas têm ação coerente ou explicação; navegação e conta funcionais por papel, conversa apenas em sua tela; testar cliques reais em desktop e telas estreitas, preservando rascunho e isolamento.
+
+Próxima ação: Web27 publicada e validada no domínio Connect. Preservar raiz principal e artefatos anteriores; acompanhar retorno de Lucas, sem repetir build ou publicação por esta etapa.
+
+Evidências: docs/product/ESCOPO.md, docs/product/WEB-TESTES-PLANO-2026-11-12.md, apps/mobile/App.web.tsx, apps/mobile/src/web/browser-lifecycle.ts, historical/5695ca3f0674b54261fc7bc773e808cae35aa99933a652362f4427969cb51576.ref, historical/e86b3ebc8fec62337d661c72e5d1f3eea4bbcc9f205b44fe07d97b82cbc94cea.ref, historical/fdf6f3810f7cfd7a753664ce1151f194cba9152d59054f05644d86895898bea5.ref, historical/a15c969b96cbbee2c61193f0ee09bd8d6c1a56b4a97eb86129fc7a3d3d029303.ref, historical/611cff93e3be572240dbe1d84eb00faf389c5dfe3f635d63a6bbcb1de5e35551.ref, historical/d334a15ad8b64a71853a8b3a1af994cdb8e7ca1d12e1d05b2238c256f9533c0c.ref, historical/35ec1d274407302c0017b0c004140ffb6ee5ddd209b18eae322d31775be163e5.ref, historical/433390f8dda3d48cd11b4af38ec503640ddb769576e82bdd30865e39e12082e2.ref, historical/488d840d3128b192daa92d6a97ad10d233eeea92c7dc8b87ee8ae3e57660b22a.ref, historical/3b2348f6f29dc5c7fe0de21fbf4d0f27bfc08880090fb6255ee0230b5fdcb03f.ref, historical/b1aebcfde6b11a9763e384219819ca360c95020b79617ca79b58f7301d392ced.ref, historical/c374ec4ff7a96063b5b2bf88b27aa02526fc3be5ee1da7a0670a1e939f241dd3.ref, historical/8432e1710ad09dc281b7fef6293aac34996c43a3bc7801ac3ba42741066a0be2.ref, historical/5b961ef2761340564fc2f6df5196afd79f5c438dd5311472dfe59b02ac39efb6.ref, historical/75e0f592ba5666d4b16e08959388f1e1b03dea78a03531ad1c79b420be969911.ref, apps/mobile/src/window-attention-events.ts, historical/8f0aaec82195ce6d2ef1a91bb33e3a24181993fa8ff44b9e6ebba05c2c27a83a.ref, apps/mobile/src/web/connect-web.css, apps/mobile/src/web/styles.d.ts, historical/40cf0c7ef59889fe41448c062192efc08fa20efcc8cf0674e70c6fa06d978c76.ref, historical/0768513cd426a56a55d5561c6713b7b05b7e464d5e3834c7058a13b01735d325.ref, historical/65823eda0be8dd4287427bc7b6a9cceb0af220d7850cf302d56ef765e71e1f71.ref, historical/4f7bf83edc4160a5e89d0731f4b6d75cb7896a981aa60085d04cba1dd86c96d2.ref, historical/acfda7769bb7d359f6901f9e3adc46f130e3aafda4dcc3252bcf8484bc63b610.ref, historical/1604a7f08b5e258c7a5bf21bfbd5d4fb8fd887d25695fcf6a8663e3b6664ab22.ref, historical/a2e6ba7dbe5b5be73ea9c4f30c53fceecce4bbe23fd782c58b8976c6bf8e2a72.ref, historical/9ae28043efb7440a3b6877ae50b23c00975769c0717de80aabda6c990fb2c8fd.ref, historical/32d0c402d114a9dd242aab9289b4e20035331b5b6fbb4e4a858de4b29ddde993.ref, historical/3101c84b2c00fc74cb0da7599acdaf53cc5433750ee7fc22160db4416850bdad.ref, historical/456ab7b33a2fbd16edcfe35c382da9c68c17f4d14a2eeaf920af71f86c9ab003.ref, historical/cf6374e787a1ca670f5257c37778c6732923bb4ffcc0cadf38c7d01700db8771.ref, historical/2871bebcbc3d9861baf131f85e218016eb3aa0377dd0cac905572bda14447656.ref, historical/81f586bf608921eb825e581a3e0157583753ec8bd4d66dbd2ed39bab99123869.ref, historical/8c34602da862ce3cd05ebab723bb2f56a067072da625529b0e0c5b66acc5f78a.ref, historical/c49260d9e0f8cc2cdad3ac0d872fc2c76239ebb7c5538688b0f35c92228a90db.ref, historical/7c40040b81872fa00c0567ba24367b43628688935cf971cd6fa4e3e79054b1b4.ref, historical/fef384cd6294425e833897db391f325f5fca12d6aed5ae1e99fbeab4663449f5.ref, historical/15cb9f436d2e0f627e54ec639634146e69dfaa1f30ffe50f6051970045953ca8.ref, historical/f895bb763944badf6849475262cc861d7e07c9a1a1db0e3d1425f71c2ddb715c.ref, apps/mobile/src/web-composer-keyboard.ts, apps/mobile/src/RecentConversationView.tsx, apps/mobile/tests/web-composer-keyboard.test.mjs, historical/f34da2806b1d2e928934aecc40f3841f0436557c9283a219c974cb73be796beb.ref, historical/6540acf69e0bb9be43a606690d7d16b8da12bcf4e38a41444effc1a1e159dd1f.ref, historical/b42ab58a4cf48d2a970f06d8156d29fc859ff3ea2f68ab298bb2634e4d227c55.ref, historical/355fa0e99405df8677110c8b72a8f88f708bafcdb97d9be8c07141cf4af9a984.ref, historical/d3c6a01a1548cd578e53062af7b77462c2c0e6f841e6abc91c14a02e486d4571.ref, historical/07786b885c87191af372b64f3428661ebef94c837ed89b8282f2d927adfe915c.ref, historical/c1168ac6caa266466f1a8888aa5f93c24854cd7313c6cb028fc031d24e526196.ref, historical/de9fd5f958a134e15a518b5b573752ad3ec18333fbc7aa0bd504f227988b0388.ref, historical/d529de2a67736057638d3f7aaee2ce17dd89e7038ee5e508bf7f3724084859d6.ref, historical/0c084351d618bc572cbea0ca54c78578e7e12745e559023d4701846a9905da06.ref, historical/690aaa3ca3f069dcee9d01376ee4a30055269c49fbd05dd085c93ca2e607ceb5.ref, historical/2281da6da6136e9dc1245f6d311a66ad7ef3e7715e504dd1d66900e0dbc40d1a.ref, historical/6189310e4e3b62ebf35bc1208f1709a4ac1642e6cb1568b5023a741bf88272c6.ref, historical/5336e9f1869a9e9483bdbf8cef07ac600e07b57ca3af750acec0a9696a5f2115.ref, historical/cfc724edbb2557435fad96900ee3afc2f6a70b2c54299e3814671485f452e00f.ref, historical/f603de601f0ac278cc956edbeabd5ae1199166b8a7fd6afee598fa3b6ab1da86.ref, historical/19eaf037d7242b3c8aefda999b749e0b34923b78d53e0378ff453c5efdb57995.ref, historical/a2fd4c4bd57b782fef60e91d3b5ef282efe585aec412981ee36ebaebc0742cf6.ref, historical/43eb3d6fc9837a81759b758be6dc4a69a5a20a050bc014e27d5e63245ac52518.ref, historical/5ec889e308fd3b67399121e6161de1259ae5fcf12f7be9be59223604bd970540.ref, historical/475f7a3718b001375405925a51da4ea6abd8949de737e9caaf9344ce0ef42d46.ref, historical/e9f27e410db30f92c01c6f88cc3f7f206fc9618df529c49cbe78279eeb2e28f7.ref, historical/ed644eafe0d12ac7023c973634bf4c60e011179668baa04877dde10dccbe8b62.ref, apps/mobile/src/MembershipHostView.tsx, historical/bc6147aa530366d48412aa6f8f3191ea67246a662da263e23547727c9fc046bd.ref, historical/55e8bc2c330ca361739494419ed52b67f74d9bfd1e59e1b3391e92b102c0e691.ref, historical/048d6ced714f69bec086d0e5e361335030997134758efa38a27771185fdbbdab.ref, historical/ea9c84b6db10dd50ec99a724bb633d3e683a666fe5983f648a7be3bdbb38cd5a.ref, historical/56de9ebc589eb994ae0130f7636c4249cfa8f572d53bae90e3034d29becd2429.ref, historical/d7e82f9474c105350e92ba2b76811b6bf5e47af4baff91751e011271d9e29a78.ref, historical/9dc9c4acc16bcd6f19fa10a01adf60c38191b0bca5a47cae9246d3f2a34369a2.ref, historical/cae440af3d1543779307471d31b93470f0040c5bf256fbc5e3f5cdedf207bea5.ref, packages/chat-client/src/recent-conversation.ts, packages/chat-client/src/text-send-queue.ts, apps/mobile/src/membership-recent-bridge.ts, historical/074826b80bf374a37ef79ab5604f41d1a017a316ac023159f45167c269282d0d.ref, historical/227e0bcbd219afc7c811bb9d827aa53f1a014fa847c87205a780c34a4b06a3ae.ref, historical/89d26c274986f02ddc948900f1e9389fd8c84094e7981c4d2e397eb6a4ab3cd0.ref, historical/006916dab98c647c57f9951dd4dc05101e55b983495f4c472e073019db0a2bd7.ref, historical/d337b935a13f9e3e4cc2bbd1248a887c7def4b93d83726192e75cd84a50a7ddb.ref, historical/19db79d6a1c4c95d08328b29f98a24abfe964809008851243e23f436761d5dd8.ref, historical/58fb57081e4bccc3b3e27fd67cdbe617ac0e7bf9554dec0941b8e597cc3b9c02.ref, historical/47d2c87a4e89f3335d9fe65566ee85b3feb98cf444fac0f0875d46ae7084aa04.ref, historical/27a07ecbf2c897da82f3700cb0ff40ea1a0f95c19edcf30eb1787f08c0f53646.ref, historical/c5f94fa143e8ffe39ef734f940dec2bbaab60b64bfd32a9cb7d02fb05c22b786.ref, historical/3a15223395adfea7314cd506095c3ece06051c844d760c8e7ba6173f81eb06e4.ref, historical/d2f6f1ea5cd5bdccd332e2678f085237015b8816d1ff54efbf99688eaa8b2f14.ref, historical/fa6e608444f4e1a5e7d7371217e6934d3c18eb07883d6ba5c61206fd93c10df6.ref, historical/de0240c170a7de825c3280f681047d0aa1b3c106e5512d2d647907caf68fb3ed.ref, historical/6340ed7cc629b9bcb5d87191993ffe2ad70fdb0449879c392fbaa822384f360f.ref, historical/e98a4a3cd79bcad25b11bea7cfba4577698e44248930f5a6685dc334c20557bb.ref, historical/ff38e941f83a6ccb021b7f179091b61c0754688deb7e6f981128235133d41ee6.ref, historical/cc7cc2285c617958ab56a55553b1a76049216cc26e26afedaa2b019902fa05c3.ref, historical/57a217b189b6a95f820cf502214dbef3dd9001ac36f5ab173ee72b5ea17d4162.ref, historical/6289534d739eb510448fb0d24d3a2dadf5e4e957a16c10d365cec40d6c1cd0e3.ref, apps/mobile/src/web-chat-return.ts, historical/4044267f483e497a7054e5222c13e21df61a4f16906c757e5cc18ce7c71fa06a.ref, historical/c0cd752872eb9ebcd378356ed440ec74e53132ac232ce7b00349cc28d272bf5a.ref, historical/aa550235602a3b993a46d21c6941a19b334063b9ed04d9912679a64c672b7dec.ref, historical/042205c3a086de513bd3a515ad571503eb87d27d6c2e1ad30d761d25fc4ee77b.ref, historical/9bd97be1f5a6e70b8aee7328c668ff8695a1f027807e6f41da40395443492623.ref, historical/2c1fd13c775c7a8f9a5a8e495e38b9bde7f9e63d99524d4196af8dc4b7ad5fdf.ref, historical/6803c29767650e766c99b1fe5e49e8b8ccd2c25353ec40953495050f5d013f03.ref, historical/d08c558fcc9605ecbd32aa3776bd2e8f99780fc0a2f5c018e7824cafc38f8218.ref, historical/359d48f654c421303a5f3d0280fd49452d637298d5991e8a316c5c75dcb8c04f.ref, historical/2831c5a41ac40ab17caa98099b7f026bdcd64bce74371d4cda8c600b3723f2bc.ref, historical/8c41a8ce08b46f872daca06f2c1577429c2774436b60a0d793fb0f62375233e4.ref, historical/0702bd26f6927466e7bda2295a3c62393cd02e8e15fea869ed1d84a2ea46cb25.ref, historical/7fe9611ed9b72fbce862b66cb3f246b2f21a200359e675ac5bbcc90bce7f4b6a.ref, historical/72d2279fca8e9fce6805f9acb31aa9424721b605e8ba726a6658222e6d617031.ref, historical/b6780e0c37fd6db8345feb006d76d1fc66236d7a3d6f619159462e7c432c2696.ref, historical/01ebb3df80b1d4308e1069bb7bde12c5889d073f1937a7b20b67eb034b9cdd57.ref, historical/eceddc343a7d4fbcf80e89f52a9bcd5a1915d71294c719645a59c1faead6abab.ref, historical/d0189a1a38cc915ad7d1a2e6a76997390fdd6a6e2b5ec8f9b92e25d2c467b103.ref, historical/020fd9a52e94e7004dbf25cd038b9cbad238bcbe8af486f22a39b2ac518753c5.ref, historical/a04b28c5bd53475f1a8302cc9cee330c3fd0ddb25b0c60bc75e43db8fb2a1bb1.ref, historical/55c31bd2d85ea4666454910eaba94a15fd8b9eeb22594bd694025ca7bf3f8f71.ref, historical/63c81f552499c8c99739d8b5cf47af8b879a01512ac4c0ade22425edd65b8c0b.ref, historical/0fe1f66539279148e996cff6a031b85fed5f12d29650826dd1f9cba58adcaa61.ref, historical/056a14eeb91ee3a3b55633d1321284b67c5ec24b1ffee11dec8a08d1c5401eff.ref, historical/62a3bb29a8fff2886d324d027ec10c22e3dbc94b9a81e9c38445fa2c129e51cf.ref, historical/2839ff0820857110c286d4396d9903204d5dc3345808becae1591ff7c0d57627.ref, historical/1a3219ea9657803ddc4a1c7619d33325dc69c2274d0c42b294bb9098477fba43.ref, historical/5473ce1aecfc2b651e75f52866a34583cd6a12f3ac8a581c2e9875a38923694e.ref, historical/fa903dd693863bfc7cfa471526cfa3f688d4ef2716a7db23e1e909f42f800c43.ref, historical/8854466a42298effcb201fcd582d99c7110c26b5416617a508958f141500eddf.ref, historical/d1ace4ba5b872c0f2dfa45cf96120b1c0658b3eda694917848b558bfbaa7ea8b.ref, historical/001c0ab8e8c6e20b611b6a62ee6e2e418234a1afe912f0bd856c1d12d9709e33.ref, historical/5a1619b5e8923cf9b63ed8e054f5534e601c65f81f9dae004066b5278907fa50.ref
+
+## APP-201 — Recuperar sessão explicitamente após falha transitória na restauração
+
+Estado: done
+
+- Provar falha inicial offline→online preservando registro cifrado sem exigir senha válida novamente
+- Retry explícito e single-flight com geração/sujeito capturados; logout/dispose/CAS invalidam resultados e não reivindicam dono novo
+- Refresh rotacionado com commit pendente não causa novo refresh cego do token anterior; falha permanente não finge login
+- UI oferece recuperação somente quando válida e não repete cadastro/escritas automaticamente
+- Modelos e próprio candidato Android com Auth real e rede controlada demonstram falha, recuperação, logout e isolamento
+
+Próxima ação: Correção comprovada no próprioPhone6: oito checksAuth/API reais, abertura offline sem dados privados, recuperação explícita uma/sem senha, logout/restart eB isolada. Modelos129sessão/856mobile/TC. Lote6 entregue; aceite físico6 ainda não recebido.
+
+Evidências: historical/aa88ba84a971bdf3124262c36313cad6f14c0d6693fc584f5f1857dee8720c49.ref, historical/0fa5e4752284d4f93298c4b8717bbe425098fd72c3c576c76085fc273ec6cc0f.ref, historical/ec477bbd67cc0c50c7bee296cf77ba1dc6da0487c44a929df38067a7f1ba5b26.ref, historical/b2a6ccbc957aabefddf747e1b228f0a71bd1d985838b466273494ac148e56dad.ref
+
+## APP-202 — Revalidar acesso à conversa aberta e limpar janela sem confirmação atual
+
+Estado: done
+
+- Consulta de autorização usa somente GET existente de conversa e mesma sessão/contexto, sem mensagens ou mutações adicionais
+- Na montagem conectada, janela visível revalida acesso em intervalo limitado; negativa, falha ou timeout fecha a capacidade e limpa conteúdo
+- Timers, chamadas pendentes e respostas tardias são retirados por background/logout/troca/fechamento, sem reiniciar paginação ou reabrir conversa
+- Modelos provam os limites; comprovar integração HTTP/Android antes de oferecer novo APK e distinguir polling de revogação instantânea
+
+Próxima ação: Fatia comprovada no próprio Phone7/API36: cinco checks nativos, positivo28 mensagens/16s, Home sem senha/nova seleção25 e retirada observada até9,13s após logout global com GET vazio. Modelos897/308 e HTTPv2 oito checks, mantendo falhas anteriores. Lote privado7 entregue com metadados relidos; não equivale a tempo real/produção nem conclui envio bloqueado.
+
+Evidências: historical/078249e2823c4d1a16321b0eef3066a7ea55ac52ca9a1943b9571f58891adca7.ref, historical/f5724b4f3b50a852fd50b2514e2e70838c926824101f9c55d7c368e67ff4f681.ref, historical/2bc94ee6dc49fa9b975f9d410459d402fefba25c7aa8369edb3e090be82594b9.ref, historical/5603f31cb9757d61ed683ba170febcef1a3bed899c3aa387f2dc082523c771b4.ref, historical/896e865399a31b78048e4dc09bd690f293326a7561db88f5d31463371679ae3b.ref, historical/71ada6a4a486583826e09300b222167b28019f72ffb132648a86665877da6cd6.ref, historical/821b5a8239ec49da6548590ee94dc29e76da5c8e259fa36022f649d4cb2dc624.ref, historical/5ddbae9006c069f5cbaeba281a803ec1b5b1ae2096d83645b7afc8dc25a6ec1f.ref, historical/77c91f9edb53d97f38eb490bd33c994cff9716d8d1d91fe83b59785a97d743b1.ref, historical/59954b726fac8f0914bf56531116dc81e8529ca041f7d01be1091694b717687d.ref, historical/9842cdfe2f87bcd3c818c13d61894aafb2232322b4fc61296af25a0809ba5aa2.ref
+
+## APP-203 — Preservar avisos públicos seguros de autenticação na entrada
+
+Estado: done
+
+- Avisos conhecidos de credenciais inválidas, confirmação pendente, expiração e limite de tentativas chegam à tela sem expor mensagem ou diagnóstico bruto
+- Re-admissão usa apenas igualdade exata com a lista pública existente; valores estranhos, variantes e objetos retornam mensagem genérica
+- Testes de helper, host/componente e candidato Android proporcional demonstram o resultado antes de oferecer mudança como disponível
+- Não acrescentar recuperação de senha ou confirmar identidade por inferência; essas funções têm fluxo próprio
+
+Próxima ação: Integração demonstrada no próprio Phone8: uma senha errada exibiu aviso canônico e campos vazios/ocultos; login correto limpou o aviso. Sete checks nativos incluíram consulta/Home/retirada, com943 modelos mobile e subsets já incluídos.51 fontes congelados. Lote privado8 entregue com metadados relidos; demais avisos seguem prova de modelos, sem provocar limite ou prometer novos fluxos.
+
+Evidências: historical/7cdb94454a4808d9a1146313827744014f53cde6150a636b291f982dae97cb7e.ref, historical/ae3d4c28d8b334584405da7d9c649c26d8fa6e5965022e827b6e6fefd66c19a4.ref, historical/3ce0cac231f55917aea45f4934cb0baa169c14b6a95b10034e015ce96e727675.ref, historical/1fd6c388e31922c782b6c32f96ec97b4b1dca5a066f560789e4f03486edff89d.ref, historical/20060edb757b287dfe5b7b512c03fae873f1c2485af53115e77941b0b27acf89.ref, historical/f7a6981827509e6b2e8db58c6b3e05c65df90bf97993e3e8b92f952112f4c284.ref, historical/873564e4b0fa41cf5d4a6ea8102ef0921e0ff4e0c9e1fc77e4cebe2eeb7f86e3.ref, historical/4c85123b0dce66fb8cc41b7fdf514d6b1145a3a2785f1b195c7def56699919bf.ref, historical/4cd40a3518a4b467f26634790dabb0181d0978ea2ed3b4e383722ec0c28fcc9d.ref
+
+## APP-204 — Recuperar entrada após expiração local com o app continuamente ativo
+
+Estado: done
+
+- No máximo uma recuperação automática por sessão local expirada e somente em foreground, com owner capturado e capacidade existente de restore
+- Falha encerra o orçamento automático e mantém somente tentativa explícita válida; sem loops, credenciais repetidas ou mutações de negócio
+- Logout, nova conta, dispose e mudanças de geração invalidam o resultado; restauração não reabre empresa ou conversa anterior
+- Modelos e integração Auth/Android real distinguem expiração local, negativa remota e erro de rede; nunca tratar relógio simulado como TTL real
+
+Próxima ação: Critério de coordenação demonstrado em 204 testes locais e Android/API36 com Auth real: QA prazo LOCAL20s (positivo/sem rede/manual) e próprio Phone9 login/leitura/Home/logout. Phone9/build9 entregue no Drive privado após autorização específica Sentinel_c478f8d0d9d481919661166a460ed907, com APK/guia/ZIP verificados por metadados. Prazo JWT natural1h, negação terminal nativa, ARM64 físico e demais gates de sessão/revogação/homologação permanecem separados; não declarar produção ou chat de envio.
+
+Evidências: historical/7cdb94454a4808d9a1146313827744014f53cde6150a636b291f982dae97cb7e.ref, historical/ae3d4c28d8b334584405da7d9c649c26d8fa6e5965022e827b6e6fefd66c19a4.ref, packages/session/src/auth-controller.ts, packages/session/src/foreground-recovery-scope.ts, historical/c204d0e75c02c88e73276e7a3569b0b929d3f5e7375774937cee6868415d55ef.ref, historical/15785e4e2d42b96c4f4c18245faa7a15ea2f2b59a309d9791dda33a04f8ae81a.ref, historical/49e67005e154c552bb37ba39d296a4b6c09c837ce82bf2310145d82174678382.ref, historical/dde27bdaa0a1a37bd4f36414aff9cf3cecd29d70137173075a133ad9d693624b.ref, historical/f9c6a44222db4ba5e128c541cd77f2a727569425c2b2448b447adbbc0dec03bb.ref, historical/e1bba34c7b7bbae0ae4c099d768bd1638f5ef289f2c9ca7f4e869964577d9d6f.ref, historical/061b2746cc6637d34394c0892467d28ee983f8fbb971369b1148c748455d0633.ref, historical/794e16ed3bca027065dc59ae2a61114a21ed6cec6100ef071baee0e08122a2fb.ref, historical/b37c1adda45926f5ca929321c83d1195ce0276e0b47e10d64bcf52b6b75f965e.ref, historical/418452a5c7482658a692d9edb609eac29e9b8dd2e630cf7bc8b2313ed03a3014.ref, historical/fa8be7d72dbe6017e19548d6e26ecfc9e5e555af9a1e10768c262cd5dcdfa48a.ref, historical/eb33f4ca31e0588214d4fb1f869b0fade7ce9a124f48b23dc8b5875b59c4d9ad.ref, historical/4d48f6b905a69d838495692190fb305e77eb7de77be57c53435595247f0541c5.ref, historical/4e227a7018cf7e21e2561e572b2f192b355eb1c100dda7ca4d8dbd6d0b0cb8c1.ref, historical/28dc9d6c7fb8b8ef9b85757617a4b9c2199caccd116f61d82f7ff93615aebbb8.ref
+
+## APP-205 — Verificar coerência do inventário e da retenção antes de preparar exclusão
+
+Estado: done
+
+- Módulo puro sem I/O, executor, credenciais ou callback destrutivo; resultado nunca autoriza execução
+- Inventário completo por categoria, sujeito/revisão/política/escopo e datas coerentes; omissão ou revisão vencida bloqueia
+- Conteúdo compartilhado exige decisão própria e proteção de dados de outras pessoas; shared não é motivo automático de retenção
+- Retenção exige referência revisada e limite por data ou evento com revisão; não inventar prazo legal ou guarda universal
+- Testes sintéticos cobrem lacunas, troca de contexto, último gestor, dependências, Storage/backups e nenhuma mutação; não apresentar como backend online
+
+Próxima ação: Preparação local demonstrada em 86 testes, sem I/O ou capacidade de confirmar/executar exclusão. Conectar somente após política real, inventário autorizado e plano/recibo/serviço próprios de APP199; Phone8 não mudou.
+
+Evidências: historical/7d3c59b74550761ff1b58f1fe04b18e241d3e23fd8779b60fb2528289443db7f.ref, historical/d6afaf9eb9ac9998f37ad98937ea6f8c8ba6d4e9c64ea7ec52e5788f0b0f0336.ref, packages/access/src/account-deletion-review.ts, historical/22d2a0a5bbd65f138c9082e35e8845a107739cb895aaf88a3f1c032e2eab7124.ref, historical/274c66b31d9729580a69226ed9bea398e495e262ac27106faa609e22fba70c18.ref, apps/mobile/src/account-delete-review-summary.ts, historical/918a917215129257cc5c2fb79d09e3472dc3398c987ab657943d3dde5e119762.ref, historical/355251b409483a7634fb5b6c0461b90a8e43bacf47dc32adc51e64ce302f7c08.ref
+
+## APP-206 — Revisar apresentação de envio, falhas e reconexão com estados sintéticos
+
+Estado: done
+
+- Projeção pública de pending/sending/accepted/failed sem exibir diagnósticos brutos ou afirmar entrega/leitura
+- Timeout/rede preservam incerteza; ação de confirmar mesma tentativa é distinta de atualizar conversa para resposta inválida/conflito
+- Offline/reconectando/desconhecido desabilitam novas ações; voltar à disponibilidade não dispara callback nem reenvio automático
+- Testar componente real com snapshots sintéticos e callbacks de contagem; sem transporte, HTTP, SQL, sessão real ou investigação de autorização durante espera
+- Não alterar as 51 fontes do Phone8 nem integrar envio online; APP151 e seu harness/SQL continuam bloqueados
+
+Próxima ação: Apresentação local demonstrada em 21 testes puros/TSX e typecheck. Conexão é observação injetada, sem monitor/reconexão reais; zero transporte/HTTP/SQL. Não integrar envio no Phone8 ou ampliar escopo antes dos gates próprios da APP151 e validação Android autorizada.
+
+Evidências: historical/28a0a0f94b932bcbc4f16ca198ffc9440b49eccce0f1760020f9501b90e00ba0.ref, historical/5743e53958e427b9511766d75f0e7258212410292ce45220cdd89846e9e4758e.ref, apps/mobile/src/text-send-presentation.ts, apps/mobile/src/TextSendFeedback.tsx, apps/mobile/src/TextChatHostView.tsx, historical/0bf1187ed66989ad324f85601798d8b173c9f4b0df82e0af491a8311c5c78763.ref, historical/1bdb5f58f953bce906e11e526dac7a1879df649a98b0c77877ff5f8eb03c1d02.ref, historical/4453b16dd3466f8c997c6abb31130819685e1a70441ae08ef5be3de8fed52080.ref, historical/47f7c754782cba99db8ad9924c896b105126077cf034d9ce2c023e154b232ca4.ref, historical/61b98af1986cb3fb1f77ed4c8ab3e6ae87383b623c723b099dd8253f82b45212.ref, historical/fe05534cadc7250fe7bc153568585bd99e90c2a8b9757121be8432476a0abc07.ref
+
+## APP-207 — Vincular confirmação local de conta ao ciclo de vida sem habilitar exclusão
+
+Estado: done
+
+- Adaptador sem montagem/defaults/IO exige captura ativa e cancela por blur/background/navegação/sessão
+- Limpeza dos campos é solicitada antes de credenciais/confirmação, com rechecagem após callback e falha fechada
+- Respostas tardias não reabrem confirmação; ação explícita mantém uso único e cancelamento após despacho permanece incerto
+- Integração com controladores reais em eventos sintéticos testada, sem exclusão/backend/Android reais; APK preparado preservado
+
+Próxima ação: Preparação local demonstrada em36 testes (21 novos/15 regressões) e typecheck. Não integrar antes de política/inventário, plano/recibo/executor autorizados e interface/Android reais. Nenhuma exclusão disponível.
+
+Evidências: apps/mobile/src/account-delete-lifecycle.ts, historical/9ab33e0b71b553128de9d368ef12ff935b76efc3bfd1bda7b96f2d5044517cb4.ref, historical/73bd8208412610dd89faaf37045c43c7863fc8f0c026dd2695dc7dbf862d48c5.ref, historical/1168ceae156b8aa961db2689080933d63a0bfa820f0d698238550d1973f63859.ref
+
+## APP-208 — Integrar texto básico opt-in e verificar autorização em HTTP/Postgres local
+
+Estado: done
+
+- Montagem permanece consulta por padrão; modo explícito basic-manual admite somente send_text além das rotas já existentes, com origem/corpo/cabeçalhos/cancelamento limitados
+- Paciente e equipe sintéticos usam contratos ordinários de envio/histórico e demonstram persistência e autoria; repetição da mesma intenção não duplica a mensagem
+- Testes defensivos locais recusam acesso fora do contexto autorizado e sessão já revogada; não reproduzir investigação anterior durante espera em lock
+- Evidência distingue modelos, HTTP/PostgREST/Postgres/RLS e Auth sintético de rede/Android reais; documenta comandos, hashes, limpeza e limites
+- Não mudar backend remoto, permissões de segurança ou artefatos Phone9; nenhuma entrega deve apresentar envio online como validado por testes locais
+
+Próxima ação: Fatia local demonstrada:56 modelos,42 checks/74HTTP reais em loopback PostgREST/PostgreSQL e31 checks/24HTTP de regressão do fixture, com duas pontas, idempotência e sessão previamente revogada. Envio opt-in, Auth/perfil injetados e sem Android/Supabase remoto. Próximo corte: integrar opção em candidato Android e validar próprio runtime/UI; Phone9 entregue continua consulta. Não reabrir investigação de espera/lock ou anunciar produção.
+
+Evidências: historical/23fd90bf9544b865cb9f2c5312c5725bb3cf9f6aae5b014cb0eb1ad08184ce20.ref, historical/d63f094c59910b8552f8fb1d2cb49e236b58645d9135cb3d900ee60ddc4b8d11.ref, apps/mobile/src/basic-text-http.ts, apps/mobile/src/connected-membership-management.ts, historical/dc57cd4db2338138c0a95cf8ddfb31c228f0d2e24fd5e8f55b49c260a653f923.ref, packages/chat-client/src/session-rpc.ts, packages/chat-client/src/supabase-send.ts, historical/f2e072444931d0b88ace69e10e5f52da2ea137426cc73eb9cd9385334b00bcb1.ref, historical/c55809653432b519ba5dff2a821310f7e7aa48670e2bdd8576c4838ff4cb0e79.ref, historical/d15eebb8a796e5cf32778c5cb8085d9ed6a7c9a4eb4502ffc954a4d34ea0d0ad.ref, historical/92c55f8258dccb6374203bab85829d1a54a8c4807ba5332199ca9a4728a2fe24.ref, historical/286581881fcefb6f418174ac87fb15dc45d6a83ee6416d9e5e7f1a312660a6f6.ref, historical/a4a9d98c5070959d9c6e48681be6011b9c70a81dc6d3efb812f65c8be6b0147e.ref, historical/24f29627e1b85e5fa710146dd7bb6ef4d1ffeb94ee17a599f7a1cad4feee9fca.ref, historical/437fca9d532c1d8ca850accfb7189c55b645825e2b35ff4179fa41399a04fe1e.ref
+
+## APP-209 — Validar texto básico no Android com Supabase e preparar entrega verificada
+
+Estado: done
+
+- Candidato Android explícito de texto preserva default de consulta, assinatura/pacote e artefatos anteriores; próprio APK instalado corresponde ao hash inspecionado
+- Auth/HTTPS e duas contas sintéticas autorizadas demonstram mensagens nas duas pontas, persistência/autoria e atualização manual; isolamento e sessão já revogada verificados por API
+- Próprio Android demonstra login, envio/leitura/resposta, Home com retirada de rascunho/contexto e logout, sem credenciais ou dados reais nas evidências
+- Documentar fontes/hashes/comandos/limites e limpeza de sessões/processos; não promover schema/grants nem retomar cenário de espera/lock
+- Preparar lote com versão/hash/guia/evidências somente depois de validação do próprio APK; não declarar teste físico/produção
+
+Próxima ação: Phone10 entregue no Drive privado após autorização de Lucas verificada emSentinel_f1786c03b4688191a2885f080c14c858. APK/guia/ZIP íntegros, nomes/tamanhos/pasta/permissões owner-only relidos; nenhum arquivo removido. Texto real no próprio APK/API36 comprovado; aguardar teste físico/ARM64 e continuar critérios restantes sem alegar produção.
+
+Evidências: historical/5d76d5f852196d75af42f9f162ea4395df30f24f0a5e52a5dff1d10ec73a2a0d.ref, historical/b8a194a7334e6f39c5d5efff47312aa64738d8cec788023f3a04072289a15da2.ref, historical/4729527d371c2ea9cf54b75df5ed7bd5cd54da34765167de2b3bb49a3e993f2a.ref, historical/eb295c42584f06c5a87983497b21930989641ce5a2051ab8da5e552b2070f34b.ref, historical/07077767e9e3c30810abfcebc7b4bc4f943e9646d8592c46747cb9d60b278751.ref, historical/94d5b01afca980256d5110fafaccd7afe72985b120e03dcc03e998cd69892a5f.ref, historical/cb9342300de037a15fb69c8315edcdf652b51f9ccd67bd64b4cf370f9a0496f8.ref, historical/31146091af0c08831d17a997c0f92dbdac90eef45d65c6ea516704b95b64a155.ref, historical/a14f8bade685a946a2df8b0e751462d99b0ee7217274ef2cb2d643996f43c960.ref, historical/ced946ed666e01c472eb1b3e4787ea9c1838902414511984fc4439b448e6ff61.ref, historical/a3a53aa8a96f207442af99a75a4f4b92e94c1a70779a147c5500c25775ce7866.ref, historical/37f86d87b9f9700fe544510e8836d90c9c7b98e1e822abaa7c3af5c586a56100.ref, historical/ede0344c3134b5b7e2ce4d325d5ced708ba1f2d091cab0d0dd2e9ca4bb7859ae.ref, historical/ca408e2dbe07029bbed5172719260347ad064687d00f70c23e68bb4b8a7b1a44.ref, historical/a19f855593c1b3157431c4fa88627ff69051063c2d4039002373466f9a8dae28.ref, historical/8d1f8cb609afb1263d1eb338b27cdb919225f9f7d36693bd163a2de47632d247.ref
+
+## APP-210 — Implementar não lidas por usuário e especificar recebido/visualizado
+
+Estado: in_progress
+
+- Separar aceitação/persistência no servidor, recebimento pelo destinatário e visualização; não converter ACK de envio, download HTTP ou push em prova de leitura
+- No chat da empresa, mensagem do paciente fica lida pelo primeiro funcionário autorizado que realmente visualizar, conforme decisão de Lucas; leitura individual dos demais e estado de atendimento permanecem separados. Múltiplos dispositivos não autorizam inferência de visualização.
+- Definir privacidade e visibilidade das confirmações, inclusive se identidade individual do leitor pode aparecer; manter isolamento por empresa, paciente e papel com verificação no backend
+- Confirmações só podem representar o próprio ator/dispositivo autorizado e mensagens do contexto permitido; ausência de confirmação ou histórico anterior não ganha visualização retroativa presumida
+- Interface apresenta estados distintos com descrição acessível e sem depender apenas de cor; falhas e resultados incertos não fingem recebido ou visualizado
+- Validar backend e Android reais com dados sintéticos: destinatário offline/background, conteúdo ainda não visualizado, troca de empresa, vários atendentes/dispositivos, reconexão e revogação; distinguir prova de transporte, recebimento e visualização
+- Priorizar bolinha/contagem não lida na inbox com estado persistido por usuário,empresa,conversa e regra de leitura explícita; funcionárioA não zeraB.
+- Atualizar contagens em leitura/reconexão/múltiplos dispositivos sem perder ou duplicar eventos; mensagens próprias e revogação têm regra e testes.
+- Não simular contagem nem tratar deduplicação de envio como leitura; badge e nome acessível só refletem estado confiável. Recibos do remetente são etapa distinta.
+- Distinguir não lidas por usuário de atendimento aguardando resposta e de recibos entregue/lido; a leitura de um funcionário não equivale à resposta da equipe.
+- Indicadores de Lucas: relógio durante envio real,1 certo após confirmação do servidor,2 certos por entrega comprovada e2 coloridos por leitura comprovada; falha/incerteza não avançam o estado.
+
+Próxima ação: Retorno à inbox e tentativa pendente alcançável estão demonstrados no candidato Android; não repetir por rotina. Permanecem múltiplos aparelhos/ARM64/TalkBack e outbox durável separados. Seguir frente substantiva restante da fila ou fechamento do lote; preservar Phone23 e não publicar.
+
+Evidências: apps/mobile/src/RecentConversationView.tsx, apps/mobile/src/text-send-presentation.ts, packages/chat-client/src/text-send-queue.ts, supabase/migrations/20261106200713_connect_foundation.sql, docs/architecture/BANCO-CONNECT.md, historical/d74a9964ef21ab90b1b167a881b155d9042e125fbe12619dc0dbbe2b73a46ff9.ref, historical/4a53c66aa5651314f03ce29a2a2c5b5f213543dbba140d584566bb83adf8a034.ref, historical/167d354f32ae5cd20af5a77cc4951e0a1140a64e3d1db2f9ffb8db282d1edb14.ref, historical/2c6aad822f81e389de1359eb00667501cddc1716aee8622fce9421bc427eba1f.ref, packages/chat-client/src/unread-counts.ts, apps/mobile/src/membership-host.ts, historical/8e69383bdc0c40d675a37f82f743e5f050146ce444bea308783d6d54bd739f7a.ref, historical/9b2f1f2f4563e370cd62c92afa36980d306f7e5246ed6c6e1f56ec057f92bcfe.ref, historical/e5cd4f7ed04de36c8d895c6e288bf931c0dd618aab8752661dd1bbc68291e46d.ref, historical/977f8bab7def54e6c3790af7aabd3e88d4109f4acf5775a37250375a623c4169.ref, historical/2b9d321d622a8759c54aaea1fc749bfb2dc869874a723924d97ee1929bed43df.ref, historical/b128d45565e2beed02658672c3ddae39a46ea4f0af090044b399b37bbed1dbd1.ref, historical/3a965acd500036b02bfda4d51cb9c100d8c93f1f7dc740e818ad415d6fc1bc13.ref, historical/a847e944ddd54d7bace9136934f9f0783a9e830e2fceaf39cec1f3e0334a9315.ref, historical/30fb868bc7f1434570314ceea8fd8e400b96f80344c68f5b10f7d917e9e4c471.ref, historical/6f718fde3a6eb74ea0595b8eefa441229e0d03ce48ebca5c67b928764547fc53.ref, historical/ae5016890e304928bfadc057472f45321696449c9017eb5ad41dbc9b51f8bada.ref, historical/638940304d8cd980ec085b258bd846cd8394733bda48964f8132465272eb89fb.ref, apps/mobile/src/quiet-latest-refresh.ts, apps/mobile/tests/quiet-latest-refresh.test.mjs, historical/bc123cd475531e83d3f1aebf44559cf015ce06baa04ac94cd98cea87098e1c50.ref, historical/3fab58c24f307361388367e0d108ce8abc83425ad80f6503210488ac27cbd2aa.ref, historical/6c95106b73fed61e997aa4f9bec19a5b0af34adeb21a65b3fd4bd367f6b71713.ref, historical/707325e8b62d0916db56edebd4081bb6b1bdef25ccedd8650121c278d7196c84.ref, historical/6c96cdec9398a8c481aacb2637a8abcba12088ee9f0180424c47f4c613a92662.ref, historical/5d53c707ca52f68a30c0f8a769a1ee98c0379f6d532cd063e2fe29d079c1aea9.ref, historical/f45d550ab476045d5f35bca649ad3ee8f5f575bedff41dc21b17c9540c551d30.ref, historical/b8591d35f638ae9aacdf0bb4058e5ee45e1c5494c14246aa5d153c556909dfbc.ref, packages/chat-client/src/seen-messages.ts, apps/mobile/src/message-visibility-proof.ts, historical/bd4ea8e526bf8d0b491d1705344ddca0fdb3cf0116baf7caf6b1715781400721.ref, historical/8b567d9081836b2d4ca4d89904b4c06c4ccf5ce716540230274aab36ba7995ed.ref, historical/47fe6748ea7462b6c8d0e1c0646949de17a08597adf50f35f75369b9f0973702.ref, packages/chat-client/src/session-rpc.ts, historical/8d668aec9267335e43985e7e713ca17f714e704f28e58bb3f8d044eeed267f07.ref, historical/9351336159953e15b9644a6ba899cf60b3379e15fd2f4b196dc3461edd18d15f.ref, apps/mobile/src/message-seen-binding.ts, historical/af46c22974b33e1050310df63516c2233c7376774935bdb53377f30274c504a0.ref, historical/62f353bf8581e0e0c4f5f513c40ce106e74cf2f4c9ca81a21cf2f3ac594ffccf.ref, historical/f7f1b4c16b93bf3a63e7d1e4bd09c9c265ad65362c04bc3277ed9ab891ede02a.ref, historical/b1c3099a773bc4756a3dd4f4740e4a3168d16605cd085ad580018d7cdb978c55.ref, historical/0898833f9bfd2a826fa1bbdf68c5abd1576410bbf4b0a5dd0662d555e69e21b4.ref, historical/2257cc207ef388aeb4023eaf5a761a4cbd70714d218fcf8b8ced71e797aa81fa.ref, historical/7e1c71e78aca9fa739e2ce6ffef1feb60519ddf8a930b7304cbd7c77939aa09e.ref, historical/921ef0fc1da3f49ea185607e10fe26f99368023f1aa044bf7c8c86305ea3bef2.ref, historical/60eed68e8375f4096312dc9a52348d368fe82646f9427e1953312bdb9a738faf.ref, historical/68b9381d8a35f966985f2436a39d0755a12a97eda1b2b397acf0aeddeaff3b8e.ref, historical/4f9ca99e226eec5e3d1e1424e4f1e1b2a222541f928891663a3528f92b79c3ee.ref, historical/350f9e3906d3530414b646b60d1a7bab1ed58ab596db5c7c1ce4b07a81577bd0.ref, historical/e209a9391fe45255e482c39de54d68844e7de3632dbe793faa71d7d1d2a11fe1.ref, historical/9a4f3fda0f1cddea1cb7d38e5d509e8a50ce63bc8d8d079b08d29b1a78e60210.ref, packages/chat-client/src/message-delivery.ts, historical/3627cc17e181c848573a21b32e52f62081b83788f409d48acc637a9a4322e15e.ref, historical/a2881f9a41ef2ba6a45b0c626d9b6f0888e6290429642f748306a111619310f8.ref, historical/ded90ebbe0637fa0e782851fb35f60d91a6688db71b46434cc9006e801ade4d2.ref, historical/61ea4e0574d0740d387d442a4753ec902474df64718b37ea69c3ce4b4ac26af2.ref, historical/c13205f3428197806a8b7775a450e9aa915ef00095686648599a88b605e10e1e.ref, packages/chat-client/src/message-receipts.ts, apps/mobile/src/delivered-window-binding.ts, historical/0c6e6693344bea80df365bd34df78831f214956fa4381e61a8c12d0fcbff2a70.ref, historical/95aea056a1086411db1abbfbcf17dbdd75c8c5949534a4dafbf5de2825c497a1.ref, historical/73bb52fd9f46b481fe0f3168b08ccfc3768263bc7e3fb069e70f81033ac21898.ref, historical/2e0baaa7cee4a6b3739896e4ecc64a5aaba57d477d27706d4e8769297d1428b6.ref, historical/8b844441cc87fac403a05bd644f7ebe85acb4c377cfe8d3b12391f939b2b2e6f.ref, historical/d2baf6edd8e6dc1028594e4b1e261a077a449d19bace995c8fc0237185e57460.ref, historical/3a946eb920bc3608a85a6be6eba51b9a677815857a69906a2d4f3e0fa2bff3b5.ref, historical/82066739139661815bfbc4d93ad002c133c680c405313c91893c3cf23e5cc744.ref, historical/a2ed348395ff03839ff26eb6c78a1e2196191bfdaa64954e9a95c2a1f70c0521.ref, historical/c98bf2a8385868bacea6fac3e507a9ae8447424ed46787217a9c601fcffec18f.ref, historical/1d1822b156dfa68a3f76dcc7d2b9aaa87920afceef2b8680c2e046580d022a21.ref, apps/mobile/src/own-message-status-binding.ts, historical/b5c271dcda8ccc8fc847e1191338e4cc7d25aba55f35d5b4997e2676b64f45fc.ref, historical/98ccd4d9e20a45b1939a3f3859aa647dce5da15b36eea5d87f51e541f747c962.ref, historical/5e41d3ee6468025a99e55b3e7989ff48991147955b385c6ac4b5f550c0ad93aa.ref, historical/e3ee58a3272eeb2d0a8a95d55bac738c6a8b82b1404fe6bfc35acc854a191ae3.ref, historical/4fc96e9ba81f8326770ee364c2fe0fbb898cb32083df9aada0c9d1802695f054.ref, historical/2624697ae1e3f23ffccfc0e8edf08e6788618874a8c30162da1ff4602a9e0e4f.ref, historical/dfc769161e0a0092c3073b4b2134d21f06b10e53d108c79313dd07c6c30bb886.ref, historical/37c4b8dc30d03de18666c3e7c7735f37709c1f7003c37539945ceeed9b5d483e.ref, historical/4023e0b512e354970edf87d24574717498f5f79a168bff95f85491894d3143ec.ref, historical/47fed9b5b6c117771f92d0b245083a7f6cbe2faab9fe6f68c1aba502f00597e0.ref, historical/e26f85e5779eada0a8aabbe28ab47c71350e4c795126dc445a52c1eb0b92673d.ref, historical/67a65863687ad54d61b1643b9190f4fa3dba1a70ef6f1337f96a3e1c4490d6df.ref, historical/f36d052677d7c953e515c572d0c94f09e671f7501abfa6ef8b20d83a5214c5db.ref, historical/d0c64fe5ef73cc31976276a06f4d491d06e78abbce61111429395f70be0c5c86.ref, historical/4922760dcab982bd4c3281040612e703bc77337cba6dfacd0cfcadf86f572170.ref, historical/87e9b6e7e8d6a777e4ee09ef1fe17bb2db3c94086a1e93d6fed9b6b3e44b1b74.ref, apps/mobile/src/membership-recent-bridge.ts, apps/mobile/src/access-recent-controllers.ts, apps/mobile/src/connected-membership-management.ts, apps/mobile/src/ConnectIcon.tsx, apps/mobile/previews/connected-membership-management.android.tsx, apps/mobile/tests/receipt-indicators-integration.test.mjs, historical/b589849fe80d31d443dcb2ba47b3c494fd158ac938f40aab218e0cc42dd868bd.ref, historical/03e351d7e236d0c6653b3b39a1d2993c40dec795d2bda89f84d2f1e5f3a10aae.ref, historical/5fb57383d814771e997cdef30f3237e75619597cd5857422f7dbfcadd90a4cd2.ref, historical/33a1468eea6351e349ca6bfcc43ce0482b64c2a1087310ce1fe7f439fa2d5918.ref, historical/8db7cc253e5dc4192c3e4cabea6b7866695161282092cdce5f50ecac2040c1b9.ref, historical/9a748d04006f29ecf8f4d195ebcd0dde08d3e971e417d9d13a00169b1673bc40.ref, historical/c6cb73bbe5e1fe6fbdcc2546fd7afb0804d3ae2775f12c249c0f45fd6829093e.ref, historical/4ffeaa6882a79a5951a79f23ade330439fe2fa3efb921fe1fe4be29fc6a1ee5b.ref, historical/496a3f6353823ce9447640660ffcd2c9713aef71ac1d520676cca453aebb753b.ref, historical/f683834ed59c455f40011380d8c5551f8b8e559e88a37a32c2feaac64b3c4301.ref, historical/53835945d5a20a87e1e24182965d793876ee33bd9561af6112447bdad085dcdb.ref, historical/75a39390d54e8a35806a7a60babc937641b3e5417172f00d35bcd4c980f26ce5.ref, historical/d864cc9e9c53970c3465b6dcee132a59d2e6f457f554e12b5080c8bd1cccb683.ref, historical/afcaa4609472f1b4f95094b020d8638791a7b16b0455f2c25b0f266c51042f74.ref, historical/9dee6e1e6b9edcebfd814010ce4c05c43f07ef808537a09918ea8eab90722f91.ref, historical/b1241b444277262af6647469233998b7eebbbe35b9b896e7d928672d8f41f08e.ref, historical/71154fa33178bcbba0d8ab18eeb2aaad7683771ee4ad8d97962e96d1e430f2f5.ref, historical/680e324c185481becb06d5b39943a7a8db6934abe80800aa52755ac9dc9d4148.ref, historical/1f7d53e2f8f34c3466c64cecb698a16fe6ea8eae51f1c7c9bd65410d743c5ec6.ref, historical/99b0b4051bf92b90a3edda9e9abc7a567acd3093c50a44b72b127913fbc9bf74.ref, historical/55ab17bda40d51295765275f5351d583f8ea85d2d650a38fde6307e36060961c.ref, historical/121786151a7e75989a62cd7d4ba1ab4c2d90163fbc52a539b4224e9a03858548.ref, historical/f8ac7be07a6f7ee934b396201175862ab5a83e2a07b198f70e87a27ca82c8cf3.ref, historical/658217eed0da898b821a9cef9ce01019fa52a5cfb59b92fe8878b6ab37aabdf1.ref, apps/mobile/App.web.tsx, historical/9dc9c4acc16bcd6f19fa10a01adf60c38191b0bca5a47cae9246d3f2a34369a2.ref, historical/255be6306c0e5198ec48e7f4265da5aa3d00fede41b1fa4e39490d180f80a278.ref, historical/350656198d065dbdcb09041508896f3cb3136ace30882e5a1f79bda554863ec7.ref, historical/43eb3d6fc9837a81759b758be6dc4a69a5a20a050bc014e27d5e63245ac52518.ref, historical/5ec889e308fd3b67399121e6161de1259ae5fcf12f7be9be59223604bd970540.ref, historical/475f7a3718b001375405925a51da4ea6abd8949de737e9caaf9344ce0ef42d46.ref, historical/e9f27e410db30f92c01c6f88cc3f7f206fc9618df529c49cbe78279eeb2e28f7.ref, historical/ed644eafe0d12ac7023c973634bf4c60e011179668baa04877dde10dccbe8b62.ref, apps/mobile/src/MembershipHostView.tsx, historical/bc6147aa530366d48412aa6f8f3191ea67246a662da263e23547727c9fc046bd.ref, historical/55e8bc2c330ca361739494419ed52b67f74d9bfd1e59e1b3391e92b102c0e691.ref, historical/048d6ced714f69bec086d0e5e361335030997134758efa38a27771185fdbbdab.ref, historical/ea9c84b6db10dd50ec99a724bb633d3e683a666fe5983f648a7be3bdbb38cd5a.ref, historical/56de9ebc589eb994ae0130f7636c4249cfa8f572d53bae90e3034d29becd2429.ref, historical/d7e82f9474c105350e92ba2b76811b6bf5e47af4baff91751e011271d9e29a78.ref, historical/cae440af3d1543779307471d31b93470f0040c5bf256fbc5e3f5cdedf207bea5.ref, packages/chat-client/src/recent-conversation.ts, historical/074826b80bf374a37ef79ab5604f41d1a017a316ac023159f45167c269282d0d.ref, historical/082317594fa82068db1b013235ad7928392ef61771775516180b4ede204574d2.ref, historical/50bdaaee669dff031390abf34c8be960f1c0c68b8cd8c1999ef4bbb76721f4b1.ref, apps/mobile/src/testing/preserved-send-qa-fetch.ts, historical/92363f73aa20ad5e03844de243ff49aceb5052cb2aa2fbaf10d2412591abf741.ref, historical/740f0304d73deb285160d1815fcb5672c137457b4bf05822a314ac10239f6645.ref, historical/c3657d76f7591dfd26a416c7f92f3efbadadc3cc00ed4a66831993e25cc3e72c.ref, historical/68bb006659e8b572ca10f999f97d562669eea8e79c83508dc4e903ac0d210989.ref, historical/402f2012137c5517eeb0ef2ad674e09e993136a0b0f0784b76416c8ab93eae15.ref, historical/b00f51cece8702d1a77cbc953871ba164a79d95367e3883efae6ef0bf75c1892.ref, historical/03b93eb8285c7de47e4df2f62d3053131fb3f1afb88d4bbc7021aeed89e77a16.ref, historical/227e0bcbd219afc7c811bb9d827aa53f1a014fa847c87205a780c34a4b06a3ae.ref, historical/89d26c274986f02ddc948900f1e9389fd8c84094e7981c4d2e397eb6a4ab3cd0.ref, historical/006916dab98c647c57f9951dd4dc05101e55b983495f4c472e073019db0a2bd7.ref, historical/d337b935a13f9e3e4cc2bbd1248a887c7def4b93d83726192e75cd84a50a7ddb.ref, historical/19db79d6a1c4c95d08328b29f98a24abfe964809008851243e23f436761d5dd8.ref, historical/58fb57081e4bccc3b3e27fd67cdbe617ac0e7bf9554dec0941b8e597cc3b9c02.ref, historical/47d2c87a4e89f3335d9fe65566ee85b3feb98cf444fac0f0875d46ae7084aa04.ref, historical/27a07ecbf2c897da82f3700cb0ff40ea1a0f95c19edcf30eb1787f08c0f53646.ref, historical/c5f94fa143e8ffe39ef734f940dec2bbaab60b64bfd32a9cb7d02fb05c22b786.ref, historical/3a15223395adfea7314cd506095c3ece06051c844d760c8e7ba6173f81eb06e4.ref, historical/d2f6f1ea5cd5bdccd332e2678f085237015b8816d1ff54efbf99688eaa8b2f14.ref, historical/fa6e608444f4e1a5e7d7371217e6934d3c18eb07883d6ba5c61206fd93c10df6.ref, historical/de0240c170a7de825c3280f681047d0aa1b3c106e5512d2d647907caf68fb3ed.ref, historical/6340ed7cc629b9bcb5d87191993ffe2ad70fdb0449879c392fbaa822384f360f.ref, historical/e98a4a3cd79bcad25b11bea7cfba4577698e44248930f5a6685dc334c20557bb.ref, historical/ff38e941f83a6ccb021b7f179091b61c0754688deb7e6f981128235133d41ee6.ref, historical/cc7cc2285c617958ab56a55553b1a76049216cc26e26afedaa2b019902fa05c3.ref, historical/57a217b189b6a95f820cf502214dbef3dd9001ac36f5ab173ee72b5ea17d4162.ref, historical/6289534d739eb510448fb0d24d3a2dadf5e4e957a16c10d365cec40d6c1cd0e3.ref, apps/mobile/src/web-chat-return.ts, historical/9627a65cd3e1b3bb51845b2e2953615d7acf51a6907a4924c88b5dbb770dd16b.ref, historical/f812265977c2670a70fe220b62bc121bad010c39700422adcaa178a9a94af51c.ref, historical/271831ceac4c2bddacc0c6a9aaab04214ff8910f6f43701a32854e1a6dbb1905.ref, historical/b54112bf3a44c0355ef6bc6399fbb2849345574ad8377f3841fab17f4e38620c.ref
+
+## APP-211 — Corrigir retorno do cadastro de empresa e olho no campo de senha
+
+Estado: done
+
+- Reproduzir a jornada de cadastro no próprio APK entregue com ator sintético separado, distinguindo pedido pendente, falha de recuperação e travamento sem consultar dados de Lucas
+- Após recebimento pendente, mostrar confirmação durável e próximo passo coerente no andamento sem exigir reenviar ou prometer autorização/ativação
+- Mostrar/ocultar senha por ícone de olho dentro do campo, alvo acessível e rótulos apropriados, preservando texto e estado seguro
+- Verificar modelos, tipos e candidato Android pertinente antes de entregar; preservar Phone10 e fontes congeladas, sem alterar perfil/empresa/vínculo para forçar chat
+
+Próxima ação: Jornada inicial real demonstrada no Phone11 entregue: ator novo sintético, um perfil e uma empresa enviados pela UI, persistência e recuperação após refresh/relogin; 5 verificações nativas e 11 de API/wrapper passaram. Não houve travamento nesse cenário API36, sem conclusão universal sobre aparelho físico. A permanência em análise corresponde ao corte sem executor conectado de revisão/ativação: APP-007 e APP-008 continuam abertos. Copy explicativa atualizada somente na fonte e verificada em 31 testes locais, aguardando próximo lote. Sessões e emulador encerrados; três contas de Lucas intocadas nesse ensaio.
+
+Evidências: apps/mobile/src/RegistrationScreens.tsx, historical/f4de97993dbcdf7756c9150ee23f267771b3c826b88072f04293d50b0fff3b00.ref, historical/ba6ed2f8326598defb3c798a4e03e6f22657ca802c6540b37d493c9b212dba99.ref, historical/7f0ee03264098e4315690fcf8b39c60910ddb71f0a517a9ec3067eb0c5548036.ref, historical/dd1b8b103faddcac5f2eacf92b49fb190bd92441b9e2e7e939c8bce3090aa768.ref, historical/2c9de03932909d3e49e09df9a9e5d22640195a8a3b2d22c7b72a07181d7ce306.ref, historical/c20f788dec1f4d26b05e054e8567ace2369ba000e73b329a28c987f975af03c1.ref, historical/96f6c8356745586275ee114a5543f292e7d023c6c18bc7f3ee9d287de75f7360.ref, historical/cda9090a12e3d8fb1c8cc1afed8ecd7a5b36aa634df902339a5d8cf8fb974aba.ref, historical/7392ed1ce22cad321d990b063bf39bfbd9f85b5940ba5c2c21a7587b31cf8f1f.ref, historical/95a1f42acc5a6f4163a429aa586ef43c3fe7ffddca7521151f6524489d300517.ref, historical/2ab56d74661d84b408eb25779fe17e2ae6064e6316b212887ba95265c8a2a71c.ref, historical/3fa4fe05aa30ad0187d33cc82eaef1305435a5339eb0b0096305e4d242108759.ref
+
+## APP-212 — Preparar logins fictícios reservados para teste do operador
+
+Estado: done
+
+- Gestor, funcionário e paciente têm logins reais válidos e vínculos ativos com empresa exclusivamente sintética
+- Credenciais distintas não entram em repositório, Drive, screenshots ou arquivos de evidência; fornecer somente na resposta privada solicitada
+- Reservar contas contra rotação de senha e logout global automáticos para não interromper o teste do operador; não promover identidade/representação ou alterar papéis
+
+Próxima ação: Lucas pediu logins curtos e senha simples após rejeitar o tamanho anterior. As mesmas três contas sintéticas foram ajustadas somente em Auth, com 25 verificações reais de propriedade, login, perfil, papéis, equipe e conversa. Nenhuma escrita de negócio, conta nova, exclusão ou logout global; apenas três sessões desta preparação encerradas. Reserva contra automações preservada. Credenciais apenas na resposta privada e fora dos arquivos. Continuar outros testes com atores separados.
+
+Evidências: historical/eb8312cb0c3a5005e1460ab16e64d7fdc6fe2106fb5ab4a613cc4d285e992fb3.ref, historical/7be374cd390305dd446fa6fb631e533be958abe56a2c38829d093e803a119e86.ref, historical/fa5fe9d658dff250da432815b2a0e1f622e7c16d72b54b48410cbf8bfb53602d.ref, historical/9423e22765812e25aeb6b0632ce1616c84b42f62e67aa1ac92e3b2833445979d.ref, historical/66f5f7f9228c19b2e13d6b741ea10e874aef53cdc827ee851bddd48c9bb12828.ref, historical/feafc662595b89baa97aa7e00aaa15aa9bbb515e1d1925c4c3eb006fe936ae11.ref, historical/aac84480049a109ebc79cb1655a39a2f88822a76a72b89f5f2bd8c13a545a0ac.ref
+
+## APP-213 — Explicar texto inválido enquanto o envio está desabilitado
+
+Estado: done
+
+- Ao colar texto acima do limite ou com conteúdo inválido, apresentar explicação visível e acessível antes de tentar enviar
+- Preservar rascunho e regras existentes de tamanho, Unicode, envio, autorização e idempotência; não truncar ou normalizar silenciosamente
+- Demonstrar a falha no componente anterior e validar a correção com testes pertinentes e tipos, distinguindo evidência local de Android conectado
+
+Próxima ação: Erro de validação agora aparece antes de enviar quando rascunho inválido desabilita o botão. Falha anterior reproduzida no TSX; correção integrada passou 22 testes locais (7 componente, 9 conversa/envio, 6 texto Unicode), tipos e checks. Preserva texto, autorização e tentativa original de reenvio. Validar no próximo lote Android pertinente antes de oferecer essa melhoria ao operador; não está no APK11 e não houve novo build/upload.
+
+Evidências: apps/mobile/src/RecentConversationView.tsx, historical/0b10d28917b1c1669b90f1616eed02d2facb4e0a3069cfcab3f4f912120f60a6.ref, historical/4dd53d1e10e333a49cafd872b222ce0e03a674cac7d0ba6444b87e7b0995839e.ref, historical/14598eca1cc94a6a2c39c934dcce79c321b6d5efa9ac2e9daf1179e93da78282.ref
+
+## APP-214 — Separar empresas, conversa e configurações e reduzir a demora de abertura
+
+Estado: done
+
+- Confirmar dados dos testes do operador por metadados mínimos, distinguindo relato físico, Auth, persistência e leitura sem expor conteúdo de mensagens
+- Empresas, busca/vínculos, equipe/atendimentos, conversa e configurações têm páginas próprias, navegação Voltar previsível e design verde legível; controles de sessão ficam em Configurações
+- Navegação sobrevive à cobertura nativa e invalida ações antigas ao trocar sessão, preservando permissões, revogação, contexto empresarial, rascunho e controles de erro
+- Medir a cadeia de carregamento antes/depois e remover encadeamentos redundantes mantendo verificações e negações; distinguir API no computador de Android físico
+- Verificar componentes, concorrência/aborto, tipos e jornadas no próprio APK Phone com fontes congeladas, assinatura, hash e limites antes de entrega
+
+Próxima ação: Phone12 entregue após 7 verificações nativas principais, 11 de API/wrapper, captura adicional de Configurações, 53 testes locais integrados e tipos; outras rodadas têm sobreposição. Navegação, cores, cabeçalhos, linhas, bolhas e compositor conferidos no Android. Um texto próprio persistiu uma vez com autor correto; vínculo preexistente reutilizado, sem criar nova vinculação neste ensaio. Aferir ganho físico, inbox do funcionário, fonte ampliada/TalkBack e entrada excessiva no próximo corte pertinente, usando atores próprios. Normalização da revisão/ativação continua em APP-007/008; não apresentar este done como produto pronto.
+
+Evidências: historical/2ea360223f85e041f3f6d486501b38d6788bd466bdbad35106679ff97222ee41.ref, apps/mobile/src/connected-navigation.ts, apps/mobile/src/ConnectedSettingsView.tsx, apps/mobile/previews/connected-membership-management.android.tsx, apps/mobile/src/MembershipHostView.tsx, apps/mobile/src/RecentConversationView.tsx, historical/a6f7951ca61da13f4a9e4ad06cb3ddf7c152db87163e255904990bdc05453251.ref, historical/4090ad812b7e763aab622952467c86a0a6794e57385edf27e5dd618c55e15729.ref, historical/35a8007e21d4b2248e0eb3e0de3dfe21d2076131b1b63c7496eba2d657279200.ref, historical/eb54191212b7f1718fb56cd477277a61f61def70fecbfe9aa8d3938882ed2146.ref, historical/5d0ba834d04b9929c2e60b9422577c3083e6f317eb6ae009790437e0436ba763.ref, historical/3de37c5bc75624be4a365e87dd2bc5a49a162b27314fd89661c75bd0c5510c58.ref, historical/6e049ac363f1779f0fad080887e49f91a26fb93626d4ea454647f2e2b4a64cf3.ref, historical/a7b3dd1ad3da8eadace233978660f4abcdc2e1889d1678a96dd1cc66864b54a9.ref, historical/9f7bbbf5b1173f58ba867b2c5c76bcebaaebeb9e72e0d33c151d43062988ddae.ref
+
+## APP-215 — Alinhar Android aos exemplos aprovados e navegar por barra inferior com ícones
+
+Estado: done
+
+- Inspecionar as duas referências v0.2 aprovadas e a barra mobile real do ResiCheck, distinguindo fonte estática de render observado
+- Aplicar composição verde/pastel, cartões arredondados, marca autorizada, hierarquia e página própria da empresa com ações reais por papel
+- Exibir barra inferior contínua com ícones e rótulos, seleção acessível e destinos conforme vínculos, sem conceder permissões nem cobrir compositor/teclado
+- Preservar sessão, cobertura nativa, isolamento, rascunho e navegação Voltar; validar modelo, tipos e jornada funcional e visual no APK Android antes de oferecer outro teste
+
+Próxima ação: Fatia visual demonstrada no próprio Phone13 com barra por papel, superfícies verdes, empresa, perfil e compositor/IME; 71 testes locais, 8 verificações nativas principais e 5 compactas. APK validado ficou local para separar revisão visual de novo teste do operador. Próximas coberturas: inbox nativo de funcionário com ator separado, TalkBack, tema escuro e onboarding completo. Revisão/ativação APP-007/008 continua local e não liberada remotamente.
+
+Evidências: docs/product/DIRECAO-VISUAL.md, apps/mobile/src/ConnectIcon.tsx, apps/mobile/src/ConnectedBottomBar.tsx, apps/mobile/src/connected-tabs.ts, apps/mobile/src/ConnectedCompanyView.tsx, historical/5fa0e11e0a8a030356337f6d172e2e724a564583f3665c32aa4cab49004f0d4b.ref, docs/product/refs/REFERENCIAS-APROVADAS.md, historical/a349eafcef23b7767c438ec9fbfde2987daf5768f1e8f82dc8e6d1387b6824ae.ref, historical/cdcc1cd7b0fcad0fcf90e5b32217b79cc543e556a1c6e38344ce9fec674f0d67.ref, historical/ab564820585a6577cbf1716ca99ff1941ca214b6747ba1854669c90e9a32b906.ref, historical/6903e4c0989a4065d5032661ca89e4b20cb24ee6da975ecd5da46aaa9826555a.ref, historical/eeff1a263fa441ea2f6b71d7768433fe8a603d09f88ad165fea2695a7edb72d1.ref, historical/04d83a3ade8929248af372ff22307c3e43b36f947cf42f61bddd95a02fd656ec.ref, historical/3a0019f443e1684893b3ba9527cb9f35f167512942c2eced7e03fbd1b3f6bd97.ref, historical/94ff07dc8d136f2c45423c0ad25b0fca1c24cf771169495de61dc6ba93458afb.ref, historical/aed43efd51520667329051da8421986f94896a84a7d574abd3aa938588ce9d39.ref
+
+## APP-216 — Corrigir retirada e correção empresarial no runtime restrito
+
+Estado: done
+
+- Reproduzir a falha local de SELECT em memberships na retirada pública com runtime NOBYPASSRLS e preservar a evidência original
+- Implementar ponte privada mínima com owner legítimo, sujeito/pedido/sessão derivados e privilégios restritos; sem SELECT amplo nem alteração de policies dos clientes
+- Demonstrar as chamadas públicas de retirada e correção, recusando vínculo em qualquer estado, pedido alheio/antigo/ativo e ressurreição, com auditoria/idempotência/rollback e concorrência
+- Verificar instalação/ACL/reversão preservadora e testes reais locais; não atribuir estados preparados por fixture como sucesso do fluxo público
+- Instalacao gerenciada e reversao em transacoes unicas ensaiadas com papeis/permissoes observados, falhas e restauracao exata dos dois grantors, sem abrir acessos de cliente
+
+Próxima ação: Lote28 publicado/entregue para teste: retirada/correção própria e áudio real preservados. Aguardar feedback físico e planejar cache APP-257 sem reabrir provas concluídas.
+
+Evidências: historical/5f1d472d6798eb6b7beaefb44f6736986169cebcdc4c0dbb148554101386ce10.ref, historical/069855c145dbfd017afed42aa63085217eec6ced815bd9e4dee1343fc46df27d.ref, historical/0aa16e28685d10d20397455a012563fb8756f844383eec86a6f023827f20f7b9.ref, historical/3f40b143894c5592fa29c3c2d403a19f968b936e6a31ef9c5bccd47975c3b6ae.ref, historical/5eebf911e5a5b698830a645febef9b00dca5a58ddcf5452024ad3cad56979493.ref, historical/99dcae376cf96bca82d722ed7aa68639796f8dc86812be4a583817deabf60221.ref, historical/41f908e61da3e07e45b079f4c2fefbf097b63c40b05a75c113fb1784963c5851.ref, historical/f7056f3103ba9a6d47fd4f2600743a1134ffb5f36d020813a7a08e6b66a9480d.ref, historical/7fe9d38001a690f7e5800009e924513391b6561e1a50480893fd80f5ea0c8353.ref, historical/a63cd55e015dfe0a97f850963b91dfabb6529837bdc23b0cd38fa18dbfd26b0e.ref, historical/9cfceddb7ce1de4f93ad65bace69ebb41dc7bd6c6295e0f7e62abf107a5880f7.ref, historical/23f3eaf104cef920c7afb6167badc7bc9d55a1225e2bd58298f81a33e2e9ac7d.ref, historical/9cada4241bbc60b10ef13ac36906b070441bb78c60b0803856cc8d6a19245657.ref, historical/44f43677d31c9de9bbe1e7e3107e2ed05bda0e9b64006e3e125867a4ce2b937a.ref, historical/f7372c8ed227dd2f3cad82efe8b59ad9759b94482d70f44b1fac889b80bee390.ref, historical/70cc519c0d2adf4a75aab775a0d0c85d743b6e5565443960a545fcd576e7a689.ref, historical/3f2ec9ea1c31f2363f2133e4c032b72675fa9675a30330ef5d684b2e311fc73d.ref, historical/67f9d46f1c8889aa149a2370aec6bd5cb79b736076c89807cf9545690ee173d1.ref, historical/26cd277e34e5c570203466b1eed4c3fba6fe63f27b86acee0e87e99ca249a22c.ref, historical/60defcd3a54ac37e850bb0dc27d804bd54dda641e5eab06a15ce0ea8b7320dce.ref, historical/100e2631914548d353334e210e509f180badbf0baa2466785d16a0735df0ec7c.ref, historical/66b9edf3ee8680637a45333f9a41aca858c1af4e1dd164cce8d75f1fd364d1c2.ref, historical/72b1ec7bf7b15144b3eaf6ae8cafed86eb512c9b1afe88da16f34a25d21c91c7.ref, historical/9ab0e26008eec6caa087d6372446f8b21a8ee3ff224fcd0efa4a72b16903d133.ref, historical/9f9807b6eca2dd0c4aefab40cddf2704071267ca56f1379628a6a4ba348c6eec.ref, historical/f5cfc89e0c8ca9cf7cfac941494a564a18e805e02ef5decc1e6b5aa187e14ea4.ref, historical/d8933144e6bf9ef4a395acf394fec67b823ce8b3d66f81698ec9c1dff15f3d69.ref, historical/e25b19e93fc47e3f30a7dbf0196744dd1532ec1aa95ef7387a616fdf7f9cc9fc.ref, historical/bdb484386f727ef2336ea1d20e88266cb0c26ff897e188e7b39e9a2ce293c7cd.ref, historical/ba2057b7d083becc5af9ec7682c34401d5730955d232cebb335f7e38c91cada8.ref, historical/d8f523c13e97eabcd0e81ec14d2b210fc87f4dd3abff9dc197deefa38665b9bf.ref
+
+## APP-217 — Preparar fila administrativa restrita e auditada de novos cadastros
+
+Estado: done
+
+- Consultar pedidos atuais pendentes por escopo explícito com sessão viva, AAL2 e privilégio privado vigente, recusando gestor isolado, metadados e auto-revisão
+- Retornar somente identificadores mínimos necessários, com paginação limitada por âncora única e sem CPF/CNPJ, nomes, contatos, notas, evidências brutas ou chat
+- Auditar cada leitura de forma privada e atômica; falha de auditoria ou autorização não pode expor a página
+- Verificar PostgreSQL, API local e contrato cliente com dados sintéticos, incluindo negações, paginação, pedidos encerrados e reversão preservadora
+- Preservar interface em avaliação, contas reservadas e políticas reais desabilitadas; documentar decisões pendentes sem escolher comprovação por conta própria
+
+Próxima ação: Fatia local comprovada: 82 checksPG, 47/55HTTP e12 testes cliente. Fila restrita por escopo/AAL2/sessão e auditada, sem métodos reais, bootstrapADM, painel ou ativação online. Antes de promover: resolver decisões de APP-007/008, instalação preservadora, integrar sessão privilegiada real e validar no Android.
+
+Evidências: packages/chat-client/src/admin-review-rpc.ts, historical/48e6ffb305992be695f19bb347d8faf3acd4e3d90ff2419a9470c8b8e876844e.ref, historical/717a2cf43e06291109c7fbc0c4bf686a17da1b5de729a7a1b11e9dc1699cd943.ref, historical/0f61d9b910057e10566f6693c52f2d9e7462cf62c7d3d2b573dd9a05c9e73594.ref, historical/2e2f65056ae22f2119f673aaebb41bc09ff1922310eefce2d518df1a95829bb5.ref, historical/dac8e27bd11ca1a65dc6002fc5cd75ed3585ebbc242c632566e26b0468cdb600.ref, historical/85e100ac5b2b92b3556e5c64851ae1c57d26eba95f8310ad13d47aa54d2f9284.ref, historical/8ec15296c0a1f898b49bfc43ba732426cc04cd97ab5d3a726a9ad5c9429a9ee3.ref, historical/2347f8999e90e79898e92c0eafc259cb1db1a815bc0f231e1c998f6ddcae50f2.ref, historical/5784a3f7a70daf2045c6511e6ed099595d50c85594c6258066de87145bb4b537.ref, historical/8bf88326ac186cb4185e2885efc2fd4b34aa4ac80ab8975227099ae26464bbc3.ref
+
+## APP-218 — Integrar finalização de cadastro à recarga segura de acesso e vínculos
+
+Estado: done
+
+- Disponibilizar integração opt-in desligada por padrão em modelos existentes, sem alterar telas ou adicionar aprovação implícita
+- Fechar gate e limpar contexto durante finalização/reconciliação; ACK e recibo histórico nunca concedem acesso
+- Liberar somente após recuperação própria e leitura normal de vínculos no mesmo lease; falha, timeout, revogação ou troca de sessão mantêm gate fechado
+- Reconciliação e onRefresh não repetem escrita nem contornam barreira; preservar resultado conhecido e isolamento de resultados atrasados
+- Verificar modelo/lifecycle e jornada de finalização por PostgreSQL/PostgREST locais reais, distinguindo fixtures de Auth/MFA/identidade e preservando interface/APKs
+
+Próxima ação: Integração local opt-in comprovada: 15 testes novos, 64 regressões, 32 testes unitários do canal e 20 verificações/94 chamadas HTTP em conjunto com projeção81 e camada219. ACK não autoriza; falhas mantêm a barreira e a reconciliação usa apenas READ. A entrada Phone permanece desligada. Antes de entregar: decidir política/bootstrap/renovação, revisar entry e allowlist, congelar o novo import e validar no Android.
+
+Evidências: apps/mobile/src/onboarding-review-adapter.ts, historical/a42f411a79185f241c993a521bb69d765da9874b3d2ad6a27785d2d345fd00fb.ref, historical/983ec65531ac09482dfd73919014efb130f0f909322b9ed6084cabe44ee1d1db.ref, historical/a7a141584be3795e95e9e9e02855acb6a9a7970b1a7531c3d672dc3f71a5dcf0.ref, historical/ba26daffd449c06a0fb6eea5efdf2d838897acedbc633eaa8ab1f6e6f6ed36ae.ref, historical/44ef0ef7adeb29db210be8806c64ef1b5b2aa2b5c81f0bb76e088d186b77c851.ref, historical/61a9ca7b38e6302f9bb12b80059031f53135c9eff365ee68a7d026189b00b356.ref, historical/406f9d2f7c4fbf3b0967e8fb82b64cd126dc46932f1c799fa4b2ce64e66ac70e.ref
+
+## APP-219 — Impedir reuso de provas após renovar autorização do revisor
+
+Estado: done
+
+- Reproduzir ou refutar em PostgreSQL descartável a hipótese de prova antiga voltar a passar após regrant, sem Auth/projeto online ou dados reais
+- Se confirmada, vincular prova à geração de concessão e impedir reuso após revogar/renovar/deletar e recriar grant, preservando história e métodos reais desabilitados
+- Manter o contrato de sobrevivência de prova legítima ao logout normal e não confundir contenção com reversão de aprovações históricas
+- Testar caminhos públicos de perfil e empresa, concorrência, ACL, falha de auditoria e rollback que não reabilite provas antigas
+- Preservar candidatas anteriores congeladas e registrar causa, hashes, resultados e limites sem alegar integração privilegiada real
+
+Próxima ação: Falha reproduzida em9 verificações PostgreSQL e corrigida em candidata local com99 verificações, além da prova conjunta20/94HTTP. Geração e binding impedem reuso após regrant/delete-reinsert; logout normal e histórico permanecem preservados. Não implantada. A instalação recusa provas vigentes preexistentes e a reversão não remove a proteção quando há histórico. Renovação forte e operação real permanecem pendentes.
+
+Evidências: historical/054c77ebcfc2d0a975fc0baa714f1ef7f0817a333a35e49a3aedf3928e7e2b8e.ref, historical/ba30de477d5a488e966260d0093bba71586ecd992edd4a845e324ef71f308ef3.ref, historical/bb2b7a339c92694a72582c8ef7637118c7c5c62c233fb07c13aeb84f74ea7c61.ref, historical/70145b8a254d8a1d95c7973179698bdfe497576717d2dbcb354db0265948019e.ref, historical/44ef0ef7adeb29db210be8806c64ef1b5b2aa2b5c81f0bb76e088d186b77c851.ref, historical/61a9ca7b38e6302f9bb12b80059031f53135c9eff365ee68a7d026189b00b356.ref, historical/406f9d2f7c4fbf3b0967e8fb82b64cd126dc46932f1c799fa4b2ce64e66ac70e.ref
+
+## APP-220 — Renovar comprovação forte de conta já aprovada sem alterar identidade ou acesso
+
+Estado: done
+
+- Atestar renovação por revisor com sessão/AAL2/escopo e geração219 vigentes para conta já aprovada/ativa/confirmada com histórico forte, sem escolher método real ou promover standard
+- Derivar o titular da sessão e exigir o mesmo CPF inclusive nos retries; não trocar CPF, reabrir cadastro, reativar conta ou criar papéis/vínculos
+- Consumir uma única prova da época corrente com CAS; após head de renovação existir, nunca retornar à prova original antiga
+- Preservar evento de renovação e recibo histórico sem falsificar aprovação, mantendo replays e concorrência seguros e rollback preservador
+- Demonstrar PostgreSQL e HTTP locais reais com dados sintéticos, expiração/geração/CPF errado/sessão/conta suspensa/identidade em disputa e limites explícitos
+
+Próxima ação: Candidata opcional local concluída:90 verificações PostgreSQL,35 verificações/43HTTP e19 testes cliente. Não implantada; sem método real ou interface ativa. Não condicionar cadastro automático de empresa à renovação forte.
+
+Evidências: historical/b03d8dedb9efd9f123710363d902cb723d3e2e929e650ada85e5cef6b446698e.ref, historical/bb2b7a339c92694a72582c8ef7637118c7c5c62c233fb07c13aeb84f74ea7c61.ref, historical/c5548d5ef50cd5dd531c34a82bd9245885b2d8349c4a931e81136534a857d90e.ref, historical/110dcad0a78ab9f3c91c9007c22ca417f2585c044a7fc4ef8793510e66122956.ref, historical/ba500a367d035bc054d69032b6ab5fec71697477b4c2952d02cb2b78afb6174c.ref, historical/3b610c0f98d918b914c549ac0e5e3523414e6c0e09a9550e14f45554c523660b.ref, docs/product/DIRETRIZES-LUCAS-2026-11-09.md
+
+## APP-221 — Incluir adaptador de revisão no congelamento de fontes do próximo Phone
+
+Estado: done
+
+- Incluir onboarding-review-adapter e suas dependências efetivas no inventário corrente sem alterar versões, builder nativo ou buildspec
+- Verificar hashes pela preparação dry-run existente sem gerar APK ou nova preparação de entrega
+- Preservar Phone13 histórico com72 fontes e APK original, separando inventário atual73 de evidência Android histórica
+- Registrar admissão, tipos e arquivos protegidos sem tratar dry-run como build ou validação Android
+
+Próxima ação: Fatia estática22 testes concluída e histórica preservada. O build e a validação Android posteriores pertencem à APP-222, com73 fontes; a admissão isolada não demonstra funcionamento nativo.
+
+Evidências: apps/mobile/scripts/prepare-connected-basic-text.mjs, historical/2a83d903d67b410abbe08bdb552e5cd2dd7a3109436d043d869aab26d5cbd22f.ref, historical/a44dddf8800a904d5c498691a07859703207007bd5bc4e394e940def70872259.ref
+
+## APP-222 — Entregar Phone14 com interface aprovada e texto online verificado
+
+Estado: done
+
+- Conferir o próprio Phone14, assinatura, hash e73 fontes congeladas
+- Demonstrar navegação e um envio nativo sintético persistido uma vez e relido, sem usar contas reservadas
+- Entregar APK, guia e evidências no Drive privado com leitura de metadados e limites explícitos
+
+Próxima ação: Entrega privada confirmada. Validar retorno físico de Lucas sem confundir esta fatia com teste completo de inbox/resposta de funcionário ou ativação de novos cadastros.
+
+Evidências: historical/0e9d9ace0ac0278ab7e1c05e4fb6e181df2daad75a515abcd32d5d53122aa4f2.ref, historical/9c32b48ccfd38008f7434ac8ce9dc74c8bfbbe42d067b59aa93f51786395d81b.ref, historical/742130bbbfc1f9fb7271cf39f31ae50b2bb0bf09503f817bafe86bbc060c54eb.ref, historical/0c827b199ae9e4da63b515813751ce4273beff64f3dda37886d48046cca0c301.ref, historical/e85313d612e7a8851978ee1e9f98ffd701f150f87c0ba07c4a6e8aaefdfda9b2.ref
+
+## APP-223 — Conferir CNPJ e nome automaticamente no cadastro empresarial
+
+Estado: in_progress
+
+Depende de: APP-008
+
+- Fonte autorizada e correspondência determinística do nome; indisponibilidade não aprova
+- Unicidade de CNPJ e criação/vínculo inicial atômicos e idempotentes com testes de corrida
+- Existência cadastral separada de titularidade; duplicidade orienta contestação sem expor gestores
+- Não exigir comprovação documental prévia de representação ou renovação220 no caminho normal
+- Pedido anterior não bloqueia cadastrar empresa distinta; preservar histórico, unicidade solicitante/CNPJ e intenção original se confirmação se perder; testar contexto e leitura de outra conta.
+
+Próxima ação: Integração local pronta em createCompanyPreviewLotWebRoot/createCompanyPreviewLotAndroidRoot, sem registro ou build; proofOrigin HTTPS loopback exato preparado. Próximo: na validação de entrega, usar essas entradas e janela de UI para formulário web real/Android, sem repetir a prova API nem criar empresa duplicada; depois revisar promoção/versão/empacotamento. Backend última auditoria OFFv5, sem alterações nesta fase. Convites e resumo SQL têm pendências separadas.
+
+Evidências: docs/product/DIRETRIZES-LUCAS-2026-11-09.md, packages/access/src/company-registry.ts, historical/3ff98a494d2b53d8e2c938eab4a1ef339f838d6a33e439ce6410d47879170f81.ref, historical/5d0bb1bb838637c446d5e0bda8183853508712ce4ef15d24bef8d38e7b20bd04.ref, historical/e3db803c919ce3b48b803bbff1a119626246e63d0b13dfa5df85b9fa18f65ccb.ref, historical/5310cd7cab35fbb1d7127301ce98032f82686278ea6a3572e74f60d7a4a43cab.ref, historical/f6a57981985abe5cdaea39d7b6e2078dda1a57488c3a919bb9fd14991124e98c.ref, historical/5ca2d936fc6e1c9ff10b41e57dacd3f031f97c2141f801b224edcece2587fd42.ref, historical/3ca790916d04815a54667eab895d8ee47132d93665f1bd4640437173368d6768.ref, historical/0823d4e8b423b5fb58d14f32340778f9319e95ad885b2a815e4ffcecb28a325a.ref, historical/a181e507ee1b615560a8cb2be1ebe68e19e29bf9a8be84967ec55893f4f355dc.ref, historical/dbadd2980a36a5fc18dda63534fbae01f3e6882b5901374056c6fbc7bbb0ac67.ref, historical/6ffc395033a377a6734b5d97ba7b7d12132585b082aeca13a67130ed44db65d1.ref, historical/814dae6e44bb1a1a9c6ef15652d9c32db7f8525673f386dcbe08087851c702e7.ref, historical/c87889504bcf069e820f91460488a448e6b637b3c4d2570320a9f632a9a5823a.ref, historical/c02b2ac20120e9660172bb7113c7c2b6012a80b5a22f57ea0e333ffce63aaafc.ref, historical/453e0bd74003d579b5e38ffc9df57a03adb83ddb741a5a9c1eb5840b2bcd86bc.ref, historical/c861cc28acdcdf80c636a7b14255363b8a4edb4f803ae6f19814cdf1011da8b9.ref, historical/b5c250176dd43a6b4613563ead9cc7e8ff7d9e92599abd9dc239b2b58c226719.ref, historical/408533b1c849b0affc168cd04d1e4db5c385eda1a4e75e1f6033369adc4bfe10.ref, historical/1ce8ff768d127410706d7aa383ef7bc2c91dbd44d8540c1516a25c02d5015d01.ref, historical/a190347a4cbe2c776bee47ac8ad59e0b3c32591d0627736eefb091b50bf1a23f.ref, historical/8f26afbfd0e20c63b548f2b853bdb1c356d4623960deec506087003422689a62.ref, historical/e46927abc41ce0600354478e85d652dc14375ab64a1dd500a604bdb8d4334c70.ref, historical/207f71d992191ba9182c53a72c46a0cc58595a8af2b35628c2089c0f91ec4e40.ref, historical/1d6891cd25867a0ca6e9dd60c301bd218577f8a6e5dc7078ea11a59b7283aa35.ref, historical/12c7958253eebbb702d5d2fce70ae50252c4d737752a8025464cdee1d332e002.ref, historical/acb490bea11b45dfb4612201b72e761df5dd02969aff1989866a79940075025a.ref, historical/c90862314978c996cb467400bf23a3bc517abc5cdb7637ad6632c1a3f9585b64.ref, historical/ae5016890e304928bfadc057472f45321696449c9017eb5ad41dbc9b51f8bada.ref, historical/2ec4971aaf5820af26c86f0f2e9e69ef37b837e22d6e35789941d7994475c597.ref, apps/mobile/src/company-registry-progress.ts, historical/b6fc925987003ccdcd71f63db32d646d36f2c5f2410a5a5f5fef343c23403086.ref, historical/457999607c302f904920ed6edf2e66baac7da73d292c4a87d37ff4a7f51daf6b.ref, apps/mobile/src/CompanyRegistryRegistrationView.tsx, apps/mobile/src/CompanyRegistryCheckView.tsx, historical/bfda25379d3f043f0046a728341738b1fee667f0887d69b9d3b71e921f7adc55.ref, historical/d9defc6cb5d0d2955a72da51cb19b9df3af8cd8ad1d22bc59eee2ce7edc2e5b4.ref, apps/mobile/src/connected-company-registry.ts, historical/0ae596dd1d46942ecfa03da8986f28a2bbe8f973445ed318e8d20368a5dd6cbb.ref, historical/5acc6d45f102cc56d76b4932060ef048ebb1d953e5b4afe35726bf510a5b5fbd.ref, historical/fb4a9d9345f9b720b1747f164dfcfc796ec3155c6a6e006ccf13e4a94e995a5d.ref, historical/fd02abda3d577da6d5de713f233c53e2f3bb9266daf00c651b495df0d48f1c99.ref, historical/2103575746fe8d67020c1d6b6e01bb5f82b784abb623dee78f70e9a27d4e6bc1.ref, historical/bd217023f86f49976be0f5d7d7cfc3d590f0ecf66305e84391722aac4e4eedaa.ref, historical/6dd6d7a0c4371773d7ce9ae4a7ab5f7a20b3ab02dcae11647d527b256c23d0de.ref, historical/0df1bf0909c4bc100e793f489abaf9a83cafb2948985ec436557a1a3b0d31441.ref, historical/185d6bfb413d560f1a2114e82dbf76f2ba189ad04d8c20045e756d3d42f0973c.ref, historical/7c142bf72232db49e770ef83208bb2f8122a348684c0b4b909249751bce8e559.ref, historical/34f661d3b6c0c20b58a7da4fbc8086bbc38be8cf09bed347e63d14a3bf64b66e.ref, historical/2bbcbf87da439656bbe10ccdf8b3304f2813cddf83d2a94e36df30d439e49579.ref, historical/6450fd5a8e4f8cc365c4b02dea02ef962ae8fa0e8ea55984b3c3e54cb929b302.ref, historical/0f6f4997b5ea46c752f42f4c02fc848d1ac91c84319fda5546b9e064833fbe1d.ref, historical/7704e30a21d3b8013897f921890e715f2786d1ff0e3792ce5b7f10737b8e767b.ref, historical/d5ceddf4456212901c5d3f2b002c5ee4cccc92b19b11fd6d62f67997b376b75e.ref, historical/d8a68e972b15e280eeaba455851b7b818c15632ccbbe637b2761df3bebdc2f23.ref, historical/75d2a88e2f9a9b628778525227b0fea5a0efb5050dfed91f245b2d25fe519213.ref, historical/8122bdbd52b504b03c4174ef3f14278c1ee21bc1635cb1a3f68a10af4f9bf5d6.ref, historical/7bd1a20a1fc656bb6c61506094179d33d425e3db03a5b15f3308b076a0a168b7.ref, historical/ee615b1123b75219d010659b1616e76112b4cd1a0ea13b2c0f6cfb3373646c9b.ref, historical/e2d3f17376dcdaa75d6d46e5ae887d4230a07d53523c629f5c19363e2b36834e.ref, historical/83a222f4a41ddee9abd45c2a379fc9cd911d06d7a0a57e31ccc8839e8efdf663.ref, historical/9846c2a534a4401b5eabf5537a5220923c42606254feff71a6e36cb90e14cfd0.ref, historical/725f09cd6ce13f6db480a19ea71138ddbe9087f4eb5c4c08b30adf89799a8509.ref, historical/9a349208c3430e1aa0af0331f441c584540a6fc7bbf84b603484c993511022b1.ref, historical/424f6b216338919ed199d834ad6532f34ef484694804f7d9e29cf75378e4bb5a.ref, historical/fa66016087702c3fc4e5ec1c1c651d725fdcedf6a47727d83559693546a6907b.ref, historical/79736562cfa99c15dd28eb99af4d8f3cb5b3abfe8c0b8ad91a6280adf8e6629f.ref, historical/c83148cdeeb03f458e5f121165bba1cb2bfa30cd8fc66443022035cae59c2c86.ref, historical/567a32d2c28aa5ea73d5d6c6b25809994be9b6b02e49e11559ba28e84fc2c7d0.ref, historical/88fcccdb675e02330ef258c61aefbb84f44f13747749e59bc346e72e9952a58c.ref, historical/7d1f5375177f4d6707073df4563f51bbf4183cbacc1dddde694a1944eecda048.ref, historical/10c4eb5d9852c619b5a0f9dc2f844b3224d59dbb94634bad467f2c7ce5d9c55d.ref, historical/119cd7f4b687f57c35563f1dfded43d46546bbbd7ac0e70eb2bc2400edf109f1.ref, historical/a9b052a55f3ab0abc4326bdb38e63a6c7f982f95de0ff1e8204aae6dd483898e.ref, historical/9f7c5ec8cf8c958d9a4eba84559fb8b0c62b48ba0b207439e871e69a90361ae2.ref, historical/3a3aa1afc8fa19b912f4da56d9087ea7bfeab75e25551ccd8e06a7a913fb0477.ref, historical/3589c505197fd5d6edfc846d93243295ea79bc6e508b39b2d0be0e535934e819.ref, historical/021fcfba59afffe775e1faaa4c6fd2fd12c576c3087561e8c494ab11a467d9ea.ref, historical/399b3079941cb28d621313ecd7ffa434cf57052e2c0a0141d15036badaba915b.ref, historical/e2581ccbfb00e6d4e61a6569fdb62c158ef71ef400791234bbbf3ac52b56fe9c.ref, historical/077dad5f366bde077dcd93f6ff6807561405c498d83fd84025eea90b1b2c0f07.ref, historical/baa0443c6c701e9066c2ff9336b247f9d8420c90df04882b32619a0f7cdddc47.ref, historical/eac12d65848eb00439ef6c090443589160395ab620dc9dcaba500d5527de494e.ref, historical/8d93728b3c98455c5a6c12f2b96fb58eb6d2221a738304f359d6485215c00c06.ref, historical/cf94486c7de8517b6780f00e4eb2dc0c12587a061f05487ae9067948eea0554a.ref, apps/mobile/src/connected-membership-management.ts, historical/d5c58cba393b7477eb6f6671d5e94454cd3c6c7ccefa7331255b6334bff6fc09.ref, historical/8d38756d563405a3c58397621b48592ec043ea90dc9c8467056062b58e3800bf.ref, historical/1ea5f49b1d2dcf32b69dd942d88c3bf07da30e19613bcfe5d2d36b0939bf4ddc.ref, apps/mobile/previews/connected-membership-management.android.tsx, historical/25a41418c13d2084bbc7cb878354c0a2dde6afe92757d6d70737161ede905b1a.ref, apps/mobile/previews/connected-scoped-audio-root.tsx, apps/mobile/src/ConnectedSettingsView.tsx, apps/mobile/src/connected-navigation.ts, apps/mobile/src/connected-tabs.ts, apps/mobile/scripts/prepare-connected-basic-text.mjs, historical/5aa97e4e886055159b1cfefe1b49a27ac07a122f8b5d7cfec0ec899fc631298a.ref, historical/04d0c55bf10a67cbc7d41301a88650684917027faa9a15a022919c03577f63a8.ref, historical/d351771a5497bff22ee91550701f081d443b22e5be44bbcfa11c17004cde872e.ref, historical/8a2476207e5f5810344f209bf63ad26a9cfca06fccb3ad1ef3f66de9fa8d98b1.ref, historical/7f5d35fe7e4228ecf07bd0d4292c977796c9ac2f2146c0dc8d01752a9b29b95e.ref, historical/3db683e5c54c5449765885aa9d2fe0fdc7e1a546da96a494a1f26ac2ffde8214.ref, historical/4159e1fce6b27b20cdc8b4aaa3f8881fc8c9ae3d6619f466d5d9535d3d7bf8ff.ref, historical/f157a96e20411ce8610c5f4ac2b377cb84829ce543a87d1c8d073b794a4d3ab0.ref, historical/a406fe1412cded960804f94bb5f4a2d15d96e8270b4e32bc8279bc6c16731168.ref, historical/e4fc3142fde02e15533121f546d8b875c6da90a095f03d2936562e1e69a05ec7.ref, historical/d3ab434b16a0ca7a4a508487da70dad09dfcc35d902fff5ac75124bc48d3f593.ref, historical/f16e88ebd6820457b4bcc58287cb3a8071fb007fe93a64efd4f73159608c556b.ref, historical/389b7ac611cca019ba3c2813970c899e752a167459b48d3b7f67606d868e4de0.ref, historical/f74f4dbdf2eda82f50828bf11bb819640d0a7425773a62728c765dbe85c4e2f8.ref, historical/6eb37638e7b64d29f2cb0013ce9f32e9e769619d115520f9ff259c4bf1172bf8.ref, historical/6f9c53ffa30998ddef2c0295222ee1520dda95300b8e4e6355499af880e44fcd.ref, historical/e336a19f3e38e452e26d035d81c13dccaa1ed1ff2cb7f76f4fa33dc777ad93c1.ref, historical/ebdd4307db366dcb5cd6af50a8e51a605fb658fc9b997eb2cd8314dd7b546536.ref, historical/20f1d9bb9e7c15ff721dcf38f1d8bf17e1e969611b305678a86e48d4b97cd9c6.ref, historical/7963c12c7552c793b294ecbb8dc49a72bc6746c58a74ec152ea324f8ad5414c6.ref, historical/9e959fdf3388fbc94ddccd7be75067c1cbe31f1f8a60692fe33d63a903686e8a.ref, historical/bd14fd4ecffa5cc439a1a2f444b43f320d4342aebdc321007b40dc9f7a11630e.ref, historical/cd766fb6abd2c0ed88927bb2a6b58e13b1d005fda8aebd47b7a7dedb6f7238eb.ref, historical/05e6f37663f42e9c9e76f117307a275d9b94d8c869c10f0152d6be22fb95b34e.ref, historical/694b3e3becc2474217fdf0d688555de470bc64ada6948a88f788c7026a595b70.ref, historical/47ae0bf0283792587229530c091be1400d7f5898b9654fbf5dbdc063e2d78065.ref, historical/6da0b731bd7e89ab2c6f4ed63e96f28e6ac500089dd8c046737a68f4d9656b74.ref, historical/a767ca758e9a6e89c6662cd9fa6ad3eac257d0815f7a614093a577e049ad6d26.ref, historical/748543dfa83d2a24d13e811d1340c4cfa227a27e38c9c94c6a57ddd6800b6544.ref, historical/1e840b82a36dd954e83b64dd7df70d98708ed36fd8128341cbcb1c655571c2cc.ref, historical/db7e3fff3c1f5e8f1ae65c9b68c97dc8fc7e8cb7c1c28bb13334813c9f829254.ref, historical/2ad4ebf5f41701316b37524bc2ab63546e19bf1a53fee85464009bdc90378693.ref, historical/c996fc894eb4932d81f19757b0f7073dbb4f67ae1a0c565c63551408938b1fc4.ref, historical/5380e95d4d762ef965f1c1b2f5fc1a4dabc560e37d551f6dd8fb707fd32e8e59.ref, historical/79fe56e6a00477bc08d2b69476b18aab74e7f7748215222ae945fffb661c9bfc.ref, historical/a64c263b807d93351b38aab0e37cd60945d1aca5e2947daf25e8a93adcb35703.ref, historical/e4ff55262a41b960e8174546bd5a23d14f3e98967eec8c576ee3a341256aabdd.ref, historical/db091406d7493e409f503af3f8222694271b90a2c77b64a425d7351531d6b592.ref, historical/89ffe920a5186d644ec7c9ba780a5ce3089cc6ee67ac0d3c8a0a01f658302b66.ref, historical/1fc8bc25af63f6dae7f02b1969b0feaaa689844787fb0a1c62cbd9d32db6a70f.ref, historical/61aabb4c60017763fbec6b74fcb9dc5c330099fd71982b6e5f91ec4e8bd4a817.ref, historical/b0fc984909237233ee274c0927cbdc387a1d25ade8b0f79038a529b06546bb9e.ref, historical/e21e77c59d909fabc6e318e5c59a3bdfca9811ee4ee81eb6a2731398288f085b.ref, historical/50a6253fff58cab45ac058411990615a06c765fdd4ff873539cdce6be826215a.ref, historical/52457c64fe668c771b2ba94ccc9b53d078a41150f2aedef234a2c478731fcc30.ref, historical/42fc566101a4b30ba82731c66dff8f82c09c844bb1581d1b0c04fe88e24bd239.ref, historical/65ea3e55f34f29b79474f870f32d3bf5f1fcd5a2ba8b8ec88868d051fd04031e.ref, historical/4c06c972fb69a35d550ace8a71e3765c09ae6b7e62b3db8b75fbb74c97c738f0.ref, historical/3f01e0bb6b6582d9b44043d1eb7b79de2ceab7ef46f52eba306c918328aa18c9.ref, historical/03a481fb54c8d7e7b2dd306550e183195421ef4ca4f8bb19a285a4ea44e5c794.ref, historical/f60aac79d002ca7b85f3f6bcb017f6d2fe4555dea0a2cfac0cfad279c694a8d2.ref, historical/8758dc924b59ce02a107277d7517e0a67a67aa6a6a511c94599aab0d68c5a326.ref, historical/a13667a15c40e6674716e3c45340f33883add6337e52dd40b9ac5bb18b407e36.ref, historical/ce66fc53ebebe079df3c7a485367deb29623a3a8b02178f8f4d24e36ab04f111.ref, historical/a0331640d95073d7384bad44c748fde44ff1f2986e2dc8ab5127e8b61e5cf529.ref, historical/d6bb6f82946d4fbd12f934f68c719c343fb32a6b107011e3173998d3d1dc4216.ref, historical/8e1b123dfe317d21be1570004f8a8b86b83a909f3339e1ad6c0a58e1124a4c76.ref, historical/c3fdd203bd4c871c93a519ce6f3b2a01d0dea351b929f10076ac820898ade567.ref, historical/d25230567ffcb90606d0f3c9f0067e9ff4715f7c32546a8e1869c84a5f5b92fc.ref, historical/202ea75e26db056d313fa9a90aef3a89a09e35a604b6c96e6f96a35d1179c5ef.ref, historical/04e9455ff0632eeef59779795a3fdba5af1b54201b36604ae87ec4a0fd249b2c.ref, historical/4308979bf169fcd593d8f1f1fd992c2f8adbd103648f0980432c188956e35c7a.ref, historical/309ca194c43b2f2d0613b91fab37055ccc0decfcce44bb721b196ba0750a9403.ref, historical/b840b161f928d18e6952c4b56dbf30340987da217f3976a998697c7f98b2eabd.ref, historical/cee901ec30f31083c28e7264fb0f50f50333db480c079776feb6781f415df691.ref, historical/67bf901204b2f85becdf01b594c24cc11ea709097d03ff1c9ab396cdfac15b38.ref, historical/27c71457403c2b731893ad08cb43eb5db34307c94e6419bea35e485235cdf827.ref, historical/7e3665b73dd2d6ec7f800fa30ba84f010d2f74ed148c239c4cdd90f423758658.ref, historical/9f634a8467d994bd7cbb2fa9b17fc75232219aab25936c512236f9d673bd000d.ref, historical/454ca46de7825ef8f5591d87a4abec9b63367eb9c93264e45787ebd2dff5ac52.ref, historical/b7929203f8608ef955d19cfbdcd137e3b7ceb66ba90e54146a427fdb5f4dcc49.ref, historical/c57ced17dbad7d712d1780ae967afa82384ff353056765d96bcccc2e8f3ed768.ref, historical/daaae853f0671f35cab4eef6f3b7bd9ab3c009304d35759cf9f9c09a0a330b38.ref, historical/d07d66d8b1187969f1b4d5a5bfe45ad4f0d0ce50f9d97e679046bdc1d3443ead.ref, historical/b7659487b61c7bb6fc2d7b0346d104f44a5d69915ce3ae0eec3c6e3b19a8d36c.ref, historical/ee3d730d7498168a2fee3b5d01b68f54326b661548b4947b80143b39da7ac7ae.ref, historical/ef1aa7e1ca257138c45c0aa0b02aa95cb654de01e517c1fefa539195242a1459.ref, historical/325b032f61940ba69b6bdad0a0510962c047246cacd5eb33424a3986b942b2dc.ref, historical/1399debc15b2fa8e3de38da075451bd9fb94e2cf9406c9556623e0dd51be4498.ref, historical/a074dadb599851efab74808110009e856b2643a0a9b234cc53b038c6e6a75d66.ref, historical/6f5df911f0105f6eeaa892e52bb6f1559b40f3e0bf6734e21321a90e29b6d873.ref, historical/b21e7c908d72de4c378b4060c1471658fbeaf87328d32850ec44f2ec7bf294a4.ref, historical/365a6e281eac26fc4305abd1e44144600aea0ad0de4bff7f102573f503a901cf.ref, historical/eaae0a27a1ec4cdeecb6f0637dde705c5824d6b4ebf44c266dec990f41af3a44.ref, historical/21250f6c6b7f5452ba691d19a43bbdfa7807aa063a6dd4b1c7c2377be75664c9.ref, historical/5336e9f1869a9e9483bdbf8cef07ac600e07b57ca3af750acec0a9696a5f2115.ref, historical/907ba7664bbb6f5860c8d147fb965f8c99e084a08c9344ee362c0dcc9f14665d.ref, historical/2830e88d4bb2c40c2af5494c2becb6d98a5ae88e2bb0dc128d41293f4814a482.ref, historical/baef382a2db80305ffe46fdd9614f54394fa7e6d40ab03e766c9d361a7591779.ref, historical/6f01bfb22ca5d3550d8f2bc203f84aac4619cdee4a7200bceedd9cdda4dedf56.ref, historical/6fa122cf1868457091aa3028b98555fa5b8587dd25f36d2e023543f139fd20fd.ref, historical/25df5741de0c414feeb9f2e2f85192909f8459ae1abe2bac7a4003ae690225d9.ref, historical/031d6623cef4686ca3292ac6f441cca056b4312e8307e9c7f9fd67137ad052ab.ref, historical/bc0a580e5e01cf3fa94afbca6bb4aba15535c40d8268330221492a716cb8128d.ref, historical/19e91b18ad92fd5b4f48b436e09313799cb1ee64ae32847274c02f1e775fa6f2.ref, historical/28a07432f079f4f90b18b828cd4c6e177cbd2c77e44522fc5d2f048e197d09a6.ref, historical/65661df6d23b676de1ae643f1a72def9adb129f6ed1bbb4bb0887e6bc5dff65f.ref, historical/d879aa5bc38ebe335b00cff63d827fed8ddd42acb9bd29e2c7d490806ac03b8c.ref, historical/8df4912a8a667b8f51253751a0a9f1bf96b2018eb33356c362c22c1c5d9854bf.ref, historical/5d76d5f852196d75af42f9f162ea4395df30f24f0a5e52a5dff1d10ec73a2a0d.ref, historical/307cbe45aa5c57524a01efed2cd726f195c2fe283e423e48b0b6438ac2788161.ref, historical/3b6356433b2e69653cfde41945d87fbda0713b8f4302d9c1bab7b25613324e9f.ref, historical/a38e5458ec6d01797865a9e2bf2c075581f0568c85850a19ad0fa68e3c16f6a9.ref, historical/f47fcb70d5ca5fd86b047c3acdf1c883d772f9ae0cd5deb5596f854777cf665b.ref, historical/1f377fb435f680b9dab3ac20df45f4e2de15d6854d00154bf88521dd19043a9f.ref, historical/cd97a151cefe021f13fbc91af8156badb21fa5d21fbd4929edc07dd0ce90c2fd.ref, historical/9d660cee38cbba9b998f08f6a7a00f2b482b2b44d515069180142a248411d64b.ref, historical/adf9324d40af81f2db9ea5c7c8dba6a73aa35bc315eea66a515eee5230b3d687.ref, historical/85c0ca7bc2cb4c2be65db72714d288c98ac348847c2634c9ad2e1d2187d46e37.ref, historical/5f7708b99c84f72ab197057917321162a0b3499c859703c72f85b6ce5d65a7bc.ref, historical/fce60dbc1f999a04103e4478568479b16c333abbbc8b5083fa7b8fda255a4077.ref, historical/150477f21426692c273d4babe0d9c1ba0b8b4920d77404dbc7122cba974f5ac3.ref, historical/501be8b622c20aaabc5752ab327f55b469604e8238b3ba227a4f2f2951026af0.ref, historical/68bb006659e8b572ca10f999f97d562669eea8e79c83508dc4e903ac0d210989.ref, historical/b54679f1e9626da0756e4568406977db7edcd2c329c8aa302d5cd22da3c3f075.ref, historical/db1efb20487a6c20d56895232d1c617c251ca9e141548fdc7776446bd6e46b8c.ref, historical/04bc50bf85e9162b05a10e4db7cab9f4bff80c6e4cc53c3030705d657566d05a.ref, historical/f2e36bce1c9f483a52de8b860c20f35630a497f8ca356c00b9312f5d8227240d.ref, historical/f3ea243bb2ca6b284db2de9f96889d35c6561c40d8fd6ef9eaec8ed1b09bfeac.ref, historical/79add10e666da283bc6323e9838a9dbf7fd1db012c99474c1b8bb075614f8b76.ref, historical/f7124e0f0cc4dd64d85921182ce57eed61ed3ffaf5043fe3d3f18664a8ac1a59.ref, historical/6367d73d8cd8428179dddfc28f4094443d520eb15a3e5a8b67f26e37972de44b.ref, historical/f557ad5ce38bbe23160bc78823735d5303163e665e2b0a7ede883a5bcb0037de.ref, historical/c2ef157b2cd6ae9028e6bc78d3d872905a5dc97bf141a0c1f42a0fc010db1f45.ref, historical/337b0e9f90a813ba105ecb706512b2f3d499af6c10f0f3dcbf14e75af9b50715.ref, historical/3ff3aafd26c54604f4e06905d2deef285564602fc610b920210d4445c7a9f1b6.ref, historical/7611b9901de3b95dbff058017f4096841a2a3413958b71dacc4eb2915323919c.ref, historical/1f01d16dca2bdd873111173bf046daa3ad437028eff46c333b8f6d6eed3ed9f8.ref, historical/ecc72accded6c0a908ffe6947a6d2a380bfb8fe1804727407d4d1b03c3215c0f.ref, historical/c08a8e0cfba0415901de2faab1488f62ddfbe957b9a46a9f7843e7dd1c14fc75.ref, historical/d37f3e5f8770f235229293df87ac726e02527a738447e902596a7ebbcea773a1.ref, historical/4d3d4fdb5b0cc6c30dc2f73448644ba8499093818deeca656efd5c9104192930.ref, historical/bfb7795ca22d0064a7e9e9e65d0a77beb6972b5c8c3c303fc9eaada0f2528051.ref, historical/008ccaa9dc8b9d785624a445e45a3a9e52972d543cd192b3c08353a223368fd1.ref, historical/2dc6d6578f89ccd0837fc5d1e52c29a3de4a282419cf71958810c7798eaaaad7.ref, historical/5f85272ddbd8de785da0f8978e16fda34c521f026f4173ae8db57b9140bb7a58.ref, historical/09e11dc0e3cde7db881655f3cd5930cb6ec2aba89c08c91e77be8e3562b446a1.ref, historical/6b0d6f7963e75c52d54799e1710d23ae37b04e8e9649eb5b62b3040f1c71ca1e.ref, historical/a8b2f08b740c56103156fdda18ee8f3f21813591357c089e4747a20b3c83fc11.ref, historical/a2a1e8f64e03ca8e8facffd960c91de4163eb30037dfc6a3ac60e70617a3c016.ref, historical/d0a582d8f6b45b3b985319c6ac9db214ae52b2a2413cc1de8d5c771ce2ed1771.ref, historical/c1eb92325a9c8ffed6444b40202b422655210197777356bb27b15c5e6b8c3126.ref, historical/6c8af89214cafbfab5e466ba263568ee9cbf2222afbda4186f2d21f7c29d3707.ref, historical/914eda395fd7be0c05feea0523f38a62b37523fec4f5c3d18ab964b4c3d3191e.ref, historical/b5815843d5de46f8c8499dddb02dea15aeff15abc7ec5d978ee6cb5fa60023e1.ref, historical/a34b9008ba7b9bc677574fde3485d39d12016921e6db70ae2ef99382b69f4ce4.ref, historical/a59d3459db5fdb5f9ab2c9ce67f975e8f82bb668335fc5d44cd3cbde1569d238.ref, historical/fe5a26630b78b027cf19ce636807b58b21f8c6590c6b2f4b646a9a1f1ef7bbfd.ref, historical/fe372edbbeb148fc54f459824a85cf700efd77713c0cdd1810bcc5de380282ae.ref, historical/f8eb063525a5fea25810235ed3421a068849986e718943d7b321199994bf5b95.ref, historical/1802254b016a95a9ae6111ebd57077713ce00aa1f0403ff9d85d0221df148d0d.ref, historical/3c4232192a6e189a66d765de952ce09ca1199da379720157119f8979c8b32d33.ref, historical/0dbf7af4f753cbfc95178381e9ac58d657051587eb48b5bbc7bcc0e1301592de.ref, historical/eb4e83aa63db08a6e69e67db26fadf033f731c3d1d44caec9bba289281da9239.ref, historical/55aaa70342ce3e7a7d340af04147d8ae6fc20c674621fce2bc82082ff58d6d78.ref, historical/20cbe5d9fbc4d5ca7bd9e1e003a3c6dc4ab5ec78fa013abc8808fad35d10d2ed.ref, historical/63ea04ae910a2416ef0f141b8202a3732c22784078efc4f67343ac935ba01139.ref, historical/5eff0e2918dda30ee6e34c2242552b96d6fa609712e4ceba18c8d69d5c72d733.ref, historical/46f3c39005eb1810561953f27e351605b98925c105515261547761c7f0d683bf.ref, historical/2e08ef5facde056e17e6f716050615e0e8a78dc739e52848560b57f1aaa6f4ca.ref, historical/897c01730d3e8e56805760cc32f2c63822d03b3d638784109e9b9c50f3eaa537.ref, historical/67b2ee9a18ae864f8c4a007ab04447e5a624f7d485ee7cf86b8c8e52055efb05.ref, historical/20e220f04746d190f6537d3989d008a3b5ac30ad910f2c18d1187aef7bfe1b10.ref, historical/020c28338b58a189d4a4f87496b73a6f4c64652f2f770e743185754b5f78180d.ref, historical/4044267f483e497a7054e5222c13e21df61a4f16906c757e5cc18ce7c71fa06a.ref, historical/c0cd752872eb9ebcd378356ed440ec74e53132ac232ce7b00349cc28d272bf5a.ref, historical/aa550235602a3b993a46d21c6941a19b334063b9ed04d9912679a64c672b7dec.ref, historical/042205c3a086de513bd3a515ad571503eb87d27d6c2e1ad30d761d25fc4ee77b.ref, historical/f7056f3103ba9a6d47fd4f2600743a1134ffb5f36d020813a7a08e6b66a9480d.ref, historical/7fe9d38001a690f7e5800009e924513391b6561e1a50480893fd80f5ea0c8353.ref, historical/a63cd55e015dfe0a97f850963b91dfabb6529837bdc23b0cd38fa18dbfd26b0e.ref, historical/9cfceddb7ce1de4f93ad65bace69ebb41dc7bd6c6295e0f7e62abf107a5880f7.ref, historical/23f3eaf104cef920c7afb6167badc7bc9d55a1225e2bd58298f81a33e2e9ac7d.ref, historical/9cada4241bbc60b10ef13ac36906b070441bb78c60b0803856cc8d6a19245657.ref, historical/44f43677d31c9de9bbe1e7e3107e2ed05bda0e9b64006e3e125867a4ce2b937a.ref, historical/f7372c8ed227dd2f3cad82efe8b59ad9759b94482d70f44b1fac889b80bee390.ref, historical/70cc519c0d2adf4a75aab775a0d0c85d743b6e5565443960a545fcd576e7a689.ref, historical/3f2ec9ea1c31f2363f2133e4c032b72675fa9675a30330ef5d684b2e311fc73d.ref, historical/67f9d46f1c8889aa149a2370aec6bd5cb79b736076c89807cf9545690ee173d1.ref, historical/26cd277e34e5c570203466b1eed4c3fba6fe63f27b86acee0e87e99ca249a22c.ref, historical/60defcd3a54ac37e850bb0dc27d804bd54dda641e5eab06a15ce0ea8b7320dce.ref, historical/100e2631914548d353334e210e509f180badbf0baa2466785d16a0735df0ec7c.ref, historical/66b9edf3ee8680637a45333f9a41aca858c1af4e1dd164cce8d75f1fd364d1c2.ref, historical/72b1ec7bf7b15144b3eaf6ae8cafed86eb512c9b1afe88da16f34a25d21c91c7.ref, historical/9ab0e26008eec6caa087d6372446f8b21a8ee3ff224fcd0efa4a72b16903d133.ref, historical/3f27d22829a35a0dc87e08a0790b67b46686ee9fbf32efc0ac0e4563c71c936f.ref, historical/fb548eb5b546fbd83f382aa78c3345debea63af69f2c0ee2d0b242662cd1ddab.ref, historical/3e1ef282bf5bc59cbd4c3f263d24b5bdf3d17c134107cfa4f5dc1048f78fb353.ref, historical/7369a19af07c77a34d220de3eedf5b856fd4958c95510a04736dc94bab17036c.ref, historical/8f0d9acdacb79778dad82b475adc6febcdb2c0a7bb16e5423a7bc7e2732fbc30.ref, historical/669487f8cdcfafdcb2a483a5d5a5b10aa0a36eb006af6de251c37551359e615c.ref, historical/d3028faa19f99ab1442763e8da859fbf84849c7fa860d81a6e48443bdcecc3d9.ref, historical/1ec41dcf93f66d9b8caeed9ddf175840a18d9de1a94a796c58dd90e775bd8892.ref, historical/5dd90bb0f62bcb03018a9da585bcb5267fc187f51b013befbc476621b8b989e2.ref, historical/b733369bc6d8d585dc83ccdebf4737af35350739cfaabc8681405711f805dc9e.ref, historical/db52bbeba2dac14d5b789362d020567428df4a1a79191edc71e8684a92b10fe1.ref, historical/16fb159825039a48d1626f44177a51b16b29abc5c1b6f11fc150d6f30c8f4bb6.ref, historical/99bc4346a619674955add560fe4970dc1e861b00237871f0ee1c1b798fda0938.ref, historical/0d8d4271bdb1a3697b1563eae9863e1c4c956d89dd79f3d18f5ba854216193d9.ref, historical/c8c2e1caf6c466a197ffb1c829eb4430f281688daceee33089184f26e8877a7a.ref, historical/68edfa22724af218a61c06b172c4c8633e5ecee0e9e087aea716f83966eec236.ref, historical/15689789344ee9ffea2017aee7399e544c19fc08f2532ec84cc73201fc731bbf.ref, historical/0a85f6dd05110ed7339feb40497c879f07888a7848290d2272e42cdeca856b4a.ref, historical/915949458ea7044cb4979012fa7d25219807295bb2dced68fb3af76525b48192.ref, historical/016f2ab5718a355d1ab6725c2213e3c06aae4809af094b2a96e5e5f6e4a7b506.ref, historical/1fd79a7302c2c15ce82960656421e3769ee26fd19131fc5167b1a644a2eb854f.ref, historical/22e3d6dba2b90cb1d2f92aef732317d434a62910fcbd7435f2be637d391aba42.ref, historical/ab00df449cc6e1d55df312ba5135b9a63dd7a5209928eef3aed9972b4beb39e1.ref, historical/b03c7f66a3da8834652ad6255964aaf3dd22732a58d58e25f9c2c23f74145f43.ref, historical/c280263a03cc5698fa7014d34ed37c74e2761095f599adf6dc6277b020a9ff5a.ref, historical/0bb930eedf4022d79629d989c7ccc97c4b8ae2a451631f8f3371b7ad50530a67.ref, historical/a6fec35db1b7e000f68eed23fbab61806f70d897efcd63e7cb697f90c72a587e.ref, historical/a9385fbb9e354494b9e1b948e115defebb01c22afd230b403896ba9c4e0219d1.ref, historical/62e5f039f8488b2a5a463327e320ce214b1b0cdcb23d7c1256f583c926f29c8c.ref, historical/b5d9bdf9c34c262ca91c26e9c6318bb8044baf9e803376791351a4a611d9ad79.ref, historical/e30d8734130a3708f292119873016abe1ca514e486458255c991bb2c88cbcc3e.ref, historical/f45ab19441a767a6638aa141a10916c7c9265f8f322d78537f1281ab696656ee.ref, historical/def3520f6f377d94e1399b804e0dda6a2d874ffe36957b80ed1c60da554698b6.ref, historical/cda46eb2e436a1624a1bc1c3bf6051194b86da90e5a8dfeb2e0cb6330a8bf778.ref, historical/1421ae9cf95bc2d061508d5f8ab844314260b638bda2b63b1a7daafaa91906ec.ref, historical/4c111b9b4c34efd9522bb5d55ed036d074575ca0f0b69dabe5180c40a67f7b4a.ref, historical/e800670ea47a8f89ebb7f3bb89d19320cb9b2c039cdbf52f2e2cb94d6ce9c185.ref, historical/1d18c09572245970af62282c35b0b4d89e25330e84c604894f38ffdf0be73466.ref, historical/c1466630e31f7d376c005d67557e00a8f1b526c48b397d939bc09d49d7d3fc78.ref, historical/31946ed62ef2de8268bab5e7360437c261f6810779e2675e9dcaa3361cab0d92.ref, historical/a6c293f9340ccec74bab4bdd38dac44ed6d379574b238ec74435986899a6e052.ref, historical/6bc0798d185ca74b1393da6e88f1fba05991660a50f3c8d69130b9c34da56721.ref, historical/760a9e2a719091953b9563d9d9aad0034bcd353f3e864672f2020510a96ddf75.ref, historical/2e24e97e1a951f0da983abbdff68b5286ac107d3460c63d8ec88ee4740a7bbe1.ref, historical/3a55568c48de0975d61dcc959a052f43435fbeadae16f49ccb2391e424c47560.ref, historical/ca4eb925989ad6a23a57a5ef040a33cdbec2ba53b33ddaa02b304defbf0a9e94.ref, historical/68c36b0b266c3b7d1fa6e006d600a27d8ba80fdebcbd0127d45b501bcf0398f5.ref, historical/c67ffa9a5ce1ea91f1a33bfdf6ad54bd97f824178ee55b0e63686113bb5d5561.ref, historical/3d73f08ba706ca6756ce4d5d1e64dccd2be2531d5a539b3f744fb21a6f3bf109.ref, historical/2c31b7d9fe758f06c8250e9d5b8b29f318419ee5e3f10c3340131e650644ed7f.ref, historical/f22cd735160e292dd0bf431a51af3b7b0d80e976279ea1f72c5a562fc06b6576.ref, historical/c52730d34dd252c9bb32cd1c97145acdd2be3fdf48bfc794953ce17519194516.ref, historical/7302f6f1d2816ad37dfa56df18ea71efbc52eca1159d890d3b0246048939fd35.ref, historical/fb5ac2c6230bd7584a589b54f37c72f3df9eefe475b419b06b67173c969ae9b7.ref, historical/72c70176cd67db610b318a097d30f7e29d5990ffc3418d696415baf02d2deca7.ref, historical/6c4d95d98d4356a7a84ff6161feeaaf65f5b0f59a48f6b90ed253476468c1580.ref, historical/e5070a890dc438d49a4d3bbd9b80631d4aed8388f78d8174fe48a11d128b85e8.ref, supabase/migrations/20261116025354_connect_registry_calendar_month_policy_closed.sql, historical/efffa5fb35b668ad2860f4407e4120868652e074998ff76d93ac077b6aec8cb9.ref, historical/afcd1981d98584665603c76d4aae1dbb04ce111c77f061e60921fc91ca39772a.ref, historical/30941520dfdee3d9e0078342ad003e8003d15b5a20d3c0c9081cba39f9fa8d21.ref, historical/f67392596126f9eb0ab91500518bf5e48dee2fab08a419af265eae290822dcd6.ref, historical/acc70885d74e9bcaf182d1ab581bae73ae616382ed0a99b34107802202fd1222.ref, historical/a9ca91dfc88a1293bfc3e4ea93bd6beafb4843f42507b59f4fe67cb29c9aea84.ref, historical/4237da7aada88e7d8bbf06fd50e1412708ae009c37f9c798282e1c5caec70922.ref, historical/22aa5f3e2bdfab4896c2d7c9c13f96c0cf8711654132dc4b98634b18905ad9eb.ref, supabase/migrations/20261116045954_connect_registry_on_demand_operation.sql, historical/74cd5775bfdf4397f16f301cbebdfc6fba2231bd21aa0b3aed7f502876e606a8.ref, historical/6511b603e0ac17e8e9bdc8db4a6811b8514623dfd85402b624bc9c5b6cbd430a.ref, historical/2c4a65fa1024bc0b34fd8bff95242eddaabf3b4f110d33ab24dd69a522e4fe4c.ref, historical/3613a3219635fb993c12dbbfb22c7af34c73f6f20b41fece57becd9e8e8915d3.ref, historical/9f9807b6eca2dd0c4aefab40cddf2704071267ca56f1379628a6a4ba348c6eec.ref, historical/f5cfc89e0c8ca9cf7cfac941494a564a18e805e02ef5decc1e6b5aa187e14ea4.ref, historical/d8933144e6bf9ef4a395acf394fec67b823ce8b3d66f81698ec9c1dff15f3d69.ref, historical/e25b19e93fc47e3f30a7dbf0196744dd1532ec1aa95ef7387a616fdf7f9cc9fc.ref, historical/bdb484386f727ef2336ea1d20e88266cb0c26ff897e188e7b39e9a2ce293c7cd.ref, historical/ba2057b7d083becc5af9ec7682c34401d5730955d232cebb335f7e38c91cada8.ref, historical/d8f523c13e97eabcd0e81ec14d2b210fc87f4dd3abff9dc197deefa38665b9bf.ref, historical/34aef60baa5bbf3bc9686129a161e53af65e734fdf5dbed2e43248a22588e6a3.ref, historical/b631cb8fd5f12f88e451f3c9ac5e8a722a80ee4f2a102956f295ccba2fbb5c54.ref, historical/0b960470a4775d4c3a8b6bdc16812341cfdfac12f5f8c525ddcc88f603a73ab1.ref, historical/e6211d0a1bb19e76fedb92200303a1ad2643187a8179556b9151d0f739331e22.ref, historical/80d72cb44fb80b7d5d96a7d24f4e3fc90358a80f032ba7096c8c55bfd774311f.ref, historical/fef6e7971cbc9d2655c4f4b2c2f320dfafde936579cdb3dfab6f3939244c5de7.ref, historical/b1ea60d7f81778117f180944cd729fc85c36469a054c8b3708e77c3a3409f447.ref, historical/10987489c8d0f0a771110328e22fa4375b037cbabe5e97ae4f96fca57da89d6d.ref, historical/53f6848ff337478c2ae4cc6a2496724e75c527f8109667ed738484e2c0550c20.ref, historical/f45391bdab660a6025ae41cefbdcef191cef8b0a3c469e68d20a5985be241545.ref, docs/product/EMPRESA-PREENCHIMENTO-CNPJ-PROPOSTA-2026-11-18.md, historical/f373676622fcf38c26a094a13e763b29a888ad1ef1ff280ffe309764324e5181.ref, historical/56a6bfad30ec00841cebd9ac063217557d7c3b76e3736a024152dd3bbb5127c6.ref, historical/8a71dd8fc1602d55d8f7476b5503019d066e103a89efbb84892eee315397959b.ref, historical/d451efa0229e452f764d7490c33bfbcde8867ec3c3103f367f7d7782464cd51e.ref, historical/70595b284a5a64c7342f64c5776db7a2f114a3703b3cb9c674787c4c8b320cb4.ref, historical/dfd260bc4401f3bf79d16aef85e46c9fc0b3f86a6c223895add2381ff4904b1a.ref, historical/f6ac2a25aafa792205abc51a34b066bd43ec36ad58a84efcb5dd3ba03565a90e.ref, historical/a7382d92cd17c2fecc150e7005c58a5e3d0bfab1c4039410f737a927e992b80f.ref, historical/85e1c5abf1be3f041b1a4a9f2c50febd906735b5b819bc18e28ab0e69a4ddd36.ref, historical/abb6d9f1ecc16a95525ecc9604e9397fd341d79ba89e830d8862f506d77f5a8a.ref, historical/f17559e08c131cff09ed4d5863edfae3570fdc975105ea9533de5c0e7f1c66f1.ref, historical/8b142b4985efff3db2ef68c423e0a5e5b645c04becff369b0b44f8398a77f7ce.ref, historical/e46df17bde95d6c36eef94bc4ae2ec8c559730f9e1a6ff41333bcd0017553b2f.ref, historical/12cce89d2efb9236dea1c1d83791b9ebc581ca30bde284a02e26eba38b7003b1.ref, historical/e76583013793d355b38e7ce1077ca4bfd094c7b231d08baa47075dd23e5877dd.ref, historical/e3566f2f003917bc92104f3b7f7534b9b1751f2e1cd93037f3bcecfac21fd35d.ref, historical/96e68759472ec349e0bca2f6b2ed3bf4ec1418f8414a421393e5ff2a67e4ce50.ref
+
+## APP-224 — Contestar titularidade e revincular gestor pelo painel ADM
+
+Estado: backlog
+
+Depende de: APP-223, APP-217
+
+- Lucas é o revisor humano indicado; UID/bootstrap/grants mínimos e MFA/AAL2 ainda precisam ser preparados e confirmados
+- Documentos privados com autorização e auditoria por documento; denúncia não concede nem remove papel
+- Prévia/decisão versionadas, alvo confirmado, múltiplos gestores explícitos e concorrência com outras mutações de gestão testada
+- Revincular sem SQL manual, sem alterar implicitamente papel staff/paciente/histórico; retenção e recurso definidos
+
+Próxima ação: Preparar contrato e painel de contestação, permissões próprias de transferência e ciclo documental; não habilitar acessos nem transmitir documentos reais.
+
+Evidências: docs/product/DIRETRIZES-LUCAS-2026-11-09.md
+
+## APP-225 — Moderar fotos pessoais e empresariais com OpenAI
+
+Estado: backlog
+
+- Somente avatares na moderação automática inicial
+- Original privado e bloqueado enquanto pendente; placeholder genérico irreconhecível sem pixels do arquivo
+- Erro mantém pendente; aprovação não amplia permissões; revisão e contexto clínico considerados
+- Medir latência sem bloquear chat e sem transmitir imagens reais ou persistir credenciais indevidamente
+
+Próxima ação: Preparar pipeline privado e testes sintéticos; não adicionar moderação automática às mensagens do chat.
+
+Evidências: docs/product/DIRETRIZES-LUCAS-2026-11-09.md
+
+## APP-226 — Ocultar imagem do chat somente para o próprio participante
+
+Estado: backlog
+
+- Funcionário/paciente autorizado oculta só para si
+- Ocultação é independente de denúncia e não exclui arquivo
+- Imagem pendente de moderação permanece preservada e privada
+- Persistência, isolamento por usuário/empresa e estados de download/URL testados
+
+Próxima ação: Modelar preferência por participante e integração visual quando imagens entrarem no chat; não prometer remoção global.
+
+Evidências: docs/product/DIRETRIZES-LUCAS-2026-11-09.md
+
+## APP-227 — Moderar imagens denunciadas com warning e suspensão após três confirmações
+
+Estado: backlog
+
+Depende de: APP-225, APP-226
+
+- Analisar chat somente após denúncia autenticada/autorizada
+- Deduplicar denúncias e warning por imagem; responsável deriva do autor original imutável
+- Preservar arquivo privado até decisão; infração confirmada gera exclusão definitiva e um warning, três warnings confirmados suspendem
+- Revisão humana/recurso e falso positivo previstos antes de purge irreversível; não usar score ou inferência de idade como decisão final
+- Autorização, concorrência, retenção, derivados/backups e reversão da decisão de suspensão testados sem apagar/suspender contas reais
+
+Próxima ação: Desenhar fluxo de decisão e recurso antes do ponto irreversível e testar com arquivos/contas descartáveis; nenhum processo online ativado.
+
+Evidências: docs/product/DIRETRIZES-LUCAS-2026-11-09.md
+
+## APP-228 — Investigar histórico vazio ao sair e reentrar na conversa
+
+Estado: done
+
+- Reproduzir entrar/enviar/sair/reentrar, distinguindo persistência no servidor e apresentação da leitura
+- Verificar Phone14 no Android com atores sintéticos não reservados e preservar evidência Phone12/14
+- Corrigir causa comprovada e testar paciente e funcionário quando houver atores independentes autorizados; explicitar qualquer cobertura ausente
+- Não recomendar teste com cliente antes de validar o ciclo nem afirmar deleção sem prova
+
+Próxima ação: Correção de reentrada15 preservada e16 acrescentou4 reentradas reais (seta/Voltar de paciente e staff), com mensagens3/4 mantidas. Monitorar conferência física. Outsider e agora managerA têm históricos staffrevogados; não reusar scripts com pressupostos de ausência de linha/head antigo.
+
+Evidências: historical/9c32b48ccfd38008f7434ac8ce9dc74c8bfbbe42d067b59aa93f51786395d81b.ref, historical/ab99d3423efa89cb5607b4885d739a97e009c17f7488a13d2b9ed38a1775cc4c.ref, historical/1b2e5e6e8a609a0aa34f839ada11558da02e65cbb0ec37c0d7f6bce171035b48.ref, historical/d7b5cf33175a5ddd62f6b6dfb3b8efb9e27fc4757b3432aee7c556ee1677adfc.ref, historical/0d58b0730b7dc04faa1ad63125d62248f480881e54797c33cc4c5b0c457010fe.ref, historical/77b38a7eb452b878b0d02b26fe63c032dcb4dc40d55ab432358e2dd08b037535.ref, historical/5deee003f4393d92b6bdfcb5ab1820ac4cd3800368dce6d549281e4816013ab5.ref, historical/0777b6ef3a0433d8e30c69645510637997539937bb08ce0d8232c27eea4b530d.ref, historical/e14fc1d418b088558e8015bd5346d7fad0de778b473b47ee64d86294265aa989.ref, historical/2bfcf8964fff622a1db76e8b1d5799da6028f16cc7320a8603e1d3bc4934f814.ref, historical/ad4c857c2f6ef5add7a6f9e66e098a10944723ad8feb84637b10f572d58cc8e5.ref, historical/fd5958ad51f82f407f9ced0df44c679b1bcce6edb6bd90d060e1f35a1a059da2.ref
+
+## APP-229 — Respeitar cancelamento da atualização de cadastro sem afetar outra sessão
+
+Estado: done
+
+Depende de: APP-071, APP-177
+
+- Reproduzir o sinal de onRefresh ignorado antes da alteração, preservando os resultados negativos.
+- Pré-abort sem I/O e cancelamento próprio liberando busy; resposta tardia e troca de conta não alteram outro owner.
+- Demonstrar propagação por HTTP real local com Auth/dados sintéticos e encerrar recursos próprios; não apresentar isso como Android/Auth online.
+- Preservar mutações, sincronização automática, fonte CNPJ desligada e APK15 entregue.
+
+Próxima ação: Correção integrada ao candidato internoPhone16 e registrada emAPP232. Cancelamento explícito com resposta tardia foi demonstrado localmente e no QA Android offline; o paciente aprovado do roteiro conectado não expõe refresh de cadastro pendente. Não atribuir esse cenário à validação online16. Manter entrega15 e CNPJOFF; seguir validações pertinentes da próxima entrega.
+
+Evidências: historical/e4a7a2bb2707f4d978aa56004783ffda6081a8818f56d49e40c193a29d5c2ebc.ref, historical/8ed19c8103d6c32c8424a1b9d660c3acfd68360fd21404004cc6797d16ec2ccd.ref, historical/a1e4c9c454e69289e8f3486b5aaa2a9586d4578ef844d443fecacf99d2fcbdc9.ref, historical/351257ec252bd4e39c187860e2c4416f78478c825f3a8d2a3509d5f572dc847c.ref, historical/798eb3fb44b1670d5fdbc42fd1f0ed826f6c01943afb6f2e847a7763f3dc5f11.ref, apps/mobile/src/registration-host.ts, historical/2de2e97679ffde4a5bc1b2cf64146420c87660e503f1388e0fb5661e2feaba52.ref, historical/ab0d81a6e19bcf77b210811b15e4b58b99dd4986e1c40b87c68bfd88cb2f63e1.ref, historical/5cf02a548de6f3bb80c24f8132efc482fcd395d2d3b900321216021ca809e712.ref, historical/8f6743351de11afbe9ce1ccbf621a13c11d8d62225461a2e6328fe8bca934e04.ref, historical/ad4c857c2f6ef5add7a6f9e66e098a10944723ad8feb84637b10f572d58cc8e5.ref
+
+## APP-230 — Liberar vínculos autorizados sem esperar consulta auxiliar e preservar owner
+
+Estado: done
+
+Depende de: APP-104, APP-177
+
+- Reproduzir espera do hint opcional bloqueando diretório mesmo com leitura principal pronta.
+- Liberar diretório/conversas somente a partir da página autorizada; hint pendente unknown mantém bloqueio de nova solicitação de funcionário.
+- Retirar dependência sem resposta tardia alterar conta/contexto/query/busy; limitar raw hint e testar concorrência/reset/dispose.
+- Comprovar HTTP real local com dados/Auth sintéticos, preservar APK15 e distinguir causalidade local de desempenho Android.
+
+Próxima ação: Correção integrada ao candidato internoPhone16 com Auth/memberships/histórico normais eHome/reinício reais para paciente. Hint retido/falho e concorrência continuam demonstrados nas provas locais/HTTP e QA offline; não foram induzidos no Phone online. Antes de promessa de desempenho, medir orçamento em aparelho representativo e validar equipe16 conforme próximo escopo.
+
+Evidências: historical/11c6eeddcadfa23ac3af375df4ca02b3a1f4cc2098e36b13fefcb6f28d95f0fc.ref, historical/f4fd7468cbad3b6558f52c13d09793cc6a38a79c3fda78c1181e1b75a238f03f.ref, historical/b96efa6a63032f7e31031b9a156475db29c3fecbeb293fd1637bdbdde2b8c13b.ref, historical/b86763cbd7d59c81b4d0f60b96075503ec5a2859ff4d52fc5b39285581932b0f.ref, historical/782094d339358a4f004ffa9a44f4da0ba35e786abd088025b49d43f13049e600.ref, apps/mobile/src/membership-host.ts, historical/a83dc381215e50a381e3cd7109f08216f2ce62b2f05f8c338f9ca8bbb759fe4b.ref, historical/d1e0685e62afc6a5ffd0ef08df5d0217e9ac4b37362152bef75315bf67926fad.ref, historical/a064da35b92df834888aba71b234575eadd6bce59ec8579a23ebdb038ef83cb4.ref, historical/da8e2abae9f3038e3fb625599b10d6b3daf5993aec69281bebb2f1d6c590c23e.ref, historical/5cf02a548de6f3bb80c24f8132efc482fcd395d2d3b900321216021ca809e712.ref, historical/8f6743351de11afbe9ce1ccbf621a13c11d8d62225461a2e6328fe8bca934e04.ref, historical/ad4c857c2f6ef5add7a6f9e66e098a10944723ad8feb84637b10f572d58cc8e5.ref
+
+## APP-231 — Validar cancelamento e carregamento de vínculos no Android QA offline
+
+Estado: done
+
+Depende de: APP-229, APP-230
+
+- Compilar pacote QA separado com hosts/telas e envelope nativo reais, fixtures emRAM, sem INTERNET, assinatura/hash e fontes congeladas verificados.
+- Demonstrar no emulador cancelamento pela tela original e Home, rejeição de resposta antiga, paciente/equipe com hint retido, bloqueio de nova solicitação e troca de conta.
+- Verificar controles com fonte200%, registrando qualquer reinicialização explícita da fixture sem atribuir restauração de Auth.
+- Restaurar ajustes/encerrar pacote e emulador próprios, preservar Phone15 e explicitar ausência de prova online/latência física.
+
+Próxima ação: QA offline Android permanece demonstrado em8 jornadas/9 critérios,8 testes core e13 oráculos, semINTERNET. APP232 acrescentou montagemPhone16 conectada de paciente/histórico/lifecycle com14 testes do roteiro. Ainda faltam equipe/envio16 conforme próximo escopo, físicoARM64 e orçamento de desempenho; entrega15 intacta e CNPJOFF.
+
+Evidências: historical/5cf02a548de6f3bb80c24f8132efc482fcd395d2d3b900321216021ca809e712.ref, historical/cff5a289f4a1db04ebe418a3025b95b24db3cd012e0eebeb783023280207fb3d.ref, historical/29bc2826ed2beecb0efd9dc4b97c9c8f2d99ed23f320c27d4350f80a156f242a.ref, historical/9178a2ecd2bb96439010953e7ae20867af30ff3a71c32f1849a4b21a0eaa51b7.ref, historical/62cf6c0094b29de1fe08d189cf72431264a1bd0d6a7d2d3916108aa64598201b.ref, historical/f4886c415d238422c4a9957f015527ea53a6c468b85af6174322aa7990adf0a1.ref, historical/26ea0c52cfc061403854a472ba5cd5b4a7495ac19bd18d5945d2b8a4703a3f26.ref, historical/76a670695ed8d5c5ba0bc3cac699a7baeffa56e50b54c7477863326386ff3df6.ref, historical/ae8160e43eaf2a292dec2e2a5e77da82f0652f8cbafc93ce3e2f294eabb36d21.ref, historical/feb25b38d47d24dd4e228a6106c9ae89bc879b7387ac6e0e758047b0f7778e84.ref, historical/525d8987397ab3266c26f2167236c811053fdaaf3d2a94c866e68223458137ca.ref, historical/5ddcf0d95e7c02d5c2e3b707ea6899b31fc2094769f3296d787618dc75018f5d.ref, historical/c5bb5f00a03fbbc51bd1b9098ea1d3532dce8b638894e48f4ee50597f29df8ac.ref, historical/68d9318b468b52dcb944674a63a99b156295bf296b9f6086eb121087b5711780.ref, historical/8f6743351de11afbe9ce1ccbf621a13c11d8d62225461a2e6328fe8bca934e04.ref
+
+## APP-232 — Validar montagem conectada das correções de cadastro e vínculos no Android
+
+Estado: done
+
+Depende de: APP-229, APP-230, APP-231
+
+- Compilar novo lote16 com assinatura/hash/fontes congeladas e preservar APK15 e seus73 inputs.
+- Validar Auth real, vínculos próprios e histórico com atores sintéticos não reservados; exercitar retorno do segundo plano e reinício do processo na montagem conectada.
+- Manter CNPJ OFF, não alterar autorização/backend e distinguir ensaios locais de chamadas online e limitações físicas/ARM64.
+- Encerrar sessões e emulador próprios; registrar evidências e limitações sem publicar ou substituir entrega15.
+
+Próxima ação: APP233 acrescentou envio/resposta,4 reentradas e negativas de acesso sobAuthreal na mesma16; lote local preparado e não publicado. Staff do ensaio também gestor; continuar smoke físico/ARM64, upgrade15 ativo, funcionário puro e orçamento de desempenho. QA de hint retido/cancelamento permanece separado e CNPJOFF.
+
+Evidências: historical/ca6be77c0eaa6219ee8a14d1a2f0fe5b4898256e779d393ff722bcb9918d0737.ref, historical/6311fc4aab24c1ed228b659afa03a8e869c02ec26b9c0326cbbee07ec5515032.ref, historical/8f6743351de11afbe9ce1ccbf621a13c11d8d62225461a2e6328fe8bca934e04.ref, historical/7a7d1cf5a7053a17c331064106214ff777893e3bfa57cdf453c71852b2e08e36.ref, historical/88d3af9645a9efbe69422cc83b853c4535cb7f395e7ba93d82d7ac8ffa2027ec.ref, historical/3dbe4d606cfa6b45f53f62591955c273010f9912175c4d4ead0801d92b67ffe2.ref, historical/1d7e2b7c3f0d58999d39600c89691cae485040c9b36aba950be29f99909a51a7.ref, historical/2b194e74de482ff4b5a334dab32bdee01704a53da1a0671d999441b6ca5fd886.ref, historical/35b7389cb86645eb2c130d5cb7059b23735965aa4740528ba7ebe0f3b226fbb7.ref, historical/f2fe14c560e22094ec034081f5ff0ae826d1847258e41844fe1bda9bc85996ee.ref, historical/6135e885e51813c92546bbb31243769f73e32d8c21af11ed17a676a16aa89c81.ref, historical/23b979aaa1f12c5be7e227cbe96070fd3a45c35ca0cf2705a03cf58070821fda.ref, historical/ad4c857c2f6ef5add7a6f9e66e098a10944723ad8feb84637b10f572d58cc8e5.ref
+
+## APP-233 — Validar envio paciente-equipe e privacidade no Phone16 conectado
+
+Estado: done
+
+Depende de: APP-232
+
+- Usar APK16 imutável admitido por SHA/certificado/73 fontes e preservar15; contas reservadas fora de toda automação.
+- Demonstrar envio nativo único paciente e resposta de funcionário por papel temporário ordinário, com autoria/ordem/count1 e histórico após reentrada confirmados no servidor real.
+- Verificar negativas de conversa alheia e gestor sem papel de chat; após revogar funcionário, sessão Auth ainda válida deve perder inbox/histórico.
+- Encerrar sessões e emulador próprios, manter CNPJOFF e documentar escopo real versus testes locais e limites físicos. Preparar lote local somente com validação suficiente.
+
+Próxima ação: Lote16 entregue no Drive privado e bytes dos3 arquivos conferidos emAPP234. Seguir smoke físicoARM64/upgrade15ativo, funcionário puro e orçamento de desempenho; managerA staff terminourevogado, sem repetir setup. CNPJOFF e15 preservados.
+
+Evidências: historical/0c1b4a82dda513b98898ced8113cd1c8ed00a3ec7455afee3deb5d67fb6d544c.ref, historical/b38816bafb3261503cfac8c8cd59a44eb8f78a721e5459a8ccaaa224e002a82e.ref, historical/ad4c857c2f6ef5add7a6f9e66e098a10944723ad8feb84637b10f572d58cc8e5.ref, historical/88c6d810b82259e904c74656f6e3d5be4d30ae365daf9b1c878e4abe943380aa.ref, historical/f30d0bb6cad51eb639fd129a23e5506c435bed1f3891f0252ce284cf5b5b3004.ref, historical/c5757511e574308a27f59e26d4c2b666e975bf0605f58ab234fcca812a02beaf.ref, historical/c2548d2367983e7a2965e7897d0854b52d62bf04ac3e5770e1597428b9d68b1e.ref, historical/e6f425077895b19289ef15c1f8c69d06fa1aa47c0cf2bbff7fcf36635ae2bcd8.ref, historical/d19c293df869ae5040715c39c434a3814a492e717a58296c31c987fb63b05272.ref, historical/05b2b827704144bfe2211e62bcc4888ad9da13d179d48dc3eed4411e350df662.ref, historical/b83b745bde6b575efa1ccd4622179f48370d7a3820a16824060cae26cf385c86.ref, historical/0a37cf3a03504c22630ebce9a6422ba2b313c5962f544de8b04efab87b074add.ref
+
+## APP-234 — Entregar Phone16 e guia no Drive privado com verificação de bytes
+
+Estado: done
+
+Depende de: APP-233
+
+- Enviar o lote16 autorizado à pastaAPK existente sem remover ou substituir15 nem mudar compartilhamentos.
+- Reler metadados, pasta e acesso de download; conferir SHA256 de APK/guia/ZIP após download autenticado.
+- Informar limites de funcionário tambémgestor, físicoARM64/desempenho/upgrade15ativo e CNPJ desativado, sem publicação em loja.
+
+Próxima ação: Links privados16 entregues e3 hashes remotos conferidos. Aguardar smoke físico com dados fictícios, manter15 disponível e avançar nas outras frentes permitidas; CNPJOFF aguarda Lucas.
+
+Evidências: historical/f30d0bb6cad51eb639fd129a23e5506c435bed1f3891f0252ce284cf5b5b3004.ref, historical/c5757511e574308a27f59e26d4c2b666e975bf0605f58ab234fcca812a02beaf.ref, historical/0a37cf3a03504c22630ebce9a6422ba2b313c5962f544de8b04efab87b074add.ref, historical/984365e2ef6a270df3608129a4d7f0116824f52399b54e10a612334b69ecf727.ref, historical/7f52920132aeb36f75944d6f818340b207e2a93e96d807408641e33dc6df3670.ref, historical/f55f4ce46e30d046a88b2b3d1a3ca982bb1b7eec5aebefeb1dec49bf3cbd3e0d.ref
+
+## APP-235 — Verificar atualização15→16 com sessão ativa no Android
+
+Estado: done
+
+Depende de: APP-234
+
+- Admitir APK15/16 imutáveis e146 fontes por hashes/assinatura, manter CNPJOFF e versões entregues intactas.
+- Login único em15, update install-r sem logout/clearData e processo16 novo restaurando sessão e histórico sem redigitar.
+- Confirmar perfil/vínculos/cabeça do histórico inalterados e fechar só sessões próprias; distinguir emulador de ARM64 físico.
+
+Próxima ação: Upgrade15ativo→16 emulado demonstrado eAVD compartilhado encerrado apósAPP236. Manter oAPK16 entregue; físicosARM64/OEM/Android antigo e desempenho seguem sem prova.
+
+Evidências: historical/69c00afc1b2db29b2e288c4e61cfc31299ecac97032623cffebd52281d81622d.ref, historical/bcc8112258aad2ea63c04f00c1f7146321a4d0d83fe9f9e41234cfaa7736cfbf.ref, historical/54e70c2e52a852fde8b5492c3f3781033cb57c09b49d5956ab83e2ea7bc086c6.ref, historical/a253f852692febaa5fdd9beef7affd7abc1c70e10c718960949d006deb8bae50.ref, historical/32ffa403b4eacd4e0db8b09f7e7cbb8c95a30339ceb3b9f670b0dd31b316acba.ref, historical/79fa5b2438581d547cf9fcd7d386448e865b714f14dc44214af34fc5c315a14c.ref, historical/bc0106c90717f86281a12923cffa21a2807e8fd2a8586108d1c6b0bc9e7afa95.ref
+
+## APP-236 — Validar funcionário sem gestor em conversa sintética nova
+
+Estado: done
+
+Depende de: APP-234
+
+- Preflight confirma contas não reservadas e ausência staffA de secondPatient/patientA de outsider; manter staffrevogados existentes.
+- Criar vínculo de paciente por link_patient ordinário e conversa própria nova vazia; aprovar staffsecondPatient por managerA sem reativar revogados.
+- Demonstrar envio/resposta/histórico no mesmoAPK16,3 abas sem gestor, negativas e revogação staff comJWTválido; conservar mensagens/vínculo criados e outros papéis.
+- Não usar contas reservadas, SQL ou regras enfraquecidas; CNPJOFF, versões entregues intactas e recursos próprios encerrados.
+
+Próxima ação: Funcionário sem gestor validado no mesmo16, com2mensagens novas e29 testes locais; upgrade15ativo também passou. Seguir feedback físicoARM64/OEM/desempenho. Novo patientoutsider e staffrevogadosecondPatient ficam mantidos: não repetir o setup com pressupostos antigos. CNPJOFF e arquivos entregues intactos.
+
+Evidências: historical/69c00afc1b2db29b2e288c4e61cfc31299ecac97032623cffebd52281d81622d.ref, historical/fd5958ad51f82f407f9ced0df44c679b1bcce6edb6bd90d060e1f35a1a059da2.ref, historical/7e1b7b7ea004bb2ca5d4a722292fcffb2d29821dfabaa8f2b8c63cb0af647af0.ref, historical/acaaa4a00577dcdd5b3b7070d99dda9f7e10dbae4331bf8506fb39207afabcf8.ref, historical/a367394e71ce8cb63014b156eb947f2b98f6f296208fccfaa93e5e95701ecc1b.ref, historical/bc0106c90717f86281a12923cffa21a2807e8fd2a8586108d1c6b0bc9e7afa95.ref, historical/33e9e2fcc56bd2b393c936102c6e5ec280a9e92902f8e3aa074f31b6b512a5e4.ref, historical/991b3ad372991c24ee347a15c78485a4b0b62ae6f3127a4991e67f4ac937aa3a.ref
+
+## APP-237 — Eliminar consulta redundante antes do envio na janela recente
+
+Estado: done
+
+- Comparar o fluxo anterior com o novo usando o mesmo ensaio HTTP local e registrar a redução de requisições, sem prometer latência física.
+- Preservar autorização própria do RPC, atualização pós-ACK, janela antiga, idempotência e descarte por troca de contexto.
+- Validar persistência e negativas com PostgreSQL/PostgREST local real e identificar Auth sintético; preservar os APKs entregues.
+
+Próxima ação: Código local verificado; integrar somente numa nova montagem Android e validar o próprio APK antes de entregar. O Phone16 entregue não contém esta otimização.
+
+Evidências: historical/6198d56a4521d9236782bbf63450e51a76a44dca455651d9e0ad6bea2b4562bf.ref, historical/a28aee653f0dc0b374e293939a5cc9333d4fe9955a3bb5706a18248ada450369.ref, historical/f5a937bc4a68973a4454740d00a805e46fa7ce4703aade4d81d5c9825440e2c1.ref, historical/4eff37cd89cd84b90a877ac745380bb5de517b4a45c324b70ff0d60663c65ba2.ref
+
+## APP-238 — Voltar do chat da equipe à lista de clientes da mesma empresa
+
+Estado: done
+
+- Reproduzir no código do Phone16 o retorno indevido à escolha de empresa.
+- Seta e Voltar do Android preservam a empresa e retornam à lista de clientes recarregada, com reentrada funcional e sem tela vazia.
+- Uma recarga atrasada não restaura contexto após logout, troca de conta, empresa ou aba; cliente preserva seu destino anterior.
+- Validar no Android, preservar as versões entregues e documentar limites da nova entrega.
+
+Próxima ação: Phone17 entregue no Drive privado, com três arquivos baixados de volta e SHA conferido. Funcionário: seta/hardware/reentrada demonstrados em QA Android offline; cliente: histórico/Auth/HTTPS reais no próprio17. Aguardar retorno físico de Lucas; desempenho físico,17staff online e16→17com sessão ativa não foram comprovados.
+
+Evidências: apps/mobile/src/connected-navigation.ts, apps/mobile/src/membership-recent-bridge.ts, apps/mobile/previews/connected-membership-management.android.tsx, historical/e5c8e8be2c8189c44ea1cb34ddc20c2280e463388720694ab980376e4f5526c1.ref, historical/70234ddfa57e6a67e3ae105f55175d459506695ef61c5a1d4f4270ee445498db.ref, historical/068f2558bcde8a9e0e49fdf2cfd34a52ddc06e563054ca728006af95710ae86f.ref, historical/79df0c7e1039bcd35be048178c6bc2717a79913b03d0e6a490b3e10f36c9ef1c.ref, historical/ae9e64ccf132c10cf12947c70b919e27b3dcc21679475e910b4b5ce2b29a96ae.ref, historical/2a9f1e60b60507821e8357e6820398b0f749998ac0fdb696ae8f8672b26026d2.ref, historical/023ce32540e0355e120d9c4e299658bd3700257975469617186a0826669416a3.ref, historical/85f9d19b1efa2bfc1aef232833a1479a3f564640d19df96728651431bb13e337.ref
+
+## APP-239 — Adotar Cliente na documentação atual do Connect
+
+Estado: done
+
+- Usar Cliente nas normas atuais de produto/arquitetura para aplicação a diferentes setores.
+- Preservar identificadores técnicos patient, patient_id e link_patient, dados, permissões, recibos históricos e significado.
+- Verificar links e registrar a adequação futura de textos da interface separadamente.
+
+Próxima ação: Documentação atual revisada em 15 arquivos; UI segue APP-240. Não é migração técnica nem mudança de papel.
+
+Evidências: docs/product/TERMINOLOGIA.md, historical/dd6f4add9a759fdcac01a160715f942d2c511385f9abe8aa88794561ab466cf7.ref, historical/9c39f2e98fd0f9c291337a5b35e09682ecfb7de3e273f774221a4b3dc37946dd.ref
+
+## APP-240 — Adequar textos visíveis e acessibilidade do app ao termo Cliente
+
+Estado: done
+
+Depende de: APP-239
+
+- Inventariar textos visíveis/acessibilidade que chamam o papel de Paciente e usar Cliente com sentido claro.
+- Preservar identificadores de APIs, banco, payloads, dados, testes históricos e distinção de aplicativo cliente.
+- Verificar jornadas de funcionário e cliente no Android após a mudança; documentar o APK que a inclui.
+
+Próxima ação: Textos Cliente embarcados no Phone19. Apresentacao Android compartilhada conferida em QA19 offline: 7 controles e 9 pares PNG/XML, funcionario e cliente, seta e Voltar/reentrada; fontes UI identicas ao Phone19. Identificadores/perfil cobertos pelos 24 testes locais. TalkBack e aparelho fisico permanecem no gate de acessibilidade, sem alterar roles/RPCs/dados.
+
+Evidências: docs/product/TERMINOLOGIA.md, historical/80f46285a03f8498a645fabad421c8ab1925de4820fc45528ede859363be81b9.ref, historical/f62e54fad5e2e346067db8ee774dd36c6a15921889b5e4754f98a15fb6029ae4.ref, historical/7dfc568a3d1738c4dc9201d003b7f490c2d683cc35f77f09d83d4364dae759c7.ref, historical/241e05512ce1b370a23d8373bb07315fbef0806d803d93a3bde349489b29333f.ref, historical/0149edd35e182d9263b36acc77e282e3bc3bbd545e72ac8b6939974389b4f175.ref
+
+## APP-241 — Atualizar harnesses legados ao layout atual sem reclassificar evidências históricas
+
+Estado: done
+
+- Admitir explicitamente os módulos atuais de apresentação nos testes SSR mantendo portas nativas/HTTP como fixtures.
+- Preservar o oráculo Phone8 e demonstrar que fontes atuais divergentes continuam rejeitadas.
+- Validar subset dos três testes, tipos e suíte móvel completa sem alterar produto, APKs ou recibos históricos.
+
+Próxima ação: 34 testes de reparo e typecheck passaram; full mobile1273 passou. São verificações locais/SSR, não prova nativa.
+
+Evidências: historical/f9f5111699a4297423b23e28961f7f9df4b2706feac0eb2d75e4f3eb9fed93fb.ref, historical/4f387c397b8ac3b8d985e4406425bd5b43d7cd65001de9aa0aad1bed76b02fb8.ref, historical/90fb8634835747e3eb9311db4bedfd9bdd4bc661e21ddc704aa1c169aff5b1e7.ref
+
+## APP-242 — Ensaiar funcionário online17, retorno e revogação com Auth válido
+
+Estado: done
+
+- Usar ator fictício separado sem tocar reservas nem reativar histórico revogado.
+- Verificar seta/hardware, mesma lista de clientes, reentrada e histórico no APK17 exato.
+- Revogar pelo gestor com chat aberto, distinguir Auth válido/negação RLS de limpeza da UI e preservar qualquer resultado negativo.
+- Encerrar sessões próprias e registrar estado final sem excluir dados.
+
+Próxima ação: Retorno/reentrada e negativa backend passaram; teste completo reprovou quatro nomes de clientes cacheados após revogação. Corrigir APP245 e verificar candidato18; não declarar17 aprovado para esse critério.
+
+Evidências: historical/eb1aedeec0af90157bdd10999f8805012ca9d7efd646f2c0dd1b024ba9ef23e5.ref, historical/a9402932ed97c99c987fa3903d54f0f6c5413faa4bf2afeb02470b28222bbded.ref, historical/c7cf76b90230b67cee3af9dfa2306c77bec3f36e2f7f366c9558d211b4cbfe46.ref, historical/137d294dc6542f198e769670ed76b441ad7eb096786187398f41ae3a77cc69b4.ref
+
+## APP-243 — Restringir a candidata Minha Receita à razão social conforme escolha do piloto
+
+Estado: done
+
+- Registrar aprovação de Lucas para Minha Receita mensal; casos não confirmados permanecem pendentes.
+- Versão legal-name-v2 rejeita fantasia e provas antigas v1 nas camadas de worker/prova/SQL.
+- Verificar pipeline em PostgreSQL local real com fonte/Auth sintéticos e preservar recibos/inputs históricos.
+- Manter gates remotos desligados até pacote de implantação/acessos revisado.
+
+Próxima ação: Minha Receita escolhida; lógica106 preservada e seu limite de ACL documentado. Candidata estreita de sessão passou75 checks locais sem Auth SELECT ao runtime. Implantação ainda depende de snapshot oficial, wrapper atômico e runner privado; fonte/gates remotos desligados.
+
+Evidências: historical/207f71d992191ba9182c53a72c46a0cc58595a8af2b35628c2089c0f91ec4e40.ref, historical/1d6891cd25867a0ca6e9dd60c301bd218577f8a6e5dc7078ea11a59b7283aa35.ref, historical/7d2ea256d74f75c4b4aaa8f7b3555b6b9de98d59a3510dd129a2230351f38e59.ref, historical/bf82d136f7132347d2092a038e75812ce1ad5f88551f507b5341f72815b9ba5b.ref, historical/b2bc2e67527289f56e0f7651115018c7973a746e4569676aeb4b25cf97028ac5.ref
+
+## APP-244 — Alinhar metadados Expo embutidos ao perfil nativo em compilação futura
+
+Estado: done
+
+- Confirmar impacto do app.config demo0.1.4 no APK17 e distinguir manifest/UID nativos e configuração efetiva do backend.
+- Gerar config Expo por perfil sem alterar demo global/histórico; congelar inputs e verificar asset dentro do APK contra spec/manifest.
+- Verificar configurações QA/Phone por testes puros e conferir o asset da compilação Phone real, sem updates/credenciais; preservar APK17 e release pública existente. Não implica compilação QA nesta fatia.
+
+Próxima ação: Phone18 compilado e inspecionado: asset Expo e manifesto concordam em package/version/code, backend explícito e updates desligados; 79 fontes congeladas. Testes de configuração QA/Phone passaram; QA não foi compilado. APKs15/16/17 e seus 219 inputs preservados. A validação online18 pertence à APP245.
+
+Evidências: apps/mobile/candidates/connected-basic-text/build-spec.json, apps/mobile/scripts/prepare-connected-basic-text.mjs, historical/5db4c1b7d54cd64a1ed16227c43549eee66ef1f5ff9c195b4ee340deb245f9eb.ref, historical/2853f44926bd44473574281a9f516e16a14f29625d70e8f1c4d9699e602dff79.ref, historical/60922a355b79531a78c108af5c22b885646f0899571867393276c359e523edb4.ref, historical/3e7d1dae6a6f1c2ab22bcac481bb87bb831902230d16c57948ba16c375957005.ref
+
+## APP-245 — Retirar projeções privadas ao perder acesso sem encerrar Auth
+
+Estado: done
+
+- Limpar nomes/lista de clientes, contexto, histórico e rascunho ao receber perda de acesso, mantendo sessão válida quando aplicável.
+- Fazer limpeza síncrona e invalidar respostas antigas; callback velho não pode limpar ou repovoar outro contexto/conta.
+- Preservar aviso recuperável e o retorno APP238 por ambos os controles.
+- Validar regressão no Android e backend real em nova candidata, sem alterar17 ou reativar ator revogado.
+
+Próxima ação: Lote18 entregue e relido no Drive privado. Além do ensaio de privacidade, APP249 confirmou update17→18 com sessão ativa e um envio nativo no emulador. Falta validação física ARM64/OEM; resultado negativo17 e arquivos entregues preservados.
+
+Evidências: historical/eb1aedeec0af90157bdd10999f8805012ca9d7efd646f2c0dd1b024ba9ef23e5.ref, historical/73fd0d04afdc561f1699edde96d0db1a3524dffe24da5042021a95c192af105f.ref, historical/abc52a7f0ab9a1928e7fef59c820d11b8f75ca20c5297be897376bb728f928d1.ref, historical/1dd453d27fdcb434b911180ca89756176dd78259ecd41fcab7d883649cafcb1f.ref, historical/4830140340cedefa5f924e65895bd07978aa64e13653c8e3ca6ac2eea0d00639.ref, historical/a2cd3076499862de998180d7e80278d54dbdec92b550ac357ec1972ceee6991c.ref, historical/98531ffdaaf0995ebef27459b4fbcc27c7bf1577afda21732ea70fc6121396c0.ref, historical/a1e893bbad6fed43b81fba7e24c42fd93702cfabe3c9dc2c3f48653ae90eb3ed.ref, historical/25285eb79927a7f643f23bca4f2fe94912b99495940553094cd5a58e390dd2e8.ref, historical/5d251228998d84fb63cbae4e46efb5a2a3965bac39a532820f07c87668eced75.ref, historical/63082735822e24b3d94096befd0f915b53594b02b9ff73805896f6a9e620f4e1.ref
+
+## APP-246 — Compatibilizar o worker CNPJ com a separação real de permissões Auth
+
+Estado: done
+
+- Preservar os 106 checks históricos e documentar que sua fixture tinha grants Auth artificiais.
+- Usar helper privado estreito sob owner confiável, sem SELECT Auth amplo ao runtime e sem expor dados Auth ao aplicativo.
+- Verificar o pipeline em PostgreSQL local com owners e permissões representativos do ambiente aplicado, incluindo sessões revogadas/expiradas e ACL.
+- Manter gates online desligados e registrar implantação/runner ainda não demonstrados.
+
+Próxima ação: Candidata local passou 75 controles PG17.9, reproduzindo42501 antes da correção e o pipeline v2 sob runtime sem Auth SELECT depois. Não prova compatibilidade integral remota. Faltam metadados reais via canal oficial, wrapper atômico testado e runner privado autorizado antes de qualquer push ou ativação.
+
+Evidências: historical/d63fdfe0a61baa526ab791f14f36215e5df8468ee40de4fb7dc083dc81930ef0.ref, historical/bf82d136f7132347d2092a038e75812ce1ad5f88551f507b5341f72815b9ba5b.ref, historical/b2bc2e67527289f56e0f7651115018c7973a746e4569676aeb4b25cf97028ac5.ref, historical/c23cb66183ba4aed403a0566201a32dbda527f71ba820d48abd4afa02c498d5f.ref, historical/12c7958253eebbb702d5d2fce70ae50252c4d737752a8025464cdee1d332e002.ref, historical/8dbd193abcc85513c57d6b5b9a68ffdb76d3f28cf7243422594bf88dd4766672.ref
+
+## APP-247 — Preparar instalação atômica do cadastro CNPJ v2
+
+Estado: done
+
+- Congelar os sete deltas e manter gates OFF.
+- Restaurar SET/INHERIT e CREATE de manutenção em sucesso e rollback, sem Auth SELECT ao runtime.
+- Testar instalação, falhas intermediárias, replay e preservação da base aplicada em PostgreSQL local representativo.
+- Separar pressupostos locais de metadados remotos ainda não admitidos.
+
+Próxima ação: Instalador local passou72 controles PG17 sob as três migrações aplicadas/owner NOSUPERUSER e14 testes do compilador. Rollback após8 deltas e postflight, replay, contexto estreito e pipeline prova/gestor passaram. Runtime semAuthUSAGE/EXECjwt/SELECT; único grant novo previsto é USAGEprivate a service_role, declarado para revisão. Não pronto para executar remotamente: faltam metadados oficiais, revisão do grant/instalador e host/acionador privado.
+
+Evidências: historical/c8075fda6fc7881475b1a2eded5a3ad23c2b14e9b7120cfca7fc02a493e95a9b.ref, historical/12c7958253eebbb702d5d2fce70ae50252c4d737752a8025464cdee1d332e002.ref, historical/4f595e0d8e7dc063e2023c4fc5f0280f59e8558083d59a66206afe5298fc9cbe.ref, historical/7e38662a053936ceccdbf75a9297b3ab386c59077983f4bd974ea84e00026b8b.ref, historical/a4cc4cda54b4f3111671e8559730d5397fc9b63c66a6f7aabf227f9959544fc3.ref, historical/dbe42db97bf6f2221ceb202bc2b852b46f067c785afdcb7e45cc5f783e6177be.ref, historical/27a9fa9700cfcd7c01b34561f614c86db67ac39f74ce1fba36b883f519a84a1c.ref, historical/acb490bea11b45dfb4612201b72e761df5dd02969aff1989866a79940075025a.ref, historical/ad96f046603d0c596f5e20a0a02897eaf6a6a44bf3f16308a128f17ac8fd8972.ref, historical/531fdaef2a56cfe20ad8532172c086e7a61fe80a1ec5e971abdabfd4628041cd.ref, historical/6f89369bb15b4c30bbb28a51cc21b630eb5fc18c16eb5fe9697dfb95612ac4a5.ref
+
+## APP-248 — Preparar execução privada e limitada do worker CNPJ
+
+Estado: done
+
+- Usar composição v2 e origem fixa, um job por chamada, default OFF e cancelamento por desligamento.
+- Negar chamadas de cliente/anon; segredo exclusivamente no host, sem logs ou chave no APK.
+- Testar HTTP local e falhas/concorrência sem alegar Deno/Edge hospedado.
+- Preservar revisões, fonte OFF e inventário remoto como desconhecido até autorização oficial.
+
+Próxima ação: Handler passou17 testes HTTP e37 regressões; stager passou10 testes, import Node/TypeScript e integridade independente. Pacote de13 arquivos congelado em897a2c63..., hard-OFF, sem segredo/deploy. Faltam autorização oficial de inventário, Deno/bundle/host, escolha de chave existente e acionador privado.
+
+Evidências: historical/c8075fda6fc7881475b1a2eded5a3ad23c2b14e9b7120cfca7fc02a493e95a9b.ref, historical/d6f3b99eb17511325d84fdc84988af08723fb4fa88c5b9857d3c7b0718f9f035.ref, historical/9a083fe3e4b541763a9539fc42d38b6d4d3fa9463e8f92ae785e58606d4e2f93.ref, historical/b3a6b3d03687d175a6a25e2d7f4ad9111e20c5cb0255fa349b2403f474e64145.ref, historical/645066e866fbbf45c35b2fc6c961c5574bd306ecfb5efeac51887aa00f680977.ref, historical/962e55e4679550e49cd42844d0fbf8115b766104263c68dcfbeee1e2e0872313.ref, historical/d6100babd01914c70273fb67c79bdbe2ff6336fca00fe615d6fdc604e5b9d13f.ref, historical/4802ddc34a833789f08fedb32692f8c7fea793b5020a59eaa25ad86c18385ec3.ref
+
+## APP-249 — Validar atualização com sessão ativa e envio no APK18 entregue
+
+Estado: done
+
+- Usar somente cliente sintético não reservado, preservando seus papéis revogados e dados anteriores.
+- Instalar18 sobre17 com sessão ativa sem clearData/uninstall/logout intermediário e verificar restauração.
+- Enviar uma única mensagem sintética com intenção registrada antes do toque; conferir persistência/autoria/ordem e reentrada, sem retry automático.
+- Encerrar sessões e VM próprias e registrar limites de emulador e origem de Auth.
+
+Próxima ação: 13 controles API/estado e 8 nativos passaram no mesmo APK18 entregue: update17→18 sem clearData/logout intermediário/reentrada de senha, uma mensagem nativa persistida uma vez e preservada após refresh/reentrada. Perfil, vínculos revogados, histórico e contas reservadas preservados; sessões e VM próprias encerradas. Ainda falta teste físico ARM64/OEM.
+
+Evidências: historical/e7b49c2752634e8f4008c94157ae716b6f06e24a89d93389afbf0e2066ecb459.ref, historical/c5bf986c384f2c8514ee890b84d9234577f9e0ba40021f893f3cd1de3f1c3ff3.ref, historical/a8f55a78b085e3aef7e0dfb37bba3179b3d1d071296a81f2a057d2b0b3f89edc.ref, historical/e07360561254644bacab42dfb618d67e7a7f4dca6dfd3c62c8b813b72850b200.ref, historical/d7689cb364becf79e560cc153933b7baf359804eee06ce9bde39399dcce26145.ref
+
+## APP-250 — Avisar atualizações do histórico enquanto a conversa está aberta
+
+Estado: done
+
+- Detectar head mais recente por leitura autorizada mínima no contexto exato, com orçamento e uma operação de cada vez.
+- Reusar o ciclo foreground de verificação, sem polling em background nem novo canal/serviço remoto.
+- Avisar sem alterar automaticamente janela antiga, posição, rascunho ou envio; atualização explícita mantém guardas e deduplicação.
+- Callback antigo, troca de conta/empresa, suspensão ou revogação não repovoam caches; timeout/não cooperação não abre operações ilimitadas.
+- Verificar domínio/transporte/interface e Android com dados fictícios, distinguindo porta simulada de funcionamento conectado. Não é recebido/visualizado.
+
+Próxima ação: Aviso e refresh19 conectados demonstrados; APP252 acrescentou atualização18 para19 com sessão ativa e1envio nativo próprio, sem alterar o APK entregue. Desempenho físico, TalkBack e recebido/visualizado continuam separados.
+
+Evidências: historical/b779599dca23581fb9a43ea2785a804020c0bf3537a42f8ad7bbba1877f4d835.ref, historical/badd660bf996441f0a11d67c7a7b239ed2feed1fae17bafc51bdfadc47c2795b.ref, historical/102fa6f4a206620515102872d07b61e17d89694a29f037fb70acf1eaa2bbb50e.ref, historical/b45be96e3aa516c526f70032b22a216f103562aef17664738e9485ce9237a096.ref, historical/b57f3b089893ab71acb8b45f9232caa89019c33dff7c11288ebf3ba46865238f.ref, historical/ca63822feb337f4d138a64e7ab4d4f96c9bcd8ad6190b972d2c97a00809b4928.ref, historical/f895a4c993992e4aaa1c14717854bc1c0614efe24701e1af7c0689ff090553e1.ref, historical/98b1b5696976e2cadf12e1b582c1659b91de7ec2d97688da55a88696edc3c324.ref, historical/4ddfb7657fa41204da3bf0abd1c684dae2d920fb5668cfd054d04834ca83d8c2.ref, historical/e254ea4f0ade14714d42a3f5b6bb37007bee35772476bd19df92d4a17f66677f.ref, historical/993b29ebbdf19560ca25759a3b41809ebea7650e5fc3e60c8645aea42f5c17fb.ref
+
+## APP-251 — Manter orçamento de leituras reais após cancelamento ou troca de contexto
+
+Estado: done
+
+- Reproduzir em RED o acúmulo de fetches que ignoram abort através de contextos distintos.
+- Reservar GET por instância antes de invocar fetch e liberar apenas quando a operação real termina, sem limpar em reset/close/lease novo.
+- Manter cancelamento visual imediato e limites de RPC, e testar fetch/body não cooperativos, reentrada e devolução exata de vaga.
+- Revalidar integrações e tipos sem interpretar fixtures como prova do transporte nativo.
+
+Próxima ação: RED3GETs para maxPending2 preservado; correção clienteGREEN ePG64+84/tipos/full380+1300 PASS. Fonte embarcadaPhone19; falha artificial de rede não foi provocada no aparelho. Limite por instânciachannel, não promessa sobre recursos do SO.
+
+Evidências: historical/badd660bf996441f0a11d67c7a7b239ed2feed1fae17bafc51bdfadc47c2795b.ref, historical/b779599dca23581fb9a43ea2785a804020c0bf3537a42f8ad7bbba1877f4d835.ref, historical/8b66ebb798c397020624792715a5bc9d2413b61ad4a953f2597d8664c6a3867b.ref
+
+## APP-252 — Validar atualização18 para19 com sessão ativa e envio nativo
+
+Estado: done
+
+- Admitir APK18/19 já entregues, mesmo pacote/certificado e hashes/frozen preservados, com emulador proprietário e ator fictício não reservado.
+- Entrar uma vez em18, instalar19 por cima com sessão ativa sem limpar dados, desinstalar, logout intermediário ou digitar credenciais novamente.
+- Reabrir o histórico próprio e enviar exatamente uma mensagem nativa nova, com intenção antes do toque e readback persistido único/autoria/ordenação; não repetir envio incerto.
+- Conferir refresh, Home e reentrada, perfil/vínculos/histórico/reservas preservados e encerramento das sessões/VM próprias, distinguindo emulador de físico.
+
+Próxima ação: Atualização18 para19 com sessão ativa e1envio nativo próprio passou no APK entregue:13 controles API/10 nativos/8 pares PNG/XML. Sem clearData/logout intermediário/credenciais após update; seq8 única após refresh/reentrada/Home. Perfil/vínculos/reservas/histórico preservados; sessões eVM próprias encerradas. Ainda falta celular físico ARM64/OEM, TalkBack e desempenho.
+
+Evidências: historical/1873a9db3ff0aed76a0489e2d1665ee65d0d5d8769e299daf28082687a996a1f.ref, historical/fdf7e3f7840797817ecb06c41774fabb331095315186b6d03f9971237ad2e75d.ref, historical/fae85d900efffc90b6f806ea98b57435c8bfbfa99b5127128df365a9d5f64979.ref, historical/f911ec403fb59810fa67641a240a9918b1e9049d291b11896dbe15b3ed8ff748.ref, historical/9528e7679b22feeb4b49da92f83d90dc24a1e34c4135cff8bf0bafe539b0489c.ref, historical/30484045a685200c34489eb091854da07df02714f17166a5b1db8959c3a7f91a.ref, historical/aa4e843cc5689b2819d777425e5268c73cd8b5e42e5610dbbb926cae5843ef81.ref
+
+## APP-253 — Voltar ao fim das mensagens carregadas sem recarregar o chat
+
+Estado: done
+
+- Exibir atalho acessível somente quando a janela recente ativa e quieta estiver afastada do fim; não substituir aviso de mensagens novas ou navegação de páginas antigas.
+- Toque explícito reposiciona com orçamento existente e preserva rascunho, dados e contexto; não chama API, refresh, loadOlder, envio ou confirmação de leitura.
+- Callback antigo, troca de host/janela, suspensão, erro, pending/provisional e envio não rearmam posicionamento nem operam no contexto seguinte; manual drag continua soberano.
+- Mudanças de disponibilidade não recriam a lista por cada evento; regressões de digitação/lista, ownership e posicionamento passam.
+- Verificar Android com histórico sintético carregado e rascunho, distinguindo prova local de Auth/RLS e desempenho físico; preservar APK19 e releases.
+
+Próxima ação: Escopo demonstrado no Phone20 exato:4 pares PNG/XML, histórico próprio8 mensagens e rascunho preservados,0envios; sessões/VM próprias encerradas. Manter limites físico/TalkBack/desempenho separados. Privado19/público17 intactos; candidata20 não entregue.
+
+Evidências: apps/mobile/src/RecentConversationView.tsx, apps/mobile/src/recent-latest-follow.ts, apps/mobile/src/recent-scroll-ownership.ts, historical/f7797007cc07cadaa36145809ada5a4f269ae99059ac67df262d35f2b681156d.ref, historical/77b692c80b9eb4080947ecfff187d255d3b5466884c6041be75d4704900f3781.ref, historical/dcb3127a5d3f61c71803823681f4e4d1e828992715c1f2f1873a45e5b462a189.ref, historical/474a7018a1b496657ddeb7ab69ef0570e1489faa22b3d59c650db6b4d3fb41a5.ref, historical/b50b146300e9ef5cae2d765f72922d52e1bcd890e1d79efe9b2dfaa93c14d063.ref, historical/7901cf1d6bc0d06502a5582175009900e71869f0e569799785ebc2e1f5377a35.ref, historical/4d99546456751b5788830174146656ccc87644d89b1b05a23639b632d5e98990.ref, historical/bd188d9fc1927855641900b956b2815214dcd097a2f6a106ff01463d3a894cfa.ref, historical/8c5638bdd21944197e26bff1733731d54bd2259296ccb0a9e3b127ff778279a4.ref, historical/31a5009ef8001adac6cef9b9c8a66df4ef179ce7cee80f108611227954e2a02d.ref, historical/9576212f3bbe0b2a47148066315cbc99dbf8a43c467cb850eefbd541b3cba861.ref, historical/2a712cabf534cb866408221825e7c4f7d5ab7bf228740875341b6bb54f798b63.ref
+
+## APP-254 — Simplificar apresentação do chat e todos os estados de envio
+
+Estado: in_progress
+
+- Revisar todos os estados de envio e apresentação na montagem Phone: rascunho, enviando, aceito, falha, envio incerto, confirmação/retry, atualização e reconexão; retirar textos técnicos e explicações permanentes sem utilidade naquele momento.
+- Adotar status discretos e linguagem familiar e confortável, inspirada na familiaridade do WhatsApp sem cloná-lo, preservando identidade própria e espaço para conversa.
+- Mostrar texto claro quando houver ação necessária; disponibilizar significado e detalhes úteis sob demanda com nomes, foco, anúncio e contraste acessíveis, sem depender só de cor ou ícone.
+- Não apresentar entrega ou leitura sem evidência correspondente; aceite do serviço e perda da confirmação mantêm significados distintos.
+- Envio incerto preserva a intenção original e não cria duplicata; nenhuma simplificação visual muda retries, chaves, persistência ou guardas de contexto.
+- Validar estados por contratos e jornada Android, incluindo fonte ampliada e acessibilidade pertinente; distinguir mock, conectado e físico e registrar limites antes de oferecer versão.
+- Envio de aceitação incerta pode recuperar confirmação por consulta original automática única, sem repetir envio; ausência mantém pendência, contexto obsoleto cancela e novo rascunho permanece.
+- Indicadores de Lucas: relógio durante envio real,1 certo após confirmação do servidor,2 certos por entrega comprovada e2 coloridos por leitura comprovada; falha/incerteza não avançam o estado.
+
+Próxima ação: Painel pendente e reenvio sem duplicação já demonstrados. Relógio final agora passou4critérios web reais e prova local; não recompilar isoladamente. Consolidar Android/artefatos quando lote pronto, mantendo Phone23 e sem publicação nesta etapa.
+
+Evidências: historical/0dc07589d0f049ad02caa53251d5028dff0207d7021d8d928dfb0608e501d3d0.ref, historical/8baee1482c05e0d187a4963e7c237db9323ef3efe14a303a2facb67a918cf08f.ref, historical/97bdc5e4c1e36021bceedd76af072338700c2a21ac3e03152bf8ff803b961699.ref, historical/0dd008e2627942d6477c71cedc713aded71a49b3ac6732b3dc9ef61a72aa9527.ref, historical/16e23d7a36f2224193e7c05d718dc18933a7568419dccbc06fba34bf5207fed5.ref, historical/3bc05dd3e1473a376acc0b3ec66938cc8296c8f6d525fa70be819ea548702964.ref, historical/19db79d6a1c4c95d08328b29f98a24abfe964809008851243e23f436761d5dd8.ref, historical/f81aac1efbc05c3acbbf09379ca40bd0fc520454870e7f0edb7f5c81e1852477.ref, historical/ae5016890e304928bfadc057472f45321696449c9017eb5ad41dbc9b51f8bada.ref, historical/638940304d8cd980ec085b258bd846cd8394733bda48964f8132465272eb89fb.ref, apps/mobile/src/quiet-latest-refresh.ts, apps/mobile/tests/quiet-latest-refresh.test.mjs, historical/4341e486205a616a6a9c654b890814f91ea5b8e27da520a0acbc56ece0a81f4f.ref, apps/mobile/src/RecentConversationView.tsx, historical/25bc4a51d610ea2b3aa40675a16676c5c83a7b4ff7b96d09d44089080bc35c72.ref, historical/0841c8da7dd8aa5ac5e7c3cccf418f557b0e4e1144f2a943b80ab548816a0d64.ref, historical/916a7f5c2e285f48db97423e1ee149bc15cc5d1c1d75c2f7f6d9949db5e59bad.ref, historical/7d01cdb27f3dfa5d5cab0eef7942b226cc34bf32d2a5bc981e13e5f0d8ea85ca.ref, historical/2ac6ad8a970df058d6ae2dc5e0949ccca4e3c92a7eed801405068e269fab6b5b.ref, historical/02a0bdada3dd0c6c98e60480cea2ebf81b0ecb9582eaa6b619a3803a0f02f88a.ref, historical/d08df01bc93e0bba4160049d71cd059b00a21bb79cf923c37c0e888aa44ef61a.ref, packages/chat-client/src/own-send-receipt.ts, historical/58fb57081e4bccc3b3e27fd67cdbe617ac0e7bf9554dec0941b8e597cc3b9c02.ref, historical/d470de2a78b8c371a13b4ccd838b6b8c27af041c0e0af393061dce5d02d30517.ref, historical/956131dd5a53c072239914ec463c27e1e4f31fd4221e80e5a0d7e37dfb048720.ref, historical/791914cafa3929666ad3c9ba00d7cfb128af64923ea1c814db5ca6df0d5e22de.ref, historical/3b078c490166d54a173e4414fae11136c738884d692ad021538a38f04d4ce2f7.ref, historical/56a3a5e066e50c2f6d9395a727a286cd364b97fbdb6a0d2eb6e59d1e2f54ec16.ref, historical/38b8ed0b6a3461138dae6a4d0d99e6b4bb6b689bbe91bf370a3556ffc4f04754.ref, historical/84e79b1d97413a1f406d9821e6046ef0f496d87028ea8318c6ae78ea7d574332.ref, historical/69b6af459c195e7fa56dec2def86fb8ae98abbc2f4f6dafaadee2258f18b6a43.ref, apps/mobile/src/uncertain-send-recovery.ts, historical/f26dbba4a7dfd78762dd01ba1e280312f739b277d60f21a7fc9b25773f606582.ref, historical/60eed68e8375f4096312dc9a52348d368fe82646f9427e1953312bdb9a738faf.ref, apps/mobile/src/ConnectIcon.tsx, historical/0b10d28917b1c1669b90f1616eed02d2facb4e0a3069cfcab3f4f912120f60a6.ref, historical/68b9381d8a35f966985f2436a39d0755a12a97eda1b2b397acf0aeddeaff3b8e.ref, apps/mobile/src/own-message-status-binding.ts, apps/mobile/src/membership-recent-bridge.ts, apps/mobile/src/access-recent-controllers.ts, apps/mobile/src/connected-membership-management.ts, apps/mobile/previews/connected-membership-management.android.tsx, apps/mobile/tests/receipt-indicators-integration.test.mjs, historical/b589849fe80d31d443dcb2ba47b3c494fd158ac938f40aab218e0cc42dd868bd.ref, historical/03e351d7e236d0c6653b3b39a1d2993c40dec795d2bda89f84d2f1e5f3a10aae.ref, historical/5fb57383d814771e997cdef30f3237e75619597cd5857422f7dbfcadd90a4cd2.ref, historical/33a1468eea6351e349ca6bfcc43ce0482b64c2a1087310ce1fe7f439fa2d5918.ref, historical/8db7cc253e5dc4192c3e4cabea6b7866695161282092cdce5f50ecac2040c1b9.ref, historical/9a748d04006f29ecf8f4d195ebcd0dde08d3e971e417d9d13a00169b1673bc40.ref, historical/f8ac7be07a6f7ee934b396201175862ab5a83e2a07b198f70e87a27ca82c8cf3.ref, historical/658217eed0da898b821a9cef9ce01019fa52a5cfb59b92fe8878b6ab37aabdf1.ref, historical/75a39390d54e8a35806a7a60babc937641b3e5417172f00d35bcd4c980f26ce5.ref, historical/bc6147aa530366d48412aa6f8f3191ea67246a662da263e23547727c9fc046bd.ref, historical/55e8bc2c330ca361739494419ed52b67f74d9bfd1e59e1b3391e92b102c0e691.ref, historical/048d6ced714f69bec086d0e5e361335030997134758efa38a27771185fdbbdab.ref, historical/ea9c84b6db10dd50ec99a724bb633d3e683a666fe5983f648a7be3bdbb38cd5a.ref, historical/56de9ebc589eb994ae0130f7636c4249cfa8f572d53bae90e3034d29becd2429.ref, historical/d7e82f9474c105350e92ba2b76811b6bf5e47af4baff91751e011271d9e29a78.ref, historical/9dc9c4acc16bcd6f19fa10a01adf60c38191b0bca5a47cae9246d3f2a34369a2.ref, historical/cae440af3d1543779307471d31b93470f0040c5bf256fbc5e3f5cdedf207bea5.ref, packages/chat-client/src/recent-conversation.ts, packages/chat-client/src/text-send-queue.ts, historical/074826b80bf374a37ef79ab5604f41d1a017a316ac023159f45167c269282d0d.ref, historical/082317594fa82068db1b013235ad7928392ef61771775516180b4ede204574d2.ref, historical/50bdaaee669dff031390abf34c8be960f1c0c68b8cd8c1999ef4bbb76721f4b1.ref, apps/mobile/src/testing/preserved-send-qa-fetch.ts, historical/92363f73aa20ad5e03844de243ff49aceb5052cb2aa2fbaf10d2412591abf741.ref, historical/740f0304d73deb285160d1815fcb5672c137457b4bf05822a314ac10239f6645.ref, historical/c3657d76f7591dfd26a416c7f92f3efbadadc3cc00ed4a66831993e25cc3e72c.ref, historical/68bb006659e8b572ca10f999f97d562669eea8e79c83508dc4e903ac0d210989.ref, historical/402f2012137c5517eeb0ef2ad674e09e993136a0b0f0784b76416c8ab93eae15.ref, historical/b00f51cece8702d1a77cbc953871ba164a79d95367e3883efae6ef0bf75c1892.ref, historical/03b93eb8285c7de47e4df2f62d3053131fb3f1afb88d4bbc7021aeed89e77a16.ref, historical/227e0bcbd219afc7c811bb9d827aa53f1a014fa847c87205a780c34a4b06a3ae.ref, historical/89d26c274986f02ddc948900f1e9389fd8c84094e7981c4d2e397eb6a4ab3cd0.ref, historical/006916dab98c647c57f9951dd4dc05101e55b983495f4c472e073019db0a2bd7.ref, historical/d337b935a13f9e3e4cc2bbd1248a887c7def4b93d83726192e75cd84a50a7ddb.ref, historical/6340ed7cc629b9bcb5d87191993ffe2ad70fdb0449879c392fbaa822384f360f.ref, historical/e98a4a3cd79bcad25b11bea7cfba4577698e44248930f5a6685dc334c20557bb.ref, historical/ff38e941f83a6ccb021b7f179091b61c0754688deb7e6f981128235133d41ee6.ref, historical/cc7cc2285c617958ab56a55553b1a76049216cc26e26afedaa2b019902fa05c3.ref, historical/57a217b189b6a95f820cf502214dbef3dd9001ac36f5ab173ee72b5ea17d4162.ref, historical/6289534d739eb510448fb0d24d3a2dadf5e4e957a16c10d365cec40d6c1cd0e3.ref, apps/mobile/src/web-chat-return.ts, historical/9627a65cd3e1b3bb51845b2e2953615d7acf51a6907a4924c88b5dbb770dd16b.ref, historical/f812265977c2670a70fe220b62bc121bad010c39700422adcaa178a9a94af51c.ref, historical/271831ceac4c2bddacc0c6a9aaab04214ff8910f6f43701a32854e1a6dbb1905.ref, historical/b54112bf3a44c0355ef6bc6399fbb2849345574ad8377f3841fab17f4e38620c.ref
+
+## APP-255 — Criar inbox leve com resumo e ordenação por última mensagem
+
+Estado: in_progress
+
+- Substituir blocos altos por linhas leves com avatar autorizado ou inicial, nome, prévia e horário reais, estados de carregamento/erro/vazio e alvo de toque acessível.
+- Estender contrato/backend e paginação da inbox para ordenar todo resultado por última atividade; não ordenar só a página carregada nem inventar dados ausentes.
+- Preservar isolamento empresa/cliente/papel e acesso de todos os funcionários aprovados; testar cursor, refresh, concorrência e revogação pertinentes.
+- Atualizar a lista e retornar do chat preservando contexto; não fabricar não lidas, fotos ou presença.
+- Validar proporcionalmente cada fatia; Android agrupado no lote solicitado. Nenhum APK novo sem pedido de Lucas.
+- Empresa permanece explícita; prévia,busca,cache e callbacks usam autorização atual e não vazam ao trocar empresa/conta.
+- Atualizações não deslocam a linha sob o dedo durante arraste/toque; validar posição,volume sintético,fonte ampliada e nomes acessíveis no lote pertinente.
+- Ordem por última mensagem não é tempo aguardando resposta; não criar atribuição exclusiva ou regras de fila não aprovadas.
+- Atualizar gradualmente os contadores pessoais também das páginas já carregadas, em lotes limitados, sem reordenar a lista, marcar leitura ou aplicar resposta de contexto obsoleto.
+- Filtrar não lidas confirmadas nas páginas carregadas sem confundir contagem ausente com zero, mantendo ordem, busca, paginação explícita e isolamento do contexto.
+
+Próxima ação: Busca e filtro Não lidas preservados no retorno já comprovados em browser e agora Android agrupado;badge26 coincide com backend e novo funcionário não herda filtro/busca. Não repetir essa prova sem mudança. Restam critérios próprios de volume/acessibilidade física e os gates gerais do lote.
+
+Evidências: historical/d74a9964ef21ab90b1b167a881b155d9042e125fbe12619dc0dbbe2b73a46ff9.ref, packages/chat-client/src/membership-directory.ts, apps/mobile/src/MembershipHostView.tsx, supabase/migrations/20261109010823_connect_membership_read_homolog.sql, historical/ef3afc943399968bcaf52799b48e1de422bb4d6cf54302d2fa128736fa288814.ref, packages/chat-client/src/recent-inbox.ts, apps/mobile/src/membership-host.ts, historical/c01a4588f3fa7dc4c6af7f5914c8d3a69f38c5232c613bd2f4e771af58e3a393.ref, historical/7d36164ff45336757a54fb55903670c21581b4040076808ddf7165be04efb4be.ref, historical/f3958d4f72d39b777f99c74b9f3e01fcd31bde82bddffd4bd46bd533ae13ad22.ref, historical/9b2f1f2f4563e370cd62c92afa36980d306f7e5246ed6c6e1f56ec057f92bcfe.ref, historical/e5cd4f7ed04de36c8d895c6e288bf931c0dd618aab8752661dd1bbc68291e46d.ref, historical/977f8bab7def54e6c3790af7aabd3e88d4109f4acf5775a37250375a623c4169.ref, historical/014e316a6e9a32637fef5bbc2cfc2c68636e3d8a0d0474984c326e3ae6312c24.ref, historical/3d3932f0dcaa03cae3531327656db87eb2dd2b5f82f2d9a0b844d77467d6f105.ref, historical/aeba23a11cd738ff03b34784e039ffca07073c40f808188a182daed81c6037d2.ref, historical/4bdaacc9461e555432b319aec4ad3bba8a23634e50cb439ddb27af1fb4f05320.ref, historical/3890bf44a9177a9405b475c3d944bed6fe327cd21b10ed373b0515781c2120f6.ref, historical/5981d3bcb7218d5d397c81866c42ade84ae0c463ca4a96e919058a64fc97215e.ref, apps/mobile/src/membership-recent-bridge.ts, historical/f81aac1efbc05c3acbbf09379ca40bd0fc520454870e7f0edb7f5c81e1852477.ref, historical/2b9d321d622a8759c54aaea1fc749bfb2dc869874a723924d97ee1929bed43df.ref, historical/b128d45565e2beed02658672c3ddae39a46ea4f0af090044b399b37bbed1dbd1.ref, historical/3a965acd500036b02bfda4d51cb9c100d8c93f1f7dc740e818ad415d6fc1bc13.ref, historical/a847e944ddd54d7bace9136934f9f0783a9e830e2fceaf39cec1f3e0334a9315.ref, historical/30fb868bc7f1434570314ceea8fd8e400b96f80344c68f5b10f7d917e9e4c471.ref, historical/6f718fde3a6eb74ea0595b8eefa441229e0d03ce48ebca5c67b928764547fc53.ref, historical/ae5016890e304928bfadc057472f45321696449c9017eb5ad41dbc9b51f8bada.ref, historical/0437d5c60d391f96bae1d40537c1f413157a8ac940055494c79685b224e13bab.ref, apps/mobile/src/inbox-freshness.ts, historical/c92d563c9e59dd35c6c0c22c8676bb4d1c53e3a9d58ba1ad3eb098e2b7923c90.ref, historical/bbb9ed437eca801b4ce00e535df5ffbe636a0efcb3489c3daeb5776a7051c6b2.ref, historical/fc9f5c99ab8ad6e3ca531b6542dbe531f4d1dc5881e550e4423ad05952d72f3c.ref, historical/c3c6ff965ec0869f029ca7c7a1f0e8ea9738ae4f33a1bf53c2e298fe3bef82e5.ref, historical/7e80ec17c1f049d08db2ccc9bd5bb5383bcf56c44a65b255ab2b6f75ff1eb897.ref, historical/a2f8438db5c60c73acbbf3f6f4828ff7fe1acdc3ac444249594be2e519549202.ref, historical/f6f61f25c9ea0bc147cecec4b1517b8df3ea5366f39d077daf8dfb99d0c3d1b3.ref, historical/df99efb07e4395ca37a40d98db939d743a5f38c434b77987bdd724284704576e.ref, apps/mobile/src/inbox-unread-filter.ts, apps/mobile/scripts/prepare-connected-basic-text.mjs, historical/4ae6d807d2293f7fd627ac4047b030a291ead52bf70a73777fa23a0f2c043467.ref, historical/b0e4ed0e3fe62d1ca8723dd2b2797b4627d25eefe906ff46811c3fbaee8d8baf.ref, historical/1b21655a5d5e8422dbc7556da8fcbcb1452ea0041936a46719781646d716bdf1.ref, historical/c01b1171b763a8e61eef93e94fbdd071101bc3de38d41503876e9b510ad4b2b3.ref, historical/c6fa606630169ed02d63c7fff5a4365c0dafe08a9684cdbe86664107c0891b6d.ref, historical/18cd906151996f58765995fcf51f51517b45b90bd51bcfa743158a0562e953c2.ref, historical/57a217b189b6a95f820cf502214dbef3dd9001ac36f5ab173ee72b5ea17d4162.ref, historical/6289534d739eb510448fb0d24d3a2dadf5e4e957a16c10d365cec40d6c1cd0e3.ref, apps/mobile/src/web-chat-return.ts, historical/9627a65cd3e1b3bb51845b2e2953615d7acf51a6907a4924c88b5dbb770dd16b.ref, historical/f812265977c2670a70fe220b62bc121bad010c39700422adcaa178a9a94af51c.ref, historical/271831ceac4c2bddacc0c6a9aaab04214ff8910f6f43701a32854e1a6dbb1905.ref, historical/b54112bf3a44c0355ef6bc6399fbb2849345574ad8377f3841fab17f4e38620c.ref
+
+## APP-256 — Buscar cliente nas conversas autorizadas da empresa
+
+Estado: in_progress
+
+- Busca por nome de cliente em todas as conversas autorizadas da empresa atual, com contrato/backend paginado e validação; não confundir com busca de empresas.
+- Campo integrado à lista leve com cancelamento/debounce limitado, vazio/sem resultado/falha claros, retorno e contexto preservados.
+- Conta/empresa revogada ou callback antigo não devolve cliente/trecho fora do escopo; testes pertinentes de autorização e concorrência.
+- Sem dados simulados apresentados como conectados e sem novo APK até solicitação.
+- Consulta,resultados,cursor e cache são presos ao usuário/empresa atual; troca de contexto limpa termos/dados sensíveis e invalida retornos antigos.
+
+Próxima ação: Busca real por empresa implantada, habilitada e testada no Phone22 com filtro no retorno do chat; local cobre acentos/cursor/cancelamento e HTTP isolamento. Aguardar feedback fisico/TalkBack e falhas concretas, sem APK repetitivo.
+
+Evidências: historical/d74a9964ef21ab90b1b167a881b155d9042e125fbe12619dc0dbbe2b73a46ff9.ref, historical/862c5089e2ef65ba813c987ee79f36b835fcf69c82804ec3d77d1282ef9cd8ad.ref, packages/chat-client/src/inbox-search.ts, apps/mobile/src/membership-host.ts, apps/mobile/src/MembershipHostView.tsx, historical/2fb9233b6f79bef99aaaae5fd3083d1126c1684b5afb5f76253c1c2a701cbffb.ref, historical/66cab056b787809facabfb37e23f9eb6a05ff933153e3eb1310e5c3f047f0b7d.ref, historical/c613e67a43a76311cee119e9e0db6a3d20f337789df63f76c40ec5e621b2db96.ref, historical/9b2f1f2f4563e370cd62c92afa36980d306f7e5246ed6c6e1f56ec057f92bcfe.ref, historical/e5cd4f7ed04de36c8d895c6e288bf931c0dd618aab8752661dd1bbc68291e46d.ref, historical/977f8bab7def54e6c3790af7aabd3e88d4109f4acf5775a37250375a623c4169.ref, historical/930ff3c47dfed83851f83ceab5b0c7454a5db99c709cfde03fbd6d663a39d15a.ref, historical/3d8744540c23de4a658fcdb7c7dbe965b7ea8770a4147487cebe2546ab3b6911.ref, historical/aeba23a11cd738ff03b34784e039ffca07073c40f808188a182daed81c6037d2.ref, historical/4bdaacc9461e555432b319aec4ad3bba8a23634e50cb439ddb27af1fb4f05320.ref, historical/f81aac1efbc05c3acbbf09379ca40bd0fc520454870e7f0edb7f5c81e1852477.ref, historical/2b9d321d622a8759c54aaea1fc749bfb2dc869874a723924d97ee1929bed43df.ref, historical/b128d45565e2beed02658672c3ddae39a46ea4f0af090044b399b37bbed1dbd1.ref, historical/3a965acd500036b02bfda4d51cb9c100d8c93f1f7dc740e818ad415d6fc1bc13.ref, historical/a847e944ddd54d7bace9136934f9f0783a9e830e2fceaf39cec1f3e0334a9315.ref, historical/30fb868bc7f1434570314ceea8fd8e400b96f80344c68f5b10f7d917e9e4c471.ref, historical/6f718fde3a6eb74ea0595b8eefa441229e0d03ce48ebca5c67b928764547fc53.ref, historical/ae5016890e304928bfadc057472f45321696449c9017eb5ad41dbc9b51f8bada.ref, historical/57a217b189b6a95f820cf502214dbef3dd9001ac36f5ab173ee72b5ea17d4162.ref, historical/6289534d739eb510448fb0d24d3a2dadf5e4e957a16c10d365cec40d6c1cd0e3.ref, apps/mobile/src/web-chat-return.ts
+
+## APP-257 — Cache privado de conversas, download de áudio e limpeza local
+
+Estado: done
+
+- Planejar abertura rápida de conversas já carregadas e sincronização em segundo plano, com progresso inicial mensurável ou indicador indeterminado honesto.
+- Definir limites de dados e espaço, preferência de download de áudio, isolamento por usuário/empresa, revogação e invalidação após logout.
+- Sincronizar alterações e exclusões sem ressuscitar conteúdo revogado; documentar limites offline e dados obsoletos.
+- Configurações mostram espaço ocupado e permitem apagar somente cópias locais, explicando novo download; proteger rascunhos e envios pendentes.
+- Implementar apenas após planejamento desta frente, sem desviar do lote28.
+
+Próxima ação: Acompanhar teste físico de Lucas. Cache recente entregue; eventual histórico integral/delta exige frente própria, sem bloquear esta entrega.
+
+Evidências: docs/product/CACHE-LOCAL-E-AUDIO-PLANEJAMENTO.md, historical/8ecc4f22cb2a4f811459f082ada2052c0d870c67c87154810030dddf69f83217.ref, historical/75a97c9cc23bc3a191881928eb2f6f82270d0e1755e1490b3636c1a11828ab90.ref, historical/7c5f64aa1fb36b81df5bcccbc2080270b159b73ff7de9186b74232997ff7231b.ref, historical/d1a8e518cddb6d320af55cb8b01ed7fc25cd7d717737e0226c7795365fcd4904.ref, historical/cf047910a328493676eb2452e2815a8e3514222c3bcd10a21679a9533854a8cc.ref, historical/b416c7a69fe16054d76ed8e8618410ced5373fd6e41991d839c8737b480388c8.ref, historical/3dca0fb925143f8743427f639e9dd01731814d3c8c1e4e0f8babf45bdda0ecf1.ref
+
+## APP-258 — Sincronizar histórico em múltiplas páginas e validar 100 mensagens
+
+Estado: done
+
+- Histórico progressivo separado da paginação, progresso real e reconciliação de alterações/exclusões
+- Pelo menos 100 mensagens sintéticas isoladas, integridade, ordem, reabertura e métricas reais Android/web
+- Preservar áudio, autorização, limpeza e rascunhos; entrega agrupada APK/web/notas
+
+Próxima ação: Lote30 entregue:APK privado com bytes/hash conferidos e web publicada com7 critérios de histórico/5 de áudio hospedado. Acompanhar físico sem bloquear próxima frente; imagens permanecem para lote posterior. Investigar desaparecimento da imagem e aplicar diagnóstico apenas em janela coordenada.
+
+Evidências: historical/a21cd07412034eb1a778ea22c32ec341d7e651a7bcabb89d71c4ac1e8fe48af7.ref, historical/aa3585e2c8af425acb48089a3d0c8cac5a5fd7216e8f1ddb440b82ff580ee427.ref, historical/bdd6e5f5c1a3eb9541a722c7b385d0969bd6ad6e2d2b08965f78c53555228687.ref, historical/3c3200fc177b17ec7b2c84b381fedc99f34b7679bdd59040d11a5607aedb35d9.ref, historical/b461caba28816f3974befc58ff4249e61772bab22900457ea7df61fb200a6a6f.ref, historical/f6a6b905d0dd5086714642e7a9d6506f253bf156210fd0c3f28dc622fb0bfd43.ref, historical/da61ee70392b15834bcb6937d08e88fb3063e00a79be33d42fc394116de91e0b.ref, historical/b0c5942b879a247d69d165f6e26b64990d8c207d1ba79f66b1fe34e9ce91df66.ref, historical/91e562894bc9a40eb84b2a035b2554e3786d532dd4e57764c9337c814f07cc4f.ref, historical/7c51ee59cbe1e8afc53fb617562b63b0bb0c9e66a07bf07ed21a2a646f910d5a.ref, historical/f9a9ec3bbe853820a2097317ddbffbdd660aa8c5ca5c301bb1c9f7498e656847.ref, historical/68b717b9f51b82bc2c81887acfa879625fd9aa4a39c00f08f60771cd6487792a.ref, historical/8363bf2e1e170ee47951ac571a1241656b954be248db77f02456f48be8a4835e.ref, historical/4f7c8b97a2bcdd568b7c5d360453927b7e61afe8d6d92b5f33264d6a3b263a2a.ref, historical/73213269d424ed7afa785ae1553b3d2f5c52a2458306782d71aa173ecc298610.ref, historical/78a8dd29e27ec51d9a6e3610c87e010a2ba146c71307e4fcae10789a0d4a18fb.ref, historical/b33ac5c6a345ae3271f7e6b04a48dbc467c6052966fcae6683ccb2e5e0482684.ref, historical/65e2c1801b665f2df5c344f5632a73237108d075f1c30747739dadd19eb8c155.ref, historical/1d4c901e6dd4e6c9ffda70e2bdf9c92b139125b5d8f2b5a6cfc04127d3a92f28.ref, historical/ef32ae27ff3a4695ccf67a1a19e08ea1e5f61669354e0c5430bc6088bb0798b1.ref, historical/919a90de6a03cc82455f44176e040fe23cedbcfce008323cb5ea43299d286ec7.ref, historical/fdeaa4ee3f091c11cc443eb417d90b85f6dc5fa43d5e4348ea6eaa98dcb75506.ref, historical/a2de53d896030c0d06f0534a110ad148969cc511abf62659c9763d522f23bee1.ref, historical/3ccacb62da1c3fbb2f9371cfb9a05923038fde0c838332ae56450ac53aba9dff.ref, historical/583e537a12e6af72e95da3cd67a2dfcb9251051551189a368aa3aeef9499acc9.ref, historical/45148768533db42dd6143a227d36975478d067ebc9555cacb624d27a8912cb9f.ref
+
+## APP-259 — Corrigir reabertura e ampliar persistência do cache por dispositivo
+
+Estado: done
+
+- Distinguir primeira carga de reconciliação e comprovar exibição local antes da rede em navegação/reabertura Android/web
+- Histórico amplo com quota configurável e armazenamento segmentado, isolamento por conta/empresa/conversa, limpeza e revogação; sem limite arbitrário de poucas conversas/áudios
+- Sincronização e checkpoints reduzem recarga completa sem ignorar edições/exclusões; preservar áudio e rascunhos com regressões reais
+
+Próxima ação: Lote31 entregue:APK privado/nota com metadados conferidos e web publicada somente Connect.59testes,Android emulado e regressões hospedadas de cache/recibos/áudio passaram. Acompanhar teste físico sem bloquear a fila; manter limites documentados de visibilidade/reconciliação. Imagens permanecem próxima frente a planejar.
+
+Evidências: historical/7861aa2e94fef50cc87f526ce1b3312a795b0e5d2427771c22d9891f14595f0d.ref, historical/e457291c7db90759c59ef3fcff4d0cb378bd0ba8f59e9e906896d48995f148dd.ref, historical/1fbef9cf406e732bffc03349eac4861cc5b5b9b7802df79acb13c229d0f76161.ref, historical/0bacce195e405acd9cb6fe1d44489eefcee34e0f31e31a605f8503bccca03c38.ref, historical/1af6695737d2ad2c9c771a7349b7dbd0d65b2f7766ac64311f6f37a521d2b89a.ref, historical/4e000a34ccacf70b0ea9686a446c98b551f26959e1bf31f9ba9563fcd48f746c.ref, historical/53c8bbb7b4b401bde55fb4f5382036eae7e54b70ff80376b1cbba979d9345157.ref, historical/41b6d74ef69cba488ebc2994858d07195634274d724fdf2e08aba5c5742e7aec.ref, historical/54b951a919ab9fb7353dcd11c48dddd7ac7ad82ac5e66024c4a7d4b2c9cb4829.ref, historical/d7844e4c8a50dbe362168c05833213c39f63636fc1a225ca5924ed45d5a8a065.ref, historical/30915866812b64f0013804de25dead02510751e2eda6dad2550210bd627fb71c.ref, historical/840925c0f3599de1d59fcca3719477b114c3dfe27fe6b356465baa308226c345.ref, historical/c598437915bd6aec4645ac43f25079771e3e22cd787bb9927b1a173cb2372243.ref, historical/0f8c7be3530274d73b77d5ece91fe8b82e404a949f01bdfdb47895c1301f1d7d.ref, historical/12f0f95450c5b114e35d7d1ab4ef84791108eee3e729e29e61ea2fea6b77280b.ref, historical/b6df5c73b2ae5a1c01e812486a8b368c983c8567475d7ba300d102815f710089.ref, historical/ebd12248125253945c595a82a28be0147c0bae82ff74ad590fb37e4263ff37b3.ref, historical/dedafdcbced01d4e5400b170e7283ed43bcd356a1d76fd12c687d439d298a6e6.ref, historical/d482d02913cd9d87cb0f42859a694d08a1b16d7b7366615a700a778bc0267d31.ref, historical/947fc0cdfc2abbdfdbf160172cf6215b5ffada8eeccbc623c210c08392e47ab0.ref, historical/385ba7222ed985c026aa96b4c090f7c82d7f47fc8c3736292812c3dce265a045.ref, historical/639294c9ab7fd464dde76adb5331956a893f0a3a20e5131ea64f4fae5d3aa017.ref, historical/8d65ea9481ecdc4acbbff9840e309d36a2a20ef681f654d077e1569583fcc5b3.ref
+
+## APP-260 — Completar recibos e leitura automática na composição web e Android com cache
+
+Estado: done
+
+- Relógio,1check,2checks e2checks coloridos sustentados por envio/confirmação/entrega/visualização reais
+- Web com coletor/projeção ligados; Android final validado com cache e guardas de visibilidade/contexto
+- Preservar não lidas individuais, agregação pelo primeiro funcionário, acessibilidade e negativos fora de tela/background
+
+Próxima ação: Nova captura física e banco confirmaram visualização nesse cenário:sequências15–19lidas e resposta da equipe20lida. Sequência14sóentrega;sem inferir visualização fora da tela ou push. Salto é refresh periódico completo, tratado na APP265;versões físicas exatas continuam desconhecidas.
+
+Evidências: historical/6c6460e609bb64b7317c0d76902184a73bfe46ba2b11cc3df720cd10ddedebfe.ref, historical/9dee6e1e6b9edcebfd814010ce4c05c43f07ef808537a09918ea8eab90722f91.ref, historical/47d2c87a4e89f3335d9fe65566ee85b3feb98cf444fac0f0875d46ae7084aa04.ref, historical/680e324c185481becb06d5b39943a7a8db6934abe80800aa52755ac9dc9d4148.ref, historical/75a39390d54e8a35806a7a60babc937641b3e5417172f00d35bcd4c980f26ce5.ref, historical/c598437915bd6aec4645ac43f25079771e3e22cd787bb9927b1a173cb2372243.ref, historical/0f8c7be3530274d73b77d5ece91fe8b82e404a949f01bdfdb47895c1301f1d7d.ref, historical/12f0f95450c5b114e35d7d1ab4ef84791108eee3e729e29e61ea2fea6b77280b.ref, historical/b6df5c73b2ae5a1c01e812486a8b368c983c8567475d7ba300d102815f710089.ref, historical/ebd12248125253945c595a82a28be0147c0bae82ff74ad590fb37e4263ff37b3.ref, historical/dedafdcbced01d4e5400b170e7283ed43bcd356a1d76fd12c687d439d298a6e6.ref, historical/d482d02913cd9d87cb0f42859a694d08a1b16d7b7366615a700a778bc0267d31.ref, historical/947fc0cdfc2abbdfdbf160172cf6215b5ffada8eeccbc623c210c08392e47ab0.ref, historical/385ba7222ed985c026aa96b4c090f7c82d7f47fc8c3736292812c3dce265a045.ref, historical/639294c9ab7fd464dde76adb5331956a893f0a3a20e5131ea64f4fae5d3aa017.ref, historical/8d65ea9481ecdc4acbbff9840e309d36a2a20ef681f654d077e1569583fcc5b3.ref, historical/6c79a9691da8f3b4bf7f4c634abcb18fa7cf103d373c71c45f0d30ceefd1a567.ref, historical/ef9f339c4889e6ca3c6a71fd5c7344aaaf37440087a833e8873ab5537c67c7e3.ref, historical/a8445e547049a10dcc9b00f42f3b77b092eaef82045592a03e4d7ea5bfe21fd8.ref, historical/e5f887d3cc722244ee670a5954e8e3fb75c044a0e9510fda354ded75821d3234.ref, historical/bbcd45eb6b7a7020f353ab95e3db882e67eacf40dc7009b3ccd9fdd6e2efc12a.ref, historical/f0661f6c88a218108688f3a4f79c42c3b34a20ea5d50c2ee922df7250961a610.ref, historical/0bbf1cb648bc3389272d5aa6abfc07d4db6bf28a5493715b71729a7fae499994.ref, historical/168cc7e31df132bd87a0f78e82b329b0278f0535d34aa40590a71e3d488458e2.ref, historical/eefd59dd30ebe05ec978b43a642996961bb98ed9ffa474b8fe1720aecc18d794.ref, historical/903cf640e3dde6f57e04609080a875f733e29696c06b3d05008a26951ee7999d.ref, historical/ca9eb8cc6367ab7c778b6a04fbaeacdbeb0e229109f9171b75c81cce5ee9759d.ref, historical/b33e0412d2a9aa55ab6e721cd69e008ec8e01ae778d88c313f9044291744111b.ref, historical/bcb90810ce7f1a0c022408a8d57ae0f1bd55e996962ed8c9d32108623355eef5.ref, historical/61a5aa36184a0df51772767c046ca2b424688a1556f153646c0b40feade7261b.ref, historical/941a5df46a50b3fc05730ba41017bc7eef37299d0654513041b7ed2a6e0e6137.ref, historical/81a00104e9ea0da5aad4fd190d48a56cf149294d760805efaded6f841aa9793d.ref, historical/0670caed4e944f8d651d9a89a699f6637a62587f5fe38f1715923be0aae66a6e.ref, historical/924148f1db582d55b553995ce9b408ea857084621a4382308d62db2194a7cf32.ref
+
+## APP-261 — Corrigir teclado e investigar primeira retomada física do aplicativo
+
+Estado: blocked
+
+- Novas mensagens e recibos reais atualizam com teclado/rascunho sem encobrir última mensagem ou perder texto
+- Preservar posição ao ler histórico antigo; guardas de foco/contexto/visibilidade e áudio/cache continuam corretas
+- Investigar crash físico de primeira retomada; distinguir reprodução, mitigação e limites do emulador
+
+Próxima ação: Correção de teclado entregue no32; investigação do crash físico de primeira retomada aguarda log/versão exata do aparelho. Duas retomadas do APK32 e QA anteriores sem reprodução não demonstram resolução física. Preservar dados, coletar evidência do aparelho quando disponível, sem bloquear frente independente APP052.
+
+Evidências: historical/6c79a9691da8f3b4bf7f4c634abcb18fa7cf103d373c71c45f0d30ceefd1a567.ref, apps/mobile/tests/keyboard-message-viewport.test.ts, historical/8b567d9081836b2d4ca4d89904b4c06c4ccf5ce716540230274aab36ba7995ed.ref, historical/ef9f339c4889e6ca3c6a71fd5c7344aaaf37440087a833e8873ab5537c67c7e3.ref, historical/a8445e547049a10dcc9b00f42f3b77b092eaef82045592a03e4d7ea5bfe21fd8.ref, historical/e5f887d3cc722244ee670a5954e8e3fb75c044a0e9510fda354ded75821d3234.ref, historical/bbcd45eb6b7a7020f353ab95e3db882e67eacf40dc7009b3ccd9fdd6e2efc12a.ref, historical/f0661f6c88a218108688f3a4f79c42c3b34a20ea5d50c2ee922df7250961a610.ref, historical/0bbf1cb648bc3389272d5aa6abfc07d4db6bf28a5493715b71729a7fae499994.ref, historical/168cc7e31df132bd87a0f78e82b329b0278f0535d34aa40590a71e3d488458e2.ref, historical/eefd59dd30ebe05ec978b43a642996961bb98ed9ffa474b8fe1720aecc18d794.ref, historical/903cf640e3dde6f57e04609080a875f733e29696c06b3d05008a26951ee7999d.ref, historical/ca9eb8cc6367ab7c778b6a04fbaeacdbeb0e229109f9171b75c81cce5ee9759d.ref, historical/b33e0412d2a9aa55ab6e721cd69e008ec8e01ae778d88c313f9044291744111b.ref, historical/bcb90810ce7f1a0c022408a8d57ae0f1bd55e996962ed8c9d32108623355eef5.ref, historical/61a5aa36184a0df51772767c046ca2b424688a1556f153646c0b40feade7261b.ref, historical/941a5df46a50b3fc05730ba41017bc7eef37299d0654513041b7ed2a6e0e6137.ref
+
+## APP-262 — Selecionar mensagens e remover da exibição para si ou para todos preservando originais
+
+Estado: in_progress
+
+- Pressão longa entra em seleção; barra superior contextual permite seleção múltipla e ações compatíveis. Remover é prioritário; não abre menu imediato.
+- Remover para mim ou para todos substitui a exibição por balão de mensagem removida; conteúdo original e logs permanecem no banco, sem DELETE físico.
+- Autorizar cada operação no servidor por usuário, empresa e conversa; retirar para todos somente com permissão demonstrada e operação idempotente.
+- Texto, áudio e imagens suportadas respeitam a remoção na leitura privada, referências e caches; conteúdo oculto não reaparece em sincronização, retry ou troca de conta.
+- Testar somente fixtures identificadas e manter mensagens, mídias pendentes e demais dados existentes.
+- Editar, encaminhar e responder constam no planejamento da barra. Responder também por gesto lateral com referência à origem; não simular ações ainda não conectadas.
+
+Próxima ação: Remoção texto/áudio e barra prontas no candidato conjunto; nenhuma função adicional faltante identificada. Aguardar ambiente Android atual para validação agrupada mim/todos/rascunho/cache e refresh. Provas reais anteriores não equivalem ao candidato final; não gerar APK nem publicar nesta etapa. Imagens não bloqueiam esta fatia.
+
+Evidências: docs/product/MENU-E-EXCLUSAO-DE-MENSAGENS-PENDENTE-2026-11-17.md, historical/7bf1b6be4c7e470a2a093174e2c8701cdae7342e87c234ba10719bf78eae0207.ref, historical/3496e3024dff39fd3955bc33dd68916f8a51a956eb34826ae160d119e84166fc.ref, historical/34bf0f4392b40cf552b5f678df141643859cf6ea3b8da301e4375a2c1ec83a95.ref, historical/6c205f18451d0dc6c5bc46e4a4204204dc66b334826245f9930c74b086b1c86e.ref, historical/53ffb0816c0648cd0c0a1fe6b2011569951fc0317acabee81f3b99a05eff5e3e.ref, historical/2f9fee32d2172a067f26a1a2f717fca78dbd4693fefd3b32b00884706af7e4df.ref, packages/chat-client/src/message-removal.ts, apps/mobile/src/message-removal-controller.ts, apps/mobile/src/message-removal-sync.ts, historical/c3459bc8b3f756e9e2a4f020d2e42364e6ee92f3440e63c0333e7769ff834d79.ref, historical/b6cc83ea4abc03cd368d4c34051d4765b1fa448ec3c95f696bcd660241bac743.ref, historical/cbbf88281606a7cc39ad4e190552b63e14d21608be2a00d47b1f822516da7b61.ref, historical/5efa042bb2b607e7640d006a849cee4daabe9341da5b5cf5bbf617abedfcba3e.ref, historical/48b8a9c88b6a64c0b69383a9bfb15a312e8e9a5be218a5fe667d9ac763cde3cd.ref, historical/40ed31ed0cfc7bf8e42010bdc06dc4c97735d5054fcc6edae69bf53f37102e82.ref, historical/a27c0f1d5bd99a9a48c26fa24e884fa199130f417b9aff57171661441d7432fe.ref, historical/710eef230732f8944f5ca03f2bb909c48f0f224ebd94cff7e600252c6fe4dac6.ref, historical/be6fb0f2cff391abd6a70329439870c8b697d75d80b1cfb2321ad9bf373edc29.ref, historical/70eea50c7a9dd6f659beb717d8c5a4e0a42d0403ec23c2fee66f351a1c3d1e49.ref, historical/0c3ac90f62d92624c1358fe39a870ae0e1bf35908fb36a2140ffdea0161c4048.ref, historical/90eed7159579f80d7fd377b397ab6a8dc980cf00f41b673d4a5e27dbb16b49e4.ref, historical/7a4a098961c0dfbc9b4953b99d75f6eb70bdf24a176835078be0b150a24d952f.ref, historical/6586bd3e16db9015a2014fe44b87de8db10446d4c2739ea6266c36c09474c720.ref, historical/4770ed3a61043a734febd0f501cbcf2345a4f95bf1d2a703b9048e34a6283073.ref, historical/32e93bf3fd06f2869d559481d41c4b3562d933799fa081ad18788fb11390a137.ref, historical/69b98aa7862b50c3a635227e4b4cbaf50282d009e85891df2f35f7be7ef57057.ref, historical/227ff4514c530e957a86a51e3312053b63f5e4027455532b71173566c48590b8.ref, historical/c12fe1f28d5085c4d599dd1e871deeb356f13577bee2a4fa8c23bee63b4a4b92.ref, historical/1421778eecb4b4d2db79142d30b1342bd8f2d7c321ebbbae71f2b31400c548d1.ref, historical/843d0a2769e59db98816d123957090ac39e7b6d041b842560ba23e3b5fbb7acb.ref, historical/287828358341c14d4d8531197d79468015986cd65b0bde58740265aac76c76f0.ref, apps/mobile/src/conversation-image-read.ts, apps/mobile/tests/conversation-image-read.test.ts, historical/10c77aeedb31286ac050c81ffc0a5e35ad363b647a28f4a311b14c4b238e5788.ref, historical/189300e18ca1e066eca690bcc98e8236fc47f8138bf8adb18d5d4faac653e888.ref, historical/71f55c017d9fa7291fa2e63a36f591dc1793f355435515b8a731c4cc134aba34.ref, apps/mobile/src/conversation-audio-playback.ts, historical/72dd02a94e5aa5a96e987fd704f3863efead0fdc903a00b198de8f76ca05c560.ref, historical/58c7466568e8aeafacdeca70e726b5a4d41e5510252753673bffdc8e4efd8258.ref, historical/de0875e6c7ba8a9f411687e3cfa0c4319e678933b0398fe473117c619972877f.ref, historical/1e9a1569536b5cd99fd32ccd32651d1c10287f80a7bc2936436d1dd0a8fee161.ref, historical/7b6a29cc4ffd697a8b9693e3d2049db134f1a939f975b8f40ab262dd95a45083.ref, apps/mobile/App.web.tsx, apps/mobile/previews/connected-scoped-audio-root.tsx, apps/mobile/tests/message-removal-normal-entry.test.mjs, historical/b5c3557d5b127e8dcd22545224722592a956478800aebee9b6b55b737d4e4fda.ref, historical/435c50894dcd822d0c7ff7fbe113e360f26ce5d4e82edc5ac965aa6229005a02.ref, historical/ac977ae91f7581efeffed50a234d7cc0f5f03b032fea2611618ed8f24a6aa58a.ref, historical/74406a90db3a9f65235d1c28c7f0ec674e548980c1555c490bfb4f378f116421.ref, historical/cd578efc1372529ae32dc52e20eb2febaa30d4bf4ec9366f03fdafd8df50eb7b.ref, historical/8df67e98a21e22ddc95e4e60e15a724ae3ab64373112a87686b14ccfb2946e47.ref, historical/2f54b760861e63e33fa43ed079b1f1762be9e9924bb62a9b13578acebb469dfa.ref, historical/784d8d348dd28c19228199a609ca81955b6f626fc3d355a4e79511d0160d0f1a.ref, historical/832fe23435dfb5107d392f260f216f3b92ddd962552163710ac17ef927b8d152.ref, historical/c8e8d7617544080a3b9f97b4e5e9752a52e5a2a81e45e8b8ff3c24b25a5f0a9a.ref, apps/mobile/src/RecentConversationView.tsx, apps/mobile/src/PrivateImageMessage.tsx, apps/mobile/src/LocalImagePreviewView.tsx, apps/mobile/tests/message-removal-image-selection.test.mjs, historical/f7797007cc07cadaa36145809ada5a4f269ae99059ac67df262d35f2b681156d.ref, historical/cd1b73baa8fd7b33ccc7be8a644e5fc9524a74b45b9c0f79d87ce3b8572103ac.ref, historical/97dba799d708ab5e522d30bd75bbe93bb61e75fecc19146b2c5cd57787a6f534.ref, historical/beeb6778519e0081d016c6a8b90f1dd6fc84d7e752233cc2e123d9fa51b5cea7.ref, historical/6959c4c2a242ae09667d3a8892f186052d01d011e526bd6580644d9061b590ac.ref, historical/e5116a8c9381a1237b84d3d10f8d81b781e270e6220b8730618621134881095f.ref, historical/3b1aae7e4038331a38618831a08469798308ce6bb7c5075c33dfe81008e8226f.ref
+
+## APP-263 — Criar cinco contas pessoais de teste solicitadas, sem vínculo
+
+Estado: done
+
+- Conferir duplicatas e criar somente Fernanda,Claudio e teste1/2/3 com senha padrão de teste, sem expô-la ou alterar contas existentes
+- Verificar login real, Auth role e zero vínculos; encerrar somente sessões próprias de verificação
+- Preservar o cadastro pessoal inicial e não inventar identidade, CPF ou papel de empresa; reservar as contas para teste manual
+
+Próxima ação: Contas Auth criadas e logins conferidos, zero vínculos/sessões. Fernanda/Claudio destinados ao fluxo cliente; todos abrem cadastro pessoal inicial. Papel operacional nasce do vínculo e não foi atribuído. Senhas fora de arquivos/logs. Retomar APP261/260; cadastro inicial será exercitado pelos usuários.
+
+Evidências: historical/9c72e8b239bd5a2e56410ff84c33907cb9e6b95699e430c884d13a3bc4f4623b.ref, historical/b18d98edc8e382e3a88db359b21ad0f5acac026b2e4af607ff827d222c583690.ref, historical/eb8312cb0c3a5005e1460ab16e64d7fdc6fe2106fb5ab4a613cc4d285e992fb3.ref
+
+## APP-264 — Preparar cinco perfis sintéticos manuais para teste de vínculos, sem vínculos prévios
+
+Estado: done
+
+- Preparar somente os cinco UUIDs Auth solicitados por Lucas, com dados estritamente sintéticos, sem CPF real nem confirmação indevida de identidade
+- Não modificar políticas ou abrir acesso geral; preservar senha, sessões alheias e zero vínculos de empresa
+- Testar acesso à busca e opções cliente/funcionário sem efetuar adesão, mantendo as cinco contas para teste manual
+
+Próxima ação: Cinco perfis sintéticos preparados sem CPF e com identidade unconfirmed; login/busca reais na web32 provaram opções cliente e funcionário habilitadas. Zero vínculos e sessões ao final; senha preservada; ACL/RLS/SET técnico restaurados. Lucas pode entrar em Empresas→Vincular empresa; nenhuma adesão feita pelo teste.
+
+Evidências: historical/9c72e8b239bd5a2e56410ff84c33907cb9e6b95699e430c884d13a3bc4f4623b.ref, historical/eb8312cb0c3a5005e1460ab16e64d7fdc6fe2106fb5ab4a613cc4d285e992fb3.ref, historical/e6b789653bc6ff356bb2ca0cb7b5cc17ade0947db4a653146849079f25e7c25c.ref, historical/7e5abb5bfc398a08d8ffbfbfb71be6710af3f6db1e470d85ae052517d1e5781f.ref, historical/ea04196e02df2d7d5a47b42c2641db8bb53d1b7755f5c08d21e81909f1601324.ref, historical/3f82819f674b44fddf02d92a2bede0b3180661daec83a83e93bd92538799336f.ref, historical/86cf64b8ef7d64f2e51ecb43a040b778caba548a7c8b54358f6690f9a7097f29.ref, historical/c316e184992be55f2461851f287988a92ef9fdf9513031228d84065518cc5c8d.ref
+
+## APP-265 — Evitar saltos no refresh periódico e preservar posição quando houver mudanças
+
+Estado: done
+
+- Refresh equivalente não altera a estrutura/altura/posição da lista nem remonta mensagens sem necessidade
+- Mudanças reais atualizam corretamente com preservação de âncora para leitor antigo e seguimento do fim somente quando apropriado
+- Rolagem intencional, retomada, cache, áudio e recibos preservados; medir Android emulado e web e distinguir backend real de fixtures
+
+Próxima ação: Correcao de refresh equivalente/posicao preservada emfontes;provasweb/Android17/11 seguemhistoricas. Nesta rodada somente1contratoJSdeestabilidadelistapassouaposfixtureisolarTSXimagem;naoeplataformanativa. Integrar e validar agrupado noproximoAPK,semrepetirsuite113ouaudioagora. APP261/fisico pendentes.
+
+Evidências: historical/924148f1db582d55b553995ce9b408ea857084621a4382308d62db2194a7cf32.ref, historical/447aedfdaaa8dc56d9aa2768150b2909db254d9bcfc8ce606d82cae80b89070f.ref, historical/a31a2b1d4686e50ce00a5f164584a0a3b22e9389cae06d11b38e36704968cca1.ref, historical/b919ca564495b89b54e1c6b8ad105c062b4cc4d0204547cb91fe4901be913fbd.ref, historical/0efb9884da9b1d1c1d34805801582ef0dbfa6524fc2bfe14a9f3150b55220687.ref, apps/mobile/src/StableMessageViewport.tsx, historical/1f6ebb23344284c7cd79986e810fa8707bdf00582146d0d00de83e8a8c1f8dcd.ref, historical/c8e8d7617544080a3b9f97b4e5e9752a52e5a2a81e45e8b8ff3c24b25a5f0a9a.ref, historical/e5116a8c9381a1237b84d3d10f8d81b781e270e6220b8730618621134881095f.ref, historical/3b1aae7e4038331a38618831a08469798308ce6bb7c5075c33dfe81008e8226f.ref
+
+## APP-266 — Administrar vinculos de funcionario e cliente por empresa com auditoria
+
+Estado: next
+
+Prioridade: P1
+
+Responsavel: Assistente Connect
+
+Depende de: APP-006, APP-217
+
+Revisado em: 2026-11-20
+
+- Perfil de administrador de vinculos separado de gestor: selecionar empresa dentro do escopo autorizado, buscar conta EXISTENTE por e-mail exato, apresentar revisao e criar/alterar/revogar somente papeis funcionario(staff) e cliente(patient). Sem diretorio amplo de contas ou autoatribuicao de ADM.
+- Autorizacao exclusivamente no servidor por sessao viva, MFA/AAL2 e concessao privada vigente especifica para a operacao e empresa; negar gestor isolado, metadados editaveis e acesso fora do escopo. Reusar contratos de APP-217 respeitando seu limite local; nao presumir bootstrap/ativacao hospedada ja existentes.
+- Trilha administrativa propria e atomica de ator, empresa, conta-alvo, operacao, estado antes/depois, motivo e UTC do servidor; falha de auditoria impede efeito. Nao forjar aceite, convite, autenticacao ou autoria de evento de usuario.
+- Idempotencia por requisicao e payload, revisao explicita do alvo e protecao de concorrencia/versao; manter regra de uma empresa ativa por funcionario e isolamento do cliente. Preservar outros vinculos, conta/perfil, historico, conversas, mensagens e midias; revogacao corta o acesso conforme as regras do produto sem apagar os originais.
+- Nao incluir gestao/redefinicao de senhas, credenciais, conteudo de chat, consulta/validacao CNPJ, troca de gestor ou autoelevacao. Contestacao/titularidade/revinculacao de gestor permanecem em APP-224, separadas deste recorte.
+- Desenhar a interface normal com revisao de empresa/alvo/papel/motivo e resultados claros; validar controles positivos e negativos de servidor e a trilha atomica antes da entrega. Testes focados durante dev e regressao agrupada no futuro candidato, preservando audio/imagens/cache/recibos.
+- Iniciar somente apos fechar o par APK/web e checkpoint do 0.0.33. Este registro nao instala/ativa acesso privilegiado hospedado e nao entra no candidato33 atual.
+
+Próxima ação: Primeira adicao funcional depois do fechamento0.0.33, conformeLucas Sentinel_62a0361e99888191a0fec033ce34f924: preparar o recorte administrador de vinculos escopado, reaproveitando guardas/auditoria deAPP217 sem confundir prova local com disponibilidade. Manter APP224 separado; nao implementar ou conceder acesso agora.
+
+Evidências: docs/project/AMBIENTE.md, docs/architecture/CLASSIFICACAO-E-PERMISSOES.md

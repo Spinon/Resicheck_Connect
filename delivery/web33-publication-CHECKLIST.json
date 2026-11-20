@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "state": "checklist-only-not-executed",
+  "versionCode": 33,
+  "target": "https://connect.resicheck.com.br/",
+  "expectedRoot": "/home/u104485585/domains/resicheck.com.br/public_html/connect",
+  "sourceExportFingerprint": "4d9612c2c6d031fbab293c0d59e1db080f322a2e81f004d5bbcb8539876a7b43",
+  "executionAllowedHere": false,
+  "steps": [
+    "Require the separate CSP decision before any header change. Re-read the actual Connect site/root and current index/config/header by the official path.",
+    "Save the exact current index and hosting configuration bytes/hash in a private rollback directory; never use a main-site workflow.",
+    "Verify every local export file hash. Preserve public config semantics, robots, security headers and all existing immutable assets.",
+    "Upload only new immutable JS/CSS/assets first through the existing official Connect-scoped hosting flow; read back exact hashes.",
+    "Apply only the approved Connect img-src addition while preserving other directives, using the separately reviewed host configuration snapshot.",
+    "Switch index last; verify served index/asset hashes and version33, then browser smoke.",
+    "Compare main-site baseline before/after. On uncertain write, read back rather than repeat. Keep previous immutable assets."
+  ],
+  "csp": {
+    "before": "img-src 'self' data:",
+    "after": "img-src 'self' data: blob:",
+    "othersUnchanged": true
+  },
+  "rollback": [
+    "Restore the exact saved Connect index via the same official Connect-scoped flow.",
+    "Restore the exact prior Connect hosting configuration/CSP only if it changed in this deployment.",
+    "Re-read index/config/header hashes and previous version. Never delete media/database rows or change other sites/services."
+  ],
+  "missingLiveInputs": "Exact hosting config/index backup and version-root readback must be captured at execution, since another coordinator owns the CSP step."
+}

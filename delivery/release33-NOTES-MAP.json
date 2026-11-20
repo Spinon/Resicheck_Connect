@@ -1,0 +1,17 @@
+{
+  "version": "0.0.33-mensagens",
+  "build": 33,
+  "codeCommit": "a0015b15113cdc298e21c9036c44d8ee014c6634",
+  "notes": "docs/delivery/CONNECT-0.0.33-CANDIDATO.md",
+  "manifest": "delivery/manifest-0.0.33-CANDIDATE.json",
+  "webChecklist": "delivery/web33-publication-CHECKLIST.json",
+  "android": "signed candidate, private delivery verified, emulator QA passed",
+  "web": "local export QA passed under proposed img-src blob; remote CSP and deployment pending",
+  "git": "curated local commits only, no push",
+  "limits": [
+    "No physical phone/volume/silent-mode proof",
+    "Intermittent physical resume report remains open",
+    "Final CNPJ/invite regression covers form/entry screens; earlier API proofs are separate"
+  ],
+  "remoteEffects": false
+}

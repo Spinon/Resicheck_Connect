@@ -1,10 +1,18 @@
 # Estratégia de testes
 
-Plano para implementação operacional futura. O protótipo local já recebeu testes de modelo e QA de prévia web, descritos em [PROTOTIPO-0.1.0.md](PROTOTIPO-0.1.0.md). Nenhum teste de backend, APK ou dispositivo foi executado; os critérios operacionais abaixo continuam pendentes.
+Plano para implementação operacional futura, atualizado em07/11/2026. Já existem APKs demonstrativos com QA no emulador Android, testes de modelo/web e testes PostgreSQL locais com fixtures, além de testes negativos na fundação online. As evidências e seus limites estão em [entregas](../delivery/ENTREGAS.md), [checkpoint](../project/CHECKPOINT-2026-11-07.md) e [banco](IMPLANTACAO-SUPABASE-ONLINE.md). Isso não comprova Auth positivo, transporte real no app, aparelhos físicos/antigos ou leitores de tela. O Android0.1.4/build11 recebeu QA dirigida e foi entregue com limites documentados; os critérios operacionais abaixo continuam pendentes onde a evidência não cobre o aceite.
 
 Prioridade atual: MVP de cadastro, vínculos e chat com anexos, independente de agenda, integrações externas e IA. Cenários dessas funções estão reservados para fases posteriores e não bloqueiam o MVP pela ausência da função. R27 será aplicado ao chat nesta fase; a parte de reservas/agendamento fica adiada.
 
 O assistente deve preparar e executar a maior parte da validação. O usuário revisa o fluxo e o resultado visual e faz uma conferência pontual em aparelho real quando necessária; não deve receber um APK sem evidência e virar o testador principal.
+
+## Ambiente padrao - Lucas, 20/11/2026
+
+O Supabase hospedado do Connect e desenvolvimento/homologacao, nao producao: usar esse ambiente por padrao nos testes normais autorizados com dados sinteticos. Pilha isolada e opcional por necessidade tecnica/risco concreto, nao uma exigencia geral. Estado pre-beta, separacao do ResiCheck principal, decisao de live/wipe exclusivamente de Lucas e controles obrigatorios estao na referencia canonica [AMBIENTE.md](../project/AMBIENTE.md#estado-atual-e-ambiente-padrao---lucas-20112026). Nao antecipar wipe nem contornar uma operacao especificamente negada.
+
+## Cadência de execução — orientação de Lucas (18/11/2026)
+
+- Orientação de Lucas (18/11/2026): durante o desenvolvimento, executar testes focados e proporcionais à alteração e às dependências diretamente afetadas. Reservar suíte abrangente/exaustiva para perto da preparação de um novo APK, agrupando a validação do lote. Antecipar somente testes necessários por risco concreto, explicando previamente o risco, o escopo e o ganho esperado; não repetir suíte inteira por rotina nem apresentar evidência histórica como nova execução.
 
 ## Camadas e aceite
 
@@ -12,7 +20,7 @@ O assistente deve preparar e executar a maior parte da validação. O usuário r
 | --- | --- | --- |
 | Domínio | Duplicação de envio, estado de conversa e marcação/importância inválidos; agendamento somente na fase futura | Testes unitários determinísticos na stack escolhida |
 | Componentes | Botões sem ação, perda de rascunho, estados de carregamento/erro sem saída | Testes de interação e acessibilidade, com mocks identificados |
-| Backend | Leitura/escrita cruzada entre empresas, pacientes ou conversas; anexos públicos | Integração contra backend local/isolado com autenticação real e duas empresas sintéticas |
+| Backend | Leitura/escrita cruzada entre empresas, pacientes ou conversas; anexos públicos | Integracao contra o Supabase de desenvolvimento/homologacao do Connect por padrao, com autenticacao real e duas empresas sinteticas; isolado quando necessario e autorizado |
 | Concorrência | Duplicação de mensagem e vínculo indevido; dupla reserva somente na fase futura | Requisições concorrentes pertinentes ao chat e vínculos; teste de reserva quando houver agenda |
 | Android | Navegação, teclado, anexos, ciclo de vida e reconexão quebrados | Jornadas automatizadas em emulador, screenshots e logs sanitizados |
 | Aparelho real | Problemas específicos de permissões, seletor de arquivo e notificações | Smoke curto após automação; explicitar o que não pôde ser validado |

@@ -1,25 +1,27 @@
 # Primeira fase: cadastro, vínculo e chat
 
+Vocabulário atualizado em 10/11/2026: **Cliente** é o termo de produto. [Mapa de compatibilidade e limites](TERMINOLOGIA.md). Identificadores técnicos e evidências anteriores permanecem preservados; esta revisão não altera permissões nem comprova novas funcionalidades.
+
 Decisão explícita do usuário em 06/11/2026, posterior ao plano de agenda e extensões. As capacidades operacionais permanecem planejadas; existe agora uma demonstração local sem servidor, não um chat operacional. Ver [resultado do protótipo](../testing/PROTOTIPO-0.1.0.md).
 
 ## Entrega da primeira fase
 
-ResiCheck Connect Android com conta individual, cadastro/verificação de empresa, entrada direta de funcionário por convite válido do gestor, aceite apenas do pedido de funcionário sem convite, vínculo imediato de pacientes e chat empresa-paciente com anexos privados. Cada funcionário tem inicialmente uma empresa; pacientes podem ter várias, escolhem contexto após login ou vinculam nova. A correção do fluxo de convite substitui versões anteriores que exigiam espera em ambos os caminhos.
+ResiCheck Connect Android com conta individual, cadastro/verificação de empresa, entrada direta de funcionário por convite válido do gestor, aceite apenas do pedido de funcionário sem convite, vínculo imediato de clientes e chat empresa-cliente com anexos privados. Cada funcionário tem inicialmente uma empresa; clientes podem ter várias, escolhem contexto após login ou vinculam nova. A correção do fluxo de convite substitui versões anteriores que exigiam espera em ambos os caminhos.
 
 Notificações e suas configurações fazem parte do produto de chat, conforme [NOTIFICACOES.md](NOTIFICACOES.md), sem depender das extensões adiadas. Negar permissão de notificação não impede acesso ao chat.
 
 Anexos incluem proposta de [compactação de imagens com prévia e opção de original](ANEXOS-E-IMAGENS.md), sujeita a pesquisa e testes de legibilidade. Não recomprimir PDF assinado ou modificar o original do usuário.
 
-Todos os funcionários aprovados e ativos da empresa podem ver **todas as conversas dos pacientes daquela empresa**, inclusive antes de terem enviado mensagem. A autorização de leitura não depende de atribuição a um atendente específico. Funcionário pendente, recusado, revogado ou de outra empresa não acessa. Isso não dá acesso a dados exclusivos de gestor/ADM ou a documentos fora das conversas autorizadas. Gestor sem papel operacional não herda acesso ao conteúdo apenas por administrar a empresa.
+Todos os funcionários aprovados e ativos da empresa podem ver **todas as conversas dos clientes daquela empresa**, inclusive antes de terem enviado mensagem. A autorização de leitura não depende de atribuição a um atendente específico. Funcionário pendente, recusado, revogado ou de outra empresa não acessa. Isso não dá acesso a dados exclusivos de gestor/ADM ou a documentos fora das conversas autorizadas. Gestor sem papel operacional não herda acesso ao conteúdo apenas por administrar a empresa.
 
-O paciente se vincula imediatamente por link ou busca, sem aguardar aceite da empresa. Mantêm-se autenticação e verificações da conta já definidas, sem criar uma fila de aprovação de vínculo. Acesso do paciente: nome, endereço e telefones públicos da empresa e **somente seu próprio chat**, onde envia mensagens/anexos e aguarda resposta. Não recebe lista de funcionários, outros pacientes, conversas alheias, registros internos, logs, configuração de gestor ou dados privados da empresa. Indicadores de atendimento abaixo são destinados à equipe; exibição adicional ao paciente não está decidida.
+O cliente se vincula imediatamente por link ou busca, sem aguardar aceite da empresa. Mantêm-se autenticação e verificações da conta já definidas, sem criar uma fila de aprovação de vínculo. Acesso do cliente: nome, endereço e telefones públicos da empresa e **somente seu próprio chat**, onde envia mensagens/anexos e aguarda resposta. Não recebe lista de funcionários, outros clientes, conversas alheias, registros internos, logs, configuração de gestor ou dados privados da empresa. Indicadores de atendimento abaixo são destinados à equipe; exibição adicional ao cliente não está decidida.
 
 ## Indicadores para a equipe
 
 - **Atendente principal:** funcionário que enviou mais mensagens naquela conversa. É um indicador derivado do histórico, não dono exclusivo da conversa nem regra de autorização.
-- **Atendente da última mensagem:** identificar o funcionário autor da mensagem pertinente mais recente, sem atribuir mensagens do paciente a um funcionário. A regra de exibição quando a última mensagem geral é do paciente precisa ser definida.
+- **Atendente da última mensagem:** identificar o funcionário autor da mensagem pertinente mais recente, sem atribuir mensagens do cliente a um funcionário. A regra de exibição quando a última mensagem geral é do cliente precisa ser definida.
 
-Decisões ainda necessárias antes de implementar os indicadores: desempate no maior número de mensagens; janela de contagem (histórico inteiro ou período); o que conta como mensagem (texto, anexo, aviso de sistema, edição/exclusão); comportamento sem nenhuma mensagem de funcionário; funcionário desligado e preservação de autoria; critério de ordenação no servidor para envios simultâneos; texto apresentado quando o paciente escreveu por último. Não inventar empate por nome, horário ou prioridade nesta etapa.
+Decisões ainda necessárias antes de implementar os indicadores: desempate no maior número de mensagens; janela de contagem (histórico inteiro ou período); o que conta como mensagem (texto, anexo, aviso de sistema, edição/exclusão); comportamento sem nenhuma mensagem de funcionário; funcionário desligado e preservação de autoria; critério de ordenação no servidor para envios simultâneos; texto apresentado quando o cliente escreveu por último. Não inventar empate por nome, horário ou prioridade nesta etapa.
 
 Na fase futura de IA, mensagens automáticas precisam ter autoria própria e não podem contar silenciosamente como envio de funcionário. Como incluí-las nos indicadores é decisão futura. Nenhum indicador é uma atribuição permanente ou limita o acesso dos demais funcionários aprovados.
 
