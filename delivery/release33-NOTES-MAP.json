@@ -6,12 +6,13 @@
   "manifest": "delivery/manifest-0.0.33-CANDIDATE.json",
   "webChecklist": "delivery/web33-publication-CHECKLIST.json",
   "android": "signed candidate, private delivery verified, emulator QA passed",
-  "web": "local export QA passed under proposed img-src blob; remote CSP and deployment pending",
-  "git": "curated local commits only, no push",
+  "web": "published Connect-only; real hosted PNG/inbox smoke and scoped logout verification passed",
+  "git": "curated delivery branch based on the verified public main; no main merge or auto-deploy",
   "limits": [
     "No physical phone/volume/silent-mode proof",
     "Intermittent physical resume report remains open",
     "Final CNPJ/invite regression covers form/entry screens; earlier API proofs are separate"
   ],
-  "remoteEffects": false
+  "remoteEffects": "Records previously completed publication only; this metadata change performs no deploy.",
+  "publicReleaseSummary": "delivery/RELEASE-0.0.33.json"
 }

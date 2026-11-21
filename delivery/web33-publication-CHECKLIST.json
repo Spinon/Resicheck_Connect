@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "state": "checklist-only-not-executed",
+  "state": "completed-verified-summary-only",
   "versionCode": 33,
   "target": "https://connect.resicheck.com.br/",
   "expectedRoot": "/home/u104485585/domains/resicheck.com.br/public_html/connect",
@@ -25,5 +25,8 @@
     "Restore the exact prior Connect hosting configuration/CSP only if it changed in this deployment.",
     "Re-read index/config/header hashes and previous version. Never delete media/database rows or change other sites/services."
   ],
-  "missingLiveInputs": "Exact hosting config/index backup and version-root readback must be captured at execution, since another coordinator owns the CSP step."
+  "missingLiveInputs": null,
+  "completedAt": "2026-11-21T00:12:14.789Z",
+  "result": "delivery/RELEASE-0.0.33.json",
+  "notice": "Historical publication checklist, not an instruction to deploy again. Private rollback/config backups and hosting execution details are not published."
 }

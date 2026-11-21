@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "state": "validated-candidates-not-web-published",
+  "state": "android-private-delivery-and-hosted-web33-verified",
   "version": "0.0.33-mensagens",
   "versionCode": 33,
   "source": {
@@ -70,8 +70,13 @@
         "sha256": "c6870e61278ca4af52f28b3ed644780d460bcd4ed927ebeb2a9555cb353b7aaa"
       }
     ],
-    "published": false,
-    "proof": "local export with real dev APIs, img-src blob proposal only"
+    "published": true,
+    "proof": "Real served HTTPS Web33 and development APIs; no frontend interception in hosted smoke",
+    "publishedAt": "2026-11-21T00:12:14.789Z",
+    "target": "https://connect.resicheck.com.br/",
+    "servedIndexSha256": "1fe88f0b0e1e92c0550ef96cc21dfd11817c823b24d01ed7122b9c31b4e6f5fd",
+    "servedJsSha256": "9c737faface2ebffd3b052bd4bb139b1c692ba7808b5b7fa72965d458333e841",
+    "releaseSummary": "delivery/RELEASE-0.0.33.json"
   },
   "qa": {
     "inbox": true,
@@ -90,6 +95,6 @@
     "No physical-phone proof; intermittent physical resume report remains open.",
     "CNPJ lookup/create and invite issuance/acceptance were not repeated by the final UI regression.",
     "Images remain scoped to the previously authorized test company.",
-    "Web CSP and publication still pending; no source push in this stage."
+    "Delivery branch is separate from main; verify remote ref at checkout. Private receipts and signing custody are excluded."
   ]
 }

@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "project": "ResiCheck Connect (provisório)",
-  "updatedAt": "2026-11-20",
-  "currentFocus": "APP-052",
+  "updatedAt": "2026-11-21",
+  "currentFocus": "APP-006",
   "items": [
     {
       "id": "APP-001",
@@ -572,7 +572,7 @@
         "Todo lote fechado tem revisao do diff/checks, checkpoint suficiente a outra estacao, clone limpo validado, commit/push na branch propria e ref/SHA remoto verificado, sem segredos/artefatos locais ou alteracao de main.",
         "Par APK/web entregue somente com mesmo bump e evidencias independentes de Android e web; falha em uma trilha nao bloqueia preparacao da outra; push Git nao e deploy."
       ],
-      "nextAction": "APK final33 no Drive privado, hash integral conferido; audio nativo existente passou no emulador sem reenvio. Fonte curada em branch propria a partir de origin/main; sem historico local desconexo. Falta decisao CSP e publicacao Web33, depois push verificado. Nao gerar novo APK nem repetir QA aprovada. Teste fisico/volume/silencioso e crash intermitente permanecem limitacoes.",
+      "nextAction": "Verify this delivery branch against its remote ref when resuming; APK/Web33 gates are recorded in RELEASE-0.0.33.json. Keep physical-device limitations separate; do not rebuild or redeploy as a Git step.",
       "evidence": [
         "delivery/manifest.template.json",
         "docs/delivery/ENTREGAS.md",
@@ -664,7 +664,8 @@
         "tools/web-e2e/smoke-messaging33-export.mjs",
         "historical/8c345f125896d0fb746b2c1c586c58e77be7c1e032a005f20eef1a87b2c5971c.ref",
         "docs/delivery/CONNECT-0.0.33-CANDIDATO.md",
-        "delivery/manifest-0.0.33-CANDIDATE.json"
+        "delivery/manifest-0.0.33-CANDIDATE.json",
+        "delivery/RELEASE-0.0.33.json"
       ],
       "implementationEvidence": [],
       "deliveryPhase": "mvp-chat-or-applicable-release-stage",
@@ -673,7 +674,7 @@
       "preDeliveryGuide": "docs/delivery/LOTE-PRE-APK-2026-11-13.md",
       "priority": "P1",
       "owner": "Assistente Connect",
-      "lastReviewedAt": "2026-11-20",
+      "lastReviewedAt": "2026-11-21",
       "dependencies": [
         "APP-052",
         "APP-262",
@@ -681,8 +682,8 @@
       ],
       "deliveryTracks": {
         "common": {
-          "status": "blocked",
-          "nextAction": "Gate de entrega pendente da CSP minima de imagens no Connect e das etapas de disponibilizacao/publicacao/Git, nao de nova prova de codec. Candidatos locais e QA concluidos nos limites registrados.",
+          "status": "done",
+          "nextAction": "Version33 delivery verified within the public release summary limits; no repeat build/deploy required.",
           "evidence": [
             "docs/delivery/ENTREGAS.md",
             "historical/e58ae1fb38bb536c409f502068f7ba6154f9f93e8f6bdf24b6ddbc2950a5506e.ref",
@@ -707,8 +708,8 @@
           ]
         },
         "android": {
-          "status": "ready",
-          "nextAction": "APKfinalcde1b78b/33 pronto localmente, assinatura/instalado/QAAPI36 conferidos. Nao regenerar. Disponibilizacao autorizada na entrega e teste fisico ainda faltam; preservar anteriores.",
+          "status": "done",
+          "nextAction": "Version33 delivery verified within the public release summary limits; no repeat build/deploy required.",
           "evidence": [
             "historical/b1121c6953cb4ee5ebf7c454629ddfb0f6581a07e9ecd62488205334e66c2277.ref",
             "historical/a7127eac03a890cabaedc01489bbdf365dfa94a2ce57884122b930dd56d5975e.ref",
@@ -724,8 +725,8 @@
           ]
         },
         "web": {
-          "status": "blocked",
-          "nextAction": "Export4d9612c2 da mesmafonte,QArealpassou sobCSPLOCAL. Headerpublico21:08 continua img-src self data. Revisar/aplicar somente propostaimg-src+blob comrollback e depoisdeploy33 naetapadeentrega; nada aplicadoagora.",
+          "status": "done",
+          "nextAction": "Version33 delivery verified within the public release summary limits; no repeat build/deploy required.",
           "evidence": [
             "docs/delivery/ENTREGAS.md",
             "historical/a7127eac03a890cabaedc01489bbdf365dfa94a2ce57884122b930dd56d5975e.ref",
@@ -744,8 +745,8 @@
           ]
         },
         "git": {
-          "status": "in_progress",
-          "nextAction": "Quatro arquivos fonte/teste revisados sobrepostos no clonecurado3859d15,SEMstage/commit/push. Fechamentoainda exige atualizar metadadosportaveissemprivados,validarclone e commit/pushcurado para publicoSpinon/Resicheck_Connect,semhistorico193local.",
+          "status": "ready",
+          "nextAction": "This curated source checkpoint is ready for the authorized explicit delivery-branch push; verify exact remote SHA after publication and when resuming. main is unchanged.",
           "evidence": [
             "historical/e5777786cd2a192ad68cd0ef592a2866769e43dec4612bc1809b5eee825fb847.ref",
             "tools/delivery/prepare-messaging33.mjs",
@@ -764,8 +765,9 @@
       "localCheckpoint": {
         "branch": "release/connect-0.0.33-final",
         "codeCommit": "a0015b15113cdc298e21c9036c44d8ee014c6634",
-        "pushed": false,
-        "compiledFilesExact": 261
+        "publicBase": "34d1066709ccc862c1234c575d96675ac1c3b86f",
+        "compiledFilesExact": 261,
+        "privateEvidenceIncluded": false
       }
     },
     {
@@ -3663,7 +3665,7 @@
         "Compactação no celular antes do upload, em cópia da fonte, com prévia ampliável; original mantém bytes/metadados sem excluir arquivo no aparelho",
         "Perfil candidato de resolução mínima/qualidade só é fixado após testes e trade-offs registrados; sombras/desfoque incluídos e atendente pode ampliar/pedir foto melhor"
       ],
-      "nextAction": "Imagem existente aberta/removida emWeb eAPKfinal; origemprivada,registros eauditoria preservados. Inboxfallbackvalidado; audio restaurado e smokeunicoaprovado. Nao repetiruploads/codec. FinalizarCSP/entregaconjunta33 semampliarempresas.",
+      "nextAction": "Regular image flow verified on emulator and served Web33 within scope; do not repeat the inspector/pilot tests. Keep future image criteria and physical-device limitations distinct from this delivery.",
       "evidence": [
         "docs/product/ANEXOS-E-IMAGENS.md",
         "docs/testing/ESTRATEGIA.md",
@@ -4166,7 +4168,7 @@
       "scheduling": "Prioridade atual de Lucas: finalizar imagens antes da regressao agrupada, APK/web e checkpoint remoto. Nao retomar pilotos resolvidos por rotina.",
       "priority": "P0",
       "owner": "Assistente Connect",
-      "lastReviewedAt": "2026-11-20"
+      "lastReviewedAt": "2026-11-21"
     },
     {
       "status": "backlog",
@@ -15532,7 +15534,7 @@
       "scope": "Slogan principal ResiCheck Connect; aplicar web agora e demais pontos no lote pertinente, sem APK isolado."
     }
   },
-  "implementationSummary": "Connect pre-beta. Final0.0.33 Android/Web candidates share sourcef7156dd1; authenticated emulator/browser checks passed within recorded limits. Hosting CSP and coordinated publication remain pending; no source push yet. Historical references are opaque digests only, not private receipts or current verification.",
+  "implementationSummary": "0.0.33/build33: signed APK delivered privately; real hosted Connect Web33 verified, one PNG/one message and recipient opening/read/inbox passed. Only img-src blob changed; other website preserved. Curated source branch contains the exact261 compiled files and sanitized release metadata; compare remote HEAD when resuming. No public binaries, private fixtures or unrelated local history.",
   "prototype": {
     "version": "0.1.0",
     "framework": {

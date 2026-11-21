@@ -1,5 +1,7 @@
 # ResiCheck Connect
 
+Entrega conectada atual: **0.0.33/build33**, APK em canal privado e [Web Connect](https://connect.resicheck.com.br/) verificada. [Hashes, provas e limites](delivery/RELEASE-0.0.33.json). Este checkpoint de fonte nao publica binarios nem dispara deploy.
+
 Terminologia atual: o papel de atendimento é **Cliente**, para empresas de diferentes setores. [Compatibilidade técnica e escopo da mudança](docs/product/TERMINOLOGIA.md). A documentação histórica e os APKs já entregues preservam o vocabulário original.
 
 > Demonstração local preservada: [demo Android 0.1.10/build17](docs/delivery/DEMO-0.1.10-BUILD17.md), com mídias locais cobertas ao perder foco e revelação explícita.383 testes/typecheck,19 critérios funcionais+2OS em cada QA/Phone e5 critérios adicionais de pinça/pan no Phone. Continua sem cadastro/chat remoto conectado. [0.1.9 preservada](docs/delivery/DEMO-0.1.9-BUILD16.md).

@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "version": "0.0.33-mensagens",
+  "versionCode": 33,
+  "status": "android-private-delivery-and-web-verified",
+  "verifiedAt": "2026-11-21T00:12:14.789Z",
+  "source": {
+    "repository": "https://github.com/Spinon/Resicheck_Connect.git",
+    "branch": "release/connect-0.0.33-final",
+    "publicBase": "34d1066709ccc862c1234c575d96675ac1c3b86f",
+    "codeCommit": "a0015b15113cdc298e21c9036c44d8ee014c6634",
+    "compiledFiles": 261,
+    "compiledFingerprint": "f7156dd19cf7193fb906a34fc4f95bebca1b2ba2995ca2adfc53a22c1458cfae",
+    "remoteVerification": "Compare the checked-out HEAD with git ls-remote for this exact delivery branch. main is not advanced by this checkpoint."
+  },
+  "android": {
+    "delivery": "private QA channel; sharing and older versions preserved",
+    "bytes": 46929408,
+    "sha256": "cde1b78b392cdb2d76226fd50f5fa4fab705b8476f5a304f081fc2bcfdf860a9",
+    "certificateSha256": "fac61745dc0903786fb9ede62a962b399f7348f0bb6f899b8332667591033b9c",
+    "versionCode": 33,
+    "versionName": "0.0.33-mensagens",
+    "platformVerified": "API36 emulator, final installed signed APK",
+    "physicalDevice": false
+  },
+  "web": {
+    "url": "https://connect.resicheck.com.br/",
+    "httpsStatus": 200,
+    "exportFingerprint": "4d9612c2c6d031fbab293c0d59e1db080f322a2e81f004d5bbcb8539876a7b43",
+    "indexSha256": "1fe88f0b0e1e92c0550ef96cc21dfd11817c823b24d01ed7122b9c31b4e6f5fd",
+    "jsSha256": "9c737faface2ebffd3b052bd4bb139b1c692ba7808b5b7fa72965d458333e841",
+    "securityDelta": "Only img-src adds blob:; all other security directives/headers preserved.",
+    "otherWebsitePreserved": true,
+    "actualFiles": "New immutable JS, two static license texts, Connect-only CSP and index last. Existing assets retained.",
+    "logo": "Existing encoded PNG retained; decoded RGBA pixels equal the export logo.",
+    "metroMetadata": "Unused export metadata is not served.",
+    "rollback": "Exact prior Connect index, configuration and bundle preserved in approved private custody; not applied because post-deploy checks passed."
+  },
+  "hostedSmoke": {
+    "frontend": "actual served HTTPS, no request interception or mocks",
+    "backend": "real Connect development Auth, private Storage, Edge, inspector and chat",
+    "syntheticPngBytes": 77,
+    "singleUploadSingleMessage": true,
+    "recipientOpen": true,
+    "recipientReadReceipt": true,
+    "inboxUsable": true,
+    "cspErrors": 0,
+    "applicationExceptions": 0,
+    "ownNewSessions": 2,
+    "ownLocalLogoutsAcknowledged": 2,
+    "ownNewSessionsRemainingVerified": 0,
+    "preexistingSessionsTouched": false
+  },
+  "limits": [
+    "Chromium desktop hosted smoke and Android emulator; no physical phone/volume/silent-mode proof.",
+    "Intermittent physical resume report remains open.",
+    "Final CNPJ and invitation checks cover forms/entry screens; previous API business proofs are separate.",
+    "Image availability remains restricted to the previously authorized test company.",
+    "No binary, private QA links, tenant/actor/session IDs, credentials or private receipts are published in this checkpoint.",
+    "Source graph is byte-exact to the built candidate; no new APK/build or byte-identical cross-machine binary rebuild is claimed."
+  ]
+}
