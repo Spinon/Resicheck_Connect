@@ -40,6 +40,8 @@ allprojects { p ->
    p.extensions.getByName('react').entryFile.set(entry)
    p.tasks.matching{it.name=='createBundleReleaseJsAndAssets'}.configureEach{t->
     t.entryFile.set(entry)
+    // Bound Metro as well as Gradle/CMake on the QA desktop.
+    t.extraPackagerArgs.addAll(['--max-workers','2'])
     // Metro watches these workspace packages; Gradle must invalidate the bundle too.
     def workspace = mobile.parentFile.parentFile
     def sharedSources = p.fileTree(new File(workspace,'packages')) {
