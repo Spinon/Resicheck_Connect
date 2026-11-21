@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "project": "ResiCheck Connect (provisório)",
   "updatedAt": "2026-11-21",
-  "currentFocus": "APP-267",
+  "currentFocus": "APP-268",
   "items": [
     {
       "id": "APP-001",
@@ -15196,6 +15196,26 @@
           ]
         }
       }
+    },
+    {
+      "id": "APP-268",
+      "title": "Ajustar selecao de audio,acompanhamento de novas mensagens e balao pendente de texto",
+      "status": "next",
+      "priority": "P1",
+      "owner": "Assistente Connect",
+      "lastReviewedAt": "2026-11-21",
+      "dependencies": [
+        "APP-267"
+      ],
+      "acceptance": [
+        "Preservar controles e posicao do audio ao selecionar,sem iniciar reproducao.",
+        "Acompanhar chegada somente perto do fim;preservar leitura do historico e polling sem mudanca.",
+        "Texto pendente no mesmo balao por clientMessageId,reconciliacao/retry sem duplicacao e sem acoes prematuras."
+      ],
+      "nextAction": "Abrir checkout/branch separado a partir da release34 verificada;primeiro confirmar chegada ao historico Web/Android,depois poucos testes focais de posicao/audio/pendencia. Planejamento apenas;fora do produto34.",
+      "evidence": [
+        "docs/product/CHAT-PROXIMO-RECORTE-APP268.md"
+      ]
     }
   ],
   "regulatoryIntegration": {

@@ -66,3 +66,6 @@ Nao houve mudanca no backend/VPS/Supabase/CORS/CSP, audio ou projeto principal. 
 ## Fechamento Git 0.0.34 - 21/11/2026
 
 Checkpoint publicado `46c369a47d4a588c04a520a11d42dbf03e31cdc8` na branch `release/connect-0.0.34-hotfix` do remoto publico oficial. Clone novo baixado do GitHub:262 fontes byte-exatas ao candidato,restauracao offline pelos dois lockfiles sem scripts,project:check e typecheck mobile aprovados. Sem workflows versionados;consulta de runs por commit retornou vazio(no filtro PR suportado pela ferramenta). Main permaneceu em34d1066709ccc862c1234c575d96675ac1c3b86f. Estas notas finais nao alteram a fonte compilada dea3d6f nem geram build/deploy;conferir o HEAD remoto atual ao retomar. Nenhum binario,identidadeQA,credencial,recibo privado ou Drive privado neste checkpoint.
+
+
+Proximo foco de fila APP268 registrado somente como planejamento de retomada,apos fechar o hotfix. Nenhuma implementacao desse recorte integra APK/Web34;APP266 permanece em checkout independente. Confirmar chegada ao historico nas duas superficies antes de medir rolagem. M33 e roteiro,nao prova dos itens novos.

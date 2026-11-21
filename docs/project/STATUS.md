@@ -4,33 +4,19 @@
 
 Atualizado em: 2026-11-21
 
-Hotfix0.0.34 APP267:APK final assinado e Drive/hash verificados;Web34 publicada e PNG/inbox aprovadas com CSP inalterada. Git curado aguarda push verificado. APP266/268 fora.
+Hotfix0.0.34 APP267 entregue:APK assinado privado/hash,Web34 e PNG/inbox verificados;checkpoint46c369a publicado e retomado do GitHub. Notas finais apenas;main preservada. Sem prova fisica.
 
-Foco: **APP-267 — Permitir cancelar imagem antes da publicacao e encerrar espera sem confirmacao**
+Foco: **APP-268 — Ajustar selecao de audio,acompanhamento de novas mensagens e balao pendente de texto**
 
-Prioridade: P0
+Prioridade: P1
 
 Responsavel: Assistente Connect
 
+Depende de: APP-267
+
 Revisado em: 2026-11-21
 
-Trilha common: done - Fonte congelada equivalente nas duas trilhas;APP267 somente.
-
-Evidencias da trilha: delivery/RELEASE-0.0.34.json, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
-
-Trilha android: done - APK final e35e,instalacao/picker/reconciliacao/abertura API36 e Drive por download integral verificados;sem prova fisica.
-
-Evidencias da trilha: delivery/RELEASE-0.0.34.json, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
-
-Trilha web: done - Web34 HTTPS/hash/CSP intacta,1upload/1send e abertura/inbox verificados;rollback preservado.
-
-Evidencias da trilha: delivery/RELEASE-0.0.34.json, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
-
-Trilha git: in_progress - Revisar e enviar branch curada,confirmar SHA remoto e clone;main intacta.
-
-Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
-
-Próxima ação: Fechar somente checkpoint Git curado:revisao de todos os commits,clone limpo/ref remoto;nao refazer APK/Web/PNG/infra. Artefatos e limites no manifesto34.
+Próxima ação: Abrir checkout/branch separado a partir da release34 verificada;primeiro confirmar chegada ao historico Web/Android,depois poucos testes focais de posicao/audio/pendencia. Planejamento apenas;fora do produto34.
 
 ## APP-001 — Criar estrutura independente de trabalho e entrega
 
@@ -3483,7 +3469,7 @@ Evidências: docs/project/AMBIENTE.md, docs/architecture/CLASSIFICACAO-E-PERMISS
 
 ## APP-267 — Permitir cancelar imagem antes da publicacao e encerrar espera sem confirmacao
 
-Estado: in_progress
+Estado: done
 
 Prioridade: P0
 
@@ -3503,15 +3489,35 @@ Trilha web: done - Web34 HTTPS/hash/CSP intacta,1upload/1send e abertura/inbox v
 
 Evidencias da trilha: delivery/RELEASE-0.0.34.json, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
 
-Trilha git: in_progress - Revisar e enviar branch curada,confirmar SHA remoto e clone;main intacta.
+Trilha git: done - Checkpoint46c369a publicado e cloneGitHub verificado:262 fontes byte-exatas,lockfiles offline/project:check/typecheck;estas notas finais nao mudam fonte compilada. Conferir HEAD remoto ao retomar.
 
-Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+Evidencias da trilha: delivery/RELEASE-0.0.34.json
 
 - Cancelar antes do despacho definitivo impede publicacao tardia e preserva rascunho; quando confirmacao ja iniciou, mostrar incerteza honesta e reconciliar somente os mesmos IDs, sem reenviar.
 - Upload/inspecao/confirmacao com estados e prazos finitos; fechar/minimizar popup em erro/timeout sem perder rascunho silenciosamente.
 - Mesmo comportamento compartilhado Web/Android, sem relaxar escopo, MIME, bytes, hash ou controles de midia.
 - Validar com fixtures sinteticas, sem rearmar/excluir/publicar anexos antigos ou associar metadados anonimos ao usuario.
 
-Próxima ação: Fechar somente checkpoint Git curado:revisao de todos os commits,clone limpo/ref remoto;nao refazer APK/Web/PNG/infra. Artefatos e limites no manifesto34.
+Próxima ação: Hotfix34 concluido;nao repetir build/PNG/infra. Proximos recortes de chat e APP266 ficam separados deste checkpoint.
 
 Evidências: apps/mobile/src/scoped-reviewed-image.ts, apps/mobile/src/ImageReviewComposer.tsx, packages/chat-client/src/image-transfer.ts, apps/mobile/src/image-send-presentation.ts, apps/mobile/src/image-review.ts, apps/mobile/tests/image-send-cancel.test.ts, apps/mobile/tests/image-send-controls.test.mjs, apps/mobile/tests/image-preparation-cancel.test.ts, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md, delivery/RELEASE-0.0.34.json
+
+## APP-268 — Ajustar selecao de audio,acompanhamento de novas mensagens e balao pendente de texto
+
+Estado: next
+
+Prioridade: P1
+
+Responsavel: Assistente Connect
+
+Depende de: APP-267
+
+Revisado em: 2026-11-21
+
+- Preservar controles e posicao do audio ao selecionar,sem iniciar reproducao.
+- Acompanhar chegada somente perto do fim;preservar leitura do historico e polling sem mudanca.
+- Texto pendente no mesmo balao por clientMessageId,reconciliacao/retry sem duplicacao e sem acoes prematuras.
+
+Próxima ação: Abrir checkout/branch separado a partir da release34 verificada;primeiro confirmar chegada ao historico Web/Android,depois poucos testes focais de posicao/audio/pendencia. Planejamento apenas;fora do produto34.
+
+Evidências: docs/product/CHAT-PROXIMO-RECORTE-APP268.md
