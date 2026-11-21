@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "state": "hotfix-authorized-not-built",
+  "release": "0.0.34",
+  "versionCode": 34,
+  "previousRelease": "0.0.33-mensagens",
+  "previousVersionCode": 33,
+  "projectRef": "ibdlvlwdzmsrbqadrudb",
+  "android": {
+    "package": "com.resicheck.connect.pendingonlinephone",
+    "label": "Connect Teste34",
+    "architectures": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "signingCertificateSha256": "fac61745dc0903786fb9ede62a962b399f7348f0bb6f899b8332667591033b9c",
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.RECORD_AUDIO"
+    ],
+    "allowBackup": false,
+    "usesCleartextTraffic": false,
+    "debuggable": false
+  },
+  "web": {
+    "origin": "https://connect.resicheck.com.br",
+    "basePath": "/",
+    "sameVersion": true,
+    "preserveMainSite": true
+  },
+  "sourceRoots": {
+    "android": "apps/mobile/previews/company-preview-lot.android.tsx",
+    "web": "apps/mobile/previews/company-preview-lot.web.tsx",
+    "imagesOption": "candidate-private-v1"
+  },
+  "scope": [
+    "APP-267 only: bounded image inspection wait, cancel before send, honest uncertain confirmation and same-attempt reconciliation, usable review actions"
+  ],
+  "admissionBeforeBuild": [
+    "Reviewed APP267-only source with no diagnostics or APP266",
+    "Existing real native PNG proof and local cancel/timeout/late-response proofs preserved",
+    "Single Android34 candidate and Web34 from identical frozen source",
+    "No backend, CORS/CSP or infrastructure changes"
+  ],
+  "actionsNow": {
+    "bumpApplied": false,
+    "build": false,
+    "webExport": false,
+    "publish": false,
+    "startEmulator": false,
+    "login": false,
+    "grants": false
+  },
+  "releasePolicy": {
+    "singleGroupedApk": true,
+    "noBuildPerSmallChange": true,
+    "webAfterValidatedApk": true,
+    "notesAndHashesSameLot": true
+  },
+  "regressionPlan": "apps/mobile/candidates/messaging34/regression-plan.json",
+  "priorDeliveryReceipt": "delivery/RELEASE-0.0.33.json",
+  "publicHostedVersionReadback": "apps/mobile/next-lot-hosted-version-readonly.json",
+  "normalImageAvailability": {
+    "state": "existing-authorized-test-company-only",
+    "hostedAccessExpanded": false,
+    "backendChanges": false
+  }
+}

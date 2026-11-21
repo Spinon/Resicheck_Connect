@@ -24,3 +24,9 @@ apps/mobile/.auth-diagnostic-generated/
 
 # Host-local public build input; version only its schema/example.
 apps/mobile/candidates/messaging33/*.INPUT.json
+
+apps/mobile/candidates/messaging34/*.INPUT.json
+
+# Derived local Expo inputs; rebuilt by the candidate adapter.
+apps/mobile/app.config.js
+apps/mobile/output/

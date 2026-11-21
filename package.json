@@ -25,7 +25,10 @@
     "chat-client:typecheck": "npm --prefix packages/chat-client run typecheck",
     "mobile:prepare:33": "pwsh -NoProfile -File apps/mobile/scripts/build-messaging33-android.ps1 -PrepareOnly",
     "mobile:build:33:unsigned": "pwsh -NoProfile -File apps/mobile/scripts/build-messaging33-android.ps1 -BuildUnsigned",
-    "mobile:inspect:33": "pwsh -NoProfile -File apps/mobile/scripts/inspect-messaging33-apk.ps1"
+    "mobile:inspect:33": "pwsh -NoProfile -File apps/mobile/scripts/inspect-messaging33-apk.ps1",
+    "mobile:prepare:34": "pwsh -NoProfile -File apps/mobile/scripts/build-messaging34-android.ps1 -PrepareOnly",
+    "mobile:build:34:unsigned": "pwsh -NoProfile -File apps/mobile/scripts/build-messaging34-android.ps1 -BuildUnsigned",
+    "mobile:inspect:34": "pwsh -NoProfile -File apps/mobile/scripts/inspect-messaging34-apk.ps1"
   },
   "engines": {
     "node": ">=22.13.0"

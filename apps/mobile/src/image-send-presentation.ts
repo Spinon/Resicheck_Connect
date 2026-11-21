@@ -1,0 +1,6 @@
+/** Shared Web/Android presentation only; never claims a server cancellation. */
+export function imageSendPresentation(phase:string,confirmationStarted=false){
+ const sending=['reading','uploading','waiting','checking','sending'].includes(phase),terminal=['cancelled','failed','rejected','delayed','upload-unknown','uncertain'].includes(phase);
+ const status=phase==='reading'?'Preparando arquivo':phase==='uploading'?'Transferindo arquivo':phase==='waiting'?'Verificando imagem':phase==='checking'?'Conferindo envio':phase==='sending'?'Confirmando mensagem':phase==='cancelled'?'Envio da mensagem cancelado. A imagem foi preservada.':phase==='delayed'?'A verificação está demorando. A imagem ainda não foi enviada como mensagem.':phase==='upload-unknown'?'Não foi possível confirmar a transferência. A imagem foi preservada.':phase==='uncertain'?'A mensagem pode ter sido enviada. Confira a confirmação antes de tentar outro envio.':phase==='failed'||phase==='rejected'?'Não foi possível concluir o envio. A imagem foi preservada.':null;
+ return Object.freeze({sending,terminal,status,canCheck:['waiting','delayed','upload-unknown','uncertain'].includes(phase),checkLabel:confirmationStarted?'Conferir confirmação':'Conferir e concluir envio',canRestartReview:['cancelled','failed','rejected'].includes(phase)&&!confirmationStarted});
+}

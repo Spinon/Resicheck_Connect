@@ -7,7 +7,7 @@ const hidden=empty('closed');
  * queue and cannot create messages. Explicit original choice is required when
  * optimization retains the original, because original metadata may remain. */
 export function createImageReview(scope:{current:()=>boolean;subscribe:(f:()=>void)=>()=>void},port:ImageReviewPort){
- let cleanupFailed=false,closed=false,busy=false,revision=0,view=empty('idle');const listeners=new Set<()=>void>();let unsubscribe=()=>{};
+ let cleanupFailed=false,closed=false,busy=false,revision=0,view=empty('idle');let preparationBefore:ImageReviewView|null=null;const listeners=new Set<()=>void>();let unsubscribe=()=>{};
  const notify=()=>{for(const fn of listeners)try{fn();}catch{}},live=()=>{try{return !closed&&scope.current()===true;}catch{return false;}};
  const cleanup=()=>{try{port.dispose();cleanupFailed=false;return true;}catch{cleanupFailed=true;return false;}};
  const close=()=>{if(closed)return;closed=true;revision++;view=hidden;try{unsubscribe();}catch{}cleanup();notify();};
@@ -22,7 +22,7 @@ export function createImageReview(scope:{current:()=>boolean;subscribe:(f:()=>vo
   return Object.freeze({phase:'ready' as const,source:Object.freeze({...s}),preview:Object.freeze({...p}),requestedMode:requested,notice:confirm?'original-confirmation-required' as const:null,canRead:!confirm});
  }
  async function run(select:boolean,mode:'original'|'optimized'){
-  if(!current()||busy||!select&&!view.source||!['original','optimized'].includes(mode))return false;busy=true;const ticket=++revision,before=view;let next:LocalImageSource|null=null,p:LocalImagePreview|null=null;
+  if(!current()||busy||!select&&!view.source||!['original','optimized'].includes(mode))return false;busy=true;const ticket=++revision,before=view;preparationBefore=before;let next:LocalImageSource|null=null,p:LocalImagePreview|null=null;
   put({...view,phase:select?'selecting':'preparing',notice:null,canRead:false});
   try{
    if(!current()||ticket!==revision)return false;
@@ -37,7 +37,7 @@ export function createImageReview(scope:{current:()=>boolean;subscribe:(f:()=>vo
   }catch{
    if(p&&p.uri!==next?.uri&&p.uri!==before.preview?.uri)port.release(p.uri);if(select&&next&&next.uri!==before.source?.uri)port.release(next.uri);
    if(current()&&ticket===revision)put({...before,notice:'unavailable'});return false;
-  }finally{busy=false;}
+  }finally{busy=false;preparationBefore=null;}
  }
  unsubscribe=scope.subscribe(()=>{if(!live())close();});if(closed)unsubscribe();else if(!live())close();
  return Object.freeze({snapshot:()=>current()?view:hidden,subscribe:(f:()=>void)=>{listeners.add(f);return()=>{listeners.delete(f);};},
@@ -46,6 +46,7 @@ export function createImageReview(scope:{current:()=>boolean;subscribe:(f:()=>vo
    try{if(!current()||ticket!==revision||signal.aborted)throw Error();bytes=await port.read(p.uri,p.bytes,signal);if(!current()||ticket!==revision||signal.aborted||!(bytes instanceof Uint8Array)||bytes.length!==p.bytes||localImageHeaderType(bytes)!==p.mime)throw Error();return bytes;}
    catch{bytes?.fill(0);throw Error('Image unavailable');}
    finally{busy=false;if(current()&&ticket===revision)put({...view,phase:'ready',canRead:true});}},
+  cancelPreparation(){if(!current()||!preparationBefore||!['selecting','preparing'].includes(view.phase))return false;const before=preparationBefore;preparationBefore=null;revision++;put(before);return true;},
   cleanupPending:()=>cleanupFailed,retryCleanup:()=>closed&&cleanupFailed?cleanup():!cleanupFailed,
   discard(){if(!current()||busy)return false;revision++;for(const uri of new Set([view.source?.uri,view.preview?.uri]))if(uri)port.release(uri);put(empty('idle'));return true;},dispose:close
  });

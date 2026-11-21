@@ -4,19 +4,33 @@
 
 Atualizado em: 2026-11-21
 
-Lote0.0.33 fechado: APK privado e Web Connect verificados; checkpoint curado publicado e clonado do GitHub,261 fontes exatas, npm ci/2typechecks/project:check passaram. main preservado. Sem workflows/checks associados; limites fisicos seguem separados. Nao repetir entrega ou push sem mudanca concreta.
+Hotfix0.0.34 APP267 em fechamento autorizado;base33,AndroidWeb eGit separados. Sem APP266,backend,CORS/CSP ou diagnosticosQA. Evidencias reais efixtures distintas;nenhuma entrega antecipada.
 
-Foco: **APP-266 — Administrar vinculos de funcionario e cliente por empresa com auditoria**
+Foco: **APP-267 — Permitir cancelar imagem antes da publicacao e encerrar espera sem confirmacao**
 
-Prioridade: P1
+Prioridade: P0
 
 Responsavel: Assistente Connect
 
-Depende de: APP-006, APP-217
+Revisado em: 2026-11-21
 
-Revisado em: 2026-11-20
+Trilha common: in_progress - Congelar e revisar fonteAPP267/version34
 
-Próxima ação: Primeira adicao funcional depois do fechamento0.0.33, conformeLucas Sentinel_62a0361e99888191a0fec033ce34f924: preparar o recorte administrador de vinculos escopado, reaproveitando guardas/auditoria deAPP217 sem confundir prova local com disponibilidade. Manter APP224 separado; nao implementar ou conceder acesso agora.
+Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+
+Trilha android: in_progress - APK unico assinado e regressao/Drive
+
+Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+
+Trilha web: in_progress - Export comum,smoke e deployConnect com rollback
+
+Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+
+Trilha git: in_progress - Revisar,clone limpo,push branch propria semmain
+
+Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+
+Próxima ação: Fechar hotfix0.0.34 APP267:fonte comum/versionCode34,APK assinado/upgrade/regressao focal,WebConnect/rollback,Drive privado e checkpointcurado. Sem APP266,backend,CORS/CSP ou diagnosticoQA.
 
 ## APP-001 — Criar estrutura independente de trabalho e entrega
 
@@ -3466,3 +3480,38 @@ Revisado em: 2026-11-20
 Próxima ação: Primeira adicao funcional depois do fechamento0.0.33, conformeLucas Sentinel_62a0361e99888191a0fec033ce34f924: preparar o recorte administrador de vinculos escopado, reaproveitando guardas/auditoria deAPP217 sem confundir prova local com disponibilidade. Manter APP224 separado; nao implementar ou conceder acesso agora.
 
 Evidências: docs/project/AMBIENTE.md, docs/architecture/CLASSIFICACAO-E-PERMISSOES.md
+
+## APP-267 — Permitir cancelar imagem antes da publicacao e encerrar espera sem confirmacao
+
+Estado: in_progress
+
+Prioridade: P0
+
+Responsavel: Assistente Connect
+
+Revisado em: 2026-11-21
+
+Trilha common: in_progress - Congelar e revisar fonteAPP267/version34
+
+Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+
+Trilha android: in_progress - APK unico assinado e regressao/Drive
+
+Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+
+Trilha web: in_progress - Export comum,smoke e deployConnect com rollback
+
+Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+
+Trilha git: in_progress - Revisar,clone limpo,push branch propria semmain
+
+Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+
+- Cancelar antes do despacho definitivo impede publicacao tardia e preserva rascunho; quando confirmacao ja iniciou, mostrar incerteza honesta e reconciliar somente os mesmos IDs, sem reenviar.
+- Upload/inspecao/confirmacao com estados e prazos finitos; fechar/minimizar popup em erro/timeout sem perder rascunho silenciosamente.
+- Mesmo comportamento compartilhado Web/Android, sem relaxar escopo, MIME, bytes, hash ou controles de midia.
+- Validar com fixtures sinteticas, sem rearmar/excluir/publicar anexos antigos ou associar metadados anonimos ao usuario.
+
+Próxima ação: Fechar hotfix0.0.34 APP267:fonte comum/versionCode34,APK assinado/upgrade/regressao focal,WebConnect/rollback,Drive privado e checkpointcurado. Sem APP266,backend,CORS/CSP ou diagnosticoQA.
+
+Evidências: apps/mobile/src/scoped-reviewed-image.ts, apps/mobile/src/ImageReviewComposer.tsx, packages/chat-client/src/image-transfer.ts, apps/mobile/src/image-send-presentation.ts, apps/mobile/src/image-review.ts, apps/mobile/tests/image-send-cancel.test.ts, apps/mobile/tests/image-send-controls.test.mjs, apps/mobile/tests/image-preparation-cancel.test.ts, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md

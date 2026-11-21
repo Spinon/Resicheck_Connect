@@ -1,0 +1,22 @@
+{
+  "version": "0.0.34",
+  "scope": "APP267 hotfix only",
+  "reuse": [
+    "Existing local Web/Android cancel and late-response proofs",
+    "One real native PNG publication/recipient-opening proof"
+  ],
+  "candidateChecks": [
+    "Signature/version/permissions and upgrade33-to34",
+    "Native cancel before send with draft preserved; no automatic retry",
+    "Late-confirmation contract of exact frozen source; never call fixture hosted evidence",
+    "Native opening of existing synthetic image and essential navigation",
+    "Local static Web smoke under unchanged CSP",
+    "Post-deploy HTTPS/version/assets and one real PNG sender/reader smoke"
+  ],
+  "exclude": [
+    "APP266",
+    "Backend/infra/codec/audio pilots",
+    "Physical-device claims"
+  ],
+  "serverSideFaultsForced": false
+}

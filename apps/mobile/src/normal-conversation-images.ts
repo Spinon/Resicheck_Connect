@@ -26,7 +26,7 @@ export function createNormalConversationImages(d:Readonly<{recent:Recent;foregro
   return e;
  }
  return Object.freeze({reviews,senderFor:(host:Host)=>bind(host)?.sender,readerFor:(host:Host)=>bind(host)?.reader,
-  blocksNavigation(host:Host){const review=reviews.bind(host).snapshot().review;if(imageReviewBlocksNavigation(review))return true;for(const e of entries)if(e.host===host&&live(e)&&[...e.senders].some(s=>!['closed','sent','failed','rejected'].includes(s.snapshot().phase)))return true;return false;},
+  blocksNavigation(host:Host){const review=reviews.bind(host).snapshot().review;if(imageReviewBlocksNavigation(review))return true;for(const e of entries)if(e.host===host&&live(e)&&[...e.senders].some(s=>!['closed','sent','failed','rejected','cancelled'].includes(s.snapshot().phase)))return true;return false;},
   foregroundChanged(){reviews.foregroundChanged();sync();},
   dispose(){if(closed)return;closed=true;stop();for(const e of [...entries])retire(e);try{reviews.dispose();}catch{cleanupFailed=true;}},cleanupPending:()=>cleanupFailed||reviews.cleanupPending(),retryFinalCleanup:()=>{try{const ok=reviews.retryFinalCleanup();if(ok)cleanupFailed=false;return ok;}catch{return false;}}
  });

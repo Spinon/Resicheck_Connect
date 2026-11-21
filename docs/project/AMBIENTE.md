@@ -25,3 +25,8 @@ The delivery branch contains only the curated checkpoint from public base34d1066
 O checkpoint `721348700e3a58e9c90a5a8b0cea039ca66c129f` foi enviado a release/connect-0.0.33-final e conferido no remoto oficial; main permaneceu em34d1066. O clone baixado do GitHub manteve261 fontes byte-exatas; npm ci pelos dois lockfiles (sem scripts), project:check e typechecks mobile/chat-client passaram. Nao houve rebuild, novo APK, deploy ou teste de midia. Nao ha workflows/checks Actions associados ao checkpoint verificado. Esta nota de fechamento nao inclui recibos, identidades ou dados privados. Ao retomar, conferir o HEAD atual da branch remota, nao repetir o push nem o lote sem mudanca concreta. O relato fisico de retomada e demais limites continuam separados.
 
 Proximo foco registrado: APP-266, administrador de vinculos por empresa, ja definido como primeira adicao apos0.0.33. Nenhuma implementacao ou concessao desse item foi iniciada neste fechamento. APP-261 continua dependente de evidencia fisica; nao confundir com regressao demonstrada no emulador.
+
+
+## Hotfix0.0.34 em fechamento -21/11/2026
+
+Base75ffb5d,branchrelease/connect-0.0.34-hotfix. SomenteAPP267 e adapters34;APP266 em outro checkout,nao integrado. Diagnosticos/recibosQA fora do bundle/checkpoint.1PNG real Android passou com1mensagem e abertura pelo outro papel;2logouts locais204. Validar APK/Web34 e publicar conforme autorizacao,sem mudar backend,CORS/CSP ou escopo das imagens. Relatooriginal/fisico nao reproduzido.
