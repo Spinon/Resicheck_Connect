@@ -4,7 +4,7 @@
 
 Atualizado em: 2026-11-21
 
-Hotfix0.0.34 APP267 em fechamento autorizado;base33,AndroidWeb eGit separados. Sem APP266,backend,CORS/CSP ou diagnosticosQA. Evidencias reais efixtures distintas;nenhuma entrega antecipada.
+Hotfix0.0.34 APP267:APK final assinado e Drive/hash verificados;Web34 publicada e PNG/inbox aprovadas com CSP inalterada. Git curado aguarda push verificado. APP266/268 fora.
 
 Foco: **APP-267 — Permitir cancelar imagem antes da publicacao e encerrar espera sem confirmacao**
 
@@ -14,23 +14,23 @@ Responsavel: Assistente Connect
 
 Revisado em: 2026-11-21
 
-Trilha common: in_progress - Congelar e revisar fonteAPP267/version34
+Trilha common: done - Fonte congelada equivalente nas duas trilhas;APP267 somente.
+
+Evidencias da trilha: delivery/RELEASE-0.0.34.json, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+
+Trilha android: done - APK final e35e,instalacao/picker/reconciliacao/abertura API36 e Drive por download integral verificados;sem prova fisica.
+
+Evidencias da trilha: delivery/RELEASE-0.0.34.json, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+
+Trilha web: done - Web34 HTTPS/hash/CSP intacta,1upload/1send e abertura/inbox verificados;rollback preservado.
+
+Evidencias da trilha: delivery/RELEASE-0.0.34.json, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+
+Trilha git: in_progress - Revisar e enviar branch curada,confirmar SHA remoto e clone;main intacta.
 
 Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
 
-Trilha android: in_progress - APK unico assinado e regressao/Drive
-
-Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
-
-Trilha web: in_progress - Export comum,smoke e deployConnect com rollback
-
-Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
-
-Trilha git: in_progress - Revisar,clone limpo,push branch propria semmain
-
-Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
-
-Próxima ação: Fechar hotfix0.0.34 APP267:fonte comum/versionCode34,APK assinado/upgrade/regressao focal,WebConnect/rollback,Drive privado e checkpointcurado. Sem APP266,backend,CORS/CSP ou diagnosticoQA.
+Próxima ação: Fechar somente checkpoint Git curado:revisao de todos os commits,clone limpo/ref remoto;nao refazer APK/Web/PNG/infra. Artefatos e limites no manifesto34.
 
 ## APP-001 — Criar estrutura independente de trabalho e entrega
 
@@ -3491,19 +3491,19 @@ Responsavel: Assistente Connect
 
 Revisado em: 2026-11-21
 
-Trilha common: in_progress - Congelar e revisar fonteAPP267/version34
+Trilha common: done - Fonte congelada equivalente nas duas trilhas;APP267 somente.
 
-Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+Evidencias da trilha: delivery/RELEASE-0.0.34.json, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
 
-Trilha android: in_progress - APK unico assinado e regressao/Drive
+Trilha android: done - APK final e35e,instalacao/picker/reconciliacao/abertura API36 e Drive por download integral verificados;sem prova fisica.
 
-Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+Evidencias da trilha: delivery/RELEASE-0.0.34.json, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
 
-Trilha web: in_progress - Export comum,smoke e deployConnect com rollback
+Trilha web: done - Web34 HTTPS/hash/CSP intacta,1upload/1send e abertura/inbox verificados;rollback preservado.
 
-Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+Evidencias da trilha: delivery/RELEASE-0.0.34.json, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
 
-Trilha git: in_progress - Revisar,clone limpo,push branch propria semmain
+Trilha git: in_progress - Revisar e enviar branch curada,confirmar SHA remoto e clone;main intacta.
 
 Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
 
@@ -3512,6 +3512,6 @@ Evidencias da trilha: docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
 - Mesmo comportamento compartilhado Web/Android, sem relaxar escopo, MIME, bytes, hash ou controles de midia.
 - Validar com fixtures sinteticas, sem rearmar/excluir/publicar anexos antigos ou associar metadados anonimos ao usuario.
 
-Próxima ação: Fechar hotfix0.0.34 APP267:fonte comum/versionCode34,APK assinado/upgrade/regressao focal,WebConnect/rollback,Drive privado e checkpointcurado. Sem APP266,backend,CORS/CSP ou diagnosticoQA.
+Próxima ação: Fechar somente checkpoint Git curado:revisao de todos os commits,clone limpo/ref remoto;nao refazer APK/Web/PNG/infra. Artefatos e limites no manifesto34.
 
-Evidências: apps/mobile/src/scoped-reviewed-image.ts, apps/mobile/src/ImageReviewComposer.tsx, packages/chat-client/src/image-transfer.ts, apps/mobile/src/image-send-presentation.ts, apps/mobile/src/image-review.ts, apps/mobile/tests/image-send-cancel.test.ts, apps/mobile/tests/image-send-controls.test.mjs, apps/mobile/tests/image-preparation-cancel.test.ts, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md
+Evidências: apps/mobile/src/scoped-reviewed-image.ts, apps/mobile/src/ImageReviewComposer.tsx, packages/chat-client/src/image-transfer.ts, apps/mobile/src/image-send-presentation.ts, apps/mobile/src/image-review.ts, apps/mobile/tests/image-send-cancel.test.ts, apps/mobile/tests/image-send-controls.test.mjs, apps/mobile/tests/image-preparation-cancel.test.ts, docs/testing/APP-267-IMAGEM-CANCELAMENTO.md, delivery/RELEASE-0.0.34.json

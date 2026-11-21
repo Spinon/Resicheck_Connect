@@ -8,4 +8,4 @@ Usar a sequencia[33](../messaging33/README.md) com pasta/scripts messaging34 e o
 
 Preparar Android/Web do mesmo snapshot e validar candidato antes de entrega. Retomada de clone exige os lockfiles e entrada publica no formato33;nenhuma credencial privilegiada de runtime. RestauracaoWeb preserva index/config/assets anteriores do Connect.
 
-Metro do Android34 limitado a2 workers. Para export Web34 usar --max-workers2;executar as trilhas sequencialmente em desktop com memoria limitada. Isso altera somente recursos do build,sem permissao/runtime.
+Metro do Android34 limitado a2 workers. Para export Web34 usar --max-workers 2;executar as trilhas sequencialmente em desktop com memoria limitada. Isso altera somente recursos do build,sem permissao/runtime.

@@ -1,0 +1,99 @@
+{
+  "schemaVersion": 1,
+  "version": "0.0.34",
+  "versionCode": 34,
+  "status": "android-private-delivery-and-web-verified-git-pending",
+  "verifiedAt": "2026-11-21T16:14:46.739Z",
+  "source": {
+    "repository": "https://github.com/Spinon/Resicheck_Connect.git",
+    "branch": "release/connect-0.0.34-hotfix",
+    "base": "75ffb5df1569955076e7a76979bce6ad0922a3d3",
+    "codeCommit": "dea3d6fef96b297b9532411faf6aa76e724bf1b5",
+    "compiledFiles": 262,
+    "compiledFingerprint": "c57a799ac3fba9f7980b49e48e9a3e8ad5d3b76f0c3de990d1e7ae805c6dd6aa",
+    "cleanRetakeByteExact": true
+  },
+  "scope": [
+    "APP-267 image cancellation, bounded waiting and same-attempt reconciliation",
+    "Native covered picker return requires fresh access proof before reveal"
+  ],
+  "excluded": [
+    "APP-266",
+    "APP-268",
+    "backend or permission changes",
+    "CSP or CORS changes"
+  ],
+  "android": {
+    "sha256": "e35e66f47f816c0a2f67524ac201534d78a00527b34e88d53a2f3b9d64825358",
+    "bytes": 46933504,
+    "certificateSha256": "fac61745dc0903786fb9ede62a962b399f7348f0bb6f899b8332667591033b9c",
+    "signatureVerified": true,
+    "finalArtifactFreshInstall": true,
+    "emulator": "API36",
+    "realSystemPicker": true,
+    "externalPickerHoldMs": 17000,
+    "reviewReturnReopenDiscard": true,
+    "draftAndProviderOriginalPreserved": true,
+    "oneSendButtonPress": true,
+    "sameAttemptManualRecovery": true,
+    "oneNewVisibleMessage": true,
+    "otherRoleOpenedAndExpanded": true,
+    "newOwnUiLogins": 2,
+    "newOwnUiLogouts": 2,
+    "nativeLogoutHttpObserved": false,
+    "privateDriveFullDownloadSha256Verified": true,
+    "sharingChanged": false,
+    "diagnosticBundle": false,
+    "physicalDevice": false,
+    "ownEmulatorAndAvdRemoved": true
+  },
+  "web": {
+    "url": "https://connect.resicheck.com.br/",
+    "exportFingerprint": "d0fe898460040b8f0033093e8a488d95f4a45f64d6daa664c0dcdecd84994198",
+    "indexSha256": "57bd8232be08f1afaee7e79a5873b45f457afbab78da21fe3cd48f9947f4c65a",
+    "jsSha256": "2522ac0aaeb11259d1e43cf4082e18b6a3049d48470b58c6e6a0b63e34ae5a34",
+    "httpsVerified": true,
+    "allReferencedAssetsVerified": true,
+    "cspUnchanged": true,
+    "previousVersionAndAssetsPreserved": true,
+    "rollbackExercisedAndVerified": true,
+    "realChooserAndPreview": true,
+    "uploadRequests": 1,
+    "sendRequests": 1,
+    "sendAccepted": true,
+    "sameAttemptManualRecovery": true,
+    "existingPublicationReadWithoutResend": true,
+    "recipientPngComplete": true,
+    "recipientPngWidth": 16,
+    "recipientPngHeight": 16,
+    "recipientDescriptorHashAndBytesVerified": true,
+    "inboxUsable": true,
+    "cspErrors": 0,
+    "pageErrors": 0,
+    "newOwnLocalLogoutsHttp204": 5,
+    "hostedQaUsesRealBackend": true
+  },
+  "checks": {
+    "focusedLifecycleCases": 6,
+    "focusedHeadCancellationCases": 2,
+    "mobileTypecheck": true,
+    "priorCancellationAndLateResponseFixturesReused": true,
+    "localChromeDesktopAndSmallViewport": true,
+    "fullInfrastructureSuiteRepeated": false
+  },
+  "limits": [
+    "Original report was not reproduced on a physical phone; platform and original image size/format remain unspecified.",
+    "Real media smoke uses one small synthetic PNG per platform; large images and all providers/formats are not covered.",
+    "Busy cancellation and late-response ordering use prior focused fixtures; no claim of physically aborting a hosted transfer.",
+    "Native UI logout was observed; this release APK does not expose HTTP/session-catalog evidence.",
+    "The native expanded-view combined accessibility label was not observed; actual ready image and close/zoom controls were observed.",
+    "An inspection status HTTP503 was recovered through the same-attempt check; no worker/backend change or duplicate submission.",
+    "Public source excludes private QA bindings, credentials, receipts, binaries and Drive delivery links.",
+    "No byte-identical cross-machine binary rebuild is claimed."
+  ],
+  "gitClosure": {
+    "status": "pending-reviewed-checkpoint-push",
+    "mainUnchanged": true,
+    "workflowsAdded": 0
+  }
+}
