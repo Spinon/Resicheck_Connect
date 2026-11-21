@@ -1,6 +1,6 @@
 {
-  "state": "reviewed66-no-values-exported",
-  "count": 67,
+  "state": "reviewed68-no-private-values-exported",
+  "count": 68,
   "files": [
     {
       "path": "apps/mobile/previews/auth-diagnostic.android.tsx",
@@ -616,6 +616,15 @@
       "decision": "synthetic-fixture-only",
       "basis": "Literal synthetic-not-for-journal and forbidden extra-key fixture; no issued credential or real session. Local lifecycle fixture only. Public checkpoint: instance identities replaced by example bindings; no live credential or operation.",
       "sourceSha256": "456a83af7e9c73385052085a641b018509f71bba80771b674e590e9dc355f1f4"
+    },
+    {
+      "path": "supabase/migrations/20261116000909_connect_registry_expiring_window_closed.sql",
+      "categories": [
+        "credential-value-like-literal-review"
+      ],
+      "decision": "postgres-catalog-masked-placeholder-only",
+      "basis": "All 64 credential-shaped matches are the constant masked pg_roles password placeholder, never credential values or password hashes. Canonical migration/catalog guard source retained byte-exact.",
+      "sourceSha256": "6b237aaa7db3565681c631287bee60be015dce62be8bef41b6069801c2106468"
     }
   ],
   "originalProposed": 1090,
