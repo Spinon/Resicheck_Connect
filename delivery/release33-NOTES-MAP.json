@@ -7,12 +7,13 @@
   "webChecklist": "delivery/web33-publication-CHECKLIST.json",
   "android": "signed candidate, private delivery verified, emulator QA passed",
   "web": "published Connect-only; real hosted PNG/inbox smoke and scoped logout verification passed",
-  "git": "curated delivery branch based on the verified public main; no main merge or auto-deploy",
+  "git": "delivery branch published, remote SHA verified, clean remote clone restored/typechecked; main unchanged",
   "limits": [
     "No physical phone/volume/silent-mode proof",
     "Intermittent physical resume report remains open",
     "Final CNPJ/invite regression covers form/entry screens; earlier API proofs are separate"
   ],
   "remoteEffects": "Records previously completed publication only; this metadata change performs no deploy.",
-  "publicReleaseSummary": "delivery/RELEASE-0.0.33.json"
+  "publicReleaseSummary": "delivery/RELEASE-0.0.33.json",
+  "verifiedPublishedCheckpoint": "721348700e3a58e9c90a5a8b0cea039ca66c129f"
 }

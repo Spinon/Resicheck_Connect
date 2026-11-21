@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "project": "ResiCheck Connect (provisório)",
   "updatedAt": "2026-11-21",
-  "currentFocus": "APP-006",
+  "currentFocus": "APP-266",
   "items": [
     {
       "id": "APP-001",
@@ -562,7 +562,7 @@
     {
       "id": "APP-006",
       "title": "Homologar APK e disponibilizar lote de teste no Drive",
-      "status": "in_progress",
+      "status": "done",
       "acceptance": [
         "Candidato de chat instala e funciona sem agenda, IA, conectores ou requisitos de publicação em loja ainda não aplicáveis à entrega privada de teste",
         "APK instalado e jornadas executadas em Android",
@@ -572,7 +572,7 @@
         "Todo lote fechado tem revisao do diff/checks, checkpoint suficiente a outra estacao, clone limpo validado, commit/push na branch propria e ref/SHA remoto verificado, sem segredos/artefatos locais ou alteracao de main.",
         "Par APK/web entregue somente com mesmo bump e evidencias independentes de Android e web; falha em uma trilha nao bloqueia preparacao da outra; push Git nao e deploy."
       ],
-      "nextAction": "Verify this delivery branch against its remote ref when resuming; APK/Web33 gates are recorded in RELEASE-0.0.33.json. Keep physical-device limitations separate; do not rebuild or redeploy as a Git step.",
+      "nextAction": "Lote33 entregue e checkpoint publicado. Ao retomar, conferir a branch remota indicada no manifesto; acompanhar separadamente o relato fisico APP-261 e a proxima prioridade do board. Nao repetir build/deploy/push sem novo delta.",
       "evidence": [
         "delivery/manifest.template.json",
         "docs/delivery/ENTREGAS.md",
@@ -745,8 +745,8 @@
           ]
         },
         "git": {
-          "status": "ready",
-          "nextAction": "This curated source checkpoint is ready for the authorized explicit delivery-branch push; verify exact remote SHA after publication and when resuming. main is unchanged.",
+          "status": "done",
+          "nextAction": "Checkpoint publicado e SHA conferido; clone remoto restaurado/typechecked. Conferir HEAD remoto atual ao retomar, main nao foi alterado.",
           "evidence": [
             "historical/e5777786cd2a192ad68cd0ef592a2866769e43dec4612bc1809b5eee825fb847.ref",
             "tools/delivery/prepare-messaging33.mjs",
@@ -767,7 +767,9 @@
         "codeCommit": "a0015b15113cdc298e21c9036c44d8ee014c6634",
         "publicBase": "34d1066709ccc862c1234c575d96675ac1c3b86f",
         "compiledFilesExact": 261,
-        "privateEvidenceIncluded": false
+        "privateEvidenceIncluded": false,
+        "verifiedPublishedCheckpoint": "721348700e3a58e9c90a5a8b0cea039ca66c129f",
+        "cleanRemoteCloneVerified": true
       }
     },
     {
@@ -15534,7 +15536,7 @@
       "scope": "Slogan principal ResiCheck Connect; aplicar web agora e demais pontos no lote pertinente, sem APK isolado."
     }
   },
-  "implementationSummary": "0.0.33/build33: signed APK delivered privately; real hosted Connect Web33 verified, one PNG/one message and recipient opening/read/inbox passed. Only img-src blob changed; other website preserved. Curated source branch contains the exact261 compiled files and sanitized release metadata; compare remote HEAD when resuming. No public binaries, private fixtures or unrelated local history.",
+  "implementationSummary": "Lote0.0.33 fechado: APK privado e Web Connect verificados; checkpoint curado publicado e clonado do GitHub,261 fontes exatas, npm ci/2typechecks/project:check passaram. main preservado. Sem workflows/checks associados; limites fisicos seguem separados. Nao repetir entrega ou push sem mudanca concreta.",
   "prototype": {
     "version": "0.1.0",
     "framework": {

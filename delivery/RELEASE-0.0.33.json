@@ -58,5 +58,26 @@
     "Image availability remains restricted to the previously authorized test company.",
     "No binary, private QA links, tenant/actor/session IDs, credentials or private receipts are published in this checkpoint.",
     "Source graph is byte-exact to the built candidate; no new APK/build or byte-identical cross-machine binary rebuild is claimed."
-  ]
+  ],
+  "gitClosure": {
+    "verifiedPublishedCheckpoint": "721348700e3a58e9c90a5a8b0cea039ca66c129f",
+    "branch": "release/connect-0.0.33-final",
+    "mainUnchanged": "34d1066709ccc862c1234c575d96675ac1c3b86f",
+    "remoteCloneVerified": true,
+    "compiledFilesByteExact": 261,
+    "dependencyRestore": [
+      "npm ci --prefix packages/text --ignore-scripts",
+      "npm ci --prefix apps/mobile --ignore-scripts"
+    ],
+    "checksPassed": [
+      "project:check",
+      "mobile:typecheck",
+      "chat-client:typecheck"
+    ],
+    "githubChecksAssociatedWithVerifiedCheckpoint": 0,
+    "githubActionRunsAssociatedWithVerifiedCheckpoint": 0,
+    "workflowFiles": 0,
+    "closureMetadata": "This final metadata records the already verified published checkpoint. Compare the current branch HEAD with its remote ref when resuming.",
+    "newBuildOrDeploy": false
+  }
 }
