@@ -15137,7 +15137,7 @@
     {
       "id": "APP-267",
       "title": "Permitir cancelar imagem antes da publicacao e encerrar espera sem confirmacao",
-      "status": "in_progress",
+      "status": "done",
       "priority": "P0",
       "owner": "Assistente Connect",
       "lastReviewedAt": "2026-11-21",
@@ -15150,7 +15150,7 @@
         "Mesmo comportamento compartilhado Web/Android, sem relaxar escopo, MIME, bytes, hash ou controles de midia.",
         "Validar com fixtures sinteticas, sem rearmar/excluir/publicar anexos antigos ou associar metadados anonimos ao usuario."
       ],
-      "nextAction": "Fechar somente checkpoint Git curado:revisao de todos os commits,clone limpo/ref remoto;nao refazer APK/Web/PNG/infra. Artefatos e limites no manifesto34.",
+      "nextAction": "Hotfix34 concluido;nao repetir build/PNG/infra. Proximos recortes de chat e APP266 ficam separados deste checkpoint.",
       "evidence": [
         "apps/mobile/src/scoped-reviewed-image.ts",
         "apps/mobile/src/ImageReviewComposer.tsx",
@@ -15189,10 +15189,10 @@
           ]
         },
         "git": {
-          "status": "in_progress",
-          "nextAction": "Revisar e enviar branch curada,confirmar SHA remoto e clone;main intacta.",
+          "status": "done",
+          "nextAction": "Checkpoint46c369a publicado e cloneGitHub verificado:262 fontes byte-exatas,lockfiles offline/project:check/typecheck;estas notas finais nao mudam fonte compilada. Conferir HEAD remoto ao retomar.",
           "evidence": [
-            "docs/testing/APP-267-IMAGEM-CANCELAMENTO.md"
+            "delivery/RELEASE-0.0.34.json"
           ]
         }
       }
@@ -15599,7 +15599,7 @@
       "scope": "Slogan principal ResiCheck Connect; aplicar web agora e demais pontos no lote pertinente, sem APK isolado."
     }
   },
-  "implementationSummary": "Hotfix0.0.34 APP267:APK final assinado e Drive/hash verificados;Web34 publicada e PNG/inbox aprovadas com CSP inalterada. Git curado aguarda push verificado. APP266/268 fora.",
+  "implementationSummary": "Hotfix0.0.34 APP267 entregue:APK assinado privado/hash,Web34 e PNG/inbox verificados;checkpoint46c369a publicado e retomado do GitHub. Notas finais apenas;main preservada. Sem prova fisica.",
   "prototype": {
     "version": "0.1.0",
     "framework": {

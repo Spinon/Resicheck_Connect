@@ -2,7 +2,7 @@
   "schemaVersion": 1,
   "version": "0.0.34",
   "versionCode": 34,
-  "status": "android-private-delivery-and-web-verified-git-pending",
+  "status": "android-private-delivery-web-and-source-checkpoint-verified",
   "verifiedAt": "2026-11-21T16:14:46.739Z",
   "source": {
     "repository": "https://github.com/Spinon/Resicheck_Connect.git",
@@ -92,8 +92,19 @@
     "No byte-identical cross-machine binary rebuild is claimed."
   ],
   "gitClosure": {
-    "status": "pending-reviewed-checkpoint-push",
-    "mainUnchanged": true,
-    "workflowsAdded": 0
+    "status": "published-checkpoint-verified",
+    "verifiedPublishedCheckpoint": "46c369a47d4a588c04a520a11d42dbf03e31cdc8",
+    "branch": "release/connect-0.0.34-hotfix",
+    "remoteCloneVerified": true,
+    "compiledFilesByteExact": 262,
+    "offlineLockfileRestores": true,
+    "checksPassed": [
+      "project:check",
+      "mobile:typecheck"
+    ],
+    "workflowFiles": 0,
+    "prWorkflowRunsReturned": 0,
+    "mainUnchanged": "34d1066709ccc862c1234c575d96675ac1c3b86f",
+    "closureMetadata": "This metadata records the already published checkpoint. Compare current branch HEAD with its exact remote ref; main is unchanged."
   }
 }
