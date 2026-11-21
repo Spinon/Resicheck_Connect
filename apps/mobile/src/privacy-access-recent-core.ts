@@ -4,10 +4,11 @@ type Foreground=Parameters<typeof createNativePrivacyBinding>[0]['foreground'];
 export type PrivacyAccessRecentView=Readonly<{revision:number;readyEpoch:number|null}>;
 
 // One presentation/native owner shared by the legacy and reusable compositions.
-export function createPrivacyAccessRecentRuntimeCore<A extends AccessRecentControllerPort>(deps:Readonly<{createApp:()=>A;native:NativePrivacyPort;foreground:Foreground;retainDomainWhileBackground?:()=>boolean}>){
+export function createPrivacyAccessRecentRuntimeCore<A extends AccessRecentControllerPort>(deps:Readonly<{createApp:()=>A;native:NativePrivacyPort;foreground:Foreground;retainDomainWhileBackground?:()=>boolean;retainedDomainAccess?:Readonly<{pauseIfNeeded:()=>boolean;resume:(signal:AbortSignal)=>Promise<boolean>}>}>){
   const {createApp,native,foreground}=deps;
   const app=createApp(),readForeground=foreground.current,listenForeground=foreground.subscribe;
-  let closed=false,foregroundActive=false,domainSuspended=false,boundaryVersion=0,binding:ReturnType<typeof createNativePrivacyBinding>|null=null;
+  let closed=false,foregroundActive=false,domainSuspended=false,retainedValidationPending=false,boundaryVersion=0,binding:ReturnType<typeof createNativePrivacyBinding>|null=null;
+  let retainedOwner:Readonly<{lease:object|null;host:unknown}>|null=null;
   let view:PrivacyAccessRecentView=Object.freeze({revision:0,readyEpoch:null});
   const listeners=new Set<()=>void>(),waiters=new Set<()=>void>();
   function publish(epoch:number|null,bump=false){
@@ -36,6 +37,7 @@ export function createPrivacyAccessRecentRuntimeCore<A extends AccessRecentContr
     if(closed)return;
     try{
       const next=signature();
+      if(retainedValidationPending&&retainedOwner&&(app.auth.currentLease()!==retainedOwner.lease||app.recent.snapshot().host!==retainedOwner.host)){retainedValidationPending=false;retainedOwner=null;}
       if(!same(boundary,next)){
         boundary=next;boundaryVersion++;publish(null,true);
         // Presentation-only invalidation. Suspending the domain here would
@@ -63,8 +65,8 @@ export function createPrivacyAccessRecentRuntimeCore<A extends AccessRecentContr
       // An explicitly owned external picker may retain its original domain
       // beneath the cover. This never changes real foreground/native checks.
       // Hold changes also call this method: false→false must suspend on expiry.
-      let retain=false;try{retain=deps.retainDomainWhileBackground?.()===true;}catch{}
-      if(!retain&&!domainSuspended){domainSuspended=true;app.suspend();}
+      let retain=false;try{retain=deps.retainDomainWhileBackground?.()===true;if(retain&&deps.retainedDomainAccess?.pauseIfNeeded()===true){retainedValidationPending=true;retainedOwner=Object.freeze({lease:app.auth.currentLease(),host:app.recent.snapshot().host});}}catch{retain=false;}
+      if(!retain&&!domainSuspended){retainedValidationPending=false;retainedOwner=null;domainSuspended=true;app.suspend();}
     }
     changed();
   }
@@ -76,6 +78,8 @@ export function createPrivacyAccessRecentRuntimeCore<A extends AccessRecentContr
     if(closed)return;setForeground(active);listener(active===true);
   })},suspendPrivate:()=>publish(null),resumePrivate:async(epoch,signal)=>{
     const version=boundaryVersion;
+    if(!await waitReady(version,signal))return false;
+    if(retainedValidationPending){if(!deps.retainedDomainAccess||!await deps.retainedDomainAccess.resume(signal)||closed||signal.aborted||version!==boundaryVersion||!isForeground())return false;retainedValidationPending=false;retainedOwner=null;}
     if(!await waitReady(version,signal))return false;
     await Promise.resolve(); // Allow synchronous domain subscriptions to finish.
     if(closed||signal.aborted||version!==boundaryVersion||!isForeground()||!same(boundary,signature())||!settled())return false;

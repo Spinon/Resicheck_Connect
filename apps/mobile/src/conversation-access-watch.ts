@@ -23,9 +23,11 @@ export function createConversationAccessWatch(options:Options){
   ||!Number.isSafeInteger(timeoutMs)||timeoutMs<1||timeoutMs>60000)throw unavailable();
  type Timer={cancel:(()=>void)|null;live:boolean};
  type Probe={controller:AbortController;deadline:number};
- let stopped=false,lastTime=-1,timer:Timer|null=null,probe:Probe|null=null;
+ let stopped=false,paused=false,lastTime=-1,timer:Timer|null=null,probe:Probe|null=null;
+ const resumed=new Set<(allowed:boolean)=>void>();
+ function finishResume(allowed:boolean){for(const finish of [...resumed])finish(allowed);}
  function cancelTimer(){const old=timer;timer=null;if(old){old.live=false;try{old.cancel?.();}catch{}}}
- function retire(){if(stopped)return false;stopped=true;cancelTimer();const old=probe;probe=null;old?.controller.abort();return true;}
+ function retire(){if(stopped)return false;stopped=true;cancelTimer();const old=probe;probe=null;old?.controller.abort();finishResume(false);return true;}
  function fail(){if(retire())try{close();}catch{/* A captured owner failure cannot restart work. */}}
  function clock():number|null{
   if(stopped)return null;let value:number;
@@ -33,7 +35,7 @@ export function createConversationAccessWatch(options:Options){
   if(stopped)return null;
   if(!Number.isSafeInteger(value)||value<0||value<lastTime){fail();return null;}lastTime=value;return value;
  }
- function live(){if(stopped)return false;try{if(current()===true&&!stopped)return true;}catch{}fail();return false;}
+ function live(){if(stopped||paused)return false;try{if(current()===true&&!stopped)return true;}catch{}fail();return false;}
  function dueAfter(value:number,delay:number){const deadline=value+delay;if(!Number.isSafeInteger(deadline)){fail();return null;}return deadline;}
  function arm(deadline:number,kind:'interval'|'timeout',capturedProbe:Probe|null=null){
   if(!live())return;const at=clock();if(at===null)return;cancelTimer();if(stopped)return;
@@ -72,9 +74,17 @@ export function createConversationAccessWatch(options:Options){
    // original absolute deadline have accepted the authorization result.
    try{onValidated?.();}catch{fail();return;}
    if(stopped||probe!==owned||!live())return;
-   cancelTimer();probe=null;const next=dueAfter(settled,intervalMs);if(next!==null)arm(next,'interval');
+   cancelTimer();probe=null;finishResume(true);const next=dueAfter(settled,intervalMs);if(next!==null)arm(next,'interval');
   },()=>{if(!stopped&&probe===owned)fail();});
  }
  if(live()){const at=clock();if(at!==null){const deadline=dueAfter(at,intervalMs);if(deadline!==null)arm(deadline,'interval');}}
- return Object.freeze({dispose(){retire();}});
+ return Object.freeze({
+  // Only the native covered external-selection boundary uses this pause. No
+  // visible deadline is extended; resume requires a fresh bounded server proof.
+  pause(){if(stopped)return false;if(paused)return true;paused=true;cancelTimer();const old=probe;probe=null;old?.controller.abort();finishResume(false);return true;},
+  resume(signal:AbortSignal):Promise<boolean>{
+   if(stopped||signal.aborted)return Promise.resolve(false);
+   return new Promise(resolve=>{let done=false;const finish=(allowed:boolean)=>{if(done)return;done=true;resumed.delete(finish);signal.removeEventListener('abort',abort);resolve(allowed&&!signal.aborted);},abort=()=>finish(false);resumed.add(finish);signal.addEventListener('abort',abort,{once:true});paused=false;if(!live()){finish(false);return;}if(!probe){cancelTimer();const at=clock();if(at!==null)startProbe(at);}});
+  },dispose(){retire();}
+ });
 }
