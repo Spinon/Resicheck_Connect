@@ -29,7 +29,11 @@ export function createConversationHeadProbe(deps:Readonly<{companyId:string;conv
    const seq=typeof sequence==='string'&&/^[1-9][0-9]{0,15}$/.test(sequence)?Number(sequence):sequence;
    if(!uuid(id)||typeof seq!=='number'||!Number.isSafeInteger(seq)||seq<1||!live(signal))throw unavailable();
    return Object.freeze({id,sequence:seq});
-  }catch{try{close();}catch{}throw unavailable();}
+  }catch{
+   // A covered picker pauses its local read; this is not a server denial.
+   // The caller must obtain a fresh proof before revealing the retained owner.
+   if(!signal?.aborted)try{close();}catch{}throw unavailable();
+  }
   finally{pending=false;}
  };
 }
