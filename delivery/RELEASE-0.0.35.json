@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "version": "0.0.35",
+  "versionCode": 35,
+  "status": "android-private-and-web-published-with-QA-teardown-limitation",
+  "verifiedAt": "2026-11-22T17:43:14.198Z",
+  "source": {
+    "repository": "https://github.com/Spinon/Resicheck_Connect.git",
+    "branch": "release/connect-0.0.35-image-hotfix",
+    "base": "c61f8e279974dc76339eab148957f6eb3c5887e1",
+    "codeCommit": "8da5e4995c767eabf418207db4eba9cfb60bde2d",
+    "compiledFiles": 264,
+    "compiledFingerprint": "1551201458010295a01ba940545c980196f6229b07509a223a6ddeb2a0edc210",
+    "cleanCloneByteExact": true,
+    "offlineLockfileRestores": true
+  },
+  "scope": [
+    "APP-269: recover uncertain inspection using the same bounded upload attempt, with honest status and no automatic duplicate",
+    "APP-270: PNG Compactada becomes real JPEG; white matte warning; byte-exact Original remains available"
+  ],
+  "excluded": [
+    "APP-266",
+    "APP-268",
+    "backend/Auth/permission changes",
+    "CORS/CSP changes",
+    "private QA bindings,logs,session proofs and binaries"
+  ],
+  "android": {
+    "sha256": "74bc86d93a72505f3425e3ebdbf27d1ebcd297155291748efb73bc35e3de9b65",
+    "bytes": 46941696,
+    "certificateSha256": "fac61745dc0903786fb9ede62a962b399f7348f0bb6f899b8332667591033b9c",
+    "signatureVerified": true,
+    "permissionsUnchanged": true,
+    "normalUpgrade34to35": true,
+    "firstInstallTimePreserved": true,
+    "emulator": "API36",
+    "physicalDevice": false,
+    "realSystemPicker": true,
+    "verifiedDownloadsProvider": true,
+    "CompactadaJpegPreview1653KiB": true,
+    "OriginalPngRestored2017KiB": true,
+    "reviewLeaveReopenDiscard": true,
+    "providerOriginalPreserved": true,
+    "AboutVersion35": true,
+    "ownNormalUiLogins": 1,
+    "ownNormalUiLogouts": 1,
+    "logoutHttpObserved": false,
+    "newSends": 0,
+    "priorRealConnectedProofReused": true,
+    "privateDriveFullDownloadHashVerified": true,
+    "sharingChanged": false,
+    "ownResourcesRemoved": true
+  },
+  "web": {
+    "url": "https://connect.resicheck.com.br/",
+    "exportFingerprint": "1688c8428dd556b7a21bd1741c6e53c21ba532cbc64dbb0c4c2a2209a0c3e78b",
+    "indexSha256": "b1c2b1ac398b9eac0905b7d8c2cdaea34c7e6f8fefae003e79b41604e65d6a21",
+    "jsSha256": "08d8d3f60b0f1c926e08e1d7dc81dc79ea4b39b1965346ca0558e8ddce4d309d",
+    "httpsVerified": true,
+    "referencedAssetsVerified": true,
+    "cspUnchanged": true,
+    "previousIndexAndAssetsPreserved": true,
+    "rollbackPreparedAndReadbackVerified": true,
+    "rollbackExecuted": false,
+    "localChromeDesktopAndSmallViewport": true,
+    "hostedRealChooserAndPngToJpegPreview": true,
+    "preview": {
+      "mime": "image/jpeg",
+      "bytes": 1691826,
+      "width": 1664,
+      "height": 1239,
+      "sha256": "e75728209cd7e0f8e31a55676e7bd1cdf16d6eb79c07e7a4904a50b88887b0b3"
+    },
+    "OriginalRestored": true,
+    "reviewLeaveReopenDiscard": true,
+    "uploadCalls": 0,
+    "sendCalls": 0,
+    "priorConnectedSenderRecipientProofReused": true,
+    "pageErrors": 0,
+    "cspErrors": 0,
+    "normalLoginCalls": 1,
+    "ownLogoutConfirmed": false,
+    "testBrowserClosed": true
+  },
+  "checks": {
+    "focusedReleaseTests": 15,
+    "mobileTypecheck": true,
+    "cleanCloneTypecheck": true,
+    "projectCheck": true,
+    "singleFinalApkBuilt": true,
+    "infrastructureAndAudioPilotsRepeated": false
+  },
+  "gitClosure": {
+    "codeCheckpointPushedAndRefVerified": "8da5e4995c767eabf418207db4eba9cfb60bde2d",
+    "branch": "release/connect-0.0.35-image-hotfix",
+    "mainUnchanged": "34d1066709ccc862c1234c575d96675ac1c3b86f",
+    "forcePush": false,
+    "workflowFiles": 0,
+    "closureNote": "This metadata records the already verified source checkpoint. Verify final branch HEAD separately; notes do not change compiled source."
+  },
+  "limits": [
+    "No physical phone or iOS validation; original user incident not reproduced.",
+    "The first native picker selection did not prepare a preview; after explicit Downloads-provider inspection the same intact APK passed. No cause for the initial failure is claimed.",
+    "Busy cancellation and lost send-ACK ordering reuse focused local fixtures; the earlier real connected Android case recovered a transient inspection503 with one upload/send.",
+    "The release APK normal UI logout was observed without HTTP/session-catalog evidence.",
+    "Hosted JPEG preview/Original/review checks passed. The QA driver then used the Android account label instead of the Web label Minha conta, and closed its ephemeral browser without confirming local logout. No old sessions or administrative revocation were accessed.",
+    "Web version is verified by the exact served export; the existing Web About screen does not display the build number.",
+    "No byte-identical cross-machine binary rebuild is claimed."
+  ]
+}

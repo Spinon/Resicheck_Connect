@@ -15220,7 +15220,7 @@
     {
       "id": "APP-269",
       "title": "Recuperar confirmacao de imagem sem duplicar ou prender a conversa",
-      "status": "in_progress",
+      "status": "done",
       "priority": "P0",
       "owner": "Assistente Connect",
       "lastReviewedAt": "2026-11-22",
@@ -15232,7 +15232,7 @@
         "Reconciliar a mesma tentativa em ACK perdido/atrasado e liberar saida sem perda;nao gerar novo envio automatico ou sucesso sem prova.",
         "Patch cliente focal,se demonstrado,sem mudar seguranca ou infraestrutura;plataforma/relatofisico nao presumidos."
       ],
-      "nextAction": "Concluir gates Android/Web/Git0.0.35 do artefato final;prova conectada reutilizada,semAPP266/268.",
+      "nextAction": "Correcao publicada noAPK/Web35;nao repetirprova conectada. APP268/266 permanecem fora.",
       "evidence": [
         "docs/testing/IMAGENS-0.0.35.md"
       ]
@@ -15240,7 +15240,7 @@
     {
       "id": "APP-270",
       "title": "Compactar PNG em JPEG com Original preservado e aviso de transparencia",
-      "status": "in_progress",
+      "status": "monitoring",
       "priority": "P0",
       "owner": "Assistente Connect",
       "lastReviewedAt": "2026-11-22",
@@ -15252,7 +15252,7 @@
         "Original preserva arquivo e transparencia; Compactada gera JPEG real/.jpg com fundo branco e aviso/reversao quando ha alfa, sem alterar limites; se maior/falhar, Original continua opcao explicita.",
         "Compactacao nao e causa presumida do avisoAPP269;mudancas locais independentes,sem backend/entrega."
       ],
-      "nextAction": "Concluir gates Android/Web/Git0.0.35 do artefato final;prova conectada reutilizada,semAPP266/268.",
+      "nextAction": "JPEG/Original publicados noAPK/Web35. PendenciaQA:logout da nova sessaoWeb nao confirmado apos erro do driver;browserfechado,sem tokens/sessoes antigas/admin. Registrar sem repetirAuth;ao retomar conferir ref final e aguardar direcao.",
       "evidence": [
         "docs/testing/IMAGENS-0.0.35.md"
       ]
@@ -31256,21 +31256,35 @@
   "release35": {
     "version": "0.0.35",
     "versionCode": 35,
+    "status": "android-private-and-web-published-with-QA-teardown-limitation",
     "scope": [
-      "APP-269",
-      "APP-270"
+      "APP-269: recover uncertain inspection using the same bounded upload attempt, with honest status and no automatic duplicate",
+      "APP-270: PNG Compactada becomes real JPEG; white matte warning; byte-exact Original remains available"
     ],
     "android": {
-      "status": "building-not-released"
+      "status": "private-delivery-verified",
+      "sha256": "74bc86d93a72505f3425e3ebdbf27d1ebcd297155291748efb73bc35e3de9b65",
+      "bytes": 46941696,
+      "upgrade34to35": true,
+      "physicalDevice": false
     },
     "web": {
-      "status": "prepared-not-exported-not-published"
+      "status": "published-preview-verified-QA-logout-unconfirmed",
+      "url": "https://connect.resicheck.com.br/",
+      "exportFingerprint": "1688c8428dd556b7a21bd1741c6e53c21ba532cbc64dbb0c4c2a2209a0c3e78b",
+      "indexSha256": "b1c2b1ac398b9eac0905b7d8c2cdaea34c7e6f8fefae003e79b41604e65d6a21",
+      "cspUnchanged": true,
+      "oldAssetsPreserved": true
     },
     "git": {
-      "status": "curated-worktree-not-committed",
-      "branch": "release/connect-0.0.35-image-hotfix"
+      "status": "source-checkpoint-pushed-ref-verified",
+      "sourceCommit": "8da5e4995c767eabf418207db4eba9cfb60bde2d",
+      "branch": "release/connect-0.0.35-image-hotfix",
+      "mainUnchanged": true,
+      "closureNotes": "Same release branch; compare latest HEAD with remote before resuming."
     },
     "evidence": [
+      "delivery/RELEASE-0.0.35.json",
       "docs/testing/IMAGENS-0.0.35.md"
     ]
   }

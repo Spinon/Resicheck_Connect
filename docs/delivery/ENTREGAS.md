@@ -53,3 +53,8 @@ O export curado conserva a fila canonica, criterios e estados; recibos privados/
 APK assinado e privado, Web Connect publicada e smoke hospedado verificados; hashes e limites em [RELEASE-0.0.33.json](../../delivery/RELEASE-0.0.33.json). Os builders33 e lockfiles preservam a fonte compilada exata. Esta nota nao manda refazer build, codec, audio ou deploy. O checkpoint usa somente a branch curada release/connect-0.0.33-final, a partir do main publico verificado, sem incorporar o historico local desconexo nem alterar main. Confirmar o HEAD remoto da branch ao retomar. Git e deploy continuam frentes distintas; assinatura, APK, backups e recibos privados ficam fora do repositorio.
 
 Historical delivery links/receipts remain in the approved private archive; public release metadata is in the candidate manifest.
+
+
+### Lote0.0.35 - APK privado e Web publicados em22/11/2026
+
+APP269/270 somente;versao/build35 e fonte8da5e4995c767eabf418207db4eba9cfb60bde2d no remoto verificado em branch propria. Manifesto [RELEASE-0.0.35.json](../../delivery/RELEASE-0.0.35.json) e [validacao](../testing/IMAGENS-0.0.35.md). APK verificado noDriveprivado sem mudar compartilhamento;WebConnect servida comCSPinalterada e rollback34 preservado. Semmerge emmain nem binario noGit. Limite aberto: teardown do smokeWeb nao confirmou logout da nova sessaoQA apos erro de rotulo do driver;browser fechado,sem revogacao administrativa ou consulta a sessoes anteriores. Nao declarar encerramento total de QA nem repetirAuth por rotina.

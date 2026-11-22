@@ -74,3 +74,12 @@ Proximo foco de fila APP268 registrado somente como planejamento de retomada,apo
 ## Fechamento 0.0.35 - 22/11/2026
 
 Lucas autorizou seguir com APP269/270 apos prova conectada Android. Branch release/connect-0.0.35-image-hotfix sobre release0.0.34 c61f8e279974dc76339eab148957f6eb3c5887e1. Ver docs/testing/IMAGENS-0.0.35.md. APP266/268 fora; backend/seguranca intactos;gates Android/Web/Git separados. Sem dados de QA,provas de sessao,logs privados,chaves ou binarios no checkpoint. Nao marcar entregue antes dos gates.
+
+
+### Candidato final e publicacao - 22/11/2026
+
+APK unico0.0.35/build35 assinado e upgrade34->35 passaram noAPI36. Seletor real: primeira selecao nao abriu revisao; sem alterar o APK, confirmou-se Downloads naUI e a selecao seguinte passou, sem alegar causa da primeira falha. PreviewJPEG1653KiB,OriginalPNG2017KiB,voltar/reabrir/descartar e About35 passaram;original do provedor preservado e recursos proprios removidos. Logout normal naUI observado,sem evidenciaHTTP no release.
+
+Web35 publicada somenteConnect,HTTPS/index/JS/assets/CSP exatos;index/assets34 conservados para rollback. Chrome local desktop/390px e smoke hospedado de picker/previewJPEGreal1691826B1664x1239/hashigual aoAndroid,Original/voltar/reabrir/descartar passaram,zero uploads/sends novos e zero errosCSP/page. A navegacao de conta do roteiro usou rotuloAndroid em vez de Minha conta daWeb e falhou; o browser efemero foi fechado sem confirmar logout dessa nova sessaoQA. Essa pendencia permanece registrada,sem acessar sessao anterior,token ou revogacao administrativa;expiracao nao verificada. Nao apresentar o teardown como passado nem repetirAuth para compensar. Nenhum defeito de produto nessa navegacao foi demonstrado.
+
+Fontes:264arquivos byte-exatos em clone limpo,locks restaurados offline,typecheck/project:check passaram. Commit de fonte8da5e4995c767eabf418207db4eba9cfb60bde2d publicado e ref verificada;notas finais nao alteram bytes compilados. Manifesto em delivery/RELEASE-0.0.35.json discrimina gates/limites. Nao houve novo teste de infraestrutura/audio ou mudanca de backend/permissoes/CORS/CSP.

@@ -16,7 +16,7 @@ Depende de: APP-267
 
 Revisado em: 2026-11-22
 
-Próxima ação: Concluir gates Android/Web/Git0.0.35 do artefato final;prova conectada reutilizada,semAPP266/268.
+Próxima ação: JPEG/Original publicados noAPK/Web35. PendenciaQA:logout da nova sessaoWeb nao confirmado apos erro do driver;browserfechado,sem tokens/sessoes antigas/admin. Registrar sem repetirAuth;ao retomar conferir ref final e aguardar direcao.
 
 ## APP-001 — Criar estrutura independente de trabalho e entrega
 
@@ -3524,7 +3524,7 @@ Evidências: docs/product/CHAT-PROXIMO-RECORTE-APP268.md
 
 ## APP-269 — Recuperar confirmacao de imagem sem duplicar ou prender a conversa
 
-Estado: in_progress
+Estado: done
 
 Prioridade: P0
 
@@ -3538,13 +3538,13 @@ Revisado em: 2026-11-22
 - Reconciliar a mesma tentativa em ACK perdido/atrasado e liberar saida sem perda;nao gerar novo envio automatico ou sucesso sem prova.
 - Patch cliente focal,se demonstrado,sem mudar seguranca ou infraestrutura;plataforma/relatofisico nao presumidos.
 
-Próxima ação: Concluir gates Android/Web/Git0.0.35 do artefato final;prova conectada reutilizada,semAPP266/268.
+Próxima ação: Correcao publicada noAPK/Web35;nao repetirprova conectada. APP268/266 permanecem fora.
 
 Evidências: docs/testing/IMAGENS-0.0.35.md
 
 ## APP-270 — Compactar PNG em JPEG com Original preservado e aviso de transparencia
 
-Estado: in_progress
+Estado: monitoring
 
 Prioridade: P0
 
@@ -3558,6 +3558,6 @@ Revisado em: 2026-11-22
 - Original preserva arquivo e transparencia; Compactada gera JPEG real/.jpg com fundo branco e aviso/reversao quando ha alfa, sem alterar limites; se maior/falhar, Original continua opcao explicita.
 - Compactacao nao e causa presumida do avisoAPP269;mudancas locais independentes,sem backend/entrega.
 
-Próxima ação: Concluir gates Android/Web/Git0.0.35 do artefato final;prova conectada reutilizada,semAPP266/268.
+Próxima ação: JPEG/Original publicados noAPK/Web35. PendenciaQA:logout da nova sessaoWeb nao confirmado apos erro do driver;browserfechado,sem tokens/sessoes antigas/admin. Registrar sem repetirAuth;ao retomar conferir ref final e aguardar direcao.
 
 Evidências: docs/testing/IMAGENS-0.0.35.md
