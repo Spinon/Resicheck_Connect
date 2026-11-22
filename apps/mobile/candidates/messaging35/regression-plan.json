@@ -1,0 +1,24 @@
+{
+  "version": "0.0.35",
+  "scope": "APP269 and APP270 only",
+  "reuse": [
+    "Prior real Android PNG to JPEG upload, transient503 recovery, single accepted message and recipient hash/display proof",
+    "Prior native/Web detailed/transparency/small codec cases",
+    "Prior rendered cancellation, timeout and lost-ACK fixture cases"
+  ],
+  "candidateChecks": [
+    "Release signature/version/permissions/native image module and upgrade34-to35",
+    "Normal sign-in admission and essential screens on final APK; no old session use",
+    "Real Android picker, PNG Compactada native JPEG preview, return Original, cancel/draft and reopen without sending",
+    "Same frozen-source cancellation/late-ACK regression; never present fixture as hosted evidence",
+    "Static Web browser under unchanged current CSP; PNG to JPEG preview and Original recovery",
+    "Post-deploy HTTPS/version/assets/CSP and usable sign-in; existing connected evidence reused unless changed behavior requires a new send"
+  ],
+  "exclude": [
+    "APP266",
+    "APP268",
+    "Backend/infra/audio pilots",
+    "Physical-device or iOS claims"
+  ],
+  "serverSideFaultsForced": false
+}

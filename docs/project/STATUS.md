@@ -2,21 +2,21 @@
 
 > Gerado de project-board.json. Não editar manualmente.
 
-Atualizado em: 2026-11-21
+Atualizado em: 2026-11-22
 
 Hotfix0.0.34 APP267 entregue:APK assinado privado/hash,Web34 e PNG/inbox verificados;checkpoint46c369a publicado e retomado do GitHub. Notas finais apenas;main preservada. Sem prova fisica.
 
-Foco: **APP-268 — Ajustar selecao de audio,acompanhamento de novas mensagens e balao pendente de texto**
+Foco: **APP-270 — Compactar PNG em JPEG com Original preservado e aviso de transparencia**
 
-Prioridade: P1
+Prioridade: P0
 
 Responsavel: Assistente Connect
 
 Depende de: APP-267
 
-Revisado em: 2026-11-21
+Revisado em: 2026-11-22
 
-Próxima ação: Abrir checkout/branch separado a partir da release34 verificada;primeiro confirmar chegada ao historico Web/Android,depois poucos testes focais de posicao/audio/pendencia. Planejamento apenas;fora do produto34.
+Próxima ação: Concluir gates Android/Web/Git0.0.35 do artefato final;prova conectada reutilizada,semAPP266/268.
 
 ## APP-001 — Criar estrutura independente de trabalho e entrega
 
@@ -3521,3 +3521,43 @@ Revisado em: 2026-11-21
 Próxima ação: Abrir checkout/branch separado a partir da release34 verificada;primeiro confirmar chegada ao historico Web/Android,depois poucos testes focais de posicao/audio/pendencia. Planejamento apenas;fora do produto34.
 
 Evidências: docs/product/CHAT-PROXIMO-RECORTE-APP268.md
+
+## APP-269 — Recuperar confirmacao de imagem sem duplicar ou prender a conversa
+
+Estado: in_progress
+
+Prioridade: P0
+
+Responsavel: Assistente Connect
+
+Depende de: APP-267
+
+Revisado em: 2026-11-22
+
+- Separar no teste sintetico aceito/ausente no servidor,historico autorizado e UI das duas contas.
+- Reconciliar a mesma tentativa em ACK perdido/atrasado e liberar saida sem perda;nao gerar novo envio automatico ou sucesso sem prova.
+- Patch cliente focal,se demonstrado,sem mudar seguranca ou infraestrutura;plataforma/relatofisico nao presumidos.
+
+Próxima ação: Concluir gates Android/Web/Git0.0.35 do artefato final;prova conectada reutilizada,semAPP266/268.
+
+Evidências: docs/testing/IMAGENS-0.0.35.md
+
+## APP-270 — Compactar PNG em JPEG com Original preservado e aviso de transparencia
+
+Estado: in_progress
+
+Prioridade: P0
+
+Responsavel: Assistente Connect
+
+Depende de: APP-267
+
+Revisado em: 2026-11-22
+
+- Medir bytes/MIME/dimensoes antes/depois com poucas amostras sinteticas em cada runtime realmente exercitado.
+- Original preserva arquivo e transparencia; Compactada gera JPEG real/.jpg com fundo branco e aviso/reversao quando ha alfa, sem alterar limites; se maior/falhar, Original continua opcao explicita.
+- Compactacao nao e causa presumida do avisoAPP269;mudancas locais independentes,sem backend/entrega.
+
+Próxima ação: Concluir gates Android/Web/Git0.0.35 do artefato final;prova conectada reutilizada,semAPP266/268.
+
+Evidências: docs/testing/IMAGENS-0.0.35.md

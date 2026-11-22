@@ -25,13 +25,15 @@ export function ImageReviewComposer({review,sender,disabled=false,pick,renderTex
   {busy?<View accessible accessibilityRole="progressbar" accessibilityLabel={sending?presentation.status??'Conferindo imagem':'Preparando imagem'} accessibilityState={{busy:true}} style={s.loading}><ActivityIndicator color="#185C45" accessible={false}/></View>:<Text style={s.heading}>{delivery.phase==='sent'?'Imagem enviada':delivery.phase==='cancelled'?'Envio cancelado':'Revisar imagem'}</Text>}
   {presentation.status&&!busy&&<Text accessibilityRole="alert" style={s.caption}>{presentation.status}</Text>}
   {cancelNotice&&<Text accessibilityRole="alert" style={s.caption}>A confirmação já começou. Não é possível garantir o cancelamento; confira o resultado.</Text>}
-  {v.source&&<Text style={s.name} numberOfLines={2}>{v.source.name}</Text>}
+  {v.source&&<Text style={s.name} numberOfLines={2}>{v.preview?.name??v.source.name}</Text>}
   {v.preview&&<><LocalImagePreviewView preview={v.preview} label="Ampliar imagem antes de enviar" thumbnailMaxHeight={180}/><Text style={s.caption}>{v.preview.mode==='original'?'Arquivo original':'Imagem compactada'} · {Math.ceil(v.preview.bytes/1024)} KB</Text></>}
   {v.notice==='original-confirmation-required'&&<Text accessibilityRole="alert" style={s.caption}>A compactação não diminuiu o arquivo. Escolha Arquivo original para continuar.</Text>}
   {v.notice==='unavailable'&&<Text accessibilityRole="alert" style={s.caption}>Não foi possível preparar a imagem. Tente novamente ou escolha outro arquivo.</Text>}
   {v.preview?.mode==='original'&&<Text style={s.caption}>O original mantém seus metadados, que podem incluir localização.</Text>}
   {v.preview?.mime==='application/pdf'?<Text style={s.caption}>O envio de PDF ainda não está disponível. Seu arquivo não foi alterado.</Text>:(v.preview?.bytes??0)>4194304?<Text accessibilityRole="alert" style={s.caption}>O envio aceita até 4 MB. Compacte a imagem ou escolha um arquivo menor.</Text>:null}
   {!sender&&<Text style={s.caption}>O envio de imagens está indisponível. Você pode revisar ou descartar esta seleção.</Text>}
+  {v.source?.mime==='image/png'&&<Text style={s.caption}>Compactada converte PNG em JPEG. Para manter transparência e detalhes sem perdas, escolha Arquivo original.</Text>}
+  {v.preview?.mode==='optimized'&&v.preview.flattenedTransparency&&<Text accessibilityRole="alert" style={s.caption}>A transparência foi substituída por fundo branco no JPEG. Você pode voltar a Arquivo original.</Text>}
   <View style={s.actions}><AudioButton icon="image" label="Compactar imagem" disabled={!canPrepare||!v.source||v.source.mime==='application/pdf'} onPress={()=>review.prepare('optimized')}/><AudioButton icon="file" label="Arquivo original" disabled={!canPrepare||!v.source} onPress={()=>review.prepare('original')}/></View>
   </ScrollView><View style={[s.actions,s.footer]}>
    {['selecting','preparing'].includes(v.phase)&&<AudioButton icon="stop" label="Cancelar preparação da imagem" onPress={()=>{if(review.cancelPreparation?.())setMinimized(true);}}/>}

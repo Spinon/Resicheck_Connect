@@ -1,0 +1,69 @@
+{
+  "schemaVersion": 1,
+  "state": "release-authorized-not-built",
+  "release": "0.0.35",
+  "versionCode": 35,
+  "previousRelease": "0.0.34",
+  "previousVersionCode": 34,
+  "projectRef": "ibdlvlwdzmsrbqadrudb",
+  "android": {
+    "package": "com.resicheck.connect.pendingonlinephone",
+    "label": "Connect Teste35",
+    "architectures": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "signingCertificateSha256": "fac61745dc0903786fb9ede62a962b399f7348f0bb6f899b8332667591033b9c",
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.RECORD_AUDIO"
+    ],
+    "allowBackup": false,
+    "usesCleartextTraffic": false,
+    "debuggable": false
+  },
+  "web": {
+    "origin": "https://connect.resicheck.com.br",
+    "basePath": "/",
+    "sameVersion": true,
+    "preserveMainSite": true
+  },
+  "sourceRoots": {
+    "android": "apps/mobile/previews/company-preview-lot.android.tsx",
+    "web": "apps/mobile/previews/company-preview-lot.web.tsx",
+    "imagesOption": "candidate-private-v1"
+  },
+  "scope": [
+    "APP-269: acknowledged upload with uncertain inspection is recovered using the same bounded attempt; no duplicate send",
+    "APP-270: PNG Compactada becomes bounded JPEG with white matte/transparency notice; Original remains byte-exact"
+  ],
+  "admissionBeforeBuild": [
+    "APP269/270-only reviewed diff; APP266/268 excluded",
+    "Prior real Android JPEG sender/recipient proof retained without reexecution",
+    "One Android35 candidate and Web35 from identical frozen source",
+    "No backend, CORS/CSP or infrastructure/security changes"
+  ],
+  "actionsNow": {
+    "bumpApplied": false,
+    "build": false,
+    "webExport": false,
+    "publish": false,
+    "startEmulator": false,
+    "login": false,
+    "grants": false
+  },
+  "releasePolicy": {
+    "singleGroupedApk": true,
+    "noBuildPerSmallChange": true,
+    "webAfterValidatedApk": true,
+    "notesAndHashesSameLot": true
+  },
+  "regressionPlan": "apps/mobile/candidates/messaging35/regression-plan.json",
+  "priorDeliveryReceipt": "delivery/RELEASE-0.0.34.json",
+  "publicHostedVersionReadback": "apps/mobile/next-lot-hosted-version-readonly.json",
+  "normalImageAvailability": {
+    "state": "existing-authorized-test-company-only",
+    "hostedAccessExpanded": false,
+    "backendChanges": false
+  }
+}

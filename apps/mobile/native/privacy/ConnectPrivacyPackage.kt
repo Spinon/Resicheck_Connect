@@ -11,7 +11,7 @@ import com.facebook.react.bridge.UiThreadUtil
 import com.facebook.react.uimanager.ViewManager
 
 class ConnectPrivacyPackage : ReactPackage {
-  override fun createNativeModules(context: ReactApplicationContext): List<NativeModule> = listOf(ConnectPrivacyModule(context), ConnectSecureSessionModule(context), ConnectAudioDigestModule(context), ConnectConversationCacheModule(context))
+  override fun createNativeModules(context: ReactApplicationContext): List<NativeModule> = listOf(ConnectPrivacyModule(context), ConnectSecureSessionModule(context), ConnectAudioDigestModule(context), ConnectConversationCacheModule(context), ConnectImagePreparationModule(context))
   override fun createViewManagers(context: ReactApplicationContext): List<ViewManager<*,*>> = emptyList()
 }
 class ConnectPrivacyModule(context: ReactApplicationContext) : ReactContextBaseJavaModule(context) {

@@ -1,4 +1,4 @@
-import {LOCAL_IMAGE_PROFILE,localImageHeaderType,type LocalImageSource,type LocalImagePreview} from './local-image.ts';
+import {LOCAL_IMAGE_PROFILE,localImageHeaderType,optimizedImageName,type LocalImageSource,type LocalImagePreview} from './local-image.ts';
 export type ImageReviewPort={pick:()=>Promise<LocalImageSource|null>;prepare:(s:LocalImageSource,m:'original'|'optimized')=>Promise<LocalImagePreview>;owns:(uri:string)=>boolean;read:(uri:string,max:number,signal:AbortSignal)=>Promise<Uint8Array>;release:(uri:string)=>void;dispose:()=>void};
 export type ImageReviewView=Readonly<{phase:'idle'|'selecting'|'preparing'|'ready'|'reading'|'closed';source:LocalImageSource|null;preview:LocalImagePreview|null;requestedMode:'original'|'optimized'|null;notice:null|'unavailable'|'original-confirmation-required';canRead:boolean}>;
 const empty=(phase:ImageReviewView['phase']):ImageReviewView=>Object.freeze({phase,source:null,preview:null,requestedMode:null,notice:null,canRead:false});
@@ -14,10 +14,10 @@ export function createImageReview(scope:{current:()=>boolean;subscribe:(f:()=>vo
  const current=()=>{if(!live()){close();return false;}return true;},put=(v:ImageReviewView)=>{view=Object.freeze(v);notify();};
  const validSource=(s:LocalImageSource)=>!!s&&typeof s.uri==='string'&&port.owns(s.uri)&&typeof s.name==='string'&&s.name.length>0&&s.name.length<=120&&!/[\u0000-\u001f\u007f]/.test(s.name)&&Number.isSafeInteger(s.bytes)&&s.bytes>0&&s.bytes<=LOCAL_IMAGE_PROFILE.maxBytes&&['image/png','image/jpeg','application/pdf'].includes(s.mime);
  function accepted(p:LocalImagePreview,s:LocalImageSource,requested:'original'|'optimized'){
-  if(!validSource(p)||p.name!==s.name||p.mime!==s.mime)throw Error();
+  if(!validSource(p))throw Error();
   const dimensions=p.width===null&&p.height===null||Number.isSafeInteger(p.width)&&Number.isSafeInteger(p.height)&&p.width!>0&&p.height!>0&&p.width!*p.height!<=LOCAL_IMAGE_PROFILE.maxPixels;if(!dimensions)throw Error();
-  if(p.mode==='original'){if(p.uri!==s.uri||p.bytes!==s.bytes||p.profile!==null||requested!=='original'&&p.retainedOriginal!=='not-smaller')throw Error();}
-  else if(requested!=='optimized'||s.mime==='application/pdf'||p.mode!=='optimized'||p.uri===s.uri||p.bytes>=s.bytes||p.profile!==LOCAL_IMAGE_PROFILE.id||!Number.isSafeInteger(p.width)||!Number.isSafeInteger(p.height)||p.width!<1||p.height!<1||p.width!*p.height!>LOCAL_IMAGE_PROFILE.maxPixels||Math.max(p.width!,p.height!)>LOCAL_IMAGE_PROFILE.longEdge)throw Error();
+  if(p.mode==='original'){if(p.uri!==s.uri||p.bytes!==s.bytes||p.name!==s.name||p.mime!==s.mime||p.profile!==null||requested!=='original'&&p.retainedOriginal!=='not-smaller')throw Error();}
+  else if(requested!=='optimized'||s.mime==='application/pdf'||p.mode!=='optimized'||p.mime!=='image/jpeg'||p.name!==optimizedImageName(s)||typeof p.flattenedTransparency!=='boolean'||p.uri===s.uri||p.bytes>=s.bytes||p.profile!==LOCAL_IMAGE_PROFILE.id||!Number.isSafeInteger(p.width)||!Number.isSafeInteger(p.height)||p.width!<1||p.height!<1||p.width!*p.height!>LOCAL_IMAGE_PROFILE.maxPixels||Math.max(p.width!,p.height!)>LOCAL_IMAGE_PROFILE.longEdge)throw Error();
   const confirm=requested==='optimized'&&p.mode==='original';
   return Object.freeze({phase:'ready' as const,source:Object.freeze({...s}),preview:Object.freeze({...p}),requestedMode:requested,notice:confirm?'original-confirmation-required' as const:null,canRead:!confirm});
  }

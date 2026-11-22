@@ -30,3 +30,5 @@ apps/mobile/candidates/messaging34/*.INPUT.json
 # Derived local Expo inputs; rebuilt by the candidate adapter.
 apps/mobile/app.config.js
 apps/mobile/output/
+
+apps/mobile/candidates/messaging35/*.INPUT.json

@@ -69,3 +69,8 @@ Checkpoint publicado `46c369a47d4a588c04a520a11d42dbf03e31cdc8` na branch `relea
 
 
 Proximo foco de fila APP268 registrado somente como planejamento de retomada,apos fechar o hotfix. Nenhuma implementacao desse recorte integra APK/Web34;APP266 permanece em checkout independente. Confirmar chegada ao historico nas duas superficies antes de medir rolagem. M33 e roteiro,nao prova dos itens novos.
+
+
+## Fechamento 0.0.35 - 22/11/2026
+
+Lucas autorizou seguir com APP269/270 apos prova conectada Android. Branch release/connect-0.0.35-image-hotfix sobre release0.0.34 c61f8e279974dc76339eab148957f6eb3c5887e1. Ver docs/testing/IMAGENS-0.0.35.md. APP266/268 fora; backend/seguranca intactos;gates Android/Web/Git separados. Sem dados de QA,provas de sessao,logs privados,chaves ou binarios no checkpoint. Nao marcar entregue antes dos gates.

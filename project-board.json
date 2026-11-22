@@ -1,8 +1,8 @@
 {
   "schemaVersion": 1,
   "project": "ResiCheck Connect (provisório)",
-  "updatedAt": "2026-11-21",
-  "currentFocus": "APP-268",
+  "updatedAt": "2026-11-22",
+  "currentFocus": "APP-270",
   "items": [
     {
       "id": "APP-001",
@@ -15215,6 +15215,46 @@
       "nextAction": "Abrir checkout/branch separado a partir da release34 verificada;primeiro confirmar chegada ao historico Web/Android,depois poucos testes focais de posicao/audio/pendencia. Planejamento apenas;fora do produto34.",
       "evidence": [
         "docs/product/CHAT-PROXIMO-RECORTE-APP268.md"
+      ]
+    },
+    {
+      "id": "APP-269",
+      "title": "Recuperar confirmacao de imagem sem duplicar ou prender a conversa",
+      "status": "in_progress",
+      "priority": "P0",
+      "owner": "Assistente Connect",
+      "lastReviewedAt": "2026-11-22",
+      "dependencies": [
+        "APP-267"
+      ],
+      "acceptance": [
+        "Separar no teste sintetico aceito/ausente no servidor,historico autorizado e UI das duas contas.",
+        "Reconciliar a mesma tentativa em ACK perdido/atrasado e liberar saida sem perda;nao gerar novo envio automatico ou sucesso sem prova.",
+        "Patch cliente focal,se demonstrado,sem mudar seguranca ou infraestrutura;plataforma/relatofisico nao presumidos."
+      ],
+      "nextAction": "Concluir gates Android/Web/Git0.0.35 do artefato final;prova conectada reutilizada,semAPP266/268.",
+      "evidence": [
+        "docs/testing/IMAGENS-0.0.35.md"
+      ]
+    },
+    {
+      "id": "APP-270",
+      "title": "Compactar PNG em JPEG com Original preservado e aviso de transparencia",
+      "status": "in_progress",
+      "priority": "P0",
+      "owner": "Assistente Connect",
+      "lastReviewedAt": "2026-11-22",
+      "dependencies": [
+        "APP-267"
+      ],
+      "acceptance": [
+        "Medir bytes/MIME/dimensoes antes/depois com poucas amostras sinteticas em cada runtime realmente exercitado.",
+        "Original preserva arquivo e transparencia; Compactada gera JPEG real/.jpg com fundo branco e aviso/reversao quando ha alfa, sem alterar limites; se maior/falhar, Original continua opcao explicita.",
+        "Compactacao nao e causa presumida do avisoAPP269;mudancas locais independentes,sem backend/entrega."
+      ],
+      "nextAction": "Concluir gates Android/Web/Git0.0.35 do artefato final;prova conectada reutilizada,semAPP266/268.",
+      "evidence": [
+        "docs/testing/IMAGENS-0.0.35.md"
       ]
     }
   ],
@@ -31212,5 +31252,26 @@
     "hostedTests": 0,
     "hostedImageRouteAvailable": false
   },
-  "archivedEvidenceManifest": "docs/project/ARCHIVED-EVIDENCE-REFERENCES.json"
+  "archivedEvidenceManifest": "docs/project/ARCHIVED-EVIDENCE-REFERENCES.json",
+  "release35": {
+    "version": "0.0.35",
+    "versionCode": 35,
+    "scope": [
+      "APP-269",
+      "APP-270"
+    ],
+    "android": {
+      "status": "building-not-released"
+    },
+    "web": {
+      "status": "prepared-not-exported-not-published"
+    },
+    "git": {
+      "status": "curated-worktree-not-committed",
+      "branch": "release/connect-0.0.35-image-hotfix"
+    },
+    "evidence": [
+      "docs/testing/IMAGENS-0.0.35.md"
+    ]
+  }
 }

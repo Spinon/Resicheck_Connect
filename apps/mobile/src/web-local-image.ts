@@ -1,5 +1,5 @@
 import {fileDisplayName} from '../../../packages/text/src/file-display-name.ts';
-import {LOCAL_IMAGE_PROFILE,localImageHeaderType,prepareLocalImage,type LocalImageSource,type LocalImagePreview} from './local-image.ts';
+import {LOCAL_IMAGE_PROFILE,localImageHeaderType,prepareLocalImage,optimizedImageName,type LocalImageSource,type LocalImagePreview} from './local-image.ts';
 import {imageHeaderBounds} from './image-header-bounds.ts';
 
 const unavailable=()=>Error('Image unavailable'),MAX_OWNED=3*LOCAL_IMAGE_PROFILE.maxBytes;
@@ -30,10 +30,10 @@ export function createWebLocalImage(current:()=>boolean,imagesOnly=false){
   try{
    const result=await prepareLocalImage(source,mode,{current:valid,dimensions,removeDerived:async p=>release(p.uri),render:async(plan,q)=>{
     assertLive();if(!bitmap)throw unavailable();const canvas=document.createElement('canvas');canvas.width=plan.width;canvas.height=plan.height;
-    try{const ctx=canvas.getContext('2d');if(!ctx)throw unavailable();ctx.drawImage(bitmap,0,0,plan.width,plan.height);
-     const blob=await new Promise<Blob>((yes,no)=>canvas.toBlob(b=>b?yes(b):no(unavailable()),source.mime,q));assertLive();
-     if(blob.type!==source.mime||blob.size<1||blob.size>LOCAL_IMAGE_PROFILE.maxBytes)throw unavailable();const uri=track({blob,name:source.name,mime:source.mime,size:plan});
-     return Object.freeze({...source,uri,bytes:blob.size,width:plan.width,height:plan.height,mode:'optimized',profile:LOCAL_IMAGE_PROFILE.id});
+    try{const ctx=canvas.getContext('2d',{willReadFrequently:source.mime==='image/png'});if(!ctx)throw unavailable();ctx.drawImage(bitmap,0,0,plan.width,plan.height);let flattenedTransparency=false;if(source.mime==='image/png'){const rgba=ctx.getImageData(0,0,plan.width,plan.height).data;for(let i=3;i<rgba.length;i+=4)if(rgba[i]!==255){flattenedTransparency=true;break;}}ctx.globalCompositeOperation='destination-over';ctx.fillStyle='#ffffff';ctx.fillRect(0,0,plan.width,plan.height);ctx.globalCompositeOperation='source-over';
+     const blob=await new Promise<Blob>((yes,no)=>canvas.toBlob(b=>b?yes(b):no(unavailable()),'image/jpeg',q));assertLive();
+     if(blob.type!=='image/jpeg'||blob.size<1||blob.size>LOCAL_IMAGE_PROFILE.maxBytes)throw unavailable();const name=optimizedImageName(source),uri=track({blob,name,mime:'image/jpeg',size:plan});
+     return Object.freeze({...source,name,mime:'image/jpeg',uri,bytes:blob.size,width:plan.width,height:plan.height,mode:'optimized',profile:LOCAL_IMAGE_PROFILE.id,flattenedTransparency});
     }finally{canvas.width=1;canvas.height=1;}
    }});
    if(mode==='original'&&source.mime!=='application/pdf'){const s=await dimensions();return Object.freeze({...result,...s});}

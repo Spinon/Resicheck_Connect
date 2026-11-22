@@ -2,8 +2,9 @@ import{readLocalImageHeader}from './read-local-image-header.ts';
 import{readReviewedImage}from './read-reviewed-image.ts';
 import {fileDisplayName} from '../../../packages/text/src/file-display-name.ts';
 import {getDocumentAsync} from 'expo-document-picker';import {ImageManipulator,SaveFormat} from 'expo-image-manipulator';
-import {Directory,File,FileMode,Paths} from 'expo-file-system';import {Image} from 'react-native';import {uuid} from 'expo-modules-core';
-import {LOCAL_IMAGE_PROFILE,localImageHeaderType,imageResizePlan,prepareLocalImage,type LocalImageSource,type LocalImagePreview} from './local-image.ts';
+import {Directory,File,FileMode,Paths} from 'expo-file-system';import {Image,NativeModules} from 'react-native';
+import{nativePngJpeg}from'./native-image-jpeg.ts';import {uuid} from 'expo-modules-core';
+import {LOCAL_IMAGE_PROFILE,localImageHeaderType,imageResizePlan,prepareLocalImage,optimizedImageName,type LocalImageSource,type LocalImagePreview} from './local-image.ts';
 import {copyImageSource} from './copy-image-source.ts';
 import {sweepImageCache} from './image-cache-sweep.ts';
 let nativeRendering=false;const fail=()=>Error('Local image unavailable');
@@ -34,11 +35,11 @@ export function createExpoLocalImage(current:()=>boolean,diagnostic?:(stage:stri
   const header=inspect(imported);if(header.mime!==source.mime)throw fail();
   const dimensions=()=>new Promise<{width:number;height:number}>((resolve,reject)=>{if(!valid()||!header.dimensions){reject(fail());return;}const expected=header.dimensions;stage('dimensions-requested');Image.getSize(source.uri,(width,height)=>{try{if(!valid()||!((width===expected.width&&height===expected.height)||(width===expected.height&&height===expected.width)))throw fail();imageResizePlan(width,height);stage('dimensions-ready');resolve({width,height});}catch{reject(fail());}},()=>reject(fail()));});
   const preview=await prepareLocalImage(source,mode,{current:valid,dimensions,removeDerived:async value=>{remove(value.uri);},render:async(plan,quality)=>{
-   if(nativeRendering||!valid())throw fail();nativeRendering=true;let context:ReturnType<typeof ImageManipulator.manipulate>|null=null,rendered:Awaited<ReturnType<ReturnType<typeof ImageManipulator.manipulate>['renderAsync']>>|null=null,saved:string|null=null,target:File|null=null;
+   if(nativeRendering||!valid())throw fail();nativeRendering=true;let context:ReturnType<typeof ImageManipulator.manipulate>|null=null,rendered:Awaited<ReturnType<ReturnType<typeof ImageManipulator.manipulate>['renderAsync']>>|null=null,saved:string|null=null,target:File|null=null,flattenInput:File|null=null;let flattenedTransparency=false;
    try{stage('render-started');context=ImageManipulator.manipulate(source.uri);context.resize(plan);rendered=await context.renderAsync();stage('render-ready');if(!valid())throw fail();const result=await rendered.saveAsync({format:source.mime==='image/png'?SaveFormat.PNG:SaveFormat.JPEG,compress:source.mime==='image/png'?1:quality,base64:false});saved=result.uri;stage('saved');
-    if(!saved.startsWith(Paths.cache.uri)||saved===source.uri||!valid())throw fail();stage('saved-uri-owned');const f=new File(saved);if(!f.exists||f.size<1||f.size>LOCAL_IMAGE_PROFILE.maxBytes)throw fail();stage('saved-bytes-valid');target=track(new File(folder,'optimized-'+uuid.v4()+(source.mime==='image/png'?'.png':'.jpg')));await copy(f,target);stage('copy-ready');
-    if(!valid())throw fail();return Object.freeze({uri:target.uri,name:source.name,mime:source.mime,bytes:target.size,width:result.width,height:result.height,mode:'optimized',profile:LOCAL_IMAGE_PROFILE.id}) as LocalImagePreview;
-   }catch{if(target)try{remove(target.uri);}catch{}throw fail();}finally{if(saved&&saved!==source.uri&&saved.startsWith(Paths.cache.uri))try{new File(saved).delete();}catch{}try{rendered?.release();}catch{}try{context?.release();}catch{}nativeRendering=false;}
+    if(!saved.startsWith(Paths.cache.uri)||saved===source.uri||!valid())throw fail();stage('saved-uri-owned');const f=new File(saved);if(!f.exists||f.size<1||f.size>LOCAL_IMAGE_PROFILE.maxBytes)throw fail();stage('saved-bytes-valid');target=track(new File(folder,'optimized-'+uuid.v4()+'.jpg'));if(source.mime==='image/png'){flattenInput=track(new File(folder,'flatten-source-'+uuid.v4()+'.png'));await copy(f,flattenInput);const flattened=await nativePngJpeg(NativeModules.ConnectImagePreparation)({sourceUri:flattenInput.uri,targetUri:target.uri,bytes:flattenInput.size,width:result.width,height:result.height,quality});flattenedTransparency=flattened.flattenedTransparency;if(!target.exists||target.size!==flattened.bytes)throw fail();}else await copy(f,target);if(typeOf(target)!=='image/jpeg')throw fail();stage('copy-ready');
+    if(!valid())throw fail();return Object.freeze({uri:target.uri,name:optimizedImageName(source),mime:'image/jpeg',bytes:target.size,width:result.width,height:result.height,mode:'optimized',profile:LOCAL_IMAGE_PROFILE.id,flattenedTransparency}) as LocalImagePreview;
+   }catch{if(target)try{remove(target.uri);}catch{}throw fail();}finally{if(flattenInput)try{remove(flattenInput.uri);}catch{}if(saved&&saved!==source.uri&&saved.startsWith(Paths.cache.uri))try{new File(saved).delete();}catch{}try{rendered?.release();}catch{}try{context?.release();}catch{}nativeRendering=false;}
   }});
   if(mode==='original'&&source.mime!=='application/pdf'){
    try{const size=await dimensions();imageResizePlan(size.width,size.height);if(!valid())throw fail();return Object.freeze({...preview,...size});}
