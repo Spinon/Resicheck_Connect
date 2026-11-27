@@ -1,5 +1,5 @@
 import React,{createContext,useCallback,useContext,useEffect,useId,useLayoutEffect,useMemo,useState} from 'react';
-import {BackHandler,Modal,StyleSheet,View} from 'react-native';
+import {BackHandler,Platform,Modal,StyleSheet,View} from 'react-native';
 type Entry=Readonly<{id:string;priority:number;content:React.ReactNode}>;
 type Registry={covered:boolean;put:(entry:Entry)=>void;remove:(id:string)=>void};
 const Context=createContext<Registry|null>(null);
@@ -22,7 +22,7 @@ export function MediaWindow({visible,onClose,onShow,children,priority=10}:{visib
  const host=useContext(Context),id=useId();
  useLayoutEffect(()=>{if(host&&visible)host.put({id,priority,content:children});else host?.remove(id);},[host,id,priority,visible,children]);
  useLayoutEffect(()=>()=>host?.remove(id),[host,id]);
- useEffect(()=>{if(!host||!visible)return;const frame=requestAnimationFrame(()=>onShow?.());const back=BackHandler.addEventListener('hardwareBackPress',()=>{onClose();return true;});return()=>{cancelAnimationFrame(frame);back.remove();};},[host,visible,onClose,onShow]);
+ useEffect(()=>{if(!host||!visible)return;const frame=requestAnimationFrame(()=>onShow?.());const back=Platform.OS==='web'?null:BackHandler.addEventListener('hardwareBackPress',()=>{onClose();return true;});return()=>{cancelAnimationFrame(frame);back?.remove();};},[host,visible,onClose,onShow]);
  return host?null:<Modal visible={visible} transparent animationType="none" onShow={onShow} onRequestClose={onClose}>{children}</Modal>;
 }
 const s=StyleSheet.create({root:{flex:1},overlay:{position:'absolute',top:0,right:0,bottom:0,left:0,zIndex:100}});

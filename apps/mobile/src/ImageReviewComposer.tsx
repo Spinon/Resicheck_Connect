@@ -1,48 +1,45 @@
-import{MediaWindow}from'./MediaWindow.tsx';
-import React,{useEffect,useState,useSyncExternalStore}from'react';
+import{ImageTransferProgress,ImageUploadRetry}from'./ImageTransferProgress.tsx';
+import React,{useState,useSyncExternalStore}from'react';
+import{ActivityIndicator,Keyboard,StyleSheet,Text,View}from'react-native';
 import{imageSendPresentation}from'./image-send-presentation.ts';
 import type{ImageCancelResult}from'./scoped-reviewed-image.ts';
-import{ActivityIndicator,Keyboard,ScrollView,StyleSheet,Text,View,useWindowDimensions}from'react-native';
 import{AudioButton}from'./AudioControls.tsx';
 import{LocalImagePreviewView}from'./LocalImagePreviewView.tsx';
 import{MediaPrivacySurface}from'./MediaPrivacy.tsx';
 import type{createImageReview}from'./image-review.ts';
 type Sender={snapshot:()=>Readonly<{phase:string;messageId:string|null;canCancel?:boolean;confirmationStarted?:boolean}>;subscribe:(f:()=>void)=>()=>void;start:()=>Promise<unknown>;recover:()=>Promise<unknown>;cancel?:()=>ImageCancelResult};
 const off=Object.freeze({phase:'off',messageId:null}),none=()=>()=>{};
-/** Candidate shared composer. The caller owns real scope/lifecycle and mounts
- * it only after image transport is available; does not grant file/network access. */
+/** Inline local image bubble. It never publishes, retries or claims cancellation
+ * from presentation alone. The captured sender owns the stable attempt. */
 export function ImageReviewComposer({review,sender,disabled=false,pick,renderText}:{review:ReturnType<typeof createImageReview>;sender?:Sender;disabled?:boolean;pick?:()=>Promise<boolean>;renderText:(attachment:React.ReactNode)=>React.ReactNode}){
- const window=useWindowDimensions();const[minimized,setMinimized]=useState(false),[cancelNotice,setCancelNotice]=useState(false);
- const v=useSyncExternalStore(review.subscribe,review.snapshot,review.snapshot),delivery=useSyncExternalStore(sender?.subscribe??none,sender?.snapshot??(()=>off),sender?.snapshot??(()=>off));
- const presentation=imageSendPresentation(delivery.phase,delivery.confirmationStarted===true);
- useEffect(()=>{setMinimized(false);setCancelNotice(false);},[v.preview]);
+ const [cancelNotice,setCancelNotice]=useState(false);
+ const v=useSyncExternalStore(review.subscribe,review.snapshot,review.snapshot),delivery=useSyncExternalStore(sender?.subscribe??none,sender?.snapshot??(()=>off),sender?.snapshot??(()=>off)),presentation=imageSendPresentation(delivery.phase,delivery.confirmationStarted===true);
  if(v.phase==='closed')return null;
- if(v.phase==='idle')return <>{renderText(<AudioButton icon="image" label="Anexar imagem" iconOnly disabled={disabled} onPress={()=>{if(disabled)return;Keyboard.dismiss();return pick?pick():review.select();}}/>)}{v.notice==='unavailable'&&<Text accessibilityRole="alert" style={s.caption}>Não foi possível preparar a imagem. Escolha outro arquivo e tente novamente.</Text>}</>;
- const preparing=['selecting','preparing'].includes(v.phase)||v.phase==='reading'&&!presentation.terminal,sending=presentation.sending,busy=preparing||sending,sendAllowed=!!sender&&delivery.phase==='review'&&v.canRead&&v.preview?.mime!=='application/pdf'&&(v.preview?.bytes??Infinity)<=4194304;
+ const attach=<AudioButton icon="image" label="Anexar imagem" iconOnly disabled={disabled||v.phase!=='idle'} onPress={()=>{if(disabled)return;Keyboard.dismiss();return pick?pick():review.select();}}/>;
+ if(v.phase==='idle')return <>{renderText(attach)}{v.notice==='unavailable'&&<Text accessibilityRole="alert" style={s.error}>Não foi possível preparar a imagem.</Text>}</>;
+ const preparing=['selecting','preparing'].includes(v.phase)||v.phase==='reading'&&!presentation.terminal,busy=preparing||presentation.sending,sendAllowed=!!sender&&delivery.phase==='review'&&v.canRead&&v.preview?.mime!=='application/pdf'&&(v.preview?.bytes??Infinity)<=4194304;
  const canPrepare=!busy&&(['off','review'].includes(delivery.phase)||presentation.canRestartReview)&&v.phase!=='reading';
- if(minimized)return <>{renderText(<AudioButton icon="image" label={delivery.phase==='cancelled'?'Revisar imagem preservada':'Reabrir envio de imagem'} onPress={()=>setMinimized(false)}/>)}{presentation.status&&<Text accessibilityLiveRegion="polite" style={s.caption}>{presentation.status}</Text>}</>;
- return <MediaWindow visible onClose={()=>setMinimized(true)}><View style={s.backdrop}><View style={s.sheet}><MediaPrivacySurface enabled><ScrollView style={{maxHeight:Math.max(120,window.height*.52)}} contentContainerStyle={s.panel} testID="image-composer-active" keyboardShouldPersistTaps="handled">
-  {busy?<View accessible accessibilityRole="progressbar" accessibilityLabel={sending?presentation.status??'Conferindo imagem':'Preparando imagem'} accessibilityState={{busy:true}} style={s.loading}><ActivityIndicator color="#185C45" accessible={false}/></View>:<Text style={s.heading}>{delivery.phase==='sent'?'Imagem enviada':delivery.phase==='cancelled'?'Envio cancelado':'Revisar imagem'}</Text>}
-  {presentation.status&&!busy&&<Text accessibilityRole="alert" style={s.caption}>{presentation.status}</Text>}
-  {cancelNotice&&<Text accessibilityRole="alert" style={s.caption}>A confirmação já começou. Não é possível garantir o cancelamento; confira o resultado.</Text>}
-  {v.source&&<Text style={s.name} numberOfLines={2}>{v.preview?.name??v.source.name}</Text>}
-  {v.preview&&<><LocalImagePreviewView preview={v.preview} label="Ampliar imagem antes de enviar" thumbnailMaxHeight={180}/><Text style={s.caption}>{v.preview.mode==='original'?'Arquivo original':'Imagem compactada'} · {Math.ceil(v.preview.bytes/1024)} KB</Text></>}
-  {v.notice==='original-confirmation-required'&&<Text accessibilityRole="alert" style={s.caption}>A compactação não diminuiu o arquivo. Escolha Arquivo original para continuar.</Text>}
-  {v.notice==='unavailable'&&<Text accessibilityRole="alert" style={s.caption}>Não foi possível preparar a imagem. Tente novamente ou escolha outro arquivo.</Text>}
-  {v.preview?.mode==='original'&&<Text style={s.caption}>O original mantém seus metadados, que podem incluir localização.</Text>}
-  {v.preview?.mime==='application/pdf'?<Text style={s.caption}>O envio de PDF ainda não está disponível. Seu arquivo não foi alterado.</Text>:(v.preview?.bytes??0)>4194304?<Text accessibilityRole="alert" style={s.caption}>O envio aceita até 4 MB. Compacte a imagem ou escolha um arquivo menor.</Text>:null}
-  {!sender&&<Text style={s.caption}>O envio de imagens está indisponível. Você pode revisar ou descartar esta seleção.</Text>}
-  {v.source?.mime==='image/png'&&<Text style={s.caption}>Compactada converte PNG em JPEG. Para manter transparência e detalhes sem perdas, escolha Arquivo original.</Text>}
-  {v.preview?.mode==='optimized'&&v.preview.flattenedTransparency&&<Text accessibilityRole="alert" style={s.caption}>A transparência foi substituída por fundo branco no JPEG. Você pode voltar a Arquivo original.</Text>}
-  <View style={s.actions}><AudioButton icon="image" label="Compactar imagem" disabled={!canPrepare||!v.source||v.source.mime==='application/pdf'} onPress={()=>review.prepare('optimized')}/><AudioButton icon="file" label="Arquivo original" disabled={!canPrepare||!v.source} onPress={()=>review.prepare('original')}/></View>
-  </ScrollView><View style={[s.actions,s.footer]}>
-   {['selecting','preparing'].includes(v.phase)&&<AudioButton icon="stop" label="Cancelar preparação da imagem" onPress={()=>{if(review.cancelPreparation?.())setMinimized(true);}}/>}
-   {sender?.cancel&&delivery.canCancel===true&&<AudioButton icon="stop" label="Cancelar envio da imagem" destructive onPress={()=>{const result=sender.cancel!();if(result==='cancelled-before-send'){setCancelNotice(false);setMinimized(true);}else if(result==='confirmation-required')setCancelNotice(true);}}/>}
-   <AudioButton icon="back" label="Voltar à conversa" onPress={()=>setMinimized(true)}/>
-   <AudioButton icon="trash" label="Descartar imagem" destructive disabled={busy||v.phase==='reading'||delivery.confirmationStarted===true&&!['sent'].includes(delivery.phase)||!['off','review','failed','rejected','blocked','cancelled','sent'].includes(delivery.phase)} onPress={()=>{review.discard();}}/>
-   {presentation.canCheck&&<AudioButton icon="refresh" label={presentation.checkLabel} disabled={delivery.phase==='checking'} onPress={()=>sender?.recover()}/>}
-   <AudioButton icon="send" label="Enviar imagem" primary disabled={!sendAllowed||busy} onPress={()=>sender?.start()}/>
+ const retryUpload=!!sender&&!busy&&!delivery.confirmationStarted&&
+  ['inspection-paused','upload-unknown','inspection-unknown'].includes(delivery.phase);
+ const status=preparing?'Preparando…':delivery.phase==='uploading'?'Enviando…':delivery.phase==='waiting'?'Verificando…':delivery.phase==='checking'?'Conferindo…':delivery.phase==='sending'?'Confirmando…':delivery.phase==='inspection-paused'?'Envio pausado':delivery.phase==='uncertain'?'Confirmação pendente':delivery.phase==='upload-unknown'?'Transferência não confirmada':delivery.phase==='inspection-unknown'||delivery.phase==='delayed'?'Verificação pendente':delivery.phase==='cancelled'?'Cancelado':delivery.phase==='failed'||delivery.phase==='rejected'?'Não enviado':null;
+ const cancel=()=>{setCancelNotice(false);if(preparing&&review.cancelPreparation()){return;}if(sender?.cancel&&delivery.canCancel){if(sender.cancel()==='confirmation-required')setCancelNotice(true);return;}if(!busy&&delivery.confirmationStarted!==true)review.discard();};
+ const canCancel=preparing||delivery.canCancel===true||!busy&&delivery.confirmationStarted!==true;
+ return <><MediaPrivacySurface><View style={s.row}><View testID="image-composer-active" style={s.bubble}>
+  <View style={{minHeight:200}}>{v.preview&&<LocalImagePreviewView preview={v.preview} compact label="Ampliar imagem antes de enviar" thumbnailMaxHeight={200}/>}
+  {busy&&<ImageTransferProgress label={status??'Preparando imagem'}/>}
+  {retryUpload&&<ImageUploadRetry onPress={()=>sender?.recover()}/>}
+  </View>{canCancel&&<View style={s.cancel}><AudioButton icon="stop" label={preparing?'Cancelar preparação da imagem':'Cancelar imagem'} iconOnly onPress={cancel}/></View>}
+  {status&&<Text style={s.caption} accessibilityLiveRegion="polite">{status}</Text>}
+  {cancelNotice&&<Text accessibilityRole="alert" style={s.error}>Confirmação em andamento. Use Conferir.</Text>}
+  {v.notice==='original-confirmation-required'&&<Text style={s.caption}>A versão leve não ficou adequada.</Text>}
+  {v.notice==='unavailable'&&<Text accessibilityRole="alert" style={s.error}>Não foi possível preparar.</Text>}
+  {(v.preview?.bytes??0)>4194304&&<Text accessibilityRole="alert" style={s.error}>Limite de 4 MB.</Text>}
+  {v.preview?.flattenedTransparency&&<Text style={s.caption}>Fundo branco aplicado.</Text>}
+  {v.originalReason&&canPrepare&&v.preview?.mode!=='original'&&<AudioButton icon="file" label="Preservar detalhes do original" caption="Preservar detalhes" onPress={()=>review.prepare('original')}/>}
+  {v.notice==='original-confirmation-required'&&canPrepare&&<><Text style={s.caption}>O original pode conter localização.</Text><AudioButton icon="file" label="Usar arquivo original" caption="Usar original" onPress={()=>review.prepare('original')}/></>}
+  <View style={s.footer}>{v.preview&&<Text style={s.size}>{v.preview.mode==='original'?'Original · ':''}{Math.ceil(v.preview.bytes/1024)} KB</Text>}
+   {!retryUpload&&(presentation.canCheck?<AudioButton icon="refresh" label="Conferir envio da imagem" caption="Conferir" disabled={delivery.phase==='checking'} onPress={()=>sender?.recover()}/>:presentation.canRestartReview?<AudioButton icon="refresh" label="Revisar imagem preservada" iconOnly onPress={()=>review.prepare('optimized')}/>:<AudioButton icon="send" label="Enviar imagem" primary iconOnly disabled={!sendAllowed||busy} onPress={()=>sender?.start()}/>)}
   </View>
- </MediaPrivacySurface></View></View></MediaWindow>;
+ </View></View></MediaPrivacySurface>{renderText(attach)}</>;
 }
-const s=StyleSheet.create({backdrop:{flex:1,justifyContent:'center',padding:16,backgroundColor:'rgba(10,30,20,.35)'},sheet:{width:'100%',maxWidth:560,alignSelf:'center',padding:16,borderRadius:18,backgroundColor:'white'},panel:{gap:10,paddingVertical:8},heading:{fontSize:16,fontWeight:'600',color:'#18372C'},name:{fontSize:14,color:'#18372C'},caption:{fontSize:13,lineHeight:20,color:'#52675A'},loading:{minHeight:48,alignItems:'center',justifyContent:'center'},footer:{paddingTop:12},actions:{flexDirection:'row',flexWrap:'wrap',gap:8,justifyContent:'space-between'}});
+const s=StyleSheet.create({row:{alignItems:'flex-end',paddingHorizontal:10,paddingTop:8},bubble:{maxWidth:310,width:'100%',padding:5,gap:5,borderRadius:16,backgroundColor:'#DDF0E2',borderBottomRightRadius:4},cancel:{position:'absolute',top:8,right:8},progress:{position:'absolute',top:70,alignSelf:'center',padding:12,borderRadius:30,backgroundColor:'rgba(255,255,255,.9)'},caption:{fontSize:12,color:'#52675A',paddingHorizontal:6},error:{fontSize:12,color:'#94392E',paddingHorizontal:6},size:{fontSize:11,color:'#52675A',flex:1},footer:{flexDirection:'row',alignItems:'center',gap:8,paddingLeft:6}});

@@ -1,0 +1,6 @@
+// DRAFT MODULE ONLY. Never replaces the current App.web during this preparation.
+import React from'react';
+import{ConnectBuildInfoProvider}from'../../src/ConnectBuildInfo.tsx';
+import{createCompanyPreviewLotWebRoot}from'../../previews/company-preview-lot.web.tsx';
+const Root=createCompanyPreviewLotWebRoot('candidate-private-v1');
+export default function App(){return <ConnectBuildInfoProvider value={{"versionName":"0.0.36","versionCode":36,"internalQa":false}}><Root/></ConnectBuildInfoProvider>;}

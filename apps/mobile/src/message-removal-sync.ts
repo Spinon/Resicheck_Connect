@@ -4,7 +4,7 @@ import type{RecentHistoryPage,RecentHistoryRead}from'../../../packages/chat-clie
 /** A cache is never presented before a fresh authorized removal scan. Cursor is
  * scoped to this live conversation only; opening again replays the bounded feed.
  * Receipt revisions never advance it: another actor's intervening op must not be skipped. */
-export function createMessageRemovalSync(input:Readonly<{context:MessageRemovalContext;rpc:MessageRemovalRpc;current:()=>boolean;purgeMedia:()=>Promise<void>;apply:(items:readonly MessageRemovalChange[])=>void}>){
+export function createMessageRemovalSync(input:Readonly<{context:MessageRemovalContext;rpc:MessageRemovalRpc;current:()=>boolean;purgeMedia:(items:readonly MessageRemovalChange[])=>Promise<void>;apply:(items:readonly MessageRemovalChange[])=>void}>){
  const masks=new Map<string,'self'|'all'>();let closed=false,started=false,cursor='0',flight:Promise<void>|null=null;const abort=new AbortController();
  const live=()=>{try{return!closed&&!abort.signal.aborted&&input.current()===true;}catch{return false;}},fail=()=>Error('Conversation unavailable');
  function mark(items:readonly MessageRemovalChange[]){if(!live())throw fail();for(const item of items){const old=masks.get(item.messageId);if(old!=='all')masks.set(item.messageId,item.scope);}if(masks.size>20000)throw fail();if(items.length)input.apply(items);}
@@ -21,15 +21,15 @@ export function createMessageRemovalSync(input:Readonly<{context:MessageRemovalC
    if(!live())throw fail();const next=decodeRemovalChanges(raw,command);mark(next.items);
    // Purge before releasing any new cache/presentation barrier. The cache port
    // must fence writes already in flight; this does not touch drafts/outgoing media.
-   if(next.items.length){await input.purgeMedia();if(!live())throw fail();}
+   if(next.items.length){await input.purgeMedia(next.items);if(!live())throw fail();}
    cursor=next.through;if(!next.hasMore){started=true;return;}
   }throw fail();
  }
  function poll(){if(!live())return Promise.reject(fail());if(flight)return flight;const work=scan();flight=work;void work.finally(()=>{if(flight===work)flight=null;}).catch(()=>{});return work;}
  async function applyReceipt(receipt:MessageRemovalReceipt){
   if(!live()||receipt.companyId!==input.context.companyId||receipt.conversationId!==input.context.conversationId)throw fail();
-  mark(receipt.messageIds.map(messageId=>({messageId,scope:receipt.scope})));
-  await input.purgeMedia();if(!live())throw fail();await poll();
+  const items=receipt.messageIds.map(messageId=>({messageId,scope:receipt.scope}));mark(items);
+  await input.purgeMedia(items);if(!live())throw fail();await poll();
  }
  const wrapRead=(read:RecentHistoryRead):RecentHistoryRead=>async(request,signal)=>{
   if(!started)await poll();if(signal?.aborted||!live())throw fail();const page=await read(request,signal);

@@ -1,6 +1,6 @@
 import React from 'react';
 import {View} from 'react-native';
-export type ConnectIconName='file'|'image'|'company'|'chat'|'team'|'user'|'arrow'|'back'|'search'|'plus'|'refresh'|'check'|'double-check'|'clock'|'mic'|'send'|'play'|'pause'|'stop'|'trash';
+export type ConnectIconName='file'|'image'|'company'|'chat'|'team'|'user'|'arrow'|'back'|'search'|'plus'|'upload'|'refresh'|'check'|'double-check'|'clock'|'mic'|'send'|'play'|'pause'|'stop'|'trash';
 type Props={name:ConnectIconName;color?:string;size?:number};
 const width=1.8;
 /** Small native outline vocabulary. Decorative shapes, never a font glyph or
@@ -24,6 +24,7 @@ export function ConnectIcon({name,color='#526A5B',size=24}:Props){
   case 'arrow':shapes=<>{line('shaft',4,12,20,12)}{line('upper',14,6,20,12)}{line('lower',14,18,20,12)}</>;break;
   case 'back':shapes=<>{line('shaft',4,12,20,12)}{line('upper',4,12,10,6)}{line('lower',4,12,10,18)}</>;break;
   case 'search':shapes=<>{circle('lens',3,3,13)}{line('handle',14.5,14.5,21,21)}</>;break;
+  case 'upload':shapes=<>{line('shaft',12,16,12,4)}{line('left',6,10,12,4)}{line('right',12,4,18,10)}{line('tray',4,20,20,20)}</>;break;
   case 'refresh':shapes=<><View style={{position:'absolute',left:3,top:3,width:18,height:18,borderWidth:width,borderColor:color,borderTopColor:'transparent',borderRadius:9,transform:[{rotate:'105deg'}]}}/>{line('arrow-v',20,2,20,8)}{line('arrow-h',14,8,20,8)}</>;break;
   case 'clock':shapes=<>{circle('face',3,3,18)}{line('hour',12,7,12,12)}{line('minute',12,12,16,14)}</>;break;
   case 'double-check':shapes=<>{line('short-a',2,12,7,17)}{line('long-a',7,17,17,6)}{line('short-b',10,14,13,17)}{line('long-b',13,17,23,6)}</>;break;

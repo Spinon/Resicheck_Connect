@@ -31,7 +31,10 @@
     "mobile:inspect:34": "pwsh -NoProfile -File apps/mobile/scripts/inspect-messaging34-apk.ps1",
     "mobile:prepare:35": "pwsh -NoProfile -File apps/mobile/scripts/build-messaging35-android.ps1 -PrepareOnly",
     "mobile:build:35:unsigned": "pwsh -NoProfile -File apps/mobile/scripts/build-messaging35-android.ps1 -BuildUnsigned",
-    "mobile:inspect:35": "pwsh -NoProfile -File apps/mobile/scripts/inspect-messaging35-apk.ps1"
+    "mobile:inspect:35": "pwsh -NoProfile -File apps/mobile/scripts/inspect-messaging35-apk.ps1",
+    "mobile:prepare:36": "pwsh -NoProfile -File apps/mobile/scripts/build-messaging36-android.ps1 -PrepareOnly",
+    "mobile:build:36:unsigned": "pwsh -NoProfile -File apps/mobile/scripts/build-messaging36-android.ps1 -BuildUnsigned",
+    "mobile:inspect:36": "pwsh -NoProfile -File apps/mobile/scripts/inspect-messaging36-apk.ps1"
   },
   "engines": {
     "node": ">=22.13.0"

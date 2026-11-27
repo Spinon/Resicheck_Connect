@@ -1,0 +1,10 @@
+{
+  "name": "expo-template-bare-minimum",
+  "version": "57.0.34",
+  "source": "https://registry.npmjs.org/expo-template-bare-minimum/-/expo-template-bare-minimum-57.0.34.tgz",
+  "integrity": "sha512-HtzV+GUfQlHV/cS9HBKOfHnNrMGTvAE/BMwMtP5IWPwNlTvCR91HnlLfAqznPkubv2zVO1wuIfNADgIBgdmmjw==",
+  "sha256": "0ef8a6a40071f6b29e3c958b8bae0856a96625b1953295637b904a0b5e77a7de",
+  "filename": "expo-template-bare-minimum-57.0.34.tgz",
+  "localPath": "output/messaging36-candidate/template/expo-template-bare-minimum-57.0.34.tgz",
+  "executesPackageScripts": false
+}

@@ -1,0 +1,28 @@
+{
+  "version": "0.0.36",
+  "build": 36,
+  "scope": "APP272/273 image/cache only",
+  "reuse": [
+    "Prior real hosted normal client and native connected shared UI:one JPEG/one new message;recipient cache reopen",
+    "Prior OFF/foreign-context denial, cancellation/late ACK, encoder and native encrypted cache checks",
+    "Prior native local audio replay before/after images;no audio infra pilot"
+  ],
+  "candidateChecks": [
+    "Official full Android candidate identity/permissions/Privacy/native cache/entry and installation",
+    "Normal full-app sign-in,company/conversation and staff inbox;new own sessions only",
+    "Real picker,default compressed inline thumbnail,cancel preserves text,conditional Original/zoom",
+    "Existing own synthetic image opening,reopening,refresh and cache;no extra canary upload",
+    "Text/receipt/keyboard/removal+tombstone and refresh without change",
+    "Audio controls/playback smoke using an already authorized synthetic item or localfixture clearly labeled",
+    "CNPJ and staff/client invite screens in existing authorized role scope;no new link/grant",
+    "Full Web export same frozen fingerprint,browser/CSP/security check and applicable navigation without CORS workaround",
+    "Local diff/secret review;physical-device check explicitly separate"
+  ],
+  "physicalMinimumForLucas": [
+    "After authorized delivery,install/upgrade and confirm36 inAbout",
+    "Choose a nonpersonal synthetic gallery image;check inline thumbnail/default compression/cancel",
+    "One send,recipient opens,leave/return and reopen;verify circle and no duplicate",
+    "Play existing synthetic audio;check normal volume,background/return and keyboard"
+  ],
+  "noPublishOrDistributionNow": true
+}

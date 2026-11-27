@@ -1,6 +1,6 @@
 export const LOCAL_IMAGE_PROFILE=Object.freeze({id:'candidate-document-3508-q90-v2',longEdge:3508,jpegQuality:0.90,maxBytes:12*1024*1024,maxPixels:16_000_000});
 export type LocalImageSource=Readonly<{uri:string;name:string;mime:'image/png'|'image/jpeg'|'application/pdf';bytes:number}>;
-export type LocalImagePreview=LocalImageSource&Readonly<{width:number|null;height:number|null;mode:'original'|'optimized';profile:string|null;retainedOriginal?:'not-smaller';flattenedTransparency?:boolean}>;
+export type LocalImagePreview=LocalImageSource&Readonly<{width:number|null;height:number|null;mode:'original'|'optimized';profile:string|null;retainedOriginal?:'not-smaller'|'conversion-failed';detailRisk?:'resolution-loss';flattenedTransparency?:boolean}>;
 const unavailable=()=>Error('Local image unavailable');
 // Preliminary type candidate only, never a decoder/document safety verdict.
 export function localImageHeaderType(header:Uint8Array){return header[0]===255&&header[1]===216&&header[2]===255?'image/jpeg':header.length>=8&&[137,80,78,71,13,10,26,10].every((v,i)=>header[i]===v)?'image/png':String.fromCharCode(...header.subarray(0,5))==='%PDF-'?'application/pdf':null;}
@@ -22,7 +22,7 @@ export async function prepareLocalImage(source:LocalImageSource,mode:'original'|
   result=await port.render(plan,LOCAL_IMAGE_PROFILE.jpegQuality);
   if(!port.current()||result.uri===source.uri||result.mime!=='image/jpeg'||result.name!==optimizedImageName(source)||typeof result.flattenedTransparency!=='boolean'||result.width!==plan.width||result.height!==plan.height||!Number.isSafeInteger(result.bytes)||result.bytes<1||result.bytes>LOCAL_IMAGE_PROFILE.maxBytes||result.mode!=='optimized'||result.profile!==LOCAL_IMAGE_PROFILE.id)throw unavailable();
   if(result.bytes>=source.bytes){await port.removeDerived(result);result=null;if(!port.current())throw unavailable();return Object.freeze({...source,width:size.width,height:size.height,mode:'original',profile:null,retainedOriginal:'not-smaller'});}
-  return Object.freeze({...result});
+  return Object.freeze({...result,...(plan.width<size.width||plan.height<size.height?{detailRisk:'resolution-loss' as const}:{})});
  }catch{if(result&&result.uri!==source.uri)try{await port.removeDerived(result);}catch{}throw unavailable();}
 }
 

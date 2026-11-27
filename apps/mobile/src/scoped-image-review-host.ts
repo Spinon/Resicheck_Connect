@@ -35,7 +35,7 @@ export function createScopedImageReviewHost(d:Options){
      try{
       e.port=d.createPort(()=>current(e));
       if(!current(e))throw Error();
-      e.review=createImageReview({current:()=>current(e),subscribe:f=>d.recent.subscribe(f)},e.port);
+      e.review=createImageReview({current:()=>current(e),subscribe:f=>d.recent.subscribe(f)},e.port,{defaultMode:'optimized'});
       e.stop=e.review.subscribe(emit);
       if(!current(e)||e.review.snapshot().phase==='closed')throw Error();
      }catch{if(entry===e)retire(e);setupFailed=true;}

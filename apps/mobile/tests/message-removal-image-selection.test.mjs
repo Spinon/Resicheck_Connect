@@ -2,7 +2,7 @@ import test from'node:test';import assert from'node:assert/strict';import fs fro
 const require=createRequire(new URL('../package.json',import.meta.url)),React=require('react'),ts=require('typescript');
 function load(file,{platform='android',allowed=()=>true,append=''}={}){
  const hooks={...React,memo:fn=>fn,useCallback:fn=>fn,useSyncExternalStore:(_s,get)=>get(),useEffect:()=>{},useState:v=>[typeof v==='function'?v():v,()=>{}],useRef:v=>({current:v})};
- const rn={Platform:{OS:platform},View:'View',Text:'Text',Pressable:'Pressable',ActivityIndicator:'ActivityIndicator',StyleSheet:{create:v=>v}};
+ const rn={useWindowDimensions:()=>({width:390,height:844,fontScale:1,scale:1}),Platform:{OS:platform},View:'View',Text:'Text',Pressable:'Pressable',ActivityIndicator:'ActivityIndicator',StyleSheet:{create:v=>v}};
  const src=fs.readFileSync(new URL('../src/'+file,import.meta.url),'utf8')+'\n'+append;
  const code=ts.transpileModule(src,{compilerOptions:{target:ts.ScriptTarget.ES2022,module:ts.ModuleKind.CommonJS,jsx:ts.JsxEmit.ReactJSX,esModuleInterop:true}}).outputText,m={exports:{}};
  new Function('require','module','exports',code)(name=>{
