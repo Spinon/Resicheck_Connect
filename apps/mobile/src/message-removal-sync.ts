@@ -8,13 +8,20 @@ export function createMessageRemovalSync(input:Readonly<{context:MessageRemovalC
  const masks=new Map<string,'self'|'all'>();let closed=false,started=false,cursor='0',flight:Promise<void>|null=null;const abort=new AbortController();
  const live=()=>{try{return!closed&&!abort.signal.aborted&&input.current()===true;}catch{return false;}},fail=()=>Error('Conversation unavailable');
  function mark(items:readonly MessageRemovalChange[]){if(!live())throw fail();for(const item of items){const old=masks.get(item.messageId);if(old!=='all')masks.set(item.messageId,item.scope);}if(masks.size>20000)throw fail();if(items.length)input.apply(items);}
- function protect(page:RecentHistoryPage):RecentHistoryPage{
+ function project(page:RecentHistoryPage){
   if(!live()||!started)throw fail();
-  return Object.freeze({...page,items:Object.freeze(page.items.map(row=>{
-   const scope=masks.get(row.id);if(!scope)return Object.freeze({...row,removed_scope:row.removed_scope??null});
-   return Object.freeze({...row,kind:'text' as const,body:REMOVED_MESSAGE_TEXT,important:false,removed_scope:scope});
-  }))});
+  let changed=false;
+  const items=page.items.map(row=>{
+   const scope=masks.get(row.id);
+   const next=scope?{...row,kind:'text' as const,body:REMOVED_MESSAGE_TEXT,important:false,removed_scope:scope}
+                   :{...row,removed_scope:row.removed_scope??null};
+   if(next.removed_scope!==row.removed_scope||next.kind!==row.kind||
+      next.body!==row.body||next.important!==row.important)changed=true;
+   return Object.freeze(next);
+  });
+  return {page:Object.freeze({...page,items:Object.freeze(items)}),changed};
  }
+ const protect=(page:RecentHistoryPage):RecentHistoryPage=>project(page).page;
  async function scan(){
   for(let pages=0;pages<200;pages++){
    if(!live())throw fail();const command=removalChangesCommand(input.context,cursor),raw=await input.rpc(command,abort.signal);
@@ -35,5 +42,5 @@ export function createMessageRemovalSync(input:Readonly<{context:MessageRemovalC
   if(!started)await poll();if(signal?.aborted||!live())throw fail();const page=await read(request,signal);
   if(signal?.aborted||!live())throw fail();return protect(page);
  };
- return Object.freeze({poll,protect,wrapRead,applyReceipt,snapshot:()=>Object.freeze({started,cursor,masked:masks.size}),close:()=>{closed=true;abort.abort();masks.clear();}});
+ return Object.freeze({poll,project,protect,wrapRead,applyReceipt,snapshot:()=>Object.freeze({started,cursor,masked:masks.size}),close:()=>{closed=true;abort.abort();masks.clear();}});
 }

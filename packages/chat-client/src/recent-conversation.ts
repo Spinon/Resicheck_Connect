@@ -4,7 +4,7 @@ import {createTextSendQueue,type QueueEntry} from './text-send-queue.ts';
 import {createHistoryWindow,type HistoryWindowContext,type HistoryWindowReadPort} from './history-window.ts';
 import {analyzeMessage} from '../../text/src/message-text.ts';
 /** Private, bounded, in-memory presentation state, never backend authority. */
-export type RecentConversationCheckpoint=Readonly<{context:HistoryWindowContext;draft:string;pending:Readonly<Pick<QueueEntry,'clientMessageId'|'text'|'attempts'>>|null;draftBelongsToIntent:boolean}>;
+export type RecentConversationCheckpoint=Readonly<{context:HistoryWindowContext;draft:string;pending:Readonly<Pick<QueueEntry,'clientMessageId'|'text'|'attempts'>>|null;draftBelongsToIntent:boolean;pendingAfterSequence?:number}>;
 export type RecentProvisionalMessage=Readonly<{id:string;text:string;sequence:number;acceptedAt:number;own:true}>;
 export type RecentConversationSnapshot=Readonly<{status:'active'|'unavailable'|'closed';draft:string;sending:boolean;canSend:boolean;retryableIntent:string|null;pending:readonly QueueEntry[];provisional:readonly RecentProvisionalMessage[];notice:null|'invalid-input'|'unavailable'|'uncertain'|'capacity'}>;
 const empty=Object.freeze([]),unavailable=()=>new Error('Conversation unavailable');
@@ -22,6 +22,12 @@ export function createRecentConversation(options:Readonly<{allowAudio?:boolean;a
   let lookup:AbortController|null=null,lookupPhysical:object|null=null,draftRevision=0,intentDraftRevision=-1;
   let status:RecentConversationSnapshot['status']='active',draft='',sending=false,activeIntent:string|null=null,retryableIntent:string|null=null,notice:RecentConversationSnapshot['notice']=null;
   const listeners=new Set<()=>void>(),provisional=new Map<string,RecentProvisionalMessage>();
+  const observedTextReceipts=new Map<string,NonNullable<QueueEntry['receipt']>>();
+  const textAliases=new Map<string,string>();let pendingAfterSequence=0,observedReceiptKey='';
+  function rememberTextReceipt(clientMessageId:string,receipt:NonNullable<QueueEntry['receipt']>){
+    const old=textAliases.get(receipt.id);if(old&&old!==clientMessageId){clear('unavailable');return false;}
+    textAliases.set(receipt.id,clientMessageId);observedTextReceipts.set(clientMessageId,Object.freeze({...receipt}));return true;
+  }
   let view:RecentConversationSnapshot=Object.freeze({status,draft,sending,canSend:false,retryableIntent,pending:empty,provisional:empty,notice});
   const adapter=createSupabaseSendAdapter({schedule,timeoutMs,maxPending:1});
   function active(){try{if(status!=='active')return false;const valid=current();return status==='active'&&valid===true;}catch{return false;}}
@@ -36,7 +42,7 @@ export function createRecentConversation(options:Readonly<{allowAudio?:boolean;a
   function notify(){for(const fn of [...listeners])try{fn();}catch{}}
   function clear(next:'unavailable'|'closed'){
     if(status==='closed'||status==='unavailable'&&next==='unavailable')return;
-    lookup?.abort();status=next;draft='';sending=false;activeIntent=null;retryableIntent=null;notice=next==='unavailable'?'unavailable':null;provisional.clear();adapter.signOut();queue.signOut();history.close();
+    lookup?.abort();status=next;draft='';sending=false;activeIntent=null;retryableIntent=null;notice=next==='unavailable'?'unavailable':null;provisional.clear();textAliases.clear();observedTextReceipts.clear();adapter.signOut();queue.signOut();history.close();
     view=Object.freeze({status,draft,sending,canSend:false,retryableIntent,pending:empty,provisional:empty,notice});notify();
   }
   function ensure(){if(active())return true;clear('unavailable');return false;}
@@ -48,15 +54,41 @@ export function createRecentConversation(options:Readonly<{allowAudio?:boolean;a
     // neither infers sequence continuity nor asserts that a row was deleted.
     if(h.status==='ready'&&!h.olderWindow&&h.messages.length)for(const [id,row] of provisional)if(row.sequence<h.messages[0].sequence)provisional.delete(id);
     const pending=Object.freeze(q.snapshot().filter(row=>row.status!=='accepted'));
+    const retained=new Set([...known,...provisional.keys()]);for(const [id,client] of textAliases)if(!retained.has(id)&&!pending.some(e=>e.clientMessageId===client)){textAliases.delete(id);observedTextReceipts.delete(client);}
     view=Object.freeze({status,draft,sending,canSend:!sending&&!activeIntent&&!h.busy&&provisional.size<maxEntries&&analyzeMessage(draft).valid&&[...draft].length<=2000,
       retryableIntent,pending,provisional:Object.freeze([...provisional.values()].sort((a,b)=>a.sequence-b.sequence)),notice});
     const entry=pending.find(row=>row.clientMessageId===activeIntent);
-    const checkpoint:RecentConversationCheckpoint=Object.freeze({context:captured,draft,pending:entry?Object.freeze({clientMessageId:entry.clientMessageId,text:entry.text,attempts:entry.attempts}):null,draftBelongsToIntent:!!entry&&draftRevision===intentDraftRevision&&draft===entry.text});
+    const checkpoint:RecentConversationCheckpoint=Object.freeze({context:captured,draft,pending:entry?Object.freeze({clientMessageId:entry.clientMessageId,text:entry.text,attempts:entry.attempts}):null,draftBelongsToIntent:!!entry&&draftRevision===intentDraftRevision&&draft===entry.text,...(entry?{pendingAfterSequence}:{})});
     // Capture only while current, before any listener may retire this host.
     try{options.onCheckpoint?.(checkpoint);}catch{}
     if(!active()){clear('unavailable');return;}notify();
   }
-  const unsubscribeHistory=history.subscribe(()=>{if(status==='active')publish();});
+  // The history wire deliberately omits clientMessageId. Only the existing
+  // subject-bound own-receipt RPC may associate an outstanding intent with a row.
+  // This observes acceptance; it never retries a write or settles physical I/O.
+  async function observeHistoryReceipt(){
+    const id=activeIntent,page=history.snapshot();if(!id||!options.receiptLookup||lookup||lookupPhysical||!ensure()||page.status!=='ready'||page.busy)return;
+    const candidates=page.messages.filter(m=>m.senderId===userId&&m.kind==='text'&&m.sequence>pendingAfterSequence&&!textAliases.has(m.id));if(!candidates.length)return;
+    const key=id+':'+candidates.at(-1)!.sequence;if(observedReceiptKey===key)return;observedReceiptKey=key;
+    const own=new AbortController(),physical=Object.freeze({});lookup=own;lookupPhysical=physical;
+    let reject!:(e:Error)=>void;const stopped=new Promise<never>((_,no)=>reject=no);void stopped.catch(()=>{});
+    own.signal.addEventListener('abort',()=>reject(unavailable()),{once:true});const cancel=schedule(()=>own.abort(),timeoutMs);
+    try{
+      let started:ReturnType<OwnReceiptRpc>;try{started=options.receiptLookup(ownReceiptCommand(captured,id),own.signal);}catch{if(lookupPhysical===physical)lookupPhysical=null;throw unavailable();}
+      const request=Promise.resolve(started).finally(()=>{if(lookupPhysical===physical)lookupPhysical=null;});
+      const reply=await Promise.race([request,stopped]);if(!ensure()||own.signal.aborted||activeIntent!==id)return;
+      if(reply.error!==null){if(['42501','P0001'].includes(reply.error.code))clear('unavailable');return;}
+      const result=decodeOwnReceipt(reply.data,captured,id);if(result.state!=='accepted')return;
+      const row=history.snapshot().messages.find(m=>m.id===result.receipt.id&&m.sequence===result.receipt.sequence&&m.senderId===userId&&m.kind==='text');
+      if(row&&rememberTextReceipt(id,result.receipt)){
+        const entry=q.snapshot().find(e=>e.clientMessageId===id),ticket=q.bindReceiptRecovery(id);
+        if(entry&&ticket?.accept(result.receipt)){activeIntent=null;retryableIntent=null;notice=null;if(draftRevision===intentDraftRevision&&draft===entry.text)draft='';}
+        publish();
+      }
+    }catch{/* No identity inference from text, timestamps or a failed lookup. */}
+    finally{cancel();own.abort();if(lookup===own)lookup=null;}
+  }
+  const unsubscribeHistory=history.subscribe(()=>{if(status==='active'){publish();void observeHistoryReceipt();}});
   async function attempt(id:string):Promise<boolean>{
     if(!ensure()||sending||history.snapshot().busy)return false;const entry=q.snapshot().find(row=>row.clientMessageId===id);if(!entry)return false;
     sending=true;retryableIntent=null;notice=null;publish();
@@ -67,11 +99,15 @@ export function createRecentConversation(options:Readonly<{allowAudio?:boolean;a
       const page=history.snapshot();
       if(page.status!=='ready'||page.olderWindow)await history.refreshLatest();
       if(!ensure())return false;
+      // Capture the latest authoritative boundary after returning from older
+      // history, before the first physical dispatch of this immutable intent.
+      if(entry.attempts===0)pendingAfterSequence=history.snapshot().messages.at(-1)?.sequence??0;
       const pending=q.send(id);publish();const outcome=await pending;if(!ensure())return false;
-      const result=q.snapshot().find(row=>row.clientMessageId===id);
+      let result=q.snapshot().find(row=>row.clientMessageId===id);
       if(result?.failure?.code==='UNAVAILABLE'){clear('unavailable');return false;}
-      if(outcome!=='accepted'||!result?.receipt){notice=result?.failure?.acceptanceUncertain?'uncertain':result?.failure?.code==='INVALID_INPUT'?'invalid-input':null;publish();return false;}
-      const receipt=result.receipt;
+      if(outcome!=='accepted'&&result?.failure?.acceptanceUncertain){const observed=observedTextReceipts.get(id);if(observed&&q.bindReceiptRecovery(id)?.accept(observed))result=q.snapshot().find(row=>row.clientMessageId===id);}
+      if(result?.status!=='accepted'||!result.receipt){notice=result?.failure?.acceptanceUncertain?'uncertain':result?.failure?.code==='INVALID_INPUT'?'invalid-input':null;publish();return false;}
+      const receipt=result.receipt;if(!rememberTextReceipt(id,receipt))return false;
       provisional.set(receipt.id,Object.freeze({id:receipt.id,text:result.text,sequence:receipt.sequence,acceptedAt:receipt.acceptedAt,own:true}));
       activeIntent=null;if(draftRevision===intentDraftRevision&&draft===result.text)draft='';publish();
       await history.refreshLatest();if(!ensure())return false;publish();return true;
@@ -80,18 +116,19 @@ export function createRecentConversation(options:Readonly<{allowAudio?:boolean;a
   if(options.resume!==undefined){
     const resumed=options.resume;
     if(!resumed||!resumed.context||Object.keys(captured).some(key=>resumed.context[key as keyof HistoryWindowContext]!==captured[key as keyof HistoryWindowContext])||typeof resumed.draft!=='string'||resumed.draft.length>65536||typeof resumed.draftBelongsToIntent!=='boolean'||resumed.pending!==null&&!q.restoreUncertain(resumed.pending))throw unavailable();
-    draft=resumed.draft;
+    if(resumed.pendingAfterSequence!==undefined&&(!Number.isSafeInteger(resumed.pendingAfterSequence)||resumed.pendingAfterSequence<0))throw unavailable();
+    pendingAfterSequence=resumed.pendingAfterSequence??0;draft=resumed.draft;
     if(resumed.pending){activeIntent=resumed.pending.clientMessageId;intentDraftRevision=resumed.draftBelongsToIntent&&draft===resumed.pending.text?draftRevision:-1;notice='uncertain';}
     publish();
   }
-  return Object.freeze({history,snapshot:()=>{ensure();return view;},subscribe:(fn:()=>void)=>{if(status==='closed')return()=>{};listeners.add(fn);return()=>{listeners.delete(fn);};},
+  return Object.freeze({history,textTimeline:()=>Object.freeze({aliases:Object.freeze([...textAliases].map(([messageId,clientMessageId])=>Object.freeze({messageId,clientMessageId}))),afterSequence:activeIntent?pendingAfterSequence:null}),snapshot:()=>{ensure();return view;},subscribe:(fn:()=>void)=>{if(status==='closed')return()=>{};listeners.add(fn);return()=>{listeners.delete(fn);};},
     setDraft(value:unknown){if(!ensure()||typeof value!=='string'||value.length>65536)return false;if(draft!==value)draftRevision++;draft=value;notice=null;publish();return true;},
     async send(){
       if(!ensure()||sending||activeIntent||history.snapshot().busy)return false;
       if(!analyzeMessage(draft).valid||[...draft].length>2000){notice='invalid-input';publish();return false;}
       if(provisional.size>=maxEntries){notice='capacity';publish();return false;}
       const result=q.enqueue(draft);if(!result.ok){notice=result.code==='QUEUE_FULL'?'capacity':'invalid-input';publish();return false;}
-      activeIntent=result.clientMessageId;intentDraftRevision=draftRevision;publish();return attempt(result.clientMessageId);
+      activeIntent=result.clientMessageId;pendingAfterSequence=history.snapshot().messages.at(-1)?.sequence??0;observedReceiptKey='';intentDraftRevision=draftRevision;publish();return attempt(result.clientMessageId);
     },
     retry:(id:string)=>{if(!ensure()||id!==activeIntent||sending)return Promise.resolve(false);const entry=q.snapshot().find(row=>row.clientMessageId===id);return entry?.failure?.retryable?attempt(id):Promise.resolve(false);},
     async recoverPending(){
@@ -115,7 +152,7 @@ export function createRecentConversation(options:Readonly<{allowAudio?:boolean;a
           if(q.snapshot().find(row=>row.clientMessageId===id)===entry&&entry.failure?.retryable===true){retryableIntent=id;publish();}
           return false;
         }
-        if(!ticket.accept(result.receipt))return false;
+        if(!ticket.accept(result.receipt)||!rememberTextReceipt(id,result.receipt))return false;
         activeIntent=null;retryableIntent=null;notice=null;if(draftRevision===intentDraftRevision&&draft===entry.text)draft='';
         provisional.set(result.receipt.id,Object.freeze({...result.receipt,text:entry.text,own:true}));publish();return true;
       }catch{return false;}finally{cancel();own.abort();if(lookup===own)lookup=null;}

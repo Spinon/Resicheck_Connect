@@ -139,10 +139,37 @@ export function createMembershipRecentBridge(deps:{cache?:ConversationCache;audi
    const current=()=>owns(c,true)&&c.conversation===conversation&&conversation.active();
    const resume=interrupted?.lease===c.lease&&interrupted.companyId===c.context.companyId&&interrupted.conversationId===c.context.conversationId?interrupted.value:undefined;
    const cacheScope={userId:c.lease.userId,companyId:c.context.companyId,conversationId:c.context.conversationId};
+   const initialCacheTicket=deps.cache?.ticket();
    const candidatePage=await deps.cache?.page(cacheScope);let cachedPage=candidatePage&&conversation.revalidateAccess&&await conversation.revalidateAccess()?candidatePage:null;if(!current()){unavailable(c);return;}let cacheTicket=deps.cache?.ticket();let lastCachedPage=cachedPage;
    let ownedHost:Host|null=null,removalNeedsAudioPurge=false;
    const sync=deps.messageRemoval===true?createMessageRemovalSync({context:cacheScope,rpc:conversation.messageRemoval??(()=>Promise.reject(Error('Conversation unavailable'))),current,purgeMedia:async items=>{if(!current())throw Error('Conversation unavailable');if(deps.cache){if(removalNeedsAudioPurge)await deps.cache.purgeAudio(cacheScope);removalNeedsAudioPurge=false;for(const item of items)deps.cache.purgeImage(cacheScope,item.messageId);await deps.cache.flush();cacheTicket=deps.cache.ticket();if(ownedHost&&lastCachedPage&&sync?.snapshot().started){lastCachedPage=sync.protect(lastCachedPage);deps.cache.putPage(cacheScope,lastCachedPage,cacheTicket,false);await deps.cache.flush();}}if(!current())throw Error('Conversation unavailable');},apply:items=>{if(current()){removalNeedsAudioPurge=items.some(item=>{const row=lastCachedPage?.items.find(row=>row.id===item.messageId);return !row||!row.removed_scope&&row.kind==='audio';});deps.members.maskMessagePreviews?.(cacheScope.companyId,cacheScope.conversationId,items.map(m=>m.messageId));if(ownedHost&&current())ownedHost.history.applyRemovals(items);}}}):null;
-   if(sync){removalSync=sync;await sync.poll();if(!current()){unavailable(c);return;}if(cachedPage){cachedPage=sync.protect(cachedPage);lastCachedPage=cachedPage;if(deps.cache&&cacheTicket!==undefined){deps.cache.putPage(cacheScope,cachedPage,cacheTicket,false);await deps.cache.flush();}}}
+   if(sync){
+    removalSync=sync;
+    await sync.poll();
+    if(!current()){unavailable(c);return;}
+    const cache=deps.cache;
+    if(cachedPage&&cache){
+     // A purge or clear during admission can change or evict the page just read.
+     cacheTicket=cache.ticket();
+     if(initialCacheTicket!==cacheTicket){
+      cachedPage=await cache.page(cacheScope);
+      if(!current()){unavailable(c);return;}
+      if(cache.ticket()!==cacheTicket)cachedPage=null;
+     }
+     if(cachedPage){
+      const projection=sync.project(cachedPage);
+      cachedPage=projection.page;
+      // The legacy snapshot renews its TTL on put. A segmented read already touches its LRU.
+      const state=cache.snapshot();
+      if(projection.changed||!state.segmented||state.failed)cache.putPage(cacheScope,cachedPage,cacheTicket,false);
+      await cache.flush();
+      if(!current()){unavailable(c);return;}
+      if(cache.ticket()!==cacheTicket)cachedPage=null;
+     }
+     lastCachedPage=cachedPage;
+     cacheTicket=cache.ticket();
+    }
+   }
 
    const next=createRecentConversationHost({allowImage:deps.imageHistory==='placeholder-only',allowRemoval:deps.messageRemoval===true,...(cachedPage?{cachedPage}:{}),...(resume?{resume}:{}),onCheckpoint:value=>{if(owns(c,true)&&current())c.checkpoint=value;},allowAudio:deps.audioPlayback!==undefined||deps.audioHistory==='placeholder-only',context:{userId:c.lease.userId,sessionKey:c.lease.sessionKey,companyId:c.context.companyId,conversationId:c.context.conversationId},...(conversation.receiptLookup?{receiptLookup:conversation.receiptLookup}:{}),rpc:conversation.rpc,readPort:sync?sync.wrapRead(conversation.readRecent!):(request,signal)=>conversation.readRecent!(request,signal),...(deps.cache?{progressiveHistory:{maxBytes:deps.cache.snapshot().segmented?16*1024*1024:480*1024,incremental:deps.cache.snapshot().segmented,onSnapshot:(page:unknown,removedIds?:readonly string[])=>{lastCachedPage=page as RecentHistoryPage;if(current()&&cacheTicket!==undefined)deps.cache?.putPage(cacheScope,page as RecentHistoryPage,cacheTicket,!!removedIds?.length);}}}:{}),...(typeof conversation.revalidateAccess==='function'?{validateReadCancellation:async(signal:AbortSignal)=>current()&&await conversation.revalidateAccess!(signal)&&current()}:{}),current,createId:deps.createId,schedule:deps.schedule,timeoutMs:deps.timeoutMs,maxMessages:deps.cache?10000:100});
    if(!current()){next.close();unavailable(c);return;}host=next;ownedHost=next;if(sync&&conversation.messageRemoval)removal=createMessageRemovalController({context:cacheScope,userId:c.lease.userId,current:()=>host===next&&current(),rows:()=>next.history.snapshot().messages.filter(m=>!m.removedScope),createOperationId:deps.createId,rpc:conversation.messageRemoval,apply:receipt=>sync.applyReceipt(receipt)});if(resume)interrupted=null;const restored=savedDrafts.take(c.lease,c.context.companyId,c.context.conversationId);if(!resume&&restored!==null&&current())next.setDraft(restored);stopHost=next.subscribe(()=>{savedDrafts.take(c.lease,c.context.companyId,c.context.conversationId);update(c,next);});

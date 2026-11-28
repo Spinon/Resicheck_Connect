@@ -3,13 +3,13 @@ import test from'node:test';import assert from'node:assert/strict';import{create
 const id=(n:number)=>'27200000-0000-4000-8000-'+String(n).padStart(12,'0'),schedule=(f:()=>void,ms:number)=>{const t=setTimeout(f,ms);return()=>clearTimeout(t);};
 const defer=<T>()=>{let resolve!:(v:T)=>void;return{promise:new Promise<T>(r=>resolve=r),resolve};};
 const flush=async()=>{for(let n=0;n<20;n++)await Promise.resolve();};
-function fixture(cacheEnabled=false, additionalImages:string[]=[], readDelay:()=>Promise<void>=()=>Promise.resolve(), timeoutMs=1000){let permission=true,denyOnRead=false,stored:any=null;let foreground=true,status='ready',removed=false,reads=0,releases=0;const listeners=new Set<()=>void>(),historyListeners=new Set<()=>void>();const row={id:id(3),kind:'image',removedScope:null};const host={snapshot:()=>({status:'active'}),history:{snapshot:()=>({status,messages:[row.id,...additionalImages].map(id=>({...row,id,removedScope:removed?'all':null}))}),subscribe:(f:()=>void)=>{historyListeners.add(f);return()=>historyListeners.delete(f);}}};const cap={token:{},current:()=>foreground};
+function fixture(cacheEnabled=false, additionalImages:string[]=[], readDelay:()=>Promise<void>=()=>Promise.resolve(), timeoutMs=1000, hasDecodedThumbnail?:(uri:string)=>Promise<boolean>){let ticket=1,materializations=0;let permission=true,denyOnRead=false,stored:any=null;let foreground=true,status='ready',removed=false,reads=0,releases=0;const listeners=new Set<()=>void>(),historyListeners=new Set<()=>void>();const row={id:id(3),kind:'image',removedScope:null};const host={snapshot:()=>({status:'active'}),history:{snapshot:()=>({status,messages:[row.id,...additionalImages].map(id=>({...row,id,removedScope:removed?'all':null}))}),subscribe:(f:()=>void)=>{historyListeners.add(f);return()=>historyListeners.delete(f);}}};const cap={token:{},current:()=>foreground};
  const descriptor={companyId:id(1),conversationId:id(2),messageId:id(3),attachmentId:id(4),sha256:'a'.repeat(64),byteLength:3,mime:'image/png',width:16,height:16,mode:'original'};
- const source={...(cacheEnabled?{resolve:async()=>{if(!permission)throw Error('Image unavailable');return descriptor;}}:{}),active:()=>foreground,busy:()=>false,read:async(command:{messageId:string})=>{if(!permission)throw Error('Image unavailable');reads++;await readDelay();return{bytes:new Uint8Array([1,2,3]),descriptor:{...descriptor,messageId:command.messageId}};},upload:async()=>{throw Error();},status:async()=>{throw Error();},commit:async()=>{throw Error();}};
+ const source={...(cacheEnabled?{resolve:async()=>{if(!permission)throw Error('Image unavailable');return {...descriptor};}}:{}),active:()=>foreground,busy:()=>false,read:async(command:{messageId:string})=>{if(!permission)throw Error('Image unavailable');reads++;await readDelay();return{bytes:new Uint8Array([1,2,3]),descriptor:{...descriptor,messageId:command.messageId}};},upload:async()=>{throw Error();},status:async()=>{throw Error();},commit:async()=>{throw Error();}};
  const scope={context:{companyId:id(1),conversationId:id(2),userId:id(5),sessionKey:'synthetic'},current:()=>foreground,conversation:{imageTransfer:source}};
  const recent={snapshot:()=>({route:'chat',host}),captureMediaScope:()=>cap,captureImageScope:()=>scope,subscribe:(f:()=>void)=>{listeners.add(f);return()=>listeners.delete(f);}};
- const owner=createNormalConversationImages({...(cacheEnabled?{cache:{hasImage:async()=>!!stored,ticket:()=>1,flush:async()=>{},image:async()=>{if(denyOnRead)permission=false;return stored?{descriptor:stored.descriptor,bytes:stored.bytes.slice()}:null;},putImage:(_s:any,d:any,b:Uint8Array)=>{stored={descriptor:d,bytes:b.slice()};}}as any}:{}),recent:recent as any,foreground:()=>foreground,createPort:()=>({pick:async()=>null,prepare:async()=>{throw Error();},owns:()=>false,read:async()=>new Uint8Array(),release(){},dispose(){}}),createResource:async()=>({preview:{uri:'blob:synthetic-'+reads,name:'Imagem',mime:'image/png',bytes:3,width:16,height:16,mode:'original',profile:null},release(){releases++;}}),digest:async()=> 'a'.repeat(64),createId:()=>id(6),schedule,now:Date.now,timeoutMs});const factory=owner.readerFor(host as any)!;
- return{owner,factory,denyDuringCacheRead(){denyOnRead=true;},deny(){permission=false;},get reads(){return reads;},get releases(){return releases;},refresh(value:string){status=value;for(const f of [...historyListeners])f();},remove(){removed=true;for(const f of [...historyListeners])f();},revoke(){foreground=false;for(const f of [...listeners])f();}};
+ const owner=createNormalConversationImages({hasDecodedThumbnail,...(cacheEnabled?{cache:{hasImage:async()=>!!stored,ticket:()=>ticket,flush:async()=>{},image:async()=>{if(denyOnRead)permission=false;return stored?{descriptor:stored.descriptor,bytes:stored.bytes.slice()}:null;},putImage:(_s:any,d:any,b:Uint8Array)=>{stored={descriptor:{...d},bytes:b.slice()};}}as any}:{}),recent:recent as any,foreground:()=>foreground,createPort:()=>({pick:async()=>null,prepare:async()=>{throw Error();},owns:()=>false,read:async()=>new Uint8Array(),release(){},dispose(){}}),createResource:async()=>({preview:{uri:'blob:synthetic-'+(++materializations),name:'Imagem',mime:'image/png',bytes:3,width:16,height:16,mode:'original',profile:null},release(){releases++;}}),digest:async()=> 'a'.repeat(64),createId:()=>id(6),schedule,now:Date.now,timeoutMs});const factory=owner.readerFor(host as any)!;
+ return{owner,factory,invalidate(){ticket++;},replaceAttachment(){Object.assign(descriptor,{attachmentId:id(9)});},get materializations(){return materializations;},denyDuringCacheRead(){denyOnRead=true;},deny(){permission=false;},get reads(){return reads;},get releases(){return releases;},refresh(value:string){status=value;for(const f of [...historyListeners])f();},remove(){removed=true;for(const f of [...historyListeners])f();},revoke(){foreground=false;for(const f of [...listeners])f();}};
 }
 test('same message recovers a new reader after transient history load; removal/old context never resurrect the URI',async()=>{const f=fixture();let notifications=0;const stop=f.factory.subscribe!(()=>notifications++);try{
  assert(f.factory.available!(id(3)));const first=f.factory(id(3));await first.load();assert.equal(first.snapshot().phase,'ready');
@@ -76,4 +76,60 @@ test('a thumbnail waiting for the lane cannot read after permission is revoked',
  } finally {
   f.owner.dispose();
  }
+});
+
+
+test('a previously decoded thumbnail is reauthorized and uses the same source on reentry',async()=>{
+ const f=fixture(true,[],undefined,1000,async()=>true);
+ try{
+  const first=f.factory(id(3));await first.load();const original=first.snapshot().preview!.uri;
+  first.close();assert.equal(f.releases,1);f.invalidate();
+  const next=f.factory(id(3));await next.load();
+  assert.equal(next.snapshot().preview?.uri,original);assert.equal(f.materializations,1);
+  const [a,b]=await Promise.all([next.viewerUri(),next.viewerUri()]);
+  assert.ok(a);assert.equal(a,b);assert.equal(f.materializations,2);assert.equal(f.reads,1);
+  f.remove();assert.equal(next.snapshot().phase,'closed');assert.equal(await next.viewerUri(),null);assert.equal(f.releases,2);
+ }finally{f.owner.dispose();}
+});
+
+test('revoked authorization refuses a remembered bitmap without reading image bytes',async()=>{
+ const f=fixture(true,[],undefined,1000,async()=>true);
+ try{
+  const first=f.factory(id(3));await first.load();first.close();f.deny();
+  const next=f.factory(id(3));await next.load();
+  assert.equal(next.snapshot().phase,'failed');assert.equal(next.snapshot().preview,null);
+  assert.equal(f.materializations,1);assert.equal(f.reads,1);
+ }finally{f.owner.dispose();}
+});
+
+test('bitmap eviction falls back to the encrypted source once, including a late native decode error',async()=>{
+ for(const decoded of [false,true]){
+  const f=fixture(true,[],undefined,1000,async()=>decoded);
+  try{
+   const first=f.factory(id(3));await first.load();first.close();
+   const next=f.factory(id(3));await next.load();
+   if(decoded){next.displayFailed();await new Promise<void>(resolve=>{const stop=next.subscribe(()=>{if(next.snapshot().phase==='ready'){stop();resolve();}});});}
+   assert.equal(next.snapshot().phase,'ready');assert.equal(f.reads,1);assert.equal(f.materializations,2);
+   next.displayFailed();assert.equal(next.snapshot().phase,'failed');
+  }finally{f.owner.dispose();}
+ }
+});
+
+test('cache invalidation during a bitmap lookup prevents presentation',async()=>{
+ const probe=defer<boolean>(),f=fixture(true,[],undefined,1000,()=>probe.promise);
+ try{
+  const first=f.factory(id(3));await first.load();first.close();
+  const next=f.factory(id(3)),loaded=next.load();await flush();f.invalidate();probe.resolve(true);await loaded;
+  assert.equal(next.snapshot().phase,'failed');assert.equal(next.snapshot().preview,null);assert.equal(f.materializations,1);
+ }finally{f.owner.dispose();}
+});
+
+test('an attachment replacement cannot open under the already displayed thumbnail',async()=>{
+ const f=fixture(true,[],undefined,1000,async()=>true);
+ try{
+  const first=f.factory(id(3));await first.load();first.close();
+  const next=f.factory(id(3));await next.load();assert.equal(next.snapshot().phase,'ready');
+  f.replaceAttachment();assert.equal(await next.viewerUri(),null);
+  assert.equal(next.snapshot().phase,'failed');assert.equal(f.materializations,1);
+ }finally{f.owner.dispose();}
 });

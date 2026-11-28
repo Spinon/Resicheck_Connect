@@ -15,7 +15,7 @@ export function ImageAction({label,onPress,disabled=false,onSelect}:{label:strin
 }
 // Caller must unmount this view synchronously when its conversation capability
 // is revoked. No URI or private path is ever rendered as text.
-export function LocalImagePreviewView({preview,label='Ampliar imagem local',thumbnailMaxHeight=260,published=false,onSelect,compact=false,onUnavailable}:{onUnavailable?:()=>void;compact?:boolean;preview:LocalImagePreview;label?:string;thumbnailMaxHeight?:number;published?:boolean;onSelect?:()=>void}){
+export function LocalImagePreviewView({preview,label='Ampliar imagem local',thumbnailMaxHeight=260,published=false,onSelect,compact=false,onUnavailable,viewerUri}:{viewerUri?:()=>Promise<string|null>;onUnavailable?:()=>void;compact?:boolean;preview:LocalImagePreview;label?:string;thumbnailMaxHeight?:number;published?:boolean;onSelect?:()=>void}){
  const privacy=useMediaPrivacy();
  const [openUri,setOpenUri]=useState<string|null>(null),[failedUri,setFailedUri]=useState<string|null>(null),[touching,setTouching]=useState(false),[geometryReady,setGeometryReady]=useState(false),window=useWindowDimensions();
  // Identity gates the native modal during render, before URI-change effects.
@@ -79,7 +79,14 @@ export function LocalImagePreviewView({preview,label='Ampliar imagem local',thum
   model.current!.start([start]);model.current!.move([{...start,x:start.x+horizontal*width*0.2,y:start.y+vertical*height*0.2}]);model.current!.end([]);publish();
  },[cancelGesture,publish]);
  const fail=useCallback((uri:string)=>{if(!mounted.current||identity.current!==uri)return;close();if(published&&onUnavailable){onUnavailable();return;}setFailedUri(uri);},[close,published,onUnavailable]);
- const show=()=>{if(!privacy.allowed()||!mounted.current||!foreground.current||identity.current!==preview.uri||failed)return;invalidateGeometry();reset(1);isOpen.current=true;setOpenUri(preview.uri);};
+ const [expandedSource,setExpandedSource]=useState<string|null>(null);
+ const show=async()=>{
+  const allowed=()=>privacy.allowed()&&mounted.current&&foreground.current&&identity.current===preview.uri&&!failed;
+  if(!allowed())return;
+  const uri=viewerUri?await viewerUri():preview.uri;
+  if(!uri||!allowed())return;
+  setExpandedSource(uri);invalidateGeometry();reset(1);isOpen.current=true;setOpenUri(preview.uri);
+ };
  const width=Math.min(published&&compact?260:300,Math.max(100,window.width-88)),ratio=preview.width&&preview.height?preview.height/preview.width:1;
  const thumbnailLimit=Number.isFinite(thumbnailMaxHeight)&&thumbnailMaxHeight>=96&&thumbnailMaxHeight<=400?thumbnailMaxHeight:260;
  // The composer already reserves this frame. Center its contained image and
@@ -93,11 +100,11 @@ export function LocalImagePreviewView({preview,label='Ampliar imagem local',thum
  if(failed)return <Text accessibilityRole="alert">A prévia não está disponível. Selecione o arquivo de origem novamente.</Text>;
  if(preview.mime==='application/pdf')return <Text>Documento original. PDF não é regravado; prévia PDF indisponível.</Text>;
  if(!preview.width||!preview.height)return <Text>Original preservado. Prévia indisponível para esta resolução.</Text>;
- return <View style={s.preview}>{!compact&&<ImageAction label={label} onPress={show} onSelect={onSelect}/>}<Pressable accessibilityRole="button" accessibilityLabel={label} onPress={show} delayLongPress={onSelect?350:undefined} onLongPress={onSelect}><Image key={'thumbnail-'+preview.uri} onError={()=>fail(preview.uri)} accessibilityLabel={published?"Imagem da conversa":"Imagem local, não enviada"} source={{uri:preview.uri}} resizeMode="contain" style={{width,height:thumbnailHeight}}/></Pressable>
+ return <View style={s.preview}>{!compact&&<ImageAction label={label} onPress={show} onSelect={onSelect}/>}<Pressable accessibilityRole="button" accessibilityLabel={label} onPress={show} delayLongPress={onSelect?350:undefined} onLongPress={onSelect}><Image fadeDuration={published&&compact?0:undefined} key={'thumbnail-'+preview.uri} onError={()=>fail(preview.uri)} accessibilityLabel={published?"Imagem da conversa":"Imagem local, não enviada"} source={{uri:preview.uri}} resizeMode="contain" style={{width,height:thumbnailHeight}}/></Pressable>
  <MediaWindow priority={20} key={'modal-'+preview.uri} visible={open} onShow={measureViewport} onClose={close}><SafeAreaView style={s.screen} onAccessibilityEscape={close}>
   <View style={s.controls}><Pressable accessibilityRole="button" accessibilityLabel="Fechar imagem ampliada" onPress={close} style={s.viewerAction}><ConnectIcon name="back" color="white"/></Pressable><View style={{flex:1}}/>{([{label:'Menos zoom',action:()=>changeZoom(-1),glyph:'−'},{label:'Mais zoom',action:()=>changeZoom(1),glyph:'+'},{label:'Ajustar imagem',action:adjustImage,glyph:'↺'}]).map(button=><Pressable key={button.label} accessibilityRole="button" accessibilityLabel={button.label} onPress={button.action} disabled={!geometryReady} style={s.viewerAction}><Text style={{color:'white',fontSize:24}}>{button.glyph}</Text></Pressable>)}</View>
   <View ref={viewport} testID="image-preview-viewport" collapsable={false} accessible accessibilityRole="adjustable" accessibilityLabel="Imagem ampliada para conferência" accessibilityHint="Use os botões de zoom ou as ações de acessibilidade para mover a imagem em quatro direções e ajustar a imagem inteira." accessibilityValue={{min:1,max:4,now:transform.scale,text:'Zoom '+zoomLabel+' vezes'}} accessibilityActions={[{name:'increment',label:'Mais zoom'},{name:'decrement',label:'Menos zoom'},{name:'moveLeft',label:'Mover imagem para a esquerda'},{name:'moveRight',label:'Mover imagem para a direita'},{name:'moveUp',label:'Mover imagem para cima'},{name:'moveDown',label:'Mover imagem para baixo'},{name:'fitImage',label:'Ajustar imagem inteira e centralizar'},{name:'escape',label:'Fechar imagem ampliada'}]} onAccessibilityAction={event=>{const action=event.nativeEvent.actionName;if(action==='increment')changeZoom(1);else if(action==='decrement')changeZoom(-1);else if(action==='moveLeft')moveImage(-1,0);else if(action==='moveRight')moveImage(1,0);else if(action==='moveUp')moveImage(0,-1);else if(action==='moveDown')moveImage(0,1);else if(action==='fitImage')adjustImage();else if(action==='escape')close();}} onAccessibilityEscape={close} style={s.viewport} onLayout={()=>{if(isOpen.current){invalidateGeometry();measureViewport();}}} {...responder.panHandlers}>
-   {geometryReady&&<View pointerEvents="none" accessible={false} importantForAccessibility="no" style={{position:'absolute',width:decodeWidth,height:decodeHeight,left:(viewportSize.current.width-decodeWidth)/2,top:(viewportSize.current.height-decodeHeight)/2,transform:[{translateX:transform.x},{translateY:transform.y}]}}><Image key={'expanded-'+preview.uri} onError={()=>fail(preview.uri)} accessible={false} importantForAccessibility="no" source={{uri:preview.uri}} resizeMode="contain" resizeMethod="resize" style={{width:decodeWidth,height:decodeHeight,transform:[{scale:transform.scale/4}]}}/></View>}
+   {geometryReady&&<View pointerEvents="none" accessible={false} importantForAccessibility="no" style={{position:'absolute',width:decodeWidth,height:decodeHeight,left:(viewportSize.current.width-decodeWidth)/2,top:(viewportSize.current.height-decodeHeight)/2,transform:[{translateX:transform.x},{translateY:transform.y}]}}><Image key={'expanded-'+preview.uri} onError={()=>fail(preview.uri)} accessible={false} importantForAccessibility="no" source={{uri:expandedSource??preview.uri}} resizeMode="contain" resizeMethod="resize" style={{width:decodeWidth,height:decodeHeight,transform:[{scale:transform.scale/4}]}}/></View>}
   </View>
  </SafeAreaView></MediaWindow></View>;
 }

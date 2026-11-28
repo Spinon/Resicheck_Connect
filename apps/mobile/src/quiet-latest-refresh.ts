@@ -1,15 +1,16 @@
 type Proof=Readonly<{viewportTop:number;viewportHeight:number;tailBottom:number}>|Readonly<{empty:true;viewportWidth:number;viewportHeight:number}>;
 /** Native geometry only authorizes a read refresh, never a read receipt. */
-export function createQuietLatestRefresh(deps:Readonly<{emptyWindow?:boolean;allowVisibleTail?:boolean;current:()=>boolean;measure:(done:(proof:Proof|null)=>void)=>void;refresh:()=>unknown;fallback:()=>void;schedule:(fn:()=>void,ms:number)=>()=>void}>){
+export function createQuietLatestRefresh(deps:Readonly<{emptyWindow?:boolean;maxEndDistance?:number;allowVisibleTail?:boolean;current:()=>boolean;measure:(done:(proof:Proof|null)=>void)=>void;refresh:()=>unknown;fallback:()=>void;schedule:(fn:()=>void,ms:number)=>()=>void}>){
  if(deps.allowVisibleTail!==undefined&&typeof deps.allowVisibleTail!=='boolean')throw Error('Refresh unavailable');
  if(deps.emptyWindow!==undefined&&typeof deps.emptyWindow!=='boolean')throw Error('Refresh unavailable');
+ const maxDistance=deps.maxEndDistance??8;if(!Number.isFinite(maxDistance)||maxDistance<0||maxDistance>96)throw Error('Refresh unavailable');
  let stopped=false,consumed=false,cancel:(()=>void)|null=null;
  const live=()=>{try{return !stopped&&!consumed&&deps.current()===true;}catch{return false;}};
  const fallback=()=>{if(stopped||consumed)return;consumed=true;cancel?.();deps.fallback();};
  let returned=false;cancel=deps.schedule(()=>{if(!returned){stopped=true;return;}if(!live()){fallback();return;}cancel=deps.schedule(fallback,1000);
   try{deps.measure(proof=>{
    if(!live()){fallback();return;}
-   const validProof=proof&&(deps.emptyWindow===true?'empty'in proof&&proof.empty===true&&[proof.viewportWidth,proof.viewportHeight].every(Number.isFinite)&&proof.viewportWidth>0&&proof.viewportHeight>0:!('empty'in proof)&&[proof.viewportTop,proof.viewportHeight,proof.tailBottom].every(Number.isFinite)&&proof.viewportHeight>0&&proof.tailBottom>=proof.viewportTop&&(Math.abs(proof.tailBottom-(proof.viewportTop+proof.viewportHeight))<=8||deps.allowVisibleTail===true&&proof.tailBottom<=proof.viewportTop+proof.viewportHeight));
+   const validProof=proof&&(deps.emptyWindow===true?'empty'in proof&&proof.empty===true&&[proof.viewportWidth,proof.viewportHeight].every(Number.isFinite)&&proof.viewportWidth>0&&proof.viewportHeight>0:!('empty'in proof)&&[proof.viewportTop,proof.viewportHeight,proof.tailBottom].every(Number.isFinite)&&proof.viewportHeight>0&&proof.tailBottom>=proof.viewportTop&&(Math.abs(proof.tailBottom-(proof.viewportTop+proof.viewportHeight))<=maxDistance||deps.allowVisibleTail===true&&proof.tailBottom<=proof.viewportTop+proof.viewportHeight));
    if(!validProof){fallback();return;}
    consumed=true;cancel?.();try{void Promise.resolve(deps.refresh()).then(ok=>{if(!stopped&&ok!==true)deps.fallback();},()=>{if(!stopped)deps.fallback();});}catch{deps.fallback();}
   });}catch{fallback();}

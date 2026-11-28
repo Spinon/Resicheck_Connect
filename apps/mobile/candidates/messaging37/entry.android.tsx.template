@@ -1,0 +1,7 @@
+// DRAFT ONLY. Admit images/backend and freeze sources before building.
+import React from'react';
+import{registerRootComponent}from'expo';
+import{ConnectBuildInfoProvider}from'../../src/ConnectBuildInfo.tsx';
+import{createCompanyPreviewLotAndroidRoot}from'../../previews/company-preview-lot.android.tsx';
+const Root=createCompanyPreviewLotAndroidRoot({"schemaVersion":1,"projectRef":"ibdlvlwdzmsrbqadrudb","projectUrl":"https://ibdlvlwdzmsrbqadrudb.supabase.co","publishableKey":"INPUT_REQUIRED"},fetch,'candidate-private-v1');
+registerRootComponent(function App(){return <ConnectBuildInfoProvider value={{"versionName":"0.0.37","versionCode":37,"internalQa":false}}><Root/></ConnectBuildInfoProvider>;});

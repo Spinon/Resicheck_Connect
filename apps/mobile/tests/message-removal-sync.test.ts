@@ -24,3 +24,20 @@ test('corrupt/foreign feed never starts cache; close aborts pending transport',a
 test('no-change polling avoids media purge and wrapper rejects revoked reads',async()=>{
  let live=true,purges=0;const s=createMessageRemovalSync({context,current:()=>live,purgeMedia:async()=>{purges++;},apply:()=>{},rpc:async()=>feed('0')});await s.poll();await s.poll();assert.equal(purges,0);const read=s.wrapRead(async()=>{live=false;return page();});await assert.rejects(read({...context,before:null,limit:25}));s.close();
 });
+
+test('projection detects persisted field changes even with an already removed row or a legacy missing scope',async()=>{
+ const sync=createMessageRemovalSync({context,current:()=>true,purgeMedia:async()=>{},apply:()=>{},rpc:async()=>feed('0',[{messageId:id(3),scope:'all'}])});
+ try{
+  await sync.poll();
+  const original=page();
+  const masked=sync.project(original);
+  assert(masked.changed);assert.equal(masked.page.items[0].important,false);
+  assert.equal(sync.project(masked.page).changed,false);
+  for(const patch of [{important:true},{kind:'image' as const},{body:'stale'},{removed_scope:'self' as const}]){
+   assert(sync.project({...masked.page,items:[{...masked.page.items[0],...patch}]}).changed);
+  }
+  const legacy=sync.project({...original,items:[{...original.items[0],id:id(7)}]});
+  assert(legacy.changed);assert.equal(legacy.page.items[0].removed_scope,null);
+  assert.equal(sync.project(legacy.page).changed,false);
+ }finally{sync.close();}
+});

@@ -64,3 +64,28 @@ test('a different attachment cannot complete a retry, and a rejection ends this 
  assert.deepEqual(f.calls.map(c => c.kind), ['upload','status','status']);
  f.sender.close();
 });
+
+
+test('inspection ready at 2.9s is confirmed on the second published poll without another upload', async () => {
+ let elapsedMs = 0;
+ const checks: number[] = [];
+ const f = fixture({status: async command => {
+  checks.push(elapsedMs);
+  return f.receipt(command, elapsedMs >= 2900 ? 'ready' : 'quarantined');
+ }});
+ try {
+  await f.sender.start();
+  elapsedMs = 1000;
+  await f.tick(1000);
+  assert.equal(f.sent(), 0);
+  elapsedMs = 3000;
+  await f.tick(2000);
+  assert.deepEqual(checks, [1000, 3000]);
+  assert.deepEqual(f.calls.map(call => call.kind), ['upload', 'status', 'status', 'send']);
+  assert(f.calls.filter(call => call.kind === 'status').every(call => call.command === f.calls[0].command));
+  assert.equal(f.sent(), 1);
+  assert(!f.jobs.some(job => job.active));
+ } finally {
+  f.sender.close();
+ }
+});

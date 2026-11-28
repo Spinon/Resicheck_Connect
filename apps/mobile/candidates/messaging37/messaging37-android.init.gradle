@@ -1,0 +1,66 @@
+// Bound Ninja compilation in every native module on developer machines.
+allprojects { p ->
+ ['com.android.application','com.android.library'].each { plugin ->
+  p.plugins.withId(plugin) {
+   p.extensions.getByName('androidComponents').finalizeDsl { dsl ->
+    dsl.defaultConfig.externalNativeBuild.cmake.arguments.addAll([
+     '-DCMAKE_JOB_POOLS=connect_compile=1;connect_link=1',
+     '-DCMAKE_JOB_POOL_COMPILE=connect_compile',
+     '-DCMAKE_JOB_POOL_LINK=connect_link'
+    ])
+   }
+  }
+ }
+}
+// Isolated offline native audio UI QA. No product entry/output or phone ID is modified.
+allprojects { p ->
+ if (p.path == ':expo-constants') p.layout.buildDirectory.set(new File(p.rootProject.projectDir, 'messaging37-expo-constants-build'))
+ if (p.path == ':app') {
+  def mobile = p.rootProject.projectDir.parentFile
+  def release = new groovy.json.JsonSlurper().parse(new File(mobile,'candidates/messaging37/release-plan.PREPARED.json'))
+  def generated = new File(p.rootProject.projectDir, 'messaging37-generated')
+  p.layout.buildDirectory.set(new File(p.rootProject.projectDir, 'messaging37-build'))
+  p.plugins.withId('com.android.application') {
+   p.extensions.getByName('androidComponents').finalizeDsl { dsl ->
+    dsl.namespace = 'com.resicheck.connect.demo'
+    dsl.defaultConfig.applicationId = release.android.package
+    dsl.defaultConfig.versionCode = release.versionCode
+    dsl.defaultConfig.versionName = release.release
+    dsl.buildTypes.getByName('release').debuggable = false
+    // No signing custody in this builder; signing is a separate admitted release step.
+    dsl.buildTypes.getByName('release').signingConfig = null
+    dsl.sourceSets.main.manifest.srcFile(new File(generated, 'AndroidManifest.xml'))
+    dsl.sourceSets.main.res.srcDir(new File(mobile,'candidates/connected-basic-text/res'))
+    dsl.sourceSets.main.res.srcDir(new File(generated,'res'))
+    dsl.sourceSets.main.java.srcDir(new File(mobile,'native/privacy'))
+   }
+  }
+  p.plugins.withId('com.facebook.react') { p.afterEvaluate {
+   def entry = new File(generated,'entry.tsx')
+   p.extensions.getByName('react').entryFile.set(entry)
+   p.tasks.matching{it.name=='createBundleReleaseJsAndAssets'}.configureEach{t->
+    t.entryFile.set(entry)
+    // Bound Metro as well as Gradle/CMake on the QA desktop.
+    t.extraPackagerArgs.addAll(['--max-workers','2'])
+    // Metro watches these workspace packages; Gradle must invalidate the bundle too.
+    def workspace = mobile.parentFile.parentFile
+    def sharedSources = p.fileTree(new File(workspace,'packages')) {
+      include '**/src/**/*.ts', '**/src/**/*.tsx'
+      exclude '**/node_modules/**', '**/output/**'
+    }
+    t.inputs.files(sharedSources).withPropertyName('connectSharedWorkspaceSources')
+    def historySource = new File(workspace,'packages/chat-client/src/history-window.ts')
+    if(!historySource.isFile())throw new GradleException('Expected shared chat history source missing')
+    t.inputs.file(historySource).withPropertyName('connectSharedHistorySource')
+   }
+  }}
+ }
+}
+gradle.projectsEvaluated {
+ if(gradle.rootProject.findProject(':app')==null)return
+ def android=gradle.rootProject.projectDir
+ def task=gradle.rootProject.findProject(':expo-constants').tasks.findByName('createExpoConfig')
+ if(!(task instanceof org.gradle.api.tasks.Exec))throw new GradleException('Expected Expo asset task missing')
+ task.commandLine('node',new File(android.parentFile,'candidates/messaging37/expo-config.mjs').absolutePath)
+ task.inputs.file(new File(android,'messaging37-generated/app.config'))
+}

@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "state": "candidate-preparation-no-publication",
+  "release": "0.0.37",
+  "versionCode": 37,
+  "previousRelease": "0.0.36",
+  "previousVersionCode": 36,
+  "projectRef": "ibdlvlwdzmsrbqadrudb",
+  "android": {
+    "package": "com.resicheck.connect.pendingonlinephone",
+    "label": "Connect Teste37",
+    "architectures": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "signingCertificateSha256": "fac61745dc0903786fb9ede62a962b399f7348f0bb6f899b8332667591033b9c",
+    "permissions": [
+      "android.permission.INTERNET",
+      "android.permission.RECORD_AUDIO"
+    ],
+    "allowBackup": false,
+    "usesCleartextTraffic": false,
+    "debuggable": false
+  },
+  "web": {
+    "origin": "https://connect.resicheck.com.br",
+    "basePath": "/",
+    "sameVersion": true,
+    "preserveMainSite": true
+  },
+  "sourceRoots": {
+    "android": "apps/mobile/previews/company-preview-lot.android.tsx",
+    "web": "apps/mobile/previews/company-preview-lot.web.tsx",
+    "imagesOption": "candidate-private-v1"
+  },
+  "scope": [
+    "Chat history, scroll, selection and received thumbnails"
+  ],
+  "admissionBeforeBuild": [
+    "Review app-only source against 0.0.36",
+    "Verify shared Android and web source and normal image availability",
+    "Run focused chat tests"
+  ],
+  "actionsNow": {
+    "bumpApplied": false,
+    "build": false,
+    "webExport": false,
+    "publish": false,
+    "startEmulator": false,
+    "login": false,
+    "grants": false
+  },
+  "releasePolicy": {
+    "singleGroupedApk": true,
+    "noBuildPerSmallChange": true,
+    "webAfterValidatedApk": true,
+    "notesAndHashesSameLot": true
+  },
+  "normalImageAvailability": {
+    "state": "dynamic-normal-development-default-existing-and-new-companies",
+    "hostedAccessExpandedByThisCandidate": false,
+    "backendChanges": false
+  }
+}
